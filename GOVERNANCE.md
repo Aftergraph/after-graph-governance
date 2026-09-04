@@ -4,11 +4,11 @@
 
 | Module | Role | Repo |
 |---|---|---|
-| Workforce | User/developer-facing product | trust-gateway |
+| Workforce | User/developer-facing product | trust-gateway (bots/agents + Adaptive Workspace) |
 | AIE | Normative authority semantics | aie |
 | Trust Gateway | Runtime enforcement plane | trust-gateway |
 | WORKS | Durable execution plane | works-execution |
-| ISR | Labs/Evals/Assurance | (pending bootstrap) |
+| ISR | Labs/Evals/Assurance | intelligence-systems-research |
 
 ## Claim Inheritance Rules
 
