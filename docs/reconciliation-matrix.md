@@ -22,7 +22,7 @@
 | 1 | Mission | ISR (Program) | ISR: `state/lifecycle.py`; TG: mission controllers; WE: `internal/scheduler` (Mission struct); AIE: spec `missions.defaults` | ISR arch doc; WE `pkg/workgraph` | AIE MissionContract vs ISR lifecycle schema | Yes — schema alignment | mission-state/1.0 |
 | 2 | Policy | AIE (Spec) | AIE: spec `policy` (engine, precedence); WE: `contracts/manifest.json`; ISR: `policies/` | WE policies dir | AIE spec vs WE manifest | Yes — unify representation | policy.engine/1.0 |
 | 3 | Capability | ISR (Program) | ISR: `capabilities/dispatcher.py`; WE: `packages/capability/`; AIE: subject areas | ISR resolver; WE capability broker | ISR/WE duplicate discovery concepts | Yes — common interface | capability.registry/1.0 |
-| 4 | Budget | WE/AIE | WE: `internal/scheduler/budget.go`; AIE: `BudgetLedger`; TG: BudgetStore (`src/gateway/budgets.js`) | budget services | WE/AIE/TG triple tracking | Yes — reconcile semantics | budget.ledger/1.0 |
+| 4 | Budget | WE/AIE | WE: budget-felter i workgraph.go + packages/billing (ingen budget.go-fil); AIE: `BudgetLedger` i `src/aie_runtime/store.py` (HC4, reserve/settle/commit/refund, idempotent); TG: BudgetStore + BudgetLedger (`src/gateway/budgets.js`) | budget services | WE/AIE/TG tracking — fragmentering er spec-niveau, ikke runtime-niveau | Yes — reconcile semantics | budget.ledger/1.0 |
 | 5 | Identity | AIE (Spec) | AIE: `Principal`, `Role`; ISR: agent identity fields | WE lacks explicit model | — | Yes — WE needs model | identity.schema/1.0 |
 | 6 | Delegation | ISR (Program) | ISR: `authority/delegation.py` (DelegationManager); AIE: `DelegationRecord` | WE: takeover/release | — | Yes — unify records | delegation.record/1.0 |
 | 7 | Revocation | ISR (Program) | ISR: `authority/delegation.py` (revoke_subtree); AIE: `RevocationRecord` | WE: session state | — | Yes — unify records | revocation/1.0 |
@@ -54,3 +54,6 @@ A capability absent from the intersection is not shippable regardless of which r
 - AIE: Principal (in spec yaml), Role (in spec yaml)
 - AIE: EvidenceRecord (in engine.py)
 - AIE: revalidate (in engine.py, docs)
+
+
+> **Budget-row verified 2026-09-04 (post-HC4):** AIE `BudgetLedger` now EXISTS (`src/aie_runtime/store.py`, commit 58fd5e1+); TG `BudgetStore` + `BudgetLedger` in `src/gateway/budgets.js`; WE budget semantics live in `workgraph.go` fields + `packages/billing/billing.go` (no `internal/scheduler/budget.go` file — the original matrix claim was wrong and is corrected above).
