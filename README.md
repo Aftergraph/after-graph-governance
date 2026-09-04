@@ -9,9 +9,9 @@
 | Module | Repo | Role |
 |--------|------|------|
 | **Agent Workforce** | (in trust-gateway) | User/developer-facing product layer |
-| **AIE** | [JonasAbde/aie](https://github.com/Aftergraph/aie) | Normative authority/institution semantics |
-| **Trust Gateway** | [JonasAbde/trust-gateway](https://github.com/Aftergraph/trust-gateway) | Runtime enforcement plane |
-| **works-execution** | [JonasAbde/works-execution](https://github.com/Aftergraph/works-execution) | Durable execution plane |
+| **AIE** | [Aftergraph/aie](https://github.com/Aftergraph/aie) | Normative authority/institution semantics |
+| **Trust Gateway** | [Aftergraph/trust-gateway](https://github.com/Aftergraph/trust-gateway) | Runtime enforcement plane |
+| **works-execution** | [Aftergraph/works-execution](https://github.com/Aftergraph/works-execution) | Durable execution plane |
 | **ISR Program** | (pending bootstrap) | Labs / Evals / Assurance |
 
 ## Governance
