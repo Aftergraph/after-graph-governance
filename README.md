@@ -9,9 +9,9 @@
 | Module | Repo | Role |
 |--------|------|------|
 | **Agent Workforce** | (in trust-gateway) | User/developer-facing product layer |
-| **AIE** | [JonasAbde/aie](https://github.com/JonasAbde/aie) | Normative authority/institution semantics |
-| **Trust Gateway** | [JonasAbde/trust-gateway](https://github.com/JonasAbde/trust-gateway) | Runtime enforcement plane |
-| **works-execution** | [JonasAbde/works-execution](https://github.com/JonasAbde/works-execution) | Durable execution plane |
+| **AIE** | [JonasAbde/aie](https://github.com/Aftergraph/aie) | Normative authority/institution semantics |
+| **Trust Gateway** | [JonasAbde/trust-gateway](https://github.com/Aftergraph/trust-gateway) | Runtime enforcement plane |
+| **works-execution** | [JonasAbde/works-execution](https://github.com/Aftergraph/works-execution) | Durable execution plane |
 | **ISR Program** | (pending bootstrap) | Labs / Evals / Assurance |
 
 ## Governance
@@ -40,3 +40,7 @@ cpi/1.0, rab/1.0, identity/1.0, policy.token/1.0, secret.ref/1.0, shell.contract
 ## License
 
 Apache-2.0
+
+---
+
+**Brand status:** Aftergraph / ABDE Intelligence are PROVISIONAL — NOT TRADEMARK CLEARED. No irreversible branding until clearance (see intelligence-systems-research docs/BRAND-STATUS-2026-09-04.md).
