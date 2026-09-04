@@ -5,11 +5,11 @@
 
 ## Layers
 
-| Layer | Name | Producer | Format | Retention | Correlation |
+|| Layer | Name | Producer | Format | Retention | Correlation |
 |---|---|---|---|---|---|
 | L1 | Action Audit | TG hash-chain | `{seq, prevHash, ts, payload, hash}` (append-only, tamper-evident) | Indefinite | `mission_id` + `actionId` in payload |
 | L2 | Execution Quittance | works-execution | `evidence bundle` + `quittance` (content-addressed, HMAC-SHA256 signed) | Configurable TTL (compliance ~7y) | bundle metadata carries `mission_id` + `actionId` |
-| L3 | Institutional Conformance | AIE | conformance vectors + PolicyDecisionRecord | Policy lifecycle (~5–10y) | same pair |
+| L3 | Institutional Conformance | AIE | conformance vectors + EvidenceRecord | Policy lifecycle (~5–10y) | same pair |
 | L4 | Scientific Evidence | ISR (STUDY-011, MISSION-Bench) | preregistration + records + Wilson CI / McNemar analyses | Permanent (scientific record) | same pair |
 
 ## Rules
