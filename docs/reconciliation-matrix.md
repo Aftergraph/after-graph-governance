@@ -2,9 +2,10 @@
 
 > Canonical source of truth for concept ownership across the After Graph platform.
 > Sources: TG (v2.4.1) · WE (v0.3.5) · AIE (Draft 0.3) · ISR (Q3 2026)
-> Status: CANONICAL (owner-approved role distribution)
+| Status: CANONICAL (owner-approved role distribution)
+| Verified: 2026-09-04 against post-merge state
 
-## Role Distribution
+| ## Role Distribution
 
 | Module | Role | Repo |
 |---|---|---|
@@ -38,3 +39,18 @@
 
 Executable = MAY(AIE) ∩ NEEDS(WE/WORKS) ∩ HAS(runtime/TG).
 A capability absent from the intersection is not shippable regardless of which repo wants it.
+
+## Verification Notes (2026-09-04)
+
+**Verified EXISTS:**
+- TG: budgets.js, computer.js, providers.js, plugins.js (hub.js), approvals.js
+
+**Verified MISSING:**
+- WE: internal/scheduler/budget.go (only scheduler.go exists)
+- AIE: BudgetLedger class
+- ISR: Not cloned locally (delegation.py, context_manager.py, execution_loop.py unverified)
+
+**Partial:**
+- AIE: Principal (in spec yaml), Role (in spec yaml)
+- AIE: EvidenceRecord (in engine.py)
+- AIE: revalidate (in engine.py, docs)
