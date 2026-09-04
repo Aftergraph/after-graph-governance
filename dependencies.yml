@@ -3,17 +3,17 @@
 version: 1
 modules:
   trust-gateway:
-    repo: JonasAbde/trust-gateway
+    repo: Aftergraph/trust-gateway
     role: runtime-enforcement
     consumes: [aie.spec, works.contracts]
     provides: [policy.js, hash-chain.js, approvals.js, rbac.js, budgets.js, providers.js, computer.js, plugins.js, artifacts.js]
   aie:
-    repo: JonasAbde/aie
+    repo: Aftergraph/aie
     role: normative-authority
     consumes: []
     provides: [Principal, Role, AuthorityLease, MissionContract, PolicyDecisionRecord, DelegationRecord, BudgetLedger, TopologyMutation, RevocationRecord, EvidenceRecord, SettlementRecord]
   works-execution:
-    repo: JonasAbde/works-execution
+    repo: Aftergraph/works-execution
     role: durable-execution
     consumes: [aie.PolicyDecisionRecord, aie.BudgetLedger]
     provides: [scheduler, sandbox, evidence-bundles, quittance, workgraph, capability, secrets]
