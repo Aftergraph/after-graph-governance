@@ -1,0 +1,24 @@
+# After Graph — cross-repo dependency graph
+# Machine-readable; CI/agents can parse this
+version: 1
+modules:
+  trust-gateway:
+    repo: JonasAbde/trust-gateway
+    role: runtime-enforcement
+    consumes: [aie.spec, works.contracts]
+    provides: [policy.js, hash-chain.js, approvals.js, rbac.js, budgets.js, providers.js, computer.js, plugins.js, artifacts.js]
+  aie:
+    repo: JonasAbde/aie
+    role: normative-authority
+    consumes: []
+    provides: [Principal, Role, AuthorityLease, MissionContract, PolicyDecisionRecord, DelegationRecord, BudgetLedger, TopologyMutation, RevocationRecord, EvidenceRecord, SettlementRecord]
+  works-execution:
+    repo: JonasAbde/works-execution
+    role: durable-execution
+    consumes: [aie.PolicyDecisionRecord, aie.BudgetLedger]
+    provides: [scheduler, sandbox, evidence-bundles, quittance, workgraph, capability, secrets]
+  isr:
+    repo: (pending bootstrap)
+    role: labs-evals-assurance
+    consumes: [all]
+    provides: [SPEC-001, STUDY-011, MISSION-Bench, empirical validation]
