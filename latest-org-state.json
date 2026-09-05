@@ -1,6 +1,6 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-05T18:58:29Z",
+  "generated_at": "2026-09-05T19:27:34Z",
   "generator": "/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
@@ -8,13 +8,21 @@
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "d4822d551dadd042887364b4b8bb47e7cee78051",
-      "remote_head_short": "d4822d5",
-      "head_commit_message": "chore: gitignore .avc session state",
+      "remote_head_sha": "be78359709a754bd155f3025f63ca0aaf65ff321",
+      "remote_head_short": "be78359",
+      "head_commit_message": "feat: work-intelligence-boundary/1.0 — explicit WI→TG boundary contract",
       "private": false,
       "archived": false,
       "protected": false,
-      "open_pull_requests": [],
+      "open_pull_requests": [
+        {
+          "number": 5,
+          "title": "governance: real ISR repo + add work-intelligence-v2 to dependency graph",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "3013226570a64b194ebf2b5a7a7473f4858d00bf"
+        }
+      ],
       "authoritative_contracts": [
         {
           "name": "mission-state",
@@ -42,6 +50,13 @@
       "archived": false,
       "protected": true,
       "open_pull_requests": [
+        {
+          "number": 32,
+          "title": "status: reconcile S2 promotion claim with open issues #5/#6",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "32454f50d30dced73d65a60eb5077fae073d9db3"
+        },
         {
           "number": 24,
           "title": "docs: define AIE spec-runtime reconciliation",
@@ -110,9 +125,9 @@
       "full_name": "Aftergraph/trust-gateway",
       "role": "runtime-enforcement",
       "canonical_branch": "main",
-      "remote_head_sha": "d1b19e0ec7b25758e218a2f0b1279667c3ab6928",
-      "remote_head_short": "d1b19e0",
-      "head_commit_message": "docs: ISR konformance 6/6 verificeret — H9 cross-repo gap lukket",
+      "remote_head_sha": "cf7b4b8c82c0bc308ae645e1447e1654b54f5eb0",
+      "remote_head_short": "cf7b4b8",
+      "head_commit_message": "feat: work-intelligence-admission mount — explicit WI→TG boundary (fail-closed)",
       "private": false,
       "archived": false,
       "protected": true,
@@ -141,13 +156,21 @@
       "full_name": "Aftergraph/intelligence-systems-research",
       "role": "research",
       "canonical_branch": "main",
-      "remote_head_sha": "3e2156501e6b40f8d3e01a6c0a25bc6124e14079",
-      "remote_head_short": "3e21565",
-      "head_commit_message": "docs: V2 results — 122 tests, live RenOS integration evidence, all gates GREEN",
+      "remote_head_sha": "fd1390d904c40904cee39197b063788707f52288",
+      "remote_head_short": "fd1390d",
+      "head_commit_message": "fix: harden mission-state contract resolution — no side-by-side checkout required",
       "private": false,
       "archived": false,
       "protected": false,
-      "open_pull_requests": [],
+      "open_pull_requests": [
+        {
+          "number": 1,
+          "title": "ci: deterministic pytest bootstrap + node-conformance fix",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "b71ee3939e7fa54f287f3ef8392aa714ff8b2bd2"
+        }
+      ],
       "authoritative_contracts": [],
       "consumed_contracts": [
         {
@@ -160,9 +183,9 @@
       "full_name": "Aftergraph/work-intelligence-v2",
       "role": "detection",
       "canonical_branch": "master",
-      "remote_head_sha": "1728d45efbb555c48011a404d4cbae04dbbaf755",
-      "remote_head_short": "1728d45",
-      "head_commit_message": "chore: gitignore logs/ (runtime JSONL request-logs)",
+      "remote_head_sha": "f06156b66f6d3168a7c1ab6ad2a97d62655606d6",
+      "remote_head_short": "f06156b",
+      "head_commit_message": "feat: work-intelligence-boundary/1.0 contract + conformance test",
       "private": false,
       "archived": false,
       "protected": false,
@@ -188,13 +211,21 @@
       "full_name": "Aftergraph/skills-vault",
       "role": "skills-library",
       "canonical_branch": "main",
-      "remote_head_sha": "79300cdd610f989361d0d52ba6129a633b60f7bc",
-      "remote_head_short": "79300cd",
-      "head_commit_message": "feat: LF-hooks (lf-normalize + lf-gate) + vault-sync cron-script — profil-infrastruktur versioneret",
+      "remote_head_sha": "b4723a7c77cea5433ce40216d4e7674038709056",
+      "remote_head_short": "b4723a7",
+      "head_commit_message": "Merge pull request #1 from Aftergraph/feat/aftergraph-observer-skill",
       "private": true,
       "archived": false,
       "protected": false,
-      "open_pull_requests": [],
+      "open_pull_requests": [
+        {
+          "number": 2,
+          "title": "docs: aftergraph-observer lifecycle findings (policy-gate, publisher-krav)",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "b538552e3adb4953c4bade0c4cf85142683f9278"
+        }
+      ],
       "authoritative_contracts": [],
       "consumed_contracts": []
     },
