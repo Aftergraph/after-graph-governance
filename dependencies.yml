@@ -18,7 +18,12 @@ modules:
     consumes: [aie.PolicyDecisionRecord, aie.BudgetLedger]
     provides: [scheduler, sandbox, evidence-bundles, quittance, workgraph, capability, secrets]
   isr:
-    repo: (pending bootstrap)
+    repo: Aftergraph/intelligence-systems-research
     role: labs-evals-assurance
     consumes: [all]
     provides: [SPEC-001, STUDY-011, MISSION-Bench, empirical validation]
+  work-intelligence-v2:
+    repo: Aftergraph/work-intelligence-v2
+    role: work-detection-service
+    consumes: [aie.PolicyDecisionRecord, works.contracts]
+    provides: [event-processing, publication, reconciliation, policy-persistence, api-key-scopes]
