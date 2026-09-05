@@ -49,7 +49,23 @@ Claim inheritance is unidirectional (normative → operational); runtime evidenc
 
 ## Cross-Repo Contracts (normative)
 
-cpi/1.0, rab/1.0, identity/1.0, policy.token/1.0, secret.ref/1.0, shell.contracts/1.0, link.wire/1.0, pairing/1.0, brain.ns/1.0, release.rings/1.0, evidence.schema/1.1, kernel.budget/1.0, kernel.lifecycle/1.0
+cpi/1.0, rab/1.0, identity/1.0, policy.token/1.0, secret.ref/1.0, shell.contracts/1.0, link.wire/1.0, pairing/1.0, brain.ns/1.0, release.rings/1.0, evidence.schema/1.1, kernel.budget/1.0, kernel.lifecycle/1.0, mission-state/1.0, org-state/1.0
+
+## Org State Contract (exact-head truth surface)
+
+The **Org State Contract** (`docs/contracts/org-state/1.0.json`) is the machine-verifiable
+truth surface for the whole Aftergraph org: per-repo exact remote HEAD, canonical branch,
+role, protection status, open PRs, and contract ownership/consumption — **generated
+automatically from the GitHub API, never hand-typed SHA claims**.
+
+```bash
+bash scripts/org-state-verify.sh                 # generate + validate → latest-org-state.json
+bash scripts/org-state-verify.sh --check-local <path...>   # also verify local clones match remote (exit 2 on divergence)
+```
+
+Consumers (Hermes/Codex/AVC agents, CI, reviewers) MUST verify exact heads against this
+contract — or regenerate it — before gap analysis, delegation, or merge decisions. A SHA
+in any handoff/roadmap/briefing is a CLAIM; this contract (or a fresh generation) is TRUTH.
 
 ## Evidence Layers (correlation: mission_id + actionId)
 

@@ -1,0 +1,357 @@
+{
+  "schema_version": "org-state/1.0",
+  "generated_at": "2026-09-05T18:58:29Z",
+  "generator": "/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
+  "org": "Aftergraph",
+  "repositories": [
+    {
+      "full_name": "Aftergraph/after-graph-governance",
+      "role": "canonical-contracts",
+      "canonical_branch": "main",
+      "remote_head_sha": "d4822d551dadd042887364b4b8bb47e7cee78051",
+      "remote_head_short": "d4822d5",
+      "head_commit_message": "chore: gitignore .avc session state",
+      "private": false,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [],
+      "authoritative_contracts": [
+        {
+          "name": "mission-state",
+          "version": "1.0"
+        },
+        {
+          "name": "policy.token",
+          "version": "1.0"
+        },
+        {
+          "name": "org-state",
+          "version": "1.0"
+        }
+      ],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/aie",
+      "role": "normative-authority",
+      "canonical_branch": "main",
+      "remote_head_sha": "55db53d758b1d3b1adfd81519a5ba64306857ac1",
+      "remote_head_short": "55db53d",
+      "head_commit_message": "feat: H9 - mission-state enum alignment mod 1.0.json-kontrakten",
+      "private": false,
+      "archived": false,
+      "protected": true,
+      "open_pull_requests": [
+        {
+          "number": 24,
+          "title": "docs: define AIE spec-runtime reconciliation",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "406d1804f0cd9b601baea14a168fb651fcd92bae"
+        },
+        {
+          "number": 22,
+          "title": "feat: add durable A2A HTTP+JSON SSE streaming",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "86b4c92b5700cc615ba51dad20f1a329dc250759"
+        },
+        {
+          "number": 18,
+          "title": "chore(deps): bump actions/upload-artifact from 4 to 7",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "ff3b64ddb490b21d235923672d85223e75ce4555"
+        },
+        {
+          "number": 16,
+          "title": "chore(deps): bump actions/checkout from 4 to 7",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "092041e788704bfe06b3c29d174e8f96a1e0eff2"
+        }
+      ],
+      "authoritative_contracts": [],
+      "consumed_contracts": [
+        {
+          "name": "mission-state",
+          "version": "1.0"
+        }
+      ]
+    },
+    {
+      "full_name": "Aftergraph/works-execution",
+      "role": "durable-execution",
+      "canonical_branch": "main",
+      "remote_head_sha": "3ea1a80494c38f3e422339db6efbf5a7935a48be",
+      "remote_head_short": "3ea1a80",
+      "head_commit_message": "docs: G5 changelog",
+      "private": false,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [
+        {
+          "number": 39,
+          "title": "kanban: k-068 done",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "04e3c579ea2a2070bdc6277d3f84e1fad9ca2a78"
+        }
+      ],
+      "authoritative_contracts": [],
+      "consumed_contracts": [
+        {
+          "name": "mission-state",
+          "version": "1.0"
+        }
+      ]
+    },
+    {
+      "full_name": "Aftergraph/trust-gateway",
+      "role": "runtime-enforcement",
+      "canonical_branch": "main",
+      "remote_head_sha": "d1b19e0ec7b25758e218a2f0b1279667c3ab6928",
+      "remote_head_short": "d1b19e0",
+      "head_commit_message": "docs: ISR konformance 6/6 verificeret — H9 cross-repo gap lukket",
+      "private": false,
+      "archived": false,
+      "protected": true,
+      "open_pull_requests": [
+        {
+          "number": 25,
+          "title": "ci: call shared polyrepo integration gate",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "812ead7e59360d6724cda2f92bc28cda0a1ab59d"
+        }
+      ],
+      "authoritative_contracts": [],
+      "consumed_contracts": [
+        {
+          "name": "mission-state",
+          "version": "1.0"
+        },
+        {
+          "name": "policy.token",
+          "version": "1.0"
+        }
+      ]
+    },
+    {
+      "full_name": "Aftergraph/intelligence-systems-research",
+      "role": "research",
+      "canonical_branch": "main",
+      "remote_head_sha": "3e2156501e6b40f8d3e01a6c0a25bc6124e14079",
+      "remote_head_short": "3e21565",
+      "head_commit_message": "docs: V2 results — 122 tests, live RenOS integration evidence, all gates GREEN",
+      "private": false,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [],
+      "authoritative_contracts": [],
+      "consumed_contracts": [
+        {
+          "name": "mission-state",
+          "version": "1.0"
+        }
+      ]
+    },
+    {
+      "full_name": "Aftergraph/work-intelligence-v2",
+      "role": "detection",
+      "canonical_branch": "master",
+      "remote_head_sha": "1728d45efbb555c48011a404d4cbae04dbbaf755",
+      "remote_head_short": "1728d45",
+      "head_commit_message": "chore: gitignore logs/ (runtime JSONL request-logs)",
+      "private": false,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/work-intelligence-web",
+      "role": "product-web",
+      "canonical_branch": "main",
+      "remote_head_sha": "f66d30891917a08cedbdeb31dad71f391cca2175",
+      "remote_head_short": "f66d308",
+      "head_commit_message": "ci: fix runtime.image path (was top-level, now under runtime:)",
+      "private": true,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/skills-vault",
+      "role": "skills-library",
+      "canonical_branch": "main",
+      "remote_head_sha": "79300cdd610f989361d0d52ba6129a633b60f7bc",
+      "remote_head_short": "79300cd",
+      "head_commit_message": "feat: LF-hooks (lf-normalize + lf-gate) + vault-sync cron-script — profil-infrastruktur versioneret",
+      "private": true,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/autonomous-venture-company",
+      "role": "agent-workforce",
+      "canonical_branch": "main",
+      "remote_head_sha": "b79ecde257c38464aebf00fb22c292bf97cb1a31",
+      "remote_head_short": "b79ecde",
+      "head_commit_message": "docs(research): AIES-1 files pass docs-check (status/verified-against frontmatter; Requirements headings disambiguated) (#986)",
+      "private": true,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [
+        {
+          "number": 1008,
+          "title": "chore(deps): bump @tauri-apps/plugin-updater from 2.10.1 to 2.11.0",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "9cf0c48d6e44dbb4363835b9adc78dc02e9e6d54"
+        },
+        {
+          "number": 1007,
+          "title": "chore(deps): bump agents from 0.20.1 to 0.22.0",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "d72f67f672f6a92495628a0a8c818c64a50216ac"
+        },
+        {
+          "number": 1006,
+          "title": "chore(deps): bump electron-vite from 4.0.1 to 5.0.0",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "21098f425468759bac1ef156968a5d4359c18833"
+        },
+        {
+          "number": 1005,
+          "title": "chore(deps): bump @xyflow/react from 12.11.2 to 12.11.6",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "0f3552e3ae21802c0437771f819d07726ffe8238"
+        },
+        {
+          "number": 1004,
+          "title": "chore(deps): bump the development-tooling group with 11 updates",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "86b88269625a3a953c75ed29e79982ed82345e65"
+        },
+        {
+          "number": 1003,
+          "title": "chore(deps): bump openai from 4.104.0 to 7.9.0 in /ml/avc-llm",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "09081e2dfbc6a03b50c39d8fe4437d80af9ca37c"
+        },
+        {
+          "number": 1002,
+          "title": "chore(deps): bump tsx from 4.23.1 to 4.23.13 in /ml/avc-llm",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "7a65d995dcbb8a2b992fc08345147922077ea35e"
+        },
+        {
+          "number": 1001,
+          "title": "chore(deps): bump js-yaml from 5.2.2 to 5.4.1 in /ml/avc-llm",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "7042347722ea9435bfd9f82cc872f1b671c8dbd8"
+        },
+        {
+          "number": 1000,
+          "title": "chore(deps): bump eslint from 10.7.0 to 10.9.1 in /ml/avc-llm",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "2c78cccdca22f307d36b8ece50cf8a3fb9a448a3"
+        },
+        {
+          "number": 999,
+          "title": "chore(deps): bump js-yaml from 5.2.2 to 5.4.1 in /ml/avc-eval",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "ffa61b67618818bd7313bea0853202e2d3d05a38"
+        },
+        {
+          "number": 998,
+          "title": "chore(deps): bump openai from 4.104.0 to 7.9.0 in /ml/avc-eval",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "853b7b6de2e32d073bac072c0d6b00a268810e79"
+        },
+        {
+          "number": 997,
+          "title": "chore(deps): bump tsx from 4.23.1 to 4.23.13 in /ml/avc-eval",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "c65552c803440e4bb90e622f969e0eab1b0e9e73"
+        },
+        {
+          "number": 996,
+          "title": "chore(deps): bump eslint from 10.7.0 to 10.9.1 in /ml/avc-eval",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "a20f53ed0f6462cd3a9902a7cb70154d4b9a2be6"
+        },
+        {
+          "number": 995,
+          "title": "chore(deps): bump tauri-plugin-deep-link from 2.4.9 to 2.4.10 in /apps/mission-control/src-tauri",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "80ed0cfd26bd13cce05a8bb3ed2d47306d7e1a04"
+        },
+        {
+          "number": 994,
+          "title": "chore(deps): bump ed25519-dalek from 2.2.0 to 3.0.0 in /apps/mission-control/src-tauri",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "fa6b8317b99d0ee791d1d5fd8b7d2d322a0523a9"
+        },
+        {
+          "number": 993,
+          "title": "chore(deps): bump keyring from 2.3.3 to 4.2.0 in /apps/mission-control/src-tauri",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "5a63a2dfb1b9bd7ac21d567ae26134b4127a24a5"
+        },
+        {
+          "number": 992,
+          "title": "chore(deps): bump tauri-plugin-single-instance from 2.4.3 to 2.4.4 in /apps/mission-control/src-tauri",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "f7882c6b1baff6ca01062619accc77f9cd36afee"
+        },
+        {
+          "number": 991,
+          "title": "chore(deps): bump rand from 0.8.7 to 0.10.2 in /apps/mission-control/src-tauri",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "0d934e2a040b4d7eab962cda7ade4aad0f6c9054"
+        },
+        {
+          "number": 990,
+          "title": "⚡ Bolt: optimize serialization loop in effective-memory",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "c20aa5225ca4a683348659caf570cd473e98fdbf"
+        },
+        {
+          "number": 989,
+          "title": "⚡ Bolt: Optimize effective memory projection hash serialization",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "1158526712abe76442e50a9a702acba475e41e50"
+        }
+      ],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    }
+  ]
+}

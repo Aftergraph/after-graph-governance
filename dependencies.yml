@@ -1,24 +1,53 @@
 # After Graph — cross-repo dependency graph
 # Machine-readable; CI/agents can parse this
-version: 1
+# NOTE: exact heads are NEVER stored here — see docs/contracts/org-state/1.0.json
+# and run scripts/org-state-verify.sh for live remote truth.
+# Roles follow the institution-layer semantics (canonical → authority → execution → enforcement).
+version: 2
 modules:
-  trust-gateway:
-    repo: Aftergraph/trust-gateway
-    role: runtime-enforcement
-    consumes: [aie.spec, works.contracts]
-    provides: [policy.js, hash-chain.js, approvals.js, rbac.js, budgets.js, providers.js, computer.js, plugins.js, artifacts.js]
+  after-graph-governance:
+    repo: Aftergraph/after-graph-governance
+    role: canonical-contracts
+    consumes: []
+    provides: [mission-state/1.0.json, policy.token/1.0.json, org-state/1.0.json, reconciliation-matrix]
   aie:
     repo: Aftergraph/aie
     role: normative-authority
-    consumes: []
+    consumes: [after-graph-governance.mission-state/1.0]
     provides: [Principal, Role, AuthorityLease, MissionContract, PolicyDecisionRecord, DelegationRecord, BudgetLedger, TopologyMutation, RevocationRecord, EvidenceRecord, SettlementRecord]
   works-execution:
     repo: Aftergraph/works-execution
     role: durable-execution
-    consumes: [aie.PolicyDecisionRecord, aie.BudgetLedger]
-    provides: [scheduler, sandbox, evidence-bundles, quittance, workgraph, capability, secrets]
-  isr:
-    repo: (pending bootstrap)
-    role: labs-evals-assurance
-    consumes: [all]
-    provides: [SPEC-001, STUDY-011, MISSION-Bench, empirical validation]
+    consumes: [aie.PolicyDecisionRecord, aie.BudgetLedger, after-graph-governance.mission-state/1.0]
+    provides: [scheduler, sandbox, evidence-bundles, quittance, workgraph, capability, secrets, evidence-verdicts]
+  trust-gateway:
+    repo: Aftergraph/trust-gateway
+    role: runtime-enforcement
+    consumes: [aie.gateway-http, works-execution.evidence-verdicts, after-graph-governance.mission-state/1.0, after-graph-governance.policy.token/1.0]
+    provides: [policy.js, hash-chain.js, approvals.js, rbac.js, budgets.js, providers.js, computer.js, plugins.js, artifacts.js, skills-federation]
+  intelligence-systems-research:
+    repo: Aftergraph/intelligence-systems-research
+    role: research
+    consumes: [after-graph-governance.mission-state/1.0, aie, works-execution, trust-gateway]
+    provides: [SPEC-001, STUDY-011, MISSION-Bench, mission-state-conformance, empirical validation]
+  work-intelligence-v2:
+    repo: Aftergraph/work-intelligence-v2
+    role: detection
+    canonical_branch: master  # org deviation from 'main'; see org-state/1.0
+    consumes: []
+    provides: [observations, work-detection]
+  work-intelligence-web:
+    repo: Aftergraph/work-intelligence-web
+    role: product-web
+    consumes: [work-intelligence-v2]
+    provides: [production web experience, works-runner CI]
+  skills-vault:
+    repo: Aftergraph/skills-vault
+    role: skills-library
+    consumes: []
+    provides: [curated Hermes skills, manifest.json, sync-script]
+  autonomous-venture-company:
+    repo: Aftergraph/autonomous-venture-company
+    role: agent-workforce
+    consumes: [aie, works-execution, trust-gateway, skills-vault]
+    provides: [AVC runtime, governed model routing, CI identity]

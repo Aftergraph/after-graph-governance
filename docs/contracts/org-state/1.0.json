@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.dev/contracts/org-state/1.0.json",
+  "title": "Aftergraph Org State Contract",
+  "description": "Machine-verifiable org truth surface: exact remote HEAD, canonical branch, role, contracts and CI/PR status per repository, generated automatically from GitHub (never manually typed SHA claims). Consumers MUST verify exact heads against this contract (or regenerate it) before gap analysis, delegation or merge decisions. Any claim about a repo's state in a handoff/roadmap/briefing is a CLAIM; this contract (or a fresh generation of it) is TRUTH. Version 1.0.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "type": "string", "const": "org-state/1.0" },
+    "generated_at": {
+      "type": "string",
+      "description": "ISO-8601 UTC timestamp of generation."
+    },
+    "generator": {
+      "type": "string",
+      "description": "Absolute path or command identity of the generating script."
+    },
+    "org": {
+      "type": "string",
+      "const": "Aftergraph",
+      "description": "GitHub organization this contract covers (private repos require an authenticated gh session with org access)."
+    },
+    "repositories": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/repository" },
+      "minItems": 1,
+      "description": "One entry per tracked repository, keyed by full_name."
+    }
+  },
+  "required": ["schema_version", "generated_at", "generator", "org", "repositories"],
+  "$defs": {
+    "repository": {
+      "type": "object",
+      "properties": {
+        "full_name": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9-]+/[A-Za-z0-9._-]+$",
+          "description": "owner/name as reported by GitHub (canonical identity)."
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "canonical-contracts",
+            "normative-authority",
+            "durable-execution",
+            "runtime-enforcement",
+            "research",
+            "detection",
+            "product-web",
+            "skills-library",
+            "agent-workforce"
+          ],
+          "description": "Institution-layer role in the Aftergraph architecture (GOV = canonical semantics, AIE = authority, WORKS = execution+evidence, TG = operator-facing control plane, ISR = falsification/research, WI = detection, AVC = agent workforce)."
+        },
+        "canonical_branch": {
+          "type": "string",
+          "description": "Default branch as reported by GitHub. NOTE: org convention is 'main'; work-intelligence-v2 uses 'master' (known deviation)."
+        },
+        "remote_head_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$",
+          "description": "Full SHA of remote canonical branch head — THE authoritative state. Never accept an abbreviated SHA as truth."
+        },
+        "remote_head_short": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{7}$"
+        },
+        "head_commit_message": {
+          "type": "string",
+          "description": "First line of the head commit message (human orientation only; SHA is truth)."
+        },
+        "private": { "type": "boolean" },
+        "archived": { "type": "boolean" },
+        "protected": {
+          "type": "boolean",
+          "description": "True if the canonical branch has branch protection enabled (requires review/checks). GOV main is currently UNPROTECTED — a known governance risk."
+        },
+        "open_pull_requests": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "number": { "type": "integer" },
+              "title": { "type": "string" },
+              "is_draft": { "type": "boolean" },
+              "mergeable": { "type": "string", "enum": ["MERGEABLE", "CONFLICTING", "UNKNOWN"] },
+              "head_sha": { "type": "string", "pattern": "^[0-9a-f]{40}$" }
+            },
+            "required": ["number", "title", "is_draft", "mergeable", "head_sha"]
+          },
+          "description": "Open PRs on this repo at generation time (blockers surface here; head SHAs must be re-verified per PR, bodies may be stale)."
+        },
+        "authoritative_contracts": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/contract_ref" },
+          "description": "Contracts this repo OWNS normatively."
+        },
+        "consumed_contracts": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/contract_ref" },
+          "description": "Contracts this repo references/consumes, with pinned version."
+        },
+        "evidence_note": {
+          "type": "string",
+          "description": "Optional provenance note: how the entry was generated (e.g. 'generated from GitHub API via scripts/org-state-verify.sh; local clone divergence detected')."
+        }
+      },
+      "required": [
+        "full_name", "role", "canonical_branch", "remote_head_sha",
+        "remote_head_short", "private", "archived", "protected",
+        "authoritative_contracts", "consumed_contracts"
+      ]
+    },
+    "contract_ref": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Contract name, e.g. mission-state" },
+        "version": { "type": "string", "description": "Pinned version, e.g. 1.0" }
+      },
+      "required": ["name", "version"]
+    }
+  }
+}
