@@ -1,0 +1,64 @@
+# Docker compose — the Aftergraph unified platform (all 3 runtime repos).
+#
+#   TG    (trust-gateway)     :8800  — control/enforcement plane + SPA
+#   WORKS (works-execution)   :8080  — durable execution plane
+#   AIE   (aie)               bridge — invoked by TG via aie-client.js
+#
+# Config is 100% env-injected. No default secrets — fill in the .env file.
+#
+# Start:   docker compose up -d
+# Health:  curl http://localhost:8800/healthz
+#          curl http://localhost:8080/healthz
+
+services:
+  tg:
+    build: ./trust-gateway-view
+    ports:
+      - "8800:8800"
+    environment:
+      - TG_PORT=8800
+      - WORKS_API_URL=http://works:8080
+      - WORKS_API_TOKEN=${WORKS_API_TOKEN:-}
+      - AIE_RUNTIME_PATH=/aie
+      - AIE_STATE_FILE=/data/aie/aie-state.db
+      - AIE_PYTHON=python3
+      - TG_AIE_FAIL_OPEN=false
+    volumes:
+      - tg-data:/app/data
+      - aie-data:/data/aie
+    depends_on:
+      works:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8800/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  works:
+    build: ./works-execution
+    ports:
+      - "8080:8080"
+    environment:
+      - WORKS_ADDR=0.0.0.0:8080
+      - WORKS_DB=/data/works.db
+      - WORKS_ENROLL_SECRET=${WORKS_ENROLL_SECRET:-}
+    volumes:
+      - works-data:/data
+    healthcheck:
+      test: ["CMD", "/works-api", "-healthz-only"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  aie:
+    build: ./aie
+    volumes:
+      - aie-data:/data/aie
+    # AIE runs as bridge CLIs invoked by TG; no ports exposed.
+    # The smoke entrypoint validates the runtime imports cleanly.
+
+volumes:
+  tg-data:
+  works-data:
+  aie-data:
