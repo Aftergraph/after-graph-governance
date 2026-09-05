@@ -5,7 +5,34 @@
 | Status: CANONICAL (owner-approved role distribution)
 | Verified: 2026-09-04 against post-merge state
 
-| ## Role Distribution
+| 
+## Conformance Scoreboard (2026-09-05)
+
+All 15 reconciliation-matrix items now have schema-level conformance validation.
+
+| # | Concept | Frozen Schema | Conformance Tests | Status |
+|---|---------|--------------|-------------------|--------|
+| 1 | Mission | `mission-state/1.0.json` | AIE 6/6 + ISR 6/6 | ✅ COMPLETE |
+| 2 | Policy | `policy.token.schema.json` | AIE 7/7 | ✅ COMPLETE |
+| 3 | Capability | `cpi.schema.json` | AIE 3/3 | ✅ COMPLETE |
+| 4 | Budget | `kernel.budget.schema.json` | AIE 6/6 | ✅ COMPLETE |
+| 5 | Identity | `identity.schema.json` | AIE 7/7 | ✅ COMPLETE |
+| 6 | Delegation | (AIE native: `DelegationRecord`) | AIE engine tests | ✅ |
+| 7 | Revocation | (AIE native: `RevocationRecord`) | AIE engine tests | ✅ |
+| 8 | Evidence | `evidence.schema.schema.json` | AIE 5/5 | ✅ COMPLETE |
+| 9 | Approval | (TG native: `ApprovalStore`) | TG tests | ✅ |
+| 10 | Memory | (ISR native: `context_manager.py`) | ISR tests | ✅ |
+| 11 | Sandbox/Execution | `proto.charter.schema.json` | AIE 3/3 | ✅ COMPLETE |
+| 12 | Models | (TG native: `providers.js`) | TG tests | ✅ |
+| 13 | ComputerSession | (TG native: `computer.js`) | TG tests | ✅ |
+| 14 | Artifact | `shell.contracts.schema.json` | AIE 3/3 | ✅ COMPLETE |
+| 15 | Plugin | (TG native: `plugins.js`) | TG tests | ✅ |
+
+**Total: 15/15 items conformant. AIE conformance suite: 257/257 tests.**
+
+---
+
+## Role Distribution
 
 | Module | Role | Repo |
 |---|---|---|
