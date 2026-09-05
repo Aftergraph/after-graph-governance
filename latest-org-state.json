@@ -1,6 +1,6 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-05T19:27:34Z",
+  "generated_at": "2026-09-05T22:06:08Z",
   "generator": "/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
@@ -8,21 +8,13 @@
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "be78359709a754bd155f3025f63ca0aaf65ff321",
-      "remote_head_short": "be78359",
-      "head_commit_message": "feat: work-intelligence-boundary/1.0 — explicit WI→TG boundary contract",
+      "remote_head_sha": "5613e3f8dc07b849bba4cf8be9586c8bededb5f7",
+      "remote_head_short": "5613e3f",
+      "head_commit_message": "chore: regenerate org-state after slice-2 pushes (WI boundary, ISR hardening)",
       "private": false,
       "archived": false,
       "protected": false,
-      "open_pull_requests": [
-        {
-          "number": 5,
-          "title": "governance: real ISR repo + add work-intelligence-v2 to dependency graph",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "3013226570a64b194ebf2b5a7a7473f4858d00bf"
-        }
-      ],
+      "open_pull_requests": [],
       "authoritative_contracts": [
         {
           "name": "mission-state",
@@ -43,47 +35,26 @@
       "full_name": "Aftergraph/aie",
       "role": "normative-authority",
       "canonical_branch": "main",
-      "remote_head_sha": "55db53d758b1d3b1adfd81519a5ba64306857ac1",
-      "remote_head_short": "55db53d",
-      "head_commit_message": "feat: H9 - mission-state enum alignment mod 1.0.json-kontrakten",
+      "remote_head_sha": "3432834afd80e60009f1252a1801f21feb551b9b",
+      "remote_head_short": "3432834",
+      "head_commit_message": "feat: add durable A2A HTTP+JSON SSE streaming (#22)",
       "private": false,
       "archived": false,
       "protected": true,
       "open_pull_requests": [
         {
-          "number": 32,
-          "title": "status: reconcile S2 promotion claim with open issues #5/#6",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "32454f50d30dced73d65a60eb5077fae073d9db3"
-        },
-        {
-          "number": 24,
-          "title": "docs: define AIE spec-runtime reconciliation",
-          "is_draft": true,
-          "mergeable": "UNKNOWN",
-          "head_sha": "406d1804f0cd9b601baea14a168fb651fcd92bae"
-        },
-        {
-          "number": 22,
-          "title": "feat: add durable A2A HTTP+JSON SSE streaming",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "86b4c92b5700cc615ba51dad20f1a329dc250759"
-        },
-        {
           "number": 18,
           "title": "chore(deps): bump actions/upload-artifact from 4 to 7",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "ff3b64ddb490b21d235923672d85223e75ce4555"
+          "head_sha": "b21364875f76941377b34628ef81ddc83ad020cd"
         },
         {
           "number": 16,
           "title": "chore(deps): bump actions/checkout from 4 to 7",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "092041e788704bfe06b3c29d174e8f96a1e0eff2"
+          "head_sha": "f39aa9666bc0b9786e917f1a0098112f93edb7e9"
         }
       ],
       "authoritative_contracts": [],
@@ -125,21 +96,13 @@
       "full_name": "Aftergraph/trust-gateway",
       "role": "runtime-enforcement",
       "canonical_branch": "main",
-      "remote_head_sha": "cf7b4b8c82c0bc308ae645e1447e1654b54f5eb0",
-      "remote_head_short": "cf7b4b8",
-      "head_commit_message": "feat: work-intelligence-admission mount — explicit WI→TG boundary (fail-closed)",
+      "remote_head_sha": "515f8f744ff9b0a14df7398e38693fd3ac7ab667",
+      "remote_head_short": "515f8f7",
+      "head_commit_message": "ci: additive cross-repo integration gate caller (shared Aftergraph/.github gate) (#27)",
       "private": false,
       "archived": false,
       "protected": true,
-      "open_pull_requests": [
-        {
-          "number": 25,
-          "title": "ci: call shared polyrepo integration gate",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "812ead7e59360d6724cda2f92bc28cda0a1ab59d"
-        }
-      ],
+      "open_pull_requests": [],
       "authoritative_contracts": [],
       "consumed_contracts": [
         {
@@ -156,21 +119,13 @@
       "full_name": "Aftergraph/intelligence-systems-research",
       "role": "research",
       "canonical_branch": "main",
-      "remote_head_sha": "fd1390d904c40904cee39197b063788707f52288",
-      "remote_head_short": "fd1390d",
-      "head_commit_message": "fix: harden mission-state contract resolution — no side-by-side checkout required",
+      "remote_head_sha": "d67354385ea94f45e2dad7e8362621a9dee31b2f",
+      "remote_head_short": "d673543",
+      "head_commit_message": "ci: deterministic pytest bootstrap + node-conformance fix (#1)",
       "private": false,
       "archived": false,
       "protected": false,
-      "open_pull_requests": [
-        {
-          "number": 1,
-          "title": "ci: deterministic pytest bootstrap + node-conformance fix",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "b71ee3939e7fa54f287f3ef8392aa714ff8b2bd2"
-        }
-      ],
+      "open_pull_requests": [],
       "authoritative_contracts": [],
       "consumed_contracts": [
         {
@@ -182,14 +137,22 @@
     {
       "full_name": "Aftergraph/work-intelligence-v2",
       "role": "detection",
-      "canonical_branch": "master",
-      "remote_head_sha": "f06156b66f6d3168a7c1ab6ad2a97d62655606d6",
-      "remote_head_short": "f06156b",
-      "head_commit_message": "feat: work-intelligence-boundary/1.0 contract + conformance test",
+      "canonical_branch": "main",
+      "remote_head_sha": "2c2165a05d792d4a8bc1820c6c6280f87c2f1b14",
+      "remote_head_short": "2c2165a",
+      "head_commit_message": "feat: GitHubAdapter + inbound /v1/webhook/github with HMAC verification (#2)",
       "private": false,
       "archived": false,
       "protected": false,
-      "open_pull_requests": [],
+      "open_pull_requests": [
+        {
+          "number": 3,
+          "title": "feat: add source field to work-items list response + webhook docs (rescue from rebuilt master)",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "08a4d90f2849d5662baad9d056b3776d0bd6699f"
+        }
+      ],
       "authoritative_contracts": [],
       "consumed_contracts": []
     },
@@ -197,9 +160,9 @@
       "full_name": "Aftergraph/work-intelligence-web",
       "role": "product-web",
       "canonical_branch": "main",
-      "remote_head_sha": "f66d30891917a08cedbdeb31dad71f391cca2175",
-      "remote_head_short": "f66d308",
-      "head_commit_message": "ci: fix runtime.image path (was top-level, now under runtime:)",
+      "remote_head_sha": "525e55d21d52c06ae9752d4e6bb9e74c1743ffbe",
+      "remote_head_short": "525e55d",
+      "head_commit_message": "docs: note source badges release",
       "private": true,
       "archived": false,
       "protected": false,
