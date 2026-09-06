@@ -40,6 +40,11 @@ ABDE Intelligence
 | **WORKS** | [Aftergraph/works-execution](https://github.com/Aftergraph/works-execution) | Durable execution plane |
 | **AIE** | [Aftergraph/aie](https://github.com/Aftergraph/aie) | Independent normative authority/institution standards track |
 | **ABDE Research (ISR Program)** | [Aftergraph/intelligence-systems-research](https://github.com/Aftergraph/intelligence-systems-research) | Labs / Evals / Assurance |
+| **Work Intelligence** | [Aftergraph/work-intelligence-v2](https://github.com/Aftergraph/work-intelligence-v2) | Observation → WorkItem inference (human review required) |
+| **Autonomous Venture Company** | [Aftergraph/autonomous-venture-company](https://github.com/Aftergraph/autonomous-venture-company) | AI-native venture operating system, Hermes & Product Cells |
+| **Skills Vault** | [Aftergraph/skills-vault](https://github.com/Aftergraph/skills-vault) | Governed skill intelligence, supply chain & discovery |
+| **Aftergraph Studio** | [Aftergraph/studio](https://github.com/Aftergraph/studio) | Sovereign operating environment for governed AI intelligence & verified outcomes |
+| **Brand & Design System** | [Aftergraph/brand](https://github.com/Aftergraph/brand) | Visual language, design tokens, master assets & UI kits |
 
 Canonical definitions: ABDE Platform (product), ABDE Research (research-facing identity), AIE (independent standards track), After Graph (research thesis) — see [docs/ABDE-BRAND-ARCHITECTURE-v0.2.md](docs/ABDE-BRAND-ARCHITECTURE-v0.2.md) and [docs/NAMING-STANDARD-v0.1.md](docs/NAMING-STANDARD-v0.1.md).
 
