@@ -86,6 +86,25 @@ in any handoff/roadmap/briefing is a CLAIM; this contract (or a fresh generation
 
 No layer may upgrade another; promotion requires explicit owner approval + a decision record + conformance evidence.
 
+## System visuals
+
+Real architecture diagrams (repo-specific, source in `.github/assets/architecture/`):
+
+<p align="center">
+  <img src=".github/assets/architecture/system-context.svg" alt="Platform Governance in the Aftergraph ecosystem context" width="90%">
+  <br><em>System context</em>
+</p>
+
+<p align="center">
+  <img src=".github/assets/architecture/architecture.svg" alt="Platform Governance system architecture" width="90%">
+  <br><em>Architecture</em>
+</p>
+
+<p align="center">
+  <img src=".github/assets/architecture/workflow.svg" alt="Platform Governance primary workflow" width="90%">
+  <br><em>Primary workflow</em>
+</p>
+
 ## Key artifacts
 
 - [docs/ABDE-BRAND-ARCHITECTURE-v0.2.md](docs/ABDE-BRAND-ARCHITECTURE-v0.2.md) — provisional brand architecture (20 sections)
