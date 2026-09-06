@@ -2,4 +2,131 @@
 
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/Aftergraph/after-graph-governance/badge)](https://scorecard.dev/viewer/?uri=github.com/Aftergraph/after-graph-governance)
 
-<p align=
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset=".github/assets/github/hero.webp">
+    <img src=".github/assets/github/hero.png" alt="Platform Governance — Architecture, contracts, terminology, and exact-head truth" width="100%">
+  </picture>
+</p>
+
+# ABDE Intelligence — Platform Governance
+
+> Infrastructure for governed autonomous intelligence.
+
+**Brand status:** ABDE Intelligence is the current provisional company/platform candidate and has **not** completed trademark clearance.
+
+**Namespace status:** GitHub organization `@Aftergraph` is a temporary working namespace pending final brand clearance.
+
+**Architecture (provisional):**
+
+```
+ABDE Intelligence
+├── ABDE Platform
+│   ├── Agent Workforce
+│   ├── Trust Gateway
+│   ├── WORKS
+│   └── Adaptive Workspace / Plugin Runtime
+├── ABDE Research
+│   └── Jonas Abde Intelligence Systems Research Program
+├── AIE
+│   └── independent Agentic Institution Engineering standards track
+└── After Graph
+    └── research thesis / initiative / narrative
+```
+
+## Modules
+
+| Module | Repo | Role |
+|--------|------|------|
+| **Agent Workforce** | (in [Aftergraph/trust-gateway](https://github.com/Aftergraph/trust-gateway)) | User/developer-facing product layer |
+| **Trust Gateway** | [Aftergraph/trust-gateway](https://github.com/Aftergraph/trust-gateway) | Runtime control and enforcement plane |
+| **WORKS** | [Aftergraph/works-execution](https://github.com/Aftergraph/works-execution) | Durable execution plane |
+| **AIE** | [Aftergraph/aie](https://github.com/Aftergraph/aie) | Independent normative authority/institution standards track |
+| **ABDE Research (ISR Program)** | [Aftergraph/intelligence-systems-research](https://github.com/Aftergraph/intelligence-systems-research) | Labs / Evals / Assurance |
+| **Work Intelligence** | [Aftergraph/work-intelligence-v2](https://github.com/Aftergraph/work-intelligence-v2) | Observation → WorkItem inference (human review required) |
+| **Autonomous Venture Company** | [Aftergraph/autonomous-venture-company](https://github.com/Aftergraph/autonomous-venture-company) | AI-native venture operating system, Hermes & Product Cells |
+| **Skills Vault** | [Aftergraph/skills-vault](https://github.com/Aftergraph/skills-vault) | Governed skill intelligence, supply chain & discovery |
+| **Aftergraph Studio** | [Aftergraph/studio](https://github.com/Aftergraph/studio) | Sovereign operating environment for governed AI intelligence & verified outcomes |
+| **Brand & Design System** | [Aftergraph/brand](https://github.com/Aftergraph/brand) | Visual language, design tokens, master assets & UI kits |
+
+Canonical definitions: ABDE Platform (product), ABDE Research (research-facing identity), AIE (independent standards track), After Graph (research thesis) — see [docs/ABDE-BRAND-ARCHITECTURE-v0.2.md](docs/ABDE-BRAND-ARCHITECTURE-v0.2.md) and [docs/NAMING-STANDARD-v0.1.md](docs/NAMING-STANDARD-v0.1.md).
+
+## Governance
+
+Everything extensible is a plugin. Everything consequential is governed.
+
+- **Executable = Intersection(AIE policy, WORKS execution, TG enforcement)**
+- AIE MAY define policies that TG and WORKS MUST follow
+- WORKS NEEDS valid authorization from AIE before persisting
+- Runtime (TG) HAS the authority to block or permit based on AIE policy
+- Research evaluates but does not automatically claim
+
+Claim inheritance is unidirectional (normative → operational); runtime evidence does not automatically establish AIE conformance or scientific claims.
+
+## Cross-Repo Contracts (normative)
+
+cpi/1.0, rab/1.0, identity/1.0, policy.token/1.0, secret.ref/1.0, shell.contracts/1.0, link.wire/1.0, pairing/1.0, brain.ns/1.0, release.rings/1.0, evidence.schema/1.1, kernel.budget/1.0, kernel.lifecycle/1.0, mission-state/1.0, org-state/1.0
+
+## Org State Contract (exact-head truth surface)
+
+The **Org State Contract** (`docs/contracts/org-state/1.0.json`) is the machine-verifiable
+truth surface for the whole Aftergraph org: per-repo exact remote HEAD, canonical branch,
+role, protection status, open PRs, and contract ownership/consumption — **generated
+automatically from the GitHub API, never hand-typed SHA claims**.
+
+```bash
+bash scripts/org-state-verify.sh                 # generate + validate → latest-org-state.json
+bash scripts/org-state-verify.sh --check-local <path...>   # also verify local clones match remote (exit 2 on divergence)
+```
+
+Consumers (Hermes/Codex/AVC agents, CI, reviewers) MUST verify exact heads against this
+contract — or regenerate it — before gap analysis, delegation, or merge decisions. A SHA
+in any handoff/roadmap/briefing is a CLAIM; this contract (or a fresh generation) is TRUTH.
+
+## Evidence Layers (correlation: mission_id + actionId)
+
+| Layer | Producer | Format |
+|---|---|---|
+| L1 Action Audit | Trust Gateway | hash-chain entry |
+| L2 Execution Quittance | WORKS | content-addressed bundle |
+| L3 Institutional Conformance | AIE | conformance vectors + PolicyDecisionRecord |
+| L4 Scientific Evidence | ISR | STUDY-011/MISSION-Bench (Wilson CI, preregistration) |
+
+No layer may upgrade another; promotion requires explicit owner approval + a decision record + conformance evidence.
+
+## System visuals
+
+Real architecture diagrams (repo-specific, source in `.github/assets/architecture/`):
+
+<p align="center">
+  <img src=".github/assets/architecture/system-context.svg" alt="Platform Governance in the Aftergraph ecosystem context" width="90%">
+  <br><em>System context</em>
+</p>
+
+<p align="center">
+  <img src=".github/assets/architecture/architecture.svg" alt="Platform Governance system architecture" width="90%">
+  <br><em>Architecture</em>
+</p>
+
+<p align="center">
+  <img src=".github/assets/architecture/workflow.svg" alt="Platform Governance primary workflow" width="90%">
+  <br><em>Primary workflow</em>
+</p>
+
+## Key artifacts
+
+- [docs/ABDE-BRAND-ARCHITECTURE-v0.2.md](docs/ABDE-BRAND-ARCHITECTURE-v0.2.md) — provisional brand architecture (20 sections)
+- [docs/NAMING-STANDARD-v0.1.md](docs/NAMING-STANDARD-v0.1.md) — naming conventions and the no-ABDE-prefix rule
+- [docs/PUBLIC-INFO-ARCHITECTURE-v0.1.md](docs/PUBLIC-INFO-ARCHITECTURE-v0.1.md) — future website IA
+- [docs/reconciliation-matrix.md](docs/reconciliation-matrix.md) — 15-concept reconciliation
+- [docs/evidence-layer-model.md](docs/evidence-layer-model.md) — 4-layer evidence model
+- [docs/cross-repo-contracts.md](docs/cross-repo-contracts.md) — contract register
+- [docs/PLATFORM-BOUNDARY-CHARTER-v0.1.md](docs/PLATFORM-BOUNDARY-CHARTER-v0.1.md) — role allocation + claim inheritance
+
+## License
+
+Apache-2.0
+
+---
+
+**Brand status:** Aftergraph / ABDE Intelligence are PROVISIONAL — NOT TRADEMARK CLEARED. No irreversible branding until clearance (see intelligence-systems-research `docs/BRAND-STATUS-2026-09-04.md`).
