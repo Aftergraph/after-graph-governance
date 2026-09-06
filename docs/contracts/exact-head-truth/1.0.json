@@ -1,0 +1,58 @@
+{
+  "$id": "contract:exact-head-truth/1.0",
+  "title": "Exact-Head Truth Contract",
+  "description": "Canonical CI/execution status record. No status counts as truth unless it binds to an exact commit SHA, run identity, and timestamp. Stale or unbound statuses are rejected.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["repo", "sha", "run_id", "attempt", "timestamp", "source", "status", "context"],
+  "properties": {
+    "repo": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9_-]+/[a-zA-Z0-9_.-]+$",
+      "description": "Repository identifier (org/repo format)"
+    },
+    "sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$",
+      "description": "Full 40-character commit SHA this status binds to"
+    },
+    "run_id": {
+      "type": "string",
+      "description": "Unique execution identifier (CI run ID, WORKS work ID, or UUID)"
+    },
+    "attempt": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Attempt number for this run_id (retries increment)"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 UTC timestamp when this status was recorded"
+    },
+    "source": {
+      "type": "string",
+      "enum": ["github-actions", "self-hosted", "works-control-plane", "manual", "agent"],
+      "description": "Origin system that produced this status"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["success", "failure", "cancelled", "timeout", "queued", "running"],
+      "description": "Terminal or intermediate execution state"
+    },
+    "context": {
+      "type": "string",
+      "description": "Check context name (e.g. 'ci/test (3.12)', 'Brand Assets')"
+    },
+    "details_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to full execution log/evidence"
+    },
+    "freshness_window_seconds": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Maximum age in seconds before this status is considered stale (optional, default 3600)"
+    }
+  }
+}
