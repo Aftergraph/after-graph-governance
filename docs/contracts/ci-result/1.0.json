@@ -1,0 +1,90 @@
+{
+  "$id": "contract:ci-result/1.0",
+  "title": "Canonical CI Result",
+  "description": "One execution source's complete verdict for one exact commit SHA: every check context with its status, plus the environment fingerprint that explains divergence between sources. Composes with exact-head-truth/1.0 (each result entry is truth-bindable via repo+sha+run_id+timestamp).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["repo", "sha", "source", "run_id", "attempt", "timestamp", "environment", "results"],
+  "properties": {
+    "repo": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9_-]+/[a-zA-Z0-9_.-]+$",
+      "description": "Repository identifier (org/repo format)"
+    },
+    "sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$",
+      "description": "Full 40-character commit SHA this result binds to"
+    },
+    "source": {
+      "type": "string",
+      "enum": ["github-actions", "self-hosted", "works-control-plane", "manual", "agent"],
+      "description": "Origin system that produced this result (same enum as exact-head-truth/1.0)"
+    },
+    "run_id": {
+      "type": "string",
+      "description": "Unique execution identifier (CI run ID, WORKS work ID, or UUID)"
+    },
+    "attempt": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Attempt number for this run_id (retries increment)"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO8601 UTC timestamp when this result was recorded"
+    },
+    "environment": {
+      "type": "object",
+      "description": "Environment fingerprint explaining source divergence",
+      "required": ["runner"],
+      "properties": {
+        "runner": {
+          "type": "string",
+          "description": "Runner identity (e.g. 'ubuntu-latest', 'self-hosted,linux,x64,aie-interop', 'local-win32')"
+        },
+        "labels": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Runner labels / matrix axes"
+        },
+        "versions": {
+          "type": "object",
+          "additionalProperties": {"type": "string"},
+          "description": "Tool versions that affect verdicts (python, go, node, ...)"
+        },
+        "package_installed": {
+          "type": "boolean",
+          "description": "Whether the repo package was installed before testing (AIE truth-gap lesson: missing install flips verdicts)"
+        }
+      }
+    },
+    "results": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Per-context verdicts; every entry inherits repo/sha/source/run_id/timestamp",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["context", "status"],
+        "properties": {
+          "context": {
+            "type": "string",
+            "description": "Check context name (e.g. 'test (3.12)', 'Brand Assets')"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["success", "failure", "cancelled", "timeout", "queued", "running"],
+            "description": "Execution state (same enum as exact-head-truth/1.0)"
+          },
+          "details_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Link to full execution log/evidence"
+          }
+        }
+      }
+    }
+  }
+}
