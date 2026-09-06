@@ -1,0 +1,51 @@
+{
+  "$id": "contract:runner-clean-room/1.0",
+  "title": "Runner Clean-Room Contract",
+  "description": "Execution workspace boundary for deterministic CI. The repository test root must not recurse into dependency checkouts; temporary state, cache namespaces, and ports are unique to one run attempt; cleanup is explicit.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["repo", "sha", "run_id", "attempt", "checkout_root", "test_root", "dependency_root", "temp_root", "cache_namespace", "dependencies", "ports", "cleanup"],
+  "properties": {
+    "repo": {"type": "string", "pattern": "^[a-zA-Z0-9_-]+/[a-zA-Z0-9_.-]+$"},
+    "sha": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "run_id": {"type": "string", "minLength": 1},
+    "attempt": {"type": "integer", "minimum": 1},
+    "checkout_root": {"type": "string", "minLength": 1, "description": "Root of the primary repository checkout"},
+    "test_root": {"type": "string", "minLength": 1, "description": "Root passed to the test collector; must be inside checkout_root"},
+    "dependency_root": {"type": "string", "minLength": 1, "description": "Dedicated root for sibling/cross-repo checkouts; must not equal or sit inside test_root"},
+    "temp_root": {"type": "string", "minLength": 1, "description": "Run-attempt-specific temporary state root"},
+    "cache_namespace": {"type": "string", "pattern": "^[A-Za-z0-9._/-]+$", "description": "Run-attempt-specific cache namespace"},
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "path", "sha"],
+        "properties": {
+          "name": {"type": "string", "minLength": 1},
+          "path": {"type": "string", "minLength": 1},
+          "sha": {"type": "string", "pattern": "^[a-f0-9]{40}$"}
+        }
+      }
+    },
+    "ports": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["isolated", "reserved"],
+      "properties": {
+        "isolated": {"type": "boolean"},
+        "reserved": {"type": "array", "items": {"type": "integer", "minimum": 1, "maximum": 65535}, "uniqueItems": true}
+      }
+    },
+    "cleanup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["clean_before", "clean_after", "on_failure"],
+      "properties": {
+        "clean_before": {"type": "boolean"},
+        "clean_after": {"type": "boolean"},
+        "on_failure": {"type": "string", "enum": ["always", "retain-evidence-only"]}
+      }
+    }
+  }
+}
