@@ -152,6 +152,7 @@ The current platform-wide reconciliation program and actionable backlog live in:
 - [`dependencies.yml`](dependencies.yml) — platform dependency/ownership graph
 - [`docs/cross-repo-contracts.md`](docs/cross-repo-contracts.md) — normative contract register + repository boundaries
 - [`docs/reconciliation-matrix.md`](docs/reconciliation-matrix.md) — concept-level reconciliation
+- [`docs/REPOSITORY-REGISTRY-v0.1.md`](docs/REPOSITORY-REGISTRY-v0.1.md) — canonical repository roles, local worktree controls, reconciliation queue
 
 ## Other key artifacts
 
