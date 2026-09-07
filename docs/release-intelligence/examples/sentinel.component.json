@@ -1,15 +1,37 @@
 {
   "schema": "aftergraph-component/1.0",
-  "identity": {"product": "sentinel", "component": "sentinel-engine"},
-  "release": {"version": "1.4.0", "lifecycle": "preview"},
-  "platform": {"generation": 26, "release_train": "2026.09"},
+  "identity": {
+    "product": "sentinel",
+    "component": "sentinel-engine"
+  },
+  "release": {
+    "version": "1.4.0",
+    "lifecycle": "preview"
+  },
+  "platform": {
+    "generation": 26,
+    "release_train": "2026.09"
+  },
   "compatibility": {
     "level": "APC-1",
-    "profiles": ["verifier"],
+    "profiles": [
+      "verifier"
+    ],
     "minimum": "APC-1",
-    "tested_against": "APC-1"
+    "tested_against": "APC-1",
+    "requires_edges": [
+      {
+        "component": "works",
+        "version": "0.5.1",
+        "commit": "2222222222222222222222222222222222222222"
+      }
+    ]
   },
-  "contracts": {"correlation": "1.0", "evidence": "1.1", "verdict": "1.0"},
+  "contracts": {
+    "correlation": "1.0",
+    "evidence": "1.1",
+    "verdict": "1.0"
+  },
   "provenance": {
     "repository": "Aftergraph/sentinel",
     "commit": "1111111111111111111111111111111111111111"
