@@ -82,6 +82,13 @@ class AriCompileTest(unittest.TestCase):
         result = compile_component(copy.deepcopy(BASE), APC, [edge(level="CE1")])
         self.assertEqual(result.state, ResultState.UNKNOWN)
 
+    def test_invalid_apc_minimum_evidence_is_fail(self):
+        apc = copy.deepcopy(APC)
+        apc["profile_requirements"]["verifier"]["minimum_edge_evidence"] = "CE9"
+        result = compile_component(copy.deepcopy(BASE), apc, [edge(level="CE3")])
+        self.assertEqual(result.state, ResultState.FAIL)
+        self.assertTrue(any("minimum_edge_evidence" in message and "CE9" in message for message in result.errors))
+
     def test_explicit_fail_edge_is_fail(self):
         result = compile_component(copy.deepcopy(BASE), APC, [edge(state="fail", level="CE1")])
         self.assertEqual(result.state, ResultState.FAIL)
