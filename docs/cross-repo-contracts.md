@@ -27,6 +27,25 @@
 This table records normative contracts only. A repository appearing in the
 platform topology does **not** automatically become a normative contract owner.
 
+## Platform Convergence V2.1 contract families
+
+V2.1 adds four narrower canonical families without rewriting `identity/1.0`.
+`identity/1.0` remains a preserved compatibility contract, and its
+`runtime.lease_id` continues to mean the WORKS/runtime worker lease. It is never
+reinterpreted as an AIE AuthorityLease.
+
+| Contract | Normative | Owner Repo | Responsibility |
+|---|---|---|---|
+| `principal/1.0` | Normative | AIE | Canonical actor identity used for authority evaluation; identity does not itself grant authority. |
+| `tenant/1.0` | Normative | Trust Gateway | Canonical runtime-isolation identity; workspace/project/session identity is not a tenant root. |
+| `execution-context/1.0` | Normative | WORKS | Immutable correlation/binding envelope for durable execution; it is not an authorization token. |
+| `correlation/1.0` | Normative | after-graph-governance | Minimal transportable cross-repo reference envelope; possession grants no execution authority. |
+
+The machine-readable V2.1 family registry lives at
+`docs/contracts/platform-convergence-v2-1/registry.json`. Governance registers
+contract ownership and compatibility; runtime semantics remain in each owning
+repository.
+
 ## Platform repository boundaries
 
 | Repository | Role | Boundary |
