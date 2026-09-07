@@ -46,7 +46,7 @@ class TopologyReconciliationV2Tests(unittest.TestCase):
     def test_runtime_is_canonical_but_not_a_conformance_claim(self):
         runtime = self.repos["runtime"]
         self.assertEqual("agent-runtime", runtime["role"])
-        self.assertEqual("execution", runtime["plane"])
+        self.assertEqual("runtime", runtime["plane"])
         self.assertNotIn("APC-1", runtime.get("owns", ""))
 
     def test_avc_is_migration_source(self):
