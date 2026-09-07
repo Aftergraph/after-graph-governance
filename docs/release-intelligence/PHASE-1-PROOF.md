@@ -64,15 +64,16 @@ registry digest    sha256:69b46e2f5879c1b72c94918055317fe777a245284dae8dd210d537
 
 The registry implementation canonicalizes and digest-binds every embedded source document, sorts the derived entries deterministically, deduplicates semantically identical source documents, and rejects divergent content claiming the same exact `(component, version, commit)` identity.
 
-Merge-readiness hardening additionally proves three mutation boundaries:
+Merge-readiness hardening proves four mutation boundaries:
 
 ```text
 caller mutates source document after build       -> stored Registry input is unchanged
 caller mutates constructor input after validate  -> Registry canonical snapshot is unchanged
 caller mutates an accessor result                -> internal Registry state is unchanged
+caller mutates public document/digest view        -> canonical state/digest cannot be changed
 ```
 
-The Registry therefore acts as a reproducible derived snapshot rather than a live reference to mutable caller objects.
+The Registry therefore acts as a reproducible derived snapshot rather than a live reference to mutable caller objects. Its public document surface is a defensive copy and its public digest is read-only.
 
 ## Exact compatibility query proof
 
@@ -96,12 +97,12 @@ sha256:3333333333333333333333333333333333333333333333333333333333333333
 The query implementation delegates compatibility state calculation to `CompatibilityGraph`; it does not define a second precedence model. The test suite also verifies:
 
 ```text
-missing exact edge                 -> UNKNOWN
-PASS edge below minimum evidence   -> UNKNOWN
-stale exact edge                   -> STALE
+missing exact edge                  -> UNKNOWN
+PASS edge below minimum evidence    -> UNKNOWN
+stale exact edge                    -> STALE
 incompatible-with, either direction -> FAIL
-non-exact selector                 -> rejected
-unregistered exact component       -> rejected
+non-exact selector                  -> rejected
+unregistered exact component        -> rejected
 invalid CE level                    -> rejected
 ```
 
@@ -137,17 +138,17 @@ The RBOM suite separately proves `PARTIAL` for one matching passport, `UNVERIFIE
 
 ## CI evidence checkpoint
 
-Authoritative GitHub Actions PR-merge-ref verification for implementation/docs head:
+Authoritative GitHub Actions PR-merge-ref verification for the latest code/test head before this proof refresh:
 
 ```text
-branch head          6c2d4d312df87cc03bc350ad4daa9fea4aca0b69
-PR merge ref         770f1e3617884e9c5fc5f1767dde64d8d1b2fe9f
-Release Intelligence PASS
-ARI tests            90 passed, 0 failed
+branch head           46cd2e4738996fb9631cacdc5a496a6a748f90f3
+PR merge ref          e14d12944ab410ddcc8ea9a3f9aa980e25bb7d04
+Release Intelligence  PASS
+ARI tests             91 passed, 0 failed
 Governance regression 67 passed, 0 failed
-Python total         157 passed, 0 failed
+Python total          158 passed, 0 failed
 ARI JSON syntax gates 6 passed
-Brand Assets         PASS
+Brand Assets          PASS
 ```
 
 The six syntax gates cover:
@@ -161,7 +162,7 @@ docs/contracts/release-registry/1.0.json
 docs/contracts/rbom/0.1.json
 ```
 
-This checkpoint predates only this proof-document commit. The PR latest head must still pass the same applicable gates before merge readiness is claimed.
+This checkpoint predates only this proof-document refresh. The PR latest head must still pass the same applicable gates before merge readiness is claimed.
 
 ## PROVED
 
@@ -169,7 +170,7 @@ The Phase 1 implementation proves, within the synthetic evidence boundary, that 
 
 1. construct a deterministic, digest-bound Release Registry from validated exact-subject release documents;
 2. fail closed on malformed source documents, digest mismatch, divergent duplicate exact identities, and conflicting passport/manifest identity;
-3. preserve Registry snapshot integrity across caller-side mutation boundaries;
+3. preserve Registry snapshot integrity across source, constructor, accessor, and public-state mutation boundaries;
 4. query exact compatibility without hidden `latest` resolution and without duplicating graph state semantics;
 5. preserve PASS, FAIL, UNKNOWN, STALE, and N/A distinctions;
 6. build an exact RBOM for independently versioned components;
