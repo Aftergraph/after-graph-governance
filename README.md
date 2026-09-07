@@ -154,6 +154,7 @@ The current platform-wide reconciliation program and actionable backlog live in:
 - [`docs/reconciliation-matrix.md`](docs/reconciliation-matrix.md) — concept-level reconciliation
 - [`docs/REPOSITORY-REGISTRY-v0.1.md`](docs/REPOSITORY-REGISTRY-v0.1.md) — canonical repository roles, local worktree controls, reconciliation queue
 - [`docs/PLATFORM-ARCHITECTURE-V3.md`](docs/PLATFORM-ARCHITECTURE-V3.md) — seven planes, ownership, product hierarchy, namespace policy, AVC dissolution policy
+- [`docs/AVC-IDENTITY-MAPPING-V1.md`](docs/AVC-IDENTITY-MAPPING-V1.md) — Wave 5 finding: AVC identity-core vs TG/AIE verdicts per entity
 
 ## Other key artifacts
 
