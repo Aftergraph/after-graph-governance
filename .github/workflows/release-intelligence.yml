@@ -6,6 +6,8 @@ on:
       - 'docs/contracts/aftergraph-component/**'
       - 'docs/contracts/compatibility-edge/**'
       - 'docs/contracts/release-passport/**'
+      - 'docs/contracts/release-registry/**'
+      - 'docs/contracts/rbom/**'
       - 'docs/release-intelligence/**'
       - 'scripts/ari_*.py'
       - 'scripts/test_ari_*.py'
@@ -16,6 +18,8 @@ on:
       - 'docs/contracts/aftergraph-component/**'
       - 'docs/contracts/compatibility-edge/**'
       - 'docs/contracts/release-passport/**'
+      - 'docs/contracts/release-registry/**'
+      - 'docs/contracts/rbom/**'
       - 'docs/release-intelligence/**'
       - 'scripts/ari_*.py'
       - 'scripts/test_ari_*.py'
@@ -52,3 +56,7 @@ jobs:
         run: python -m json.tool docs/contracts/compatibility-edge/1.0.json >/dev/null
       - name: Validate release-passport contract JSON
         run: python -m json.tool docs/contracts/release-passport/1.0.json >/dev/null
+      - name: Validate release-registry contract JSON
+        run: python -m json.tool docs/contracts/release-registry/1.0.json >/dev/null
+      - name: Validate RBOM contract JSON
+        run: python -m json.tool docs/contracts/rbom/0.1.json >/dev/null

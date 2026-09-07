@@ -51,16 +51,47 @@ class AriContractsTest(unittest.TestCase):
             ["repository", "commit", "artifact_digest", "manifest_digest"],
         )
 
+    def test_passport_schema_only_allows_positive_profile_states(self):
+        schema = self.load(CONTRACTS / "release-passport" / "1.0.json")
+        profiles = schema["properties"]["conformance"]["properties"]["profiles"]
+        self.assertEqual(profiles.get("minProperties"), 1)
+        self.assertEqual(profiles["additionalProperties"]["enum"], ["PASS", "N/A"])
+
+    def test_release_registry_contract_is_derived_and_digest_bound(self):
+        schema = self.load(CONTRACTS / "release-registry" / "1.0.json")
+        self.assertEqual(schema["properties"]["schema"]["const"], "release-registry/1.0")
+        entry = schema["$defs"]["entry"]
+        self.assertEqual(entry["required"], ["kind", "digest", "document"])
+        self.assertFalse(entry["additionalProperties"])
+        self.assertEqual(entry["properties"]["digest"]["pattern"], "^sha256:[a-f0-9]{64}$")
+
+    def test_rbom_contract_separates_inventory_from_verification(self):
+        schema = self.load(CONTRACTS / "rbom" / "0.1.json")
+        self.assertEqual(schema["properties"]["schema"]["const"], "rbom/0.1")
+        self.assertIn("verification", schema["properties"])
+        self.assertEqual(
+            schema["properties"]["verification"]["properties"]["state"]["enum"],
+            ["VERIFIED", "PARTIAL", "UNVERIFIED"],
+        )
+        self.assertEqual(schema["properties"]["platform"]["properties"]["generation"]["const"], 26)
+        self.assertEqual(schema["properties"]["platform"]["properties"]["compatibility"]["const"], "APC-1")
+
 
 class AriDiscoverabilityTest(unittest.TestCase):
-    def test_cross_repo_register_names_ari_contract_families_and_owner(self):
+    def test_cross_repo_register_names_all_ari_phase1_contract_families_and_owner(self):
         register = (ROOT / "docs/cross-repo-contracts.md").read_text(encoding="utf-8")
-        for contract in ("aftergraph-component/1.0", "compatibility-edge/1.0", "release-passport/1.0"):
+        for contract in (
+            "aftergraph-component/1.0",
+            "compatibility-edge/1.0",
+            "release-passport/1.0",
+            "release-registry/1.0",
+            "rbom/0.1",
+        ):
             self.assertIn(contract, register)
         self.assertIn("after-graph-governance", register)
         self.assertIn("does not grant runtime authority", register)
 
-    def test_readme_links_release_standard_apc_and_ari(self):
+    def test_readme_links_phase1_contracts_and_cli_surfaces(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         for expected in (
             "Aftergraph 26 · Convergence",
@@ -70,8 +101,23 @@ class AriDiscoverabilityTest(unittest.TestCase):
             "docs/superpowers/specs/2026-09-07-aftergraph-release-lifecycle-compatibility-standard-design.md",
             "docs/superpowers/specs/2026-09-07-aftergraph-release-intelligence-plane-design.md",
             "docs/release-intelligence/apc-1.json",
+            "docs/contracts/release-registry/1.0.json",
+            "docs/contracts/rbom/0.1.json",
+            "scripts/ari_registry.py",
+            "scripts/ari_rbom.py",
+            "scripts/ari_query.py",
         ):
             self.assertIn(expected, readme)
+
+    def test_release_intelligence_workflow_gates_phase1_contracts(self):
+        workflow = (ROOT / ".github/workflows/release-intelligence.yml").read_text(encoding="utf-8")
+        for expected in (
+            "docs/contracts/release-registry/**",
+            "docs/contracts/rbom/**",
+            "python -m json.tool docs/contracts/release-registry/1.0.json",
+            "python -m json.tool docs/contracts/rbom/0.1.json",
+        ):
+            self.assertIn(expected, workflow)
 
 
 if __name__ == "__main__":
