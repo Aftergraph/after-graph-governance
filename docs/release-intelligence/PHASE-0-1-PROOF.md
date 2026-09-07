@@ -43,7 +43,7 @@ python scripts/ari_compile.py \
   --format text
 ```
 
-Observed result in the implementation workspace:
+Observed result:
 
 ```text
 APC-1/verifier: PASS
@@ -91,7 +91,7 @@ Observed result included:
 }
 ```
 
-The emitted passport also binds the claim to the synthetic exact source commit, supplied artifact digest, canonical manifest digest, and the qualifying compatibility evidence reference.
+The emitted passport also binds the claim to the synthetic exact source commit, supplied artifact digest, canonical manifest digest, and the qualifying compatibility evidence reference. A PASS compile result for a different component/version is rejected rather than being reusable as a passport for another subject.
 
 Exit code: `0`.
 
@@ -118,19 +118,38 @@ unknown: APC-1/verifier required edge sentinel-engine@1.4.0#111111111111 -> work
 
 Exit code: `3`.
 
-`ari_passport.py` refuses to emit a positive Release Passport for `UNKNOWN`, `STALE`, `FAIL`, or `N/A` compiler states. Missing evidence therefore cannot be converted into a positive compatibility claim.
+`ari_passport.py` refuses to emit a positive Release Passport for `UNKNOWN`, `STALE`, `FAIL`, or `N/A` compiler states. Missing evidence therefore cannot be converted into a positive compatibility claim. Invalid passport inputs such as malformed artifact digests are reported as passport `FAIL` even when the underlying APC compile was `PASS`.
+
+## Hardening evidence
+
+The merge-readiness pass added explicit regression coverage for failure modes discovered during review:
+
+```text
+empty compatibility evidence arrays                  -> rejected
+duplicate exact requires_edges targets               -> rejected
+invalid APC evidence thresholds                      -> FAIL
+incompatible-with queried in either direction        -> FAIL
+PASS result reused for another release subject       -> passport refused
+invalid artifact digest after PASS compile            -> passport FAIL
+manifest digest omitted from passport provenance      -> schema rejects
+```
+
+Each production fix followed a RED → GREEN cycle in GitHub Actions.
 
 ## Test evidence
 
-Fresh local verification during this proof pass:
+Authoritative PR-merge-ref verification for implementation head `4c9d1f6bf54f65bac6fdf2dab4117fe033b01f20`:
 
-```bash
-python -m unittest discover -s scripts -p 'test_ari_*.py' -v
+```text
+Release Intelligence / verify
+ARI tests:                  54 passed, 0 failed
+Governance regression:      67 passed, 0 failed
+JSON syntax gates:           4 passed
 ```
 
-Result at the pre-proof checkpoint: **46 tests, 0 failures**. Additional fail-closed compiler tests were then added for empty required-edge declarations and evidence-threshold filtering and verified through their own RED → GREEN cycles. The final authoritative test count is the CI result for the implementation PR, not this prose snapshot.
+Total Python test executions in the gate: **121 passed, 0 failed**.
 
-Core JSON syntax is also gated with `python -m json.tool` for:
+The four JSON syntax gates cover:
 
 ```text
 docs/release-intelligence/apc-1.json
@@ -139,9 +158,11 @@ docs/contracts/compatibility-edge/1.0.json
 docs/contracts/release-passport/1.0.json
 ```
 
+`Brand Assets` also passed on the same implementation head.
+
 ## What this proves
 
-**PROVED:** the Governance implementation can compute `APC-1/verifier` conformance from explicit exact-subject declarations and compatibility evidence, preserve independent component versions, bind a positive result into a Release Passport, and refuse a positive result when required edge evidence is absent or insufficient.
+**PROVED:** the Governance implementation can compute `APC-1/verifier` conformance from explicit exact-subject declarations and compatibility evidence, preserve independent component versions, bind a positive result into a Release Passport, refuse a positive result when required evidence is absent or insufficient, and fail closed on the reviewed malformed/ambiguous compatibility cases above.
 
 ## What this does not prove
 
