@@ -35,14 +35,21 @@ Canonical design and executable entry points:
 - [`aftergraph-component/1.0`](docs/contracts/aftergraph-component/1.0.json)
 - [`compatibility-edge/1.0`](docs/contracts/compatibility-edge/1.0.json)
 - [`release-passport/1.0`](docs/contracts/release-passport/1.0.json)
+- [`release-registry/1.0`](docs/contracts/release-registry/1.0.json)
+- [`rbom/0.1`](docs/contracts/rbom/0.1.json)
 
-Local ARI verification:
+Local ARI verification and Phase 1 query surfaces:
 
 ```bash
 python -m unittest discover -s scripts -p 'test_ari_*.py' -v
 python scripts/ari_compile.py docs/release-intelligence/examples/sentinel.component.json --edge docs/release-intelligence/examples/sentinel-works.edge.json --format json
 python scripts/ari_passport.py docs/release-intelligence/examples/sentinel.component.json --edge docs/release-intelligence/examples/sentinel-works.edge.json --artifact-digest sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+python scripts/ari_registry.py build --document <component.json> --document <edge.json> --document <passport.json> --format pretty
+python scripts/ari_rbom.py build <registry.json> --component 'component@version#40hexcommit' --format pretty
+python scripts/ari_query.py compat <registry.json> 'left@version#40hexcommit' 'right@version#40hexcommit' --minimum CE2 --format text
 ```
+
+The Release Registry is a deterministic derived view over validated source documents, not a new authority source. RBOM `VERIFIED` denotes matching Release Passport coverage for every exact selected component under `rbom/0.1`; it is not a claim that every platform relation or deployment property has been verified.
 
 `APC-1 conformant` is a technical claim and must resolve to machine-readable conformance evidence. `Aftergraph 26` is not a substitute for a component, contract, model or exact-build version.
 
@@ -132,7 +139,7 @@ The normative register is maintained in [`docs/cross-repo-contracts.md`](docs/cr
 
 Current registered families include:
 
-`cpi/1.0`, `rab/1.0`, `identity/1.0`, `policy.token/1.0`, `secret.ref/1.0`, `shell.contracts/1.0`, `link.wire/1.0`, `pairing/1.0`, `brain.ns/1.0`, `release.rings/1.0`, `evidence.schema/1.1`, `kernel.budget/1.0`, `kernel.lifecycle/1.0`, `mission-state/1.0`, `org-state/1.0`, `aftergraph-component/1.0`, `compatibility-edge/1.0`, `release-passport/1.0`.
+`cpi/1.0`, `rab/1.0`, `identity/1.0`, `policy.token/1.0`, `secret.ref/1.0`, `shell.contracts/1.0`, `link.wire/1.0`, `pairing/1.0`, `brain.ns/1.0`, `release.rings/1.0`, `evidence.schema/1.1`, `kernel.budget/1.0`, `kernel.lifecycle/1.0`, `mission-state/1.0`, `org-state/1.0`, `aftergraph-component/1.0`, `compatibility-edge/1.0`, `release-passport/1.0`, `release-registry/1.0`, `rbom/0.1`.
 
 A repository may participate in the platform without owning a normative contract. Topology membership and normative ownership are separate concepts.
 
