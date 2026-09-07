@@ -1,0 +1,42 @@
+name: Topology Truth
+
+on:
+  pull_request:
+    paths:
+      - 'docs/platform-topology/**'
+      - 'docs/contracts/org-state/**'
+      - 'dependencies.yml'
+      - 'README.md'
+      - 'docs/PLATFORM-ARCHITECTURE-V3.md'
+      - 'docs/cross-repo-contracts.md'
+      - 'scripts/test_topology_reconciliation_v2.py'
+      - '.github/workflows/topology-truth.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'docs/platform-topology/**'
+      - 'docs/contracts/org-state/**'
+      - 'dependencies.yml'
+      - 'README.md'
+      - 'docs/PLATFORM-ARCHITECTURE-V3.md'
+      - 'docs/cross-repo-contracts.md'
+      - 'scripts/test_topology_reconciliation_v2.py'
+      - '.github/workflows/topology-truth.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate topology JSON
+        run: python -m json.tool docs/platform-topology/1.0.json >/dev/null
+      - name: Validate org-state schema JSON
+        run: python -m json.tool docs/contracts/org-state/1.0.json >/dev/null
+      - name: Run topology reconciliation regression
+        run: python -m unittest scripts.test_topology_reconciliation_v2 -v
