@@ -146,6 +146,26 @@ def validate_component(document: dict[str, Any]) -> list[str]:
                 errors.append(f"duplicate APC-1 profile: {profile}")
             seen.add(profile)
 
+    requires_edges = compatibility.get("requires_edges")
+    if requires_edges is not None:
+        if not isinstance(requires_edges, list):
+            errors.append("compatibility.requires_edges must be an array")
+        else:
+            for index, target in enumerate(requires_edges):
+                if not isinstance(target, dict):
+                    errors.append(f"compatibility.requires_edges[{index}] must be an object")
+                    continue
+                for field in ("component", "version", "commit"):
+                    if field not in target:
+                        errors.append(f"missing required field: compatibility.requires_edges[{index}].{field}")
+                if not isinstance(target.get("component"), str) or not target.get("component"):
+                    errors.append(f"compatibility.requires_edges[{index}].component must be a non-empty string")
+                if not isinstance(target.get("version"), str) or not target.get("version"):
+                    errors.append(f"compatibility.requires_edges[{index}].version must be a non-empty string")
+                target_commit = target.get("commit")
+                if not isinstance(target_commit, str) or not COMMIT_RE.fullmatch(target_commit):
+                    errors.append(f"compatibility.requires_edges[{index}].commit must be 40 lowercase hex characters")
+
     contracts = document.get("contracts")
     if not isinstance(contracts, dict):
         errors.append("contracts must be an object")
