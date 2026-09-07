@@ -64,6 +64,15 @@ class AriRegistryTest(unittest.TestCase):
         self.assertEqual(first, second)
         self.assertEqual(canonical_digest(first), canonical_digest(second))
 
+    def test_registry_build_snapshots_input_documents(self):
+        source = copy.deepcopy(COMPONENT)
+        registry = build_registry([source])
+        expected_digest = registry["entries"][0]["digest"]
+        source["contracts"]["verdict"] = "9.9"
+        stored = registry["entries"][0]["document"]
+        self.assertEqual(stored["contracts"]["verdict"], "1.0")
+        self.assertEqual(canonical_digest(stored), expected_digest)
+
     def test_registry_classifies_component_edge_and_passport(self):
         registry = Registry(build_registry([COMPONENT, EDGE, PASSPORT]))
         self.assertEqual(len(registry.components()), 1)
