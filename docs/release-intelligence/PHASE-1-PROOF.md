@@ -70,10 +70,21 @@ Merge-readiness hardening proves four mutation boundaries:
 caller mutates source document after build       -> stored Registry input is unchanged
 caller mutates constructor input after validate  -> Registry canonical snapshot is unchanged
 caller mutates an accessor result                -> internal Registry state is unchanged
-caller mutates public document/digest view        -> canonical state/digest cannot be changed
+caller mutates public document/digest view       -> canonical state/digest cannot be changed
 ```
 
 The Registry therefore acts as a reproducible derived snapshot rather than a live reference to mutable caller objects. Its public document surface is a defensive copy and its public digest is read-only.
+
+The exact Passport-to-Manifest binding is also fail-closed. When the matching Manifest exists, Registry rejects a Passport if any of these bindings disagree:
+
+```text
+manifest digest
+source repository
+release train
+APC profile set
+```
+
+A positive Passport also refuses non-positive profile states such as `FAIL`, `UNKNOWN`, or `STALE`. The `release-passport/1.0` schema permits only `PASS` or `N/A` profile values and requires a non-empty profile map; Registry additionally requires at least one actual `PASS` profile.
 
 ## Exact compatibility query proof
 
@@ -138,15 +149,15 @@ The RBOM suite separately proves `PARTIAL` for one matching passport, `UNVERIFIE
 
 ## CI evidence checkpoint
 
-Authoritative GitHub Actions PR-merge-ref verification for the latest code/test head before this proof refresh:
+Authoritative GitHub Actions PR-merge-ref verification for the latest code/schema head before this proof refresh:
 
 ```text
-branch head           46cd2e4738996fb9631cacdc5a496a6a748f90f3
-PR merge ref          e14d12944ab410ddcc8ea9a3f9aa980e25bb7d04
+branch head           7c5df43563a91a85d30e192216a65ff1f29fbddb
+PR merge ref          de4993c6e1e8f1a09b6c2478290f2eceb4ef19c0
 Release Intelligence  PASS
-ARI tests             91 passed, 0 failed
+ARI tests             96 passed, 0 failed
 Governance regression 67 passed, 0 failed
-Python total          158 passed, 0 failed
+Python total          163 passed, 0 failed
 ARI JSON syntax gates 6 passed
 Brand Assets          PASS
 ```
@@ -169,13 +180,15 @@ This checkpoint predates only this proof-document refresh. The PR latest head mu
 The Phase 1 implementation proves, within the synthetic evidence boundary, that Governance can:
 
 1. construct a deterministic, digest-bound Release Registry from validated exact-subject release documents;
-2. fail closed on malformed source documents, digest mismatch, divergent duplicate exact identities, and conflicting passport/manifest identity;
+2. fail closed on malformed source documents, digest mismatch, divergent duplicate exact identities, and conflicting Passport/Manifest identity;
 3. preserve Registry snapshot integrity across source, constructor, accessor, and public-state mutation boundaries;
-4. query exact compatibility without hidden `latest` resolution and without duplicating graph state semantics;
-5. preserve PASS, FAIL, UNKNOWN, STALE, and N/A distinctions;
-6. build an exact RBOM for independently versioned components;
-7. distinguish full, partial, and absent matching-passport coverage without inflating that state into blanket platform verification;
-8. keep Release Registry and RBOM as derived release-intelligence artifacts rather than runtime authority sources.
+4. bind positive Passports to matching manifest digest, repository, release train, and APC profile set when the exact Manifest is present;
+5. refuse positive Passports containing non-positive profile states at Registry ingestion and constrain the machine schema to positive profile vocabulary;
+6. query exact compatibility without hidden `latest` resolution and without duplicating graph state semantics;
+7. preserve PASS, FAIL, UNKNOWN, STALE, and N/A distinctions;
+8. build an exact RBOM for independently versioned components;
+9. distinguish full, partial, and absent matching-passport coverage without inflating that state into blanket platform verification;
+10. keep Release Registry and RBOM as derived release-intelligence artifacts rather than runtime authority sources.
 
 Together with the preceding Phase 0/1 slice, this satisfies the approved Phase 1 milestone boundary: Release Registry, Compatibility Graph, APC Compiler/basic deterministic conformance, Release Passport, RBOM v0, and query/CLI basics.
 
