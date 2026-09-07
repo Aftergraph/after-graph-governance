@@ -67,6 +67,21 @@ class AriPassportTest(unittest.TestCase):
         with self.assertRaisesRegex(PassportError, "compile result subject mismatch"):
             build_passport(copy.deepcopy(BASE), forged, ARTIFACT)
 
+    def test_build_refuses_manifest_changed_after_compile(self):
+        original = copy.deepcopy(BASE)
+        result = compile_component(original, APC, [copy.deepcopy(EDGE)])
+        changed = copy.deepcopy(BASE)
+        changed["contracts"]["verdict"] = "1.1"
+        with self.assertRaisesRegex(PassportError, "manifest digest mismatch"):
+            build_passport(changed, result, ARTIFACT)
+
+    def test_build_refuses_compile_result_for_different_source_commit(self):
+        manifest = copy.deepcopy(BASE)
+        result = compile_component(manifest, APC, [copy.deepcopy(EDGE)])
+        result.source_commit = "9" * 40
+        with self.assertRaisesRegex(PassportError, "source commit mismatch"):
+            build_passport(manifest, result, ARTIFACT)
+
     def test_unknown_compile_refuses_passport(self):
         result = compile_component(copy.deepcopy(BASE), APC, [])
         self.assertEqual(result.state, ResultState.UNKNOWN)
