@@ -141,6 +141,8 @@ def build_registry(documents: Iterable[dict]) -> dict:
 class Registry:
     """Validated read-only index over a release-registry/1.0 document."""
 
+    __slots__ = ("_document", "_digest", "_entries")
+
     def __init__(self, document: dict) -> None:
         if not isinstance(document, dict):
             raise RegistryError("registry must be an object")
@@ -183,9 +185,17 @@ class Registry:
         if document != expected:
             raise RegistryError("registry entries are not in canonical deterministic order")
 
-        self.document = expected
-        self.digest = canonical_digest(expected)
+        self._document = expected
+        self._digest = canonical_digest(expected)
         self._entries = classified
+
+    @property
+    def document(self) -> dict:
+        return copy.deepcopy(self._document)
+
+    @property
+    def digest(self) -> str:
+        return self._digest
 
     def components(self) -> list[dict]:
         return [copy.deepcopy(item.document) for item in self._entries if item.kind == "component"]
