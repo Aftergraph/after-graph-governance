@@ -51,6 +51,12 @@ class AriContractsTest(unittest.TestCase):
             ["repository", "commit", "artifact_digest", "manifest_digest"],
         )
 
+    def test_passport_schema_only_allows_positive_profile_states(self):
+        schema = self.load(CONTRACTS / "release-passport" / "1.0.json")
+        profiles = schema["properties"]["conformance"]["properties"]["profiles"]
+        self.assertEqual(profiles.get("minProperties"), 1)
+        self.assertEqual(profiles["additionalProperties"]["enum"], ["PASS", "N/A"])
+
     def test_release_registry_contract_is_derived_and_digest_bound(self):
         schema = self.load(CONTRACTS / "release-registry" / "1.0.json")
         self.assertEqual(schema["properties"]["schema"]["const"], "release-registry/1.0")
