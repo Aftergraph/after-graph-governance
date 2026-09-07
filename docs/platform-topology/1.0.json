@@ -156,6 +156,14 @@
       "plane": "foundation",
       "role": "organization-community",
       "owns": "Organization profile, contribution defaults, security/support routing and shared community infrastructure."
+    },
+    {
+      "name": "sentinel",
+      "canonical_branch": "main",
+      "visibility": "public",
+      "plane": "assurance",
+      "role": "verified-code-review",
+      "owns": "Exact-HEAD verified code-review verdicts with stale-base invalidation and cited evidence."
     }
   ]
 }
