@@ -6,7 +6,8 @@
 **Public generation:** **Aftergraph 26**  
 **Generation codename:** **Convergence**  
 **Release standard:** **Aftergraph Release Standard (`ARS/1`)**  
-**Platform compatibility:** **Aftergraph Platform Compatibility (`APC-1`)**
+**Platform compatibility:** **Aftergraph Platform Compatibility (`APC-1`)**  
+**Companion design:** [`Aftergraph Release Intelligence Plane`](2026-09-07-aftergraph-release-intelligence-plane-design.md)
 
 ---
 
@@ -757,7 +758,7 @@ Public projections MUST NOT become competing canonical truth sources.
 
 ## 25. Release Intelligence relationship
 
-A separate approved design, **Aftergraph Release Intelligence Plane**, defines the machinery that makes this standard executable rather than documentary.
+The companion design [`Aftergraph Release Intelligence Plane`](2026-09-07-aftergraph-release-intelligence-plane-design.md) defines the machinery that makes this standard executable rather than documentary.
 
 It provides the target concepts for:
 
