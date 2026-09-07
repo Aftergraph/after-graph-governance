@@ -81,6 +81,17 @@ class AriRegistryTest(unittest.TestCase):
         self.assertEqual(registry.document["entries"][0]["document"]["contracts"]["verdict"], "1.0")
         self.assertEqual(canonical_digest(registry.document), expected_digest)
 
+    def test_registry_public_document_and_digest_are_read_only_views(self):
+        registry = Registry(build_registry([COMPONENT]))
+        exposed = registry.document
+        exposed["entries"][0]["document"]["contracts"]["verdict"] = "9.9"
+        self.assertEqual(registry.document["entries"][0]["document"]["contracts"]["verdict"], "1.0")
+        self.assertEqual(canonical_digest(registry.document), registry.digest)
+        with self.assertRaises(AttributeError):
+            registry.document = {}
+        with self.assertRaises(AttributeError):
+            registry.digest = "sha256:" + "0" * 64
+
     def test_registry_accessors_return_isolated_documents(self):
         registry = Registry(build_registry([COMPONENT, EDGE, PASSPORT]))
         returned = registry.components()[0]
