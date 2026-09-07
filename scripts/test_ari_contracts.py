@@ -51,6 +51,25 @@ class AriContractsTest(unittest.TestCase):
             ["repository", "commit", "artifact_digest", "manifest_digest"],
         )
 
+    def test_release_registry_contract_is_derived_and_digest_bound(self):
+        schema = self.load(CONTRACTS / "release-registry" / "1.0.json")
+        self.assertEqual(schema["properties"]["schema"]["const"], "release-registry/1.0")
+        entry = schema["$defs"]["entry"]
+        self.assertEqual(entry["required"], ["kind", "digest", "document"])
+        self.assertFalse(entry["additionalProperties"])
+        self.assertEqual(entry["properties"]["digest"]["pattern"], "^sha256:[a-f0-9]{64}$")
+
+    def test_rbom_contract_separates_inventory_from_verification(self):
+        schema = self.load(CONTRACTS / "rbom" / "0.1.json")
+        self.assertEqual(schema["properties"]["schema"]["const"], "rbom/0.1")
+        self.assertIn("verification", schema["properties"])
+        self.assertEqual(
+            schema["properties"]["verification"]["properties"]["state"]["enum"],
+            ["VERIFIED", "PARTIAL", "UNVERIFIED"],
+        )
+        self.assertEqual(schema["properties"]["platform"]["properties"]["generation"]["const"], 26)
+        self.assertEqual(schema["properties"]["platform"]["properties"]["compatibility"]["const"], "APC-1")
+
 
 class AriDiscoverabilityTest(unittest.TestCase):
     def test_cross_repo_register_names_ari_contract_families_and_owner(self):
