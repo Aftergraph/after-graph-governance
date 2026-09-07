@@ -34,6 +34,7 @@ def build_passport(manifest: dict, compile_result: CompileResult, artifact_diges
 
     identity = manifest["identity"]
     release = manifest["release"]
+    provenance = manifest["provenance"]
     expected_subject = (identity["component"], release["version"])
     compiled_subject = (compile_result.component, compile_result.version)
     if compiled_subject != expected_subject:
@@ -42,13 +43,24 @@ def build_passport(manifest: dict, compile_result: CompileResult, artifact_diges
             f"compiled {compile_result.component}@{compile_result.version}, "
             f"manifest {identity['component']}@{release['version']}"
         )
+    if compile_result.source_commit != provenance["commit"]:
+        raise PassportError(
+            "compile result source commit mismatch: "
+            f"compiled {compile_result.source_commit}, manifest {provenance['commit']}"
+        )
+
+    manifest_digest = canonical_digest(manifest)
+    if compile_result.manifest_digest != manifest_digest:
+        raise PassportError(
+            "compile result manifest digest mismatch: "
+            f"compiled {compile_result.manifest_digest}, manifest {manifest_digest}"
+        )
 
     if not ARTIFACT_RE.fullmatch(artifact_digest):
         raise PassportError("artifact digest must be sha256:<64 lowercase hex>")
 
     platform = manifest["platform"]
     compatibility = manifest["compatibility"]
-    provenance = manifest["provenance"]
 
     return {
         "schema": "release-passport/1.0",
@@ -72,7 +84,7 @@ def build_passport(manifest: dict, compile_result: CompileResult, artifact_diges
             "repository": provenance["repository"],
             "commit": provenance["commit"],
             "artifact_digest": artifact_digest,
-            "manifest_digest": canonical_digest(manifest),
+            "manifest_digest": manifest_digest,
         },
     }
 
