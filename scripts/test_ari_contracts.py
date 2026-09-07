@@ -44,5 +44,27 @@ class AriContractsTest(unittest.TestCase):
         self.assertEqual(provenance["required"], ["repository", "commit", "artifact_digest"])
 
 
+class AriDiscoverabilityTest(unittest.TestCase):
+    def test_cross_repo_register_names_ari_contract_families_and_owner(self):
+        register = (ROOT / "docs/cross-repo-contracts.md").read_text(encoding="utf-8")
+        for contract in ("aftergraph-component/1.0", "compatibility-edge/1.0", "release-passport/1.0"):
+            self.assertIn(contract, register)
+        self.assertIn("after-graph-governance", register)
+        self.assertIn("does not grant runtime authority", register)
+
+    def test_readme_links_release_standard_apc_and_ari(self):
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        for expected in (
+            "Aftergraph 26 · Convergence",
+            "ARS/1",
+            "APC-1",
+            "Release Intelligence",
+            "docs/superpowers/specs/2026-09-07-aftergraph-release-lifecycle-compatibility-standard-design.md",
+            "docs/superpowers/specs/2026-09-07-aftergraph-release-intelligence-plane-design.md",
+            "docs/release-intelligence/apc-1.json",
+        ):
+            self.assertIn(expected, readme)
+
+
 if __name__ == "__main__":
     unittest.main()
