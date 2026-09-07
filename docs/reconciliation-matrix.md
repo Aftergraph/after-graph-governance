@@ -1,11 +1,11 @@
-# Concept Reconciliation Matrix — 15 Concepts
+# Concept Reconciliation Matrix — 16 Concepts
 
 > Canonical source of truth for concept ownership across the After Graph platform.
 > Sources: TG (v2.4.1) · WE (v0.3.5) · AIE (Draft 0.3) · ISR (Q3 2026)
 | Status: CANONICAL (owner-approved role distribution)
 | Verified: 2026-09-04 against post-merge state
 
-| 
+|
 ## Conformance Scoreboard (2026-09-05)
 
 All 15 reconciliation-matrix items now have schema-level conformance validation.
@@ -27,8 +27,9 @@ All 15 reconciliation-matrix items now have schema-level conformance validation.
 | 13 | ComputerSession | (TG native: `computer.js`) | TG tests | ✅ |
 | 14 | Artifact | `shell.contracts.schema.json` | AIE 3/3 | ✅ COMPLETE |
 | 15 | Plugin | (TG native: `plugins.js`) | TG tests | ✅ |
+| 16 | Audit export envelope | TG `audit-export-jsonl` emits `{id, tenant, type, data, ts, hash}` (hash-chain); WORKS `events.schema.json` requires `{source, seq, type, subject, ts, version}` | none — parallel envelopes, unconverged | ⬜ OPEN (Wave 4 finding 2026-09-07: converge or declare separate; owner decision) |
 
-**Total: 15/15 items conformant. AIE conformance suite: 257/257 tests.**
+**Total: 15/16 items conformant (row 16 opened 2026-09-07, owner decision pending). AIE conformance suite: 257/257 tests.**
 
 ---
 
