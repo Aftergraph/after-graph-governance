@@ -43,10 +43,13 @@ class AriContractsTest(unittest.TestCase):
         evidence = schema["properties"]["evidence"]
         self.assertEqual(evidence.get("minItems"), 1)
 
-    def test_passport_requires_exact_source_and_artifact_identity(self):
+    def test_passport_requires_exact_source_artifact_and_manifest_identity(self):
         schema = self.load(CONTRACTS / "release-passport" / "1.0.json")
         provenance = schema["properties"]["provenance"]
-        self.assertEqual(provenance["required"], ["repository", "commit", "artifact_digest"])
+        self.assertEqual(
+            provenance["required"],
+            ["repository", "commit", "artifact_digest", "manifest_digest"],
+        )
 
 
 class AriDiscoverabilityTest(unittest.TestCase):
