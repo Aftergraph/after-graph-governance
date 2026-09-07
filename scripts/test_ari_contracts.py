@@ -38,6 +38,11 @@ class AriContractsTest(unittest.TestCase):
             ["schema", "from", "to", "relation", "state", "evidence_level", "evidence"],
         )
 
+    def test_edge_schema_requires_nonempty_evidence(self):
+        schema = self.load(CONTRACTS / "compatibility-edge" / "1.0.json")
+        evidence = schema["properties"]["evidence"]
+        self.assertEqual(evidence.get("minItems"), 1)
+
     def test_passport_requires_exact_source_and_artifact_identity(self):
         schema = self.load(CONTRACTS / "release-passport" / "1.0.json")
         provenance = schema["properties"]["provenance"]
