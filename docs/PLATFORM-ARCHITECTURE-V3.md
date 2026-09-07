@@ -123,7 +123,7 @@ imports are reconciled.
 
 ## 6. Conformance
 
-- Topology: `docs/platform-topology/1.0.json` (currently 21 canonical repos: 13 public / 8 private).
+- Topology: `docs/platform-topology/1.0.json` (currently 21 canonical repos: 12 public / 9 private).
 - Registry: `docs/REPOSITORY-REGISTRY-v0.1.md`.
 - Exact-head truth: `latest-org-state.json` (regenerate, never hand-edit).
 - Contracts: `docs/contracts/<name>/<version>.json`; one owner each.
