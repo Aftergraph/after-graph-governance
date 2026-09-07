@@ -15,7 +15,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts.ari_graph import CompatibilityGraph, Endpoint  # noqa: E402
-from scripts.ari_model import ResultState, evidence_meets, load_json, validate_component  # noqa: E402
+from scripts.ari_model import EvidenceLevel, ResultState, evidence_meets, load_json, validate_component  # noqa: E402
 
 
 @dataclass(slots=True)
@@ -117,6 +117,13 @@ def compile_component(manifest: dict, apc: dict, edge_documents: Iterable[dict])
             continue
 
         minimum = requirement.get("minimum_edge_evidence", "CE0")
+        if not isinstance(minimum, str) or minimum not in EvidenceLevel.__members__:
+            errors.append(
+                f"APC-1/{profile} minimum_edge_evidence must be CE0..CE5, got {minimum}"
+            )
+            profile_results[profile] = ResultState.FAIL
+            continue
+
         minimum_required_edges = requirement.get("minimum_required_edges", 0)
         if not isinstance(minimum_required_edges, int) or minimum_required_edges < 0:
             errors.append(f"APC-1/{profile} minimum_required_edges must be a non-negative integer")
