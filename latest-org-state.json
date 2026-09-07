@@ -1,19 +1,19 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-05T22:06:08Z",
-  "generator": "/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
+  "generated_at": "2026-09-07T17:28:17Z",
+  "generator": "scripts/org-state-verify.sh (python port, same live API)",
   "org": "Aftergraph",
   "repositories": [
     {
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "5613e3f8dc07b849bba4cf8be9586c8bededb5f7",
-      "remote_head_short": "5613e3f",
-      "head_commit_message": "chore: regenerate org-state after slice-2 pushes (WI boundary, ISR hardening)",
+      "remote_head_sha": "5c19846530221ea30aafe17d61386273835eac49",
+      "remote_head_short": "5c19846",
+      "head_commit_message": "feat(governance): repository + worktree registry v0.1 (#29)",
       "private": false,
       "archived": false,
-      "protected": false,
+      "protected": true,
       "open_pull_requests": [],
       "authoritative_contracts": [
         {
@@ -35,55 +35,13 @@
       "full_name": "Aftergraph/aie",
       "role": "normative-authority",
       "canonical_branch": "main",
-      "remote_head_sha": "3432834afd80e60009f1252a1801f21feb551b9b",
-      "remote_head_short": "3432834",
-      "head_commit_message": "feat: add durable A2A HTTP+JSON SSE streaming (#22)",
+      "remote_head_sha": "29f6a9b8247d53beeabf59fb941069f380890906",
+      "remote_head_short": "29f6a9b",
+      "head_commit_message": "feat(aie): canonical principal/1.0 compatibility boundary (#47)",
       "private": false,
       "archived": false,
       "protected": true,
-      "open_pull_requests": [
-        {
-          "number": 18,
-          "title": "chore(deps): bump actions/upload-artifact from 4 to 7",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "b21364875f76941377b34628ef81ddc83ad020cd"
-        },
-        {
-          "number": 16,
-          "title": "chore(deps): bump actions/checkout from 4 to 7",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "f39aa9666bc0b9786e917f1a0098112f93edb7e9"
-        }
-      ],
-      "authoritative_contracts": [],
-      "consumed_contracts": [
-        {
-          "name": "mission-state",
-          "version": "1.0"
-        }
-      ]
-    },
-    {
-      "full_name": "Aftergraph/works-execution",
-      "role": "durable-execution",
-      "canonical_branch": "main",
-      "remote_head_sha": "3ea1a80494c38f3e422339db6efbf5a7935a48be",
-      "remote_head_short": "3ea1a80",
-      "head_commit_message": "docs: G5 changelog",
-      "private": false,
-      "archived": false,
-      "protected": false,
-      "open_pull_requests": [
-        {
-          "number": 39,
-          "title": "kanban: k-068 done",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "04e3c579ea2a2070bdc6277d3f84e1fad9ca2a78"
-        }
-      ],
+      "open_pull_requests": [],
       "authoritative_contracts": [],
       "consumed_contracts": [
         {
@@ -96,9 +54,9 @@
       "full_name": "Aftergraph/trust-gateway",
       "role": "runtime-enforcement",
       "canonical_branch": "main",
-      "remote_head_sha": "515f8f744ff9b0a14df7398e38693fd3ac7ab667",
-      "remote_head_short": "515f8f7",
-      "head_commit_message": "ci: additive cross-repo integration gate caller (shared Aftergraph/.github gate) (#27)",
+      "remote_head_sha": "97ba8f61d1348823aaa2d20311eb946b4a0a26ad",
+      "remote_head_short": "97ba8f6",
+      "head_commit_message": "feat: add canonical tenant and principal identity projection (#70)",
       "private": false,
       "archived": false,
       "protected": true,
@@ -116,15 +74,15 @@
       ]
     },
     {
-      "full_name": "Aftergraph/intelligence-systems-research",
-      "role": "research",
+      "full_name": "Aftergraph/works-execution",
+      "role": "durable-execution",
       "canonical_branch": "main",
-      "remote_head_sha": "d67354385ea94f45e2dad7e8362621a9dee31b2f",
-      "remote_head_short": "d673543",
-      "head_commit_message": "ci: deterministic pytest bootstrap + node-conformance fix (#1)",
+      "remote_head_sha": "79914a514512766edd7032c9a74e63c0f9f87551",
+      "remote_head_short": "79914a5",
+      "head_commit_message": "fix: pin codeql-action to commit SHA (#61)",
       "private": false,
       "archived": false,
-      "protected": false,
+      "protected": true,
       "open_pull_requests": [],
       "authoritative_contracts": [],
       "consumed_contracts": [
@@ -135,34 +93,48 @@
       ]
     },
     {
-      "full_name": "Aftergraph/work-intelligence-v2",
-      "role": "detection",
+      "full_name": "Aftergraph/studio",
+      "role": "primary-experience",
       "canonical_branch": "main",
-      "remote_head_sha": "2c2165a05d792d4a8bc1820c6c6280f87c2f1b14",
-      "remote_head_short": "2c2165a",
-      "head_commit_message": "feat: GitHubAdapter + inbound /v1/webhook/github with HMAC verification (#2)",
+      "remote_head_sha": "ca3da75e9cd3ecf783297c49ad79ed91a73d7120",
+      "remote_head_short": "ca3da75",
+      "head_commit_message": "style(p1-001): map muted text family to text-3 token (#41)",
       "private": false,
       "archived": false,
-      "protected": false,
+      "protected": true,
       "open_pull_requests": [
         {
-          "number": 3,
-          "title": "feat: add source field to work-items list response + webhook docs (rescue from rebuilt master)",
+          "head_sha": "e2601a796398247ba1281b644faee82f0f3674cd",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "08a4d90f2849d5662baad9d056b3776d0bd6699f"
+          "number": 42,
+          "title": "ci: non-blocking Sentinel dogfood (informational only)"
         }
       ],
       "authoritative_contracts": [],
       "consumed_contracts": []
     },
     {
-      "full_name": "Aftergraph/work-intelligence-web",
-      "role": "product-web",
+      "full_name": "Aftergraph/work-intelligence-v2",
+      "role": "work-inference",
       "canonical_branch": "main",
-      "remote_head_sha": "525e55d21d52c06ae9752d4e6bb9e74c1743ffbe",
-      "remote_head_short": "525e55d",
-      "head_commit_message": "docs: note source badges release",
+      "remote_head_sha": "49f602145094e2b5dfcbfd712c6085653a765360",
+      "remote_head_short": "49f6021",
+      "head_commit_message": "fix(security): pin privileged auto-merge workflow (#56)",
+      "private": false,
+      "archived": false,
+      "protected": true,
+      "open_pull_requests": [],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/work-intelligence-web",
+      "role": "work-intelligence-experience",
+      "canonical_branch": "main",
+      "remote_head_sha": "f71823d2484a2dd63581ba78610764071a10787d",
+      "remote_head_short": "f71823d",
+      "head_commit_message": "docs(deploy): usage notes dist-extraction prerequisite for --apply",
       "private": true,
       "archived": false,
       "protected": false,
@@ -171,30 +143,111 @@
       "consumed_contracts": []
     },
     {
-      "full_name": "Aftergraph/skills-vault",
-      "role": "skills-library",
+      "full_name": "Aftergraph/context-continuity",
+      "role": "continuity-contract",
       "canonical_branch": "main",
-      "remote_head_sha": "b4723a7c77cea5433ce40216d4e7674038709056",
-      "remote_head_short": "b4723a7",
-      "head_commit_message": "Merge pull request #1 from Aftergraph/feat/aftergraph-observer-skill",
+      "remote_head_sha": "29da8830361b3c3f88618a8c1221c1ee222b750e",
+      "remote_head_short": "29da883",
+      "head_commit_message": "docs: submission checklist gains test-cases + country-availability (portal schema)",
       "private": true,
       "archived": false,
       "protected": false,
-      "open_pull_requests": [
+      "open_pull_requests": [],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/continuum",
+      "role": "continuity-containment-verification",
+      "canonical_branch": "main",
+      "remote_head_sha": "315795e3c66af3da502370de8cca04b0ab465854",
+      "remote_head_short": "315795e",
+      "head_commit_message": "fix: nightly CI gains workflow_dispatch (missed first schedule tick)",
+      "private": true,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/intelligence-systems-research",
+      "role": "research-assurance",
+      "canonical_branch": "main",
+      "remote_head_sha": "08c98464a58cf16bb1a70f4f0c5516ad1410bd33",
+      "remote_head_short": "08c9846",
+      "head_commit_message": "chore(deps): bump github/codeql-action/init from 5ba2889ada762081db2c4f32a729827dce632c7b to 6f5948dfacef28e207b48d0905cf90c03365536d (#40)",
+      "private": false,
+      "archived": false,
+      "protected": true,
+      "open_pull_requests": [],
+      "authoritative_contracts": [],
+      "consumed_contracts": [
         {
-          "number": 2,
-          "title": "docs: aftergraph-observer lifecycle findings (policy-gate, publisher-krav)",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "b538552e3adb4953c4bade0c4cf85142683f9278"
+          "name": "mission-state",
+          "version": "1.0"
         }
-      ],
+      ]
+    },
+    {
+      "full_name": "Aftergraph/skills-vault",
+      "role": "capability-supply-chain",
+      "canonical_branch": "main",
+      "remote_head_sha": "de14344c6f28ecc5e51424e565cfbe5552b230df",
+      "remote_head_short": "de14344",
+      "head_commit_message": "Merge pull request #48 from Aftergraph/feat/profile-scripts-versioning",
+      "private": true,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/llm-research-development",
+      "role": "model-rnd-methodology",
+      "canonical_branch": "main",
+      "remote_head_sha": "3825996ce640c2d4820c230307e797f7cad9c8da",
+      "remote_head_short": "3825996",
+      "head_commit_message": "claims: LR tool_use mechanism confirmed + redistribution finding (E-v3)",
+      "private": true,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/afm",
+      "role": "model-program",
+      "canonical_branch": "main",
+      "remote_head_sha": "b88980223c71e3810036a47529721d075d5cdf57",
+      "remote_head_short": "b889802",
+      "head_commit_message": "runs: E-v3 record (Tier-1 97/112, tool_use 7/7, gate ineligible)",
+      "private": true,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/model-registry",
+      "role": "model-lifecycle-registry",
+      "canonical_branch": "main",
+      "remote_head_sha": "6c08d063a577e7f9172d6af38daf001e827d4910",
+      "remote_head_short": "6c08d06",
+      "head_commit_message": "registry: E-v3 version (experimental-gated-ineligible, ledger-bound)",
+      "private": true,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [],
       "authoritative_contracts": [],
       "consumed_contracts": []
     },
     {
       "full_name": "Aftergraph/autonomous-venture-company",
-      "role": "agent-workforce",
+      "role": "venture-os-consumer",
       "canonical_branch": "main",
       "remote_head_sha": "b79ecde257c38464aebf00fb22c292bf97cb1a31",
       "remote_head_short": "b79ecde",
@@ -204,146 +257,224 @@
       "protected": false,
       "open_pull_requests": [
         {
+          "head_sha": "05c6307de8082c7eb3986ecb610e2a6536b86a61",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "number": 1010,
+          "title": "chore(deps): bump the development-tooling group across 1 directory with 10 updates"
+        },
+        {
+          "head_sha": "9cf0c48d6e44dbb4363835b9adc78dc02e9e6d54",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
           "number": 1008,
-          "title": "chore(deps): bump @tauri-apps/plugin-updater from 2.10.1 to 2.11.0",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "9cf0c48d6e44dbb4363835b9adc78dc02e9e6d54"
+          "title": "chore(deps): bump @tauri-apps/plugin-updater from 2.10.1 to 2.11.0"
         },
         {
+          "head_sha": "d72f67f672f6a92495628a0a8c818c64a50216ac",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
           "number": 1007,
-          "title": "chore(deps): bump agents from 0.20.1 to 0.22.0",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "d72f67f672f6a92495628a0a8c818c64a50216ac"
+          "title": "chore(deps): bump agents from 0.20.1 to 0.22.0"
         },
         {
+          "head_sha": "21098f425468759bac1ef156968a5d4359c18833",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
           "number": 1006,
-          "title": "chore(deps): bump electron-vite from 4.0.1 to 5.0.0",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "21098f425468759bac1ef156968a5d4359c18833"
+          "title": "chore(deps): bump electron-vite from 4.0.1 to 5.0.0"
         },
         {
+          "head_sha": "0f3552e3ae21802c0437771f819d07726ffe8238",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
           "number": 1005,
-          "title": "chore(deps): bump @xyflow/react from 12.11.2 to 12.11.6",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "0f3552e3ae21802c0437771f819d07726ffe8238"
+          "title": "chore(deps): bump @xyflow/react from 12.11.2 to 12.11.6"
         },
         {
-          "number": 1004,
-          "title": "chore(deps): bump the development-tooling group with 11 updates",
+          "head_sha": "09081e2dfbc6a03b50c39d8fe4437d80af9ca37c",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "86b88269625a3a953c75ed29e79982ed82345e65"
-        },
-        {
           "number": 1003,
-          "title": "chore(deps): bump openai from 4.104.0 to 7.9.0 in /ml/avc-llm",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "09081e2dfbc6a03b50c39d8fe4437d80af9ca37c"
+          "title": "chore(deps): bump openai from 4.104.0 to 7.9.0 in /ml/avc-llm"
         },
         {
+          "head_sha": "7a65d995dcbb8a2b992fc08345147922077ea35e",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
           "number": 1002,
-          "title": "chore(deps): bump tsx from 4.23.1 to 4.23.13 in /ml/avc-llm",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "7a65d995dcbb8a2b992fc08345147922077ea35e"
+          "title": "chore(deps): bump tsx from 4.23.1 to 4.23.13 in /ml/avc-llm"
         },
         {
+          "head_sha": "7042347722ea9435bfd9f82cc872f1b671c8dbd8",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
           "number": 1001,
-          "title": "chore(deps): bump js-yaml from 5.2.2 to 5.4.1 in /ml/avc-llm",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "7042347722ea9435bfd9f82cc872f1b671c8dbd8"
+          "title": "chore(deps): bump js-yaml from 5.2.2 to 5.4.1 in /ml/avc-llm"
         },
         {
+          "head_sha": "2c78cccdca22f307d36b8ece50cf8a3fb9a448a3",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
           "number": 1000,
-          "title": "chore(deps): bump eslint from 10.7.0 to 10.9.1 in /ml/avc-llm",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "2c78cccdca22f307d36b8ece50cf8a3fb9a448a3"
+          "title": "chore(deps): bump eslint from 10.7.0 to 10.9.1 in /ml/avc-llm"
         },
         {
+          "head_sha": "ffa61b67618818bd7313bea0853202e2d3d05a38",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
           "number": 999,
-          "title": "chore(deps): bump js-yaml from 5.2.2 to 5.4.1 in /ml/avc-eval",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "ffa61b67618818bd7313bea0853202e2d3d05a38"
+          "title": "chore(deps): bump js-yaml from 5.2.2 to 5.4.1 in /ml/avc-eval"
         },
         {
+          "head_sha": "853b7b6de2e32d073bac072c0d6b00a268810e79",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
           "number": 998,
-          "title": "chore(deps): bump openai from 4.104.0 to 7.9.0 in /ml/avc-eval",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "853b7b6de2e32d073bac072c0d6b00a268810e79"
+          "title": "chore(deps): bump openai from 4.104.0 to 7.9.0 in /ml/avc-eval"
         },
         {
+          "head_sha": "c65552c803440e4bb90e622f969e0eab1b0e9e73",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
           "number": 997,
-          "title": "chore(deps): bump tsx from 4.23.1 to 4.23.13 in /ml/avc-eval",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "c65552c803440e4bb90e622f969e0eab1b0e9e73"
+          "title": "chore(deps): bump tsx from 4.23.1 to 4.23.13 in /ml/avc-eval"
         },
         {
+          "head_sha": "a20f53ed0f6462cd3a9902a7cb70154d4b9a2be6",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
           "number": 996,
-          "title": "chore(deps): bump eslint from 10.7.0 to 10.9.1 in /ml/avc-eval",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "a20f53ed0f6462cd3a9902a7cb70154d4b9a2be6"
+          "title": "chore(deps): bump eslint from 10.7.0 to 10.9.1 in /ml/avc-eval"
         },
         {
+          "head_sha": "80ed0cfd26bd13cce05a8bb3ed2d47306d7e1a04",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
           "number": 995,
-          "title": "chore(deps): bump tauri-plugin-deep-link from 2.4.9 to 2.4.10 in /apps/mission-control/src-tauri",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "80ed0cfd26bd13cce05a8bb3ed2d47306d7e1a04"
+          "title": "chore(deps): bump tauri-plugin-deep-link from 2.4.9 to 2.4.10 in /apps/mission-control/src-tauri"
         },
         {
+          "head_sha": "fa6b8317b99d0ee791d1d5fd8b7d2d322a0523a9",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
           "number": 994,
-          "title": "chore(deps): bump ed25519-dalek from 2.2.0 to 3.0.0 in /apps/mission-control/src-tauri",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "fa6b8317b99d0ee791d1d5fd8b7d2d322a0523a9"
+          "title": "chore(deps): bump ed25519-dalek from 2.2.0 to 3.0.0 in /apps/mission-control/src-tauri"
         },
         {
+          "head_sha": "5a63a2dfb1b9bd7ac21d567ae26134b4127a24a5",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
           "number": 993,
-          "title": "chore(deps): bump keyring from 2.3.3 to 4.2.0 in /apps/mission-control/src-tauri",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "5a63a2dfb1b9bd7ac21d567ae26134b4127a24a5"
+          "title": "chore(deps): bump keyring from 2.3.3 to 4.2.0 in /apps/mission-control/src-tauri"
         },
         {
+          "head_sha": "f7882c6b1baff6ca01062619accc77f9cd36afee",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
           "number": 992,
-          "title": "chore(deps): bump tauri-plugin-single-instance from 2.4.3 to 2.4.4 in /apps/mission-control/src-tauri",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "f7882c6b1baff6ca01062619accc77f9cd36afee"
+          "title": "chore(deps): bump tauri-plugin-single-instance from 2.4.3 to 2.4.4 in /apps/mission-control/src-tauri"
         },
         {
+          "head_sha": "0d934e2a040b4d7eab962cda7ade4aad0f6c9054",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
           "number": 991,
-          "title": "chore(deps): bump rand from 0.8.7 to 0.10.2 in /apps/mission-control/src-tauri",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "0d934e2a040b4d7eab962cda7ade4aad0f6c9054"
+          "title": "chore(deps): bump rand from 0.8.7 to 0.10.2 in /apps/mission-control/src-tauri"
         },
         {
+          "head_sha": "c20aa5225ca4a683348659caf570cd473e98fdbf",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
           "number": 990,
-          "title": "⚡ Bolt: optimize serialization loop in effective-memory",
-          "is_draft": true,
-          "mergeable": "UNKNOWN",
-          "head_sha": "c20aa5225ca4a683348659caf570cd473e98fdbf"
+          "title": "\u26a1 Bolt: optimize serialization loop in effective-memory"
         },
         {
-          "number": 989,
-          "title": "⚡ Bolt: Optimize effective memory projection hash serialization",
+          "head_sha": "1158526712abe76442e50a9a702acba475e41e50",
           "is_draft": true,
           "mergeable": "UNKNOWN",
-          "head_sha": "1158526712abe76442e50a9a702acba475e41e50"
+          "number": 989,
+          "title": "\u26a1 Bolt: Optimize effective memory projection hash serialization"
         }
       ],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/docs",
+      "role": "knowledge-plane",
+      "canonical_branch": "main",
+      "remote_head_sha": "ffd9065d0050949d84d4b3f1da974f9d0af8e9bc",
+      "remote_head_short": "ffd9065",
+      "head_commit_message": "chore(verifier): source verification log",
+      "private": false,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/aftergraph.org",
+      "role": "public-front-door",
+      "canonical_branch": "main",
+      "remote_head_sha": "0e8017c6319521d38d49672ffdd91f698775f0a0",
+      "remote_head_short": "0e8017c",
+      "head_commit_message": "feat(site): ARIA listbox semantics for launcher (#35)",
+      "private": false,
+      "archived": false,
+      "protected": true,
+      "open_pull_requests": [
+        {
+          "head_sha": "9d606cfd5cd079c54580a7cb7531abc6e0e96a4a",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "number": 36,
+          "title": "feat(site): port approved V2 systems landing over main baseline"
+        }
+      ],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/brand",
+      "role": "brand-design-system",
+      "canonical_branch": "main",
+      "remote_head_sha": "fe7485a498abfc02fc5b74faada819140425acf8",
+      "remote_head_short": "fe7485a",
+      "head_commit_message": "fix: pin codeql-action to commit SHA (#13)",
+      "private": false,
+      "archived": false,
+      "protected": true,
+      "open_pull_requests": [],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/.github",
+      "role": "organization-community",
+      "canonical_branch": "main",
+      "remote_head_sha": "56d70aace61364978e23cd75c9925a54aa706e18",
+      "remote_head_short": "56d70aa",
+      "head_commit_message": "ci: exercise auto-merge reusable workflow on push (post-fix verification)",
+      "private": false,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/sentinel",
+      "role": "verified-code-review",
+      "canonical_branch": "main",
+      "remote_head_sha": "c28df81f3578739b4c020466752a7ff954e7fc99",
+      "remote_head_short": "c28df81",
+      "head_commit_message": "feat(sentinel): rule 7 no-swallowed-exceptions-in-critical-path (#3)",
+      "private": false,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [],
       "authoritative_contracts": [],
       "consumed_contracts": []
     }
