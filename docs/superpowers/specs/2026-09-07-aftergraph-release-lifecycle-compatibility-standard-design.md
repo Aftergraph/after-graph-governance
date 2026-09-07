@@ -1,11 +1,11 @@
 # Aftergraph Release, Lifecycle & Compatibility Standard — Design
 
 **Date:** 2026-09-07  
-**Status:** Approved design  
+**Status:** Approved design; pending written-spec review  
 **Scope owner:** `Aftergraph/after-graph-governance`  
 **Public generation:** **Aftergraph 26**  
 **Generation codename:** **Convergence**  
-**Proposed standard identifier:** `ARLCS/1.0`  
+**Standard identifier:** `ARLCS/1.0`  
 **Platform compatibility identifier:** `agp-26`
 
 ---
@@ -22,6 +22,8 @@ CONVERGENCE
 ```
 
 `Aftergraph 26` is a **platform generation and compatibility baseline**. It is not a monorepo version, Git tag, package version, API version, model version, or instruction to force every repository into lockstep release numbering.
+
+The number `26` identifies the 2026 release family, but it does **not** roll automatically at a calendar boundary. A new generation exists only when Governance explicitly declares and publishes a successor baseline. An `agp-26` component may therefore remain supported after 2026.
 
 The governing principle is:
 
@@ -620,7 +622,7 @@ Products
 Studio · Sentinel · Work Intelligence · Continuum
 
 Core Platform
-AIE · Trust Gateway · WORKS · Runtime
+AIE · Trust Gateway · WORKS · Runtime (planned)
 
 Models & Capabilities
 AFM · Model Registry · Skills
@@ -883,6 +885,8 @@ Codename:             Convergence
 Standard:             Aftergraph Release, Lifecycle & Compatibility Standard
 Standard ID:          ARLCS/1.0
 ```
+
+Generation numbering is release-family based. The number is associated with the year in which the generation is introduced, but support and compatibility are not bounded to that calendar year. A successor number is activated only by a separately governed generation declaration.
 
 Future generation names such as `Meridian`, `Lattice`, `Horizon`, or `Axiom` remain non-normative ideas until separately approved. No future generation is created by this design.
 
