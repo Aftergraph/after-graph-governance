@@ -113,6 +113,12 @@ class AriRegistryTest(unittest.TestCase):
         with self.assertRaisesRegex(RegistryError, "provenance.commit"):
             build_registry([invalid])
 
+    def test_registry_rejects_passport_with_nonpassing_profile_state(self):
+        passport = copy.deepcopy(PASSPORT)
+        passport["conformance"]["profiles"]["verifier"] = "FAIL"
+        with self.assertRaisesRegex(RegistryError, "PASS passport profile verifier"):
+            build_registry([passport])
+
     def test_registry_deduplicates_semantically_identical_document(self):
         registry = build_registry([COMPONENT, copy.deepcopy(COMPONENT)])
         self.assertEqual(len(registry["entries"]), 1)
@@ -141,6 +147,24 @@ class AriRegistryTest(unittest.TestCase):
         passport = copy.deepcopy(PASSPORT)
         passport["provenance"]["manifest_digest"] = "sha256:" + "0" * 64
         with self.assertRaisesRegex(RegistryConflict, "passport manifest digest"):
+            build_registry([COMPONENT, passport])
+
+    def test_registry_rejects_passport_repository_mismatch_when_component_present(self):
+        passport = copy.deepcopy(PASSPORT)
+        passport["provenance"]["repository"] = "Elsewhere/sentinel"
+        with self.assertRaisesRegex(RegistryConflict, "passport repository"):
+            build_registry([COMPONENT, passport])
+
+    def test_registry_rejects_passport_release_train_mismatch_when_component_present(self):
+        passport = copy.deepcopy(PASSPORT)
+        passport["platform"]["release_train"] = "2026.10"
+        with self.assertRaisesRegex(RegistryConflict, "passport release_train"):
+            build_registry([COMPONENT, passport])
+
+    def test_registry_rejects_passport_profile_set_mismatch_when_component_present(self):
+        passport = copy.deepcopy(PASSPORT)
+        passport["conformance"]["profiles"] = {"execution": "PASS"}
+        with self.assertRaisesRegex(RegistryConflict, "passport profile set"):
             build_registry([COMPONENT, passport])
 
     def test_cli_builds_machine_readable_registry(self):
