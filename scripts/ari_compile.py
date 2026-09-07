@@ -15,7 +15,14 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts.ari_graph import CompatibilityGraph, Endpoint  # noqa: E402
-from scripts.ari_model import EvidenceLevel, ResultState, evidence_meets, load_json, validate_component  # noqa: E402
+from scripts.ari_model import (  # noqa: E402
+    EvidenceLevel,
+    ResultState,
+    canonical_digest,
+    evidence_meets,
+    load_json,
+    validate_component,
+)
 
 
 @dataclass(slots=True)
@@ -23,6 +30,8 @@ class CompileResult:
     state: ResultState
     component: str
     version: str
+    source_commit: str = ""
+    manifest_digest: str = ""
     profile_results: dict[str, ResultState] = field(default_factory=dict)
     errors: list[str] = field(default_factory=list)
     unknowns: list[str] = field(default_factory=list)
@@ -34,6 +43,8 @@ class CompileResult:
             "state": self.state.value,
             "component": self.component,
             "version": self.version,
+            "source_commit": self.source_commit,
+            "manifest_digest": self.manifest_digest,
             "profiles": {name: state.value for name, state in self.profile_results.items()},
             "errors": list(self.errors),
             "unknowns": list(self.unknowns),
@@ -60,8 +71,11 @@ def _edge_label(target: Endpoint) -> str:
 def compile_component(manifest: dict, apc: dict, edge_documents: Iterable[dict]) -> CompileResult:
     identity = manifest.get("identity") if isinstance(manifest, dict) else {}
     release = manifest.get("release") if isinstance(manifest, dict) else {}
+    provenance = manifest.get("provenance") if isinstance(manifest, dict) else {}
     component = identity.get("component", "<unknown>") if isinstance(identity, dict) else "<unknown>"
     version = release.get("version", "<unknown>") if isinstance(release, dict) else "<unknown>"
+    source_commit = provenance.get("commit", "<unknown>") if isinstance(provenance, dict) else "<unknown>"
+    manifest_digest = canonical_digest(manifest) if isinstance(manifest, dict) else ""
 
     errors = validate_component(manifest)
     if apc.get("schema") != "aftergraph.apc/1":
@@ -70,12 +84,25 @@ def compile_component(manifest: dict, apc: dict, edge_documents: Iterable[dict])
         errors.append("APC registry level must be APC-1")
 
     if errors:
-        return CompileResult(ResultState.FAIL, component, version, errors=errors)
+        return CompileResult(
+            ResultState.FAIL,
+            component,
+            version,
+            source_commit=source_commit,
+            manifest_digest=manifest_digest,
+            errors=errors,
+        )
 
     compatibility = manifest["compatibility"]
     profiles: list[str] = compatibility["profiles"]
     if not profiles:
-        return CompileResult(ResultState.N_A, component, version)
+        return CompileResult(
+            ResultState.N_A,
+            component,
+            version,
+            source_commit=source_commit,
+            manifest_digest=manifest_digest,
+        )
 
     profile_requirements = apc.get("profile_requirements")
     if not isinstance(profile_requirements, dict):
@@ -83,13 +110,22 @@ def compile_component(manifest: dict, apc: dict, edge_documents: Iterable[dict])
             ResultState.FAIL,
             component,
             version,
+            source_commit=source_commit,
+            manifest_digest=manifest_digest,
             errors=["APC registry profile_requirements must be an object"],
         )
 
     try:
         graph = CompatibilityGraph(edge_documents)
     except ValueError as exc:
-        return CompileResult(ResultState.FAIL, component, version, errors=[str(exc)])
+        return CompileResult(
+            ResultState.FAIL,
+            component,
+            version,
+            source_commit=source_commit,
+            manifest_digest=manifest_digest,
+            errors=[str(exc)],
+        )
 
     source = Endpoint(component, version, manifest["provenance"]["commit"])
     required_targets = [Endpoint.from_document(target) for target in compatibility.get("requires_edges", [])]
@@ -163,6 +199,8 @@ def compile_component(manifest: dict, apc: dict, edge_documents: Iterable[dict])
         state=state,
         component=component,
         version=version,
+        source_commit=source_commit,
+        manifest_digest=manifest_digest,
         profile_results=profile_results,
         errors=errors,
         unknowns=unknowns,
