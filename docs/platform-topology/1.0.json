@@ -164,6 +164,14 @@
       "plane": "assurance",
       "role": "verified-code-review",
       "owns": "Exact-HEAD verified code-review verdicts with stale-base invalidation and cited evidence."
+    },
+    {
+      "name": "runtime",
+      "canonical_branch": "main",
+      "visibility": "public",
+      "plane": "execution",
+      "role": "agent-runtime",
+      "owns": "Agent lifecycle, orchestration, dispatch, checkpoints, metering, observability. Durable execution stays in WORKS; enforcement stays in Trust Gateway."
     }
   ]
 }
