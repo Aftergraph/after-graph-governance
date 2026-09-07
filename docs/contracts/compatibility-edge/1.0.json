@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.dev/contracts/compatibility-edge/1.0.json",
+  "title": "Aftergraph Compatibility Edge 1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "from", "to", "relation", "state", "evidence_level", "evidence"],
+  "$defs": {
+    "endpoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["component", "version", "commit"],
+      "properties": {
+        "component": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+        "version": {"type": "string", "minLength": 1},
+        "commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "ref"],
+      "properties": {
+        "kind": {"type": "string", "minLength": 1},
+        "ref": {"type": "string", "minLength": 1}
+      }
+    }
+  },
+  "properties": {
+    "schema": {"const": "compatibility-edge/1.0"},
+    "from": {"$ref": "#/$defs/endpoint"},
+    "to": {"$ref": "#/$defs/endpoint"},
+    "relation": {"enum": ["requires", "tested-with", "incompatible-with", "conforms-to", "supports"]},
+    "state": {"enum": ["pass", "fail", "unknown", "stale", "not-applicable"]},
+    "evidence_level": {"enum": ["CE0", "CE1", "CE2", "CE3", "CE4", "CE5"]},
+    "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}}
+  }
+}
