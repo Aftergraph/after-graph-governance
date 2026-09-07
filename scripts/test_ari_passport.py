@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.ari_compile import compile_component
+from scripts.ari_compile import CompileResult, compile_component
 from scripts.ari_model import ResultState
 from scripts.ari_passport import PassportError, build_passport
 
@@ -56,6 +56,16 @@ class AriPassportTest(unittest.TestCase):
         self.assertEqual(passport["provenance"]["commit"], "1" * 40)
         self.assertEqual(passport["provenance"]["artifact_digest"], ARTIFACT)
         self.assertRegex(passport["provenance"]["manifest_digest"], r"^sha256:[a-f0-9]{64}$")
+
+    def test_build_refuses_compile_result_for_different_subject(self):
+        forged = CompileResult(
+            state=ResultState.PASS,
+            component="different-component",
+            version="1.4.0",
+            profile_results={"verifier": ResultState.PASS},
+        )
+        with self.assertRaisesRegex(PassportError, "compile result subject mismatch"):
+            build_passport(copy.deepcopy(BASE), forged, ARTIFACT)
 
     def test_unknown_compile_refuses_passport(self):
         result = compile_component(copy.deepcopy(BASE), APC, [])
@@ -158,6 +168,34 @@ class AriPassportTest(unittest.TestCase):
         payload = json.loads(proc.stdout)
         self.assertEqual(payload["state"], "UNKNOWN")
         self.assertIn("requires PASS", payload["error"])
+
+    def test_cli_invalid_artifact_digest_reports_fail_and_exit_two(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            manifest_path = tmp_path / "component.json"
+            edge_path = tmp_path / "edge.json"
+            manifest_path.write_text(json.dumps(BASE), encoding="utf-8")
+            edge_path.write_text(json.dumps(EDGE), encoding="utf-8")
+            proc = subprocess.run(
+                [
+                    sys.executable,
+                    str(ROOT / "scripts/ari_passport.py"),
+                    str(manifest_path),
+                    "--edge",
+                    str(edge_path),
+                    "--artifact-digest",
+                    "sha256:bad",
+                ],
+                cwd=ROOT,
+                text=True,
+                capture_output=True,
+                check=False,
+            )
+        self.assertEqual(proc.returncode, 2)
+        payload = json.loads(proc.stdout)
+        self.assertEqual(payload["state"], "FAIL")
+        self.assertEqual(payload["conformance_state"], "PASS")
+        self.assertIn("artifact digest", payload["error"])
 
 
 if __name__ == "__main__":
