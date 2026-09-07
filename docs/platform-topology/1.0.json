@@ -5,26 +5,173 @@
   "evidence_cut": "2026-09-08",
   "description": "Human-governed repository topology for the Aftergraph polyrepo platform. This file defines scope and ownership classes, not exact Git state. Exact heads are generated from GitHub by scripts/org-state-verify.sh.",
   "repositories": [
-    {"name":"after-graph-governance","canonical_branch":"main","visibility":"public","plane":"governance","role":"canonical-contracts","owns":"Platform topology, cross-repo boundaries, contract registration and generated org-state mechanics."},
-    {"name":"aie","canonical_branch":"main","visibility":"public","plane":"institution","role":"normative-authority","owns":"Portable institution, authority, delegation, lifecycle, budget and revocation semantics."},
-    {"name":"trust-gateway","canonical_branch":"main","visibility":"public","plane":"enforcement","role":"runtime-enforcement","owns":"Fail-closed runtime admission, policy enforcement, approvals, secrets and action audit."},
-    {"name":"works-execution","canonical_branch":"main","visibility":"public","plane":"execution","role":"durable-execution","owns":"Durable work state, scheduling, workers, leases, recovery, execution evidence and quittance."},
-    {"name":"studio","canonical_branch":"main","visibility":"public","plane":"experience","role":"primary-experience","owns":"General-purpose human operating environment for Chat, Work, Space, control and evidence surfaces."},
-    {"name":"wi-backend","canonical_branch":"main","visibility":"public","plane":"work-intelligence","role":"work-inference","owns":"Source-neutral observation to canonical WorkItem inference, review and promotion boundaries for Wie by Aftergraph."},
-    {"name":"wi-frontend","canonical_branch":"main","visibility":"private","plane":"experience","role":"work-intelligence-experience","owns":"Wie by Aftergraph specialist browser experience and least-privilege BFF over canonical wi-backend state."},
-    {"name":"context-continuity","canonical_branch":"main","visibility":"private","plane":"continuity","role":"continuity-contract","owns":"Portable transfer of actionable context/state across model, agent, session and runtime boundaries."},
-    {"name":"continuum","canonical_branch":"main","visibility":"private","plane":"assurance","role":"continuity-containment-verification","owns":"Continuity and containment fault-injection campaigns and verification harnesses."},
-    {"name":"intelligence-systems-research","canonical_branch":"main","visibility":"public","plane":"research-assurance","role":"research-assurance","owns":"SPEC-001, MISSION-Bench methodology, scientific claims, experiments, assurance and publication evidence."},
-    {"name":"skills-vault","canonical_branch":"main","visibility":"private","plane":"capabilities","role":"capability-supply-chain","owns":"Governed skill discovery, trust, lifecycle, provenance, compatibility and distribution."},
-    {"name":"llm-research-development","canonical_branch":"main","visibility":"private","plane":"models","role":"model-rnd-methodology","owns":"Reusable model research, experiment, evaluation, promotion and provenance methodology."},
-    {"name":"afm","canonical_branch":"main","visibility":"private","plane":"models","role":"model-program","owns":"AFM-specific model training, datasets, experiments, evaluations and artifact manifests."},
-    {"name":"model-registry","canonical_branch":"main","visibility":"private","plane":"models","role":"model-lifecycle-registry","owns":"Immutable promoted model identities, versions, aliases, lifecycle, provenance and artifact locations."},
-    {"name":"autonomous-venture-company","canonical_branch":"main","visibility":"private","plane":"migration","role":"migration-source","owns":"Legacy AVC migration source while canonical responsibilities move into Aftergraph platform repositories; no new canonical responsibilities."},
-    {"name":"docs","canonical_branch":"main","visibility":"public","plane":"knowledge","role":"knowledge-plane","owns":"Provenance-pinned rendering, discovery, developer documentation and agent-readable context surfaces."},
-    {"name":"aftergraph.org","canonical_branch":"main","visibility":"public","plane":"public","role":"public-front-door","owns":"Public website, marketing information architecture and system launcher."},
-    {"name":"brand","canonical_branch":"main","visibility":"public","plane":"foundation","role":"brand-design-system","owns":"Visual identity, semantic design tokens, master assets and public communication design rules."},
-    {"name":".github","canonical_branch":"main","visibility":"public","plane":"foundation","role":"organization-community","owns":"Organization profile, contribution defaults, security/support routing and shared community infrastructure."},
-    {"name":"sentinel","canonical_branch":"main","visibility":"public","plane":"assurance","role":"verified-code-review","owns":"Exact-HEAD verified software review verdicts with stale-base invalidation and cited evidence."},
-    {"name":"runtime","canonical_branch":"main","visibility":"private","plane":"runtime","role":"agent-runtime","owns":"Agent lifecycle, orchestration, dispatch, checkpoints, metering, observability and model-edge integration. Durable execution stays in WORKS; enforcement stays in Trust Gateway."}
+    {
+      "name": "after-graph-governance",
+      "canonical_branch": "main",
+      "visibility": "public",
+      "plane": "governance",
+      "role": "canonical-contracts",
+      "owns": "Platform topology, cross-repo boundaries, contract registration and generated org-state mechanics."
+    },
+    {
+      "name": "aie",
+      "canonical_branch": "main",
+      "visibility": "public",
+      "plane": "institution",
+      "role": "normative-authority",
+      "owns": "Portable institution, authority, delegation, lifecycle, budget and revocation semantics."
+    },
+    {
+      "name": "trust-gateway",
+      "canonical_branch": "main",
+      "visibility": "public",
+      "plane": "enforcement",
+      "role": "runtime-enforcement",
+      "owns": "Fail-closed runtime admission, policy enforcement, approvals, secrets and action audit."
+    },
+    {
+      "name": "works-execution",
+      "canonical_branch": "main",
+      "visibility": "public",
+      "plane": "execution",
+      "role": "durable-execution",
+      "owns": "Durable work state, scheduling, workers, leases, recovery, execution evidence and quittance."
+    },
+    {
+      "name": "studio",
+      "canonical_branch": "main",
+      "visibility": "public",
+      "plane": "experience",
+      "role": "primary-experience",
+      "owns": "General-purpose human operating environment for Chat, Work, Space, control and evidence surfaces."
+    },
+    {
+      "name": "wi-backend",
+      "canonical_branch": "main",
+      "visibility": "public",
+      "plane": "work-intelligence",
+      "role": "work-inference",
+      "owns": "Source-neutral observation to canonical WorkItem inference, review and promotion boundaries for Wie by Aftergraph."
+    },
+    {
+      "name": "wi-frontend",
+      "canonical_branch": "main",
+      "visibility": "private",
+      "plane": "experience",
+      "role": "work-intelligence-experience",
+      "owns": "Wie by Aftergraph specialist browser experience and least-privilege BFF over canonical wi-backend state."
+    },
+    {
+      "name": "context-continuity",
+      "canonical_branch": "main",
+      "visibility": "private",
+      "plane": "continuity",
+      "role": "continuity-contract",
+      "owns": "Portable transfer of actionable context/state across model, agent, session and runtime boundaries."
+    },
+    {
+      "name": "continuum",
+      "canonical_branch": "main",
+      "visibility": "private",
+      "plane": "assurance",
+      "role": "continuity-containment-verification",
+      "owns": "Continuity and containment fault-injection campaigns and verification harnesses."
+    },
+    {
+      "name": "intelligence-systems-research",
+      "canonical_branch": "main",
+      "visibility": "public",
+      "plane": "research-assurance",
+      "role": "research-assurance",
+      "owns": "SPEC-001, MISSION-Bench methodology, scientific claims, experiments, assurance and publication evidence."
+    },
+    {
+      "name": "skills-vault",
+      "canonical_branch": "main",
+      "visibility": "private",
+      "plane": "capabilities",
+      "role": "capability-supply-chain",
+      "owns": "Governed skill discovery, trust, lifecycle, provenance, compatibility and distribution."
+    },
+    {
+      "name": "llm-research-development",
+      "canonical_branch": "main",
+      "visibility": "private",
+      "plane": "models",
+      "role": "model-rnd-methodology",
+      "owns": "Reusable model research, experiment, evaluation, promotion and provenance methodology."
+    },
+    {
+      "name": "afm",
+      "canonical_branch": "main",
+      "visibility": "private",
+      "plane": "models",
+      "role": "model-program",
+      "owns": "AFM-specific model training, datasets, experiments, evaluations and artifact manifests."
+    },
+    {
+      "name": "model-registry",
+      "canonical_branch": "main",
+      "visibility": "private",
+      "plane": "models",
+      "role": "model-lifecycle-registry",
+      "owns": "Immutable promoted model identities, versions, aliases, lifecycle, provenance and artifact locations."
+    },
+    {
+      "name": "autonomous-venture-company",
+      "canonical_branch": "main",
+      "visibility": "private",
+      "plane": "migration",
+      "role": "migration-source",
+      "owns": "Legacy AVC migration source while canonical responsibilities move into Aftergraph platform repositories; no new canonical responsibilities."
+    },
+    {
+      "name": "docs",
+      "canonical_branch": "main",
+      "visibility": "public",
+      "plane": "knowledge",
+      "role": "knowledge-plane",
+      "owns": "Provenance-pinned rendering, discovery, developer documentation and agent-readable context surfaces."
+    },
+    {
+      "name": "aftergraph.org",
+      "canonical_branch": "main",
+      "visibility": "public",
+      "plane": "public",
+      "role": "public-front-door",
+      "owns": "Public website, marketing information architecture and system launcher."
+    },
+    {
+      "name": "brand",
+      "canonical_branch": "main",
+      "visibility": "public",
+      "plane": "foundation",
+      "role": "brand-design-system",
+      "owns": "Visual identity, semantic design tokens, master assets and public communication design rules."
+    },
+    {
+      "name": ".github",
+      "canonical_branch": "main",
+      "visibility": "public",
+      "plane": "foundation",
+      "role": "organization-community",
+      "owns": "Organization profile, contribution defaults, security/support routing and shared community infrastructure."
+    },
+    {
+      "name": "sentinel",
+      "canonical_branch": "main",
+      "visibility": "public",
+      "plane": "assurance",
+      "role": "verified-code-review",
+      "owns": "Exact-HEAD verified software review verdicts with stale-base invalidation and cited evidence."
+    },
+    {
+      "name": "runtime",
+      "canonical_branch": "main",
+      "visibility": "private",
+      "plane": "runtime",
+      "role": "agent-runtime",
+      "owns": "Agent lifecycle, orchestration, dispatch, checkpoints, metering, observability and model-edge integration. Durable execution stays in WORKS; enforcement stays in Trust Gateway."
+    }
   ]
 }
