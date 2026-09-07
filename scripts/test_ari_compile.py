@@ -65,6 +65,13 @@ class AriCompileTest(unittest.TestCase):
         self.assertEqual(result.state, ResultState.FAIL)
         self.assertIn("APC-1/verifier requires contract: correlation", result.errors)
 
+    def test_verifier_without_declared_required_edge_is_unknown(self):
+        manifest = copy.deepcopy(BASE)
+        manifest["compatibility"].pop("requires_edges")
+        result = compile_component(manifest, APC, [edge()])
+        self.assertEqual(result.state, ResultState.UNKNOWN)
+        self.assertTrue(any("requires at least 1 compatibility edge" in message for message in result.unknowns))
+
     def test_required_exact_edge_absent_is_unknown(self):
         result = compile_component(copy.deepcopy(BASE), APC, [])
         self.assertEqual(result.state, ResultState.UNKNOWN)
@@ -89,6 +96,14 @@ class AriCompileTest(unittest.TestCase):
         self.assertEqual(result.state, ResultState.PASS)
         self.assertEqual(result.profile_results, {"verifier": ResultState.PASS})
         self.assertEqual(result.unknowns, [])
+
+    def test_evidence_refs_exclude_edges_below_profile_threshold(self):
+        weak = edge(level="CE1")
+        weak["evidence"] = [{"kind": "weak", "ref": "sha256:" + "4" * 64}]
+        strong = edge(level="CE3")
+        result = compile_component(copy.deepcopy(BASE), APC, [weak, strong])
+        self.assertEqual(result.state, ResultState.PASS)
+        self.assertEqual(result.evidence_refs, ["sha256:" + "3" * 64])
 
     def test_unknown_apc_profile_is_fail(self):
         manifest = copy.deepcopy(BASE)
