@@ -91,7 +91,7 @@ Observed result included:
 }
 ```
 
-The emitted passport also binds the claim to the synthetic exact source commit, supplied artifact digest, canonical manifest digest, and the qualifying compatibility evidence reference. A PASS compile result for a different component/version is rejected rather than being reusable as a passport for another subject.
+The emitted passport binds the claim to the synthetic component/version, exact source commit, canonical manifest digest, supplied artifact digest, and qualifying compatibility evidence. The APC compile result itself now carries the source commit and manifest digest, so changing the manifest after compilation or substituting another source commit invalidates passport emission.
 
 Exit code: `0`.
 
@@ -129,7 +129,9 @@ empty compatibility evidence arrays                  -> rejected
 duplicate exact requires_edges targets               -> rejected
 invalid APC evidence thresholds                      -> FAIL
 incompatible-with queried in either direction        -> FAIL
-PASS result reused for another release subject       -> passport refused
+PASS result reused for another component/version     -> passport refused
+PASS result reused after manifest mutation           -> passport refused
+PASS result reused with another source commit        -> passport refused
 invalid artifact digest after PASS compile            -> passport FAIL
 manifest digest omitted from passport provenance      -> schema rejects
 ```
@@ -138,16 +140,16 @@ Each production fix followed a RED → GREEN cycle in GitHub Actions.
 
 ## Test evidence
 
-Authoritative PR-merge-ref verification for implementation head `4c9d1f6bf54f65bac6fdf2dab4117fe033b01f20`:
+Authoritative PR-merge-ref verification for implementation head `322b7a5cda23f09f377876a0f9f3c09dc4f79079`:
 
 ```text
 Release Intelligence / verify
-ARI tests:                  54 passed, 0 failed
+ARI tests:                  56 passed, 0 failed
 Governance regression:      67 passed, 0 failed
 JSON syntax gates:           4 passed
 ```
 
-Total Python test executions in the gate: **121 passed, 0 failed**.
+Total Python test executions in the gate: **123 passed, 0 failed**.
 
 The four JSON syntax gates cover:
 
@@ -162,7 +164,7 @@ docs/contracts/release-passport/1.0.json
 
 ## What this proves
 
-**PROVED:** the Governance implementation can compute `APC-1/verifier` conformance from explicit exact-subject declarations and compatibility evidence, preserve independent component versions, bind a positive result into a Release Passport, refuse a positive result when required evidence is absent or insufficient, and fail closed on the reviewed malformed/ambiguous compatibility cases above.
+**PROVED:** the Governance implementation can compute `APC-1/verifier` conformance from explicit exact-subject declarations and compatibility evidence, preserve independent component versions, bind a positive result into a Release Passport, reject compile/passport subject drift, refuse a positive result when required evidence is absent or insufficient, and fail closed on the reviewed malformed/ambiguous compatibility cases above.
 
 ## What this does not prove
 
