@@ -843,7 +843,15 @@ Future codenames or future APC levels remain non-normative until separately gove
 
 ---
 
-## 29. Final target state
+## 29. Written-spec review gate
+
+This document and its ARI companion remain design specifications only until the owner explicitly approves the written specs in PR #36.
+
+That approval is separate from the earlier in-chat design approval. Only after written-spec approval should an implementation plan be produced.
+
+---
+
+## 30. Final target state
 
 The system becomes understandable at progressively deeper levels:
 
