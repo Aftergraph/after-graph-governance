@@ -42,7 +42,7 @@
     "provenance": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["repository", "commit", "artifact_digest"],
+      "required": ["repository", "commit", "artifact_digest", "manifest_digest"],
       "properties": {
         "repository": {"type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"},
         "commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
