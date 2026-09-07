@@ -16,6 +16,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts.ari_model import (  # noqa: E402
+    ResultState,
     canonical_digest,
     load_json,
     validate_component,
@@ -39,6 +40,30 @@ class ClassifiedDocument:
     digest: str
 
 
+def _validate_positive_passport(document: dict) -> list[str]:
+    """Enforce positive-passport semantics at the registry ingestion boundary."""
+    errors: list[str] = []
+    conformance = document.get("conformance")
+    if not isinstance(conformance, dict):
+        return errors
+    profiles = conformance.get("profiles")
+    if not isinstance(profiles, dict):
+        return errors
+    if not profiles:
+        errors.append("PASS passport requires at least one conformance profile")
+        return errors
+
+    pass_count = 0
+    for profile, state in profiles.items():
+        if state == ResultState.PASS.value:
+            pass_count += 1
+        elif state != ResultState.N_A.value:
+            errors.append(f"PASS passport profile {profile} must be PASS or N/A, got {state}")
+    if pass_count == 0:
+        errors.append("PASS passport requires at least one PASS profile")
+    return errors
+
+
 def _classify(document: dict) -> ClassifiedDocument:
     snapshot = copy.deepcopy(document)
     schema = snapshot.get("schema") if isinstance(snapshot, dict) else None
@@ -48,6 +73,7 @@ def _classify(document: dict) -> ClassifiedDocument:
         kind, errors = "edge", validate_edge(snapshot)
     elif schema == "release-passport/1.0":
         kind, errors = "passport", validate_passport(snapshot)
+        errors.extend(_validate_positive_passport(snapshot))
     else:
         raise RegistryError(f"unsupported registry document schema: {schema}")
     if errors:
@@ -111,11 +137,40 @@ def _check_conflicts(items: list[ClassifiedDocument]) -> None:
         component = components.get(key)
         if component is None:
             continue
-        claimed = passport.document["provenance"]["manifest_digest"]
+
+        passport_document = passport.document
+        component_document = component.document
+        label = _identity_label(key)
+
+        claimed = passport_document["provenance"]["manifest_digest"]
         if claimed != component.digest:
             raise RegistryConflict(
-                f"passport manifest digest conflicts with component {_identity_label(key)}: "
+                f"passport manifest digest conflicts with component {label}: "
                 f"passport={claimed} component={component.digest}"
+            )
+
+        passport_repository = passport_document["provenance"]["repository"]
+        component_repository = component_document["provenance"]["repository"]
+        if passport_repository != component_repository:
+            raise RegistryConflict(
+                f"passport repository conflicts with component {label}: "
+                f"passport={passport_repository} component={component_repository}"
+            )
+
+        passport_train = passport_document["platform"]["release_train"]
+        component_train = component_document["platform"]["release_train"]
+        if passport_train != component_train:
+            raise RegistryConflict(
+                f"passport release_train conflicts with component {label}: "
+                f"passport={passport_train} component={component_train}"
+            )
+
+        passport_profiles = set(passport_document["conformance"]["profiles"])
+        component_profiles = set(component_document["compatibility"]["profiles"])
+        if passport_profiles != component_profiles:
+            raise RegistryConflict(
+                f"passport profile set conflicts with component {label}: "
+                f"passport={sorted(passport_profiles)} component={sorted(component_profiles)}"
             )
 
 
