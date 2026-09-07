@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://aftergraph.dev/contracts/org-state/1.0.json",
   "title": "Aftergraph Org State Contract",
-  "description": "Machine-verifiable org truth surface: exact remote HEAD, canonical branch, role, contracts and CI/PR status per repository, generated automatically from GitHub (never manually typed SHA claims). Consumers MUST verify exact heads against this contract (or regenerate it) before gap analysis, delegation or merge decisions. Any claim about a repo's state in a handoff/roadmap/briefing is a CLAIM; this contract (or a fresh generation of it) is TRUTH. Repository scope and role classification are defined by platform-topology/1.0. Version 1.0.",
+  "description": "Machine-verifiable org truth surface: exact remote HEAD, canonical branch, role, contracts and CI/PR status per repository, generated automatically from GitHub (never manually typed SHA claims). Consumers MUST verify exact heads against this contract (or regenerate it) before gap analysis, delegation or merge decisions. Any claim about a repo's state in a handoff/roadmap/briefing is a CLAIM; this contract (or a fresh generation of it) is TRUTH. Repository scope and current role classification are defined by platform-topology/1.0. Version 1.0 retains legacy role enum values so previously generated snapshots remain schema-readable; the current generator emits topology roles only.",
   "type": "object",
   "properties": {
     "schema_version": { "type": "string", "const": "org-state/1.0" },
@@ -23,7 +23,7 @@
       "type": "array",
       "items": { "$ref": "#/$defs/repository" },
       "minItems": 1,
-      "description": "One entry per tracked repository, keyed by full_name. Scope is loaded from docs/platform-topology/1.0.json."
+      "description": "Generated repository entries. Current generation scope is loaded from docs/platform-topology/1.0.json; older checked-in snapshots may contain the historical subset and are freshness-stamped by generated_at."
     }
   },
   "required": ["schema_version", "generated_at", "generator", "org", "repositories"],
@@ -57,18 +57,23 @@
             "knowledge-plane",
             "public-front-door",
             "brand-design-system",
-            "organization-community"
+            "organization-community",
+            "research",
+            "detection",
+            "product-web",
+            "skills-library",
+            "agent-workforce"
           ],
-          "description": "Repository role defined by docs/platform-topology/1.0.json. Roles classify ownership without implying evidence or maturity inheritance."
+          "description": "Current repository roles are defined by docs/platform-topology/1.0.json. The final five enum values are legacy org-state/1.0 compatibility values for already-generated snapshots and MUST NOT be emitted by the current topology-driven generator."
         },
         "canonical_branch": {
           "type": "string",
-          "description": "Default/canonical branch as reported by GitHub and reconciled against platform-topology/1.0."
+          "description": "Default/canonical branch as reported by GitHub and reconciled against platform-topology/1.0 for current generation."
         },
         "remote_head_sha": {
           "type": "string",
           "pattern": "^[0-9a-f]{40}$",
-          "description": "Full SHA of remote canonical branch head — THE authoritative state. Never accept an abbreviated SHA as truth."
+          "description": "Full SHA of remote canonical branch head — THE authoritative state for the snapshot timestamp. Never accept an abbreviated SHA as truth."
         },
         "remote_head_short": {
           "type": "string",
