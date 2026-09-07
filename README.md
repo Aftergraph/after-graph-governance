@@ -9,119 +9,171 @@
   </picture>
 </p>
 
-# ABDE Intelligence — Platform Governance
+# Aftergraph Platform Governance
 
-> Infrastructure for governed autonomous intelligence.
+> Canonical cross-repository topology, contracts, boundaries and exact-head truth mechanics for the Aftergraph ecosystem.
 
-**Brand status:** ABDE Intelligence is the current provisional company/platform candidate and has **not** completed trademark clearance.
+**Brand status:** Aftergraph / ABDE Intelligence naming remains provisional and has not completed trademark clearance. Repository/contract boundaries are technical governance and do not depend on final brand naming.
 
-**Namespace status:** GitHub organization `@Aftergraph` is a temporary working namespace pending final brand clearance.
+## Platform model
 
-**Architecture (provisional):**
+Aftergraph is a polyrepo platform. Repositories remain independently versioned and independently accountable for their runtime, conformance and scientific claims.
 
+```text
+Public / Knowledge
+  aftergraph.org · docs · .github · brand
+          ↓
+Experience
+  studio · work-intelligence-web · autonomous-venture-company
+          ↓
+Intent / Work / Continuity
+  work-intelligence-v2 · context-continuity
+          ↓
+Institution / Enforcement / Execution
+  AIE → Trust Gateway → WORKS
+          ↓
+Capabilities / Models
+  skills-vault · llm-research-development · afm · model-registry
+          ↓
+Assurance / Verification
+  intelligence-systems-research · continuum
+          ↓
+Verified outcomes
 ```
-ABDE Intelligence
-├── ABDE Platform
-│   ├── Agent Workforce
-│   ├── Trust Gateway
-│   ├── WORKS
-│   └── Adaptive Workspace / Plugin Runtime
-├── ABDE Research
-│   └── Jonas Abde Intelligence Systems Research Program
-├── AIE
-│   └── independent Agentic Institution Engineering standards track
-└── After Graph
-    └── research thesis / initiative / narrative
+
+Cross-cutting governance lives here. The complete installed repository set is **19 repositories** at the 2026-09-07 reconciliation cut.
+
+## Canonical topology
+
+`docs/platform-topology/1.0.json` is the slow-changing machine-readable topology contract: repository name, role, plane, canonical branch and visibility. It contains **no exact Git SHAs**.
+
+`latest-org-state.json` is the fast-changing generated GitHub truth snapshot: exact remote HEAD, branch, protection, open PRs and contract annotations.
+
+```text
+platform-topology/1.0
+        ↓ defines scope + roles
+scripts/org-state-verify.sh
+        ↓ queries GitHub remote truth
+org-state/1.0 / latest-org-state.json
 ```
 
-## Modules
+This separation prevents repository scope from being hard-coded into the generator while preserving the rule that exact Git state is never hand-authored.
 
-| Module | Repo | Role |
-|--------|------|------|
-| **Agent Workforce** | (in [Aftergraph/trust-gateway](https://github.com/Aftergraph/trust-gateway)) | User/developer-facing product layer |
-| **Trust Gateway** | [Aftergraph/trust-gateway](https://github.com/Aftergraph/trust-gateway) | Runtime control and enforcement plane |
-| **WORKS** | [Aftergraph/works-execution](https://github.com/Aftergraph/works-execution) | Durable execution plane |
-| **AIE** | [Aftergraph/aie](https://github.com/Aftergraph/aie) | Independent normative authority/institution standards track |
-| **ABDE Research (ISR Program)** | [Aftergraph/intelligence-systems-research](https://github.com/Aftergraph/intelligence-systems-research) | Labs / Evals / Assurance |
-| **Work Intelligence** | [Aftergraph/work-intelligence-v2](https://github.com/Aftergraph/work-intelligence-v2) | Observation → WorkItem inference (human review required) |
-| **Autonomous Venture Company** | [Aftergraph/autonomous-venture-company](https://github.com/Aftergraph/autonomous-venture-company) | AI-native venture operating system, Hermes & Product Cells |
-| **Skills Vault** | [Aftergraph/skills-vault](https://github.com/Aftergraph/skills-vault) | Governed skill intelligence, supply chain & discovery |
-| **Aftergraph Studio** | [Aftergraph/studio](https://github.com/Aftergraph/studio) | Sovereign operating environment for governed AI intelligence & verified outcomes |
-| **Brand & Design System** | [Aftergraph/brand](https://github.com/Aftergraph/brand) | Visual language, design tokens, master assets & UI kits |
+## Core ownership boundaries
 
-Canonical definitions: ABDE Platform (product), ABDE Research (research-facing identity), AIE (independent standards track), After Graph (research thesis) — see [docs/ABDE-BRAND-ARCHITECTURE-v0.2.md](docs/ABDE-BRAND-ARCHITECTURE-v0.2.md) and [docs/NAMING-STANDARD-v0.1.md](docs/NAMING-STANDARD-v0.1.md).
+| Plane | Repository | Canonical responsibility |
+|---|---|---|
+| Governance | `after-graph-governance` | topology, cross-repo contracts, boundaries, exact-head generation |
+| Institution | `aie` | authority, delegation, lifecycle, budget/revocation semantics |
+| Enforcement | `trust-gateway` | runtime admission, approvals, policy enforcement and action audit |
+| Execution | `works-execution` | durable work, scheduling, workers, recovery, evidence/quittance |
+| Experience | `studio` | general-purpose Chat / Work / Space human environment |
+| Work Intelligence | `work-intelligence-v2` | source-neutral observations → canonical WorkItems |
+| Continuity | `context-continuity` | portable actionable state transfer across runtime/session boundaries |
+| Assurance | `intelligence-systems-research` | SPEC-001, MISSION-Bench, scientific claims and assurance evidence |
+| Assurance | `continuum` | continuity/containment fault-injection campaigns |
+| Capabilities | `skills-vault` | governed skill discovery, lifecycle, trust and provenance |
+| Models | `llm-research-development` | reusable model R&D/evaluation/promotion methodology |
+| Models | `afm` | AFM-specific model program |
+| Models | `model-registry` | immutable promoted model metadata/lifecycle |
+| Product consumer | `autonomous-venture-company` | venture OS, Hermes integration and Product Cells |
+| Knowledge | `docs` | provenance-pinned rendering/discovery; not upstream truth owner |
+| Public | `aftergraph.org` | website/front door/launcher; visibility does not upgrade evidence |
+| Foundation | `brand` | visual identity, design tokens and master assets |
+| Foundation | `.github` | organization/community/security/support defaults |
+| Specialist experience | `work-intelligence-web` | Work Intelligence browser experience and least-privilege BFF |
 
 ## Governance
 
-Everything extensible is a plugin. Everything consequential is governed.
+> **Everything extensible is a plugin. Everything consequential is governed.**
 
-- **Executable = Intersection(AIE policy, WORKS execution, TG enforcement)**
-- AIE MAY define policies that TG and WORKS MUST follow
-- WORKS NEEDS valid authorization from AIE before persisting
-- Runtime (TG) HAS the authority to block or permit based on AIE policy
-- Research evaluates but does not automatically claim
+For consequential execution the governing composition remains:
 
-Claim inheritance is unidirectional (normative → operational); runtime evidence does not automatically establish AIE conformance or scientific claims.
-
-## Cross-Repo Contracts (normative)
-
-cpi/1.0, rab/1.0, identity/1.0, policy.token/1.0, secret.ref/1.0, shell.contracts/1.0, link.wire/1.0, pairing/1.0, brain.ns/1.0, release.rings/1.0, evidence.schema/1.1, kernel.budget/1.0, kernel.lifecycle/1.0, mission-state/1.0, org-state/1.0
-
-## Org State Contract (exact-head truth surface)
-
-The **Org State Contract** (`docs/contracts/org-state/1.0.json`) is the machine-verifiable
-truth surface for the whole Aftergraph org: per-repo exact remote HEAD, canonical branch,
-role, protection status, open PRs, and contract ownership/consumption — **generated
-automatically from the GitHub API, never hand-typed SHA claims**.
-
-```bash
-bash scripts/org-state-verify.sh                 # generate + validate → latest-org-state.json
-bash scripts/org-state-verify.sh --check-local <path...>   # also verify local clones match remote (exit 2 on divergence)
+```text
+Executable = Intersection(AIE authority/policy, Trust Gateway runtime admission, WORKS durable execution)
 ```
 
-Consumers (Hermes/Codex/AVC agents, CI, reviewers) MUST verify exact heads against this
-contract — or regenerate it — before gap analysis, delegation, or merge decisions. A SHA
-in any handoff/roadmap/briefing is a CLAIM; this contract (or a fresh generation) is TRUTH.
+No UI, model, skill, plugin, research result, repo membership or textual agent declaration grants execution authority by itself.
 
-## Evidence Layers (correlation: mission_id + actionId)
+## Cross-repo contracts
+
+The normative register is maintained in [`docs/cross-repo-contracts.md`](docs/cross-repo-contracts.md).
+
+Current registered families include:
+
+`cpi/1.0`, `rab/1.0`, `identity/1.0`, `policy.token/1.0`, `secret.ref/1.0`, `shell.contracts/1.0`, `link.wire/1.0`, `pairing/1.0`, `brain.ns/1.0`, `release.rings/1.0`, `evidence.schema/1.1`, `kernel.budget/1.0`, `kernel.lifecycle/1.0`, `mission-state/1.0`, `org-state/1.0`.
+
+A repository may participate in the platform without owning a normative contract. Topology membership and normative ownership are separate concepts.
+
+## Org State Contract — exact-head truth
+
+The **Org State Contract** (`docs/contracts/org-state/1.0.json`) is the machine-verifiable remote-state surface for the whole topology-defined organization.
+
+```bash
+bash scripts/org-state-verify.sh
+bash scripts/org-state-verify.sh --check-local <path...>
+```
+
+The generator:
+
+- loads repository scope and roles from `docs/platform-topology/1.0.json`;
+- rejects duplicate topology entries;
+- rejects canonical-branch drift;
+- queries exact remote HEADs from GitHub;
+- refuses a partial snapshot if any topology repository cannot be resolved;
+- validates against `org-state/1.0`;
+- can additionally detect local checkout divergence.
+
+Consumers (Hermes/Codex/AVC agents, CI, reviewers) MUST verify exact heads against a fresh generated contract before gap analysis, delegation or merge decisions. A SHA in a handoff, roadmap or briefing is a claim; a fresh generated org-state is remote truth.
+
+## Evidence layers
 
 | Layer | Producer | Format |
 |---|---|---|
-| L1 Action Audit | Trust Gateway | hash-chain entry |
-| L2 Execution Quittance | WORKS | content-addressed bundle |
-| L3 Institutional Conformance | AIE | conformance vectors + PolicyDecisionRecord |
-| L4 Scientific Evidence | ISR | STUDY-011/MISSION-Bench (Wilson CI, preregistration) |
+| L1 Action Audit | Trust Gateway | hash-chain/action audit |
+| L2 Execution Quittance | WORKS | content-addressed execution/evidence bundle |
+| L3 Institutional Conformance | AIE | conformance vectors + policy/authority evidence |
+| L4 Scientific Evidence | ISR | preregistered studies / MISSION-Bench / statistical analysis |
 
-No layer may upgrade another; promotion requires explicit owner approval + a decision record + conformance evidence.
+No layer automatically upgrades another:
+
+- runtime evidence does not establish AIE conformance;
+- AIE conformance does not establish scientific validity;
+- scientific results do not grant runtime authority;
+- public visibility does not upgrade maturity;
+- exact-head state does not prove functional conformance.
+
+## Platform Reconciliation V1
+
+The current platform-wide reconciliation program and actionable backlog live in:
+
+- [`docs/PLATFORM-RECONCILIATION-V1.md`](docs/PLATFORM-RECONCILIATION-V1.md) — execution ledger / P0–P2 tasks
+- [`docs/platform-topology/1.0.json`](docs/platform-topology/1.0.json) — complete machine-readable repository topology
+- [`dependencies.yml`](dependencies.yml) — platform dependency/ownership graph
+- [`docs/cross-repo-contracts.md`](docs/cross-repo-contracts.md) — normative contract register + repository boundaries
+- [`docs/reconciliation-matrix.md`](docs/reconciliation-matrix.md) — concept-level reconciliation
+
+## Other key artifacts
+
+- [`docs/ABDE-BRAND-ARCHITECTURE-v0.2.md`](docs/ABDE-BRAND-ARCHITECTURE-v0.2.md) — provisional brand architecture
+- [`docs/NAMING-STANDARD-v0.1.md`](docs/NAMING-STANDARD-v0.1.md) — naming rules
+- [`docs/evidence-layer-model.md`](docs/evidence-layer-model.md) — evidence separation model
+- [`docs/PLATFORM-BOUNDARY-CHARTER-v0.1.md`](docs/PLATFORM-BOUNDARY-CHARTER-v0.1.md) — original platform boundary charter
+- [`docs/ACC-BOUNDARY-PROPOSAL-v0.1.md`](docs/ACC-BOUNDARY-PROPOSAL-v0.1.md) — continuity boundary proposal/history
 
 ## System visuals
 
-Real architecture diagrams (repo-specific, source in `.github/assets/architecture/`):
-
 <p align="center">
   <img src=".github/assets/architecture/system-context.svg" alt="Platform Governance in the Aftergraph ecosystem context" width="90%">
-  <br><em>System context</em>
 </p>
 
 <p align="center">
   <img src=".github/assets/architecture/architecture.svg" alt="Platform Governance system architecture" width="90%">
-  <br><em>Architecture</em>
 </p>
 
 <p align="center">
   <img src=".github/assets/architecture/workflow.svg" alt="Platform Governance primary workflow" width="90%">
-  <br><em>Primary workflow</em>
 </p>
-
-## Key artifacts
-
-- [docs/ABDE-BRAND-ARCHITECTURE-v0.2.md](docs/ABDE-BRAND-ARCHITECTURE-v0.2.md) — provisional brand architecture (20 sections)
-- [docs/NAMING-STANDARD-v0.1.md](docs/NAMING-STANDARD-v0.1.md) — naming conventions and the no-ABDE-prefix rule
-- [docs/PUBLIC-INFO-ARCHITECTURE-v0.1.md](docs/PUBLIC-INFO-ARCHITECTURE-v0.1.md) — future website IA
-- [docs/reconciliation-matrix.md](docs/reconciliation-matrix.md) — 15-concept reconciliation
-- [docs/evidence-layer-model.md](docs/evidence-layer-model.md) — 4-layer evidence model
-- [docs/cross-repo-contracts.md](docs/cross-repo-contracts.md) — contract register
-- [docs/PLATFORM-BOUNDARY-CHARTER-v0.1.md](docs/PLATFORM-BOUNDARY-CHARTER-v0.1.md) — role allocation + claim inheritance
 
 ## License
 
@@ -129,4 +181,4 @@ Apache-2.0
 
 ---
 
-**Brand status:** Aftergraph / ABDE Intelligence are PROVISIONAL — NOT TRADEMARK CLEARED. No irreversible branding until clearance (see intelligence-systems-research `docs/BRAND-STATUS-2026-09-04.md`).
+**Brand status:** Aftergraph / ABDE Intelligence are PROVISIONAL — NOT TRADEMARK CLEARED. No irreversible naming migration should be inferred from this technical reconciliation.

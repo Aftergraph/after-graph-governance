@@ -1,29 +1,57 @@
 # Cross-Repo Contract Register
 
-> Normative contracts for the After Graph platform — ownership and consumption map.
-> Naming reconciled to the 5-repo model: trust-gateway (TG), works-execution (WE), aie (AIE),
-> intelligence-systems-research (ISR), after-graph-governance (this repo).
-> Note: 'avc-main' in earlier drafts maps to the ISR program workspace for program-level contracts.
+> Normative contract ownership and consumption map for the Aftergraph platform.
+> The original five-repository execution core remains important, but it is no
+> longer the complete organization topology. Repository scope/roles are defined
+> by `docs/platform-topology/1.0.json`; exact remote state is generated into
+> `latest-org-state.json`.
 
-## Register
+## Normative contract register
 
-| Contract | Normative | Owner Repo | Consumer Repos |
+| Contract | Normative | Owner Repo | Primary Consumer Repos |
 |---|---|---|---|
-| `cpi/1.0` | Yes | ISR (program) | TG, AIE, WE |
-| `rab/1.0` | Normative | ISR (program) | TG, AIE, WE |
-| `identity/1.0` | Normative | AIE | TG, WE |
-| `policy.token/1.0` | Normative | TG | AIE, WE |
-| `secret.ref/1.0` | Normative | TG | AIE, WE |
-| `shell.contracts/1.0` | Normative | WE | TG, AIE |
-| `link.wire/1.0` | Normative | WE | TG, AIE |
-| `pairing/1.0` | Normative | WE | TG, AIE |
-| `brain.ns/1.0` | Normative | AIE | TG, WE |
-| `release.rings/1.0` | Normative | after-graph-governance | WE, AIE, TG |
-| `evidence.schema/1.1` | Normative | WE | TG, AIE, ISR |
-| `kernel.budget/1.0` | Normative | WE | TG, AIE |
-| `kernel.lifecycle/1.0` | Normative | ISR | TG, WE, AIE |
+| `cpi/1.0` | Yes | ISR (program) | TG, AIE, WORKS |
+| `rab/1.0` | Normative | ISR (program) | TG, AIE, WORKS |
+| `identity/1.0` | Normative | AIE | TG, WORKS |
+| `policy.token/1.0` | Normative | TG | AIE, WORKS |
+| `secret.ref/1.0` | Normative | TG | AIE, WORKS |
+| `shell.contracts/1.0` | Normative | WORKS | TG, AIE |
+| `link.wire/1.0` | Normative | WORKS | TG, AIE |
+| `pairing/1.0` | Normative | WORKS | TG, AIE |
+| `brain.ns/1.0` | Normative | AIE | TG, WORKS |
+| `release.rings/1.0` | Normative | after-graph-governance | WORKS, AIE, TG |
+| `evidence.schema/1.1` | Normative | WORKS | TG, AIE, ISR |
+| `kernel.budget/1.0` | Normative | WORKS | TG, AIE |
+| `kernel.lifecycle/1.0` | Normative | ISR | TG, WORKS, AIE |
 
-## AIE Binding Claims
+This table records normative contracts only. A repository appearing in the
+platform topology does **not** automatically become a normative contract owner.
+
+## Platform repository boundaries
+
+| Repository | Role | Boundary |
+|---|---|---|
+| `after-graph-governance` | canonical-contracts | Topology, cross-repo boundaries, contract registration, exact-head generation mechanics. |
+| `aie` | normative-authority | Institution/authority semantics; does not execute work. |
+| `trust-gateway` | runtime-enforcement | Runtime admission/enforcement/audit; does not become durable execution truth. |
+| `works-execution` | durable-execution | Durable work state, workers, recovery and execution evidence. |
+| `studio` | primary-experience | General-purpose human Chat/Work/Space/control experience. |
+| `work-intelligence-v2` | work-inference | Observation → WorkItem; a WorkItem is not a WORKS Work. |
+| `work-intelligence-web` | work-intelligence-experience | Specialist UI/BFF projection of Work Intelligence state. |
+| `context-continuity` | continuity-contract | Portable actionable state transfer; carries authority context but never grants authority. |
+| `continuum` | continuity-containment-verification | Fault-injection campaigns for continuity/containment; does not redefine ISR claims. |
+| `intelligence-systems-research` | research-assurance | Scientific claims, SPEC-001, MISSION-Bench, assurance and publication evidence. |
+| `skills-vault` | capability-supply-chain | Skill trust/lifecycle/provenance/discovery/distribution. |
+| `llm-research-development` | model-rnd-methodology | Reusable model experiment/eval/promotion methodology. |
+| `afm` | model-program | AFM-specific training/data/evals/artifact manifests. |
+| `model-registry` | model-lifecycle-registry | Immutable promoted model metadata and aliases. |
+| `autonomous-venture-company` | venture-os-consumer | Venture OS/reference consumer; not a second canonical platform kernel. |
+| `docs` | knowledge-plane | Renders/discovers repo-owned truth with provenance; owns no upstream claim. |
+| `aftergraph.org` | public-front-door | Public site/launcher; visibility never upgrades evidence. |
+| `brand` | brand-design-system | Visual identity/tokens/assets, not runtime semantics. |
+| `.github` | organization-community | Org profile/community/security/support defaults. |
+
+## AIE binding claims
 
 | Binding | Description | Owner |
 |---|---|---|
@@ -31,11 +59,14 @@
 | A2A | Agent-to-Agent protocol binding | AIE |
 | SPIFFE-OIDC | SPIFFE + OIDC auth binding | AIE |
 | OPA | Open Policy Agent integration | AIE |
-| Otel | OpenTelemetry integration | AIE |
+| OTel | OpenTelemetry integration | AIE |
 | Temporal | Temporal workflow integration | AIE |
-| OWASP-ACS | OWASP ASV standard alignment | AIE |
+| OWASP-ACS | OWASP Agent Control Standard alignment | AIE |
 
-## TG Runtime Guarantees (6)
+Bindings are conformance/integration claims inside AIE's evidence boundary;
+they do not automatically become platform-wide scientific or production claims.
+
+## Trust Gateway runtime guarantees
 
 | # | Guarantee |
 |---|---|
@@ -46,10 +77,31 @@
 | 5 | Cross-module audit trail |
 | 6 | Trust boundary enforcement |
 
-## Boundary Charter
+## Executability boundary
 
-See `PLATFORM-BOUNDARY-CHARTER-v0.1.md` in the ISR repo (`docs/`) for the
-"Everything extensible is a plugin. Everything consequential is governed." charter:
-safe declarative primitives (Card/Table/Form/Chart/Timeline/Approval/Progress/Artifact)
-vs sandboxed app runtime; plugins never receive authority by installation —
-authority flows only through AIE (normative) + TG (enforcement) + WORKS (durable execution).
+For consequential execution, the governing model remains:
+
+```text
+Executable = Intersection(AIE authority/policy, TG runtime admission, WORKS durable execution)
+```
+
+No UI, plugin, model, skill, research result or repository membership grants
+execution authority by itself.
+
+## Evidence inheritance
+
+- runtime evidence does not establish AIE conformance;
+- AIE conformance does not establish scientific validity;
+- research evidence does not grant runtime authority;
+- public visibility does not upgrade maturity;
+- generated exact-head state does not imply functional conformance.
+
+## Boundary charter
+
+See `docs/PLATFORM-BOUNDARY-CHARTER-v0.1.md` for the original charter and
+`docs/superpowers/specs/2026-09-07-aftergraph-platform-reconciliation-v1-design.md`
+for the 19-repository reconciliation target.
+
+The core principle remains:
+
+> **Everything extensible is a plugin. Everything consequential is governed.**
