@@ -35,6 +35,8 @@ EDGE_RELATIONS = {"requires", "tested-with", "incompatible-with", "conforms-to",
 EDGE_STATES = {"pass", "fail", "unknown", "stale", "not-applicable"}
 COMMIT_RE = re.compile(r"^[a-f0-9]{40}$")
 RELEASE_TRAIN_RE = re.compile(r"^20[0-9]{2}\.(0[1-9]|1[0-2])$")
+IDENTIFIER_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
+REPOSITORY_RE = re.compile(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$")
 
 
 class ResultState(str, Enum):
@@ -92,11 +94,35 @@ def _require_fields(document: dict[str, Any], required: tuple[str, ...], prefix:
             errors.append(f"missing required field: {prefix}{field}")
 
 
+def _reject_unknown_fields(
+    document: dict[str, Any],
+    allowed: set[str],
+    prefix: str,
+    errors: list[str],
+) -> None:
+    for field in document:
+        if field not in allowed:
+            errors.append(f"unexpected field: {prefix}{field}")
+
+
+def _validate_identifier(value: Any, label: str, errors: list[str]) -> None:
+    if not isinstance(value, str) or not value:
+        errors.append(f"{label} must be a non-empty string")
+    elif not IDENTIFIER_RE.fullmatch(value):
+        errors.append(f"{label} must match ^[a-z0-9][a-z0-9-]*$")
+
+
 def validate_component(document: dict[str, Any]) -> list[str]:
     errors: list[str] = []
     if not isinstance(document, dict):
         return ["component manifest must be an object"]
 
+    _reject_unknown_fields(
+        document,
+        {"schema", "identity", "release", "platform", "compatibility", "contracts", "provenance"},
+        "",
+        errors,
+    )
     _require_fields(
         document,
         ("schema", "identity", "release", "platform", "compatibility", "contracts", "provenance"),
@@ -107,11 +133,14 @@ def validate_component(document: dict[str, Any]) -> list[str]:
         errors.append("schema must be aftergraph-component/1.0")
 
     identity = _require_object(document.get("identity"), "identity", errors)
+    _reject_unknown_fields(identity, {"product", "component"}, "identity.", errors)
     _require_fields(identity, ("component",), "identity.", errors)
-    if not isinstance(identity.get("component"), str) or not identity.get("component"):
-        errors.append("identity.component must be a non-empty string")
+    _validate_identifier(identity.get("component"), "identity.component", errors)
+    if "product" in identity:
+        _validate_identifier(identity.get("product"), "identity.product", errors)
 
     release = _require_object(document.get("release"), "release", errors)
+    _reject_unknown_fields(release, {"version", "lifecycle"}, "release.", errors)
     _require_fields(release, ("version", "lifecycle"), "release.", errors)
     if not isinstance(release.get("version"), str) or not release.get("version"):
         errors.append("release.version must be a non-empty string")
@@ -119,6 +148,7 @@ def validate_component(document: dict[str, Any]) -> list[str]:
         errors.append(f"unsupported lifecycle: {release.get('lifecycle')}")
 
     platform = _require_object(document.get("platform"), "platform", errors)
+    _reject_unknown_fields(platform, {"generation", "release_train"}, "platform.", errors)
     _require_fields(platform, ("generation", "release_train"), "platform.", errors)
     if platform.get("generation") != 26:
         errors.append("platform.generation must be 26")
@@ -127,6 +157,12 @@ def validate_component(document: dict[str, Any]) -> list[str]:
         errors.append("platform.release_train must match YYYY.MM")
 
     compatibility = _require_object(document.get("compatibility"), "compatibility", errors)
+    _reject_unknown_fields(
+        compatibility,
+        {"level", "profiles", "minimum", "tested_against", "requires_edges"},
+        "compatibility.",
+        errors,
+    )
     _require_fields(compatibility, ("level", "profiles", "minimum", "tested_against"), "compatibility.", errors)
     if compatibility.get("level") != APC_LEVEL:
         errors.append("compatibility.level must be APC-1")
@@ -155,34 +191,34 @@ def validate_component(document: dict[str, Any]) -> list[str]:
                 if not isinstance(target, dict):
                     errors.append(f"compatibility.requires_edges[{index}] must be an object")
                     continue
-                for field in ("component", "version", "commit"):
-                    if field not in target:
-                        errors.append(f"missing required field: compatibility.requires_edges[{index}].{field}")
-                if not isinstance(target.get("component"), str) or not target.get("component"):
-                    errors.append(f"compatibility.requires_edges[{index}].component must be a non-empty string")
+                prefix = f"compatibility.requires_edges[{index}]."
+                _reject_unknown_fields(target, {"component", "version", "commit"}, prefix, errors)
+                _require_fields(target, ("component", "version", "commit"), prefix, errors)
+                _validate_identifier(target.get("component"), prefix + "component", errors)
                 if not isinstance(target.get("version"), str) or not target.get("version"):
-                    errors.append(f"compatibility.requires_edges[{index}].version must be a non-empty string")
+                    errors.append(prefix + "version must be a non-empty string")
                 target_commit = target.get("commit")
                 if not isinstance(target_commit, str) or not COMMIT_RE.fullmatch(target_commit):
-                    errors.append(f"compatibility.requires_edges[{index}].commit must be 40 lowercase hex characters")
+                    errors.append(prefix + "commit must be 40 lowercase hex characters")
 
     contracts = document.get("contracts")
     if not isinstance(contracts, dict):
         errors.append("contracts must be an object")
     else:
         for name, version in contracts.items():
-            if not isinstance(name, str) or not name:
-                errors.append("contract names must be non-empty strings")
+            if not isinstance(name, str) or not IDENTIFIER_RE.fullmatch(name):
+                errors.append(f"invalid contract name: {name}")
             if not isinstance(version, str) or not version:
                 errors.append(f"contracts.{name} must be a non-empty string")
 
     provenance = _require_object(document.get("provenance"), "provenance", errors)
+    _reject_unknown_fields(provenance, {"repository", "commit"}, "provenance.", errors)
     _require_fields(provenance, ("repository", "commit"), "provenance.", errors)
     commit = provenance.get("commit")
     if not isinstance(commit, str) or not COMMIT_RE.fullmatch(commit):
         errors.append("provenance.commit must be 40 lowercase hex characters")
     repository = provenance.get("repository")
-    if not isinstance(repository, str) or repository.count("/") != 1:
+    if not isinstance(repository, str) or not REPOSITORY_RE.fullmatch(repository):
         errors.append("provenance.repository must be owner/repo")
 
     return errors
@@ -193,15 +229,21 @@ def validate_edge(document: dict[str, Any]) -> list[str]:
     if not isinstance(document, dict):
         return ["compatibility edge must be an object"]
 
+    _reject_unknown_fields(
+        document,
+        {"schema", "from", "to", "relation", "state", "evidence_level", "evidence"},
+        "",
+        errors,
+    )
     _require_fields(document, ("schema", "from", "to", "relation", "state", "evidence_level", "evidence"), "", errors)
     if document.get("schema") != "compatibility-edge/1.0":
         errors.append("schema must be compatibility-edge/1.0")
 
     for side in ("from", "to"):
         endpoint = _require_object(document.get(side), side, errors)
+        _reject_unknown_fields(endpoint, {"component", "version", "commit"}, f"{side}.", errors)
         _require_fields(endpoint, ("component", "version", "commit"), f"{side}.", errors)
-        if not isinstance(endpoint.get("component"), str) or not endpoint.get("component"):
-            errors.append(f"{side}.component must be a non-empty string")
+        _validate_identifier(endpoint.get("component"), f"{side}.component", errors)
         if not isinstance(endpoint.get("version"), str) or not endpoint.get("version"):
             errors.append(f"{side}.version must be a non-empty string")
         commit = endpoint.get("commit")
@@ -222,10 +264,13 @@ def validate_edge(document: dict[str, Any]) -> list[str]:
     if not isinstance(evidence, list):
         errors.append("evidence must be an array")
     else:
+        if not evidence:
+            errors.append("evidence must contain at least one item")
         for index, item in enumerate(evidence):
             if not isinstance(item, dict):
                 errors.append(f"evidence[{index}] must be an object")
                 continue
+            _reject_unknown_fields(item, {"kind", "ref"}, f"evidence[{index}].", errors)
             if not isinstance(item.get("kind"), str) or not item.get("kind"):
                 errors.append(f"evidence[{index}].kind must be a non-empty string")
             if not isinstance(item.get("ref"), str) or not item.get("ref"):
