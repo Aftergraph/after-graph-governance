@@ -33,6 +33,6 @@
     "relation": {"enum": ["requires", "tested-with", "incompatible-with", "conforms-to", "supports"]},
     "state": {"enum": ["pass", "fail", "unknown", "stale", "not-applicable"]},
     "evidence_level": {"enum": ["CE0", "CE1", "CE2", "CE3", "CE4", "CE5"]},
-    "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}}
+    "evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidence"}}
   }
 }
