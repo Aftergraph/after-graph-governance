@@ -49,7 +49,7 @@ fi
 # Validate human-edited topology roles against the schema before any API work.
 # org-state/1.0 retains five legacy values for reading historical snapshots;
 # the current topology is forbidden from emitting those legacy roles.
-allowed_roles=$(jq -c '.$defs.repository.properties.role.enum' "$SCHEMA")
+allowed_roles=$(jq -c '."$defs".repository.properties.role.enum' "$SCHEMA")
 legacy_roles='["research","detection","product-web","skills-library","agent-workforce"]'
 if ! jq -e --argjson allowed "$allowed_roles" 'all(.repositories[]; (.role as $r | ($allowed | index($r)) != null))' "$TOPOLOGY" >/dev/null; then
   echo "TOPOLOGY-FAIL: role not accepted by org-state/1.0" >&2
@@ -66,7 +66,7 @@ REPOS=()
 while IFS=$'\t' read -r repo role branch; do
   [ -n "$repo" ] || continue
   REPOS+=("$repo $role $branch")
-done < <(jq -r '.repositories[] | [.name, .role, .canonical_branch] | @tsv' "$TOPOLOGY")
+done < <(jq -r '.repositories[] | [.name, .role, .canonical_branch] | @tsv' "$TOPOLOGY" | tr -d '\r')
 
 if [ "${#REPOS[@]}" -ne "$expected_count" ]; then
   echo "TOPOLOGY-FAIL: parsed ${#REPOS[@]} repos, expected $expected_count" >&2
