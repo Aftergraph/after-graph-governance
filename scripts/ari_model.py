@@ -187,6 +187,7 @@ def validate_component(document: dict[str, Any]) -> list[str]:
         if not isinstance(requires_edges, list):
             errors.append("compatibility.requires_edges must be an array")
         else:
+            seen_targets: set[tuple[str, str, str]] = set()
             for index, target in enumerate(requires_edges):
                 if not isinstance(target, dict):
                     errors.append(f"compatibility.requires_edges[{index}] must be an object")
@@ -200,6 +201,22 @@ def validate_component(document: dict[str, Any]) -> list[str]:
                 target_commit = target.get("commit")
                 if not isinstance(target_commit, str) or not COMMIT_RE.fullmatch(target_commit):
                     errors.append(prefix + "commit must be 40 lowercase hex characters")
+
+                component = target.get("component")
+                version = target.get("version")
+                if (
+                    isinstance(component, str)
+                    and isinstance(version, str)
+                    and isinstance(target_commit, str)
+                    and COMMIT_RE.fullmatch(target_commit)
+                ):
+                    key = (component, version, target_commit)
+                    if key in seen_targets:
+                        errors.append(
+                            "duplicate compatibility.requires_edges target: "
+                            f"{component}@{version}#{target_commit[:12]}"
+                        )
+                    seen_targets.add(key)
 
     contracts = document.get("contracts")
     if not isinstance(contracts, dict):
