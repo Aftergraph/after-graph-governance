@@ -67,6 +67,20 @@ class AriModelTest(unittest.TestCase):
         doc = {**VALID_COMPONENT, "provenance": {**VALID_COMPONENT["provenance"], "commit": "abc"}}
         self.assertIn("provenance.commit must be 40 lowercase hex characters", validate_component(doc))
 
+    def test_component_rejects_duplicate_required_edge_targets(self):
+        target = {"component": "works", "version": "0.5.1", "commit": "2" * 40}
+        doc = {
+            **VALID_COMPONENT,
+            "compatibility": {
+                **VALID_COMPONENT["compatibility"],
+                "requires_edges": [target, dict(target)],
+            },
+        }
+        self.assertIn(
+            "duplicate compatibility.requires_edges target: works@0.5.1#222222222222",
+            validate_component(doc),
+        )
+
     def test_valid_component_has_no_errors(self):
         self.assertEqual(validate_component(VALID_COMPONENT), [])
 
