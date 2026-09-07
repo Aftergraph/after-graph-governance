@@ -46,6 +46,25 @@ The machine-readable V2.1 family registry lives at
 contract ownership and compatibility; runtime semantics remain in each owning
 repository.
 
+## Aftergraph Release Intelligence contract families
+
+ARS/1 and APC-1 introduce three Governance-owned machine contract families for
+release identity and evidence-backed compatibility. These records describe
+release metadata and compatibility evidence only. Possession of a manifest,
+edge, or passport **does not grant runtime authority**, does not establish
+scientific validity, and does not replace exact runtime admission or execution
+evidence.
+
+| Contract | Normative | Owner Repo | Responsibility |
+|---|---|---|---|
+| `aftergraph-component/1.0` | Normative | after-graph-governance | Component release identity, lifecycle, Aftergraph generation association, APC declaration, contract set and exact source provenance. |
+| `compatibility-edge/1.0` | Normative | after-graph-governance | Exact-subject compatibility relationship with explicit state, CE0–CE5 evidence strength and evidence references. |
+| `release-passport/1.0` | Normative | after-graph-governance | Portable positive release/conformance claim bound to exact source and artifact identity; emitted only from passing APC conformance. |
+
+The APC-1 executable registry lives at `docs/release-intelligence/apc-1.json`.
+Compatibility declarations are claims; ARI tooling must compile them against
+applicable rules and evidence before a technical conformance label is emitted.
+
 ## Platform repository boundaries
 
 | Repository | Role | Boundary |
