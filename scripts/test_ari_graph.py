@@ -36,6 +36,10 @@ class AriGraphTest(unittest.TestCase):
         graph = CompatibilityGraph([edge(relation="incompatible-with", state="pass", evidence_level="CE1")])
         self.assertEqual(graph.best_state(LEFT, RIGHT, "CE2"), ResultState.FAIL)
 
+    def test_incompatible_with_is_symmetric(self):
+        graph = CompatibilityGraph([edge(relation="incompatible-with", state="pass", evidence_level="CE1")])
+        self.assertEqual(graph.best_state(RIGHT, LEFT, "CE2"), ResultState.FAIL)
+
     def test_stale_wins_over_pass(self):
         graph = CompatibilityGraph([edge(state="pass"), edge(state="stale", evidence_level="CE3")])
         self.assertEqual(graph.best_state(LEFT, RIGHT, "CE2"), ResultState.STALE)
