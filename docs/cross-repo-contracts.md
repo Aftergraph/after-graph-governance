@@ -48,22 +48,28 @@ repository.
 
 ## Aftergraph Release Intelligence contract families
 
-ARS/1 and APC-1 introduce three Governance-owned machine contract families for
-release identity and evidence-backed compatibility. These records describe
-release metadata and compatibility evidence only. Possession of a manifest,
-edge, or passport **does not grant runtime authority**, does not establish
-scientific validity, and does not replace exact runtime admission or execution
-evidence.
+ARS/1 and APC-1 introduce five Governance-owned machine contract families for
+release identity, evidence-backed compatibility and exact release composition.
+These records describe release metadata and compatibility evidence only.
+Possession of a manifest, edge, passport, registry, or RBOM **does not grant
+runtime authority**, does not establish scientific validity, and does not
+replace exact runtime admission or execution evidence.
 
 | Contract | Normative | Owner Repo | Responsibility |
 |---|---|---|---|
 | `aftergraph-component/1.0` | Normative | after-graph-governance | Component release identity, lifecycle, Aftergraph generation association, APC declaration, contract set and exact source provenance. |
 | `compatibility-edge/1.0` | Normative | after-graph-governance | Exact-subject compatibility relationship with explicit state, CE0–CE5 evidence strength and evidence references. |
 | `release-passport/1.0` | Normative | after-graph-governance | Portable positive release/conformance claim bound to exact source and artifact identity; emitted only from passing APC conformance. |
+| `release-registry/1.0` | Normative | after-graph-governance | Deterministic derived index of validated component manifests, compatibility edges and release passports, with canonical digests and exact-identity conflict rejection. |
+| `rbom/0.1` | Normative | after-graph-governance | Exact release composition over registry-bound component identities, contract inventory and matching-passport coverage; inventory state does not imply whole-platform verification. |
 
 The APC-1 executable registry lives at `docs/release-intelligence/apc-1.json`.
 Compatibility declarations are claims; ARI tooling must compile them against
 applicable rules and evidence before a technical conformance label is emitted.
+The Release Registry is derived from validated source documents rather than an
+independent truth owner. RBOM `VERIFIED` means every selected exact component
+has matching passport coverage under the RBOM rules; it does not mean every
+possible platform relation or deployment property has been verified.
 
 ## Platform repository boundaries
 
