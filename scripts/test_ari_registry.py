@@ -81,6 +81,14 @@ class AriRegistryTest(unittest.TestCase):
         self.assertEqual(registry.document["entries"][0]["document"]["contracts"]["verdict"], "1.0")
         self.assertEqual(canonical_digest(registry.document), expected_digest)
 
+    def test_registry_accessors_return_isolated_documents(self):
+        registry = Registry(build_registry([COMPONENT, EDGE, PASSPORT]))
+        returned = registry.components()[0]
+        returned["contracts"]["verdict"] = "9.9"
+        exact = registry.component("sentinel-engine", "1.4.0", "1" * 40)
+        self.assertEqual(exact["contracts"]["verdict"], "1.0")
+        self.assertEqual(canonical_digest(registry.document), registry.digest)
+
     def test_registry_classifies_component_edge_and_passport(self):
         registry = Registry(build_registry([COMPONENT, EDGE, PASSPORT]))
         self.assertEqual(len(registry.components()), 1)
