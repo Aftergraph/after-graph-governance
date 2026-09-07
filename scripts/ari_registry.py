@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import json
 import sys
 from dataclasses import dataclass
@@ -39,18 +40,19 @@ class ClassifiedDocument:
 
 
 def _classify(document: dict) -> ClassifiedDocument:
-    schema = document.get("schema") if isinstance(document, dict) else None
+    snapshot = copy.deepcopy(document)
+    schema = snapshot.get("schema") if isinstance(snapshot, dict) else None
     if schema == "aftergraph-component/1.0":
-        kind, errors = "component", validate_component(document)
+        kind, errors = "component", validate_component(snapshot)
     elif schema == "compatibility-edge/1.0":
-        kind, errors = "edge", validate_edge(document)
+        kind, errors = "edge", validate_edge(snapshot)
     elif schema == "release-passport/1.0":
-        kind, errors = "passport", validate_passport(document)
+        kind, errors = "passport", validate_passport(snapshot)
     else:
         raise RegistryError(f"unsupported registry document schema: {schema}")
     if errors:
         raise RegistryError("; ".join(errors))
-    return ClassifiedDocument(kind, document, canonical_digest(document))
+    return ClassifiedDocument(kind, snapshot, canonical_digest(snapshot))
 
 
 def _component_key(document: dict) -> tuple[str, str, str]:
