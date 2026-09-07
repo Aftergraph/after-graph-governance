@@ -47,7 +47,7 @@ Migration lineage
   autonomous-venture-company
 ```
 
-The canonical Governance topology contains **21 canonical repositories** at the 2026-09-08 evidence cut: **13 public / 8 private**. Ephemeral proof/test infrastructure is outside the canonical topology and must not be folded into product identity or compatibility claims.
+The canonical Governance topology contains **21 canonical repositories** at the 2026-09-08 evidence cut: **12 public / 9 private**. Ephemeral proof/test infrastructure is outside the canonical topology and must not be folded into product identity or compatibility claims.
 
 ## Canonical topology
 
