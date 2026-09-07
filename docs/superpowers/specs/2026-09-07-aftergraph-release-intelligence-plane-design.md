@@ -3,7 +3,7 @@
 **Date:** 2026-09-07  
 **Status:** Approved design; pending written-spec review  
 **Scope owner:** `Aftergraph/after-graph-governance`  
-**Depends on:** Aftergraph Release Standard (`ARS/1`) and Aftergraph Platform Compatibility (`APC-1`)  
+**Depends on:** [`Aftergraph Release Standard (ARS/1) and Aftergraph Platform Compatibility (APC-1)`](2026-09-07-aftergraph-release-lifecycle-compatibility-standard-design.md)  
 **Working name:** **Aftergraph Release Intelligence (`ARI`)**
 
 ---
