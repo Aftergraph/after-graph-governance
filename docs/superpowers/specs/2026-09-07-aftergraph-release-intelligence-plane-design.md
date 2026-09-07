@@ -124,6 +124,8 @@ The Registry SHOULD be content-addressable or reference immutable source/artifac
 
 The Compatibility Graph represents compatibility as relationships, not as a flat boolean.
 
+All version numbers in examples in this document are illustrative unless explicitly bound to a cited exact source artifact.
+
 Example conceptual edges:
 
 ```text
@@ -136,7 +138,7 @@ Sentinel 1.5.0
  └── incompatible-with evidence <1.1
 ```
 
-Edges carry provenance and evidence level.
+Edges carry provenance and compatibility-evidence level.
 
 The graph MUST distinguish:
 
@@ -174,8 +176,8 @@ Contracts:
   correlation/1.0  PASS
 
 Version-skew edges:
-  WORKS 0.5.1      VERIFIED C4
-  TG 1.6.0         VERIFIED C3
+  WORKS 0.5.1      VERIFIED CE4
+  TG 1.6.0         VERIFIED CE3
 
 Unknown edges:
   Runtime 1.2.0    UNVERIFIED
@@ -331,7 +333,7 @@ provenance:
 
 conformance:
   result: pass
-  evidence_level: C4
+  evidence_level: CE4
   receipt: <reference>
 ```
 
@@ -376,27 +378,27 @@ The RBOM supports audit, rollback, drift detection, and reproducible deployment 
 
 ## 5. Compatibility evidence levels
 
-ARI uses discrete evidence levels rather than fuzzy confidence percentages.
+ARI uses discrete compatibility-evidence levels with the `CE` prefix to avoid collision with research evidence classes, claim identifiers, or other project taxonomies.
 
 ```text
-C0  Declared
-C1  Schema compatible
-C2  Contract tested
-C3  Integration verified
-C4  Failure/upgrade tested
-C5  Production evidenced
+CE0  Declared
+CE1  Schema compatible
+CE2  Contract tested
+CE3  Integration verified
+CE4  Failure/upgrade tested
+CE5  Production evidenced
 ```
 
 Definitions:
 
-- **C0 Declared** — metadata claim exists; no independent compatibility proof.
-- **C1 Schema compatible** — deterministic structural/schema checks pass.
-- **C2 Contract tested** — normative contract fixtures/conformance tests pass.
-- **C3 Integration verified** — relevant components have been exercised together against the declared seam.
-- **C4 Failure/upgrade tested** — relevant failure, version-skew, upgrade, or rollback scenarios have passed.
-- **C5 Production evidenced** — production-observed evidence confirms the declared combination under defined conditions.
+- **CE0 Declared** — metadata claim exists; no independent compatibility proof.
+- **CE1 Schema compatible** — deterministic structural/schema checks pass.
+- **CE2 Contract tested** — normative contract fixtures/conformance tests pass.
+- **CE3 Integration verified** — relevant components have been exercised together against the declared seam.
+- **CE4 Failure/upgrade tested** — relevant failure, version-skew, upgrade, or rollback scenarios have passed.
+- **CE5 Production evidenced** — production-observed evidence confirms the declared combination under defined conditions.
 
-A higher level does not erase scope. `C5` on one edge does not imply C5 compatibility for the entire deployment.
+A higher level does not erase scope. `CE5` on one edge does not imply CE5 compatibility for the entire deployment.
 
 ---
 
@@ -425,7 +427,7 @@ Migration        PASS
 Dual-read/write  PASS
 Rollback         PASS
 Fault campaign   PASS
-Evidence level   C4
+Evidence level   CE4
 ```
 
 Upgrade-path evidence is bound to exact source/artifact identities.
@@ -484,7 +486,7 @@ Example:
 evidence-adapter
 1.0 → 1.1
 APC-1
-C4 verified
+CE4 verified
 ```
 
 Adapters are prohibited from silently weakening:
@@ -846,7 +848,7 @@ Possible output:
 COMPATIBLE
 Platform: APC-1
 Required edges: 4/4 verified
-Minimum edge evidence: C3
+Minimum edge evidence: CE3
 Known incompatible edges: 0
 Unknown required edges: 0
 ```
@@ -920,7 +922,7 @@ A release-oriented bill of materials spanning components, contracts, models, pol
 A signed/evidenced migration relation between exact platform configurations.
 
 ### Compatibility Evidence Levels
-C0-C5 evidence strength on specific graph edges.
+`CE0`-`CE5` evidence strength on specific graph edges.
 
 ### Verified Platform State
 A separation between running, healthy, compatible, and verified deployment state.
@@ -947,7 +949,7 @@ initial APC profiles
 component manifest schema
 lifecycle/deprecation schema
 compatibility-edge schema
-evidence-level definitions
+compatibility-evidence-level definitions
 ```
 
 No runtime handshake or simulation required.
@@ -1136,7 +1138,7 @@ The ARI architecture is successfully realized when:
 3. Unknown, incompatible, stale, not-applicable, and pass are distinct states.
 4. Release Passports bind compatibility claims to exact provenance.
 5. An RBOM can describe an exact cross-platform release composition.
-6. Compatibility evidence strength can be represented from C0 through C5 without implying more scope than was tested.
+6. Compatibility evidence strength can be represented from CE0 through CE5 without implying more scope than was tested.
 7. Semantic contract changes can classify authority/evidence/verification breaks beyond line-level diffs.
 8. Mixed-version platform configurations can be evaluated against version-skew rules.
 9. Upgrade paths can carry migration, rollback, and conformance evidence.
