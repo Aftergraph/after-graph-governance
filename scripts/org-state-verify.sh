@@ -13,6 +13,7 @@ set -euo pipefail
 ORG="Aftergraph"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TOPOLOGY="$SCRIPT_DIR/../docs/platform-topology/1.0.json"
+SCHEMA="$SCRIPT_DIR/../docs/contracts/org-state/1.0.json"
 OUT="${1:-$SCRIPT_DIR/../latest-org-state.json}"
 CHECK_LOCAL=0
 LOCAL_PATHS=()
@@ -28,6 +29,10 @@ if [ ! -f "$TOPOLOGY" ]; then
   echo "TOPOLOGY-FAIL: missing $TOPOLOGY" >&2
   exit 1
 fi
+if [ ! -f "$SCHEMA" ]; then
+  echo "SCHEMA-FAIL: missing $SCHEMA" >&2
+  exit 1
+fi
 
 if ! jq -e '.schema_version == "platform-topology/1.0" and .organization == "Aftergraph" and (.repositories | type == "array") and (.repositories | length > 0)' "$TOPOLOGY" >/dev/null; then
   echo "TOPOLOGY-FAIL: invalid platform-topology/1.0 envelope" >&2
@@ -38,6 +43,20 @@ expected_count=$(jq -r '.repositories | length' "$TOPOLOGY")
 duplicate_count=$(jq -r '[.repositories[].name] | group_by(.) | map(select(length > 1)) | length' "$TOPOLOGY")
 if [ "$duplicate_count" != "0" ]; then
   echo "TOPOLOGY-FAIL: duplicate repository names" >&2
+  exit 1
+fi
+
+# Validate human-edited topology roles against the schema before any API work.
+# org-state/1.0 retains five legacy values for reading historical snapshots;
+# the current topology is forbidden from emitting those legacy roles.
+allowed_roles=$(jq -c '.$defs.repository.properties.role.enum' "$SCHEMA")
+legacy_roles='["research","detection","product-web","skills-library","agent-workforce"]'
+if ! jq -e --argjson allowed "$allowed_roles" 'all(.repositories[]; (.role as $r | ($allowed | index($r)) != null))' "$TOPOLOGY" >/dev/null; then
+  echo "TOPOLOGY-FAIL: role not accepted by org-state/1.0" >&2
+  exit 1
+fi
+if jq -e --argjson legacy "$legacy_roles" 'any(.repositories[]; (.role as $r | ($legacy | index($r)) != null))' "$TOPOLOGY" >/dev/null; then
+  echo "TOPOLOGY-FAIL: current topology uses a legacy org-state role" >&2
   exit 1
 fi
 
@@ -128,11 +147,9 @@ combined=$(jq -nc \
   --argjson repos "$(printf '%s\n' "${entries[@]}" | jq -s .)" \
   '{schema_version: $v, generated_at: $ts, generator: $gen, org: $org, repositories: $repos}')
 
-schema="$SCRIPT_DIR/../docs/contracts/org-state/1.0.json"
-
 # Structural + schema validation. Prefer jsonschema when installed; jq fallback
-# still validates the topology-derived repository count and SHA shape.
-SCHEMA_WIN=$(cygpath -w "$schema" 2>/dev/null || echo "$schema")
+# validates every topology-derived role plus core shape, not only counts.
+SCHEMA_WIN=$(cygpath -w "$SCHEMA" 2>/dev/null || echo "$SCHEMA")
 if command -v python3 >/dev/null 2>&1 && python3 -c "import jsonschema" 2>/dev/null; then
   echo "$combined" | python3 -c "
 import json, sys
@@ -147,8 +164,15 @@ except ValidationError as e:
     sys.exit(1)
 " || exit 1
 else
-  echo "$combined" | jq -e --argjson expected "$expected_count" \
-    '.schema_version == "org-state/1.0" and (.repositories | length) == $expected and all(.repositories[]; (.remote_head_sha | length) == 40 and (.remote_head_short | length) == 7)' \
+  echo "$combined" | jq -e --argjson expected "$expected_count" --argjson allowed "$allowed_roles" \
+    '.schema_version == "org-state/1.0"
+     and (.repositories | length) == $expected
+     and all(.repositories[];
+       (.remote_head_sha | length) == 40
+       and (.remote_head_short | length) == 7
+       and (.canonical_branch | type == "string" and length > 0)
+       and (.full_name | startswith("Aftergraph/"))
+       and (.role as $r | ($allowed | index($r)) != null))' \
     >/dev/null || { echo "SCHEMA-FAIL (jq fallback)" >&2; exit 1; }
   echo "SCHEMA-OK (jq fallback)" >&2
 fi
