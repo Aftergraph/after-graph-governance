@@ -15,7 +15,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts.ari_graph import CompatibilityGraph, Endpoint  # noqa: E402
-from scripts.ari_model import ResultState, load_json, validate_component  # noqa: E402
+from scripts.ari_model import ResultState, evidence_meets, load_json, validate_component  # noqa: E402
 
 
 @dataclass(slots=True)
@@ -117,6 +117,18 @@ def compile_component(manifest: dict, apc: dict, edge_documents: Iterable[dict])
             continue
 
         minimum = requirement.get("minimum_edge_evidence", "CE0")
+        minimum_required_edges = requirement.get("minimum_required_edges", 0)
+        if not isinstance(minimum_required_edges, int) or minimum_required_edges < 0:
+            errors.append(f"APC-1/{profile} minimum_required_edges must be a non-negative integer")
+            profile_results[profile] = ResultState.FAIL
+            continue
+        if len(required_targets) < minimum_required_edges:
+            profile_results[profile] = ResultState.UNKNOWN
+            unknowns.append(
+                f"APC-1/{profile} requires at least {minimum_required_edges} compatibility edge(s); manifest declares {len(required_targets)}"
+            )
+            continue
+
         edge_states: list[ResultState] = []
         for target in required_targets:
             state = graph.best_state(source, target, minimum)
@@ -132,7 +144,7 @@ def compile_component(manifest: dict, apc: dict, edge_documents: Iterable[dict])
 
             if state == ResultState.PASS:
                 for edge in graph.between(source, target):
-                    if edge.state == "pass":
+                    if edge.state == "pass" and evidence_meets(edge.evidence_level, minimum):
                         evidence_refs.extend(ref for _, ref in edge.evidence)
 
         profile_results[profile] = _aggregate(edge_states) if required_targets else ResultState.PASS
