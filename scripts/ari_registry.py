@@ -188,13 +188,13 @@ class Registry:
         self._entries = classified
 
     def components(self) -> list[dict]:
-        return [item.document for item in self._entries if item.kind == "component"]
+        return [copy.deepcopy(item.document) for item in self._entries if item.kind == "component"]
 
     def edges(self) -> list[dict]:
-        return [item.document for item in self._entries if item.kind == "edge"]
+        return [copy.deepcopy(item.document) for item in self._entries if item.kind == "edge"]
 
     def passports(self) -> list[dict]:
-        return [item.document for item in self._entries if item.kind == "passport"]
+        return [copy.deepcopy(item.document) for item in self._entries if item.kind == "passport"]
 
     def component(self, component: str, version: str, commit: str) -> dict:
         key = (component, version, commit)
