@@ -93,9 +93,9 @@ The platform registry currently treats `identity/1.0` as a normative family cons
 
 ### 3.2 Lease ambiguity is forbidden
 
-`identity/1.0.runtime.lease_id` MUST be treated as a WORKS/runtime worker lease reference unless explicit evidence proves otherwise.
+`identity/1.0.runtime.lease_id` MUST remain a WORKS/runtime worker-lease reference in V2.1 compatibility handling.
 
-It MUST NOT be interpreted as an AIE `AuthorityLease` by prefix, position, historical usage, or convenience.
+It MUST NOT be reinterpreted as an AIE `AuthorityLease`. If a legacy record also has independently proven authority information, that authority reference MUST be represented separately by the compatibility adapter rather than overloading `identity/1.0.runtime.lease_id`.
 
 ```text
 worker/runtime lease
@@ -156,6 +156,7 @@ Rules:
 3. `identity_ref` identifies or resolves an actor but does not grant authority.
 4. `service` and `agent` Principals MUST NOT gain human approval power merely because they exist in the same tenant.
 5. Principal status is independent from AuthorityLease state.
+6. Legacy AIE runtime type `bot` MAY map to canonical `agent` through an explicit compatibility adapter; the adapter MUST NOT change authority semantics.
 
 ## 6. `tenant/1.0`
 
@@ -196,6 +197,7 @@ Minimum shape:
 ```json
 {
   "schema": "execution-context/1.0",
+  "execution_context_id": "ctx_<32hex>",
   "organization_id": "org_<32hex>",
   "tenant_id": "ten_<32hex>",
   "principal_id": "prn_<32hex>",
@@ -211,12 +213,15 @@ Minimum shape:
 
 Rules:
 
-1. The envelope is immutable after Work creation.
+1. The envelope is immutable after creation.
 2. The referenced AuthorityLease MUST still be revalidated immediately before every consequential action.
 3. A valid `worker_lease_id` does not imply valid authority.
 4. A valid `authority_lease_id` does not imply the caller owns the current Work lease.
-5. Reauthorization creates a new AuthorityLease; the execution context records the actual lease used for a given admitted execution path and later actions must still revalidate current authority.
+5. If continued Work is reauthorized under a new AuthorityLease, the platform MUST create a new immutable execution-context binding that references the prior binding; it MUST NOT mutate the old context or pretend the old lease remained valid.
 6. Consequential actions MUST carry a globally unique replay/action key.
+7. `admission_decision_id` identifies the admission decision that created that binding. Later action-time revalidation decisions are recorded on the action/correlation record rather than rewriting the execution context.
+
+An implementation MAY add optional `prior_execution_context_id` for binding lineage within the same major contract if the compatibility rules permit it.
 
 ## 8. `correlation/1.0`
 
@@ -225,14 +230,19 @@ Rules:
 ```json
 {
   "schema": "correlation/1.0",
+  "execution_context_id": "ctx_<32hex>",
   "tenant_id": "ten_<32hex>",
   "principal_id": "prn_<32hex>",
   "mission_id": "mis_<id>",
+  "authority_lease_id": "auth_<32hex>",
   "work_id": "wrk_<32hex>",
+  "admission_decision_id": "pdr_<32hex>",
   "trace_id": "trc_<32hex>",
   "action_id": "act_<32hex>"
 }
 ```
+
+For action records, `admission_decision_id` refers to the decision used for that consequential action, which may differ from the initial admission stored in the immutable execution context.
 
 Possessing a correlation envelope MUST NOT grant execution authority.
 
@@ -248,6 +258,7 @@ ten_<32hex>
 prn_<32hex>
 mis_<32hex>
 auth_<32hex>
+ctx_<32hex>
 wrk_<32hex>
 wrkr_<32hex>
 lse_<32hex>
@@ -325,6 +336,8 @@ Consequential action proposed
   ↓
 Trust Gateway revalidates Principal + Mission + ACTIVE AuthorityLease
   ↓
+Action-time PolicyDecisionRecord
+  ↓
 Execute or deny
   ↓
 Evidence
@@ -364,6 +377,7 @@ The current `identity_chain` field is structurally broad. V2.1 defines the canon
     "principal_id": "prn_<32hex>",
     "mission_id": "mis_<id>",
     "authority_lease_id": "auth_<32hex>",
+    "execution_context_id": "ctx_<32hex>",
     "work_id": "wrk_<32hex>",
     "worker_id": "wrkr_<32hex>",
     "worker_lease_id": "lse_<32hex>",
@@ -425,14 +439,16 @@ ID-04  Session identity cannot grant authority.
 ID-05  Workspace membership cannot grant authority.
 ID-06  Authority is ACTIVE at execution time.
 ID-07  Revoked/expired authority never reaches execution.
-ID-08  Reauthorization creates a new AuthorityLease.
-ID-09  ExecutionContext is immutable after Work creation.
+ID-08  Reauthorization creates a new AuthorityLease and new execution binding.
+ID-09  ExecutionContext is immutable after creation.
 ID-10  Context transfer cannot mint or amplify authority.
 ID-11  WorkItem does not imply executable Work.
 ID-12  Budget exhaustion cannot auto-recover into execution.
 ID-13  VERIFIED requires accepted verification evidence.
 ID-14  Cross-tenant identifiers cannot escape isolation.
 ID-15  Every consequential action has a globally unique replay/action key.
+ID-16  WorkerLease and AuthorityLease are never interchangeable.
+ID-17  Every consequential action records the admission/revalidation decision that governed it.
 ```
 
 ## 16. Golden Mission
@@ -459,6 +475,8 @@ Worker receives WorkerLease
 Worker proposes consequential action
   ↓
 TG revalidates AuthorityLease at consequence time
+  ↓
+TG records action-time PolicyDecisionRecord
   ↓
 Action executes
   ↓
@@ -497,6 +515,8 @@ The initial platform suite SHALL include:
 | `CTX-016` | Workspace membership only | no authority |
 | `CTX-017` | cross-tenant Work lookup | fail closed without disclosure |
 | `CTX-018` | authority revoked between admission and action | execution-time revalidation catches it |
+| `CTX-019` | reauthorization attempts to mutate old ExecutionContext | reject mutation; create new binding |
+| `CTX-020` | action evidence cites initial admission but omits required action-time decision | provenance gap; no verified promotion |
 
 `CTX-018` is the critical time-of-check/time-of-use platform vector:
 
@@ -588,17 +608,18 @@ V2.1 is complete only when all of the following are demonstrably true:
 5. `correlation/1.0` is registered and owned by governance.
 6. AuthorityLease and WorkerLease are structurally and semantically distinct.
 7. New consequential execution paths carry a canonical execution context.
-8. Trust Gateway revalidates authority immediately before consequence.
-9. Cross-tenant references fail closed without object-existence leakage.
-10. Revocation and budget exhaustion remain containment events, not automatic recovery paths.
-11. Evidence can correlate the execution chain without treating evidence as authority.
-12. `GOLDEN-MISSION-001` passes end to end.
-13. `CTX-001` through `CTX-018` are machine-executable and pass their required outcomes.
-14. Platform conformance is a distinct release gate from repository-local CI.
-15. Studio remains projection-only for authority semantics.
-16. Context Continuity transports references without minting or amplifying authority.
-17. Legacy compatibility works without a mass historical rewrite.
-18. No implementation or documentation claim upgrades scientific, standards, or production maturity without corresponding evidence.
+8. Reauthorization creates a new immutable execution binding rather than mutating history.
+9. Trust Gateway revalidates authority immediately before consequence and records the governing action-time decision.
+10. Cross-tenant references fail closed without object-existence leakage.
+11. Revocation and budget exhaustion remain containment events, not automatic recovery paths.
+12. Evidence can correlate the execution chain without treating evidence as authority.
+13. `GOLDEN-MISSION-001` passes end to end.
+14. `CTX-001` through `CTX-020` are machine-executable and pass their required outcomes.
+15. Platform conformance is a distinct release gate from repository-local CI.
+16. Studio remains projection-only for authority semantics.
+17. Context Continuity transports references without minting or amplifying authority.
+18. Legacy compatibility works without a mass historical rewrite.
+19. No implementation or documentation claim upgrades scientific, standards, or production maturity without corresponding evidence.
 
 ## 23. Follow-on sequence
 
