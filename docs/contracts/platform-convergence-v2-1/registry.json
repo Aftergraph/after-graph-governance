@@ -1,0 +1,28 @@
+{
+  "schema_version": "platform-convergence-v2-1/1.0",
+  "families": [
+    {
+      "contract": "principal/1.0",
+      "owner": "aie",
+      "path": "spec/contracts/principal/1.0.json"
+    },
+    {
+      "contract": "tenant/1.0",
+      "owner": "trust-gateway",
+      "path": "docs/contracts/tenant/1.0.json"
+    },
+    {
+      "contract": "execution-context/1.0",
+      "owner": "works-execution",
+      "path": "contracts/schemas/execution-context.schema.json"
+    },
+    {
+      "contract": "correlation/1.0",
+      "owner": "after-graph-governance",
+      "path": "docs/contracts/correlation/1.0.json"
+    }
+  ],
+  "compatibility_families": [
+    "identity/1.0"
+  ]
+}
