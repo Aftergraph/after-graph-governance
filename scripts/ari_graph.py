@@ -62,7 +62,7 @@ class CompatibilityGraph:
         for edge in self._edges:
             if edge.source == left and edge.target == right:
                 matches.append(edge)
-            elif edge.relation == "tested-with" and edge.source == right and edge.target == left:
+            elif edge.relation in {"tested-with", "incompatible-with"} and edge.source == right and edge.target == left:
                 matches.append(edge)
         return matches
 
