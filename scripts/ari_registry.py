@@ -183,8 +183,8 @@ class Registry:
         if document != expected:
             raise RegistryError("registry entries are not in canonical deterministic order")
 
-        self.document = document
-        self.digest = canonical_digest(document)
+        self.document = expected
+        self.digest = canonical_digest(expected)
         self._entries = classified
 
     def components(self) -> list[dict]:
