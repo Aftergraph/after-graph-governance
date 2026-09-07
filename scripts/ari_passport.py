@@ -31,11 +31,21 @@ def build_passport(manifest: dict, compile_result: CompileResult, artifact_diges
         raise PassportError(
             f"release passport requires PASS conformance, got {compile_result.state.value}"
         )
-    if not ARTIFACT_RE.fullmatch(artifact_digest):
-        raise PassportError("artifact digest must be sha256:<64 lowercase hex>")
 
     identity = manifest["identity"]
     release = manifest["release"]
+    expected_subject = (identity["component"], release["version"])
+    compiled_subject = (compile_result.component, compile_result.version)
+    if compiled_subject != expected_subject:
+        raise PassportError(
+            "compile result subject mismatch: "
+            f"compiled {compile_result.component}@{compile_result.version}, "
+            f"manifest {identity['component']}@{release['version']}"
+        )
+
+    if not ARTIFACT_RE.fullmatch(artifact_digest):
+        raise PassportError("artifact digest must be sha256:<64 lowercase hex>")
+
     platform = manifest["platform"]
     compatibility = manifest["compatibility"]
     provenance = manifest["provenance"]
@@ -93,17 +103,19 @@ def main(argv: list[str] | None = None) -> int:
     try:
         passport = build_passport(manifest, result, args.artifact_digest)
     except PassportError as exc:
+        refusal_state = result.state if result.state != ResultState.PASS else ResultState.FAIL
         print(
             json.dumps(
                 {
                     "schema": "release-passport-error/1",
-                    "state": result.state.value,
+                    "state": refusal_state.value,
+                    "conformance_state": result.state.value,
                     "error": str(exc),
                 },
                 sort_keys=True,
             )
         )
-        return _refusal_exit(result.state)
+        return _refusal_exit(refusal_state)
 
     print(json.dumps(passport, sort_keys=True, separators=(",", ":")))
     return 0
