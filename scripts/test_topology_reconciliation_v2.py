@@ -35,7 +35,7 @@ class TopologyReconciliationV2Tests(unittest.TestCase):
         self.assertEqual(21, len(self.repos))
         public = sum(repo["visibility"] == "public" for repo in self.repos.values())
         private = sum(repo["visibility"] == "private" for repo in self.repos.values())
-        self.assertEqual((13, 8), (public, private))
+        self.assertEqual((12, 9), (public, private))
 
     def test_wie_uses_canonical_repository_slugs(self):
         self.assertIn("wi-backend", self.repos)
@@ -47,6 +47,7 @@ class TopologyReconciliationV2Tests(unittest.TestCase):
         runtime = self.repos["runtime"]
         self.assertEqual("agent-runtime", runtime["role"])
         self.assertEqual("runtime", runtime["plane"])
+        self.assertEqual("private", runtime["visibility"])
         self.assertNotIn("APC-1", runtime.get("owns", ""))
 
     def test_avc_is_migration_source(self):
@@ -68,6 +69,7 @@ class TopologyReconciliationV2Tests(unittest.TestCase):
 
     def test_readme_projects_current_truth(self):
         self.assertIn("21 canonical", self.readme)
+        self.assertIn("12 public / 9 private", self.readme)
         self.assertIn("Wie", self.readme)
         self.assertIn("runtime", self.readme.lower())
         self.assertIn("sentinel", self.readme.lower())
@@ -78,6 +80,7 @@ class TopologyReconciliationV2Tests(unittest.TestCase):
     def test_architecture_projects_current_boundaries(self):
         self.assertIn("Wie by Aftergraph", self.architecture)
         self.assertIn("currently 21", self.architecture)
+        self.assertIn("12 public / 9 private", self.architecture)
         self.assertNotIn("to be established", self.architecture)
         self.assertNotIn("persistent context", self.architecture)
         for stale in STALE_WI:
