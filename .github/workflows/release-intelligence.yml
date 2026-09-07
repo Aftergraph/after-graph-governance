@@ -34,6 +34,16 @@ jobs:
           python-version: '3.12'
       - name: Run ARI unit tests
         run: python -m unittest discover -s scripts -p 'test_ari_*.py' -v
+      - name: Run governance regression tests
+        run: >-
+          python -m unittest
+          scripts.test_platform_convergence_v2_1_contracts
+          scripts.test_governance_ci_result
+          scripts.test_governance_ci_truth_reducer
+          scripts.test_governance_clean_room
+          scripts.test_governance_exact_head_truth
+          scripts.test_verify_brand_assets
+          -v
       - name: Validate APC registry JSON
         run: python -m json.tool docs/release-intelligence/apc-1.json >/dev/null
       - name: Validate component contract JSON
