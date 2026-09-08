@@ -398,6 +398,52 @@ class PlatformFabricsV01Tests(unittest.TestCase):
         errors = validate_causal_chain(vector["input"])
         self.assertTrue(any("drifted principal_id" in error for error in errors))
 
+    def test_wildcard_authority_can_narrow_without_false_widening(self) -> None:
+        action = {
+            "schema": "capability-action/0.1",
+            "action_id": "act_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "mission_id": "mis_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "semantic_capability": "repository.patch",
+            "effect_class": "consequential_write",
+            "risk_class": 2,
+            "required_authority": ["fs.write:*"],
+            "input_ref": "git:sha:abc",
+            "expected_output_ref": "git:patch:pending",
+            "implementations": [
+                {
+                    "implementation_id": "native.patch.logs",
+                    "kind": "native_tool",
+                    "binding_ref": "runtime://patch/logs",
+                    "required_authority": ["fs.write:logs"],
+                    "availability": "available",
+                }
+            ],
+            "selection_policy": {
+                "prefer_verified_success": True,
+                "minimize_cost": True,
+                "minimize_latency": True,
+                "minimize_context_pressure": True,
+                "allow_fallback": True,
+            },
+            "verification_required": True,
+        }
+        self.assertEqual(validate_capability_action(action), [])
+
+    def test_causal_stage_cannot_drop_canonical_principal(self) -> None:
+        fixture = load_json(VECTORS)
+        source = next(item for item in fixture["vectors"] if item["id"] == "GOLDEN-001")["input"]
+        document = json.loads(json.dumps(source))
+        works = next(stage for stage in document["stages"] if stage["stage"] == "works")
+        del works["principal_id"]
+        errors = validate_causal_chain(document)
+        self.assertTrue(any("works missing canonical principal_id" in error for error in errors))
+
+    def test_rfc3339_timestamp_requires_time_and_offset(self) -> None:
+        self.assertFalse(parse_rfc3339("2026-09-08"))
+        self.assertFalse(parse_rfc3339("2026-09-08T12:00:00"))
+        self.assertTrue(parse_rfc3339("2026-09-08T12:00:00Z"))
+        self.assertTrue(parse_rfc3339("2026-09-08T12:00:00+02:00"))
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
