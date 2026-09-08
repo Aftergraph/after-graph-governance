@@ -328,6 +328,10 @@ def validate_causal_chain(document: Any) -> list[str]:
             errors.append(f"duplicate stage {stage_name}")
         seen_stages.add(stage_name)
 
+        for field in ("tenant_id", "principal_id", "mission_id", "trace_id"):
+            if field in canonical and field not in stage:
+                errors.append(f"{stage_name} missing canonical {field}")
+
         for field, value in stage.items():
             if field == "stage" or field not in canonical:
                 continue
