@@ -1,6 +1,6 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-08T22:00:28Z",
+  "generated_at": "2026-09-08T22:53:01Z",
   "generator": "/mnt/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
@@ -8,20 +8,13 @@
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "5f5327314e804573b2acb273abf72db9aa522370",
-      "remote_head_short": "5f53273",
-      "head_commit_message": "feat: add Platform Fabrics v0.1 conformance slice (#45)",
+      "remote_head_sha": "c49da8a756d08be7102408ec5af5169bae05ba23",
+      "remote_head_short": "c49da8a",
+      "head_commit_message": "feat(governance): converge Platform Architecture V4 truth (#53)",
       "private": false,
       "archived": false,
       "protected": true,
       "open_pull_requests": [
-        {
-          "number": 52,
-          "title": "docs: Aftergraph Platform Architecture V4 + Platform Fabrics V1",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "da854c1d0ad1a5e9cb9ef85d64c9896bc55a6087"
-        },
         {
           "number": 40,
           "title": "fix(governance): reconcile Runtime and Wie topology truth",
@@ -795,9 +788,9 @@
       "full_name": "Aftergraph/aftergraph-cron-fabric",
       "role": "scheduled-observation-fabric",
       "canonical_branch": "main",
-      "remote_head_sha": "cd507e38b66709d43339dce995d7cc15b4191c82",
-      "remote_head_short": "cd507e3",
-      "head_commit_message": "Merge pull request #25 from Aftergraph/feat/receipt-rollup-2026-09-08",
+      "remote_head_sha": "8ebbdebf8c9b012403f1fbdaa2bdde201747dcdf",
+      "remote_head_short": "8ebbdeb",
+      "head_commit_message": "Merge pull request #26 from Aftergraph/docs/decisions-d9-d13-2026-09-09",
       "private": false,
       "archived": false,
       "protected": true,
