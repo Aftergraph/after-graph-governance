@@ -129,6 +129,8 @@ class TopologyV2DataTest(unittest.TestCase):
 
 Add tests rejecting duplicate names, `plane` as an active v2 property, unknown architecture planes, missing `must_not_own`, non-`main` current canonical branches and exact-SHA-looking fields such as `head_sha` or `remote_head_sha`.
 
+Add a dependency-free schema-agreement test asserting the published `2.0.schema.json` (required set, plane enum, `additionalProperties: false`) matches what the data tests and validator enforce, so the schema document and the checked-in gates cannot silently drift apart (`json.tool` alone only proves syntax).
+
 - [ ] **Step 2: Run the test and verify RED**
 
 Run:
@@ -739,6 +741,8 @@ DONE
 ```
 
 If any repository cannot resolve, branch/canonical-default differs, or role is invalid, stop. Do not hand-edit the snapshot.
+
+Note the evidence scope: the generator records remote canonical-branch heads, so a snapshot taken on the feature branch evidences repository resolution, not the candidate's file content. Treat this run as interim candidate evidence. The closing evidence is the post-merge regeneration on `main` required by the Wave A completion gate; Wave A closes only on that fresh-`main` snapshot.
 
 - [ ] **Step 2: Verify generated snapshot has exact topology membership**
 
