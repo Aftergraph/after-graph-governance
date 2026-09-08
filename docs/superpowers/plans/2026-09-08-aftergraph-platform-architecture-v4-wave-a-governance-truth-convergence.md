@@ -426,7 +426,7 @@ jq -e '.schema_version == "platform-topology/2.0"
 
 Continue deriving `repo role canonical_branch` from topology. Do not use `architecture_plane` to generate authority or runtime behavior. Preserve all existing GitHub API/full-snapshot fail-closed mechanics.
 
-Update `org-state/1.0` descriptions from “current topology is 1.0” to “current generation scope is platform-topology/2.0; historical snapshots remain schema-readable”. Keep role compatibility enum values needed for old snapshots.
+Update `org-state/1.0` descriptions from “current topology is 1.0” to “current generation scope is platform-topology/2.0; historical snapshots remain schema-readable”. Keep role compatibility enum values needed for old snapshots. Add `legacy-migration-source` to the role enum for the v2 AVC role, and extend the binding test to assert every topology/2.0 role is within the schema enum so authenticated generation cannot fail late on role compatibility.
 
 - [ ] **Step 4: Run local structural gates**
 
@@ -644,6 +644,7 @@ Use:
 name: Platform Topology Truth
 
 on:
+  merge_group:
   pull_request:
     paths:
       - 'docs/platform-topology/**'
@@ -651,6 +652,7 @@ on:
       - 'docs/PLATFORM-RECONCILIATION-V1.md'
       - 'docs/cross-repo-contracts.md'
       - 'docs/REPOSITORY-REGISTRY-v0.1.md'
+      - 'docs/contracts/org-state/1.0.json'
       - 'dependencies.yml'
       - 'README.md'
       - 'scripts/platform_topology.py'
@@ -663,6 +665,7 @@ on:
     paths:
       - 'docs/platform-topology/**'
       - 'docs/PLATFORM-ARCHITECTURE-V*.md'
+      - 'docs/contracts/org-state/1.0.json'
       - 'dependencies.yml'
       - 'README.md'
       - 'scripts/platform_topology.py'
@@ -703,7 +706,7 @@ python - <<'PY'
 from pathlib import Path
 p = Path('.github/workflows/platform-topology.yml')
 text = p.read_text()
-for required in ('Platform Topology Truth', 'python-version: \'3.12\'', 'test_platform_topology_v2.py', 'test_org_state_topology_v2.py'):
+for required in ('Platform Topology Truth', 'python-version: \'3.12\'', 'test_platform_topology_v2.py', 'test_org_state_topology_v2.py', 'merge_group', 'docs/contracts/org-state/1.0.json'):
     assert required in text, required
 print('workflow-source-ok')
 PY

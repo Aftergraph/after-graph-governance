@@ -466,7 +466,7 @@ DISPUTED
 SUPERSEDED
 ```
 
-It carries subject/predicate/value-or-ref, source references, evidence references, observation/validity/freshness timing, tenant/domain/classification scope and confidence where applicable.
+It carries subject/predicate/value-or-ref, source references, evidence references, observation/validity/freshness timing, tenant/domain/classification scope, consent-record/version and processing-purpose lineage, and confidence where applicable. Consent/purpose lineage is what makes selective invalidation on consent revocation (§12) implementable without over-invalidating unrelated uses.
 
 Rules:
 
@@ -520,7 +520,7 @@ Rules:
 
 - semantic capability identity is distinct from implementation identity;
 - implementation authority must fit inside the semantic action authority envelope;
-- consequential/external effects require verification where the semantic contract says so;
+- consequential and external effects require verification; a semantic contract may narrow how verification is evidenced but never waives it (frozen invariant `PLATFORM-FABRICS-v0.1` #2, enforced by conformance vector `CAP-003`);
 - Runtime resolves implementation strategy;
 - Trust Gateway admits/enforces the concrete operation;
 - Skills Vault supplies governed capability implementations/procedures;
@@ -532,7 +532,7 @@ Composes Runtime, AIE, Trust Gateway, WORKS and independent verification.
 
 Runtime owns team topology, worker lifecycle, relay/peer operation, routing and recovery. AIE owns delegated authority. Trust Gateway owns admission. WORKS owns durable work/leases/effects. Verification remains independent.
 
-Production defaults to manager-worker organization. Peer communication is bounded and protocol-governed. Recursive delegation cannot multiply authority or budget; child envelopes are equal-or-narrower than parent envelopes.
+Production defaults to manager-worker organization. Peer communication is bounded and protocol-governed. Recursive delegation cannot multiply authority or budget. Child envelopes are equal-or-narrower than the parent envelope, and the parent's remaining budget is atomically partitioned or reserved across all child envelopes so siblings cannot collectively spend more than the parent holds.
 
 No worker may grant itself authority, administer peer authority or self-declare verified completion.
 
