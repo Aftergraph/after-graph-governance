@@ -36,6 +36,8 @@ REQUIRED_REPO_FIELDS = {
     "must_not_own",
 }
 FORBIDDEN_ACTIVE_NAME_PARTS = ("@avc/", "avc-")
+VISIBILITY_VALUES = {"public", "private"}
+STRING_REPO_FIELDS = ("name", "role", "system_class", "lifecycle", "owns", "must_not_own")
 LEGACY_REPOSITORY = "autonomous-venture-company"
 SHA_LIKE_KEYS = {"head_sha", "remote_head_sha", "remote_sha", "sha", "commit_sha"}
 SHA_LIKE_VALUE = re.compile(r"\b[0-9a-f]{40}\b")
@@ -97,6 +99,12 @@ def validate_topology(doc: Mapping[str, Any]) -> list[str]:
         plane = entry.get("architecture_plane")
         if plane is not None and plane not in PLANE_VALUES:
             errors.append(f"repository {name} has unknown architecture plane: {plane!r}")
+        if entry.get("visibility") not in VISIBILITY_VALUES:
+            errors.append(f"repository {name} has unknown visibility: {entry.get('visibility')!r}")
+        for field in STRING_REPO_FIELDS:
+            value = entry.get(field)
+            if not isinstance(value, str) or not value.strip():
+                errors.append(f"repository {name} has invalid {field}: {value!r}")
         if entry.get("canonical_branch") != "main":
             errors.append(f"repository {name} has non-main canonical branch: {entry.get('canonical_branch')!r}")
         for key, value in entry.items():
@@ -175,6 +183,10 @@ def _plane_label(plane: Any) -> str:
     return str(plane).capitalize()
 
 
+def _cell(value: Any) -> str:
+    return str(value).replace("|", "\\|").replace("\r\n", "<br/>").replace("\n", "<br/>").replace("\r", "<br/>")
+
+
 def render_readme_table(doc: Mapping[str, Any]) -> str:
     repos = [r for r in doc.get("repositories", []) if isinstance(r, Mapping)]
     plane_rows = [r for r in repos if r.get("architecture_plane") is not None]
@@ -189,12 +201,12 @@ def render_readme_table(doc: Mapping[str, Any]) -> str:
         lines.append(
             "| " + " | ".join(
                 [
-                    _plane_label(repo.get("architecture_plane")),
-                    str(repo.get("system_class", "")),
-                    f"`{repo.get('name', '')}`",
-                    str(repo.get("role", "")),
-                    str(repo.get("lifecycle", "")),
-                    str(repo.get("owns", "")),
+                    _cell(_plane_label(repo.get("architecture_plane"))),
+                    _cell(repo.get("system_class", "")),
+                    f"`{_cell(repo.get('name', ''))}`",
+                    _cell(repo.get("role", "")),
+                    _cell(repo.get("lifecycle", "")),
+                    _cell(repo.get("owns", "")),
                 ]
             )
             + " |"

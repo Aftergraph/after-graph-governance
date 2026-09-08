@@ -41,9 +41,10 @@ class TopologyWorkflowTriggerTest(unittest.TestCase):
         text = WORKFLOW.read_text(encoding="utf-8")
         self.assertIn("merge_group", text)
 
-    def test_topology_gate_watches_org_state_contract(self):
+    def test_topology_gate_runs_unfiltered(self):
         text = WORKFLOW.read_text(encoding="utf-8")
-        self.assertIn("docs/contracts/org-state/1.0.json", text)
+        self.assertIn("merge_group", text)
+        self.assertNotIn("paths:", text)
 
 
 if __name__ == "__main__":

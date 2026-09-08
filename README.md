@@ -176,7 +176,8 @@ The current platform-wide reconciliation program and actionable backlog live in:
 - [`docs/cross-repo-contracts.md`](docs/cross-repo-contracts.md) — normative contract register + repository boundaries
 - [`docs/reconciliation-matrix.md`](docs/reconciliation-matrix.md) — concept-level reconciliation
 - [`docs/REPOSITORY-REGISTRY-v0.1.md`](docs/REPOSITORY-REGISTRY-v0.1.md) — canonical repository roles, local worktree controls, reconciliation queue
-- [`docs/PLATFORM-ARCHITECTURE-V3.md`](docs/PLATFORM-ARCHITECTURE-V3.md) — seven planes, ownership, product hierarchy, namespace policy, AVC dissolution policy
+- [`docs/PLATFORM-ARCHITECTURE-V4.md`](docs/PLATFORM-ARCHITECTURE-V4.md) — canonical architecture: seven planes, Fabrics, ownership, invariants, conformance ladder
+- [`docs/PLATFORM-ARCHITECTURE-V3.md`](docs/PLATFORM-ARCHITECTURE-V3.md) — superseded history (retained for provenance)
 - [`docs/AVC-IDENTITY-MAPPING-V1.md`](docs/AVC-IDENTITY-MAPPING-V1.md) — Wave 5 finding: AVC identity-core vs TG/AIE verdicts per entity
 - [`docs/AVC-TENANT-MAPPING-V1.md`](docs/AVC-TENANT-MAPPING-V1.md) — Wave 5 finding: tenant-admin vs runtime-isolation layers, lifecycle gap
 

@@ -176,6 +176,28 @@ class TopologyValidatorTest(unittest.TestCase):
         repo["system_class"] = "products"
         self.assertTrue(validate_topology(doc))
 
+    def test_unknown_visibility_is_rejected(self):
+        doc = valid_topology()
+        doc["repositories"][0]["visibility"] = "internal"
+        self.assertTrue(any("visibility" in e for e in validate_topology(doc)))
+
+    def test_non_string_system_class_is_rejected(self):
+        doc = valid_topology()
+        doc["repositories"][0]["system_class"] = 7
+        self.assertTrue(any("system_class" in e for e in validate_topology(doc)))
+
+    def test_non_string_owns_is_rejected(self):
+        doc = valid_topology()
+        doc["repositories"][0]["owns"] = 42
+        self.assertTrue(any("owns" in e for e in validate_topology(doc)))
+
+    def test_markdown_delimiters_are_escaped_in_render(self):
+        doc = valid_topology()
+        doc["repositories"][0]["owns"] = "A | B\nC"
+        table = render_readme_table(doc)
+        row = [line for line in table.splitlines() if "`after-graph-governance`" in line][0]
+        self.assertIn("A \\| B<br/>C", row)
+
 
 class DependencyProjectionTest(unittest.TestCase):
     def test_dependency_projection_matches_topology_v2(self):
