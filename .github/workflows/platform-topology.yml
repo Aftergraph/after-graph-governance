@@ -1,0 +1,49 @@
+name: Platform Topology Truth
+
+on:
+  pull_request:
+    paths:
+      - 'docs/platform-topology/**'
+      - 'docs/PLATFORM-ARCHITECTURE-V*.md'
+      - 'docs/PLATFORM-RECONCILIATION-V1.md'
+      - 'docs/cross-repo-contracts.md'
+      - 'docs/REPOSITORY-REGISTRY-v0.1.md'
+      - 'dependencies.yml'
+      - 'README.md'
+      - 'scripts/platform_topology.py'
+      - 'scripts/test_platform_topology_v2.py'
+      - 'scripts/test_org_state_topology_v2.py'
+      - 'scripts/org-state-verify.sh'
+      - '.github/workflows/platform-topology.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'docs/platform-topology/**'
+      - 'docs/PLATFORM-ARCHITECTURE-V*.md'
+      - 'dependencies.yml'
+      - 'README.md'
+      - 'scripts/platform_topology.py'
+      - 'scripts/test_platform_topology_v2.py'
+      - 'scripts/test_org_state_topology_v2.py'
+      - 'scripts/org-state-verify.sh'
+      - '.github/workflows/platform-topology.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  topology:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate topology and projections
+        run: |
+          python scripts/test_platform_topology_v2.py
+          python scripts/test_org_state_topology_v2.py
+          python scripts/platform_topology.py check
+          python scripts/platform_topology.py check-readme
+          bash -n scripts/org-state-verify.sh
