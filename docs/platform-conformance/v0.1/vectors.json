@@ -77,6 +77,114 @@
       "reason": "The projection is correlation-only; arbitrary authority-bearing fields fail closed."
     },
     {
+      "id": "ADP-TG-001",
+      "kind": "event_ref",
+      "expected": "accept",
+      "input": {
+        "schema": "platform-event-ref/0.1",
+        "event_id": "evt_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "source": "trust-gateway",
+        "event_type": "policy.action.admitted",
+        "occurred_at": "2026-09-08T12:00:10Z",
+        "subject_ref": "tool:repo.patch",
+        "correlation": {
+          "execution_context_id": "ctx_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "tenant_id": "ten_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "principal_id": "prn_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "mission_id": "mis_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "authority_lease_id": "auth_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "work_id": "wrk_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "admission_decision_id": "pdr_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "trace_id": "trc_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "action_id": "act_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "payload_ref": "tg:audit:000007",
+        "integrity_ref": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "classification": "enforcement"
+      },
+      "reason": "Trust Gateway audit admission projected field-for-field; native meaning preserved, no authority invented."
+    },
+    {
+      "id": "ADP-TG-002",
+      "kind": "event_ref",
+      "expected": "reject",
+      "input": {
+        "schema": "platform-event-ref/0.1",
+        "event_id": "evt_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "source": "trust-gateway",
+        "event_type": "policy.action.admitted",
+        "occurred_at": "2026-09-08T12:00:11Z",
+        "subject_ref": "tool:repo.patch",
+        "correlation": {
+          "execution_context_id": "ctx_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "tenant_id": "ten_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "principal_id": "prn_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "mission_id": "mis_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "authority_lease_id": "auth_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "work_id": "wrk_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "admission_decision_id": "pdr_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "trace_id": "trc_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "action_id": "act_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        },
+        "payload_ref": "tg:audit:000008",
+        "integrity_ref": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "classification": "enforcement",
+        "authority_grant": "admin"
+      },
+      "reason": "A projection that invents authority reinterprets semantics; correlation-only projections fail closed."
+    },
+    {
+      "id": "ADP-WORKS-001",
+      "kind": "event_ref",
+      "expected": "accept",
+      "input": {
+        "schema": "platform-event-ref/0.1",
+        "event_id": "evt_cccccccccccccccccccccccccccccccc",
+        "source": "works-execution",
+        "event_type": "work.effect.committed",
+        "occurred_at": "2026-09-08T12:00:12Z",
+        "subject_ref": "work:commit",
+        "correlation": {
+          "execution_context_id": "ctx_cccccccccccccccccccccccccccccccc",
+          "tenant_id": "ten_cccccccccccccccccccccccccccccccc",
+          "principal_id": "prn_cccccccccccccccccccccccccccccccc",
+          "mission_id": "mis_cccccccccccccccccccccccccccccccc",
+          "work_id": "wrk_cccccccccccccccccccccccccccccccc",
+          "trace_id": "trc_cccccccccccccccccccccccccccccccc",
+          "action_id": "act_cccccccccccccccccccccccccccccccc"
+        },
+        "payload_ref": "works:event:000007",
+        "integrity_ref": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "classification": "execution"
+      },
+      "reason": "WORKS effect projected with the native envelope reference retained."
+    },
+    {
+      "id": "ADP-WORKS-002",
+      "kind": "event_ref",
+      "expected": "reject",
+      "input": {
+        "schema": "platform-event-ref/0.1",
+        "event_id": "evt_dddddddddddddddddddddddddddddddd",
+        "source": "works-execution",
+        "event_type": "work.effect.committed",
+        "occurred_at": "2026-09-08T12:00:13Z",
+        "subject_ref": "work:commit",
+        "correlation": {
+          "execution_context_id": "ctx_dddddddddddddddddddddddddddddddd",
+          "tenant_id": "ten_dddddddddddddddddddddddddddddddd",
+          "principal_id": "prn_dddddddddddddddddddddddddddddddd",
+          "mission_id": "mis_dddddddddddddddddddddddddddddddd",
+          "work_id": "wrk_dddddddddddddddddddddddddddddddd",
+          "trace_id": "trc_dddddddddddddddddddddddddddddddd",
+          "action_id": "act_dddddddddddddddddddddddddddddddd"
+        },
+        "integrity_ref": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "classification": "execution"
+      },
+      "reason": "Dropping the native envelope reference erases provenance; the projection is unverifiable."
+    },
+    {
       "id": "CAP-001",
       "kind": "capability_action",
       "expected": "accept",
