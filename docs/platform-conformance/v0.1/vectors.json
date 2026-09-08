@@ -422,6 +422,30 @@
         ]
       },
       "reason": "Principal drift across a consequential seam is a provenance failure."
+    },
+    {
+      "id": "GOLDEN-003",
+      "kind": "causal_chain",
+      "expected": "reject",
+      "input": {
+        "canonical": {
+          "tenant_id": "ten_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+          "principal_id": "prn_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+          "mission_id": "mis_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+          "authority_lease_id": "auth_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+          "execution_context_id": "ctx_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+          "work_id": "wrk_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+          "trace_id": "trc_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+          "action_id": "act_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+          "action_decision_id": "pdr_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        },
+        "stages": [
+          {"stage": "trust-gateway", "tenant_id": "ten_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "principal_id": "prn_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "mission_id": "mis_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "authority_lease_id": "auth_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "trace_id": "trc_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "action_id": "act_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "action_decision_id": "pdr_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"},
+          {"stage": "works", "tenant_id": "ten_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "principal_id": "prn_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "mission_id": "mis_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "authority_lease_id": "auth_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "execution_context_id": "ctx_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "work_id": "wrk_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "trace_id": "trc_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "action_id": "act_ffffffffffffffffffffffffffffffff"},
+          {"stage": "verification", "tenant_id": "ten_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "principal_id": "prn_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "mission_id": "mis_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "execution_context_id": "ctx_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "work_id": "wrk_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "trace_id": "trc_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "action_id": "act_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "action_decision_id": "pdr_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"}
+        ]
+      },
+      "reason": "A broken canonical action identity across the consequential works seam, with no action-time decision to bind the effect, fails closed."
     }
   ]
 }
