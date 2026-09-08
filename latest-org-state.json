@@ -1,20 +1,56 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-07T17:28:17Z",
-  "generator": "scripts/org-state-verify.sh (python port, same live API)",
+  "generated_at": "2026-09-08T15:55:34Z",
+  "generator": "C:/Users/empir/AppData/Local/Temp/queuedance/governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
     {
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "5c19846530221ea30aafe17d61386273835eac49",
-      "remote_head_short": "5c19846",
-      "head_commit_message": "feat(governance): repository + worktree registry v0.1 (#29)",
+      "remote_head_sha": "9d91a459958ccb948a5cef45364de660e45018ee",
+      "remote_head_short": "9d91a45",
+      "head_commit_message": "fix(topology): reconcile current 24-repo Aftergraph org (#49)",
       "private": false,
       "archived": false,
       "protected": true,
-      "open_pull_requests": [],
+      "open_pull_requests": [
+        {
+          "number": 45,
+          "title": "feat: add Platform Fabrics v0.1 conformance slice",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "2f995a181f99dac27681b6df2e88540b75ca64ac"
+        },
+        {
+          "number": 41,
+          "title": "docs: define Verified Auto execution architecture",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "44e3f21b26f0495ee0ed3e5fb562cbc40dabe312"
+        },
+        {
+          "number": 40,
+          "title": "fix(governance): reconcile Runtime and Wie topology truth",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "23149acc57d2e949cb22de4da9351826c743c88f"
+        },
+        {
+          "number": 39,
+          "title": "feat(governance): complete ARI Phase 1 registry, RBOM, and query",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "1abb17a67cdc9611eaa13ab9361616019c011c96"
+        },
+        {
+          "number": 38,
+          "title": "feat(governance): build ARI Phase 0/1 compatibility foundation",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "6a5d99d797b8f4b1a6208ee5e52a6513f3f5557b"
+        }
+      ],
       "authoritative_contracts": [
         {
           "name": "mission-state",
@@ -35,9 +71,9 @@
       "full_name": "Aftergraph/aie",
       "role": "normative-authority",
       "canonical_branch": "main",
-      "remote_head_sha": "29f6a9b8247d53beeabf59fb941069f380890906",
-      "remote_head_short": "29f6a9b",
-      "head_commit_message": "feat(aie): canonical principal/1.0 compatibility boundary (#47)",
+      "remote_head_sha": "88c1889a5582824ed594318bddad8d9df85a1979",
+      "remote_head_short": "88c1889",
+      "head_commit_message": "fix(s1): lab-user traversal on hosted runners (#52)",
       "private": false,
       "archived": false,
       "protected": true,
@@ -54,13 +90,28 @@
       "full_name": "Aftergraph/trust-gateway",
       "role": "runtime-enforcement",
       "canonical_branch": "main",
-      "remote_head_sha": "97ba8f61d1348823aaa2d20311eb946b4a0a26ad",
-      "remote_head_short": "97ba8f6",
-      "head_commit_message": "feat: add canonical tenant and principal identity projection (#70)",
+      "remote_head_sha": "5ec9dc45b123be712eea78580c3de008bf7e3745",
+      "remote_head_short": "5ec9dc4",
+      "head_commit_message": "ci(auto-merge): job-level pull-requests: write only (#79)",
       "private": false,
       "archived": false,
       "protected": true,
-      "open_pull_requests": [],
+      "open_pull_requests": [
+        {
+          "number": 78,
+          "title": "feat(tg): add platform event correlation projection",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "f85d9ffd38d45aafc19508e773c731dd866b647a"
+        },
+        {
+          "number": 74,
+          "title": "feat(router): Verified Auto policy-aware shadow routing v0.2",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "0dd68cf4ff8a55a4dcc154edba16d07d2348480f"
+        }
+      ],
       "authoritative_contracts": [],
       "consumed_contracts": [
         {
@@ -74,16 +125,53 @@
       ]
     },
     {
+      "full_name": "Aftergraph/runtime",
+      "role": "agent-runtime",
+      "canonical_branch": "main",
+      "remote_head_sha": "cd9c8852de296099cb76c4f1a5170083839b5271",
+      "remote_head_short": "cd9c885",
+      "head_commit_message": "docs(runtime): document implementation plan directory",
+      "private": true,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [
+        {
+          "number": 63,
+          "title": "feat(runtime): add production Runtime Host composition seam",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "aed75cff005545c54bd357e2949a40d459ab9509"
+        },
+        {
+          "number": 62,
+          "title": "test(runtime): specify Platform Fabrics Golden Mission v0.1",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "cb2172d9e3b298e75db22a7969b5ba589b591a52"
+        }
+      ],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
       "full_name": "Aftergraph/works-execution",
       "role": "durable-execution",
       "canonical_branch": "main",
-      "remote_head_sha": "79914a514512766edd7032c9a74e63c0f9f87551",
-      "remote_head_short": "79914a5",
-      "head_commit_message": "fix: pin codeql-action to commit SHA (#61)",
+      "remote_head_sha": "1267f03b7ae50212173f3f93cca6d93547fb2906",
+      "remote_head_short": "1267f03",
+      "head_commit_message": "ci(auto-merge): job-level pull-requests: write only (#66)",
       "private": false,
       "archived": false,
       "protected": true,
-      "open_pull_requests": [],
+      "open_pull_requests": [
+        {
+          "number": 67,
+          "title": "feat(works): add platform event correlation projection",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "554c02616048829169156e956b93da2399631e19"
+        }
+      ],
       "authoritative_contracts": [],
       "consumed_contracts": [
         {
@@ -96,31 +184,31 @@
       "full_name": "Aftergraph/studio",
       "role": "primary-experience",
       "canonical_branch": "main",
-      "remote_head_sha": "ca3da75e9cd3ecf783297c49ad79ed91a73d7120",
-      "remote_head_short": "ca3da75",
-      "head_commit_message": "style(p1-001): map muted text family to text-3 token (#41)",
+      "remote_head_sha": "d332fe03d12211879ff28ddee02ca35341b6e291",
+      "remote_head_short": "d332fe0",
+      "head_commit_message": "ci(auto-merge): job-level pull-requests: write only (#45)",
       "private": false,
       "archived": false,
       "protected": true,
       "open_pull_requests": [
         {
-          "head_sha": "e2601a796398247ba1281b644faee82f0f3674cd",
+          "number": 42,
+          "title": "ci: non-blocking Sentinel dogfood (informational only)",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "number": 42,
-          "title": "ci: non-blocking Sentinel dogfood (informational only)"
+          "head_sha": "e2601a796398247ba1281b644faee82f0f3674cd"
         }
       ],
       "authoritative_contracts": [],
       "consumed_contracts": []
     },
     {
-      "full_name": "Aftergraph/work-intelligence-v2",
+      "full_name": "Aftergraph/wi-backend",
       "role": "work-inference",
       "canonical_branch": "main",
-      "remote_head_sha": "49f602145094e2b5dfcbfd712c6085653a765360",
-      "remote_head_short": "49f6021",
-      "head_commit_message": "fix(security): pin privileged auto-merge workflow (#56)",
+      "remote_head_sha": "f2c7843b30d3cffaa8756399463edfed90a01fc0",
+      "remote_head_short": "f2c7843",
+      "head_commit_message": "fix: drift collector/policy track renamed wi-backend/wi-frontend units (#66)",
       "private": false,
       "archived": false,
       "protected": true,
@@ -129,12 +217,12 @@
       "consumed_contracts": []
     },
     {
-      "full_name": "Aftergraph/work-intelligence-web",
+      "full_name": "Aftergraph/wi-frontend",
       "role": "work-intelligence-experience",
       "canonical_branch": "main",
-      "remote_head_sha": "f71823d2484a2dd63581ba78610764071a10787d",
-      "remote_head_short": "f71823d",
-      "head_commit_message": "docs(deploy): usage notes dist-extraction prerequisite for --apply",
+      "remote_head_sha": "5ed27613ad60480be2b16d7a9b5151cd7b52c765",
+      "remote_head_short": "5ed2761",
+      "head_commit_message": "Merge pull request #12 from Aftergraph/fix/workflow-action-pinning",
       "private": true,
       "archived": false,
       "protected": false,
@@ -146,9 +234,9 @@
       "full_name": "Aftergraph/context-continuity",
       "role": "continuity-contract",
       "canonical_branch": "main",
-      "remote_head_sha": "29da8830361b3c3f88618a8c1221c1ee222b750e",
-      "remote_head_short": "29da883",
-      "head_commit_message": "docs: submission checklist gains test-cases + country-availability (portal schema)",
+      "remote_head_sha": "63ab0c9e4b40980cbc8e31b91a3123167a1c6712",
+      "remote_head_short": "63ab0c9",
+      "head_commit_message": "Merge pull request #1 from Aftergraph/fix/workflow-action-pinning",
       "private": true,
       "archived": false,
       "protected": false,
@@ -160,9 +248,52 @@
       "full_name": "Aftergraph/continuum",
       "role": "continuity-containment-verification",
       "canonical_branch": "main",
-      "remote_head_sha": "315795e3c66af3da502370de8cca04b0ab465854",
-      "remote_head_short": "315795e",
-      "head_commit_message": "fix: nightly CI gains workflow_dispatch (missed first schedule tick)",
+      "remote_head_sha": "befbdab905a7f8f4fc9a5d04c7424e7158096c25",
+      "remote_head_short": "befbdab",
+      "head_commit_message": "feat: establish LangGraph checkpoint runtime baseline",
+      "private": true,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/sentinel",
+      "role": "verified-code-review",
+      "canonical_branch": "main",
+      "remote_head_sha": "c09eb714ea3e5ff8449e8c4059826ed156bb307c",
+      "remote_head_short": "c09eb71",
+      "head_commit_message": "fix(test): pass PATH explicitly in runner flood/timeout test (#4)",
+      "private": false,
+      "archived": false,
+      "protected": true,
+      "open_pull_requests": [
+        {
+          "number": 6,
+          "title": "ci: run test suite on push to main and pull requests",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "7b8d3954852e34a04878a931c7ec87232206117c"
+        },
+        {
+          "number": 5,
+          "title": "docs: reconcile Sentinel evidence with v1.7 implementation",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "af066dc7397f58090f980cbdf52b5cfc840822b0"
+        }
+      ],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/sentinel-firetest",
+      "role": "temporary-verification-fixture",
+      "canonical_branch": "main",
+      "remote_head_sha": "79cc374c765229212207d8658d24b064750a1a72",
+      "remote_head_short": "79cc374",
+      "head_commit_message": "Merge pull request #2 from Aftergraph/fix/workflow-action-pinning",
       "private": true,
       "archived": false,
       "protected": false,
@@ -174,9 +305,9 @@
       "full_name": "Aftergraph/intelligence-systems-research",
       "role": "research-assurance",
       "canonical_branch": "main",
-      "remote_head_sha": "08c98464a58cf16bb1a70f4f0c5516ad1410bd33",
-      "remote_head_short": "08c9846",
-      "head_commit_message": "chore(deps): bump github/codeql-action/init from 5ba2889ada762081db2c4f32a729827dce632c7b to 6f5948dfacef28e207b48d0905cf90c03365536d (#40)",
+      "remote_head_sha": "d3da7f2f867322874a49a2d1410f3f6066f7001c",
+      "remote_head_short": "d3da7f2",
+      "head_commit_message": "ci(auto-merge): job-level pull-requests: write only (#48)",
       "private": false,
       "archived": false,
       "protected": true,
@@ -193,9 +324,9 @@
       "full_name": "Aftergraph/skills-vault",
       "role": "capability-supply-chain",
       "canonical_branch": "main",
-      "remote_head_sha": "de14344c6f28ecc5e51424e565cfbe5552b230df",
-      "remote_head_short": "de14344",
-      "head_commit_message": "Merge pull request #48 from Aftergraph/feat/profile-scripts-versioning",
+      "remote_head_sha": "8a480b989474b8235c62bbd30c000b4d76b93997",
+      "remote_head_short": "8a480b9",
+      "head_commit_message": "Merge pull request #60 from Aftergraph/fix/workflow-action-pinning",
       "private": true,
       "archived": false,
       "protected": false,
@@ -207,13 +338,21 @@
       "full_name": "Aftergraph/llm-research-development",
       "role": "model-rnd-methodology",
       "canonical_branch": "main",
-      "remote_head_sha": "3825996ce640c2d4820c230307e797f7cad9c8da",
-      "remote_head_short": "3825996",
-      "head_commit_message": "claims: LR tool_use mechanism confirmed + redistribution finding (E-v3)",
+      "remote_head_sha": "c6adf4609ac253244c4f37f7874be777e018aae9",
+      "remote_head_short": "c6adf46",
+      "head_commit_message": "claims: supersede synth-efficiency-verdict (facts true, promotion conclusion void vs binding gate FAIL)",
       "private": true,
       "archived": false,
       "protected": false,
-      "open_pull_requests": [],
+      "open_pull_requests": [
+        {
+          "number": 2,
+          "title": "docs(rnd): reconcile active methodology-transfer status",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "d86f1d9b3beb4347930714f1cc4444488e94b4ed"
+        }
+      ],
       "authoritative_contracts": [],
       "consumed_contracts": []
     },
@@ -221,9 +360,9 @@
       "full_name": "Aftergraph/afm",
       "role": "model-program",
       "canonical_branch": "main",
-      "remote_head_sha": "b88980223c71e3810036a47529721d075d5cdf57",
-      "remote_head_short": "b889802",
-      "head_commit_message": "runs: E-v3 record (Tier-1 97/112, tool_use 7/7, gate ineligible)",
+      "remote_head_sha": "248fa56b670b5b7acdac87a39936b203e829fe7e",
+      "remote_head_short": "248fa56",
+      "head_commit_message": "verdict: register E-R3X2 PASS (Tier-1 112/112, OOD-3 24/28, Retain 1.0)",
       "private": true,
       "archived": false,
       "protected": false,
@@ -235,9 +374,200 @@
       "full_name": "Aftergraph/model-registry",
       "role": "model-lifecycle-registry",
       "canonical_branch": "main",
-      "remote_head_sha": "6c08d063a577e7f9172d6af38daf001e827d4910",
-      "remote_head_short": "6c08d06",
-      "head_commit_message": "registry: E-v3 version (experimental-gated-ineligible, ledger-bound)",
+      "remote_head_sha": "b610e775d5bc718c99ec54303200344639247187",
+      "remote_head_short": "b610e77",
+      "head_commit_message": "champion checklist for R3X2 (supersedes R3 track; terminology agreement included)",
+      "private": true,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [
+        {
+          "number": 5,
+          "title": "docs(registry): reconcile AFM lifecycle state (candidate R3X2, champion none)",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "08c219acb7e271357a107d3546ca226299d06345"
+        }
+      ],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/autonomous-venture-company",
+      "role": "venture-os-consumer",
+      "canonical_branch": "main",
+      "remote_head_sha": "e08d3372dda352564cd9b657d6a8e473c0eee6b0",
+      "remote_head_short": "e08d337",
+      "head_commit_message": "fix(ci): lint cleanup, expired LeadRescue fixture refresh, security overrides for transitive deps (#1016)",
+      "private": true,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [
+        {
+          "number": 1015,
+          "title": "chore(deps): bump eslint from 10.9.1 to 10.10.0 in /ml/avc-llm",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "4ed0b06a2d170e80a57899e92e6b45b090461f09"
+        },
+        {
+          "number": 1014,
+          "title": "chore(deps): bump openai from 4.104.0 to 7.10.0 in /ml/avc-llm",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "793bea74852f5f09f6ed0457230536543642e292"
+        },
+        {
+          "number": 1013,
+          "title": "chore(deps): bump openai from 4.104.0 to 7.10.0 in /ml/avc-eval",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "49cb7f8130a2c80cec0886b8f0d1cfe4df34b164"
+        },
+        {
+          "number": 1012,
+          "title": "chore(deps): bump eslint from 10.9.1 to 10.10.0 in /ml/avc-eval",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "ac0993c65b23bb1adecc1119545ac49197cc3e5a"
+        },
+        {
+          "number": 1011,
+          "title": "chore(deps): bump lxml from 6.1.1 to 6.1.3 in /scripts/branding",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "20f1d776fd34579bf0ba594f3479a986a4484285"
+        },
+        {
+          "number": 1007,
+          "title": "chore(deps): bump agents from 0.20.1 to 0.22.0",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "d940392fbdbfb822cc0b6917247acbc5ff550fff"
+        },
+        {
+          "number": 1006,
+          "title": "chore(deps): bump electron-vite from 4.0.1 to 5.0.0",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "b0cacbfa94da9fd33e30f56c18f93175f8f56455"
+        },
+        {
+          "number": 1002,
+          "title": "chore(deps): bump tsx from 4.23.1 to 4.23.13 in /ml/avc-llm",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "7a65d995dcbb8a2b992fc08345147922077ea35e"
+        },
+        {
+          "number": 1001,
+          "title": "chore(deps): bump js-yaml from 5.2.2 to 5.4.1 in /ml/avc-llm",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "7042347722ea9435bfd9f82cc872f1b671c8dbd8"
+        },
+        {
+          "number": 999,
+          "title": "chore(deps): bump js-yaml from 5.2.2 to 5.4.1 in /ml/avc-eval",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "ffa61b67618818bd7313bea0853202e2d3d05a38"
+        },
+        {
+          "number": 997,
+          "title": "chore(deps): bump tsx from 4.23.1 to 4.23.13 in /ml/avc-eval",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "c65552c803440e4bb90e622f969e0eab1b0e9e73"
+        },
+        {
+          "number": 995,
+          "title": "chore(deps): bump tauri-plugin-deep-link from 2.4.9 to 2.4.10 in /apps/mission-control/src-tauri",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "80ed0cfd26bd13cce05a8bb3ed2d47306d7e1a04"
+        },
+        {
+          "number": 994,
+          "title": "chore(deps): bump ed25519-dalek from 2.2.0 to 3.0.0 in /apps/mission-control/src-tauri",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "fa6b8317b99d0ee791d1d5fd8b7d2d322a0523a9"
+        },
+        {
+          "number": 993,
+          "title": "chore(deps): bump keyring from 2.3.3 to 4.2.0 in /apps/mission-control/src-tauri",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "5a63a2dfb1b9bd7ac21d567ae26134b4127a24a5"
+        },
+        {
+          "number": 992,
+          "title": "chore(deps): bump tauri-plugin-single-instance from 2.4.3 to 2.4.4 in /apps/mission-control/src-tauri",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "f7882c6b1baff6ca01062619accc77f9cd36afee"
+        },
+        {
+          "number": 991,
+          "title": "chore(deps): bump rand from 0.8.7 to 0.10.2 in /apps/mission-control/src-tauri",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "0d934e2a040b4d7eab962cda7ade4aad0f6c9054"
+        },
+        {
+          "number": 990,
+          "title": "⚡ Bolt: optimize serialization loop in effective-memory",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "c20aa5225ca4a683348659caf570cd473e98fdbf"
+        },
+        {
+          "number": 989,
+          "title": "⚡ Bolt: Optimize effective memory projection hash serialization",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "1158526712abe76442e50a9a702acba475e41e50"
+        },
+        {
+          "number": 988,
+          "title": "feat(kernel-core): ADR-0027 D3 out-of-model resource metering (T6, CONF-006)",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "904e1f9c3480d1f3051a8faa8f34ccc64e1f820e"
+        },
+        {
+          "number": 987,
+          "title": "feat(agent-harness): ADR-0027 D2 delegation attenuation (CONF-001/002/004)",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "fc100d60fa6f8607a608c8737cd6a705fd330265"
+        }
+      ],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/aftergraph-cron-fabric",
+      "role": "scheduled-observation-fabric",
+      "canonical_branch": "main",
+      "remote_head_sha": "cd8652f408df174bc73520070bc943ca462867ab",
+      "remote_head_short": "cd8652f",
+      "head_commit_message": "chore(baseline): freeze live reference for volume check (#7)",
+      "private": false,
+      "archived": false,
+      "protected": true,
+      "open_pull_requests": [],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/veranza",
+      "role": "assurance-incubation",
+      "canonical_branch": "main",
+      "remote_head_sha": "1f987735391aa1e70d28ece72af9663f4c826070",
+      "remote_head_short": "1f98773",
+      "head_commit_message": "scaffold: wave B+C (ledger, evidence, detect, runtime) + workspaces (#2)",
       "private": true,
       "archived": false,
       "protected": false,
@@ -246,170 +576,15 @@
       "consumed_contracts": []
     },
     {
-      "full_name": "Aftergraph/autonomous-venture-company",
-      "role": "venture-os-consumer",
-      "canonical_branch": "main",
-      "remote_head_sha": "b79ecde257c38464aebf00fb22c292bf97cb1a31",
-      "remote_head_short": "b79ecde",
-      "head_commit_message": "docs(research): AIES-1 files pass docs-check (status/verified-against frontmatter; Requirements headings disambiguated) (#986)",
-      "private": true,
-      "archived": false,
-      "protected": false,
-      "open_pull_requests": [
-        {
-          "head_sha": "05c6307de8082c7eb3986ecb610e2a6536b86a61",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "number": 1010,
-          "title": "chore(deps): bump the development-tooling group across 1 directory with 10 updates"
-        },
-        {
-          "head_sha": "9cf0c48d6e44dbb4363835b9adc78dc02e9e6d54",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "number": 1008,
-          "title": "chore(deps): bump @tauri-apps/plugin-updater from 2.10.1 to 2.11.0"
-        },
-        {
-          "head_sha": "d72f67f672f6a92495628a0a8c818c64a50216ac",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "number": 1007,
-          "title": "chore(deps): bump agents from 0.20.1 to 0.22.0"
-        },
-        {
-          "head_sha": "21098f425468759bac1ef156968a5d4359c18833",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "number": 1006,
-          "title": "chore(deps): bump electron-vite from 4.0.1 to 5.0.0"
-        },
-        {
-          "head_sha": "0f3552e3ae21802c0437771f819d07726ffe8238",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "number": 1005,
-          "title": "chore(deps): bump @xyflow/react from 12.11.2 to 12.11.6"
-        },
-        {
-          "head_sha": "09081e2dfbc6a03b50c39d8fe4437d80af9ca37c",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "number": 1003,
-          "title": "chore(deps): bump openai from 4.104.0 to 7.9.0 in /ml/avc-llm"
-        },
-        {
-          "head_sha": "7a65d995dcbb8a2b992fc08345147922077ea35e",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "number": 1002,
-          "title": "chore(deps): bump tsx from 4.23.1 to 4.23.13 in /ml/avc-llm"
-        },
-        {
-          "head_sha": "7042347722ea9435bfd9f82cc872f1b671c8dbd8",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "number": 1001,
-          "title": "chore(deps): bump js-yaml from 5.2.2 to 5.4.1 in /ml/avc-llm"
-        },
-        {
-          "head_sha": "2c78cccdca22f307d36b8ece50cf8a3fb9a448a3",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "number": 1000,
-          "title": "chore(deps): bump eslint from 10.7.0 to 10.9.1 in /ml/avc-llm"
-        },
-        {
-          "head_sha": "ffa61b67618818bd7313bea0853202e2d3d05a38",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "number": 999,
-          "title": "chore(deps): bump js-yaml from 5.2.2 to 5.4.1 in /ml/avc-eval"
-        },
-        {
-          "head_sha": "853b7b6de2e32d073bac072c0d6b00a268810e79",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "number": 998,
-          "title": "chore(deps): bump openai from 4.104.0 to 7.9.0 in /ml/avc-eval"
-        },
-        {
-          "head_sha": "c65552c803440e4bb90e622f969e0eab1b0e9e73",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "number": 997,
-          "title": "chore(deps): bump tsx from 4.23.1 to 4.23.13 in /ml/avc-eval"
-        },
-        {
-          "head_sha": "a20f53ed0f6462cd3a9902a7cb70154d4b9a2be6",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "number": 996,
-          "title": "chore(deps): bump eslint from 10.7.0 to 10.9.1 in /ml/avc-eval"
-        },
-        {
-          "head_sha": "80ed0cfd26bd13cce05a8bb3ed2d47306d7e1a04",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "number": 995,
-          "title": "chore(deps): bump tauri-plugin-deep-link from 2.4.9 to 2.4.10 in /apps/mission-control/src-tauri"
-        },
-        {
-          "head_sha": "fa6b8317b99d0ee791d1d5fd8b7d2d322a0523a9",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "number": 994,
-          "title": "chore(deps): bump ed25519-dalek from 2.2.0 to 3.0.0 in /apps/mission-control/src-tauri"
-        },
-        {
-          "head_sha": "5a63a2dfb1b9bd7ac21d567ae26134b4127a24a5",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "number": 993,
-          "title": "chore(deps): bump keyring from 2.3.3 to 4.2.0 in /apps/mission-control/src-tauri"
-        },
-        {
-          "head_sha": "f7882c6b1baff6ca01062619accc77f9cd36afee",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "number": 992,
-          "title": "chore(deps): bump tauri-plugin-single-instance from 2.4.3 to 2.4.4 in /apps/mission-control/src-tauri"
-        },
-        {
-          "head_sha": "0d934e2a040b4d7eab962cda7ade4aad0f6c9054",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "number": 991,
-          "title": "chore(deps): bump rand from 0.8.7 to 0.10.2 in /apps/mission-control/src-tauri"
-        },
-        {
-          "head_sha": "c20aa5225ca4a683348659caf570cd473e98fdbf",
-          "is_draft": true,
-          "mergeable": "UNKNOWN",
-          "number": 990,
-          "title": "\u26a1 Bolt: optimize serialization loop in effective-memory"
-        },
-        {
-          "head_sha": "1158526712abe76442e50a9a702acba475e41e50",
-          "is_draft": true,
-          "mergeable": "UNKNOWN",
-          "number": 989,
-          "title": "\u26a1 Bolt: Optimize effective memory projection hash serialization"
-        }
-      ],
-      "authoritative_contracts": [],
-      "consumed_contracts": []
-    },
-    {
       "full_name": "Aftergraph/docs",
       "role": "knowledge-plane",
       "canonical_branch": "main",
-      "remote_head_sha": "ffd9065d0050949d84d4b3f1da974f9d0af8e9bc",
-      "remote_head_short": "ffd9065",
-      "head_commit_message": "chore(verifier): source verification log",
+      "remote_head_sha": "10a8f3995e9dfc9cf41e589a5d161d88161d40eb",
+      "remote_head_short": "10a8f39",
+      "head_commit_message": "ci: verify exact production docs head (#10)",
       "private": false,
       "archived": false,
-      "protected": false,
+      "protected": true,
       "open_pull_requests": [],
       "authoritative_contracts": [],
       "consumed_contracts": []
@@ -418,19 +593,33 @@
       "full_name": "Aftergraph/aftergraph.org",
       "role": "public-front-door",
       "canonical_branch": "main",
-      "remote_head_sha": "0e8017c6319521d38d49672ffdd91f698775f0a0",
-      "remote_head_short": "0e8017c",
-      "head_commit_message": "feat(site): ARIA listbox semantics for launcher (#35)",
+      "remote_head_sha": "ec549794ec80b0f96c9764af04d15c88fd330c09",
+      "remote_head_short": "ec54979",
+      "head_commit_message": "ci(release-drafter): job-level contents: write only (#56)",
       "private": false,
       "archived": false,
       "protected": true,
       "open_pull_requests": [
         {
-          "head_sha": "9d606cfd5cd079c54580a7cb7531abc6e0e96a4a",
-          "is_draft": true,
+          "number": 59,
+          "title": "docs: define Aftergraph V3 product front door",
+          "is_draft": false,
           "mergeable": "UNKNOWN",
-          "number": 36,
-          "title": "feat(site): port approved V2 systems landing over main baseline"
+          "head_sha": "003f9717a99149aad6b953554a387027f0c2eb9a"
+        },
+        {
+          "number": 58,
+          "title": "ci: add gated exact-head production deployment",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "4568cce7c9e767ed220e94063acbacd39a72d496"
+        },
+        {
+          "number": 57,
+          "title": "community: expose public discussions and RFC plane",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "97f3f79707ee8792beb7972a6e68aaf60dfcf339"
         }
       ],
       "authoritative_contracts": [],
@@ -440,13 +629,21 @@
       "full_name": "Aftergraph/brand",
       "role": "brand-design-system",
       "canonical_branch": "main",
-      "remote_head_sha": "fe7485a498abfc02fc5b74faada819140425acf8",
-      "remote_head_short": "fe7485a",
-      "head_commit_message": "fix: pin codeql-action to commit SHA (#13)",
+      "remote_head_sha": "f0171b501a8460850e769db462934b9a33dd8952",
+      "remote_head_short": "f0171b5",
+      "head_commit_message": "ci(auto-merge): job-level pull-requests: write only (#18)",
       "private": false,
       "archived": false,
       "protected": true,
-      "open_pull_requests": [],
+      "open_pull_requests": [
+        {
+          "number": 15,
+          "title": "docs(brand): reconcile canonical masterbrand positioning",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "1985aefc02cc3a6022cf66c6aab8848b5be6834a"
+        }
+      ],
       "authoritative_contracts": [],
       "consumed_contracts": []
     },
@@ -454,26 +651,12 @@
       "full_name": "Aftergraph/.github",
       "role": "organization-community",
       "canonical_branch": "main",
-      "remote_head_sha": "56d70aace61364978e23cd75c9925a54aa706e18",
-      "remote_head_short": "56d70aa",
-      "head_commit_message": "ci: exercise auto-merge reusable workflow on push (post-fix verification)",
+      "remote_head_sha": "e9662a4c638e653ca1ce893ed3f45d44584ebd01",
+      "remote_head_short": "e9662a4",
+      "head_commit_message": "docs(org): align public front door with current repository identities",
       "private": false,
       "archived": false,
-      "protected": false,
-      "open_pull_requests": [],
-      "authoritative_contracts": [],
-      "consumed_contracts": []
-    },
-    {
-      "full_name": "Aftergraph/sentinel",
-      "role": "verified-code-review",
-      "canonical_branch": "main",
-      "remote_head_sha": "c28df81f3578739b4c020466752a7ff954e7fc99",
-      "remote_head_short": "c28df81",
-      "head_commit_message": "feat(sentinel): rule 7 no-swallowed-exceptions-in-critical-path (#3)",
-      "private": false,
-      "archived": false,
-      "protected": false,
+      "protected": true,
       "open_pull_requests": [],
       "authoritative_contracts": [],
       "consumed_contracts": []
