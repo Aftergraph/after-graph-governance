@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.dev/contracts/capability-action/0.1.json",
+  "title": "Aftergraph Capability Action",
+  "description": "EXPERIMENTAL semantic execution-intent contract. It separates what an intelligent system intends to do from the provider/runtime-specific implementation used to do it. It does not grant authority and does not replace MCP, A2A, or the Trust Gateway capability vocabulary.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "capability-action/0.1"},
+    "action_id": {"type": "string", "pattern": "^act_[a-f0-9]{32}$"},
+    "mission_id": {"type": "string", "minLength": 1, "maxLength": 256},
+    "semantic_capability": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:[._-][a-z0-9]+)+$",
+      "maxLength": 160
+    },
+    "effect_class": {
+      "type": "string",
+      "enum": ["read_only", "reversible_write", "consequential_write", "external_effect"]
+    },
+    "risk_class": {"type": "integer", "minimum": 0, "maximum": 4},
+    "required_authority": {
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 64,
+      "items": {"type": "string", "minLength": 1, "maxLength": 160}
+    },
+    "input_ref": {"type": "string", "minLength": 1, "maxLength": 512},
+    "expected_output_ref": {"type": "string", "minLength": 1, "maxLength": 512},
+    "implementations": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 32,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "implementation_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]{0,159}$"},
+          "kind": {
+            "type": "string",
+            "enum": ["native_tool", "mcp", "a2a", "python", "shell", "browser", "computer", "database", "workflow"]
+          },
+          "binding_ref": {"type": "string", "minLength": 1, "maxLength": 512},
+          "required_authority": {
+            "type": "array",
+            "uniqueItems": true,
+            "maxItems": 64,
+            "items": {"type": "string", "minLength": 1, "maxLength": 160}
+          },
+          "availability": {"type": "string", "enum": ["available", "degraded", "unavailable"]}
+        },
+        "required": ["implementation_id", "kind", "binding_ref", "required_authority", "availability"]
+      }
+    },
+    "selection_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "prefer_verified_success": {"type": "boolean"},
+        "minimize_cost": {"type": "boolean"},
+        "minimize_latency": {"type": "boolean"},
+        "minimize_context_pressure": {"type": "boolean"},
+        "allow_fallback": {"type": "boolean"}
+      },
+      "required": ["prefer_verified_success", "minimize_cost", "minimize_latency", "minimize_context_pressure", "allow_fallback"]
+    },
+    "verification_required": {"type": "boolean"}
+  },
+  "required": [
+    "schema",
+    "action_id",
+    "mission_id",
+    "semantic_capability",
+    "effect_class",
+    "risk_class",
+    "required_authority",
+    "input_ref",
+    "expected_output_ref",
+    "implementations",
+    "selection_policy",
+    "verification_required"
+  ]
+}
