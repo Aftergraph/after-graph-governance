@@ -109,14 +109,16 @@ def load_json(path: Path) -> dict[str, Any]:
 
 
 def parse_rfc3339(value: Any) -> bool:
-    if not isinstance(value, str) or not value:
+    if not isinstance(value, str) or not value or "T" not in value:
+        return False
+    if re.search(r"(?:Z|[+-]\d{2}:\d{2})$", value) is None:
         return False
     normalized = value[:-1] + "+00:00" if value.endswith("Z") else value
     try:
-        datetime.fromisoformat(normalized)
+        parsed = datetime.fromisoformat(normalized)
     except ValueError:
         return False
-    return True
+    return parsed.utcoffset() is not None
 
 
 def nonempty_string(value: Any, *, maximum: int = 512) -> bool:
