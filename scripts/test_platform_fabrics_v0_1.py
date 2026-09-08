@@ -417,6 +417,16 @@ class PlatformFabricsV01Tests(unittest.TestCase):
             self.assertIn(vector_id, by_id)
             self.assertEqual(by_id[vector_id]["expected"], expected)
 
+    def test_fallback_acceptance_vectors_are_registered(self) -> None:
+        fixture = load_json(VECTORS)
+        by_id = {vector.get("id"): vector for vector in fixture["vectors"]}
+        for vector_id, expected in (
+            ("CAP-004", "accept"),
+            ("CAP-005", "reject"),
+        ):
+            self.assertIn(vector_id, by_id)
+            self.assertEqual(by_id[vector_id]["expected"], expected)
+
     def test_semantic_implementation_never_widens_authority(self) -> None:
         fixture = load_json(VECTORS)
         vector = next(item for item in fixture["vectors"] if item["id"] == "CAP-002")

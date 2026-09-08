@@ -293,6 +293,88 @@
       "reason": "Consequential and external effects require verification in this experimental profile."
     },
     {
+      "id": "CAP-004",
+      "kind": "capability_action",
+      "expected": "accept",
+      "input": {
+        "schema": "capability-action/0.1",
+        "action_id": "act_99999999999999999999999999999999",
+        "mission_id": "mis_11111111111111111111111111111111",
+        "semantic_capability": "repository.patch",
+        "effect_class": "consequential_write",
+        "risk_class": 2,
+        "required_authority": ["fs.write:*"],
+        "input_ref": "git:sha:abc",
+        "expected_output_ref": "git:patch:pending",
+        "implementations": [
+          {
+            "implementation_id": "native.patch",
+            "kind": "native_tool",
+            "binding_ref": "runtime://patch",
+            "required_authority": ["fs.write:*"],
+            "availability": "unavailable"
+          },
+          {
+            "implementation_id": "shell.patch-logs",
+            "kind": "shell",
+            "binding_ref": "runtime://shell/patch-logs",
+            "required_authority": ["fs.write:logs"],
+            "availability": "available"
+          }
+        ],
+        "selection_policy": {
+          "prefer_verified_success": true,
+          "minimize_cost": true,
+          "minimize_latency": true,
+          "minimize_context_pressure": true,
+          "allow_fallback": true
+        },
+        "verification_required": true
+      },
+      "reason": "Fallback to an available implementation with an equal-or-narrower authority envelope preserves the semantic authority of the action."
+    },
+    {
+      "id": "CAP-005",
+      "kind": "capability_action",
+      "expected": "reject",
+      "input": {
+        "schema": "capability-action/0.1",
+        "action_id": "act_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "mission_id": "mis_11111111111111111111111111111111",
+        "semantic_capability": "repository.patch",
+        "effect_class": "consequential_write",
+        "risk_class": 2,
+        "required_authority": ["fs.write:logs"],
+        "input_ref": "git:sha:abc",
+        "expected_output_ref": "git:patch:pending",
+        "implementations": [
+          {
+            "implementation_id": "native.patch-logs",
+            "kind": "native_tool",
+            "binding_ref": "runtime://patch/logs",
+            "required_authority": ["fs.write:logs"],
+            "availability": "unavailable"
+          },
+          {
+            "implementation_id": "shell.patch-all",
+            "kind": "shell",
+            "binding_ref": "runtime://shell/patch",
+            "required_authority": ["fs.write:*", "shell.run"],
+            "availability": "available"
+          }
+        ],
+        "selection_policy": {
+          "prefer_verified_success": true,
+          "minimize_cost": true,
+          "minimize_latency": true,
+          "minimize_context_pressure": true,
+          "allow_fallback": true
+        },
+        "verification_required": true
+      },
+      "reason": "A fallback implementation that widens the authority envelope of the semantic action fails closed, even when the primary is unavailable."
+    },
+    {
       "id": "GOLDEN-001",
       "kind": "causal_chain",
       "expected": "accept",
