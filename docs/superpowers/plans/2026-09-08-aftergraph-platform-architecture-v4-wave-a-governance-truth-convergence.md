@@ -643,36 +643,14 @@ Use:
 ```yaml
 name: Platform Topology Truth
 
+# Unfiltered by design: this is a required merge-queue gate, and a
+# paths-filtered required check would stay pending (blocking) on PRs that
+# touch none of its paths. The job itself finishes in seconds.
 on:
   merge_group:
   pull_request:
-    paths:
-      - 'docs/platform-topology/**'
-      - 'docs/PLATFORM-ARCHITECTURE-V*.md'
-      - 'docs/PLATFORM-RECONCILIATION-V1.md'
-      - 'docs/cross-repo-contracts.md'
-      - 'docs/REPOSITORY-REGISTRY-v0.1.md'
-      - 'docs/contracts/org-state/1.0.json'
-      - 'dependencies.yml'
-      - 'README.md'
-      - 'scripts/platform_topology.py'
-      - 'scripts/test_platform_topology_v2.py'
-      - 'scripts/test_org_state_topology_v2.py'
-      - 'scripts/org-state-verify.sh'
-      - '.github/workflows/platform-topology.yml'
   push:
     branches: [main]
-    paths:
-      - 'docs/platform-topology/**'
-      - 'docs/PLATFORM-ARCHITECTURE-V*.md'
-      - 'docs/contracts/org-state/1.0.json'
-      - 'dependencies.yml'
-      - 'README.md'
-      - 'scripts/platform_topology.py'
-      - 'scripts/test_platform_topology_v2.py'
-      - 'scripts/test_org_state_topology_v2.py'
-      - 'scripts/org-state-verify.sh'
-      - '.github/workflows/platform-topology.yml'
 
 permissions:
   contents: read
@@ -706,8 +684,9 @@ python - <<'PY'
 from pathlib import Path
 p = Path('.github/workflows/platform-topology.yml')
 text = p.read_text()
-for required in ('Platform Topology Truth', 'python-version: \'3.12\'', 'test_platform_topology_v2.py', 'test_org_state_topology_v2.py', 'merge_group', 'docs/contracts/org-state/1.0.json'):
+for required in ('Platform Topology Truth', 'python-version: \'3.12\'', 'test_platform_topology_v2.py', 'test_org_state_topology_v2.py', 'merge_group'):
     assert required in text, required
+assert 'paths:' not in text, 'gate must run unfiltered so required checks never skip'
 print('workflow-source-ok')
 PY
 ```
