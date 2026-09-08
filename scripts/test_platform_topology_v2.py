@@ -15,11 +15,17 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from platform_topology import render_readme_table, validate_topology
+from platform_topology import (
+    load_topology,
+    parse_dependency_projection,
+    render_readme_table,
+    validate_topology,
+)
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 TOPOLOGY = REPO_ROOT / "docs" / "platform-topology" / "2.0.json"
 SCHEMA = REPO_ROOT / "docs" / "platform-topology" / "2.0.schema.json"
+DEPENDENCIES = REPO_ROOT / "dependencies.yml"
 
 PLANES = {
     "intelligence",
@@ -158,6 +164,25 @@ class TopologyValidatorTest(unittest.TestCase):
         repo = topology_index(doc)["autonomous-venture-company"]
         repo["system_class"] = "products"
         self.assertTrue(validate_topology(doc))
+
+
+class DependencyProjectionTest(unittest.TestCase):
+    def test_dependency_projection_matches_topology_v2(self):
+        doc = load_topology(TOPOLOGY)
+        topology = topology_index(doc)
+        topology_ref, modules = parse_dependency_projection(DEPENDENCIES.read_text(encoding="utf-8"))
+        self.assertEqual(topology_ref, "docs/platform-topology/2.0.json")
+        self.assertEqual(set(modules), set(topology))
+        for name, module in modules.items():
+            self.assertEqual(module.repo, f"Aftergraph/{name}")
+            self.assertEqual(module.role, topology[name]["role"])
+
+    def test_dependency_projection_declares_version_4(self):
+        text = DEPENDENCIES.read_text(encoding="utf-8")
+        match = re.search(r"^version:\s*(\S+)\s*$", text, re.M)
+        self.assertIsNotNone(match)
+        assert match is not None
+        self.assertEqual(match.group(1), "4")
 
 
 def topology_index(doc: dict) -> dict:

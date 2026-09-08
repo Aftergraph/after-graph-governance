@@ -13,6 +13,7 @@ from __future__ import annotations
 import json
 import re
 import sys
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Mapping
 
@@ -107,6 +108,59 @@ def validate_topology(doc: Mapping[str, Any]) -> list[str]:
                 'system_class == "legacy-transition" and lifecycle == "legacy-transition"'
             )
     return errors
+
+
+@dataclass(frozen=True)
+class DependencyModule:
+    name: str
+    repo: str
+    role: str
+
+
+_MODULE_HEADER = re.compile(r"^  ([^:\s][^:]*):\s*$")
+_MODULE_FIELD = re.compile(r"^    (repo|role):\s*(.+?)\s*$")
+_TOPOLOGY_REF = re.compile(r"^topology_ref:\s*(.+?)\s*$")
+
+
+def parse_dependency_projection(text: str) -> tuple[str, dict[str, DependencyModule]]:
+    """Parse topology_ref and each module's repo/role from the repository's constrained YAML shape."""
+    topology_ref = ""
+    modules: dict[str, DependencyModule] = {}
+    in_modules = False
+    current: str | None = None
+    fields: dict[str, str] = {}
+    for raw in text.splitlines():
+        code = raw.split("#", 1)[0].rstrip()
+        if not code.strip():
+            continue
+        if not raw.startswith((" ", "\t")):
+            stripped = code.strip()
+            if stripped == "modules:":
+                in_modules = True
+                continue
+            ref = _TOPOLOGY_REF.match(stripped)
+            if ref:
+                topology_ref = ref.group(1)
+            continue
+        if not in_modules:
+            continue
+        header = _MODULE_HEADER.match(code)
+        if header:
+            if current is not None:
+                modules[current] = DependencyModule(
+                    name=current, repo=fields.get("repo", ""), role=fields.get("role", "")
+                )
+            current = header.group(1)
+            fields = {}
+            continue
+        field = _MODULE_FIELD.match(code)
+        if field and current is not None:
+            fields[field.group(1)] = field.group(2)
+    if current is not None and current not in modules:
+        modules[current] = DependencyModule(
+            name=current, repo=fields.get("repo", ""), role=fields.get("role", "")
+        )
+    return topology_ref, modules
 
 
 def _plane_label(plane: Any) -> str:
