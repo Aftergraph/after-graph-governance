@@ -1,7 +1,7 @@
 # Aftergraph Platform Reconciliation V1
 
-**Date:** 2026-09-07  
-**Scope:** complete installed `Aftergraph/*` organization (19 repositories)  
+**Date:** 2026-09-07 (historical cut)  
+**Scope:** complete installed `Aftergraph/*` organization — 24 repositories per current `docs/platform-topology/2.0.json` (19 repositories at the original 2026-09-07 cut)  
 **Purpose:** convert repository growth into one governed polyrepo platform without collapsing independent evidence/authority boundaries.
 
 ## Target outcome
@@ -35,34 +35,39 @@ Human/public surfaces sit above that path (`studio`, specialist Work Intelligenc
 | Enforcement | `trust-gateway` | runtime admission, approvals and audit |
 | Execution | `works-execution` | durable work, workers, recovery and quittance |
 | Experience | `studio` | primary general-purpose human experience |
-| Experience | `work-intelligence-web` | specialist Work Intelligence experience/BFF |
-| Work Intelligence | `work-intelligence-v2` | observations → WorkItems |
+| Runtime | `runtime` | active canonical runtime owner: agent lifecycle, orchestration, dispatch |
+| Experience | `wi-frontend` | specialist Work Intelligence experience/BFF |
+| Work Intelligence | `wi-backend` | observations → WorkItems |
 | Continuity | `context-continuity` | portable actionable state transfer |
-| Assurance | `continuum` | continuity/containment fault-injection verification |
+| Assurance | `continuum` | continuity/containment fault-injection assurance; not ordinary continuity owner |
+| Assurance | `sentinel` | exact-subject verification verdicts |
+| Temporary assurance | `sentinel-firetest` | throwaway live-fire fixture |
 | Research/Assurance | `intelligence-systems-research` | SPEC-001, MISSION-Bench, scientific claims/evidence |
 | Capabilities | `skills-vault` | governed skill supply chain |
 | Models | `llm-research-development` | reusable model R&D methodology |
 | Models | `afm` | AFM-specific model program |
 | Models | `model-registry` | immutable model lifecycle registry |
-| Products | `autonomous-venture-company` | venture OS/reference platform consumer |
+| Operations | `aftergraph-cron-fabric` | read-only scheduled observation; no execution authority |
+| Incubation | `veranza` | internal hold; no public/production maturity implied |
+| Legacy transition | `autonomous-venture-company` | legacy-migration-source pending governed extraction |
 | Knowledge | `docs` | provenance-pinned Knowledge Plane |
 | Public | `aftergraph.org` | public front door and launcher |
 | Foundation | `brand` | visual identity/design system |
 | Foundation | `.github` | organization/community defaults |
 
-Machine-readable source: `docs/platform-topology/1.0.json`.
+Machine-readable source: `docs/platform-topology/2.0.json` (`docs/platform-topology/1.0.json` retained for historical provenance).
 
 ## Execution ledger
 
 ### P0 — platform truth and boundaries
 
-- [x] Define a 19-repository machine-readable topology contract.
+- [x] Define a 19-repository machine-readable topology contract (historical 2026-09-07 cut; superseded by the 24-repository `docs/platform-topology/2.0.json`).
 - [x] Expand `org-state/1.0` role vocabulary to the complete platform.
 - [x] Remove the stale Work Intelligence `master`-branch exception from org-state schema documentation.
 - [x] Make `org-state-verify.sh` derive repository scope from topology instead of a hard-coded nine-repo list.
 - [x] Fail closed if GitHub cannot resolve every topology repository.
 - [x] Fail closed if topology canonical branch diverges from GitHub default branch.
-- [x] Expand `dependencies.yml` to all 19 repositories.
+- [x] Expand `dependencies.yml` to all 19 repositories (historical 2026-09-07 scope; current projection covers all 24 topology repositories at `version: 4`).
 - [x] Replace the five-repository framing in the cross-repo contract register with explicit platform boundaries.
 - [ ] Regenerate `latest-org-state.json` through an authenticated shell/CI run after merge; do not hand-edit SHAs.
 
@@ -84,7 +89,7 @@ Machine-readable source: `docs/platform-topology/1.0.json`.
 
 - [ ] Declare Studio the canonical general-purpose human shell while preserving specialist deployments.
 - [ ] Map `Chat`, `Work`, `Space`, `Needs You`, `Evidence`, `Agents`, `Connections` to canonical backend owners.
-- [ ] Keep `work-intelligence-web` as specialist Work Intelligence deployment/BFF, not a competing source of WorkItem truth.
+- [ ] Keep `wi-frontend` as specialist Work Intelligence deployment/BFF, not a competing source of WorkItem truth.
 - [ ] Keep AVC Mission Control as deep venture/operator control where needed, not a second general platform shell.
 
 ### P1 — benchmark and assurance namespaces
@@ -130,4 +135,4 @@ Machine-readable source: `docs/platform-topology/1.0.json`.
 
 ## V1 completion definition
 
-V1 is complete when the merged governance branch contains the 19-repo topology, generator/schema/dependency alignment and public map alignment; a fresh generated 19-repo org-state snapshot is then produced by an authorized runner. Runtime unification tasks above remain separately gated P0/P1 work and must not be described as already complete.
+V1 is complete when the merged governance branch contains the 24-repo topology (`docs/platform-topology/2.0.json`), generator/schema/dependency alignment and public map alignment; a fresh generated 24-repo org-state snapshot is then produced by an authorized runner. The original 19-repo cut is a historical completion record. Runtime unification tasks above remain separately gated P0/P1 work and must not be described as already complete.

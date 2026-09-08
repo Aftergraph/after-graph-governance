@@ -26,6 +26,14 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 TOPOLOGY = REPO_ROOT / "docs" / "platform-topology" / "2.0.json"
 SCHEMA = REPO_ROOT / "docs" / "platform-topology" / "2.0.schema.json"
 DEPENDENCIES = REPO_ROOT / "dependencies.yml"
+V4_DOC = REPO_ROOT / "docs" / "PLATFORM-ARCHITECTURE-V4.md"
+V3_DOC = REPO_ROOT / "docs" / "PLATFORM-ARCHITECTURE-V3.md"
+RECONCILIATION_DOC = REPO_ROOT / "docs" / "PLATFORM-RECONCILIATION-V1.md"
+CROSS_REPO_DOC = REPO_ROOT / "docs" / "cross-repo-contracts.md"
+REGISTRY_DOC = REPO_ROOT / "docs" / "REPOSITORY-REGISTRY-v0.1.md"
+CURRENT_DOCS = (V4_DOC, RECONCILIATION_DOC, CROSS_REPO_DOC, REGISTRY_DOC)
+STALE_CURRENT_NAMES = ("work-intelligence-v2", "work-intelligence-web", "venture-os-consumer")
+HISTORICAL_MARK = re.compile(r"historical|provenance|legacy|superseded|2026-09-07|19-repo", re.IGNORECASE)
 
 PLANES = {
     "intelligence",
@@ -183,6 +191,29 @@ class DependencyProjectionTest(unittest.TestCase):
         self.assertIsNotNone(match)
         assert match is not None
         self.assertEqual(match.group(1), "4")
+
+
+class ActiveDocConsistencyTest(unittest.TestCase):
+    def test_active_docs_reference_topology_v2(self):
+        for path in CURRENT_DOCS:
+            text = path.read_text(encoding="utf-8")
+            self.assertIn("docs/platform-topology/2.0.json", text, path.name)
+
+    def test_active_docs_use_current_repo_identities(self):
+        for path in CURRENT_DOCS:
+            text = path.read_text(encoding="utf-8")
+            for name in ("wi-backend", "wi-frontend", "runtime"):
+                self.assertIn(name, text, f"{path.name} misses {name}")
+
+    def test_active_docs_do_not_present_stale_ownership_as_current(self):
+        for path in CURRENT_DOCS:
+            for lineno, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+                if any(stale in line for stale in STALE_CURRENT_NAMES):
+                    self.assertRegex(line, HISTORICAL_MARK, f"{path.name}:{lineno}")
+
+    def test_v3_marked_superseded_not_deleted(self):
+        lines = V3_DOC.read_text(encoding="utf-8").splitlines()[:12]
+        self.assertIn("Status: Superseded by PLATFORM-ARCHITECTURE-V4.md", "\n".join(lines))
 
 
 def topology_index(doc: dict) -> dict:

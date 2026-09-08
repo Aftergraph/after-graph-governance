@@ -3,7 +3,7 @@
 > Normative contract ownership and consumption map for the Aftergraph platform.
 > The original five-repository execution core remains important, but it is no
 > longer the complete organization topology. Repository scope/roles are defined
-> by `docs/platform-topology/1.0.json`; exact remote state is generated into
+> by `docs/platform-topology/2.0.json`; exact remote state is generated into
 > `latest-org-state.json`.
 
 ## Normative contract register
@@ -72,16 +72,21 @@ verification. See `docs/PLATFORM-FABRICS-v0.1.md`.
 | `trust-gateway` | runtime-enforcement | Runtime admission/enforcement/audit; does not become durable execution truth. |
 | `works-execution` | durable-execution | Durable work state, workers, recovery and execution evidence. |
 | `studio` | primary-experience | General-purpose human Chat/Work/Space/control experience. |
-| `work-intelligence-v2` | work-inference | Observation → WorkItem; a WorkItem is not a WORKS Work. |
-| `work-intelligence-web` | work-intelligence-experience | Specialist UI/BFF projection of Work Intelligence state. |
+| `runtime` | agent-runtime | Active canonical runtime owner: agent lifecycle, orchestration, dispatch, checkpoints, metering. Never durable execution or enforcement. |
+| `wi-backend` | work-inference | Observation → WorkItem; a WorkItem is not a WORKS Work. |
+| `wi-frontend` | work-intelligence-experience | Specialist UI/BFF projection of Work Intelligence state. |
 | `context-continuity` | continuity-contract | Portable actionable state transfer; carries authority context but never grants authority. |
-| `continuum` | continuity-containment-verification | Fault-injection campaigns for continuity/containment; does not redefine ISR claims. |
+| `continuum` | continuity-containment-verification | Continuity/containment fault-injection assurance; does not own ordinary continuity and never replaces the independent verifier. |
+| `sentinel` | verified-code-review | Exact-subject verification verdicts with stale invalidation; never executes the work it verifies. |
+| `sentinel-firetest` | temporary-verification-fixture | Throwaway live-fire fixture; temporary membership grants no permanent responsibility. |
 | `intelligence-systems-research` | research-assurance | Scientific claims, SPEC-001, MISSION-Bench, assurance and publication evidence. |
 | `skills-vault` | capability-supply-chain | Skill trust/lifecycle/provenance/discovery/distribution. |
 | `llm-research-development` | model-rnd-methodology | Reusable model experiment/eval/promotion methodology. |
 | `afm` | model-program | AFM-specific training/data/evals/artifact manifests. |
 | `model-registry` | model-lifecycle-registry | Immutable promoted model metadata and aliases. |
-| `autonomous-venture-company` | venture-os-consumer | Venture OS/reference consumer; not a second canonical platform kernel. |
+| `aftergraph-cron-fabric` | scheduled-observation-fabric | Read-only scheduled observation; grants no execution authority. |
+| `veranza` | assurance-incubation | Internal incubation hold; membership implies no public/production maturity. |
+| `autonomous-venture-company` | legacy-migration-source | Legacy migration source pending governed extraction; owns no new canonical platform responsibility. |
 | `docs` | knowledge-plane | Renders/discovers repo-owned truth with provenance; owns no upstream claim. |
 | `aftergraph.org` | public-front-door | Public site/launcher; visibility never upgrades evidence. |
 | `brand` | brand-design-system | Visual identity/tokens/assets, not runtime semantics. |
@@ -136,7 +141,7 @@ execution authority by itself.
 
 See `docs/PLATFORM-BOUNDARY-CHARTER-v0.1.md` for the original charter and
 `docs/superpowers/specs/2026-09-07-aftergraph-platform-reconciliation-v1-design.md`
-for the 19-repository reconciliation target.
+for the historical 19-repository reconciliation target (2026-09-07 provenance; current scope is the 24-repository `docs/platform-topology/2.0.json`).
 
 The core principle remains:
 
