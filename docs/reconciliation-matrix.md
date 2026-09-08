@@ -6,9 +6,13 @@
 | Verified: 2026-09-04 against post-merge state
 
 |
-## Conformance Scoreboard (2026-09-05)
+## Conformance Scoreboard (2026-09-08)
 
-All 15 reconciliation-matrix items now have schema-level conformance validation.
+The first 15 reconciliation-matrix items retain their existing schema-level
+conformance. Row 16 now has an explicit architectural disposition: TG and WORKS
+keep their native envelopes and a separate, correlation-only projection is used
+at the platform seam. Runtime adoption of that projection is not yet complete,
+so the row remains partial rather than being inflated to green.
 
 | # | Concept | Frozen Schema | Conformance Tests | Status |
 |---|---------|--------------|-------------------|--------|
@@ -27,9 +31,9 @@ All 15 reconciliation-matrix items now have schema-level conformance validation.
 | 13 | ComputerSession | (TG native: `computer.js`) | TG tests | ✅ |
 | 14 | Artifact | `shell.contracts.schema.json` | AIE 3/3 | ✅ COMPLETE |
 | 15 | Plugin | (TG native: `plugins.js`) | TG tests | ✅ |
-| 16 | Audit export envelope | TG `audit-export-jsonl` emits `{id, tenant, type, data, ts, hash}` (hash-chain); WORKS `events.schema.json` requires `{source, seq, type, subject, ts, version}` | none — parallel envelopes, unconverged | ⬜ OPEN (Wave 4 finding 2026-09-07: converge or declare separate; owner decision) |
+| 16 | Audit/event envelope seam | TG native audit hash-chain and WORKS native execution events remain distinct; experimental `platform-event-ref/0.1` correlates them without replacement | Phase-0 machine vectors in `scripts/test_platform_fabrics_v0_1.py`; TG/WORKS adapters pending | 🟡 PARTIAL |
 
-**Total: 15/16 items conformant (row 16 opened 2026-09-07, owner decision pending). AIE conformance suite: 257/257 tests.**
+**Total: 15/16 complete; row 16 has a decided composition contract but remains PARTIAL until both native adapters and composed exact-head evidence exist. AIE conformance counts above are retained from the prior verified snapshot and are not refreshed by this change.**
 
 ---
 
@@ -40,6 +44,7 @@ All 15 reconciliation-matrix items now have schema-level conformance validation.
 | Agent Workforce | User/developer-facing product layer | trust-gateway (bots/agents) |
 | AIE | Normative authority/institution layer | aie |
 | Trust Gateway | Runtime control/enforcement plane | trust-gateway |
+| Runtime | Agent lifecycle, harness/tool invocation and orchestration | runtime |
 | WORKS | Durable execution plane | works-execution |
 | ISR | Labs/Evals/Assurance | intelligence-systems-research |
 
@@ -62,6 +67,7 @@ All 15 reconciliation-matrix items now have schema-level conformance validation.
 | 13 | ComputerSession | TG (Program) | TG: ComputerStore (`computer.js`); WE: session mgmt; ISR: agent sessions | — | — | Yes — unify sessions | session.protocol/1.0 |
 | 14 | Artifact | WE (Program) | WE: `artifacts/` (bundle, quittance); ISR: build_submission_packages; AIE: spec artifacts | — | WE fs + AIE spec duplicate | Yes — unify representation | artifact.storage/1.0 |
 | 15 | Plugin | TG (Program) | TG: PluginHub (`plugins.js`) — mature | WE/ISR pending | — | Yes — ISR/WE integration | plugin.abi/1.0 |
+| 16 | Audit/event seam | TG: native hash-chain audit; WORKS: native execution event schema | `platform-event-ref/0.1` correlation projection | Treating either native envelope as the universal platform event would silently erase domain semantics | Yes — implement adapters, do not merge ledgers | platform-event-ref/0.1 (experimental) |
 
 ## Executability Rule
 
