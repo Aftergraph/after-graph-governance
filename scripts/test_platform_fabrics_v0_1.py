@@ -130,6 +130,19 @@ def valid_id(field: str, value: Any) -> bool:
     return isinstance(value, str) and pattern.fullmatch(value) is not None
 
 
+def authority_requirement_covered(grant: str, requirement: str) -> bool:
+    if grant == "*" or grant == requirement:
+        return True
+    if not grant.endswith(":*"):
+        return False
+    prefix = grant[:-2]
+    return requirement.startswith(f"{prefix}:")
+
+
+def authority_envelope_covers(parent: set[str], required: list[str]) -> bool:
+    return all(any(authority_requirement_covered(grant, item) for grant in parent) for item in required)
+
+
 def validate_event_ref(document: Any) -> list[str]:
     errors: list[str] = []
     if not isinstance(document, dict):
@@ -261,7 +274,7 @@ def validate_capability_action(document: Any) -> list[str]:
                 errors.append(f"{prefix}.required_authority must be an array")
             elif any(not nonempty_string(item, maximum=160) for item in implementation_authority):
                 errors.append(f"{prefix}.required_authority contains invalid values")
-            elif not set(implementation_authority).issubset(parent_set):
+            elif not authority_envelope_covers(parent_set, implementation_authority):
                 errors.append(f"{prefix} widens semantic authority")
 
     selection_policy = document.get("selection_policy")
