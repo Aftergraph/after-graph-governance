@@ -16,9 +16,11 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from platform_topology import (
+    extract_marked_block,
     load_topology,
     parse_dependency_projection,
     render_readme_table,
+    replace_marked_block,
     validate_topology,
 )
 
@@ -26,6 +28,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 TOPOLOGY = REPO_ROOT / "docs" / "platform-topology" / "2.0.json"
 SCHEMA = REPO_ROOT / "docs" / "platform-topology" / "2.0.schema.json"
 DEPENDENCIES = REPO_ROOT / "dependencies.yml"
+README = REPO_ROOT / "README.md"
 V4_DOC = REPO_ROOT / "docs" / "PLATFORM-ARCHITECTURE-V4.md"
 V3_DOC = REPO_ROOT / "docs" / "PLATFORM-ARCHITECTURE-V3.md"
 RECONCILIATION_DOC = REPO_ROOT / "docs" / "PLATFORM-RECONCILIATION-V1.md"
@@ -214,6 +217,18 @@ class ActiveDocConsistencyTest(unittest.TestCase):
     def test_v3_marked_superseded_not_deleted(self):
         lines = V3_DOC.read_text(encoding="utf-8").splitlines()[:12]
         self.assertIn("Status: Superseded by PLATFORM-ARCHITECTURE-V4.md", "\n".join(lines))
+
+
+class ReadmeProjectionTest(unittest.TestCase):
+    def test_readme_topology_block_matches_generated_projection(self):
+        readme = README.read_text(encoding="utf-8")
+        self.assertEqual(extract_marked_block(readme).strip(), render_readme_table(load_topology(TOPOLOGY)).strip())
+
+    def test_replace_marked_block_round_trip(self):
+        doc = load_topology(TOPOLOGY)
+        readme = README.read_text(encoding="utf-8")
+        updated = replace_marked_block(readme, render_readme_table(doc))
+        self.assertEqual(extract_marked_block(updated).strip(), render_readme_table(doc).strip())
 
 
 def topology_index(doc: dict) -> dict:

@@ -4,6 +4,8 @@
 CLI:
     python scripts/platform_topology.py check
     python scripts/platform_topology.py render-readme
+    python scripts/platform_topology.py check-readme
+    python scripts/platform_topology.py write-readme
 
 Only the standard library is used; do not add PyYAML or jsonschema as
 required runtime dependencies.
@@ -46,6 +48,10 @@ README_COLUMNS = (
     "Lifecycle",
     "Canonical responsibility",
 )
+
+README_PATH = REPO_ROOT / "README.md"
+README_START = "<!-- platform-topology-v2:start -->"
+README_END = "<!-- platform-topology-v2:end -->"
 
 
 def load_topology(path: Path) -> dict[str, Any]:
@@ -196,6 +202,24 @@ def render_readme_table(doc: Mapping[str, Any]) -> str:
     return "\n".join(lines) + "\n"
 
 
+def extract_marked_block(document: str) -> str:
+    try:
+        start = document.index(README_START)
+        end = document.index(README_END)
+    except ValueError:
+        raise ValueError("README topology markers not found")
+    if end < start:
+        raise ValueError("README topology markers out of order")
+    return document[start + len(README_START) : end]
+
+
+def replace_marked_block(document: str, rendered: str) -> str:
+    extract_marked_block(document)
+    before, _, after = document.partition(README_START)
+    _, _, tail = after.partition(README_END)
+    return before + README_START + "\n" + rendered.strip() + "\n" + README_END + tail
+
+
 def main(argv: list[str]) -> int:
     command = argv[1] if len(argv) > 1 else "check"
     if command == "check":
@@ -209,7 +233,26 @@ def main(argv: list[str]) -> int:
     if command == "render-readme":
         print(render_readme_table(load_topology(DEFAULT_TOPOLOGY)), end="")
         return 0
-    print(f"unknown command: {command} (expected check|render-readme)", file=sys.stderr)
+    if command == "check-readme":
+        try:
+            readme = README_PATH.read_text(encoding="utf-8")
+            current = extract_marked_block(readme).strip()
+        except (OSError, ValueError) as exc:
+            print(f"README-FAIL: {exc}", file=sys.stderr)
+            return 1
+        expected = render_readme_table(load_topology(DEFAULT_TOPOLOGY)).strip()
+        if current != expected:
+            print("README-FAIL: topology block drifts from docs/platform-topology/2.0.json", file=sys.stderr)
+            return 1
+        print("readme-ok: topology block matches docs/platform-topology/2.0.json")
+        return 0
+    if command == "write-readme":
+        readme = README_PATH.read_text(encoding="utf-8")
+        rendered = render_readme_table(load_topology(DEFAULT_TOPOLOGY))
+        README_PATH.write_text(replace_marked_block(readme, rendered), encoding="utf-8")
+        print("readme-written: topology block regenerated from docs/platform-topology/2.0.json")
+        return 0
+    print(f"unknown command: {command} (expected check|render-readme|check-readme|write-readme)", file=sys.stderr)
     return 2
 
 
