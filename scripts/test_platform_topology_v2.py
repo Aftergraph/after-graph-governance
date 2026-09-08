@@ -16,6 +16,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from platform_topology import (
+    PLANE_VALUES,
+    REQUIRED_REPO_FIELDS,
     extract_marked_block,
     load_topology,
     parse_dependency_projection,
@@ -197,6 +199,28 @@ class TopologyValidatorTest(unittest.TestCase):
         table = render_readme_table(doc)
         row = [line for line in table.splitlines() if "`after-graph-governance`" in line][0]
         self.assertIn("A \\| B<br/>C", row)
+
+    def test_legacy_compatibility_role_is_rejected(self):
+        doc = valid_topology()
+        doc["repositories"][0]["role"] = "research"
+        self.assertTrue(any("legacy" in e for e in validate_topology(doc)))
+
+    def test_numeric_evidence_cut_is_rejected(self):
+        doc = valid_topology()
+        doc["evidence_cut"] = 20260908
+        self.assertTrue(any("evidence_cut" in e for e in validate_topology(doc)))
+
+
+class TopologySchemaAgreementTest(unittest.TestCase):
+    def test_data_agrees_with_published_schema(self):
+        schema = load_json(SCHEMA)
+        record = schema["$defs"]["repository"]
+        self.assertEqual(set(record["required"]), set(REQUIRED_REPO_FIELDS))
+        self.assertFalse(record["additionalProperties"])
+        self.assertEqual({p for p in record["properties"]["architecture_plane"]["enum"] if p is not None}, set(PLANE_VALUES))
+        doc = load_json(TOPOLOGY)
+        for repo in doc["repositories"]:
+            self.assertEqual(set(repo), set(record["required"]))
 
 
 class DependencyProjectionTest(unittest.TestCase):

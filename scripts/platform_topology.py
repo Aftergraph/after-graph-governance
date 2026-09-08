@@ -39,6 +39,11 @@ FORBIDDEN_ACTIVE_NAME_PARTS = ("@avc/", "avc-")
 VISIBILITY_VALUES = {"public", "private"}
 STRING_REPO_FIELDS = ("name", "role", "system_class", "lifecycle", "owns", "must_not_own")
 LEGACY_REPOSITORY = "autonomous-venture-company"
+# Mirrors the legacy_roles exclusion in scripts/org-state-verify.sh: these
+# compatibility values stay readable in old snapshots but must never appear
+# in current topology, or generation fails late.
+LEGACY_ORG_STATE_ROLES = {"research", "detection", "product-web", "skills-library", "agent-workforce"}
+OPTIONAL_STRING_ENVELOPE_FIELDS = ("evidence_cut", "description")
 SHA_LIKE_KEYS = {"head_sha", "remote_head_sha", "remote_sha", "sha", "commit_sha"}
 SHA_LIKE_VALUE = re.compile(r"\b[0-9a-f]{40}\b")
 
@@ -82,6 +87,9 @@ def validate_topology(doc: Mapping[str, Any]) -> list[str]:
     repos = doc.get("repositories")
     if not isinstance(repos, list) or not repos:
         return errors + ["topology document must list repositories"]
+    for field in OPTIONAL_STRING_ENVELOPE_FIELDS:
+        if field in doc and not isinstance(doc[field], str):
+            errors.append(f"topology {field} must be a string: {doc[field]!r}")
     seen: set[str] = set()
     for entry in repos:
         if not isinstance(entry, Mapping):
@@ -105,6 +113,11 @@ def validate_topology(doc: Mapping[str, Any]) -> list[str]:
             value = entry.get(field)
             if not isinstance(value, str) or not value.strip():
                 errors.append(f"repository {name} has invalid {field}: {value!r}")
+        if entry.get("role") in LEGACY_ORG_STATE_ROLES:
+            errors.append(
+                f"repository {name} uses a legacy org-state role: {entry.get('role')!r} "
+                "(org-state-verify.sh rejects it; use a current topology role)"
+            )
         if entry.get("canonical_branch") != "main":
             errors.append(f"repository {name} has non-main canonical branch: {entry.get('canonical_branch')!r}")
         for key, value in entry.items():
