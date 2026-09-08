@@ -5,14 +5,14 @@
 #   scripts/org-state-verify.sh --check-local PATH1 PATH2 ...   # also verify local clones against remote heads
 #
 # TRUTH: GitHub remote API only. No manually typed SHA claims — ever.
-# SCOPE: docs/platform-topology/1.0.json (slow-changing ownership/topology metadata).
+# SCOPE: docs/platform-topology/2.0.json (slow-changing ownership/topology metadata).
 # Requires: gh authenticated (org read access for private repos), jq.
 # Exit code: 0 = generated & validated; 1 = API/schema/topology failure; 2 = local clone divergence.
 set -euo pipefail
 
 ORG="Aftergraph"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-TOPOLOGY="$SCRIPT_DIR/../docs/platform-topology/1.0.json"
+TOPOLOGY="$SCRIPT_DIR/../docs/platform-topology/2.0.json"
 SCHEMA="$SCRIPT_DIR/../docs/contracts/org-state/1.0.json"
 OUT="${1:-$SCRIPT_DIR/../latest-org-state.json}"
 CHECK_LOCAL=0
@@ -34,8 +34,11 @@ if [ ! -f "$SCHEMA" ]; then
   exit 1
 fi
 
-if ! jq -e '.schema_version == "platform-topology/1.0" and .organization == "Aftergraph" and (.repositories | type == "array") and (.repositories | length > 0)' "$TOPOLOGY" >/dev/null; then
-  echo "TOPOLOGY-FAIL: invalid platform-topology/1.0 envelope" >&2
+if ! jq -e '.schema_version == "platform-topology/2.0"
+       and .organization == "Aftergraph"
+       and (.repositories | type == "array")
+       and (.repositories | length > 0)' "$TOPOLOGY" >/dev/null; then
+  echo "TOPOLOGY-FAIL: invalid platform-topology/2.0 envelope" >&2
   exit 1
 fi
 
