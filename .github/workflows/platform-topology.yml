@@ -1,6 +1,7 @@
 name: Platform Topology Truth
 
 on:
+  merge_group:
   pull_request:
     paths:
       - 'docs/platform-topology/**'
@@ -8,6 +9,7 @@ on:
       - 'docs/PLATFORM-RECONCILIATION-V1.md'
       - 'docs/cross-repo-contracts.md'
       - 'docs/REPOSITORY-REGISTRY-v0.1.md'
+      - 'docs/contracts/org-state/1.0.json'
       - 'dependencies.yml'
       - 'README.md'
       - 'scripts/platform_topology.py'
@@ -20,6 +22,7 @@ on:
     paths:
       - 'docs/platform-topology/**'
       - 'docs/PLATFORM-ARCHITECTURE-V*.md'
+      - 'docs/contracts/org-state/1.0.json'
       - 'dependencies.yml'
       - 'README.md'
       - 'scripts/platform_topology.py'
