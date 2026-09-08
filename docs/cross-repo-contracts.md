@@ -48,23 +48,28 @@ repository.
 
 ## Platform repository boundaries
 
+The current canonical topology contains 21 repositories. Ephemeral proof/test
+repositories such as `sentinel-firetest` are deliberately outside this table.
+
 | Repository | Role | Boundary |
 |---|---|---|
 | `after-graph-governance` | canonical-contracts | Topology, cross-repo boundaries, contract registration, exact-head generation mechanics. |
 | `aie` | normative-authority | Institution/authority semantics; does not execute work. |
 | `trust-gateway` | runtime-enforcement | Runtime admission/enforcement/audit; does not become durable execution truth. |
-| `works-execution` | durable-execution | Durable work state, workers, recovery and execution evidence. |
+| `runtime` | agent-runtime | Agent lifecycle, orchestration, dispatch, checkpoints, metering, observability and model-edge integration; does not own WORKS durable state or TG authority enforcement. |
+| `works-execution` | durable-execution | Durable work state, workers, leases, recovery and execution evidence. |
 | `studio` | primary-experience | General-purpose human Chat/Work/Space/control experience. |
-| `work-intelligence-v2` | work-inference | Observation → WorkItem; a WorkItem is not a WORKS Work. |
-| `work-intelligence-web` | work-intelligence-experience | Specialist UI/BFF projection of Work Intelligence state. |
+| `wi-backend` | work-inference | Wie source-neutral observation → canonical WorkItem; a WorkItem is not a WORKS Work. |
+| `wi-frontend` | work-intelligence-experience | Wie specialist UI/BFF projection of canonical `wi-backend` state. |
 | `context-continuity` | continuity-contract | Portable actionable state transfer; carries authority context but never grants authority. |
-| `continuum` | continuity-containment-verification | Fault-injection campaigns for continuity/containment; does not redefine ISR claims. |
+| `continuum` | continuity-containment-verification | Fault-injection campaigns for continuity/containment; does not redefine ISR claims or own context transfer. |
+| `sentinel` | verified-code-review | Exact-HEAD software review/verdict evidence; software-domain verifier, not universal platform verification authority. |
 | `intelligence-systems-research` | research-assurance | Scientific claims, SPEC-001, MISSION-Bench, assurance and publication evidence. |
 | `skills-vault` | capability-supply-chain | Skill trust/lifecycle/provenance/discovery/distribution. |
 | `llm-research-development` | model-rnd-methodology | Reusable model experiment/eval/promotion methodology. |
 | `afm` | model-program | AFM-specific training/data/evals/artifact manifests. |
 | `model-registry` | model-lifecycle-registry | Immutable promoted model metadata and aliases. |
-| `autonomous-venture-company` | venture-os-consumer | Venture OS/reference consumer; not a second canonical platform kernel. |
+| `autonomous-venture-company` | migration-source | Legacy migration source while canonical responsibilities move into Aftergraph repositories; receives no new canonical responsibility. |
 | `docs` | knowledge-plane | Renders/discovers repo-owned truth with provenance; owns no upstream claim. |
 | `aftergraph.org` | public-front-door | Public site/launcher; visibility never upgrades evidence. |
 | `brand` | brand-design-system | Visual identity/tokens/assets, not runtime semantics. |
@@ -104,6 +109,8 @@ For consequential execution, the governing model remains:
 Executable = Intersection(AIE authority/policy, TG runtime admission, WORKS durable execution)
 ```
 
+Runtime orchestrates agents inside that boundary; it does not expand it.
+
 No UI, plugin, model, skill, research result or repository membership grants
 execution authority by itself.
 
@@ -113,13 +120,15 @@ execution authority by itself.
 - AIE conformance does not establish scientific validity;
 - research evidence does not grant runtime authority;
 - public visibility does not upgrade maturity;
-- generated exact-head state does not imply functional conformance.
+- generated exact-head state does not imply functional conformance;
+- canonical topology membership does not imply APC conformance.
 
 ## Boundary charter
 
 See `docs/PLATFORM-BOUNDARY-CHARTER-v0.1.md` for the original charter and
-`docs/superpowers/specs/2026-09-07-aftergraph-platform-reconciliation-v1-design.md`
-for the 19-repository reconciliation target.
+`docs/PLATFORM-ARCHITECTURE-V3.md` for the current plane-level ownership model.
+Historical reconciliation specs remain provenance for earlier evidence cuts,
+not current repository-count authority.
 
 The core principle remains:
 

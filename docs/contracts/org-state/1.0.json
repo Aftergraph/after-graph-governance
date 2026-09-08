@@ -53,20 +53,21 @@
             "model-rnd-methodology",
             "model-program",
             "model-lifecycle-registry",
-            "venture-os-consumer",
+            "migration-source",
             "knowledge-plane",
             "public-front-door",
             "brand-design-system",
             "organization-community",
             "verified-code-review",
             "agent-runtime",
+            "venture-os-consumer",
             "research",
             "detection",
             "product-web",
             "skills-library",
             "agent-workforce"
           ],
-          "description": "Current repository roles are defined by docs/platform-topology/1.0.json. The final five enum values are legacy org-state/1.0 compatibility values for already-generated snapshots and MUST NOT be emitted by the current topology-driven generator."
+          "description": "Current repository roles are defined by docs/platform-topology/1.0.json. The final six enum values are legacy org-state/1.0 compatibility values for already-generated snapshots and MUST NOT be emitted by the current topology-driven generator."
         },
         "canonical_branch": {
           "type": "string",

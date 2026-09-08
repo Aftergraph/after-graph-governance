@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "schema_version": "platform-topology/1.0",
   "organization": "Aftergraph",
-  "evidence_cut": "2026-09-07",
+  "evidence_cut": "2026-09-08",
   "description": "Human-governed repository topology for the Aftergraph polyrepo platform. This file defines scope and ownership classes, not exact Git state. Exact heads are generated from GitHub by scripts/org-state-verify.sh.",
   "repositories": [
     {
@@ -46,20 +46,20 @@
       "owns": "General-purpose human operating environment for Chat, Work, Space, control and evidence surfaces."
     },
     {
-      "name": "work-intelligence-v2",
+      "name": "wi-backend",
       "canonical_branch": "main",
       "visibility": "public",
       "plane": "work-intelligence",
       "role": "work-inference",
-      "owns": "Source-neutral observation to canonical WorkItem inference, review and promotion boundaries."
+      "owns": "Source-neutral observation to canonical WorkItem inference, review and promotion boundaries for Wie by Aftergraph."
     },
     {
-      "name": "work-intelligence-web",
+      "name": "wi-frontend",
       "canonical_branch": "main",
       "visibility": "private",
       "plane": "experience",
       "role": "work-intelligence-experience",
-      "owns": "Specialist browser experience and least-privilege BFF for Work Intelligence."
+      "owns": "Wie by Aftergraph specialist browser experience and least-privilege BFF over canonical wi-backend state."
     },
     {
       "name": "context-continuity",
@@ -121,9 +121,9 @@
       "name": "autonomous-venture-company",
       "canonical_branch": "main",
       "visibility": "private",
-      "plane": "products",
-      "role": "venture-os-consumer",
-      "owns": "AI-native venture operating system, Hermes integration and Product Cells consuming governed platform capabilities."
+      "plane": "migration",
+      "role": "migration-source",
+      "owns": "Legacy AVC migration source while canonical responsibilities move into Aftergraph platform repositories; no new canonical responsibilities."
     },
     {
       "name": "docs",
@@ -163,15 +163,15 @@
       "visibility": "public",
       "plane": "assurance",
       "role": "verified-code-review",
-      "owns": "Exact-HEAD verified code-review verdicts with stale-base invalidation and cited evidence."
+      "owns": "Exact-HEAD verified software review verdicts with stale-base invalidation and cited evidence."
     },
     {
       "name": "runtime",
       "canonical_branch": "main",
-      "visibility": "public",
-      "plane": "execution",
+      "visibility": "private",
+      "plane": "runtime",
       "role": "agent-runtime",
-      "owns": "Agent lifecycle, orchestration, dispatch, checkpoints, metering, observability. Durable execution stays in WORKS; enforcement stays in Trust Gateway."
+      "owns": "Agent lifecycle, orchestration, dispatch, checkpoints, metering, observability and model-edge integration. Durable execution stays in WORKS; enforcement stays in Trust Gateway."
     }
   ]
 }
