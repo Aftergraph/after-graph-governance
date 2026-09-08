@@ -532,7 +532,7 @@ Composes Runtime, AIE, Trust Gateway, WORKS and independent verification.
 
 Runtime owns team topology, worker lifecycle, relay/peer operation, routing and recovery. AIE owns delegated authority. Trust Gateway owns admission. WORKS owns durable work/leases/effects. Verification remains independent.
 
-Production defaults to manager-worker organization. Peer communication is bounded and protocol-governed. Recursive delegation cannot multiply authority or budget. Child envelopes are equal-or-narrower than the parent envelope, and the parent's remaining budget is atomically partitioned or reserved across all child envelopes so siblings cannot collectively spend more than the parent holds.
+Production defaults to manager-worker organization. Peer communication is bounded and protocol-governed. Recursive delegation cannot multiply authority or budget. Child envelopes are equal-or-narrower than the parent envelope, and the parent's remaining budget is atomically partitioned or reserved (e.g. via leases) across all child envelopes so siblings cannot collectively spend more than the parent holds.
 
 No worker may grant itself authority, administer peer authority or self-declare verified completion.
 
