@@ -9,8 +9,13 @@ org-state truth owns them).
 import copy
 import json
 import re
+import sys
 import unittest
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from platform_topology import render_readme_table, validate_topology
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 TOPOLOGY = REPO_ROOT / "docs" / "platform-topology" / "2.0.json"
@@ -125,6 +130,34 @@ class TopologyV2ShapeTest(unittest.TestCase):
         plane_prop = record["properties"]["architecture_plane"]
         self.assertEqual(set(plane_prop["enum"]), PLANES | {None})
         self.assertIn("null", plane_prop["type"])
+
+
+class TopologyValidatorTest(unittest.TestCase):
+    def test_duplicate_repository_is_rejected(self):
+        doc = valid_topology()
+        doc["repositories"].append(dict(doc["repositories"][0]))
+        self.assertIn("duplicate repository name", "\n".join(validate_topology(doc)))
+
+    def test_non_plane_system_class_remains_allowed(self):
+        doc = valid_topology()
+        doc["repositories"][0]["architecture_plane"] = None
+        doc["repositories"][0]["system_class"] = "governance"
+        self.assertEqual(validate_topology(doc), [])
+
+    def test_readme_render_is_deterministic(self):
+        doc = load_json(TOPOLOGY)
+        self.assertEqual(render_readme_table(doc), render_readme_table(doc))
+
+    def test_unknown_architecture_plane_is_rejected(self):
+        doc = valid_topology()
+        doc["repositories"][0]["architecture_plane"] = "mega-brain"
+        self.assertTrue(any("plane" in e for e in validate_topology(doc)))
+
+    def test_legacy_avc_name_requires_transition_classification(self):
+        doc = valid_topology()
+        repo = topology_index(doc)["autonomous-venture-company"]
+        repo["system_class"] = "products"
+        self.assertTrue(validate_topology(doc))
 
 
 def topology_index(doc: dict) -> dict:
