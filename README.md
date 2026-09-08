@@ -52,12 +52,17 @@ Cross-cutting governance lives here. The topology contract contains **24 reposit
 
 ## Canonical topology
 
-`docs/platform-topology/1.0.json` is the slow-changing machine-readable topology contract: repository name, role, plane, canonical branch and visibility. It contains **no exact Git SHAs**.
+`docs/platform-topology/2.0.json` is the slow-changing machine-readable topology contract: repository name, role, architecture plane, system class, canonical branch and visibility. It contains **no exact Git SHAs**. (`docs/platform-topology/1.0.json` is retained for historical provenance.)
 
 `latest-org-state.json` is the fast-changing generated GitHub truth snapshot: exact remote HEAD, branch, protection, open PRs and contract annotations.
 
 ```text
-platform-topology/1.0
+platform-topology/2.0 = slow-changing repository/ownership truth
+org-state/1.0         = fast-changing exact-head GitHub truth
+```
+
+```text
+platform-topology/2.0
         ↓ defines scope + roles
 scripts/org-state-verify.sh
         ↓ queries GitHub remote truth
@@ -68,32 +73,36 @@ This separation prevents repository scope from being hard-coded into the generat
 
 ## Core ownership boundaries
 
-| Plane | Repository | Canonical responsibility |
-|---|---|---|
-| Governance | `after-graph-governance` | topology, cross-repo contracts, boundaries, exact-head generation |
-| Institution | `aie` | authority, delegation, lifecycle, budget/revocation semantics |
-| Enforcement | `trust-gateway` | runtime admission, approvals, policy enforcement and action audit |
-| Runtime | `runtime` | agent lifecycle, orchestration, dispatch, checkpoints, metering and observability |
-| Execution | `works-execution` | durable work, scheduling, workers, recovery, evidence/quittance |
-| Experience | `studio` | general-purpose Chat / Work / Space human environment |
-| Work Intelligence | `wi-backend` | source-neutral observations → canonical WorkItems |
-| Specialist experience | `wi-frontend` | Wie browser experience and least-privilege BFF; canonical state remains backend-owned |
-| Continuity | `context-continuity` | portable actionable state transfer across runtime/session boundaries |
-| Assurance | `intelligence-systems-research` | SPEC-001, MISSION-Bench, scientific claims and assurance evidence |
-| Assurance | `continuum` | continuity/containment fault-injection campaigns |
-| Assurance | `sentinel` | exact-HEAD verified code-review verdicts |
-| Capabilities | `skills-vault` | governed skill discovery, lifecycle, trust and provenance |
-| Models | `llm-research-development` | reusable model R&D/evaluation/promotion methodology |
-| Models | `afm` | AFM-specific model program |
-| Models | `model-registry` | immutable promoted model metadata/lifecycle |
-| Legacy product consumer | `autonomous-venture-company` | venture OS/Hermes/Product Cells during responsibility migration |
-| Operations | `aftergraph-cron-fabric` | read-only scheduled observation, evidence gating, dedupe and escalation; no execution authority |
-| Incubation | `veranza` | internal assurance-product concept under clearance hold; no public/production maturity implied |
-| Temporary assurance | `sentinel-firetest` | throwaway Sentinel live-fire fixture; remove when proof purpose ends |
-| Knowledge | `docs` | provenance-pinned rendering/discovery; not upstream truth owner |
-| Public | `aftergraph.org` | website/front door/launcher; visibility does not upgrade evidence |
-| Foundation | `brand` | visual identity, design tokens and master assets |
-| Foundation | `.github` | organization/community/security/support defaults |
+The table below is a generated projection of `docs/platform-topology/2.0.json` — do not edit it by hand. Regenerate with `python scripts/platform_topology.py write-readme`; CI verifies it with `check-readme`.
+
+<!-- platform-topology-v2:start -->
+| Architecture plane | System class | Repository | Role | Lifecycle | Canonical responsibility |
+|---|---|---|---|---|---|
+| Intelligence | work-intelligence | `wi-backend` | work-inference | active | Source-neutral observation to canonical WorkItem inference, review, publication and promotion boundaries. |
+| Authority | institution | `aie` | normative-authority | active | Portable institution, authority, delegation, lifecycle, budget and revocation semantics. |
+| Trust | enforcement | `trust-gateway` | runtime-enforcement | active | Fail-closed runtime admission, policy enforcement, approvals, secrets and action audit. |
+| Runtime | runtime | `runtime` | agent-runtime | active | Agent lifecycle, orchestration, dispatch, checkpoints, metering and observability. |
+| Execution | execution | `works-execution` | durable-execution | active | Durable work state, scheduling, workers, leases, recovery, execution evidence and quittance. |
+| Verification | assurance | `sentinel` | verified-code-review | active | Exact-HEAD verified code-review verdicts with stale-base invalidation and cited evidence. |
+| Experience | experience | `studio` | primary-experience | active | General-purpose human operating environment for Chat, Work, Space, control and evidence surfaces. |
+| Experience | specialist-experience | `wi-frontend` | work-intelligence-experience | active | Wie browser experience and least-privilege BFF consuming canonical Work Intelligence state from wi-backend. |
+| Support | foundation | `.github` | organization-community | active | Organization profile, contribution defaults, security/support routing and shared community infrastructure. |
+| Support | models | `afm` | model-program | active | AFM-specific model training, datasets, experiments, evaluations and artifact manifests. |
+| Support | governance | `after-graph-governance` | canonical-contracts | active | Platform topology, cross-repo boundaries, contract registration and generated org-state mechanics. |
+| Support | operations | `aftergraph-cron-fabric` | scheduled-observation-fabric | active | Read-only scheduled organization sensing, evidence gating, dedupe and Telegram escalation. It grants no execution authority. |
+| Support | public | `aftergraph.org` | public-front-door | active | Public website, marketing information architecture and system launcher. |
+| Support | legacy-transition | `autonomous-venture-company` | legacy-migration-source | legacy-transition | Legacy product, Hermes integration and migration-source behavior pending governed extraction. |
+| Support | foundation | `brand` | brand-design-system | active | Visual identity, semantic design tokens, master assets and public communication design rules. |
+| Support | continuity | `context-continuity` | continuity-contract | active | Portable transfer of actionable context/state across model, agent, session and runtime boundaries. |
+| Support | assurance | `continuum` | continuity-containment-verification | active | Continuity and containment fault-injection campaigns and verification harnesses. |
+| Support | knowledge | `docs` | knowledge-plane | active | Provenance-pinned rendering, discovery, developer documentation and agent-readable context surfaces. |
+| Support | research-assurance | `intelligence-systems-research` | research-assurance | active | SPEC-001, MISSION-Bench methodology, scientific claims, experiments, assurance and publication evidence. |
+| Support | models | `llm-research-development` | model-rnd-methodology | active | Reusable model research, experiment, evaluation, promotion and provenance methodology. |
+| Support | models | `model-registry` | model-lifecycle-registry | active | Immutable promoted model identities, versions, aliases, lifecycle, provenance and artifact locations. |
+| Support | assurance-fixture | `sentinel-firetest` | temporary-verification-fixture | temporary | Throwaway live-fire fixture for Sentinel proofs. Topology membership is temporary and grants no permanent platform responsibility. |
+| Support | capabilities | `skills-vault` | capability-supply-chain | active | Governed skill discovery, trust, lifecycle, provenance, compatibility and distribution. |
+| Support | incubation | `veranza` | assurance-incubation | internal-hold | Internal assurance-product incubation concept under naming/clearance hold. Topology membership does not imply public or production maturity. |
+<!-- platform-topology-v2:end -->
 
 ## Governance
 
@@ -130,7 +139,7 @@ bash scripts/org-state-verify.sh --check-local <path...>
 
 The generator:
 
-- loads repository scope and roles from `docs/platform-topology/1.0.json`;
+- loads repository scope and roles from `docs/platform-topology/2.0.json`;
 - rejects duplicate topology entries;
 - rejects canonical-branch drift;
 - queries exact remote HEADs from GitHub;
@@ -162,12 +171,13 @@ No layer automatically upgrades another:
 The current platform-wide reconciliation program and actionable backlog live in:
 
 - [`docs/PLATFORM-RECONCILIATION-V1.md`](docs/PLATFORM-RECONCILIATION-V1.md) — execution ledger / P0–P2 tasks
-- [`docs/platform-topology/1.0.json`](docs/platform-topology/1.0.json) — complete machine-readable repository topology
+- [`docs/platform-topology/2.0.json`](docs/platform-topology/2.0.json) — complete machine-readable repository topology
 - [`dependencies.yml`](dependencies.yml) — platform dependency/ownership graph
 - [`docs/cross-repo-contracts.md`](docs/cross-repo-contracts.md) — normative contract register + repository boundaries
 - [`docs/reconciliation-matrix.md`](docs/reconciliation-matrix.md) — concept-level reconciliation
 - [`docs/REPOSITORY-REGISTRY-v0.1.md`](docs/REPOSITORY-REGISTRY-v0.1.md) — canonical repository roles, local worktree controls, reconciliation queue
-- [`docs/PLATFORM-ARCHITECTURE-V3.md`](docs/PLATFORM-ARCHITECTURE-V3.md) — seven planes, ownership, product hierarchy, namespace policy, AVC dissolution policy
+- [`docs/PLATFORM-ARCHITECTURE-V4.md`](docs/PLATFORM-ARCHITECTURE-V4.md) — canonical architecture: seven planes, Fabrics, ownership, invariants, conformance ladder
+- [`docs/PLATFORM-ARCHITECTURE-V3.md`](docs/PLATFORM-ARCHITECTURE-V3.md) — superseded history (retained for provenance)
 - [`docs/AVC-IDENTITY-MAPPING-V1.md`](docs/AVC-IDENTITY-MAPPING-V1.md) — Wave 5 finding: AVC identity-core vs TG/AIE verdicts per entity
 - [`docs/AVC-TENANT-MAPPING-V1.md`](docs/AVC-TENANT-MAPPING-V1.md) — Wave 5 finding: tenant-admin vs runtime-isolation layers, lifecycle gap
 

@@ -1,0 +1,15 @@
+{
+  "schema": "platform-architecture-v4-wave-a-evidence/1.0",
+  "architecture": "PLATFORM-ARCHITECTURE-V4",
+  "topology": "platform-topology/2.0",
+  "org_state": "org-state/1.0",
+  "repository_count": 24,
+  "checks": [
+    "topology_v2",
+    "dependency_projection",
+    "readme_projection",
+    "org_state_binding",
+    "platform_fabrics_regression"
+  ],
+  "result": "PASS"
+}

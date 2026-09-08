@@ -1,6 +1,8 @@
+<!-- Status: Superseded by PLATFORM-ARCHITECTURE-V4.md -->
+
 # Aftergraph Platform Architecture V3
 
-**Status:** Canonical — platform planes, ownership, naming.
+**Status:** Superseded by [`PLATFORM-ARCHITECTURE-V4.md`](PLATFORM-ARCHITECTURE-V4.md). Retained for historical provenance.
 **Date:** 2026-09-07
 **Owner:** Aftergraph portfolio control
 **Supersedes:** Nothing (first plane-level contract; complements

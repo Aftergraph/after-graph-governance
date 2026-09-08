@@ -1,0 +1,30 @@
+name: Platform Topology Truth
+
+# Unfiltered by design: this is a required merge-queue gate, and a
+# paths-filtered required check would stay pending (blocking) on PRs that
+# touch none of its paths. The job itself finishes in seconds.
+on:
+  merge_group:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  topology:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate topology and projections
+        run: |
+          python scripts/test_platform_topology_v2.py
+          python scripts/test_org_state_topology_v2.py
+          python scripts/platform_topology.py check
+          python scripts/platform_topology.py check-readme
+          bash -n scripts/org-state-verify.sh

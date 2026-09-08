@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.dev/contracts/platform-topology/2.0.schema.json",
+  "title": "Aftergraph Platform Topology",
+  "description": "Slow-changing canonical repository/topology source for the Aftergraph polyrepo platform. Separates the seven permanent semantic architecture_plane values from the extensible system_class. Defines scope and ownership classes, never exact Git state (exact heads are generated from GitHub by scripts/org-state-verify.sh into org-state/1.0 snapshots). platform-topology/1.0 remains readable for historical provenance; new active Governance code consumes platform-topology/2.0.",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "platform-topology/2.0"
+    },
+    "organization": {
+      "type": "string",
+      "const": "Aftergraph"
+    },
+    "evidence_cut": {
+      "type": "string",
+      "description": "ISO-8601 calendar date of the last reviewed topology cut."
+    },
+    "description": {
+      "type": "string"
+    },
+    "repositories": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/repository"
+      }
+    }
+  },
+  "required": ["schema_version", "organization", "repositories"],
+  "$defs": {
+    "repository": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Repository short name within the Aftergraph organization."
+        },
+        "canonical_branch": {
+          "type": "string",
+          "description": "Canonical branch as reconciled against the GitHub default branch."
+        },
+        "visibility": {
+          "type": "string",
+          "enum": ["public", "private"]
+        },
+        "architecture_plane": {
+          "type": ["string", "null"],
+          "enum": ["intelligence", "authority", "trust", "runtime", "execution", "verification", "experience", null],
+          "description": "One of the seven permanent semantic planes, or null for support systems that must not fake a plane."
+        },
+        "system_class": {
+          "type": "string",
+          "description": "Functional repository class (governance, continuity, assurance, models, legacy-transition, ...). Never inferred into an architecture plane."
+        },
+        "role": {
+          "type": "string",
+          "description": "Current ownership role; must match the dependencies.yml projection for the same repository."
+        },
+        "lifecycle": {
+          "type": "string",
+          "description": "Lifecycle state such as active, temporary, internal-hold or legacy-transition."
+        },
+        "owns": {
+          "type": "string",
+          "description": "Canonical responsibility owned by this repository."
+        },
+        "must_not_own": {
+          "type": "string",
+          "description": "Explicit non-ownership boundary; appearing in topology never grants this."
+        }
+      },
+      "required": ["name", "canonical_branch", "visibility", "architecture_plane", "system_class", "role", "lifecycle", "owns", "must_not_own"],
+      "additionalProperties": false
+    }
+  }
+}

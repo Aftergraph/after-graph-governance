@@ -21,18 +21,24 @@
 
 ## 2. Canonical organisation map
 
+Current repository scope and roles are defined by `docs/platform-topology/2.0.json` (24 repositories; `docs/platform-topology/1.0.json` retained for historical provenance).
+
 | Domain | Canonical repository | Role | Default branch | Evidence boundary |
 |---|---|---|---|---|
 | Portfolio governance | `Aftergraph/after-graph-governance` | Cross-repository contracts, ownership, terminology, release and claim boundaries | `main` | Documented decision and exact-source evidence |
+| Agent runtime | `Aftergraph/runtime` | Active canonical runtime owner: agent lifecycle, orchestration, dispatch, checkpoints, metering | `main` | Exact-head test, integration and runtime evidence |
 | Public entry point | `Aftergraph/aftergraph.org` | Public platform entry, launcher, health and agent index | `main` | Deployment and public-surface evidence |
 | Knowledge Plane | `Aftergraph/docs` | Provenance-stamped documentation, architecture, API and context packs | `main` | Exact-source plus published-site evidence |
 | Authority standard | `Aftergraph/aie` | Independent authority, delegation, lifecycle, budget, revocation and conformance semantics | `main` | Versioned conformance and external interoperability evidence |
 | Research | `Aftergraph/intelligence-systems-research` | Research programme, benchmarks, experiments, papers and reference runtimes | `main` | Study, evaluation and reproduction evidence |
 | Runtime enforcement | `Aftergraph/trust-gateway` | Runtime trust and enforcement boundary | `main` | Exact-head test, integration and runtime evidence |
 | Durable work | `Aftergraph/works-execution` | Mission lifecycle, durable execution, budgets and evidence-bearing work | `main` | Exact-head test, integration and runtime evidence |
-| Work inference | `Aftergraph/work-intelligence-v2` | Source-neutral observation to canonical WorkItem inference | `main` | Exact-head test, adapter/integration and runtime evidence |
+| Work inference | `Aftergraph/wi-backend` | Source-neutral observation to canonical WorkItem inference | `main` | Exact-head test, adapter/integration and runtime evidence |
 | Operator product | `Aftergraph/studio` | Product and operator-facing experience | `main` | Rendered-flow, accessibility and integrated-runtime evidence |
 | Code-review product | `Aftergraph/sentinel` | Exact-head, evidence-backed code-review verdict product | `main` | Exact-HEAD review and deterministic verdict evidence |
+| Verification fixture | `Aftergraph/sentinel-firetest` | Throwaway live-fire fixture; temporary membership only | `main` | Fixture-run evidence; grants no permanent responsibility |
+| Scheduled observation | `Aftergraph/aftergraph-cron-fabric` | Read-only scheduled organization sensing; no execution authority | `main` | Exact-head test and gating-record evidence |
+| Assurance incubation | `Aftergraph/veranza` | Internal concept under clearance hold; no public maturity implied | `main` | Incubation-record evidence |
 | Model methodology | `Aftergraph/llm-research-development` | Reusable model-development methodology and evaluation/promotion contracts | `main` | Versioned methodology and evaluation-contract evidence |
 | AFM programme | `Aftergraph/afm` | AFM-specific training, datasets, experiments, evaluations and model cards | `main` | Immutable artifact, experiment and evaluation evidence |
 | Model registry | `Aftergraph/model-registry` | Model identity, lifecycle, aliases, artifact provenance and release metadata | `main` | Immutable manifest and promotion-record evidence |
@@ -40,8 +46,8 @@
 | Shared brand | `Aftergraph/brand` | Shared visual identity and public assets | `main` | Approved source and published-asset evidence |
 | Continuity contract | `Aftergraph/context-continuity` | Portable state-transfer capsules (Draft 0.1) | `main` | Versioned contract and boundary-proposal evidence |
 | Continuity assurance | `Aftergraph/continuum` | Continuity containment verification | `main` | Verification-record evidence |
-| Work experience | `Aftergraph/work-intelligence-web` | Work-intelligence web experience | `main` | Rendered-flow evidence |
-| Venture consumer | `Aftergraph/autonomous-venture-company` | Venture-OS consumer of platform capabilities | `main` | Product-integration evidence |
+| Work experience | `Aftergraph/wi-frontend` | Work-intelligence web experience | `main` | Rendered-flow evidence |
+| Legacy transition | `Aftergraph/autonomous-venture-company` | legacy-migration-source pending governed extraction; no new canonical responsibility | `main` | Migration-source evidence |
 | Org infrastructure | `Aftergraph/.github` | Organization profile, shared workflows, community defaults | `main` | Shared-workflow and policy evidence |
 
 `Aftergraph/aie` MAY maintain a deliberately independent publication lineage. If its canonical upstream is not the Aftergraph organisation, the registry MUST state that relationship, the pinned release/import mechanism, and the conformance boundary before any release consumes it.
