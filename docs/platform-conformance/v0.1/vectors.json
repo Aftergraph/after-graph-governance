@@ -1,0 +1,237 @@
+{
+  "schema_version": "platform-conformance-v0.1",
+  "status": "experimental",
+  "purpose": "Machine-executable Phase-0 vectors for event correlation, semantic capability actions, and causal identifier preservation. Passing these vectors is contract conformance only and MUST NOT be described as full platform conformance.",
+  "vectors": [
+    {
+      "id": "EVT-001",
+      "kind": "event_ref",
+      "expected": "accept",
+      "input": {
+        "schema": "platform-event-ref/0.1",
+        "event_id": "evt_11111111111111111111111111111111",
+        "source": "trust-gateway",
+        "event_type": "policy.action.admitted",
+        "occurred_at": "2026-09-08T12:00:00Z",
+        "subject_ref": "tool:repo.patch",
+        "correlation": {
+          "execution_context_id": "ctx_11111111111111111111111111111111",
+          "tenant_id": "ten_11111111111111111111111111111111",
+          "principal_id": "prn_11111111111111111111111111111111",
+          "mission_id": "mis_11111111111111111111111111111111",
+          "authority_lease_id": "auth_11111111111111111111111111111111",
+          "work_id": "wrk_11111111111111111111111111111111",
+          "admission_decision_id": "pdr_11111111111111111111111111111111",
+          "trace_id": "trc_11111111111111111111111111111111",
+          "action_id": "act_11111111111111111111111111111111"
+        },
+        "payload_ref": "tg:audit:000001",
+        "integrity_ref": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "classification": "enforcement"
+      }
+    },
+    {
+      "id": "EVT-002",
+      "kind": "event_ref",
+      "expected": "reject",
+      "input": {
+        "schema": "platform-event-ref/0.1",
+        "event_id": "evt_22222222222222222222222222222222",
+        "source": "works-execution",
+        "event_type": "work.effect.committed",
+        "occurred_at": "2026-09-08T12:00:01Z",
+        "subject_ref": "work:commit",
+        "correlation": {
+          "tenant_id": "ten_11111111111111111111111111111111",
+          "mission_id": "mis_11111111111111111111111111111111",
+          "trace_id": "trc_11111111111111111111111111111111"
+        },
+        "payload_ref": "works:event:000002",
+        "integrity_ref": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "classification": "execution"
+      },
+      "reason": "Every consequential action projection requires an action_id in correlation."
+    },
+    {
+      "id": "EVT-003",
+      "kind": "event_ref",
+      "expected": "reject",
+      "input": {
+        "schema": "platform-event-ref/0.1",
+        "event_id": "evt_33333333333333333333333333333333",
+        "source": "studio",
+        "event_type": "ui.action.projected",
+        "occurred_at": "2026-09-08T12:00:02Z",
+        "subject_ref": "ui:approval",
+        "correlation": {
+          "tenant_id": "ten_11111111111111111111111111111111",
+          "mission_id": "mis_11111111111111111111111111111111",
+          "trace_id": "trc_11111111111111111111111111111111",
+          "action_id": "act_33333333333333333333333333333333"
+        },
+        "payload_ref": "studio:event:000003",
+        "integrity_ref": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "classification": "runtime",
+        "authority_grant": "admin"
+      },
+      "reason": "The projection is correlation-only; arbitrary authority-bearing fields fail closed."
+    },
+    {
+      "id": "CAP-001",
+      "kind": "capability_action",
+      "expected": "accept",
+      "input": {
+        "schema": "capability-action/0.1",
+        "action_id": "act_44444444444444444444444444444444",
+        "mission_id": "mis_11111111111111111111111111111111",
+        "semantic_capability": "structured_data.transform",
+        "effect_class": "read_only",
+        "risk_class": 1,
+        "required_authority": ["fs.read"],
+        "input_ref": "artifact:dataset-a",
+        "expected_output_ref": "artifact:normalized-a",
+        "implementations": [
+          {
+            "implementation_id": "python.local",
+            "kind": "python",
+            "binding_ref": "runtime://python",
+            "required_authority": ["fs.read"],
+            "availability": "available"
+          },
+          {
+            "implementation_id": "shell.jq",
+            "kind": "shell",
+            "binding_ref": "runtime://shell/jq",
+            "required_authority": ["fs.read"],
+            "availability": "available"
+          }
+        ],
+        "selection_policy": {
+          "prefer_verified_success": true,
+          "minimize_cost": true,
+          "minimize_latency": true,
+          "minimize_context_pressure": true,
+          "allow_fallback": true
+        },
+        "verification_required": false
+      }
+    },
+    {
+      "id": "CAP-002",
+      "kind": "capability_action",
+      "expected": "reject",
+      "input": {
+        "schema": "capability-action/0.1",
+        "action_id": "act_55555555555555555555555555555555",
+        "mission_id": "mis_11111111111111111111111111111111",
+        "semantic_capability": "structured_data.transform",
+        "effect_class": "read_only",
+        "risk_class": 1,
+        "required_authority": ["fs.read"],
+        "input_ref": "artifact:dataset-b",
+        "expected_output_ref": "artifact:normalized-b",
+        "implementations": [
+          {
+            "implementation_id": "shell.unsafe",
+            "kind": "shell",
+            "binding_ref": "runtime://shell",
+            "required_authority": ["fs.read", "shell.run", "fs.write:*"],
+            "availability": "available"
+          }
+        ],
+        "selection_policy": {
+          "prefer_verified_success": true,
+          "minimize_cost": false,
+          "minimize_latency": false,
+          "minimize_context_pressure": false,
+          "allow_fallback": false
+        },
+        "verification_required": false
+      },
+      "reason": "A concrete implementation cannot widen the authority envelope of the semantic action."
+    },
+    {
+      "id": "CAP-003",
+      "kind": "capability_action",
+      "expected": "reject",
+      "input": {
+        "schema": "capability-action/0.1",
+        "action_id": "act_66666666666666666666666666666666",
+        "mission_id": "mis_11111111111111111111111111111111",
+        "semantic_capability": "repository.patch",
+        "effect_class": "consequential_write",
+        "risk_class": 2,
+        "required_authority": ["fs.write:*"],
+        "input_ref": "git:sha:abc",
+        "expected_output_ref": "git:patch:pending",
+        "implementations": [
+          {
+            "implementation_id": "native.patch",
+            "kind": "native_tool",
+            "binding_ref": "runtime://patch",
+            "required_authority": ["fs.write:*"],
+            "availability": "available"
+          }
+        ],
+        "selection_policy": {
+          "prefer_verified_success": true,
+          "minimize_cost": true,
+          "minimize_latency": true,
+          "minimize_context_pressure": true,
+          "allow_fallback": true
+        },
+        "verification_required": false
+      },
+      "reason": "Consequential and external effects require verification in this experimental profile."
+    },
+    {
+      "id": "GOLDEN-001",
+      "kind": "causal_chain",
+      "expected": "accept",
+      "input": {
+        "canonical": {
+          "tenant_id": "ten_77777777777777777777777777777777",
+          "principal_id": "prn_77777777777777777777777777777777",
+          "mission_id": "mis_77777777777777777777777777777777",
+          "authority_lease_id": "auth_77777777777777777777777777777777",
+          "execution_context_id": "ctx_77777777777777777777777777777777",
+          "work_id": "wrk_77777777777777777777777777777777",
+          "trace_id": "trc_77777777777777777777777777777777",
+          "action_id": "act_77777777777777777777777777777777",
+          "action_decision_id": "pdr_77777777777777777777777777777777"
+        },
+        "stages": [
+          {"stage": "studio", "tenant_id": "ten_77777777777777777777777777777777", "principal_id": "prn_77777777777777777777777777777777", "mission_id": "mis_77777777777777777777777777777777", "trace_id": "trc_77777777777777777777777777777777"},
+          {"stage": "aie", "tenant_id": "ten_77777777777777777777777777777777", "principal_id": "prn_77777777777777777777777777777777", "mission_id": "mis_77777777777777777777777777777777", "authority_lease_id": "auth_77777777777777777777777777777777", "trace_id": "trc_77777777777777777777777777777777"},
+          {"stage": "trust-gateway", "tenant_id": "ten_77777777777777777777777777777777", "principal_id": "prn_77777777777777777777777777777777", "mission_id": "mis_77777777777777777777777777777777", "authority_lease_id": "auth_77777777777777777777777777777777", "trace_id": "trc_77777777777777777777777777777777", "action_id": "act_77777777777777777777777777777777", "action_decision_id": "pdr_77777777777777777777777777777777"},
+          {"stage": "runtime", "tenant_id": "ten_77777777777777777777777777777777", "principal_id": "prn_77777777777777777777777777777777", "mission_id": "mis_77777777777777777777777777777777", "authority_lease_id": "auth_77777777777777777777777777777777", "trace_id": "trc_77777777777777777777777777777777", "action_id": "act_77777777777777777777777777777777"},
+          {"stage": "works", "tenant_id": "ten_77777777777777777777777777777777", "principal_id": "prn_77777777777777777777777777777777", "mission_id": "mis_77777777777777777777777777777777", "authority_lease_id": "auth_77777777777777777777777777777777", "execution_context_id": "ctx_77777777777777777777777777777777", "work_id": "wrk_77777777777777777777777777777777", "trace_id": "trc_77777777777777777777777777777777", "action_id": "act_77777777777777777777777777777777", "action_decision_id": "pdr_77777777777777777777777777777777"},
+          {"stage": "verification", "tenant_id": "ten_77777777777777777777777777777777", "principal_id": "prn_77777777777777777777777777777777", "mission_id": "mis_77777777777777777777777777777777", "execution_context_id": "ctx_77777777777777777777777777777777", "work_id": "wrk_77777777777777777777777777777777", "trace_id": "trc_77777777777777777777777777777777", "action_id": "act_77777777777777777777777777777777", "action_decision_id": "pdr_77777777777777777777777777777777"}
+        ]
+      }
+    },
+    {
+      "id": "GOLDEN-002",
+      "kind": "causal_chain",
+      "expected": "reject",
+      "input": {
+        "canonical": {
+          "tenant_id": "ten_88888888888888888888888888888888",
+          "principal_id": "prn_88888888888888888888888888888888",
+          "mission_id": "mis_88888888888888888888888888888888",
+          "authority_lease_id": "auth_88888888888888888888888888888888",
+          "execution_context_id": "ctx_88888888888888888888888888888888",
+          "work_id": "wrk_88888888888888888888888888888888",
+          "trace_id": "trc_88888888888888888888888888888888",
+          "action_id": "act_88888888888888888888888888888888",
+          "action_decision_id": "pdr_88888888888888888888888888888888"
+        },
+        "stages": [
+          {"stage": "trust-gateway", "tenant_id": "ten_88888888888888888888888888888888", "principal_id": "prn_88888888888888888888888888888888", "mission_id": "mis_88888888888888888888888888888888", "authority_lease_id": "auth_88888888888888888888888888888888", "trace_id": "trc_88888888888888888888888888888888", "action_id": "act_88888888888888888888888888888888", "action_decision_id": "pdr_88888888888888888888888888888888"},
+          {"stage": "works", "tenant_id": "ten_88888888888888888888888888888888", "principal_id": "prn_99999999999999999999999999999999", "mission_id": "mis_88888888888888888888888888888888", "authority_lease_id": "auth_88888888888888888888888888888888", "execution_context_id": "ctx_88888888888888888888888888888888", "work_id": "wrk_88888888888888888888888888888888", "trace_id": "trc_88888888888888888888888888888888", "action_id": "act_88888888888888888888888888888888", "action_decision_id": "pdr_88888888888888888888888888888888"}
+        ]
+      },
+      "reason": "Principal drift across a consequential seam is a provenance failure."
+    }
+  ]
+}

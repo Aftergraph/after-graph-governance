@@ -1,0 +1,33 @@
+name: Platform Fabrics Conformance
+
+on:
+  pull_request:
+    paths:
+      - 'docs/contracts/platform-event-ref/**'
+      - 'docs/contracts/capability-action/**'
+      - 'docs/platform-conformance/**'
+      - 'scripts/test_platform_fabrics_v0_1.py'
+      - '.github/workflows/platform-fabrics.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'docs/contracts/platform-event-ref/**'
+      - 'docs/contracts/capability-action/**'
+      - 'docs/platform-conformance/**'
+      - 'scripts/test_platform_fabrics_v0_1.py'
+      - '.github/workflows/platform-fabrics.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  conformance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run Phase-0 platform fabric conformance
+        run: python scripts/test_platform_fabrics_v0_1.py

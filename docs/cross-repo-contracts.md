@@ -46,6 +46,23 @@ The machine-readable V2.1 family registry lives at
 contract ownership and compatibility; runtime semantics remain in each owning
 repository.
 
+## Experimental platform fabric contracts
+
+The following contracts are **experimental** and therefore intentionally absent
+from the normative register above. They are implementation/research candidates,
+not frozen platform law.
+
+| Contract | Status | Semantic Owner | Purpose |
+|---|---|---|---|
+| `platform-event-ref/0.1` | Experimental | Governance registration; domain events remain TG/WORKS-owned | Correlates heterogeneous native events without replacing their envelopes or granting authority. |
+| `capability-action/0.1` | Experimental | Runtime semantics; Governance registration | Separates semantic execution intent from provider/runtime-specific implementation while preserving authority bounds. |
+
+Machine-executable Phase-0 vectors live at
+`docs/platform-conformance/v0.1/vectors.json` and are exercised by
+`scripts/test_platform_fabrics_v0_1.py`. Passing them establishes contract-level
+conformance only. It does not establish runtime integration or platform
+verification. See `docs/PLATFORM-FABRICS-v0.1.md`.
+
 ## Platform repository boundaries
 
 | Repository | Role | Boundary |
