@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "schema_version": "platform-topology/1.0",
   "organization": "Aftergraph",
-  "evidence_cut": "2026-09-07",
+  "evidence_cut": "2026-09-08",
   "description": "Human-governed repository topology for the Aftergraph polyrepo platform. This file defines scope and ownership classes, not exact Git state. Exact heads are generated from GitHub by scripts/org-state-verify.sh.",
   "repositories": [
     {
@@ -30,6 +30,14 @@
       "owns": "Fail-closed runtime admission, policy enforcement, approvals, secrets and action audit."
     },
     {
+      "name": "runtime",
+      "canonical_branch": "main",
+      "visibility": "private",
+      "plane": "runtime",
+      "role": "agent-runtime",
+      "owns": "Agent lifecycle, orchestration, dispatch, checkpoints, metering and observability. Durable execution stays in WORKS; enforcement stays in Trust Gateway."
+    },
+    {
       "name": "works-execution",
       "canonical_branch": "main",
       "visibility": "public",
@@ -46,20 +54,20 @@
       "owns": "General-purpose human operating environment for Chat, Work, Space, control and evidence surfaces."
     },
     {
-      "name": "work-intelligence-v2",
+      "name": "wi-backend",
       "canonical_branch": "main",
       "visibility": "public",
       "plane": "work-intelligence",
       "role": "work-inference",
-      "owns": "Source-neutral observation to canonical WorkItem inference, review and promotion boundaries."
+      "owns": "Source-neutral observation to canonical WorkItem inference, review, publication and promotion boundaries."
     },
     {
-      "name": "work-intelligence-web",
+      "name": "wi-frontend",
       "canonical_branch": "main",
       "visibility": "private",
       "plane": "experience",
       "role": "work-intelligence-experience",
-      "owns": "Specialist browser experience and least-privilege BFF for Work Intelligence."
+      "owns": "Wie browser experience and least-privilege BFF consuming canonical Work Intelligence state from wi-backend."
     },
     {
       "name": "context-continuity",
@@ -76,6 +84,23 @@
       "plane": "assurance",
       "role": "continuity-containment-verification",
       "owns": "Continuity and containment fault-injection campaigns and verification harnesses."
+    },
+    {
+      "name": "sentinel",
+      "canonical_branch": "main",
+      "visibility": "public",
+      "plane": "assurance",
+      "role": "verified-code-review",
+      "owns": "Exact-HEAD verified code-review verdicts with stale-base invalidation and cited evidence."
+    },
+    {
+      "name": "sentinel-firetest",
+      "canonical_branch": "main",
+      "visibility": "private",
+      "plane": "assurance",
+      "role": "temporary-verification-fixture",
+      "lifecycle": "temporary",
+      "owns": "Throwaway live-fire fixture for Sentinel proofs. Topology membership is temporary and grants no permanent platform responsibility."
     },
     {
       "name": "intelligence-systems-research",
@@ -121,9 +146,27 @@
       "name": "autonomous-venture-company",
       "canonical_branch": "main",
       "visibility": "private",
-      "plane": "products",
+      "plane": "legacy-products",
       "role": "venture-os-consumer",
-      "owns": "AI-native venture operating system, Hermes integration and Product Cells consuming governed platform capabilities."
+      "lifecycle": "legacy-transition",
+      "owns": "Legacy venture OS, Hermes integration and Product Cells while canonical platform responsibilities migrate to Aftergraph-owned planes."
+    },
+    {
+      "name": "aftergraph-cron-fabric",
+      "canonical_branch": "main",
+      "visibility": "public",
+      "plane": "operations",
+      "role": "scheduled-observation-fabric",
+      "owns": "Read-only scheduled organization sensing, evidence gating, dedupe and Telegram escalation. It grants no execution authority."
+    },
+    {
+      "name": "veranza",
+      "canonical_branch": "main",
+      "visibility": "private",
+      "plane": "incubation",
+      "role": "assurance-incubation",
+      "lifecycle": "internal-hold",
+      "owns": "Internal assurance-product incubation concept under naming/clearance hold. Topology membership does not imply public or production maturity."
     },
     {
       "name": "docs",
@@ -156,22 +199,6 @@
       "plane": "foundation",
       "role": "organization-community",
       "owns": "Organization profile, contribution defaults, security/support routing and shared community infrastructure."
-    },
-    {
-      "name": "sentinel",
-      "canonical_branch": "main",
-      "visibility": "public",
-      "plane": "assurance",
-      "role": "verified-code-review",
-      "owns": "Exact-HEAD verified code-review verdicts with stale-base invalidation and cited evidence."
-    },
-    {
-      "name": "runtime",
-      "canonical_branch": "main",
-      "visibility": "public",
-      "plane": "execution",
-      "role": "agent-runtime",
-      "owns": "Agent lifecycle, orchestration, dispatch, checkpoints, metering, observability. Durable execution stays in WORKS; enforcement stays in Trust Gateway."
     }
   ]
 }

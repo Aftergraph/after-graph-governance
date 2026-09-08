@@ -6,19 +6,9 @@
   "type": "object",
   "properties": {
     "schema_version": { "type": "string", "const": "org-state/1.0" },
-    "generated_at": {
-      "type": "string",
-      "description": "ISO-8601 UTC timestamp of generation."
-    },
-    "generator": {
-      "type": "string",
-      "description": "Absolute path or command identity of the generating script."
-    },
-    "org": {
-      "type": "string",
-      "const": "Aftergraph",
-      "description": "GitHub organization this contract covers (private repos require an authenticated gh session with org access)."
-    },
+    "generated_at": { "type": "string", "description": "ISO-8601 UTC timestamp of generation." },
+    "generator": { "type": "string", "description": "Absolute path or command identity of the generating script." },
+    "org": { "type": "string", "const": "Aftergraph", "description": "GitHub organization this contract covers (private repos require an authenticated gh session with org access)." },
     "repositories": {
       "type": "array",
       "items": { "$ref": "#/$defs/repository" },
@@ -60,6 +50,9 @@
             "organization-community",
             "verified-code-review",
             "agent-runtime",
+            "scheduled-observation-fabric",
+            "assurance-incubation",
+            "temporary-verification-fixture",
             "research",
             "detection",
             "product-web",
@@ -68,29 +61,13 @@
           ],
           "description": "Current repository roles are defined by docs/platform-topology/1.0.json. The final five enum values are legacy org-state/1.0 compatibility values for already-generated snapshots and MUST NOT be emitted by the current topology-driven generator."
         },
-        "canonical_branch": {
-          "type": "string",
-          "description": "Default/canonical branch as reported by GitHub and reconciled against platform-topology/1.0 for current generation."
-        },
-        "remote_head_sha": {
-          "type": "string",
-          "pattern": "^[0-9a-f]{40}$",
-          "description": "Full SHA of remote canonical branch head — THE authoritative state for the snapshot timestamp. Never accept an abbreviated SHA as truth."
-        },
-        "remote_head_short": {
-          "type": "string",
-          "pattern": "^[0-9a-f]{7}$"
-        },
-        "head_commit_message": {
-          "type": "string",
-          "description": "First line of the head commit message (human orientation only; SHA is truth)."
-        },
+        "canonical_branch": { "type": "string", "description": "Default/canonical branch as reported by GitHub and reconciled against platform-topology/1.0 for current generation." },
+        "remote_head_sha": { "type": "string", "pattern": "^[0-9a-f]{40}$", "description": "Full SHA of remote canonical branch head - THE authoritative state for the snapshot timestamp. Never accept an abbreviated SHA as truth." },
+        "remote_head_short": { "type": "string", "pattern": "^[0-9a-f]{7}$" },
+        "head_commit_message": { "type": "string", "description": "First line of the head commit message (human orientation only; SHA is truth)." },
         "private": { "type": "boolean" },
         "archived": { "type": "boolean" },
-        "protected": {
-          "type": "boolean",
-          "description": "True when the canonical branch reports branch protection/rules through the generation path available to the authenticated GitHub client."
-        },
+        "protected": { "type": "boolean", "description": "True when the canonical branch reports branch protection/rules through the generation path available to the authenticated GitHub client." },
         "open_pull_requests": {
           "type": "array",
           "items": {
@@ -106,26 +83,11 @@
           },
           "description": "Open PRs on this repo at generation time (blockers surface here; head SHAs must be re-verified per PR, bodies may be stale)."
         },
-        "authoritative_contracts": {
-          "type": "array",
-          "items": { "$ref": "#/$defs/contract_ref" },
-          "description": "Contracts this repo OWNS normatively."
-        },
-        "consumed_contracts": {
-          "type": "array",
-          "items": { "$ref": "#/$defs/contract_ref" },
-          "description": "Contracts this repo references/consumes, with pinned version."
-        },
-        "evidence_note": {
-          "type": "string",
-          "description": "Optional provenance note: how the entry was generated (e.g. 'generated from GitHub API via scripts/org-state-verify.sh; local clone divergence detected')."
-        }
+        "authoritative_contracts": { "type": "array", "items": { "$ref": "#/$defs/contract_ref" }, "description": "Contracts this repo OWNS normatively." },
+        "consumed_contracts": { "type": "array", "items": { "$ref": "#/$defs/contract_ref" }, "description": "Contracts this repo references/consumes, with pinned version." },
+        "evidence_note": { "type": "string", "description": "Optional provenance note: how the entry was generated (e.g. generated from GitHub API via scripts/org-state-verify.sh; local clone divergence detected)." }
       },
-      "required": [
-        "full_name", "role", "canonical_branch", "remote_head_sha",
-        "remote_head_short", "private", "archived", "protected",
-        "authoritative_contracts", "consumed_contracts"
-      ]
+      "required": ["full_name", "role", "canonical_branch", "remote_head_sha", "remote_head_short", "private", "archived", "protected", "authoritative_contracts", "consumed_contracts"]
     },
     "contract_ref": {
       "type": "object",

@@ -24,24 +24,31 @@ Public / Knowledge
   aftergraph.org · docs · .github · brand
           ↓
 Experience
-  studio · work-intelligence-web · autonomous-venture-company
+  studio · wi-frontend · autonomous-venture-company (legacy transition)
           ↓
 Intent / Work / Continuity
-  work-intelligence-v2 · context-continuity
+  wi-backend · context-continuity
           ↓
-Institution / Enforcement / Execution
-  AIE → Trust Gateway → WORKS
+Institution / Enforcement / Runtime / Execution
+  AIE → Trust Gateway → Runtime → WORKS
           ↓
 Capabilities / Models
   skills-vault · llm-research-development · afm · model-registry
           ↓
 Assurance / Verification
-  intelligence-systems-research · continuum
+  intelligence-systems-research · continuum · sentinel
           ↓
 Verified outcomes
+
+Cross-cutting operations observation:
+  aftergraph-cron-fabric
+
+Explicit special states:
+  sentinel-firetest = temporary verification fixture
+  veranza = private incubation / INTERNAL HOLD
 ```
 
-Cross-cutting governance lives here. The complete installed repository set is **19 repositories** at the 2026-09-07 reconciliation cut.
+Cross-cutting governance lives here. The topology contract contains **24 repositories** at the 2026-09-08 reconciliation cut. Topology membership never upgrades maturity, evidence, conformance or authority.
 
 ## Canonical topology
 
@@ -66,22 +73,27 @@ This separation prevents repository scope from being hard-coded into the generat
 | Governance | `after-graph-governance` | topology, cross-repo contracts, boundaries, exact-head generation |
 | Institution | `aie` | authority, delegation, lifecycle, budget/revocation semantics |
 | Enforcement | `trust-gateway` | runtime admission, approvals, policy enforcement and action audit |
+| Runtime | `runtime` | agent lifecycle, orchestration, dispatch, checkpoints, metering and observability |
 | Execution | `works-execution` | durable work, scheduling, workers, recovery, evidence/quittance |
 | Experience | `studio` | general-purpose Chat / Work / Space human environment |
-| Work Intelligence | `work-intelligence-v2` | source-neutral observations → canonical WorkItems |
+| Work Intelligence | `wi-backend` | source-neutral observations → canonical WorkItems |
+| Specialist experience | `wi-frontend` | Wie browser experience and least-privilege BFF; canonical state remains backend-owned |
 | Continuity | `context-continuity` | portable actionable state transfer across runtime/session boundaries |
 | Assurance | `intelligence-systems-research` | SPEC-001, MISSION-Bench, scientific claims and assurance evidence |
 | Assurance | `continuum` | continuity/containment fault-injection campaigns |
+| Assurance | `sentinel` | exact-HEAD verified code-review verdicts |
 | Capabilities | `skills-vault` | governed skill discovery, lifecycle, trust and provenance |
 | Models | `llm-research-development` | reusable model R&D/evaluation/promotion methodology |
 | Models | `afm` | AFM-specific model program |
 | Models | `model-registry` | immutable promoted model metadata/lifecycle |
-| Product consumer | `autonomous-venture-company` | venture OS, Hermes integration and Product Cells |
+| Legacy product consumer | `autonomous-venture-company` | venture OS/Hermes/Product Cells during responsibility migration |
+| Operations | `aftergraph-cron-fabric` | read-only scheduled observation, evidence gating, dedupe and escalation; no execution authority |
+| Incubation | `veranza` | internal assurance-product concept under clearance hold; no public/production maturity implied |
+| Temporary assurance | `sentinel-firetest` | throwaway Sentinel live-fire fixture; remove when proof purpose ends |
 | Knowledge | `docs` | provenance-pinned rendering/discovery; not upstream truth owner |
 | Public | `aftergraph.org` | website/front door/launcher; visibility does not upgrade evidence |
 | Foundation | `brand` | visual identity, design tokens and master assets |
 | Foundation | `.github` | organization/community/security/support defaults |
-| Specialist experience | `work-intelligence-web` | Work Intelligence browser experience and least-privilege BFF |
 
 ## Governance
 
@@ -92,6 +104,8 @@ For consequential execution the governing composition remains:
 ```text
 Executable = Intersection(AIE authority/policy, Trust Gateway runtime admission, WORKS durable execution)
 ```
+
+Runtime orchestrates agent operation inside that architecture but does not widen AIE authority, bypass Trust Gateway admission, replace WORKS durable execution or self-issue an independent verification verdict.
 
 No UI, model, skill, plugin, research result, repo membership or textual agent declaration grants execution authority by itself.
 
