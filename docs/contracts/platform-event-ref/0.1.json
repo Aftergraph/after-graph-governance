@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.dev/contracts/platform-event-ref/0.1.json",
+  "title": "Aftergraph Platform Event Reference",
+  "description": "EXPERIMENTAL cross-repo projection that correlates domain events without replacing their native envelopes. Possession of this reference never grants authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "platform-event-ref/0.1"
+    },
+    "event_id": {
+      "type": "string",
+      "pattern": "^evt_[a-f0-9]{32}$"
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "event_type": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "subject_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "correlation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "execution_context_id": {"type": "string", "pattern": "^ctx_[a-f0-9]{32}$"},
+        "tenant_id": {"type": "string", "pattern": "^ten_[a-f0-9]{32}$"},
+        "principal_id": {"type": "string", "pattern": "^prn_[a-f0-9]{32}$"},
+        "mission_id": {"type": "string", "minLength": 1, "maxLength": 256},
+        "authority_lease_id": {"type": "string", "pattern": "^auth_[a-f0-9]{32}$"},
+        "work_id": {"type": "string", "pattern": "^wrk_[a-f0-9]{32}$"},
+        "admission_decision_id": {"type": "string", "pattern": "^pdr_[a-f0-9]{32}$"},
+        "trace_id": {"type": "string", "pattern": "^trc_[a-f0-9]{32}$"},
+        "action_id": {"type": "string", "pattern": "^act_[a-f0-9]{32}$"}
+      },
+      "required": ["tenant_id", "mission_id", "trace_id", "action_id"]
+    },
+    "payload_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "integrity_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "classification": {
+      "type": "string",
+      "enum": ["authority", "enforcement", "runtime", "execution", "verification", "research"]
+    }
+  },
+  "required": [
+    "schema",
+    "event_id",
+    "source",
+    "event_type",
+    "occurred_at",
+    "subject_ref",
+    "correlation",
+    "payload_ref",
+    "integrity_ref",
+    "classification"
+  ]
+}
