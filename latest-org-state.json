@@ -1,33 +1,26 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-08T15:55:34Z",
-  "generator": "C:/Users/empir/AppData/Local/Temp/queuedance/governance/scripts/org-state-verify.sh",
+  "generated_at": "2026-09-08T22:00:28Z",
+  "generator": "/mnt/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
     {
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "9d91a459958ccb948a5cef45364de660e45018ee",
-      "remote_head_short": "9d91a45",
-      "head_commit_message": "fix(topology): reconcile current 24-repo Aftergraph org (#49)",
+      "remote_head_sha": "5f5327314e804573b2acb273abf72db9aa522370",
+      "remote_head_short": "5f53273",
+      "head_commit_message": "feat: add Platform Fabrics v0.1 conformance slice (#45)",
       "private": false,
       "archived": false,
       "protected": true,
       "open_pull_requests": [
         {
-          "number": 45,
-          "title": "feat: add Platform Fabrics v0.1 conformance slice",
+          "number": 52,
+          "title": "docs: Aftergraph Platform Architecture V4 + Platform Fabrics V1",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "2f995a181f99dac27681b6df2e88540b75ca64ac"
-        },
-        {
-          "number": 41,
-          "title": "docs: define Verified Auto execution architecture",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "44e3f21b26f0495ee0ed3e5fb562cbc40dabe312"
+          "head_sha": "da854c1d0ad1a5e9cb9ef85d64c9896bc55a6087"
         },
         {
           "number": 40,
@@ -71,9 +64,9 @@
       "full_name": "Aftergraph/aie",
       "role": "normative-authority",
       "canonical_branch": "main",
-      "remote_head_sha": "88c1889a5582824ed594318bddad8d9df85a1979",
-      "remote_head_short": "88c1889",
-      "head_commit_message": "fix(s1): lab-user traversal on hosted runners (#52)",
+      "remote_head_sha": "3c999d222e7c6d9dbc466cd84c11e96ea8ed3041",
+      "remote_head_short": "3c999d2",
+      "head_commit_message": "fix(s1): ancestor traversal for lab users (#54)",
       "private": false,
       "archived": false,
       "protected": true,
@@ -102,7 +95,7 @@
           "title": "feat(tg): add platform event correlation projection",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "f85d9ffd38d45aafc19508e773c731dd866b647a"
+          "head_sha": "cbbe7b44cc6120c0d7102068d1ea28a331cb080f"
         },
         {
           "number": 74,
@@ -128,26 +121,152 @@
       "full_name": "Aftergraph/runtime",
       "role": "agent-runtime",
       "canonical_branch": "main",
-      "remote_head_sha": "cd9c8852de296099cb76c4f1a5170083839b5271",
-      "remote_head_short": "cd9c885",
-      "head_commit_message": "docs(runtime): document implementation plan directory",
+      "remote_head_sha": "ab6c74243076c539376b45b0a9de3382152b17e9",
+      "remote_head_short": "ab6c742",
+      "head_commit_message": "chore(deps): enable Dependabot version updates (private repo, free tier)",
       "private": true,
       "archived": false,
       "protected": false,
       "open_pull_requests": [
         {
-          "number": 63,
-          "title": "feat(runtime): add production Runtime Host composition seam",
-          "is_draft": true,
+          "number": 102,
+          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/triggers",
+          "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "aed75cff005545c54bd357e2949a40d459ab9509"
+          "head_sha": "7b8b37fd80fb1f48eef18639652b9848b1ed8661"
         },
         {
-          "number": 62,
-          "title": "test(runtime): specify Platform Fabrics Golden Mission v0.1",
-          "is_draft": true,
+          "number": 101,
+          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/tenant-core",
+          "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "cb2172d9e3b298e75db22a7969b5ba589b591a52"
+          "head_sha": "49651c221e65dfab98d8aca190887bff2eb9d6de"
+        },
+        {
+          "number": 100,
+          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/telemetry",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "70fec8af20334cb55b29bf4782e8e4e3b1d02313"
+        },
+        {
+          "number": 99,
+          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/scheduler",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "1e218f8173dedca909ce7809e67cbdc426e36212"
+        },
+        {
+          "number": 98,
+          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/proactive-runtime",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "246331cf3e12cbabb38bd15051620d3b67170001"
+        },
+        {
+          "number": 97,
+          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/portfolio",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "9a1309b8657365fb7ac888370c0b98d273eeae54"
+        },
+        {
+          "number": 96,
+          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/peer-protocol",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "86129051e99e2450d08905412c675ef2f19ec8c0"
+        },
+        {
+          "number": 95,
+          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/outcomes",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "16b520ba6f601d0ca47cc63bc572b77505aa186b"
+        },
+        {
+          "number": 94,
+          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/orchestrator",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "36b637a19e8c67a80449445def532587913a0c88"
+        },
+        {
+          "number": 93,
+          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/observability",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "aa936fcaba8f0e6d27c416560a3e043a114357a6"
+        },
+        {
+          "number": 92,
+          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/mission-routing",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "52151f75ce019d434a6eb6c6034347b3af68cb09"
+        },
+        {
+          "number": 91,
+          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/mission-inference",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "b63a3a59294d77b480c8b7aa1e027e61f06a0782"
+        },
+        {
+          "number": 90,
+          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/mission-graph",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "56ceec67b4cc940bc01ecee4589c89b4e5418dd4"
+        },
+        {
+          "number": 89,
+          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/metrics",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "e759a0cf8bd631699be42d006bf64d3ea39e49ca"
+        },
+        {
+          "number": 88,
+          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/memory-store",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "f052e63e8440b9f86c469b8e784481c61d0b37d0"
+        },
+        {
+          "number": 87,
+          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/ledger",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "d9563e0be2a0f9c897d4e90d8a1e552d571e7510"
+        },
+        {
+          "number": 86,
+          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/kernel-core",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "d3de4a129239e226bfdb882f38c09573d83b7574"
+        },
+        {
+          "number": 85,
+          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/job-runtime",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "6d908b7f805e16e387f279930eebc01578c48f97"
+        },
+        {
+          "number": 84,
+          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/invariants",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "f4c1dbec1ad22f3c618dde3118cd266dc2af4b7f"
+        },
+        {
+          "number": 83,
+          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/intelligence-gateway",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "72bdeb00f8b8f0dfd85723e4988927c96e19eef8"
         }
       ],
       "authoritative_contracts": [],
@@ -220,13 +339,35 @@
       "full_name": "Aftergraph/wi-frontend",
       "role": "work-intelligence-experience",
       "canonical_branch": "main",
-      "remote_head_sha": "5ed27613ad60480be2b16d7a9b5151cd7b52c765",
-      "remote_head_short": "5ed2761",
-      "head_commit_message": "Merge pull request #12 from Aftergraph/fix/workflow-action-pinning",
+      "remote_head_sha": "104ea8e7e159db408d6597939187e030a0c8dd01",
+      "remote_head_short": "104ea8e",
+      "head_commit_message": "chore(deps): enable Dependabot version updates (private repo, free tier)",
       "private": true,
       "archived": false,
       "protected": false,
-      "open_pull_requests": [],
+      "open_pull_requests": [
+        {
+          "number": 15,
+          "title": "chore(deps): bump actions/setup-node from 4.4.0 to 7.0.0",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "66dfb290cfe2bbef68478b890efe70f5230b23c1"
+        },
+        {
+          "number": 14,
+          "title": "chore(deps): bump actions/setup-python from 5.6.0 to 7.0.0",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "13b3c3b162182e71f7e97f55d165f11fe62b4580"
+        },
+        {
+          "number": 13,
+          "title": "chore(deps): bump actions/checkout from 4.4.0 to 7.0.1",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "011ccd20ee30f86566d4673550983c64ae13331a"
+        }
+      ],
       "authoritative_contracts": [],
       "consumed_contracts": []
     },
@@ -234,13 +375,28 @@
       "full_name": "Aftergraph/context-continuity",
       "role": "continuity-contract",
       "canonical_branch": "main",
-      "remote_head_sha": "63ab0c9e4b40980cbc8e31b91a3123167a1c6712",
-      "remote_head_short": "63ab0c9",
-      "head_commit_message": "Merge pull request #1 from Aftergraph/fix/workflow-action-pinning",
+      "remote_head_sha": "7094b01683d2027d0dfea62673f8993d854b83c7",
+      "remote_head_short": "7094b01",
+      "head_commit_message": "chore(deps): enable Dependabot version updates (private repo, free tier)",
       "private": true,
       "archived": false,
       "protected": false,
-      "open_pull_requests": [],
+      "open_pull_requests": [
+        {
+          "number": 4,
+          "title": "chore(deps): bump actions/setup-python from 5.6.0 to 7.0.0",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "0dd583c8e1b2b3a368332f3522f7d8900ac8650c"
+        },
+        {
+          "number": 3,
+          "title": "chore(deps): bump actions/checkout from 4.4.0 to 7.0.1",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "064a8a041f39c56aabf6e3ba0184157006dbf86a"
+        }
+      ],
       "authoritative_contracts": [],
       "consumed_contracts": []
     },
@@ -248,13 +404,35 @@
       "full_name": "Aftergraph/continuum",
       "role": "continuity-containment-verification",
       "canonical_branch": "main",
-      "remote_head_sha": "befbdab905a7f8f4fc9a5d04c7424e7158096c25",
-      "remote_head_short": "befbdab",
-      "head_commit_message": "feat: establish LangGraph checkpoint runtime baseline",
+      "remote_head_sha": "8891628e93d4c5c5d9b89422c085b7a1fc9bf2a3",
+      "remote_head_short": "8891628",
+      "head_commit_message": "chore(deps): enable Dependabot version updates (private repo, free tier)",
       "private": true,
       "archived": false,
       "protected": false,
-      "open_pull_requests": [],
+      "open_pull_requests": [
+        {
+          "number": 12,
+          "title": "chore(deps-dev): update setuptools requirement from >=68.0 to >=84.0.0",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "40ea973caa10d553e876c93245c00d8941649af9"
+        },
+        {
+          "number": 11,
+          "title": "chore(deps): bump actions/checkout from 4.4.0 to 7.0.1",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "2348aa82f57767f29c9dcee0bd2231a8ff598561"
+        },
+        {
+          "number": 10,
+          "title": "chore(deps): bump actions/setup-python from 5.6.0 to 7.0.0",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "c2b0cde968b80fbf2be5da0562dce80c3c3c6b3c"
+        }
+      ],
       "authoritative_contracts": [],
       "consumed_contracts": []
     },
@@ -262,9 +440,9 @@
       "full_name": "Aftergraph/sentinel",
       "role": "verified-code-review",
       "canonical_branch": "main",
-      "remote_head_sha": "c09eb714ea3e5ff8449e8c4059826ed156bb307c",
-      "remote_head_short": "c09eb71",
-      "head_commit_message": "fix(test): pass PATH explicitly in runner flood/timeout test (#4)",
+      "remote_head_sha": "75fee89e00256ba381d0c2dce36b03c72979e0b4",
+      "remote_head_short": "75fee89",
+      "head_commit_message": "chore(deps): enable Dependabot version updates",
       "private": false,
       "archived": false,
       "protected": true,
@@ -291,13 +469,21 @@
       "full_name": "Aftergraph/sentinel-firetest",
       "role": "temporary-verification-fixture",
       "canonical_branch": "main",
-      "remote_head_sha": "79cc374c765229212207d8658d24b064750a1a72",
-      "remote_head_short": "79cc374",
-      "head_commit_message": "Merge pull request #2 from Aftergraph/fix/workflow-action-pinning",
+      "remote_head_sha": "dd84e5257a11e5614e8f5f809765a06dcc49924e",
+      "remote_head_short": "dd84e52",
+      "head_commit_message": "chore(deps): enable Dependabot version updates (private repo, free tier)",
       "private": true,
       "archived": false,
       "protected": false,
-      "open_pull_requests": [],
+      "open_pull_requests": [
+        {
+          "number": 3,
+          "title": "Bump actions/checkout from 4.4.0 to 7.0.1",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "4d77d16a257f2c2fef1f4ce2f467c5c9d0ce4183"
+        }
+      ],
       "authoritative_contracts": [],
       "consumed_contracts": []
     },
@@ -324,13 +510,28 @@
       "full_name": "Aftergraph/skills-vault",
       "role": "capability-supply-chain",
       "canonical_branch": "main",
-      "remote_head_sha": "8a480b989474b8235c62bbd30c000b4d76b93997",
-      "remote_head_short": "8a480b9",
-      "head_commit_message": "Merge pull request #60 from Aftergraph/fix/workflow-action-pinning",
+      "remote_head_sha": "85b96bb345e0f389b4b3017bca51a4a06bde8673",
+      "remote_head_short": "85b96bb",
+      "head_commit_message": "chore(deps): enable Dependabot version updates (private repo, free tier)",
       "private": true,
       "archived": false,
       "protected": false,
-      "open_pull_requests": [],
+      "open_pull_requests": [
+        {
+          "number": 62,
+          "title": "chore(deps): bump actions/checkout from 4.4.0 to 7.0.1",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "f60baeee84cc40148df0b77b3b108d944364da43"
+        },
+        {
+          "number": 61,
+          "title": "chore(deps): bump actions/upload-artifact from 4.6.2 to 7.0.1",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "e8201366ae54b0f0ee359d60c5d217395334dd2e"
+        }
+      ],
       "authoritative_contracts": [],
       "consumed_contracts": []
     },
@@ -338,13 +539,27 @@
       "full_name": "Aftergraph/llm-research-development",
       "role": "model-rnd-methodology",
       "canonical_branch": "main",
-      "remote_head_sha": "c6adf4609ac253244c4f37f7874be777e018aae9",
-      "remote_head_short": "c6adf46",
-      "head_commit_message": "claims: supersede synth-efficiency-verdict (facts true, promotion conclusion void vs binding gate FAIL)",
+      "remote_head_sha": "a4a7d460c327b32f09517e7dddcdadcda6b70bf5",
+      "remote_head_short": "a4a7d46",
+      "head_commit_message": "chore(deps): enable Dependabot version updates (private repo, free tier)",
       "private": true,
       "archived": false,
       "protected": false,
       "open_pull_requests": [
+        {
+          "number": 5,
+          "title": "chore(deps): bump actions/setup-python from 5.6.0 to 7.0.0",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "5f48e10106cb389c60897d61bf70350a7066301d"
+        },
+        {
+          "number": 4,
+          "title": "chore(deps): bump actions/checkout from 4.4.0 to 7.0.1",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "a820d4d42185cad40a164863a5e4c30f1c43571d"
+        },
         {
           "number": 2,
           "title": "docs(rnd): reconcile active methodology-transfer status",
@@ -360,13 +575,28 @@
       "full_name": "Aftergraph/afm",
       "role": "model-program",
       "canonical_branch": "main",
-      "remote_head_sha": "248fa56b670b5b7acdac87a39936b203e829fe7e",
-      "remote_head_short": "248fa56",
-      "head_commit_message": "verdict: register E-R3X2 PASS (Tier-1 112/112, OOD-3 24/28, Retain 1.0)",
+      "remote_head_sha": "e139d3e1b28b6ca32123ba6172dca58f559429c7",
+      "remote_head_short": "e139d3e",
+      "head_commit_message": "chore(deps): enable Dependabot version updates (private repo, free tier)",
       "private": true,
       "archived": false,
       "protected": false,
-      "open_pull_requests": [],
+      "open_pull_requests": [
+        {
+          "number": 4,
+          "title": "chore(deps): bump actions/checkout from 4.4.0 to 7.0.1",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "7af8e6c707450e5263d5d60236b59039125f49ff"
+        },
+        {
+          "number": 3,
+          "title": "chore(deps): bump actions/setup-python from 5.6.0 to 7.0.0",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "ffc63887fedcdc6ce0b09b79624f34ae02d8a971"
+        }
+      ],
       "authoritative_contracts": [],
       "consumed_contracts": []
     },
@@ -374,13 +604,27 @@
       "full_name": "Aftergraph/model-registry",
       "role": "model-lifecycle-registry",
       "canonical_branch": "main",
-      "remote_head_sha": "b610e775d5bc718c99ec54303200344639247187",
-      "remote_head_short": "b610e77",
-      "head_commit_message": "champion checklist for R3X2 (supersedes R3 track; terminology agreement included)",
+      "remote_head_sha": "a0d77e5e9b1f04e3149356d314f3a2d28a9f1898",
+      "remote_head_short": "a0d77e5",
+      "head_commit_message": "chore(deps): enable Dependabot version updates (private repo, free tier)",
       "private": true,
       "archived": false,
       "protected": false,
       "open_pull_requests": [
+        {
+          "number": 7,
+          "title": "chore(deps): bump actions/checkout from 4.4.0 to 7.0.1",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "797e7a6f998531ec18388924d419973116b0d114"
+        },
+        {
+          "number": 6,
+          "title": "chore(deps): bump actions/setup-python from 5.6.0 to 7.0.0",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "4a33cd14f058921001ceb5472ea3b2c8632e6fe4"
+        },
         {
           "number": 5,
           "title": "docs(registry): reconcile AFM lifecycle state (candidate R3X2, champion none)",
@@ -394,7 +638,7 @@
     },
     {
       "full_name": "Aftergraph/autonomous-venture-company",
-      "role": "venture-os-consumer",
+      "role": "legacy-migration-source",
       "canonical_branch": "main",
       "remote_head_sha": "e08d3372dda352564cd9b657d6a8e473c0eee6b0",
       "remote_head_short": "e08d337",
@@ -551,9 +795,9 @@
       "full_name": "Aftergraph/aftergraph-cron-fabric",
       "role": "scheduled-observation-fabric",
       "canonical_branch": "main",
-      "remote_head_sha": "cd8652f408df174bc73520070bc943ca462867ab",
-      "remote_head_short": "cd8652f",
-      "head_commit_message": "chore(baseline): freeze live reference for volume check (#7)",
+      "remote_head_sha": "cd507e38b66709d43339dce995d7cc15b4191c82",
+      "remote_head_short": "cd507e3",
+      "head_commit_message": "Merge pull request #25 from Aftergraph/feat/receipt-rollup-2026-09-08",
       "private": false,
       "archived": false,
       "protected": true,
@@ -565,13 +809,21 @@
       "full_name": "Aftergraph/veranza",
       "role": "assurance-incubation",
       "canonical_branch": "main",
-      "remote_head_sha": "1f987735391aa1e70d28ece72af9663f4c826070",
-      "remote_head_short": "1f98773",
-      "head_commit_message": "scaffold: wave B+C (ledger, evidence, detect, runtime) + workspaces (#2)",
+      "remote_head_sha": "b7936bd2c613a106e158140d71811430de2a7a03",
+      "remote_head_short": "b7936bd",
+      "head_commit_message": "chore(deps): enable Dependabot version updates",
       "private": true,
       "archived": false,
       "protected": false,
-      "open_pull_requests": [],
+      "open_pull_requests": [
+        {
+          "number": 3,
+          "title": "chore(deps): bump actions/checkout from 4.4.0 to 7.0.1",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "5fe4f3f8d17f6d80c5bca7544965cc4ebbb719b7"
+        }
+      ],
       "authoritative_contracts": [],
       "consumed_contracts": []
     },
@@ -579,13 +831,49 @@
       "full_name": "Aftergraph/docs",
       "role": "knowledge-plane",
       "canonical_branch": "main",
-      "remote_head_sha": "10a8f3995e9dfc9cf41e589a5d161d88161d40eb",
-      "remote_head_short": "10a8f39",
-      "head_commit_message": "ci: verify exact production docs head (#10)",
+      "remote_head_sha": "5cc016c62199db78ab71567df8661124695dd6c4",
+      "remote_head_short": "5cc016c",
+      "head_commit_message": "chore(deps): enable Dependabot version updates",
       "private": false,
       "archived": false,
       "protected": true,
-      "open_pull_requests": [],
+      "open_pull_requests": [
+        {
+          "number": 17,
+          "title": "chore(deps-dev): bump typescript from 5.9.3 to 7.0.2",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "1ab7dc11470a80879bbd45c5b57408339cc3376e"
+        },
+        {
+          "number": 16,
+          "title": "chore(deps): bump cloudflare/wrangler-action from 3.15.0 to 4.0.0",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "1bd03b58c57deed8f297e20e66b6dbd3aec8617d"
+        },
+        {
+          "number": 15,
+          "title": "chore(deps): bump actions/setup-node from 4.4.0 to 7.0.0",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "92c3fbb7386773833d306591858a7b9a99173f49"
+        },
+        {
+          "number": 14,
+          "title": "chore(deps): bump actions/upload-artifact from 4.6.2 to 7.0.1",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "df81866dee0e30190b753256abbab602d14c5fba"
+        },
+        {
+          "number": 13,
+          "title": "chore(deps): bump actions/checkout from 4.4.0 to 7.0.1",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "780971fefb0d523fb16e54acdbc58e4c35cb7076"
+        }
+      ],
       "authoritative_contracts": [],
       "consumed_contracts": []
     },

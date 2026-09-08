@@ -136,3 +136,14 @@ Machine-readable source: `docs/platform-topology/2.0.json` (`docs/platform-topol
 ## V1 completion definition
 
 V1 is complete when the merged governance branch contains the 24-repo topology (`docs/platform-topology/2.0.json`), generator/schema/dependency alignment and public map alignment; a fresh generated 24-repo org-state snapshot is then produced by an authorized runner. The original 19-repo cut is a historical completion record. Runtime unification tasks above remain separately gated P0/P1 work and must not be described as already complete.
+
+## Wave A truth-convergence evidence (V4)
+
+The 24-repo/V4 truth convergence is evidenced by:
+
+- `docs/platform-topology/2.0.json` — canonical 24-repository ownership truth;
+- `latest-org-state.json` — fresh authenticated 24-repo exact-head snapshot (`org-state/1.0`);
+- `docs/evidence/platform-architecture-v4-wave-a.json` — Wave A check record (`topology_v2`, `dependency_projection`, `readme_projection`, `org_state_binding`, `platform_fabrics_regression`);
+- `docs/PLATFORM-ARCHITECTURE-V4.md` — canonical architecture (V3 retained as superseded history).
+
+This evidence covers Governance truth convergence only. Runtime, Fabric and Golden Mission waves remain separately gated and are not marked complete here.
