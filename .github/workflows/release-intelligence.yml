@@ -1,0 +1,54 @@
+name: Release Intelligence
+
+on:
+  pull_request:
+    paths:
+      - 'docs/contracts/aftergraph-component/**'
+      - 'docs/contracts/compatibility-edge/**'
+      - 'docs/contracts/release-passport/**'
+      - 'docs/release-intelligence/**'
+      - 'scripts/ari_*.py'
+      - 'scripts/test_ari_*.py'
+      - '.github/workflows/release-intelligence.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'docs/contracts/aftergraph-component/**'
+      - 'docs/contracts/compatibility-edge/**'
+      - 'docs/contracts/release-passport/**'
+      - 'docs/release-intelligence/**'
+      - 'scripts/ari_*.py'
+      - 'scripts/test_ari_*.py'
+      - '.github/workflows/release-intelligence.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run ARI unit tests
+        run: python -m unittest discover -s scripts -p 'test_ari_*.py' -v
+      - name: Run governance regression tests
+        run: >-
+          python -m unittest
+          scripts.test_platform_convergence_v2_1_contracts
+          scripts.test_governance_ci_result
+          scripts.test_governance_ci_truth_reducer
+          scripts.test_governance_clean_room
+          scripts.test_governance_exact_head_truth
+          scripts.test_verify_brand_assets
+          -v
+      - name: Validate APC registry JSON
+        run: python -m json.tool docs/release-intelligence/apc-1.json >/dev/null
+      - name: Validate component contract JSON
+        run: python -m json.tool docs/contracts/aftergraph-component/1.0.json >/dev/null
+      - name: Validate compatibility-edge contract JSON
+        run: python -m json.tool docs/contracts/compatibility-edge/1.0.json >/dev/null
+      - name: Validate release-passport contract JSON
+        run: python -m json.tool docs/contracts/release-passport/1.0.json >/dev/null
