@@ -114,6 +114,8 @@ Wave C conformance identifiers, not canonical platform IDs.
   accept), INVALIDATE-001 (source deletion invalidates derived state per
   provenance without rewriting audit history, accept), LAUNDER-001
   (timestamp refresh of stale state without new observation, reject).
+  Consent-revocation invalidation behavior is Wave D (§12/Consent Ledger),
+  not this task: fixtures carry consent/purpose lineage as data only.
   Run → FAIL (no files, no fixtures).
 - [ ] **Step 2: GREEN.** Add fixtures under
   `docs/platform-conformance/v0.1/world-state/` plus the suite; wire into
@@ -122,13 +124,16 @@ Wave C conformance identifiers, not canonical platform IDs.
 
 ## Task 5 — Cross-repo build requests + Wave C close
 
-- [ ] **Step 1: RED.** Extend `scripts/test_wave_b_requests_v0_1.py` (or add
-  a Wave C requests suite if the implementer justifies it) asserting, for
-  each of `runtime-memory-separation.md`, `works-brain-governance.md`,
-  `acc-capsule-conformance.md`, `world-state-projection.md` under
-  `docs/superpowers/requests/`: the file exists; names its owning repo;
-  names its exact contract (`world-assertion/0.1`, `situation/0.1`, or the
-  separation binding); every named acceptance vector ID exists in
+- [ ] **Step 1: RED.** New `scripts/test_wave_c_requests_v0_1.py`
+  asserting, for each of `runtime-memory-separation.md`,
+  `works-brain-governance.md`, `acc-capsule-conformance.md`,
+  `world-state-projection.md` under `docs/superpowers/requests/`: the file
+  exists; names its owning repo (`Aftergraph/runtime`,
+  `Aftergraph/works-execution`, `Aftergraph/context-continuity` for the ACC
+  capsule request since no dedicated ACC repo exists and Wave C creates
+  none, `Aftergraph/runtime` for the projection request); names its exact
+  contract (`world-assertion/0.1`, `situation/0.1`, or the separation
+  binding); every named acceptance vector ID exists in
   `docs/platform-conformance/v0.1/vectors.json` (or the Task 4 fixtures);
   and states governance implements nothing in the owning repo. Run → FAIL.
 - [ ] **Step 2: GREEN.** Write the four request files to satisfy the test;
@@ -150,6 +155,7 @@ python scripts/test_org_state_topology_v2.py
 python scripts/test_platform_fabrics_v0_1.py
 python scripts/test_golden_mission_skeleton_v0_1.py
 python scripts/test_wave_b_requests_v0_1.py
+python scripts/test_wave_c_requests_v0_1.py
 python scripts/test_world_state_conformance_v0_1.py
 python scripts/test_governance_exact_head_truth.py
 python scripts/platform_topology.py check
@@ -165,6 +171,6 @@ request-content test green (acceptance vector IDs resolved against
 merged through the normal queue, and a fresh `main` exact-head snapshot
 regenerates. Downstream memory/brain/capsule/projection runs are tracked by
 their owning repos — their results are never claimed here. Criterion 6
-(World State projection-only) and criterion 7 (commitment resolution
-canonical in Wie) advance here but close only with later-wave composition
-proof.
+(World State projection-only) advances here but closes only with
+later-wave composition proof. Criterion 7 (commitment resolution canonical
+in Wie) is untouched in Wave C.
