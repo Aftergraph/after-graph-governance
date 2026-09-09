@@ -1,6 +1,6 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-09T13:16:13Z",
+  "generated_at": "2026-09-09T13:29:45Z",
   "generator": "/mnt/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
@@ -8,9 +8,9 @@
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "4848e9df8e078cf8c897b25123f78ae940910f77",
-      "remote_head_short": "4848e9d",
-      "head_commit_message": "evidence(governance): Wave I Task 4 — aftergraph-only golden mission RET vectors (#128)",
+      "remote_head_sha": "8c2bf7fce3c7aefefbbe08dcccb50442c3fd702e",
+      "remote_head_short": "8c2bf7f",
+      "head_commit_message": "docs(governance): Wave I Task 5 — avc-retirement seam binding (#130)",
       "private": false,
       "archived": false,
       "protected": true,
