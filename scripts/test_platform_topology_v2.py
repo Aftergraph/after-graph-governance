@@ -41,7 +41,8 @@ MEMORY_SEPARATION_DOC = REPO_ROOT / "docs" / "MEMORY-ACC-BRAIN-V1.md"
 HUMAN_GOVERNANCE_DOC = REPO_ROOT / "docs" / "HUMAN-GOVERNANCE-V1.md"
 PROACTIVITY_ORG_DOC = REPO_ROOT / "docs" / "PROACTIVITY-ORG-V1.md"
 POCKET_SOURCE_DOC = REPO_ROOT / "docs" / "POCKET-SOURCE-V1.md"
-CURRENT_DOCS = (V4_DOC, RECONCILIATION_DOC, CROSS_REPO_DOC, REGISTRY_DOC, VERIFIED_AUTO_DOC, MEMORY_SEPARATION_DOC, HUMAN_GOVERNANCE_DOC, PROACTIVITY_ORG_DOC, POCKET_SOURCE_DOC)
+VOICE_INTERACTION_DOC = REPO_ROOT / "docs" / "VOICE-INTERACTION-V1.md"
+CURRENT_DOCS = (V4_DOC, RECONCILIATION_DOC, CROSS_REPO_DOC, REGISTRY_DOC, VERIFIED_AUTO_DOC, MEMORY_SEPARATION_DOC, HUMAN_GOVERNANCE_DOC, PROACTIVITY_ORG_DOC, POCKET_SOURCE_DOC, VOICE_INTERACTION_DOC)
 DESIGN_SPEC_NAMES = (
     "2026-09-08-aftergraph-platform-architecture-v4-and-platform-fabrics-v1-design.md",
     "2026-09-08-aftergraph-verified-auto-execution-design.md",
@@ -92,6 +93,19 @@ FORBIDDEN_POCKET_PHRASES = (
     "webhook is truth",
     "webhooks are truth",
     "webhook is reconciliation truth",
+)
+VOICE_INTERACTION_OWNERS = ("studio", "wi-frontend", "runtime", "trust-gateway", "works-execution")
+FORBIDDEN_VOICE_PHRASES = (
+    "session is identity",
+    "session is durable state",
+    "session grants authority",
+    "handoff grants authority",
+    "transcript is identity",
+    "speaker is the principal",
+    "spoken command grants permission",
+    "correlation grants authority",
+    "surface is authoritative",
+    "persona grants authority",
 )
 FORBIDDEN_AUTO_PHRASES = (
     "runtime verifies",
@@ -397,6 +411,20 @@ class ActiveDocConsistencyTest(unittest.TestCase):
     def test_pocket_source_binding_grants_no_authority(self):
         text = POCKET_SOURCE_DOC.read_text(encoding="utf-8").lower()
         for phrase in FORBIDDEN_POCKET_PHRASES:
+            self.assertNotIn(phrase, text, f"authority-conflating phrase {phrase!r}")
+
+    def test_voice_interaction_binding_is_a_current_doc(self):
+        self.assertIn(VOICE_INTERACTION_DOC, CURRENT_DOCS)
+        self.assertTrue(VOICE_INTERACTION_DOC.is_file(), "docs/VOICE-INTERACTION-V1.md is missing")
+
+    def test_voice_interaction_binding_maps_seams_to_v4_owners(self):
+        text = VOICE_INTERACTION_DOC.read_text(encoding="utf-8")
+        for owner in VOICE_INTERACTION_OWNERS:
+            self.assertIn(owner, text, f"voice owner {owner} is not mapped")
+
+    def test_voice_interaction_binding_grants_no_authority(self):
+        text = VOICE_INTERACTION_DOC.read_text(encoding="utf-8").lower()
+        for phrase in FORBIDDEN_VOICE_PHRASES:
             self.assertNotIn(phrase, text, f"authority-conflating phrase {phrase!r}")
 
     def test_v3_marked_superseded_not_deleted(self):
