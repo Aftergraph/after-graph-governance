@@ -1,6 +1,6 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-09T13:29:45Z",
+  "generated_at": "2026-09-09T13:44:13Z",
   "generator": "/mnt/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
@@ -8,9 +8,9 @@
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "8c2bf7fce3c7aefefbbe08dcccb50442c3fd702e",
-      "remote_head_short": "8c2bf7f",
-      "head_commit_message": "docs(governance): Wave I Task 5 — avc-retirement seam binding (#130)",
+      "remote_head_sha": "9d28c1db8a5c722f3b4997879b81c9707fa8b91b",
+      "remote_head_short": "9d28c1d",
+      "head_commit_message": "docs(governance): Wave I Task 6 — avc-retirement requests close (#132)",
       "private": false,
       "archived": false,
       "protected": true,
