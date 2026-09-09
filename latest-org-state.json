@@ -1,6 +1,6 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-09T06:33:49Z",
+  "generated_at": "2026-09-09T07:59:58Z",
   "generator": "/mnt/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
@@ -8,9 +8,9 @@
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "74ea4214fe6d527d49450c70408a1221e41821d1",
-      "remote_head_short": "74ea421",
-      "head_commit_message": "docs(governance): Wave E Task 4 — proactivity-org seam binding (#82)",
+      "remote_head_sha": "c49c92396c77c6e1853f8d9df89ed85d85a35b5f",
+      "remote_head_short": "c49c923",
+      "head_commit_message": "evidence(governance): close platform architecture v4 wave e (#84)",
       "private": false,
       "archived": false,
       "protected": true,
@@ -148,140 +148,140 @@
           "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/triggers",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "7b8b37fd80fb1f48eef18639652b9848b1ed8661"
+          "head_sha": "0952a5591fb16d5de155695f270aefd10dc4e17f"
         },
         {
           "number": 101,
           "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/tenant-core",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "49651c221e65dfab98d8aca190887bff2eb9d6de"
+          "head_sha": "bbddd866ad63389ca05cd816d474be87cd4a3c49"
         },
         {
           "number": 100,
           "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/telemetry",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "70fec8af20334cb55b29bf4782e8e4e3b1d02313"
+          "head_sha": "d15146a9783376dfada488ff021b4808505b8bf5"
         },
         {
           "number": 99,
           "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/scheduler",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "1e218f8173dedca909ce7809e67cbdc426e36212"
+          "head_sha": "9ed6eef3009b2908f48344fdb463a5e5e15e9ed1"
         },
         {
           "number": 98,
           "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/proactive-runtime",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "246331cf3e12cbabb38bd15051620d3b67170001"
+          "head_sha": "93edb889b05f93f0bbecbc4ddd94672097187c3b"
         },
         {
           "number": 97,
           "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/portfolio",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "9a1309b8657365fb7ac888370c0b98d273eeae54"
+          "head_sha": "922ffd7ea37d38a65c542f43087e5aa75aaead16"
         },
         {
           "number": 96,
           "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/peer-protocol",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "86129051e99e2450d08905412c675ef2f19ec8c0"
+          "head_sha": "3e6d930a86cab7c7b77af5376e5d66b79d985cad"
         },
         {
           "number": 95,
           "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/outcomes",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "16b520ba6f601d0ca47cc63bc572b77505aa186b"
+          "head_sha": "19613b43d595b3d32495328f1bd0e860335c772a"
         },
         {
           "number": 94,
           "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/orchestrator",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "36b637a19e8c67a80449445def532587913a0c88"
+          "head_sha": "72ff785b0d54d15a2ae1ae213b322a0b8a4d14a0"
         },
         {
           "number": 93,
           "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/observability",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "aa936fcaba8f0e6d27c416560a3e043a114357a6"
+          "head_sha": "8685853ac2ea7175e143154ce6aa0be0f776fc8d"
         },
         {
           "number": 92,
           "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/mission-routing",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "52151f75ce019d434a6eb6c6034347b3af68cb09"
+          "head_sha": "3e801c935c9c1b0cd67699a7bfd4932e245e138d"
         },
         {
           "number": 91,
           "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/mission-inference",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "b63a3a59294d77b480c8b7aa1e027e61f06a0782"
+          "head_sha": "042b7d22a5679823de2e4792dbcf5ace376d2225"
         },
         {
           "number": 90,
           "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/mission-graph",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "56ceec67b4cc940bc01ecee4589c89b4e5418dd4"
+          "head_sha": "dcac1e3589e7038bca8d53ad5b30d7e8c53c63e0"
         },
         {
           "number": 89,
           "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/metrics",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "e759a0cf8bd631699be42d006bf64d3ea39e49ca"
+          "head_sha": "57a9afc77859e8f03d281a15eea4f382e1fbeb7a"
         },
         {
           "number": 88,
           "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/memory-store",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "f052e63e8440b9f86c469b8e784481c61d0b37d0"
+          "head_sha": "d299f62953dbb80b21ac613fb8379e8e12d9c258"
         },
         {
           "number": 87,
           "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/ledger",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "d9563e0be2a0f9c897d4e90d8a1e552d571e7510"
+          "head_sha": "3e58dd4ba80031e254c2876b1d6847d096d794b8"
         },
         {
           "number": 86,
           "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/kernel-core",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "d3de4a129239e226bfdb882f38c09573d83b7574"
+          "head_sha": "1829746df67b997b16e5c64b164108b9a5d9496c"
         },
         {
           "number": 85,
           "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/job-runtime",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "6d908b7f805e16e387f279930eebc01578c48f97"
+          "head_sha": "847dd638dcf2527da9f9712eb2164250c588b7f0"
         },
         {
           "number": 84,
           "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/invariants",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "f4c1dbec1ad22f3c618dde3118cd266dc2af4b7f"
+          "head_sha": "159e869221ff6ffc2fb2934801deadce3311a368"
         },
         {
           "number": 83,
           "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/intelligence-gateway",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "72bdeb00f8b8f0dfd85723e4988927c96e19eef8"
+          "head_sha": "3e8d9fe76a7c9893709b689c674f0cf652257b0e"
         }
       ],
       "authoritative_contracts": [],
@@ -299,11 +299,18 @@
       "protected": true,
       "open_pull_requests": [
         {
+          "number": 70,
+          "title": "feat(works): expose outcome verification separately from evidence integrity",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "546ab79d00ff68bef034412bb7f53faa2d47c249"
+        },
+        {
           "number": 69,
           "title": "feat(works): require independent verifier verdict before quittance",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "f4b1faa64680adc87c19620ffdb97a21431d33e1"
+          "head_sha": "8218673a3ad55f3b5fd4c2983652d78f895ffa56"
         },
         {
           "number": 67,
