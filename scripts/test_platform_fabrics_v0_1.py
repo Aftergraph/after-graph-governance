@@ -410,6 +410,13 @@ PROM_OPTIONAL = {
     "reverification_ref",
     "cross_repo_gate_evidence_ref",
     "claims_subject_quality",
+    "research_evidence_ref",
+    "afm_implementation_ref",
+    "registry_pass_embedded",
+    "model_rollback",
+    "registry_update_ref",
+    "claims_model_quality",
+    "emergency_bypass",
 }
 PROM_ALLOWED = set(PROM_REQUIRED) | set(PROM_OPTIONAL)
 PROM_CLASSES = {"authority", "enforcement", "runtime", "execution", "verification", "research"}
@@ -1795,6 +1802,9 @@ def validate_promotion_gates(document: Any) -> list[str]:
         "authority_readmission_ref",
         "reverification_ref",
         "cross_repo_gate_evidence_ref",
+        "research_evidence_ref",
+        "afm_implementation_ref",
+        "registry_update_ref",
     ):
         if document.get(field) is not None and not nonempty_string(document.get(field)):
             errors.append(f"invalid {field}")
@@ -1849,6 +1859,25 @@ def validate_promotion_gates(document: Any) -> list[str]:
     if document.get("claims_subject_quality") is True:
         if not nonempty_string(document.get("production_evidence_ref")):
             errors.append("routing/skill/workflow subject quality claims require production evidence (evidence-gated; BLOCKED_ON_PROMOTION_EVIDENCE)")
+    for field in (
+        "registry_pass_embedded",
+        "model_rollback",
+        "claims_model_quality",
+        "emergency_bypass",
+    ):
+        if document.get(field) is not None and not isinstance(document.get(field), bool):
+            errors.append(f"{field} must be a boolean")
+    if document.get("registry_pass_embedded") is True:
+        errors.append("registry PASS is registry-owned and referenced, never embedded in challenger payloads; forged registry PASS rejects")
+    if document.get("claims_model_quality") is True:
+        if not nonempty_string(document.get("production_evidence_ref")):
+            errors.append("live-model quality/latency/capability claims require production/model evidence (evidence-gated; BLOCKED_ON_PROMOTION_EVIDENCE)")
+    if document.get("model_rollback") is True:
+        if not nonempty_string(document.get("registry_update_ref")):
+            errors.append("model rollback/supersede requires a registry evidence update; rollback without registry update rejects")
+    if document.get("emergency_bypass") is True:
+        if not nonempty_string(document.get("gate_evidence_ref")):
+            errors.append("registry-bypass emergency promotion requires gate evidence; bypass without gate evidence rejects")
 
     if document.get("promoted") is True:
         challenger_ref = document.get("challenger_ref")
@@ -1869,6 +1898,11 @@ def validate_promotion_gates(document: Any) -> list[str]:
         if not nonempty_string(document.get("verifier_ref")):
             errors.append("challenger result is never promotion without independent verification (continuum/sentinel-ally or gate)")
         subject = document.get("promotion_subject")
+        if subject == "model":
+            if not nonempty_string(document.get("research_evidence_ref")):
+                errors.append("model promotion requires llm-research-development research evidence; challenger self-promote without research rejects")
+            if not nonempty_string(document.get("afm_implementation_ref")):
+                errors.append("model promotion requires the afm implementation path; research without the registry write path never promotes")
         if subject in ("routing", "skill", "workflow"):
             if subject in ("routing", "workflow") and not nonempty_string(
                 document.get("subject_gate_evidence_ref")
@@ -3355,6 +3389,13 @@ class PlatformFabricsV01Tests(unittest.TestCase):
             "reverification_ref",
             "cross_repo_gate_evidence_ref",
             "claims_subject_quality",
+            "research_evidence_ref",
+            "afm_implementation_ref",
+            "registry_pass_embedded",
+            "model_rollback",
+            "registry_update_ref",
+            "claims_model_quality",
+            "emergency_bypass",
         ):
             self.assertIn(prop, schema["properties"])
             self.assertNotIn(prop, schema["required"])
@@ -3531,6 +3572,8 @@ class PlatformFabricsV01Tests(unittest.TestCase):
             any("model-registry" in error for error in errors)
         )
         document["registry_evidence_ref"] = "model-registry:pass:000013"
+        document["research_evidence_ref"] = "llm-research-development:research:000013"
+        document["afm_implementation_ref"] = "afm:implementation:000013"
         self.assertEqual(validate_promotion_gates(document), [])
 
     def test_promotion_challenger_scored_by_own_evaluator_rejected(self) -> None:
@@ -3787,6 +3830,172 @@ class PlatformFabricsV01Tests(unittest.TestCase):
         document["production_evidence_ref"] = "production:trace-evidence:000027"
         self.assertEqual(validate_promotion_gates(document), [])
 
+    def test_promotion_model_full_registry_path_accepts(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "classification": "research",
+                "challenger_ref": "model-registry:challenger:000030",
+                "challenger_registration_ref": "model-registry:challenger-registration:000030",
+                "candidate_identity_disposable": True,
+                "promotion_subject": "model",
+                "promoted": True,
+                "promoted_by": "runtime:promotion-gate:000030",
+                "gate_evidence_ref": "runtime:promotion-gate:pass:000030",
+                "registry_evidence_ref": "model-registry:pass:000030",
+                "verifier_ref": "continuum:verifier:000030",
+                "research_evidence_ref": "llm-research-development:research:000030",
+                "afm_implementation_ref": "afm:implementation:000030",
+                "executor_ref": "afm:executor:000030",
+                "evaluator_ref": "continuum:verifier:000031",
+            }
+        )
+        self.assertEqual(validate_promotion_gates(document), [])
+
+    def test_promotion_model_gate_without_registry_evidence_rejected(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "challenger_ref": "model-registry:challenger:000031",
+                "challenger_registration_ref": "model-registry:challenger-registration:000031",
+                "candidate_identity_disposable": True,
+                "promotion_subject": "model",
+                "promoted": True,
+                "promoted_by": "runtime:promotion-gate:000031",
+                "gate_evidence_ref": "runtime:promotion-gate:pass:000031",
+                "verifier_ref": "continuum:verifier:000031",
+                "research_evidence_ref": "llm-research-development:research:000031",
+                "afm_implementation_ref": "afm:implementation:000031",
+            }
+        )
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("registry bypass rejects" in error for error in errors)
+        )
+
+    def test_promotion_model_self_attestation_rejected(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "challenger_ref": "model-registry:challenger:000032",
+                "challenger_registration_ref": "model-registry:challenger-registration:000032",
+                "candidate_identity_disposable": True,
+                "promotion_subject": "model",
+                "promoted": True,
+                "promoted_by": "model-registry:challenger:000032",
+                "gate_evidence_ref": "runtime:promotion-gate:pass:000032",
+                "registry_evidence_ref": "model-registry:pass:000032",
+                "verifier_ref": "continuum:verifier:000032",
+                "research_evidence_ref": "llm-research-development:research:000032",
+                "afm_implementation_ref": "afm:implementation:000032",
+            }
+        )
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("never promotes itself" in error for error in errors)
+        )
+
+    def test_promotion_model_evaluator_scoring_own_execution_rejected(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "challenger_ref": "model-registry:challenger:000033",
+                "challenger_registration_ref": "model-registry:challenger-registration:000033",
+                "candidate_identity_disposable": True,
+                "promotion_subject": "model",
+                "executor_ref": "afm:model-evaluator:000033",
+                "evaluator_ref": "afm:model-evaluator:000033",
+            }
+        )
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("never score their own execution" in error for error in errors)
+        )
+
+    def test_promotion_model_forged_registry_pass_rejected(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "classification": "research",
+                "challenger_ref": "model-registry:challenger:000034",
+                "challenger_registration_ref": "model-registry:challenger-registration:000034",
+                "candidate_identity_disposable": True,
+                "promotion_subject": "model",
+                "promoted": True,
+                "promoted_by": "runtime:promotion-gate:000034",
+                "gate_evidence_ref": "runtime:promotion-gate:pass:000034",
+                "registry_evidence_ref": "model-registry:pass:000034",
+                "verifier_ref": "continuum:verifier:000034",
+                "research_evidence_ref": "llm-research-development:research:000034",
+                "afm_implementation_ref": "afm:implementation:000034",
+                "registry_pass_embedded": True,
+            }
+        )
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("never embedded in challenger payloads" in error for error in errors)
+        )
+        document["registry_pass_embedded"] = False
+        self.assertEqual(validate_promotion_gates(document), [])
+
+    def test_promotion_model_rollback_without_registry_update_rejected(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "challenger_ref": "model-registry:challenger:000035",
+                "candidate_identity_disposable": True,
+                "promotion_subject": "model",
+                "model_rollback": True,
+            }
+        )
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("rollback without registry update rejects" in error for error in errors)
+        )
+        document["registry_update_ref"] = "model-registry:evidence-update:000035"
+        self.assertEqual(validate_promotion_gates(document), [])
+
+    def test_promotion_model_quality_claim_is_evidence_gated(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "challenger_ref": "model-registry:challenger:000036",
+                "candidate_identity_disposable": True,
+                "promotion_subject": "model",
+                "claims_model_quality": True,
+            }
+        )
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("live-model quality/latency/capability claims require production/model evidence" in error for error in errors)
+        )
+        document["production_evidence_ref"] = "production:model-evidence:000036"
+        self.assertEqual(validate_promotion_gates(document), [])
+
+    def test_promotion_emergency_bypass_without_gate_evidence_rejected(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "challenger_ref": "model-registry:challenger:000037",
+                "challenger_registration_ref": "model-registry:challenger-registration:000037",
+                "candidate_identity_disposable": True,
+                "promotion_subject": "model",
+                "promoted": True,
+                "promoted_by": "runtime:promotion-gate:000037",
+                "registry_evidence_ref": "model-registry:pass:000037",
+                "verifier_ref": "continuum:verifier:000037",
+                "research_evidence_ref": "llm-research-development:research:000037",
+                "afm_implementation_ref": "afm:implementation:000037",
+                "emergency_bypass": True,
+            }
+        )
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("bypass without gate evidence rejects" in error for error in errors)
+        )
+        document["gate_evidence_ref"] = "runtime:promotion-gate:pass:000037"
+        self.assertEqual(validate_promotion_gates(document), [])
+
     def test_promotion_gates_vectors_are_registered(self) -> None:
         fixture = load_json(VECTORS)
         by_id = {vector.get("id"): vector for vector in fixture["vectors"]}
@@ -3814,6 +4023,14 @@ class PlatformFabricsV01Tests(unittest.TestCase):
             ("PROM-025", "reject"),
             ("PROM-026", "reject"),
             ("PROM-027", "reject"),
+            ("PROM-030", "accept"),
+            ("PROM-031", "reject"),
+            ("PROM-032", "reject"),
+            ("PROM-033", "reject"),
+            ("PROM-034", "reject"),
+            ("PROM-035", "reject"),
+            ("PROM-036", "reject"),
+            ("PROM-037", "reject"),
         ):
             self.assertIn(vector_id, by_id)
             self.assertEqual(by_id[vector_id]["expected"], expected)

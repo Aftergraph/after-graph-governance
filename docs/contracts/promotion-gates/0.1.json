@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://aftergraph.dev/contracts/promotion-gates/0.1.json",
   "title": "Aftergraph Promotion Gates",
-  "description": "EXPERIMENTAL promotion-gates contract for the Wave H verified-improvement slice. A production trace carries observation/correlation content only: promotion authority and promotion grants live outside the trace in gate/registry-owned stores and are referenced, never embedded. A trace is never a gate PASS by itself; routing/skill/workflow/model promotion moves only through gates plus registry evidence, and no challenger promotes itself. Trace/registry correlation is correlation only: correlation is never registry evidence and never promotion authority. Challenger traces inherit the Wave E EVAL binding (evaluators never score their own execution), not re-derived here. The trace confers no promotion authority. Production-trace characterization claims are evidence-gated on production evidence. Challenger candidates carry disposable candidate identity with registration routing them to an independent gate/verifier; promotion requires gate PASS plus registry evidence plus independent verification, challenger identity reuse as durable authority rejects, and challenger win-rate/quality claims are evidence-gated on production evidence. Routing/workflow promotion moves only through runtime gate evidence, skill promotion only through skills-vault supply-chain gate evidence, each plus registry evidence plus independent verification; authority is re-admitted at promotion and never transported in payloads; superseded evidence requires re-verification; repository-local green is never a cross-repo gate PASS; routing/skill/workflow quality claims are evidence-gated on production evidence.",
+  "description": "EXPERIMENTAL promotion-gates contract for the Wave H verified-improvement slice. A production trace carries observation/correlation content only: promotion authority and promotion grants live outside the trace in gate/registry-owned stores and are referenced, never embedded. A trace is never a gate PASS by itself; routing/skill/workflow/model promotion moves only through gates plus registry evidence, and no challenger promotes itself. Trace/registry correlation is correlation only: correlation is never registry evidence and never promotion authority. Challenger traces inherit the Wave E EVAL binding (evaluators never score their own execution), not re-derived here. The trace confers no promotion authority. Production-trace characterization claims are evidence-gated on production evidence. Challenger candidates carry disposable candidate identity with registration routing them to an independent gate/verifier; promotion requires gate PASS plus registry evidence plus independent verification, challenger identity reuse as durable authority rejects, and challenger win-rate/quality claims are evidence-gated on production evidence. Routing/workflow promotion moves only through runtime gate evidence, skill promotion only through skills-vault supply-chain gate evidence, each plus registry evidence plus independent verification; authority is re-admitted at promotion and never transported in payloads; superseded evidence requires re-verification; repository-local green is never a cross-repo gate PASS; routing/skill/workflow quality claims are evidence-gated on production evidence. Model promotion moves only through llm-research-development research evidence plus the afm implementation path plus a registry-owned model-registry PASS plus independent verification; forged or embedded registry PASS, rollback without registry update, evidence-less live-model quality/latency/capability claims, and registry-bypass emergency promotion without gate evidence all reject; model evaluators inherit the Wave E binding and never score their own execution.",
   "type": "object",
   "additionalProperties": false,
   "properties": {
@@ -205,6 +205,40 @@
     "claims_subject_quality": {
       "type": "boolean",
       "description": "True claims routing/skill/workflow quality; requires production evidence and is otherwise evidence-gated."
+    },
+    "research_evidence_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "llm-research-development-owned research evidence behind a model promotion; model promotion moves only through model research, never by challenger self-promote."
+    },
+    "afm_implementation_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "afm-owned implementation path behind a model promotion; research without the registry write path never promotes."
+    },
+    "registry_pass_embedded": {
+      "type": "boolean",
+      "description": "True embeds a registry PASS in the challenger payload and always rejects; registry PASS is registry-owned and referenced, never embedded."
+    },
+    "model_rollback": {
+      "type": "boolean",
+      "description": "True marks a model rollback/supersede; rollback moves only through a registry evidence update."
+    },
+    "registry_update_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Registry-owned evidence update behind a model rollback/supersede; rollback without registry update rejects."
+    },
+    "claims_model_quality": {
+      "type": "boolean",
+      "description": "True claims live-model quality/latency/capability; requires production/model evidence and is otherwise evidence-gated."
+    },
+    "emergency_bypass": {
+      "type": "boolean",
+      "description": "True marks a registry-bypass emergency promotion; bypass still requires gate evidence and never promotes without it."
     }
   },
   "required": [
