@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.dev/contracts/situation/0.1.json",
+  "title": "Aftergraph Situation",
+  "description": "EXPERIMENTAL Situation contract. It composes generic Entity and Relationship entries with provenance, tenant scope, and references to WorldAssertion records. It carries no authority: descriptive relations never become delegation or grants, and cross-tenant movement requires explicit governed export/import. It does not replace canonical sources.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "situation/0.1"},
+    "situation_id": {"type": "string", "pattern": "^sit_[a-f0-9]{32}$"},
+    "entities": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 32,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "entity_id": {"type": "string", "minLength": 1, "maxLength": 160},
+          "entity_type": {"type": "string", "minLength": 1, "maxLength": 160},
+          "ref": {"type": "string", "minLength": 1, "maxLength": 512}
+        },
+        "required": ["entity_id", "entity_type", "ref"]
+      }
+    },
+    "relationships": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 64,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "relationship_id": {"type": "string", "minLength": 1, "maxLength": 160},
+          "relation": {"type": "string", "minLength": 1, "maxLength": 160},
+          "from_ref": {"type": "string", "minLength": 1, "maxLength": 160},
+          "to_ref": {"type": "string", "minLength": 1, "maxLength": 160},
+          "effect_claim": {"type": "string", "enum": ["descriptive"]}
+        },
+        "required": ["relationship_id", "relation", "from_ref", "to_ref", "effect_claim"]
+      }
+    },
+    "assertion_refs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 32,
+      "items": {"type": "string", "pattern": "^ast_[a-f0-9]{32}$"}
+    },
+    "source_refs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 32,
+      "items": {"type": "string", "minLength": 1, "maxLength": 512}
+    },
+    "asserted_at": {"type": "string", "minLength": 1, "maxLength": 64},
+    "tenant_id": {"type": "string", "pattern": "^ten_[a-f0-9]{32}$"},
+    "source_tenant_id": {"type": "string", "pattern": "^ten_[a-f0-9]{32}$"},
+    "governed_transfer": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "export_ref": {"type": "string", "minLength": 1, "maxLength": 512},
+        "import_ref": {"type": "string", "minLength": 1, "maxLength": 512},
+        "new_scope_identity": {"type": "string", "minLength": 1, "maxLength": 256}
+      },
+      "required": ["export_ref", "import_ref", "new_scope_identity"]
+    },
+    "domain": {"type": "string", "minLength": 1, "maxLength": 160},
+    "classification": {"type": "string", "minLength": 1, "maxLength": 160}
+  },
+  "required": [
+    "schema",
+    "situation_id",
+    "entities",
+    "relationships",
+    "assertion_refs",
+    "source_refs",
+    "asserted_at",
+    "tenant_id",
+    "source_tenant_id",
+    "governed_transfer",
+    "domain",
+    "classification"
+  ]
+}
