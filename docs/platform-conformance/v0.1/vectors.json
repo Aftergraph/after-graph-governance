@@ -1071,6 +1071,254 @@
         "tenant_id": "ten_11111111111111111111111111111111"
       },
       "reason": "The verdict is advisory only: a verdict that declares its own authority, mutates governance state, or waives verification fails closed."
+    },
+    {
+      "id": "PCK-001",
+      "kind": "pocket_source",
+      "expected": "accept",
+      "input": {
+        "schema": "pocket-source/0.1",
+        "pocket_id": "pck_11111111111111111111111111111111",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "credential_scope": "ten_11111111111111111111111111111111",
+        "source_ref": "pocket:rest:observations:000001",
+        "observation_ref": "wie:observation:000001",
+        "classification": "research",
+        "claims_principal_identity": false,
+        "claims_principal_authentication": false,
+        "contains_instruction": false,
+        "self_executes": false,
+        "claims_execution": false,
+        "candidate_kind": "observation_update",
+        "admitted_by_tg": false,
+        "governed_path_complete": false,
+        "derivations": [
+          {
+            "derivation": "transcript",
+            "weight": 0.7,
+            "uncertainty": 0.3,
+            "lineage_ref": "pocket:transcript:111111"
+          }
+        ],
+        "asserted_at": "2026-09-08T12:00:00Z"
+      },
+      "reason": "A tenant-scoped Pocket payload carrying its source contract and provenance maps to a Wie Observation and stays observation only."
+    },
+    {
+      "id": "PCK-002",
+      "kind": "pocket_source",
+      "expected": "reject",
+      "input": {
+        "schema": "pocket-source/0.1",
+        "pocket_id": "pck_22222222222222222222222222222222",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "credential_scope": "ten_22222222222222222222222222222222",
+        "source_ref": "pocket:rest:observations:000002",
+        "observation_ref": "wie:observation:000002",
+        "classification": "research",
+        "claims_principal_identity": false,
+        "claims_principal_authentication": false,
+        "contains_instruction": false,
+        "self_executes": false,
+        "claims_execution": false,
+        "candidate_kind": "observation_update",
+        "admitted_by_tg": false,
+        "governed_path_complete": false,
+        "derivations": [
+          {
+            "derivation": "transcript",
+            "weight": 0.7,
+            "uncertainty": 0.3,
+            "lineage_ref": "pocket:transcript:222222"
+          }
+        ],
+        "asserted_at": "2026-09-08T12:00:01Z"
+      },
+      "reason": "A credential scoped to another tenant is cross-tenant credential reuse and fails closed."
+    },
+    {
+      "id": "PCK-003",
+      "kind": "pocket_source",
+      "expected": "reject",
+      "input": {
+        "schema": "pocket-source/0.1",
+        "pocket_id": "pck_33333333333333333333333333333333",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "credential_scope": "ten_11111111111111111111111111111111",
+        "source_ref": "pocket:rest:observations:000003",
+        "observation_ref": "wie:observation:000003",
+        "classification": "research",
+        "claims_principal_identity": true,
+        "claims_principal_authentication": false,
+        "contains_instruction": false,
+        "self_executes": false,
+        "claims_execution": false,
+        "candidate_kind": "observation_update",
+        "admitted_by_tg": false,
+        "governed_path_complete": false,
+        "derivations": [
+          {
+            "derivation": "transcript",
+            "weight": 0.7,
+            "uncertainty": 0.3,
+            "lineage_ref": "pocket:transcript:333333"
+          }
+        ],
+        "asserted_at": "2026-09-08T12:00:02Z"
+      },
+      "reason": "A transcript presented as principal identity is rejected: transcript is not identity."
+    },
+    {
+      "id": "PCK-004",
+      "kind": "pocket_source",
+      "expected": "reject",
+      "input": {
+        "schema": "pocket-source/0.1",
+        "pocket_id": "pck_44444444444444444444444444444444",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "credential_scope": "ten_11111111111111111111111111111111",
+        "source_ref": "pocket:rest:observations:000004",
+        "observation_ref": "wie:observation:000004",
+        "classification": "research",
+        "claims_principal_identity": false,
+        "claims_principal_authentication": true,
+        "contains_instruction": false,
+        "self_executes": false,
+        "claims_execution": false,
+        "candidate_kind": "observation_update",
+        "admitted_by_tg": false,
+        "governed_path_complete": false,
+        "derivations": [
+          {
+            "derivation": "transcript",
+            "weight": 0.7,
+            "uncertainty": 0.3,
+            "lineage_ref": "pocket:transcript:444444"
+          }
+        ],
+        "asserted_at": "2026-09-08T12:00:03Z"
+      },
+      "reason": "Speaker attribution presented as principal authentication is rejected: attribution is not authentication."
+    },
+    {
+      "id": "PCK-005",
+      "kind": "pocket_source",
+      "expected": "reject",
+      "input": {
+        "schema": "pocket-source/0.1",
+        "pocket_id": "pck_55555555555555555555555555555555",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "credential_scope": "ten_11111111111111111111111111111111",
+        "source_ref": "pocket:rest:observations:000005",
+        "observation_ref": "wie:observation:000005",
+        "classification": "research",
+        "claims_principal_identity": false,
+        "claims_principal_authentication": false,
+        "contains_instruction": true,
+        "self_executes": true,
+        "claims_execution": false,
+        "candidate_kind": "observation_update",
+        "admitted_by_tg": false,
+        "governed_path_complete": false,
+        "derivations": [
+          {
+            "derivation": "transcript",
+            "weight": 0.7,
+            "uncertainty": 0.3,
+            "lineage_ref": "pocket:transcript:555555"
+          }
+        ],
+        "asserted_at": "2026-09-08T12:00:04Z"
+      },
+      "reason": "A spoken instruction that would self-execute without AIE -> Trust Gateway -> Runtime -> WORKS -> verification is rejected."
+    },
+    {
+      "id": "PCK-006",
+      "kind": "pocket_source",
+      "expected": "accept",
+      "input": {
+        "schema": "pocket-source/0.1",
+        "pocket_id": "pck_66666666666666666666666666666666",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "credential_scope": "ten_11111111111111111111111111111111",
+        "source_ref": "pocket:rest:observations:000006",
+        "observation_ref": "wie:observation:000006",
+        "classification": "research",
+        "claims_principal_identity": false,
+        "claims_principal_authentication": false,
+        "contains_instruction": true,
+        "self_executes": false,
+        "claims_execution": false,
+        "candidate_kind": "commitment_candidate",
+        "admitted_by_tg": true,
+        "governed_path_complete": true,
+        "derivations": [
+          {
+            "derivation": "transcript",
+            "weight": 0.7,
+            "uncertainty": 0.3,
+            "lineage_ref": "pocket:transcript:000006"
+          },
+          {
+            "derivation": "action_extraction",
+            "weight": 0.5,
+            "uncertainty": 0.5,
+            "lineage_ref": "pocket:actions:000006"
+          }
+        ],
+        "asserted_at": "2026-09-08T12:00:05Z"
+      },
+      "reason": "A Pocket-derived CommitmentCandidate routed through the governed consequential path is admitted as a candidate, never as execution."
+    },
+    {
+      "id": "PCK-007",
+      "kind": "pocket_source",
+      "expected": "accept",
+      "input": {
+        "schema": "pocket-source/0.1",
+        "pocket_id": "pck_77777777777777777777777777777777",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "credential_scope": "ten_11111111111111111111111111111111",
+        "source_ref": "pocket:rest:observations:000007",
+        "observation_ref": "wie:observation:000007",
+        "classification": "research",
+        "claims_principal_identity": false,
+        "claims_principal_authentication": false,
+        "contains_instruction": false,
+        "self_executes": false,
+        "claims_execution": false,
+        "candidate_kind": "observation_update",
+        "admitted_by_tg": false,
+        "governed_path_complete": false,
+        "derivations": [
+          {
+            "derivation": "transcript",
+            "weight": 0.7,
+            "uncertainty": 0.3,
+            "lineage_ref": "pocket:transcript:000007"
+          },
+          {
+            "derivation": "speaker_attribution",
+            "weight": 0.4,
+            "uncertainty": 0.6,
+            "lineage_ref": "pocket:speaker:000007"
+          },
+          {
+            "derivation": "summary",
+            "weight": 0.6,
+            "uncertainty": 0.4,
+            "lineage_ref": "pocket:summary:000007"
+          },
+          {
+            "derivation": "action_extraction",
+            "weight": 0.5,
+            "uncertainty": 0.5,
+            "lineage_ref": "pocket:actions:000007"
+          }
+        ],
+        "asserted_at": "2026-09-08T12:00:06Z"
+      },
+      "reason": "Transcript, speaker attribution, summary and action extraction keep distinct derivation lineage with evidentiary weights and uncertainty into the Observation."
     }
   ]
 }
