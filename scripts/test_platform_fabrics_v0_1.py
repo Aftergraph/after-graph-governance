@@ -22,6 +22,7 @@ CAPABILITY_SCHEMA = ROOT / "docs/contracts/capability-action/0.1.json"
 ASSERTION_SCHEMA = ROOT / "docs/contracts/world-assertion/0.1.json"
 SITUATION_SCHEMA = ROOT / "docs/contracts/situation/0.1.json"
 CONSENT_SCHEMA = ROOT / "docs/contracts/consent-ledger/0.1.json"
+LIFECYCLE_SCHEMA = ROOT / "docs/contracts/tenant-lifecycle/0.1.json"
 VECTORS = ROOT / "docs/platform-conformance/v0.1/vectors.json"
 
 HEX32 = r"[a-f0-9]{32}"
@@ -39,6 +40,7 @@ ID_PATTERNS = {
     "assertion_id": re.compile(rf"^ast_{HEX32}$"),
     "situation_id": re.compile(rf"^sit_{HEX32}$"),
     "ledger_id": re.compile(rf"^led_{HEX32}$"),
+    "lifecycle_id": re.compile(rf"^lif_{HEX32}$"),
 }
 
 EVENT_REQUIRED = {
@@ -163,6 +165,28 @@ CON_REQUIRED = {
 }
 CON_ALLOWED = set(CON_REQUIRED)
 CONSENT_EVENTS = {"granted", "restricted", "revoked", "expired"}
+TEN_REQUIRED = {
+    "schema",
+    "lifecycle_id",
+    "tenant_id",
+    "state",
+    "previous_state",
+    "required_owners",
+    "owner_acknowledgements",
+    "attempted_action",
+    "recorded_at",
+}
+TEN_ALLOWED = set(TEN_REQUIRED)
+TENANT_STATES = {"active", "suspended", "exporting", "deleting", "deleted"}
+TENANT_TRANSITIONS = {
+    "active": {"active", "suspended", "exporting", "deleting"},
+    "suspended": {"active", "deleting"},
+    "exporting": {"active", "deleted"},
+    "deleting": {"deleted"},
+    "deleted": set(),
+}
+TENANT_ACKS = {"export", "deletion", "retention"}
+TENANT_ACTIONS = {"none", "grant", "ingestion", "execution", "complete_export", "complete_deletion"}
 EPISTEMIC_STATES = {"observed", "inferred", "predicted", "unknown"}
 CURRENTNESS_STATES = {"current", "stale", "disputed", "superseded"}
 EVIDENCE_REQUIREMENTS = {"none", "current_observed"}
@@ -656,6 +680,119 @@ def validate_consent_ledger(document: Any) -> list[str]:
     return errors
 
 
+def validate_tenant_lifecycle(document: Any) -> list[str]:
+    errors: list[str] = []
+    if not isinstance(document, dict):
+        return ["tenant lifecycle record must be an object"]
+
+    keys = set(document)
+    missing = TEN_REQUIRED - keys
+    extra = keys - TEN_ALLOWED
+    if missing:
+        errors.append(f"missing lifecycle fields: {sorted(missing)}")
+    if extra:
+        errors.append(f"unexpected lifecycle fields: {sorted(extra)}")
+
+    if document.get("schema") != "tenant-lifecycle/0.1":
+        errors.append("wrong tenant-lifecycle schema")
+    if not valid_id("lifecycle_id", document.get("lifecycle_id")):
+        errors.append("invalid lifecycle_id")
+    if not valid_id("tenant_id", document.get("tenant_id")):
+        errors.append("invalid tenant_id")
+
+    state = document.get("state")
+    if state not in TENANT_STATES:
+        errors.append("invalid lifecycle state")
+    previous_state = document.get("previous_state")
+    if previous_state is not None and previous_state not in TENANT_STATES:
+        errors.append("invalid previous lifecycle state")
+    elif (
+        previous_state is not None
+        and state in TENANT_STATES
+        and state not in TENANT_TRANSITIONS[previous_state]
+    ):
+        errors.append("illegitimate lifecycle transition")
+
+    required_owners = document.get("required_owners")
+    if (
+        not isinstance(required_owners, list)
+        or not 1 <= len(required_owners) <= 32
+        or any(not nonempty_string(item, maximum=160) for item in required_owners)
+    ):
+        errors.append("required_owners must contain 1..32 owners")
+
+    acknowledgements = document.get("owner_acknowledgements")
+    acked: dict[str, str] = {}
+    if not isinstance(acknowledgements, list) or len(acknowledgements) > 32:
+        errors.append("owner_acknowledgements must contain 0..32 entries")
+    else:
+        for index, entry in enumerate(acknowledgements):
+            prefix = f"owner_acknowledgements[{index}]"
+            if (
+                not isinstance(entry, dict)
+                or set(entry) != {"owner", "ack"}
+                or not nonempty_string(entry.get("owner"), maximum=160)
+                or entry.get("ack") not in TENANT_ACKS
+            ):
+                errors.append(f"{prefix} is not a valid acknowledgement")
+                continue
+            acked[entry["owner"]] = entry["ack"]
+
+    action = document.get("attempted_action")
+    if (
+        not isinstance(action, dict)
+        or set(action) != {"kind", "at"}
+        or action.get("kind") not in TENANT_ACTIONS
+        or not parse_rfc3339(action.get("at"))
+    ):
+        errors.append("invalid attempted_action")
+        action_kind = None
+    else:
+        action_kind = action["kind"]
+
+    if not parse_rfc3339(document.get("recorded_at")):
+        errors.append("invalid recorded_at")
+
+    if state in TENANT_STATES and action_kind is not None:
+        if state == "deleting" and action_kind in {"grant", "ingestion", "execution"}:
+            errors.append("deleting tenants admit no new grants, ingestion, or execution")
+        elif state == "suspended" and action_kind == "execution":
+            errors.append("suspended tenants admit no new execution")
+        elif state == "exporting" and action_kind == "ingestion":
+            errors.append("exporting tenants admit no new ingestion")
+        elif state == "deleted" and action_kind != "none":
+            errors.append("deleted tenants admit no further action")
+        elif action_kind == "complete_deletion":
+            if state != "deleting":
+                errors.append("deletion completes only from deleting")
+            else:
+                unacked = [
+                    owner
+                    for owner in required_owners
+                    if isinstance(required_owners, list) and owner not in acked
+                ]
+                if unacked:
+                    errors.append(
+                        f"deletion awaits owner acknowledgement: {sorted(unacked)}"
+                    )
+        elif action_kind == "complete_export":
+            if state != "exporting":
+                errors.append("export completes only from exporting")
+            else:
+                unacked = [
+                    owner
+                    for owner in required_owners
+                    if isinstance(required_owners, list)
+                    and acked.get(owner) != "export"
+                ]
+                if unacked:
+                    errors.append(
+                        f"export awaits export acknowledgement: {sorted(unacked)}"
+                    )
+
+    return errors
+
+
 def validate_causal_chain(document: Any) -> list[str]:
     errors: list[str] = []
     if not isinstance(document, dict):
@@ -732,6 +869,8 @@ def validate_vector(vector: dict[str, Any]) -> list[str]:
         return validate_situation(document)
     if kind == "consent_ledger":
         return validate_consent_ledger(document)
+    if kind == "tenant_lifecycle":
+        return validate_tenant_lifecycle(document)
     if kind == "causal_chain":
         return validate_causal_chain(document)
     return [f"unknown vector kind: {kind!r}"]
@@ -808,6 +947,23 @@ def valid_consent_use() -> dict[str, Any]:
         "revoked_at": None,
         "use_purpose": "mission-evidence",
         "use_at": "2026-09-08T12:00:00Z",
+    }
+
+
+def valid_tenant_lifecycle() -> dict[str, Any]:
+    return {
+        "schema": "tenant-lifecycle/0.1",
+        "lifecycle_id": "lif_11111111111111111111111111111111",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "state": "active",
+        "previous_state": None,
+        "required_owners": ["works-execution", "runtime"],
+        "owner_acknowledgements": [
+            {"owner": "works-execution", "ack": "retention"},
+            {"owner": "runtime", "ack": "retention"},
+        ],
+        "attempted_action": {"kind": "grant", "at": "2026-09-08T12:00:00Z"},
+        "recorded_at": "2026-09-08T12:00:00Z",
     }
 
 
@@ -941,6 +1097,69 @@ class PlatformFabricsV01Tests(unittest.TestCase):
         self.assertTrue(
             any("permits no further use" in error for error in errors)
         )
+
+    def test_tenant_lifecycle_contract_is_strict_and_experimental(self) -> None:
+        schema = load_json(LIFECYCLE_SCHEMA)
+        self.assertFalse(schema.get("additionalProperties"), schema["title"])
+        self.assertIn("EXPERIMENTAL", schema.get("description", ""))
+        self.assertIn("authority", schema.get("description", "").lower())
+        self.assertEqual(schema["properties"]["schema"]["const"], "tenant-lifecycle/0.1")
+
+    def test_deleting_tenant_denies_new_execution(self) -> None:
+        document = valid_tenant_lifecycle()
+        self.assertEqual(validate_tenant_lifecycle(document), [])
+        document["state"] = "deleting"
+        document["previous_state"] = "active"
+        document["attempted_action"] = {"kind": "execution", "at": "2026-09-08T12:00:00Z"}
+        errors = validate_tenant_lifecycle(document)
+        self.assertTrue(
+            any("admit no new grants, ingestion, or execution" in error for error in errors)
+        )
+
+    def test_deletion_awaits_every_owner_acknowledgement(self) -> None:
+        document = valid_tenant_lifecycle()
+        document["state"] = "deleting"
+        document["previous_state"] = "active"
+        document["owner_acknowledgements"] = [
+            {"owner": "works-execution", "ack": "deletion"}
+        ]
+        document["attempted_action"] = {"kind": "complete_deletion", "at": "2026-09-08T12:00:00Z"}
+        errors = validate_tenant_lifecycle(document)
+        self.assertTrue(
+            any("awaits owner acknowledgement" in error for error in errors)
+        )
+
+    def test_export_completion_requires_export_acknowledgements(self) -> None:
+        document = valid_tenant_lifecycle()
+        document["state"] = "exporting"
+        document["previous_state"] = "active"
+        document["owner_acknowledgements"] = [
+            {"owner": "works-execution", "ack": "export"},
+            {"owner": "runtime", "ack": "retention"},
+        ]
+        document["attempted_action"] = {"kind": "complete_export", "at": "2026-09-08T12:00:00Z"}
+        errors = validate_tenant_lifecycle(document)
+        self.assertTrue(
+            any("awaits export acknowledgement" in error for error in errors)
+        )
+        document["owner_acknowledgements"] = [
+            {"owner": "works-execution", "ack": "export"},
+            {"owner": "runtime", "ack": "export"},
+        ]
+        self.assertEqual(validate_tenant_lifecycle(document), [])
+
+    def test_tenant_lifecycle_vectors_are_registered(self) -> None:
+        fixture = load_json(VECTORS)
+        by_id = {vector.get("id"): vector for vector in fixture["vectors"]}
+        for vector_id, expected in (
+            ("TEN-001", "accept"),
+            ("TEN-002", "reject"),
+            ("TEN-003", "reject"),
+            ("TEN-004", "reject"),
+            ("TEN-005", "reject"),
+        ):
+            self.assertIn(vector_id, by_id)
+            self.assertEqual(by_id[vector_id]["expected"], expected)
 
     def test_consent_ledger_vectors_are_registered(self) -> None:
         fixture = load_json(VECTORS)

@@ -716,6 +716,96 @@
         "use_at": "2026-09-08T14:00:00Z"
       },
       "reason": "Restriction narrows the purpose: a use outside the narrowed purpose is not permitted."
+    },
+    {
+      "id": "TEN-001",
+      "kind": "tenant_lifecycle",
+      "expected": "accept",
+      "input": {
+        "schema": "tenant-lifecycle/0.1",
+        "lifecycle_id": "lif_11111111111111111111111111111111",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "state": "active",
+        "previous_state": null,
+        "required_owners": ["works-execution", "runtime"],
+        "owner_acknowledgements": [
+          {"owner": "works-execution", "ack": "retention"},
+          {"owner": "runtime", "ack": "retention"}
+        ],
+        "attempted_action": {"kind": "grant", "at": "2026-09-08T12:00:00Z"},
+        "recorded_at": "2026-09-08T12:00:00Z"
+      },
+      "reason": "An ACTIVE tenant with TG operational truth and recorded domain-owner acknowledgements admits new grants."
+    },
+    {
+      "id": "TEN-002",
+      "kind": "tenant_lifecycle",
+      "expected": "reject",
+      "input": {
+        "schema": "tenant-lifecycle/0.1",
+        "lifecycle_id": "lif_22222222222222222222222222222222",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "state": "deleting",
+        "previous_state": "active",
+        "required_owners": ["works-execution", "runtime"],
+        "owner_acknowledgements": [],
+        "attempted_action": {"kind": "ingestion", "at": "2026-09-08T12:00:01Z"},
+        "recorded_at": "2026-09-08T12:00:01Z"
+      },
+      "reason": "DELETING immediately denies new grants, new ingestion, and new execution for the tenant."
+    },
+    {
+      "id": "TEN-003",
+      "kind": "tenant_lifecycle",
+      "expected": "reject",
+      "input": {
+        "schema": "tenant-lifecycle/0.1",
+        "lifecycle_id": "lif_33333333333333333333333333333333",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "state": "deleting",
+        "previous_state": "active",
+        "required_owners": ["works-execution", "runtime"],
+        "owner_acknowledgements": [
+          {"owner": "works-execution", "ack": "deletion"}
+        ],
+        "attempted_action": {"kind": "complete_deletion", "at": "2026-09-08T12:00:02Z"},
+        "recorded_at": "2026-09-08T12:00:02Z"
+      },
+      "reason": "Terminal completion needs every required owner's export/deletion/retention acknowledgement first."
+    },
+    {
+      "id": "TEN-004",
+      "kind": "tenant_lifecycle",
+      "expected": "reject",
+      "input": {
+        "schema": "tenant-lifecycle/0.1",
+        "lifecycle_id": "lif_44444444444444444444444444444444",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "state": "suspended",
+        "previous_state": "active",
+        "required_owners": ["works-execution", "runtime"],
+        "owner_acknowledgements": [],
+        "attempted_action": {"kind": "execution", "at": "2026-09-08T12:00:03Z"},
+        "recorded_at": "2026-09-08T12:00:03Z"
+      },
+      "reason": "A SUSPENDED tenant admits no new execution until reactivated."
+    },
+    {
+      "id": "TEN-005",
+      "kind": "tenant_lifecycle",
+      "expected": "reject",
+      "input": {
+        "schema": "tenant-lifecycle/0.1",
+        "lifecycle_id": "lif_55555555555555555555555555555555",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "state": "exporting",
+        "previous_state": "active",
+        "required_owners": ["works-execution", "runtime"],
+        "owner_acknowledgements": [],
+        "attempted_action": {"kind": "ingestion", "at": "2026-09-08T12:00:04Z"},
+        "recorded_at": "2026-09-08T12:00:04Z"
+      },
+      "reason": "An EXPORTING tenant admits no new ingestion while its export completes."
     }
   ]
 }
