@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 EVENT_SCHEMA = ROOT / "docs/contracts/platform-event-ref/0.1.json"
 CAPABILITY_SCHEMA = ROOT / "docs/contracts/capability-action/0.1.json"
 ASSERTION_SCHEMA = ROOT / "docs/contracts/world-assertion/0.1.json"
+SITUATION_SCHEMA = ROOT / "docs/contracts/situation/0.1.json"
 VECTORS = ROOT / "docs/platform-conformance/v0.1/vectors.json"
 
 HEX32 = r"[a-f0-9]{32}"
@@ -35,6 +36,7 @@ ID_PATTERNS = {
     "trace_id": re.compile(rf"^trc_{HEX32}$"),
     "action_id": re.compile(rf"^act_{HEX32}$"),
     "assertion_id": re.compile(rf"^ast_{HEX32}$"),
+    "situation_id": re.compile(rf"^sit_{HEX32}$"),
 }
 
 EVENT_REQUIRED = {
@@ -123,6 +125,23 @@ WA_REQUIRED = {
     "evidence_requirement",
 }
 WA_ALLOWED = set(WA_REQUIRED) | {"confidence"}
+SIT_REQUIRED = {
+    "schema",
+    "situation_id",
+    "entities",
+    "relationships",
+    "assertion_refs",
+    "source_refs",
+    "asserted_at",
+    "tenant_id",
+    "source_tenant_id",
+    "governed_transfer",
+    "domain",
+    "classification",
+}
+SIT_ALLOWED = set(SIT_REQUIRED)
+SIT_ENTITY_KEYS = {"entity_id", "entity_type", "ref"}
+SIT_REL_KEYS = {"relationship_id", "relation", "from_ref", "to_ref", "effect_claim"}
 EPISTEMIC_STATES = {"observed", "inferred", "predicted", "unknown"}
 CURRENTNESS_STATES = {"current", "stale", "disputed", "superseded"}
 EVIDENCE_REQUIREMENTS = {"none", "current_observed"}
@@ -403,6 +422,121 @@ def validate_world_assertion(document: Any) -> list[str]:
     return errors
 
 
+def validate_situation(document: Any) -> list[str]:
+    errors: list[str] = []
+    if not isinstance(document, dict):
+        return ["situation must be an object"]
+
+    keys = set(document)
+    missing = SIT_REQUIRED - keys
+    extra = keys - SIT_ALLOWED
+    if missing:
+        errors.append(f"missing situation fields: {sorted(missing)}")
+    if extra:
+        errors.append(f"unexpected situation fields: {sorted(extra)}")
+
+    if document.get("schema") != "situation/0.1":
+        errors.append("wrong situation schema")
+    if not valid_id("situation_id", document.get("situation_id")):
+        errors.append("invalid situation_id")
+
+    entities = document.get("entities")
+    entity_ids: set[str] = set()
+    if not isinstance(entities, list) or not 1 <= len(entities) <= 32:
+        errors.append("entities must contain 1..32 entries")
+    else:
+        for index, entity in enumerate(entities):
+            prefix = f"entities[{index}]"
+            if not isinstance(entity, dict) or set(entity) != SIT_ENTITY_KEYS:
+                errors.append(f"{prefix} fields are not exact")
+                continue
+            entity_id = entity["entity_id"]
+            if not nonempty_string(entity_id, maximum=160):
+                errors.append(f"{prefix}.entity_id invalid")
+            elif entity_id in entity_ids:
+                errors.append(f"{prefix}.entity_id duplicate")
+            else:
+                entity_ids.add(entity_id)
+            for field in ("entity_type", "ref"):
+                if not nonempty_string(entity[field], maximum=512):
+                    errors.append(f"{prefix}.{field} invalid")
+
+    relationships = document.get("relationships")
+    if not isinstance(relationships, list) or len(relationships) > 64:
+        errors.append("relationships must contain 0..64 entries")
+    else:
+        for index, relationship in enumerate(relationships):
+            prefix = f"relationships[{index}]"
+            if not isinstance(relationship, dict) or set(relationship) != SIT_REL_KEYS:
+                errors.append(f"{prefix} fields are not exact")
+                continue
+            if not nonempty_string(relationship["relationship_id"], maximum=160):
+                errors.append(f"{prefix}.relationship_id invalid")
+            if not nonempty_string(relationship["relation"], maximum=160):
+                errors.append(f"{prefix}.relation invalid")
+            if relationship.get("effect_claim") != "descriptive":
+                errors.append(
+                    f"{prefix} claims a non-descriptive effect; descriptive relations never become grants"
+                )
+            for field in ("from_ref", "to_ref"):
+                endpoint = relationship.get(field)
+                if not nonempty_string(endpoint, maximum=160):
+                    errors.append(f"{prefix}.{field} invalid")
+                elif endpoint not in entity_ids:
+                    errors.append(f"{prefix} references unknown relationship endpoint")
+
+    assertion_refs = document.get("assertion_refs")
+    assertion_pattern = ID_PATTERNS["assertion_id"]
+    if (
+        not isinstance(assertion_refs, list)
+        or not 1 <= len(assertion_refs) <= 32
+        or any(
+            not isinstance(item, str) or assertion_pattern.fullmatch(item) is None
+            for item in assertion_refs
+        )
+    ):
+        errors.append("assertion_refs must contain 1..32 world-assertion references")
+
+    source_refs = document.get("source_refs")
+    if (
+        not isinstance(source_refs, list)
+        or not 1 <= len(source_refs) <= 32
+        or any(not nonempty_string(item) for item in source_refs)
+    ):
+        errors.append("source_refs must contain 1..32 references")
+
+    if not parse_rfc3339(document.get("asserted_at")):
+        errors.append("invalid asserted_at")
+
+    tenant_id = document.get("tenant_id")
+    source_tenant_id = document.get("source_tenant_id")
+    if not valid_id("tenant_id", tenant_id):
+        errors.append("invalid tenant_id")
+    if not valid_id("tenant_id", source_tenant_id):
+        errors.append("invalid source_tenant_id")
+    transfer = document.get("governed_transfer")
+    if tenant_id != source_tenant_id and transfer is None:
+        errors.append("cross-tenant movement requires explicit governed export/import")
+    elif transfer is not None:
+        if not isinstance(transfer, dict) or set(transfer) != {
+            "export_ref",
+            "import_ref",
+            "new_scope_identity",
+        }:
+            errors.append("governed_transfer fields are not exact")
+        elif any(
+            not nonempty_string(transfer[field], maximum=512)
+            for field in ("export_ref", "import_ref", "new_scope_identity")
+        ):
+            errors.append("governed_transfer contains invalid values")
+
+    for field in ("domain", "classification"):
+        if not nonempty_string(document.get(field), maximum=256):
+            errors.append(f"invalid {field}")
+
+    return errors
+
+
 def validate_causal_chain(document: Any) -> list[str]:
     errors: list[str] = []
     if not isinstance(document, dict):
@@ -475,6 +609,8 @@ def validate_vector(vector: dict[str, Any]) -> list[str]:
         return validate_capability_action(document)
     if kind == "world_assertion":
         return validate_world_assertion(document)
+    if kind == "situation":
+        return validate_situation(document)
     if kind == "causal_chain":
         return validate_causal_chain(document)
     return [f"unknown vector kind: {kind!r}"]
@@ -503,6 +639,34 @@ def valid_world_assertion() -> dict[str, Any]:
         "purpose": "mission-evidence",
         "confidence": 0.9,
         "evidence_requirement": "current_observed",
+    }
+
+
+def valid_situation() -> dict[str, Any]:
+    return {
+        "schema": "situation/0.1",
+        "situation_id": "sit_11111111111111111111111111111111",
+        "entities": [
+            {"entity_id": "worker", "entity_type": "role", "ref": "works:role:worker"},
+            {"entity_id": "commit", "entity_type": "artifact", "ref": "work:commit"},
+        ],
+        "relationships": [
+            {
+                "relationship_id": "rel-001",
+                "relation": "member_of",
+                "from_ref": "worker",
+                "to_ref": "commit",
+                "effect_claim": "descriptive",
+            }
+        ],
+        "assertion_refs": ["ast_11111111111111111111111111111111"],
+        "source_refs": ["works-execution"],
+        "asserted_at": "2026-09-08T12:00:00Z",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "source_tenant_id": "ten_11111111111111111111111111111111",
+        "governed_transfer": None,
+        "domain": "execution",
+        "classification": "operations",
     }
 
 
@@ -550,6 +714,41 @@ class PlatformFabricsV01Tests(unittest.TestCase):
             ("ADP-TG-002", "reject"),
             ("ADP-WORKS-001", "accept"),
             ("ADP-WORKS-002", "reject"),
+        ):
+            self.assertIn(vector_id, by_id)
+            self.assertEqual(by_id[vector_id]["expected"], expected)
+
+    def test_situation_contract_is_strict_and_experimental(self) -> None:
+        schema = load_json(SITUATION_SCHEMA)
+        self.assertFalse(schema.get("additionalProperties"), schema["title"])
+        self.assertIn("EXPERIMENTAL", schema.get("description", ""))
+        self.assertIn("authority", schema.get("description", "").lower())
+        self.assertEqual(schema["properties"]["schema"]["const"], "situation/0.1")
+
+    def test_relation_effect_must_stay_descriptive(self) -> None:
+        document = valid_situation()
+        self.assertEqual(validate_situation(document), [])
+        document["relationships"][0]["effect_claim"] = "authority_grant"
+        errors = validate_situation(document)
+        self.assertTrue(
+            any("never become grants" in error for error in errors)
+        )
+
+    def test_cross_tenant_requires_governed_transfer(self) -> None:
+        document = valid_situation()
+        document["source_tenant_id"] = "ten_22222222222222222222222222222222"
+        errors = validate_situation(document)
+        self.assertTrue(
+            any("explicit governed export/import" in error for error in errors)
+        )
+
+    def test_situation_vectors_are_registered(self) -> None:
+        fixture = load_json(VECTORS)
+        by_id = {vector.get("id"): vector for vector in fixture["vectors"]}
+        for vector_id, expected in (
+            ("SIT-001", "accept"),
+            ("SIT-002", "reject"),
+            ("SIT-003", "reject"),
         ):
             self.assertIn(vector_id, by_id)
             self.assertEqual(by_id[vector_id]["expected"], expected)

@@ -531,6 +531,99 @@
         "evidence_requirement": "none"
       },
       "reason": "Stale state re-stamped with a fresh observation time and claimed current past its validity is timestamp laundering, not freshness."
+    },
+    {
+      "id": "SIT-001",
+      "kind": "situation",
+      "expected": "accept",
+      "input": {
+        "schema": "situation/0.1",
+        "situation_id": "sit_11111111111111111111111111111111",
+        "entities": [
+          {"entity_id": "worker", "entity_type": "role", "ref": "works:role:worker"},
+          {"entity_id": "commit", "entity_type": "artifact", "ref": "work:commit"}
+        ],
+        "relationships": [
+          {
+            "relationship_id": "rel-001",
+            "relation": "member_of",
+            "from_ref": "worker",
+            "to_ref": "commit",
+            "effect_claim": "descriptive"
+          }
+        ],
+        "assertion_refs": ["ast_11111111111111111111111111111111"],
+        "source_refs": ["works-execution"],
+        "asserted_at": "2026-09-08T12:00:00Z",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "source_tenant_id": "ten_11111111111111111111111111111111",
+        "governed_transfer": null,
+        "domain": "execution",
+        "classification": "operations"
+      },
+      "reason": "Generic entities and a descriptive relationship with full provenance, single-tenant scope, and a world-assertion reference compose a valid situation."
+    },
+    {
+      "id": "SIT-002",
+      "kind": "situation",
+      "expected": "reject",
+      "input": {
+        "schema": "situation/0.1",
+        "situation_id": "sit_22222222222222222222222222222222",
+        "entities": [
+          {"entity_id": "lead", "entity_type": "role", "ref": "works:role:lead"},
+          {"entity_id": "vault", "entity_type": "artifact", "ref": "works:vault:main"}
+        ],
+        "relationships": [
+          {
+            "relationship_id": "rel-002",
+            "relation": "trusts",
+            "from_ref": "lead",
+            "to_ref": "vault",
+            "effect_claim": "authority_grant"
+          }
+        ],
+        "assertion_refs": ["ast_11111111111111111111111111111111"],
+        "source_refs": ["works-execution"],
+        "asserted_at": "2026-09-08T12:00:01Z",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "source_tenant_id": "ten_11111111111111111111111111111111",
+        "governed_transfer": null,
+        "domain": "execution",
+        "classification": "operations"
+      },
+      "reason": "A descriptive trusts relation presented as an authority grant would let relationships mint delegation; situations fail closed."
+    },
+    {
+      "id": "SIT-003",
+      "kind": "situation",
+      "expected": "reject",
+      "input": {
+        "schema": "situation/0.1",
+        "situation_id": "sit_33333333333333333333333333333333",
+        "entities": [
+          {"entity_id": "worker", "entity_type": "role", "ref": "works:role:worker"},
+          {"entity_id": "commit", "entity_type": "artifact", "ref": "work:commit"}
+        ],
+        "relationships": [
+          {
+            "relationship_id": "rel-003",
+            "relation": "member_of",
+            "from_ref": "worker",
+            "to_ref": "commit",
+            "effect_claim": "descriptive"
+          }
+        ],
+        "assertion_refs": ["ast_11111111111111111111111111111111"],
+        "source_refs": ["works-execution"],
+        "asserted_at": "2026-09-08T12:00:02Z",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "source_tenant_id": "ten_22222222222222222222222222222222",
+        "governed_transfer": null,
+        "domain": "execution",
+        "classification": "operations"
+      },
+      "reason": "Cross-tenant situation scope without explicit governed export/import would move context across tenants silently."
     }
   ]
 }
