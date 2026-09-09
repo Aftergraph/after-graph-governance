@@ -21,6 +21,7 @@ EVENT_SCHEMA = ROOT / "docs/contracts/platform-event-ref/0.1.json"
 CAPABILITY_SCHEMA = ROOT / "docs/contracts/capability-action/0.1.json"
 ASSERTION_SCHEMA = ROOT / "docs/contracts/world-assertion/0.1.json"
 SITUATION_SCHEMA = ROOT / "docs/contracts/situation/0.1.json"
+CONSENT_SCHEMA = ROOT / "docs/contracts/consent-ledger/0.1.json"
 VECTORS = ROOT / "docs/platform-conformance/v0.1/vectors.json"
 
 HEX32 = r"[a-f0-9]{32}"
@@ -37,6 +38,7 @@ ID_PATTERNS = {
     "action_id": re.compile(rf"^act_{HEX32}$"),
     "assertion_id": re.compile(rf"^ast_{HEX32}$"),
     "situation_id": re.compile(rf"^sit_{HEX32}$"),
+    "ledger_id": re.compile(rf"^led_{HEX32}$"),
 }
 
 EVENT_REQUIRED = {
@@ -142,6 +144,25 @@ SIT_REQUIRED = {
 SIT_ALLOWED = set(SIT_REQUIRED)
 SIT_ENTITY_KEYS = {"entity_id", "entity_type", "ref"}
 SIT_REL_KEYS = {"relationship_id", "relation", "from_ref", "to_ref", "effect_claim"}
+CON_REQUIRED = {
+    "schema",
+    "ledger_id",
+    "event",
+    "subject",
+    "purpose",
+    "narrowed_purpose",
+    "scope_tenant",
+    "scope_domain",
+    "ledger_record",
+    "ledger_version",
+    "recorded_at",
+    "valid_until",
+    "revoked_at",
+    "use_purpose",
+    "use_at",
+}
+CON_ALLOWED = set(CON_REQUIRED)
+CONSENT_EVENTS = {"granted", "restricted", "revoked", "expired"}
 EPISTEMIC_STATES = {"observed", "inferred", "predicted", "unknown"}
 CURRENTNESS_STATES = {"current", "stale", "disputed", "superseded"}
 EVIDENCE_REQUIREMENTS = {"none", "current_observed"}
@@ -170,6 +191,17 @@ def parse_rfc3339(value: Any) -> bool:
 
 def nonempty_string(value: Any, *, maximum: int = 512) -> bool:
     return isinstance(value, str) and 0 < len(value) <= maximum
+
+
+def parse_rfc3339_dt(value: Any) -> datetime | None:
+    if not parse_rfc3339(value):
+        return None
+    assert isinstance(value, str)
+    normalized = value[:-1] + "+00:00" if value.endswith("Z") else value
+    try:
+        return datetime.fromisoformat(normalized)
+    except ValueError:
+        return None
 
 
 def valid_id(field: str, value: Any) -> bool:
@@ -537,6 +569,93 @@ def validate_situation(document: Any) -> list[str]:
     return errors
 
 
+def validate_consent_ledger(document: Any) -> list[str]:
+    errors: list[str] = []
+    if not isinstance(document, dict):
+        return ["consent ledger use must be an object"]
+
+    keys = set(document)
+    missing = CON_REQUIRED - keys
+    extra = keys - CON_ALLOWED
+    if missing:
+        errors.append(f"missing consent fields: {sorted(missing)}")
+    if extra:
+        errors.append(f"unexpected consent fields: {sorted(extra)}")
+
+    if document.get("schema") != "consent-ledger/0.1":
+        errors.append("wrong consent-ledger schema")
+    if not valid_id("ledger_id", document.get("ledger_id")):
+        errors.append("invalid ledger_id")
+
+    event = document.get("event")
+    if event not in CONSENT_EVENTS:
+        errors.append("invalid consent event")
+
+    if not nonempty_string(document.get("subject")):
+        errors.append("invalid subject")
+    purpose = document.get("purpose")
+    if not nonempty_string(purpose, maximum=256):
+        errors.append("invalid purpose")
+    use_purpose = document.get("use_purpose")
+    if not nonempty_string(use_purpose, maximum=256):
+        errors.append("invalid use_purpose")
+
+    if not valid_id("tenant_id", document.get("scope_tenant")):
+        errors.append("invalid scope_tenant")
+    for field in ("scope_domain", "ledger_record", "purpose"):
+        if not nonempty_string(document.get(field), maximum=256):
+            errors.append(f"invalid {field}")
+    if not nonempty_string(document.get("ledger_version"), maximum=64):
+        errors.append("invalid ledger_version")
+
+    timing_ok = True
+    for field in ("recorded_at", "valid_until", "use_at"):
+        if not parse_rfc3339(document.get(field)):
+            errors.append(f"invalid {field}")
+            timing_ok = False
+
+    revoked_at = document.get("revoked_at")
+    if revoked_at is not None and not parse_rfc3339(revoked_at):
+        errors.append("invalid revoked_at")
+        timing_ok = False
+
+    narrowed = document.get("narrowed_purpose")
+    if event == "restricted" and not nonempty_string(narrowed, maximum=256):
+        errors.append("restriction without a narrowed purpose")
+    elif narrowed is not None and not isinstance(narrowed, str):
+        errors.append("invalid narrowed_purpose")
+
+    if event == "revoked" and revoked_at is None:
+        errors.append("revocation without a revocation time")
+
+    if timing_ok and event in CONSENT_EVENTS:
+        use_dt = parse_rfc3339_dt(document.get("use_at"))
+        recorded_dt = parse_rfc3339_dt(document.get("recorded_at"))
+        valid_dt = parse_rfc3339_dt(document.get("valid_until"))
+        revoked_dt = parse_rfc3339_dt(revoked_at)
+        if use_dt is not None and recorded_dt is not None and use_dt < recorded_dt:
+            errors.append("use predates the ledger record")
+        if event == "granted":
+            if use_purpose != purpose or (use_dt is not None and valid_dt is not None and use_dt > valid_dt):
+                errors.append("use outside the granted purpose or validity")
+        elif event == "restricted":
+            if use_purpose != narrowed:
+                errors.append("use outside the narrowed purpose is not permitted")
+        elif event == "revoked":
+            if (
+                use_purpose == purpose
+                and use_dt is not None
+                and revoked_dt is not None
+                and use_dt >= revoked_dt
+            ):
+                errors.append("revoked purpose no longer permits use")
+        elif event == "expired":
+            if use_dt is not None and valid_dt is not None and use_dt > valid_dt:
+                errors.append("expired consent permits no further use")
+
+    return errors
+
+
 def validate_causal_chain(document: Any) -> list[str]:
     errors: list[str] = []
     if not isinstance(document, dict):
@@ -611,6 +730,8 @@ def validate_vector(vector: dict[str, Any]) -> list[str]:
         return validate_world_assertion(document)
     if kind == "situation":
         return validate_situation(document)
+    if kind == "consent_ledger":
+        return validate_consent_ledger(document)
     if kind == "causal_chain":
         return validate_causal_chain(document)
     return [f"unknown vector kind: {kind!r}"]
@@ -667,6 +788,26 @@ def valid_situation() -> dict[str, Any]:
         "governed_transfer": None,
         "domain": "execution",
         "classification": "operations",
+    }
+
+
+def valid_consent_use() -> dict[str, Any]:
+    return {
+        "schema": "consent-ledger/0.1",
+        "ledger_id": "led_11111111111111111111111111111111",
+        "event": "granted",
+        "subject": "work:memory:derived",
+        "purpose": "mission-evidence",
+        "narrowed_purpose": None,
+        "scope_tenant": "ten_11111111111111111111111111111111",
+        "scope_domain": "execution",
+        "ledger_record": "consent:ledger:000001",
+        "ledger_version": "v3",
+        "recorded_at": "2026-09-08T12:00:00Z",
+        "valid_until": "2026-09-09T12:00:00Z",
+        "revoked_at": None,
+        "use_purpose": "mission-evidence",
+        "use_at": "2026-09-08T12:00:00Z",
     }
 
 
@@ -749,6 +890,66 @@ class PlatformFabricsV01Tests(unittest.TestCase):
             ("SIT-001", "accept"),
             ("SIT-002", "reject"),
             ("SIT-003", "reject"),
+        ):
+            self.assertIn(vector_id, by_id)
+            self.assertEqual(by_id[vector_id]["expected"], expected)
+
+    def test_consent_ledger_contract_is_strict_and_experimental(self) -> None:
+        schema = load_json(CONSENT_SCHEMA)
+        self.assertFalse(schema.get("additionalProperties"), schema["title"])
+        self.assertIn("EXPERIMENTAL", schema.get("description", ""))
+        self.assertIn("authority", schema.get("description", "").lower())
+        self.assertEqual(schema["properties"]["schema"]["const"], "consent-ledger/0.1")
+
+    def test_revoked_purpose_permits_no_further_use(self) -> None:
+        document = valid_consent_use()
+        self.assertEqual(validate_consent_ledger(document), [])
+        document["event"] = "revoked"
+        document["revoked_at"] = "2026-09-08T13:00:00Z"
+        document["use_at"] = "2026-09-08T14:00:00Z"
+        errors = validate_consent_ledger(document)
+        self.assertTrue(
+            any("no longer permits use" in error for error in errors)
+        )
+
+    def test_restricted_purpose_blocks_outside_use(self) -> None:
+        document = valid_consent_use()
+        document["event"] = "restricted"
+        document["narrowed_purpose"] = "summarization"
+        document["use_purpose"] = "personalization"
+        errors = validate_consent_ledger(document)
+        self.assertTrue(
+            any("outside the narrowed purpose" in error for error in errors)
+        )
+
+    def test_use_predating_ledger_record_fails_closed(self) -> None:
+        document = valid_consent_use()
+        document["use_at"] = "2026-09-08T11:00:00Z"
+        errors = validate_consent_ledger(document)
+        self.assertTrue(
+            any("predates the ledger record" in error for error in errors)
+        )
+
+    def test_mixed_offset_validity_compares_by_instant(self) -> None:
+        # 12:00-02:00 is 14:00Z, past the 13:00Z validity end; a lexicographic
+        # string compare would wrongly accept it ("12" < "13").
+        document = valid_consent_use()
+        document["event"] = "expired"
+        document["valid_until"] = "2026-09-08T13:00:00Z"
+        document["use_at"] = "2026-09-08T12:00:00-02:00"
+        errors = validate_consent_ledger(document)
+        self.assertTrue(
+            any("permits no further use" in error for error in errors)
+        )
+
+    def test_consent_ledger_vectors_are_registered(self) -> None:
+        fixture = load_json(VECTORS)
+        by_id = {vector.get("id"): vector for vector in fixture["vectors"]}
+        for vector_id, expected in (
+            ("CON-001", "accept"),
+            ("CON-002", "reject"),
+            ("CON-003", "reject"),
+            ("CON-004", "reject"),
         ):
             self.assertIn(vector_id, by_id)
             self.assertEqual(by_id[vector_id]["expected"], expected)

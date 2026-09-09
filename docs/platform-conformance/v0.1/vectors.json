@@ -624,6 +624,98 @@
         "classification": "operations"
       },
       "reason": "Cross-tenant situation scope without explicit governed export/import would move context across tenants silently."
+    },
+    {
+      "id": "CON-001",
+      "kind": "consent_ledger",
+      "expected": "accept",
+      "input": {
+        "schema": "consent-ledger/0.1",
+        "ledger_id": "led_11111111111111111111111111111111",
+        "event": "granted",
+        "subject": "work:memory:derived",
+        "purpose": "mission-evidence",
+        "narrowed_purpose": null,
+        "scope_tenant": "ten_11111111111111111111111111111111",
+        "scope_domain": "execution",
+        "ledger_record": "consent:ledger:000001",
+        "ledger_version": "v3",
+        "recorded_at": "2026-09-08T12:00:00Z",
+        "valid_until": "2026-09-09T12:00:00Z",
+        "revoked_at": null,
+        "use_purpose": "mission-evidence",
+        "use_at": "2026-09-08T12:00:00Z"
+      },
+      "reason": "Use within the granted purpose, scope, and validity window is permitted; the ledger permits uses, never grants authority."
+    },
+    {
+      "id": "CON-002",
+      "kind": "consent_ledger",
+      "expected": "reject",
+      "input": {
+        "schema": "consent-ledger/0.1",
+        "ledger_id": "led_22222222222222222222222222222222",
+        "event": "revoked",
+        "subject": "work:memory:derived",
+        "purpose": "mission-evidence",
+        "narrowed_purpose": null,
+        "scope_tenant": "ten_11111111111111111111111111111111",
+        "scope_domain": "execution",
+        "ledger_record": "consent:ledger:000002",
+        "ledger_version": "v4",
+        "recorded_at": "2026-09-08T12:00:00Z",
+        "valid_until": "2026-09-09T12:00:00Z",
+        "revoked_at": "2026-09-08T13:00:00Z",
+        "use_purpose": "mission-evidence",
+        "use_at": "2026-09-08T14:00:00Z"
+      },
+      "reason": "Revocation ends the purpose: already-derived memory may no longer be used where the purpose no longer permits it."
+    },
+    {
+      "id": "CON-003",
+      "kind": "consent_ledger",
+      "expected": "reject",
+      "input": {
+        "schema": "consent-ledger/0.1",
+        "ledger_id": "led_33333333333333333333333333333333",
+        "event": "expired",
+        "subject": "work:memory:derived",
+        "purpose": "mission-evidence",
+        "narrowed_purpose": null,
+        "scope_tenant": "ten_11111111111111111111111111111111",
+        "scope_domain": "execution",
+        "ledger_record": "consent:ledger:000003",
+        "ledger_version": "v3",
+        "recorded_at": "2026-09-08T12:00:00Z",
+        "valid_until": "2026-09-08T13:00:00Z",
+        "revoked_at": null,
+        "use_purpose": "mission-evidence",
+        "use_at": "2026-09-08T14:00:00Z"
+      },
+      "reason": "Expired consent permits no further use past its validity window."
+    },
+    {
+      "id": "CON-004",
+      "kind": "consent_ledger",
+      "expected": "reject",
+      "input": {
+        "schema": "consent-ledger/0.1",
+        "ledger_id": "led_44444444444444444444444444444444",
+        "event": "restricted",
+        "subject": "work:memory:derived",
+        "purpose": "mission-evidence",
+        "narrowed_purpose": "summarization",
+        "scope_tenant": "ten_11111111111111111111111111111111",
+        "scope_domain": "execution",
+        "ledger_record": "consent:ledger:000004",
+        "ledger_version": "v5",
+        "recorded_at": "2026-09-08T12:00:00Z",
+        "valid_until": "2026-09-09T12:00:00Z",
+        "revoked_at": null,
+        "use_purpose": "personalization",
+        "use_at": "2026-09-08T14:00:00Z"
+      },
+      "reason": "Restriction narrows the purpose: a use outside the narrowed purpose is not permitted."
     }
   ]
 }
