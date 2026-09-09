@@ -1,6 +1,6 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-09T12:27:48Z",
+  "generated_at": "2026-09-09T12:47:27Z",
   "generator": "/mnt/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
@@ -8,9 +8,9 @@
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "74179de44d48be58694d66524ebc10fd6a36bec8",
-      "remote_head_short": "74179de",
-      "head_commit_message": "evidence(governance): Wave I Task 1 — dissolution ledger contract + validator + RET vectors (#122)",
+      "remote_head_sha": "765d739ea7d9282f01f7a73dbaea1028ff4717fb",
+      "remote_head_short": "765d739",
+      "head_commit_message": "evidence(governance): Wave I Task 2 — skill-hermes migration RET vectors (#124)",
       "private": false,
       "archived": false,
       "protected": true,
@@ -532,7 +532,7 @@
           "title": "research: draft STUDY-012 institutional containment preregistration",
           "is_draft": true,
           "mergeable": "UNKNOWN",
-          "head_sha": "bb79adbc603cf20d914bedfa0ccec48017afbea8"
+          "head_sha": "e1e0c369aeebe4418c0962f780da5599f128fc89"
         },
         {
           "number": 51,
