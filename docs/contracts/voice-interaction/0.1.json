@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.dev/contracts/voice-interaction/0.1.json",
+  "title": "Aftergraph Voice Interaction",
+  "description": "EXPERIMENTAL voice-interaction contract for the Interaction Fabric realtime voice edge. A disposable voice session carries turn/observation content only: durable principal identity and durable interaction/memory/mission state live outside the session in Runtime/WORKS/consent-ledger-owned stores and are referenced, never embedded. Session admission and egress/effects pass Trust Gateway grant enforcement. Transcript is not principal identity and speaker attribution is not principal authentication (inherited Wave F pocket-source binding, not re-derived). The session confers no authority and replaces no canonical source.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "voice-interaction/0.1"
+    },
+    "session_id": {
+      "type": "string",
+      "pattern": "^ses_[a-f0-9]{32}$"
+    },
+    "tenant_id": {
+      "type": "string",
+      "pattern": "^ten_[a-f0-9]{32}$"
+    },
+    "surface_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "thread_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "turn_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "observation_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "model_identity_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "session_identity_disposable": {
+      "type": "boolean"
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "authority",
+        "enforcement",
+        "runtime",
+        "execution",
+        "verification",
+        "research"
+      ]
+    },
+    "embeds_durable_principal_identity": {
+      "type": "boolean"
+    },
+    "embeds_durable_state": {
+      "type": "boolean"
+    },
+    "admitted_by_tg": {
+      "type": "boolean"
+    },
+    "tg_admission_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "egress_effect": {
+      "type": "boolean"
+    },
+    "egress_grant_enforced": {
+      "type": "boolean"
+    },
+    "claims_principal_identity": {
+      "type": "boolean"
+    },
+    "claims_principal_authentication": {
+      "type": "boolean"
+    },
+    "claims_authority": {
+      "type": "boolean"
+    },
+    "principal_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "interaction_state_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "memory_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "mission_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "consent_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "asserted_at": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    }
+  },
+  "required": [
+    "schema",
+    "session_id",
+    "tenant_id",
+    "surface_ref",
+    "thread_ref",
+    "turn_ref",
+    "observation_ref",
+    "model_identity_ref",
+    "session_identity_disposable",
+    "classification",
+    "embeds_durable_principal_identity",
+    "embeds_durable_state",
+    "admitted_by_tg",
+    "tg_admission_ref",
+    "egress_effect",
+    "egress_grant_enforced",
+    "claims_principal_identity",
+    "claims_principal_authentication",
+    "claims_authority",
+    "asserted_at"
+  ]
+}

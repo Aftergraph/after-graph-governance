@@ -27,6 +27,7 @@ PROACTIVITY_SCHEMA = ROOT / "docs/contracts/proactivity/0.1.json"
 ORG_DELEGATION_SCHEMA = ROOT / "docs/contracts/org-delegation/0.1.json"
 EVAL_SCHEMA = ROOT / "docs/contracts/agent-eval/0.1.json"
 POCKET_SCHEMA = ROOT / "docs/contracts/pocket-source/0.1.json"
+VOICE_SCHEMA = ROOT / "docs/contracts/voice-interaction/0.1.json"
 VECTORS = ROOT / "docs/platform-conformance/v0.1/vectors.json"
 
 HEX32 = r"[a-f0-9]{32}"
@@ -49,6 +50,7 @@ ID_PATTERNS = {
     "delegation_id": re.compile(rf"^del_{HEX32}$"),
     "eval_id": re.compile(rf"^evl_{HEX32}$"),
     "pocket_id": re.compile(rf"^pck_{HEX32}$"),
+    "session_id": re.compile(rf"^ses_{HEX32}$"),
     "delivery_id": re.compile(rf"^dlv_{HEX32}$"),
     "idempotency_key": re.compile(rf"^idem_{HEX32}$"),
 }
@@ -305,6 +307,37 @@ POCKET_TASK3_OPTIONAL = {
 POCKET_ALLOWED = set(POCKET_REQUIRED) | set(POCKET_WEBHOOK_OPTIONAL) | set(POCKET_TASK3_OPTIONAL)
 POCKET_CHANNELS = {"rest", "webhook"}
 POCKET_ACCESS_MODES = {"interactive", "canonical"}
+VOICE_REQUIRED = {
+    "schema",
+    "session_id",
+    "tenant_id",
+    "surface_ref",
+    "thread_ref",
+    "turn_ref",
+    "observation_ref",
+    "model_identity_ref",
+    "session_identity_disposable",
+    "classification",
+    "embeds_durable_principal_identity",
+    "embeds_durable_state",
+    "admitted_by_tg",
+    "tg_admission_ref",
+    "egress_effect",
+    "egress_grant_enforced",
+    "claims_principal_identity",
+    "claims_principal_authentication",
+    "claims_authority",
+    "asserted_at",
+}
+VOICE_OPTIONAL = {
+    "principal_ref",
+    "interaction_state_ref",
+    "memory_ref",
+    "mission_ref",
+    "consent_ref",
+}
+VOICE_ALLOWED = set(VOICE_REQUIRED) | set(VOICE_OPTIONAL)
+VOICE_CLASSES = {"authority", "enforcement", "runtime", "execution", "verification", "research"}
 POCKET_SIGNATURE_SCHEMES = {"hmac-sha256"}
 POCKET_CLASSES = {"authority", "enforcement", "runtime", "execution", "verification", "research"}
 POCKET_CANDIDATE_KINDS = {"observation_update", "attention_candidate", "commitment_candidate", "finding"}
@@ -1401,6 +1434,90 @@ def validate_pocket_source(document: object) -> list[str]:
     return errors
 
 
+def validate_voice_interaction(document: Any) -> list[str]:
+    errors: list[str] = []
+    if not isinstance(document, dict):
+        return ["voice interaction must be an object"]
+
+    keys = set(document)
+    missing = VOICE_REQUIRED - keys
+    extra = keys - VOICE_ALLOWED
+    if missing:
+        errors.append(f"missing voice-interaction fields: {sorted(missing)}")
+    if extra:
+        errors.append(f"unexpected voice-interaction fields: {sorted(extra)}")
+
+    if document.get("schema") != "voice-interaction/0.1":
+        errors.append("wrong voice-interaction schema")
+    if not valid_id("session_id", document.get("session_id")):
+        errors.append("invalid session_id")
+    if not valid_id("tenant_id", document.get("tenant_id")):
+        errors.append("invalid tenant_id")
+    for field in (
+        "surface_ref",
+        "thread_ref",
+        "turn_ref",
+        "observation_ref",
+        "model_identity_ref",
+        "tg_admission_ref",
+    ):
+        if not nonempty_string(document.get(field)):
+            errors.append(f"invalid {field}")
+    if document.get("classification") not in VOICE_CLASSES:
+        errors.append("invalid classification")
+
+    for field in (
+        "session_identity_disposable",
+        "embeds_durable_principal_identity",
+        "embeds_durable_state",
+        "admitted_by_tg",
+        "egress_effect",
+        "egress_grant_enforced",
+        "claims_principal_identity",
+        "claims_principal_authentication",
+        "claims_authority",
+    ):
+        if not isinstance(document.get(field), bool):
+            errors.append(f"{field} must be a boolean")
+
+    if document.get("session_identity_disposable") is not True:
+        errors.append("voice session/model identity is disposable")
+    if document.get("embeds_durable_principal_identity") is True:
+        errors.append("sessions carry no durable principal identity; durable identity lives outside sessions")
+    if document.get("embeds_durable_state") is True:
+        errors.append("sessions carry no durable interaction/memory/mission state; durable state lives outside sessions")
+    if document.get("admitted_by_tg") is not True:
+        errors.append("session admission passes Trust Gateway")
+    if (
+        document.get("egress_effect") is True
+        and document.get("egress_grant_enforced") is not True
+    ):
+        errors.append("session egress/effects require Trust Gateway grant enforcement")
+    if document.get("claims_principal_identity") is True:
+        errors.append("transcript is not principal identity (inherited Wave F binding)")
+    if document.get("claims_principal_authentication") is True:
+        errors.append("speaker attribution is not principal authentication (inherited Wave F binding)")
+    if document.get("claims_authority") is True:
+        errors.append("voice sessions confer no authority")
+
+    for field in (
+        "principal_ref",
+        "interaction_state_ref",
+        "memory_ref",
+        "mission_ref",
+    ):
+        if document.get(field) is not None and not nonempty_string(document.get(field)):
+            errors.append(f"invalid {field}")
+    consent_ref = document.get("consent_ref")
+    if consent_ref is not None and not nonempty_string(consent_ref, maximum=256):
+        errors.append("invalid consent_ref")
+
+    if not parse_rfc3339(document.get("asserted_at")):
+        errors.append("invalid asserted_at")
+
+    return errors
+
+
 def validate_causal_chain(document: Any) -> list[str]:
     errors: list[str] = []
     if not isinstance(document, dict):
@@ -1487,6 +1604,8 @@ def validate_vector(vector: dict[str, Any]) -> list[str]:
         return validate_agent_eval(document)
     if kind == "pocket_source":
         return validate_pocket_source(document)
+    if kind == "voice_interaction":
+        return validate_voice_interaction(document)
     if kind == "causal_chain":
         return validate_causal_chain(document)
     return [f"unknown vector kind: {kind!r}"]
@@ -1664,6 +1783,36 @@ def valid_pocket_source() -> dict[str, Any]:
         "asserted_at": "2026-09-08T12:00:00Z",
     }
 
+
+
+def valid_voice_interaction() -> dict[str, Any]:
+    return {
+        "schema": "voice-interaction/0.1",
+        "session_id": "ses_11111111111111111111111111111111",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "surface_ref": "interaction:surface:voice:000001",
+        "thread_ref": "interaction:thread:000001",
+        "turn_ref": "interaction:turn:000001",
+        "observation_ref": "wie:observation:000001",
+        "model_identity_ref": "voice:model:ephemeral:000001",
+        "session_identity_disposable": True,
+        "classification": "runtime",
+        "embeds_durable_principal_identity": False,
+        "embeds_durable_state": False,
+        "admitted_by_tg": True,
+        "tg_admission_ref": "tg:admission:000001",
+        "egress_effect": False,
+        "egress_grant_enforced": False,
+        "claims_principal_identity": False,
+        "claims_principal_authentication": False,
+        "claims_authority": False,
+        "principal_ref": "runtime:principal:000001",
+        "interaction_state_ref": "runtime:interaction-state:000001",
+        "memory_ref": "runtime:memory:000001",
+        "mission_ref": "works:mission:000001",
+        "consent_ref": "consent:ledger:000001",
+        "asserted_at": "2026-09-08T12:00:00Z",
+    }
 
 
 def valid_pocket_webhook() -> dict[str, Any]:
@@ -2394,6 +2543,97 @@ class PlatformFabricsV01Tests(unittest.TestCase):
         del works["principal_id"]
         errors = validate_causal_chain(document)
         self.assertTrue(any("works missing canonical principal_id" in error for error in errors))
+
+    def test_voice_interaction_contract_is_strict_and_experimental(self) -> None:
+        schema = load_json(VOICE_SCHEMA)
+        self.assertFalse(schema.get("additionalProperties"), schema["title"])
+        self.assertIn("EXPERIMENTAL", schema.get("description", ""))
+        self.assertIn("authority", schema.get("description", "").lower())
+        self.assertEqual(schema["properties"]["schema"]["const"], "voice-interaction/0.1")
+
+    def test_voice_session_stateless_with_outside_durable_refs_accepts(self) -> None:
+        document = valid_voice_interaction()
+        self.assertEqual(validate_voice_interaction(document), [])
+
+    def test_voice_session_embedding_durable_principal_rejected(self) -> None:
+        document = valid_voice_interaction()
+        self.assertEqual(validate_voice_interaction(document), [])
+        document["embeds_durable_principal_identity"] = True
+        errors = validate_voice_interaction(document)
+        self.assertTrue(
+            any("no durable principal identity" in error for error in errors)
+        )
+
+    def test_voice_session_embedding_durable_state_rejected(self) -> None:
+        document = valid_voice_interaction()
+        self.assertEqual(validate_voice_interaction(document), [])
+        document["embeds_durable_state"] = True
+        errors = validate_voice_interaction(document)
+        self.assertTrue(
+            any("no durable interaction/memory/mission state" in error for error in errors)
+        )
+
+    def test_voice_session_without_tg_admission_rejected(self) -> None:
+        document = valid_voice_interaction()
+        document["admitted_by_tg"] = False
+        errors = validate_voice_interaction(document)
+        self.assertTrue(
+            any("passes Trust Gateway" in error for error in errors)
+        )
+
+    def test_voice_egress_effect_without_grant_enforcement_rejected(self) -> None:
+        document = valid_voice_interaction()
+        document["egress_effect"] = True
+        document["egress_grant_enforced"] = False
+        errors = validate_voice_interaction(document)
+        self.assertTrue(
+            any("grant enforcement" in error for error in errors)
+        )
+        document["egress_grant_enforced"] = True
+        self.assertEqual(validate_voice_interaction(document), [])
+
+    def test_voice_transcript_and_speaker_claim_no_identity(self) -> None:
+        document = valid_voice_interaction()
+        document["claims_principal_identity"] = True
+        self.assertTrue(
+            any("not principal identity" in e for e in validate_voice_interaction(document))
+        )
+        document = valid_voice_interaction()
+        document["claims_principal_authentication"] = True
+        self.assertTrue(
+            any("not principal authentication" in e for e in validate_voice_interaction(document))
+        )
+
+    def test_voice_session_confers_no_authority(self) -> None:
+        document = valid_voice_interaction()
+        document["claims_authority"] = True
+        errors = validate_voice_interaction(document)
+        self.assertTrue(
+            any("confer no authority" in error for error in errors)
+        )
+
+    def test_voice_session_identity_is_disposable(self) -> None:
+        document = valid_voice_interaction()
+        document["session_identity_disposable"] = False
+        errors = validate_voice_interaction(document)
+        self.assertTrue(
+            any("is disposable" in error for error in errors)
+        )
+
+    def test_voice_interaction_vectors_are_registered(self) -> None:
+        fixture = load_json(VECTORS)
+        by_id = {vector.get("id"): vector for vector in fixture["vectors"]}
+        for vector_id, expected in (
+            ("VOI-001", "accept"),
+            ("VOI-002", "reject"),
+            ("VOI-003", "reject"),
+            ("VOI-004", "reject"),
+            ("VOI-005", "reject"),
+            ("VOI-006", "reject"),
+            ("VOI-007", "reject"),
+        ):
+            self.assertIn(vector_id, by_id)
+            self.assertEqual(by_id[vector_id]["expected"], expected)
 
     def test_rfc3339_timestamp_requires_time_and_offset(self) -> None:
         self.assertFalse(parse_rfc3339("2026-09-08"))
