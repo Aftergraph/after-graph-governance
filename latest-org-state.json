@@ -1,6 +1,6 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-09T06:04:47Z",
+  "generated_at": "2026-09-09T06:33:49Z",
   "generator": "/mnt/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
@@ -8,9 +8,9 @@
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "334cb90298f2ea43681bc6d3b20547eb59d5f6e9",
-      "remote_head_short": "334cb90",
-      "head_commit_message": "evidence(governance): Wave E Task 3 — agent-eval contract + validator + EVAL vectors (#80)",
+      "remote_head_sha": "74ea4214fe6d527d49450c70408a1221e41821d1",
+      "remote_head_short": "74ea421",
+      "head_commit_message": "docs(governance): Wave E Task 4 — proactivity-org seam binding (#82)",
       "private": false,
       "archived": false,
       "protected": true,
@@ -136,20 +136,13 @@
       "full_name": "Aftergraph/runtime",
       "role": "agent-runtime",
       "canonical_branch": "main",
-      "remote_head_sha": "779bbb54015b03d8377b0c9d414d3e21d6132dee",
-      "remote_head_short": "779bbb5",
-      "head_commit_message": "docs(runtime): OS isolation + data-lineage profile v0.1",
+      "remote_head_sha": "7c9c0b4a5bdbf5b2e8ffa77918e34b0443803ba3",
+      "remote_head_short": "7c9c0b4",
+      "head_commit_message": "feat(muse-supervisor): Hermes ↔ Muse autonomous worker supervisor (#103)",
       "private": true,
       "archived": false,
       "protected": false,
       "open_pull_requests": [
-        {
-          "number": 103,
-          "title": "feat(muse-supervisor): Hermes ↔ Muse autonomous worker supervisor",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "6f55d7c869231b336d2a49dcc09581f582c604c6"
-        },
         {
           "number": 102,
           "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/triggers",
@@ -282,6 +275,13 @@
           "is_draft": false,
           "mergeable": "UNKNOWN",
           "head_sha": "f4c1dbec1ad22f3c618dde3118cd266dc2af4b7f"
+        },
+        {
+          "number": 83,
+          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/intelligence-gateway",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "72bdeb00f8b8f0dfd85723e4988927c96e19eef8"
         }
       ],
       "authoritative_contracts": [],
