@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://aftergraph.dev/contracts/promotion-gates/0.1.json",
   "title": "Aftergraph Promotion Gates",
-  "description": "EXPERIMENTAL promotion-gates contract for the Wave H verified-improvement slice. A production trace carries observation/correlation content only: promotion authority and promotion grants live outside the trace in gate/registry-owned stores and are referenced, never embedded. A trace is never a gate PASS by itself; routing/skill/workflow/model promotion moves only through gates plus registry evidence, and no challenger promotes itself. Trace/registry correlation is correlation only: correlation is never registry evidence and never promotion authority. Challenger traces inherit the Wave E EVAL binding (evaluators never score their own execution), not re-derived here. The trace confers no promotion authority. Production-trace characterization claims are evidence-gated on production evidence. Challenger candidates carry disposable candidate identity with registration routing them to an independent gate/verifier; promotion requires gate PASS plus registry evidence plus independent verification, challenger identity reuse as durable authority rejects, and challenger win-rate/quality claims are evidence-gated on production evidence.",
+  "description": "EXPERIMENTAL promotion-gates contract for the Wave H verified-improvement slice. A production trace carries observation/correlation content only: promotion authority and promotion grants live outside the trace in gate/registry-owned stores and are referenced, never embedded. A trace is never a gate PASS by itself; routing/skill/workflow/model promotion moves only through gates plus registry evidence, and no challenger promotes itself. Trace/registry correlation is correlation only: correlation is never registry evidence and never promotion authority. Challenger traces inherit the Wave E EVAL binding (evaluators never score their own execution), not re-derived here. The trace confers no promotion authority. Production-trace characterization claims are evidence-gated on production evidence. Challenger candidates carry disposable candidate identity with registration routing them to an independent gate/verifier; promotion requires gate PASS plus registry evidence plus independent verification, challenger identity reuse as durable authority rejects, and challenger win-rate/quality claims are evidence-gated on production evidence. Routing/workflow promotion moves only through runtime gate evidence, skill promotion only through skills-vault supply-chain gate evidence, each plus registry evidence plus independent verification; authority is re-admitted at promotion and never transported in payloads; superseded evidence requires re-verification; repository-local green is never a cross-repo gate PASS; routing/skill/workflow quality claims are evidence-gated on production evidence.",
   "type": "object",
   "additionalProperties": false,
   "properties": {
@@ -163,6 +163,48 @@
     "claims_challenger_quality": {
       "type": "boolean",
       "description": "True claims challenger win-rate/quality; requires production evidence and is otherwise evidence-gated."
+    },
+    "subject_gate_evidence_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Subject-owned gate PASS evidence for the promotion subject: routing/workflow promotion moves only through runtime gate evidence."
+    },
+    "supply_chain_evidence_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Skills-vault-owned supply-chain gate evidence; skill promotion moves only through skills-vault supply-chain evidence."
+    },
+    "authority_transport": {
+      "type": "boolean",
+      "description": "True moves promotion authority into the challenger/trace payload and always rejects; authority is re-admitted at promotion, never transported."
+    },
+    "authority_readmission_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Reference to the promotion authority re-admitted at promotion time; authority lives outside payloads in gate/registry-owned stores."
+    },
+    "evidence_superseded": {
+      "type": "boolean",
+      "description": "True marks the challenger evidence behind the promotion superseded/stale; promotion then requires re-verification."
+    },
+    "reverification_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Reference to the re-verification behind a promotion over superseded challenger evidence."
+    },
+    "cross_repo_gate_evidence_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Cross-repo gate PASS evidence behind the promotion; repository-local green is never a cross-repo gate PASS."
+    },
+    "claims_subject_quality": {
+      "type": "boolean",
+      "description": "True claims routing/skill/workflow quality; requires production evidence and is otherwise evidence-gated."
     }
   },
   "required": [
