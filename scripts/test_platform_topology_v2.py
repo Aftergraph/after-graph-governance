@@ -39,7 +39,8 @@ REGISTRY_DOC = REPO_ROOT / "docs" / "REPOSITORY-REGISTRY-v0.1.md"
 VERIFIED_AUTO_DOC = REPO_ROOT / "docs" / "VERIFIED-AUTO-V1.md"
 MEMORY_SEPARATION_DOC = REPO_ROOT / "docs" / "MEMORY-ACC-BRAIN-V1.md"
 HUMAN_GOVERNANCE_DOC = REPO_ROOT / "docs" / "HUMAN-GOVERNANCE-V1.md"
-CURRENT_DOCS = (V4_DOC, RECONCILIATION_DOC, CROSS_REPO_DOC, REGISTRY_DOC, VERIFIED_AUTO_DOC, MEMORY_SEPARATION_DOC, HUMAN_GOVERNANCE_DOC)
+PROACTIVITY_ORG_DOC = REPO_ROOT / "docs" / "PROACTIVITY-ORG-V1.md"
+CURRENT_DOCS = (V4_DOC, RECONCILIATION_DOC, CROSS_REPO_DOC, REGISTRY_DOC, VERIFIED_AUTO_DOC, MEMORY_SEPARATION_DOC, HUMAN_GOVERNANCE_DOC, PROACTIVITY_ORG_DOC)
 DESIGN_SPEC_NAMES = (
     "2026-09-08-aftergraph-platform-architecture-v4-and-platform-fabrics-v1-design.md",
     "2026-09-08-aftergraph-verified-auto-execution-design.md",
@@ -64,6 +65,17 @@ FORBIDDEN_GOVERNANCE_PHRASES = (
     "surface grants authority",
     "studio mints authority",
     "workspace is authoritative",
+)
+PROACTIVITY_ORG_OWNERS = ("wi-backend", "wi-frontend", "runtime", "aftergraph-cron-fabric", "aie", "trust-gateway", "works-execution", "sentinel")
+FORBIDDEN_PROACTIVITY_PHRASES = (
+    "cron executes work",
+    "cron has execution authority",
+    "candidate admits itself",
+    "candidates self-admit",
+    "worker grants itself authority",
+    "self-declares verified completion",
+    "evaluator scores its own execution",
+    "verdict waives verification",
 )
 FORBIDDEN_AUTO_PHRASES = (
     "runtime verifies",
@@ -341,6 +353,20 @@ class ActiveDocConsistencyTest(unittest.TestCase):
     def test_human_governance_binding_grants_no_authority(self):
         text = HUMAN_GOVERNANCE_DOC.read_text(encoding="utf-8").lower()
         for phrase in FORBIDDEN_GOVERNANCE_PHRASES:
+            self.assertNotIn(phrase, text, f"authority-conflating phrase {phrase!r}")
+
+    def test_proactivity_org_binding_is_a_current_doc(self):
+        self.assertIn(PROACTIVITY_ORG_DOC, CURRENT_DOCS)
+        self.assertTrue(PROACTIVITY_ORG_DOC.is_file(), "docs/PROACTIVITY-ORG-V1.md is missing")
+
+    def test_proactivity_org_binding_maps_seams_to_v4_owners(self):
+        text = PROACTIVITY_ORG_DOC.read_text(encoding="utf-8")
+        for owner in PROACTIVITY_ORG_OWNERS:
+            self.assertIn(owner, text, f"proactivity owner {owner} is not mapped")
+
+    def test_proactivity_org_binding_grants_no_authority(self):
+        text = PROACTIVITY_ORG_DOC.read_text(encoding="utf-8").lower()
+        for phrase in FORBIDDEN_PROACTIVITY_PHRASES:
             self.assertNotIn(phrase, text, f"authority-conflating phrase {phrase!r}")
 
     def test_v3_marked_superseded_not_deleted(self):
