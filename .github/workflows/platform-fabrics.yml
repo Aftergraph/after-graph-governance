@@ -5,6 +5,8 @@ on:
     paths:
       - 'docs/contracts/platform-event-ref/**'
       - 'docs/contracts/capability-action/**'
+      - 'docs/contracts/world-assertion/**'
+      - 'docs/contracts/situation/**'
       - 'docs/platform-conformance/**'
       - 'docs/golden-mission/**'
       - 'docs/superpowers/requests/**'
@@ -17,6 +19,8 @@ on:
     paths:
       - 'docs/contracts/platform-event-ref/**'
       - 'docs/contracts/capability-action/**'
+      - 'docs/contracts/world-assertion/**'
+      - 'docs/contracts/situation/**'
       - 'docs/platform-conformance/**'
       - 'docs/golden-mission/**'
       - 'docs/superpowers/requests/**'
