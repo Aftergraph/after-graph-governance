@@ -3783,6 +3783,474 @@
         "asserted_at": "2026-09-09T00:00:00Z"
       },
       "reason": "Evidence-gated: extraction-completion claim without owner evidence rejects."
+    },
+    {
+      "id": "RET-010",
+      "kind": "avc_dissolution",
+      "expected": "accept",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_01010101010101010101010101010101",
+        "tenant_id": "ten_01010101010101010101010101010101",
+        "source_repo": "Aftergraph/autonomous-venture-company",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000010",
+        "target_owner": "Aftergraph/skills-vault",
+        "target_contract": "skills-vault-supply-chain/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-skill-search",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-search"
+        ],
+        "verification": [
+          "verifier:continuum:report:000010"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000010",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+        "skill_class": "generic-reusable",
+        "canonical_identifier": "@aftergraph/skill-search",
+        "generalization_ref": "",
+        "ledger_skill_owner": "Aftergraph/skills-vault",
+        "asserts_canonical_ownership": true,
+        "canonical_skills_owned_by_avc": [],
+        "canonical_contract_owner": "Aftergraph/skills-vault",
+        "skills_vault_registry_refs": [
+          "skills-vault:registry:skill-search"
+        ],
+        "skills_vault_evidence_refs": [
+          "skills-vault:evidence:migration:000010"
+        ],
+        "reconciliation_ref": "",
+        "attestation_source": "skills-vault",
+        "claims_migration_complete": false
+      },
+      "reason": "Generic reusable avc-* skill ledgered MIGRATED_VERIFIED with target_owner skills-vault, Aftergraph canonical identifier, legacy alias retained, zero canonical skills owned by AVC, and non-empty skills-vault registry plus evidence refs accepts."
+    },
+    {
+      "id": "RET-011",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_11111111111111111111111111111111",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "source_repo": "Aftergraph/autonomous-venture-company",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000011",
+        "target_owner": "Aftergraph/skills-vault",
+        "target_contract": "skills-vault-supply-chain/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-skill-search",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-search"
+        ],
+        "verification": [
+          "verifier:continuum:report:000011"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000011",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+        "skill_class": "generic-reusable",
+        "canonical_identifier": "@aftergraph/skill-search",
+        "generalization_ref": "",
+        "ledger_skill_owner": "AVC",
+        "asserts_canonical_ownership": true,
+        "canonical_skills_owned_by_avc": [],
+        "canonical_contract_owner": "Aftergraph/skills-vault",
+        "skills_vault_registry_refs": [
+          "skills-vault:registry:skill-search"
+        ],
+        "skills_vault_evidence_refs": [
+          "skills-vault:evidence:migration:000011"
+        ],
+        "reconciliation_ref": "",
+        "attestation_source": "skills-vault",
+        "claims_migration_complete": false
+      },
+      "reason": "Skill migration asserting canonical ownership while the ledger still shows AVC as skill owner rejects."
+    },
+    {
+      "id": "RET-012",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_22222222222222222222222222222222",
+        "tenant_id": "ten_22222222222222222222222222222222",
+        "source_repo": "Aftergraph/autonomous-venture-company",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000012",
+        "target_owner": "Aftergraph/skills-vault",
+        "target_contract": "skills-vault-supply-chain/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-persona-concierge",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-concierge"
+        ],
+        "verification": [
+          "verifier:continuum:report:000012"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000012",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+        "skill_class": "persona-specific",
+        "canonical_identifier": "@aftergraph/concierge",
+        "generalization_ref": "",
+        "ledger_skill_owner": "Aftergraph/skills-vault",
+        "asserts_canonical_ownership": true,
+        "canonical_skills_owned_by_avc": [],
+        "canonical_contract_owner": "Aftergraph/skills-vault",
+        "skills_vault_registry_refs": [
+          "skills-vault:registry:concierge"
+        ],
+        "skills_vault_evidence_refs": [
+          "skills-vault:evidence:migration:000012"
+        ],
+        "reconciliation_ref": "",
+        "attestation_source": "skills-vault",
+        "claims_migration_complete": false
+      },
+      "reason": "Persona-specific skill carried over verbatim without generalization or RETIRE disposition rejects."
+    },
+    {
+      "id": "RET-013",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_33333333333333333333333333333333",
+        "tenant_id": "ten_33333333333333333333333333333333",
+        "source_repo": "Aftergraph/autonomous-venture-company",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000013",
+        "target_owner": "Aftergraph/autonomous-venture-company",
+        "target_contract": "skills-vault-supply-chain/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-hermes-adapter",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-hermes"
+        ],
+        "verification": [],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000013",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+        "skill_class": "hermes-adapter",
+        "canonical_identifier": "@aftergraph/hermes-adapter",
+        "generalization_ref": "",
+        "ledger_skill_owner": "Aftergraph/skills-vault",
+        "asserts_canonical_ownership": true,
+        "canonical_skills_owned_by_avc": [],
+        "canonical_contract_owner": "Aftergraph/skills-vault",
+        "skills_vault_registry_refs": [
+          "skills-vault:registry:hermes-adapter"
+        ],
+        "skills_vault_evidence_refs": [
+          "skills-vault:evidence:migration:000013"
+        ],
+        "reconciliation_ref": "",
+        "attestation_source": "skills-vault",
+        "claims_migration_complete": false
+      },
+      "reason": "Hermes execution adapter ledgered without target_owner migration/reconciliation and verification refs rejects."
+    },
+    {
+      "id": "RET-014",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_44444444444444444444444444444444",
+        "tenant_id": "ten_44444444444444444444444444444444",
+        "source_repo": "Aftergraph/autonomous-venture-company",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000014",
+        "target_owner": "Aftergraph/skills-vault",
+        "target_contract": "skills-vault-supply-chain/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-skill-search",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-search"
+        ],
+        "verification": [
+          "verifier:continuum:report:000014"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000014",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": true,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+        "skill_class": "generic-reusable",
+        "canonical_identifier": "avc-shiny-skill",
+        "generalization_ref": "",
+        "ledger_skill_owner": "Aftergraph/skills-vault",
+        "asserts_canonical_ownership": true,
+        "canonical_skills_owned_by_avc": [],
+        "canonical_contract_owner": "Aftergraph/skills-vault",
+        "skills_vault_registry_refs": [
+          "skills-vault:registry:skill-search"
+        ],
+        "skills_vault_evidence_refs": [
+          "skills-vault:evidence:migration:000014"
+        ],
+        "reconciliation_ref": "",
+        "attestation_source": "skills-vault",
+        "claims_migration_complete": false
+      },
+      "reason": "Skill migration minting a new active avc-* identifier rejects."
+    },
+    {
+      "id": "RET-015",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_55555555555555555555555555555555",
+        "tenant_id": "ten_55555555555555555555555555555555",
+        "source_repo": "Aftergraph/autonomous-venture-company",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000015",
+        "target_owner": "Aftergraph/skills-vault",
+        "target_contract": "skills-vault-supply-chain/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-skill-search",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-search"
+        ],
+        "verification": [
+          "verifier:continuum:report:000015"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000015",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+        "skill_class": "generic-reusable",
+        "canonical_identifier": "@aftergraph/skill-search",
+        "generalization_ref": "",
+        "ledger_skill_owner": "Aftergraph/skills-vault",
+        "asserts_canonical_ownership": true,
+        "canonical_skills_owned_by_avc": [],
+        "canonical_contract_owner": "Aftergraph/skills-vault",
+        "skills_vault_registry_refs": [
+          "skills-vault:registry:skill-search"
+        ],
+        "skills_vault_evidence_refs": [],
+        "reconciliation_ref": "",
+        "attestation_source": "legacy-repo",
+        "claims_migration_complete": false
+      },
+      "reason": "Skill migration proven by legacy-repo self-attestation without skills-vault-side evidence ref rejects."
+    },
+    {
+      "id": "RET-016",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_66666666666666666666666666666666",
+        "tenant_id": "ten_66666666666666666666666666666666",
+        "source_repo": "Aftergraph/autonomous-venture-company",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000016",
+        "target_owner": "Aftergraph/skills-vault",
+        "target_contract": "skills-vault-supply-chain/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-skill-search",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-search"
+        ],
+        "verification": [
+          "verifier:continuum:report:000016"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000016",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+        "skill_class": "generic-reusable",
+        "canonical_identifier": "@aftergraph/skill-search",
+        "generalization_ref": "",
+        "ledger_skill_owner": "Aftergraph/skills-vault",
+        "asserts_canonical_ownership": true,
+        "canonical_skills_owned_by_avc": [],
+        "canonical_contract_owner": "AVC",
+        "skills_vault_registry_refs": [
+          "skills-vault:registry:skill-search"
+        ],
+        "skills_vault_evidence_refs": [
+          "skills-vault:evidence:migration:000016"
+        ],
+        "reconciliation_ref": "",
+        "attestation_source": "skills-vault",
+        "claims_migration_complete": false
+      },
+      "reason": "Canonical contract still owned by AVC in a migration PASS claim rejects."
+    },
+    {
+      "id": "RET-017",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_77777777777777777777777777777777",
+        "tenant_id": "ten_77777777777777777777777777777777",
+        "source_repo": "Aftergraph/autonomous-venture-company",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000017",
+        "target_owner": "Aftergraph/skills-vault",
+        "target_contract": "skills-vault-supply-chain/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-skill-search",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-search"
+        ],
+        "verification": [
+          "verifier:continuum:report:000017"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000017",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+        "skill_class": "generic-reusable",
+        "canonical_identifier": "@aftergraph/skill-search",
+        "generalization_ref": "",
+        "ledger_skill_owner": "Aftergraph/skills-vault",
+        "asserts_canonical_ownership": true,
+        "canonical_skills_owned_by_avc": [],
+        "canonical_contract_owner": "Aftergraph/skills-vault",
+        "skills_vault_registry_refs": [
+          "skills-vault:registry:skill-search"
+        ],
+        "skills_vault_evidence_refs": [
+          "skills-vault:evidence:migration:000017"
+        ],
+        "reconciliation_ref": "",
+        "attestation_source": "skills-vault",
+        "claims_migration_complete": true
+      },
+      "reason": "Evidence-gated: live migration-completion claim without owner execution evidence rejects."
     }
   ]
 }

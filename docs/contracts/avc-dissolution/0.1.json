@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://aftergraph.dev/contracts/avc-dissolution/0.1.json",
   "title": "Aftergraph AVC Dissolution Ledger",
-  "description": "EXPERIMENTAL avc-dissolution contract for the Wave I AVC-retirement slice. A dissolution record is ledger-owned evidence that an AVC identity moved to a disposition of MIGRATED_VERIFIED/MIGRATED_TRANSITIONAL/EXTRACT/RETIRE/HISTORY_ONLY, pinned to extraction baseline 18317c7b2eebcc08bb2a1b30d9118935d5832540 with a delta-audit ref. No AVC identity retires while an active consumer or a canonical-doc ownership ref still names it; retirement asserted outside the ledger rejects. No newly-minted avc-/@avc-scoped/AVC identifier is ever active. Archive-gate refs are references only: governance pins ledger, gates, and vectors and NEVER executes archival or deletion; the final legacy-repo archive action REQUIRES_EXPLICIT_OWNER_AUTHORIZATION. Owner-execution and extraction-completion claims are evidence-gated on owner evidence.",
+  "description": "EXPERIMENTAL avc-dissolution contract for the Wave I AVC-retirement slice. A dissolution record is ledger-owned evidence that an AVC identity moved to a disposition of MIGRATED_VERIFIED/MIGRATED_TRANSITIONAL/EXTRACT/RETIRE/HISTORY_ONLY, pinned to extraction baseline 18317c7b2eebcc08bb2a1b30d9118935d5832540 with a delta-audit ref. No AVC identity retires while an active consumer or a canonical-doc ownership ref still names it; retirement asserted outside the ledger rejects. No newly-minted avc-/@avc-scoped/AVC identifier is ever active. Archive-gate refs are references only: governance pins ledger, gates, and vectors and NEVER executes archival or deletion; the final legacy-repo archive action REQUIRES_EXPLICIT_OWNER_AUTHORIZATION. Owner-execution and extraction-completion claims are evidence-gated on owner evidence. Skill/Hermes migration records carry skills-vault target ownership, an Aftergraph canonical identifier with retained legacy alias/provenance, zero canonical skills owned by AVC, and non-empty skills-vault-side registry and evidence refs; persona/product-specific skills generalize or retire; Hermes reconciliation is evidenced; migration-completion claims are evidence-gated on owner execution evidence.",
   "type": "object",
   "additionalProperties": false,
   "properties": {
@@ -150,6 +150,84 @@
       "type": "string",
       "minLength": 1,
       "maxLength": 64
+    },
+    "skill_class": {
+      "type": "string",
+      "enum": [
+        "generic-reusable",
+        "persona-specific",
+        "product-specific",
+        "hermes-adapter"
+      ],
+      "description": "Skill migration subject class; presence marks the record as a skill/Hermes migration record."
+    },
+    "canonical_identifier": {
+      "type": "string",
+      "maxLength": 512,
+      "description": "Aftergraph canonical identifier of the migrated skill; never a newly-minted avc-/@avc/ identifier."
+    },
+    "generalization_ref": {
+      "type": "string",
+      "maxLength": 512,
+      "description": "Reference proving a persona/product-specific skill was generalized; empty means carried over verbatim."
+    },
+    "ledger_skill_owner": {
+      "type": "string",
+      "maxLength": 512,
+      "description": "Skill owner as currently shown by the ledger."
+    },
+    "asserts_canonical_ownership": {
+      "type": "boolean",
+      "description": "True asserts canonical skill ownership for the migration target."
+    },
+    "canonical_skills_owned_by_avc": {
+      "type": "array",
+      "maxItems": 32,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512
+      },
+      "description": "Canonical skills still owned by AVC; a migration PASS shows zero."
+    },
+    "canonical_contract_owner": {
+      "type": "string",
+      "maxLength": 512,
+      "description": "Owner of the canonical contract in a migration PASS claim; never AVC."
+    },
+    "skills_vault_registry_refs": {
+      "type": "array",
+      "maxItems": 32,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512
+      },
+      "description": "Non-empty skills-vault registry refs required for a skill migration accept."
+    },
+    "skills_vault_evidence_refs": {
+      "type": "array",
+      "maxItems": 32,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512
+      },
+      "description": "Non-empty skills-vault-side evidence refs; legacy-repo self-attestation alone never proves migration."
+    },
+    "reconciliation_ref": {
+      "type": "string",
+      "maxLength": 512,
+      "description": "Hermes execution-adapter reconciliation ref."
+    },
+    "attestation_source": {
+      "type": "string",
+      "maxLength": 512,
+      "description": "Party attesting the migration; legacy-repo alone is self-attestation."
+    },
+    "claims_migration_complete": {
+      "type": "boolean",
+      "description": "Live migration-completion claim, evidence-gated on owner execution evidence."
     }
   },
   "required": [
