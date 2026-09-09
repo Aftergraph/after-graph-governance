@@ -806,6 +806,120 @@
         "recorded_at": "2026-09-08T12:00:04Z"
       },
       "reason": "An EXPORTING tenant admits no new ingestion while its export completes."
+    },
+    {
+      "id": "PRO-001",
+      "kind": "proactivity",
+      "expected": "accept",
+      "input": {
+        "schema": "proactivity/0.1",
+        "sensing_id": "sen_11111111111111111111111111111111",
+        "path": "wie",
+        "native_ref": "wie:signal:000001",
+        "candidate_kind": "opportunity",
+        "claims_execution": false,
+        "claims_admission": false,
+        "admitted_by_tg": false,
+        "correlated_paths": ["wie"],
+        "asserted_at": "2026-09-08T12:00:00Z",
+        "tenant_id": "ten_11111111111111111111111111111111"
+      },
+      "reason": "A Wie external signal projecting its native event to an opportunity candidate preserves native meaning and claims nothing."
+    },
+    {
+      "id": "PRO-002",
+      "kind": "proactivity",
+      "expected": "reject",
+      "input": {
+        "schema": "proactivity/0.1",
+        "sensing_id": "sen_22222222222222222222222222222222",
+        "path": "cron",
+        "native_ref": "cron:reading:000002",
+        "candidate_kind": "finding",
+        "claims_execution": true,
+        "claims_admission": false,
+        "admitted_by_tg": false,
+        "correlated_paths": ["cron"],
+        "asserted_at": "2026-09-08T12:00:01Z",
+        "tenant_id": "ten_11111111111111111111111111111111"
+      },
+      "reason": "The Cron Fabric retains zero execution authority; scheduled sensing may report findings, never execute."
+    },
+    {
+      "id": "PRO-003",
+      "kind": "proactivity",
+      "expected": "reject",
+      "input": {
+        "schema": "proactivity/0.1",
+        "sensing_id": "sen_33333333333333333333333333333333",
+        "path": "wie",
+        "native_ref": "wie:signal:000003",
+        "candidate_kind": "commitment_candidate",
+        "claims_execution": false,
+        "claims_admission": true,
+        "admitted_by_tg": false,
+        "correlated_paths": ["wie"],
+        "asserted_at": "2026-09-08T12:00:02Z",
+        "tenant_id": "ten_11111111111111111111111111111111"
+      },
+      "reason": "Candidates never self-admit: a commitment candidate without Trust Gateway admission fails closed."
+    },
+    {
+      "id": "PRO-004",
+      "kind": "proactivity",
+      "expected": "accept",
+      "input": {
+        "schema": "proactivity/0.1",
+        "sensing_id": "sen_44444444444444444444444444444444",
+        "path": "runtime",
+        "native_ref": "runtime:mission:000004",
+        "candidate_kind": "opportunity",
+        "claims_execution": false,
+        "claims_admission": false,
+        "admitted_by_tg": false,
+        "correlated_paths": ["runtime"],
+        "asserted_at": "2026-09-08T12:00:03Z",
+        "tenant_id": "ten_11111111111111111111111111111111"
+      },
+      "reason": "Runtime mission-state sensing to an opportunity/recovery candidate is the Runtime path doing its own sensing."
+    },
+    {
+      "id": "PRO-005",
+      "kind": "proactivity",
+      "expected": "accept",
+      "input": {
+        "schema": "proactivity/0.1",
+        "sensing_id": "sen_55555555555555555555555555555555",
+        "path": "wie",
+        "native_ref": "pocket:observation:000005",
+        "candidate_kind": "attention_candidate",
+        "claims_execution": false,
+        "claims_admission": false,
+        "admitted_by_tg": false,
+        "correlated_paths": ["wie", "cron"],
+        "asserted_at": "2026-09-08T12:00:04Z",
+        "tenant_id": "ten_11111111111111111111111111111111"
+      },
+      "reason": "The same native signal seen via Wie and Cron correlates and dedupes to a single attention candidate."
+    },
+    {
+      "id": "PRO-006",
+      "kind": "proactivity",
+      "expected": "accept",
+      "input": {
+        "schema": "proactivity/0.1",
+        "sensing_id": "sen_66666666666666666666666666666666",
+        "path": "cron",
+        "native_ref": "cron:reading:000006",
+        "candidate_kind": "finding",
+        "claims_execution": false,
+        "claims_admission": false,
+        "admitted_by_tg": false,
+        "correlated_paths": ["cron"],
+        "asserted_at": "2026-09-08T12:00:05Z",
+        "tenant_id": "ten_11111111111111111111111111111111"
+      },
+      "reason": "Cron scheduled read-only sensing reporting a finding claims no execution and stays within its authority."
     }
   ]
 }
