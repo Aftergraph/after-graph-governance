@@ -1,6 +1,6 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-08T22:53:01Z",
+  "generated_at": "2026-09-09T00:19:36Z",
   "generator": "/mnt/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
@@ -8,9 +8,9 @@
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "c49da8a756d08be7102408ec5af5169bae05ba23",
-      "remote_head_short": "c49da8a",
-      "head_commit_message": "feat(governance): converge Platform Architecture V4 truth (#53)",
+      "remote_head_sha": "3223c6a3c5d3f2d8adbf9ffb424fcc89a83f2657",
+      "remote_head_short": "3223c6a",
+      "head_commit_message": "evidence(governance): Wave B Task 5 — cross-repo requests + wave close (#60)",
       "private": false,
       "archived": false,
       "protected": true,
@@ -788,9 +788,9 @@
       "full_name": "Aftergraph/aftergraph-cron-fabric",
       "role": "scheduled-observation-fabric",
       "canonical_branch": "main",
-      "remote_head_sha": "8ebbdebf8c9b012403f1fbdaa2bdde201747dcdf",
-      "remote_head_short": "8ebbdeb",
-      "head_commit_message": "Merge pull request #26 from Aftergraph/docs/decisions-d9-d13-2026-09-09",
+      "remote_head_sha": "5f418ee8999aaee6d8c2712b121bbf7c4effdf2a",
+      "remote_head_short": "5f418ee",
+      "head_commit_message": "Merge pull request #27 from Aftergraph/docs/shadow-acceptance-procedure-2026-09-09",
       "private": false,
       "archived": false,
       "protected": true,
@@ -881,6 +881,13 @@
       "archived": false,
       "protected": true,
       "open_pull_requests": [
+        {
+          "number": 60,
+          "title": "feat(atlas): Aftergraph Atlas — evidence-aware development observatory",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "4dccde014ec901e5fe58ba85372460a1918d8c4e"
+        },
         {
           "number": 59,
           "title": "docs: define Aftergraph V3 product front door",
