@@ -335,9 +335,24 @@ VOICE_OPTIONAL = {
     "memory_ref",
     "mission_ref",
     "consent_ref",
+    "turn_binding",
+    "stop_verb",
+    "governed_path_complete",
+    "barge_in_terminates_execution",
+    "contains_instruction",
+    "self_executes",
+    "candidate_kind",
+    "session_identity_reused_as_durable_principal",
+    "claims_realtime_raw_audio",
+    "device_api_evidence_ref",
 }
 VOICE_ALLOWED = set(VOICE_REQUIRED) | set(VOICE_OPTIONAL)
 VOICE_CLASSES = {"authority", "enforcement", "runtime", "execution", "verification", "research"}
+VOICE_STOP_VERBS_SPEECH_ONLY = {"STOP_SPEAKING", "CANCEL_TURN"}
+VOICE_STOP_VERBS_CONSEQUENTIAL = {"PAUSE_MISSION", "CANCEL_MISSION", "FREEZE_AUTONOMY"}
+VOICE_STOP_VERBS = set(VOICE_STOP_VERBS_SPEECH_ONLY) | set(VOICE_STOP_VERBS_CONSEQUENTIAL)
+VOICE_TURN_BINDINGS = {"disposable_session", "durable_principal"}
+VOICE_CANDIDATE_KINDS = {"observation_update", "commitment_candidate"}
 POCKET_SIGNATURE_SCHEMES = {"hmac-sha256"}
 POCKET_CLASSES = {"authority", "enforcement", "runtime", "execution", "verification", "research"}
 POCKET_CANDIDATE_KINDS = {"observation_update", "attention_candidate", "commitment_candidate", "finding"}
@@ -1501,6 +1516,62 @@ def validate_voice_interaction(document: Any) -> list[str]:
         errors.append("voice sessions confer no authority")
 
     for field in (
+        "governed_path_complete",
+        "barge_in_terminates_execution",
+        "contains_instruction",
+        "self_executes",
+        "claims_realtime_raw_audio",
+        "session_identity_reused_as_durable_principal",
+    ):
+        if document.get(field) is not None and not isinstance(document.get(field), bool):
+            errors.append(f"{field} must be a boolean")
+
+    turn_binding = document.get("turn_binding")
+    if turn_binding is not None:
+        if turn_binding not in VOICE_TURN_BINDINGS:
+            errors.append("invalid turn_binding")
+        elif turn_binding != "disposable_session":
+            errors.append("InteractionTurn binds to the disposable session/model identity, never a durable principal")
+
+    stop_verb = document.get("stop_verb")
+    if stop_verb is not None:
+        if stop_verb not in VOICE_STOP_VERBS:
+            errors.append("invalid stop_verb")
+        elif stop_verb in VOICE_STOP_VERBS_CONSEQUENTIAL:
+            if document.get("governed_path_complete") is not True:
+                errors.append("consequential stop verbs require the governed consequential path; the voice edge never executes PAUSE_MISSION/CANCEL_MISSION/FREEZE_AUTONOMY alone")
+
+    if document.get("barge_in_terminates_execution") is True:
+        errors.append("barge-in interrupts speech/turn only; barge-in never terminates consequential execution")
+
+    if (
+        document.get("contains_instruction") is True
+        and document.get("self_executes") is True
+    ):
+        errors.append("spoken instruction never self-executes; permission requires AIE -> Trust Gateway -> Runtime -> WORKS -> verification")
+
+    candidate_kind = document.get("candidate_kind")
+    if candidate_kind is not None:
+        if candidate_kind not in VOICE_CANDIDATE_KINDS:
+            errors.append("invalid candidate kind")
+        elif candidate_kind == "commitment_candidate" and (
+            document.get("admitted_by_tg") is not True
+            or document.get("governed_path_complete") is not True
+        ):
+            errors.append("voice-derived CommitmentCandidate requires the governed consequential path; candidates never self-admit to commitments")
+
+    if document.get("session_identity_reused_as_durable_principal") is True:
+        errors.append("disposable session identity is never reused as a durable principal across sessions")
+
+    if document.get("claims_realtime_raw_audio") is True:
+        if not nonempty_string(document.get("device_api_evidence_ref")):
+            errors.append("realtime raw-audio streaming claims require device/API evidence (evidence-gated)")
+    elif document.get("device_api_evidence_ref") is not None and not nonempty_string(
+        document.get("device_api_evidence_ref")
+    ):
+        errors.append("invalid device_api_evidence_ref")
+
+    for field in (
         "principal_ref",
         "interaction_state_ref",
         "memory_ref",
@@ -2550,6 +2621,21 @@ class PlatformFabricsV01Tests(unittest.TestCase):
         self.assertIn("EXPERIMENTAL", schema.get("description", ""))
         self.assertIn("authority", schema.get("description", "").lower())
         self.assertEqual(schema["properties"]["schema"]["const"], "voice-interaction/0.1")
+        self.assertEqual(set(schema["required"]), VOICE_REQUIRED)
+        for prop in (
+            "turn_binding",
+            "stop_verb",
+            "governed_path_complete",
+            "barge_in_terminates_execution",
+            "contains_instruction",
+            "self_executes",
+            "candidate_kind",
+            "session_identity_reused_as_durable_principal",
+            "claims_realtime_raw_audio",
+            "device_api_evidence_ref",
+        ):
+            self.assertIn(prop, schema["properties"])
+            self.assertNotIn(prop, schema["required"])
 
     def test_voice_session_stateless_with_outside_durable_refs_accepts(self) -> None:
         document = valid_voice_interaction()
@@ -2620,6 +2706,92 @@ class PlatformFabricsV01Tests(unittest.TestCase):
             any("is disposable" in error for error in errors)
         )
 
+    def test_voice_turn_bound_to_disposable_session_identity_accepts(self) -> None:
+        document = valid_voice_interaction()
+        document["turn_binding"] = "disposable_session"
+        self.assertEqual(validate_voice_interaction(document), [])
+
+    def test_voice_speech_only_stop_verbs_interrupt_speech_or_turn_accept(self) -> None:
+        for verb in ("STOP_SPEAKING", "CANCEL_TURN"):
+            document = valid_voice_interaction()
+            document["stop_verb"] = verb
+            document["barge_in_terminates_execution"] = False
+            self.assertEqual(validate_voice_interaction(document), [], verb)
+
+    def test_voice_consequential_stop_verbs_require_governed_path(self) -> None:
+        for verb in ("PAUSE_MISSION", "CANCEL_MISSION", "FREEZE_AUTONOMY"):
+            document = valid_voice_interaction()
+            document["stop_verb"] = verb
+            document["governed_path_complete"] = False
+            errors = validate_voice_interaction(document)
+            self.assertTrue(
+                any("governed consequential path" in error for error in errors),
+                verb,
+            )
+        for verb in ("PAUSE_MISSION", "CANCEL_MISSION", "FREEZE_AUTONOMY"):
+            document = valid_voice_interaction()
+            document["stop_verb"] = verb
+            document["governed_path_complete"] = True
+            self.assertEqual(validate_voice_interaction(document), [], verb)
+
+    def test_voice_barge_in_terminating_execution_rejected(self) -> None:
+        document = valid_voice_interaction()
+        document["stop_verb"] = "STOP_SPEAKING"
+        document["barge_in_terminates_execution"] = True
+        errors = validate_voice_interaction(document)
+        self.assertTrue(
+            any("never terminates consequential execution" in error for error in errors)
+        )
+
+    def test_voice_spoken_instruction_self_execution_rejected(self) -> None:
+        document = valid_voice_interaction()
+        document["contains_instruction"] = True
+        document["self_executes"] = True
+        document["governed_path_complete"] = False
+        errors = validate_voice_interaction(document)
+        self.assertTrue(
+            any("never self-executes" in error for error in errors)
+        )
+        self.assertTrue(
+            any(
+                "AIE -> Trust Gateway -> Runtime -> WORKS -> verification" in error
+                for error in errors
+            )
+        )
+
+    def test_voice_commitment_candidate_through_governed_path_accepts(self) -> None:
+        document = valid_voice_interaction()
+        document["candidate_kind"] = "commitment_candidate"
+        document["governed_path_complete"] = True
+        document["egress_effect"] = True
+        document["egress_grant_enforced"] = True
+        self.assertEqual(validate_voice_interaction(document), [])
+        document = valid_voice_interaction()
+        document["candidate_kind"] = "commitment_candidate"
+        document["governed_path_complete"] = False
+        errors = validate_voice_interaction(document)
+        self.assertTrue(
+            any("governed consequential path" in error for error in errors)
+        )
+
+    def test_voice_session_identity_reuse_as_durable_principal_rejected(self) -> None:
+        document = valid_voice_interaction()
+        document["session_identity_reused_as_durable_principal"] = True
+        errors = validate_voice_interaction(document)
+        self.assertTrue(
+            any("never reused as a durable principal" in error for error in errors)
+        )
+
+    def test_voice_realtime_raw_audio_claim_is_evidence_gated(self) -> None:
+        document = valid_voice_interaction()
+        document["claims_realtime_raw_audio"] = True
+        errors = validate_voice_interaction(document)
+        self.assertTrue(
+            any("device/API evidence" in error for error in errors)
+        )
+        document["device_api_evidence_ref"] = "device:audio-api:evidence:000001"
+        self.assertEqual(validate_voice_interaction(document), [])
+
     def test_voice_interaction_vectors_are_registered(self) -> None:
         fixture = load_json(VECTORS)
         by_id = {vector.get("id"): vector for vector in fixture["vectors"]}
@@ -2631,6 +2803,14 @@ class PlatformFabricsV01Tests(unittest.TestCase):
             ("VOI-005", "reject"),
             ("VOI-006", "reject"),
             ("VOI-007", "reject"),
+            ("VOI-010", "accept"),
+            ("VOI-011", "accept"),
+            ("VOI-012", "accept"),
+            ("VOI-013", "reject"),
+            ("VOI-014", "reject"),
+            ("VOI-015", "accept"),
+            ("VOI-016", "reject"),
+            ("VOI-017", "reject"),
         ):
             self.assertIn(vector_id, by_id)
             self.assertEqual(by_id[vector_id]["expected"], expected)
