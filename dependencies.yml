@@ -80,6 +80,12 @@ modules:
     consumes: [sentinel]
     provides: [live-fire-fixture]
 
+  sentinel-firetest2:
+    repo: Aftergraph/sentinel-firetest2
+    role: temporary-verification-fixture
+    consumes: [sentinel]
+    provides: [live-fire-fixture]
+
   intelligence-systems-research:
     repo: Aftergraph/intelligence-systems-research
     role: research-assurance

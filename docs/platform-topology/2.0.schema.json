@@ -69,6 +69,11 @@
         "must_not_own": {
           "type": "string",
           "description": "Explicit non-ownership boundary; appearing in topology never grants this."
+        },
+        "expires_at": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+          "description": "Required for lifecycle=temporary: retirement date (YYYY-MM-DD) of the ephemeral fixture. Forbidden on non-temporary entries."
         }
       },
       "required": ["name", "canonical_branch", "visibility", "architecture_plane", "system_class", "role", "lifecycle", "owns", "must_not_own"],

@@ -16,6 +16,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from platform_topology import (
+    OPTIONAL_REPO_FIELDS,
     PLANE_VALUES,
     REQUIRED_REPO_FIELDS,
     extract_marked_block,
@@ -177,11 +178,13 @@ def load_json(path: Path) -> dict:
 
 
 class TopologyV2DataTest(unittest.TestCase):
-    def test_has_exactly_24_unique_repositories(self):
+    def test_has_exactly_25_unique_repositories(self):
+        # 25 = 24 canonical + sentinel-firetest2, live-verified 2026-09-10 and
+        # classified temporary-verification-fixture with expires_at.
         doc = load_json(TOPOLOGY)
         names = [r["name"] for r in doc["repositories"]]
-        self.assertEqual(len(names), 24)
-        self.assertEqual(len(set(names)), 24)
+        self.assertEqual(len(names), 25)
+        self.assertEqual(len(set(names)), 25)
 
     def test_only_seven_non_null_architecture_planes_exist(self):
         doc = load_json(TOPOLOGY)
@@ -214,7 +217,18 @@ class TopologyV2ShapeTest(unittest.TestCase):
     def test_all_records_carry_required_fields(self):
         doc = load_json(TOPOLOGY)
         for repo in doc["repositories"]:
-            self.assertEqual(set(repo), REQUIRED_REPO_FIELDS, repo.get("name"))
+            self.assertTrue(REQUIRED_REPO_FIELDS <= set(repo), repo.get("name"))
+            self.assertTrue(set(repo) - REQUIRED_REPO_FIELDS <= OPTIONAL_REPO_FIELDS, repo.get("name"))
+
+    def test_temporary_records_carry_expiry(self):
+        doc = load_json(TOPOLOGY)
+        temporary = [r for r in doc["repositories"] if r.get("lifecycle") == "temporary"]
+        self.assertTrue(temporary, "expected at least one temporary entry")
+        for repo in temporary:
+            self.assertRegex(repo.get("expires_at", ""), r"^\d{4}-\d{2}-\d{2}$", repo.get("name"))
+        for repo in doc["repositories"]:
+            if repo.get("lifecycle") != "temporary":
+                self.assertNotIn("expires_at", repo, repo.get("name"))
 
     def test_all_records_carry_must_not_own(self):
         doc = load_json(TOPOLOGY)
@@ -320,9 +334,12 @@ class TopologySchemaAgreementTest(unittest.TestCase):
         self.assertEqual(set(record["required"]), set(REQUIRED_REPO_FIELDS))
         self.assertFalse(record["additionalProperties"])
         self.assertEqual({p for p in record["properties"]["architecture_plane"]["enum"] if p is not None}, set(PLANE_VALUES))
+        self.assertIn("expires_at", record["properties"])
+        self.assertNotIn("expires_at", record["required"])
         doc = load_json(TOPOLOGY)
         for repo in doc["repositories"]:
-            self.assertEqual(set(repo), set(record["required"]))
+            self.assertTrue(set(record["required"]) <= set(repo))
+            self.assertTrue(set(repo) - set(record["required"]) <= OPTIONAL_REPO_FIELDS)
 
 
 class DependencyProjectionTest(unittest.TestCase):
