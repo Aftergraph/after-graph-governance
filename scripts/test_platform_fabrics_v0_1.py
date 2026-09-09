@@ -345,8 +345,25 @@ VOICE_OPTIONAL = {
     "session_identity_reused_as_durable_principal",
     "claims_realtime_raw_audio",
     "device_api_evidence_ref",
+    "handoff_checkpoint",
+    "correlation_refs",
+    "destination_readmission_ref",
+    "authority_transport",
+    "continuity_basis",
+    "purpose",
+    "lineage_refs",
+    "revocation_ref",
+    "downstream_invalidated",
+    "audit_rewritten",
+    "deletion_ref",
+    "withdrawn",
+    "tombstone_ref",
+    "source_surface_ref",
+    "attributed_surface_ref",
+    "injection_contained",
 }
 VOICE_ALLOWED = set(VOICE_REQUIRED) | set(VOICE_OPTIONAL)
+VOICE_CONTINUITY_BASES = {"correlation_provenance", "conversation", "memory", "session_authority"}
 VOICE_CLASSES = {"authority", "enforcement", "runtime", "execution", "verification", "research"}
 VOICE_STOP_VERBS_SPEECH_ONLY = {"STOP_SPEAKING", "CANCEL_TURN"}
 VOICE_STOP_VERBS_CONSEQUENTIAL = {"PAUSE_MISSION", "CANCEL_MISSION", "FREEZE_AUTONOMY"}
@@ -1586,6 +1603,85 @@ def validate_voice_interaction(document: Any) -> list[str]:
     if not parse_rfc3339(document.get("asserted_at")):
         errors.append("invalid asserted_at")
 
+    for field in (
+        "handoff_checkpoint",
+        "destination_readmission_ref",
+        "revocation_ref",
+        "deletion_ref",
+        "tombstone_ref",
+        "source_surface_ref",
+        "attributed_surface_ref",
+    ):
+        if document.get(field) is not None and not nonempty_string(document.get(field)):
+            errors.append(f"invalid {field}")
+    purpose = document.get("purpose")
+    if purpose is not None and not nonempty_string(purpose, maximum=256):
+        errors.append("invalid purpose")
+    for field in ("correlation_refs", "lineage_refs"):
+        refs = document.get(field)
+        if refs is not None and (
+            not isinstance(refs, list)
+            or not 1 <= len(refs) <= 32
+            or any(not nonempty_string(item) for item in refs)
+        ):
+            errors.append(f"{field} must contain 1..32 refs")
+    for field in (
+        "authority_transport",
+        "downstream_invalidated",
+        "audit_rewritten",
+        "withdrawn",
+        "injection_contained",
+    ):
+        if document.get(field) is not None and not isinstance(document.get(field), bool):
+            errors.append(f"{field} must be a boolean")
+
+    continuity_basis = document.get("continuity_basis")
+    if continuity_basis is not None:
+        if continuity_basis not in VOICE_CONTINUITY_BASES:
+            errors.append("invalid continuity_basis")
+        elif continuity_basis != "correlation_provenance":
+            errors.append("Conversation != Memory != Continuity != Authority; session conversation/memory is never continuity or authority")
+
+    if document.get("handoff_checkpoint") is not None:
+        if not document.get("correlation_refs"):
+            errors.append("cross-surface handoff carries platform-event-ref/0.1 correlation/provenance refs; correlation is never authority")
+        if not nonempty_string(document.get("destination_readmission_ref")):
+            errors.append("handoff authority is re-admitted at the destination; handoffs transport correlation/provenance only")
+
+    if document.get("authority_transport") is True:
+        errors.append("continuity never moves authority into the session/handoff; handoff transports correlation/provenance only")
+
+    lineage_refs = document.get("lineage_refs")
+    if lineage_refs is not None and not nonempty_string(purpose, maximum=256):
+        errors.append("consent/purpose lineage requires a purpose; derivatives inherit purpose lineage")
+
+    if document.get("revocation_ref") is not None and document.get("downstream_invalidated") is not True:
+        errors.append("consent revocation invalidates downstream voice-derived use per provenance")
+    if document.get("downstream_invalidated") is True and document.get("revocation_ref") is None:
+        errors.append("downstream invalidation cites its revocation per provenance")
+    if document.get("audit_rewritten") is True:
+        errors.append("revocation and deletion never rewrite historical audit/evidence")
+
+    if document.get("withdrawn") is True:
+        if not nonempty_string(document.get("deletion_ref")):
+            errors.append("turn deletion withdrawal cites its deletion")
+        if not nonempty_string(document.get("tombstone_ref")):
+            errors.append("turn deletion propagates withdrawal with tombstone semantics")
+
+    source_surface = document.get("source_surface_ref")
+    attributed_surface = document.get("attributed_surface_ref")
+    if (
+        source_surface is not None
+        and attributed_surface is not None
+        and source_surface != attributed_surface
+        and not lineage_refs
+    ):
+        errors.append("cross-surface attribution without explicit lineage leaks surface content")
+
+    if document.get("contains_instruction") is True:
+        if document.get("injection_contained") is not True:
+            errors.append("voice transcript content is untrusted observation; prompt-injection is contained, never instruction or authority")
+
     return errors
 
 
@@ -2633,6 +2729,22 @@ class PlatformFabricsV01Tests(unittest.TestCase):
             "session_identity_reused_as_durable_principal",
             "claims_realtime_raw_audio",
             "device_api_evidence_ref",
+            "handoff_checkpoint",
+            "correlation_refs",
+            "destination_readmission_ref",
+            "authority_transport",
+            "continuity_basis",
+            "purpose",
+            "lineage_refs",
+            "revocation_ref",
+            "downstream_invalidated",
+            "audit_rewritten",
+            "deletion_ref",
+            "withdrawn",
+            "tombstone_ref",
+            "source_surface_ref",
+            "attributed_surface_ref",
+            "injection_contained",
         ):
             self.assertIn(prop, schema["properties"])
             self.assertNotIn(prop, schema["required"])
@@ -2792,6 +2904,148 @@ class PlatformFabricsV01Tests(unittest.TestCase):
         document["device_api_evidence_ref"] = "device:audio-api:evidence:000001"
         self.assertEqual(validate_voice_interaction(document), [])
 
+    def test_voice_handoff_with_correlation_and_readmission_accepts(self) -> None:
+        document = valid_voice_interaction()
+        document.update(
+            {
+                "handoff_checkpoint": "voice:handoff:000001",
+                "correlation_refs": [
+                    "platform-event-ref:evt_11111111111111111111111111111111"
+                ],
+                "destination_readmission_ref": "tg:admission:000002",
+                "authority_transport": False,
+                "continuity_basis": "correlation_provenance",
+            }
+        )
+        self.assertEqual(validate_voice_interaction(document), [])
+
+    def test_voice_handoff_without_correlation_or_readmission_rejected(self) -> None:
+        document = valid_voice_interaction()
+        document["handoff_checkpoint"] = "voice:handoff:000001"
+        errors = validate_voice_interaction(document)
+        self.assertTrue(
+            any("correlation/provenance" in error for error in errors)
+        )
+        self.assertTrue(
+            any("re-admitted at the destination" in error for error in errors)
+        )
+
+    def test_voice_authority_transport_rejected(self) -> None:
+        document = valid_voice_interaction()
+        document.update(
+            {
+                "handoff_checkpoint": "voice:handoff:000001",
+                "correlation_refs": [
+                    "platform-event-ref:evt_11111111111111111111111111111111"
+                ],
+                "destination_readmission_ref": "tg:admission:000002",
+                "authority_transport": True,
+            }
+        )
+        errors = validate_voice_interaction(document)
+        self.assertTrue(
+            any("never moves authority" in error for error in errors)
+        )
+
+    def test_voice_conversation_memory_continuity_rejected(self) -> None:
+        for basis in ("conversation", "memory", "session_authority"):
+            document = valid_voice_interaction()
+            document["continuity_basis"] = basis
+            errors = validate_voice_interaction(document)
+            self.assertTrue(
+                any("Conversation != Memory" in error for error in errors),
+                basis,
+            )
+
+    def test_voice_consent_purpose_lineage_accepts(self) -> None:
+        document = valid_voice_interaction()
+        document.update(
+            {
+                "purpose": "care-coordination",
+                "lineage_refs": ["voice:turn:lineage:000001"],
+            }
+        )
+        self.assertEqual(validate_voice_interaction(document), [])
+
+    def test_voice_revocation_invalidates_downstream_without_audit_rewrite(self) -> None:
+        document = valid_voice_interaction()
+        document.update(
+            {
+                "revocation_ref": "consent:revocation:000001",
+                "downstream_invalidated": True,
+                "audit_rewritten": False,
+            }
+        )
+        self.assertEqual(validate_voice_interaction(document), [])
+        document = valid_voice_interaction()
+        document.update(
+            {
+                "revocation_ref": "consent:revocation:000001",
+                "downstream_invalidated": True,
+                "audit_rewritten": True,
+            }
+        )
+        errors = validate_voice_interaction(document)
+        self.assertTrue(
+            any("never rewrite historical audit" in error for error in errors)
+        )
+
+    def test_voice_deletion_withdrawal_with_tombstone_accepts(self) -> None:
+        document = valid_voice_interaction()
+        document.update(
+            {
+                "deletion_ref": "voice:deletion:000001",
+                "withdrawn": True,
+                "tombstone_ref": "voice:tombstone:000001",
+            }
+        )
+        self.assertEqual(validate_voice_interaction(document), [])
+        document = valid_voice_interaction()
+        document.update({"deletion_ref": "voice:deletion:000001", "withdrawn": True})
+        errors = validate_voice_interaction(document)
+        self.assertTrue(
+            any("tombstone" in error for error in errors)
+        )
+
+    def test_voice_cross_surface_attribution_without_lineage_rejected(self) -> None:
+        document = valid_voice_interaction()
+        document.update(
+            {
+                "source_surface_ref": "interaction:surface:voice:000001",
+                "attributed_surface_ref": "interaction:surface:chat:000002",
+            }
+        )
+        errors = validate_voice_interaction(document)
+        self.assertTrue(
+            any("without explicit lineage" in error for error in errors)
+        )
+        document["lineage_refs"] = ["voice:turn:lineage:000001"]
+        document["purpose"] = "care-coordination"
+        self.assertEqual(validate_voice_interaction(document), [])
+
+    def test_voice_prompt_injection_contained_as_observation(self) -> None:
+        document = valid_voice_interaction()
+        document.update(
+            {
+                "contains_instruction": True,
+                "self_executes": False,
+                "injection_contained": True,
+            }
+        )
+        self.assertEqual(validate_voice_interaction(document), [])
+        document = valid_voice_interaction()
+        document.update({"contains_instruction": True, "self_executes": True})
+        errors = validate_voice_interaction(document)
+        self.assertTrue(
+            any("never self-executes" in error for error in errors)
+        )
+        document = valid_voice_interaction()
+        document["contains_instruction"] = True
+        errors = validate_voice_interaction(document)
+        self.assertTrue(
+            any("untrusted observation" in error for error in errors)
+        )
+
     def test_voice_interaction_vectors_are_registered(self) -> None:
         fixture = load_json(VECTORS)
         by_id = {vector.get("id"): vector for vector in fixture["vectors"]}
@@ -2811,6 +3065,14 @@ class PlatformFabricsV01Tests(unittest.TestCase):
             ("VOI-015", "accept"),
             ("VOI-016", "reject"),
             ("VOI-017", "reject"),
+            ("VOI-020", "accept"),
+            ("VOI-021", "reject"),
+            ("VOI-022", "reject"),
+            ("VOI-023", "accept"),
+            ("VOI-024", "accept"),
+            ("VOI-025", "accept"),
+            ("VOI-026", "reject"),
+            ("VOI-027", "accept"),
         ):
             self.assertIn(vector_id, by_id)
             self.assertEqual(by_id[vector_id]["expected"], expected)
