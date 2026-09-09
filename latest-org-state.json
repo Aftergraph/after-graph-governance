@@ -1,6 +1,6 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-09T09:31:47Z",
+  "generated_at": "2026-09-09T09:51:39Z",
   "generator": "/mnt/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
@@ -8,9 +8,9 @@
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "cf7f25f8a4a5f9edf246fd214887c88f2eb2ff60",
-      "remote_head_short": "cf7f25f",
-      "head_commit_message": "evidence(governance): close platform architecture v4 wave f (#95)",
+      "remote_head_sha": "669ae9808a91e1c137bbde25220c9fc722da9518",
+      "remote_head_short": "669ae98",
+      "head_commit_message": "evidence(governance): Wave G Task 1 — voice-interaction contract + validator + VOI vectors (#98)",
       "private": false,
       "archived": false,
       "protected": true,
