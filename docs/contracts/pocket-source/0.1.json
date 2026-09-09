@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.dev/contracts/pocket-source/0.1.json",
+  "title": "Aftergraph Pocket Source",
+  "description": "EXPERIMENTAL Pocket physical-world perception source contract. It records one tenant-scoped Pocket payload projecting to a Wie Observation with provenance, classification, and derivation lineage. Pocket output is observation only: transcript is not principal identity, speaker attribution is not principal authentication, and spoken instruction never self-executes \u2014 a consequential step still follows AIE -> Trust Gateway -> Runtime -> WORKS -> verification. It confers no authority and replaces no canonical source.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "pocket-source/0.1"
+    },
+    "pocket_id": {
+      "type": "string",
+      "pattern": "^pck_[a-f0-9]{32}$"
+    },
+    "tenant_id": {
+      "type": "string",
+      "pattern": "^ten_[a-f0-9]{32}$"
+    },
+    "credential_scope": {
+      "type": "string",
+      "pattern": "^ten_[a-f0-9]{32}$"
+    },
+    "source_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "observation_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "authority",
+        "enforcement",
+        "runtime",
+        "execution",
+        "verification",
+        "research"
+      ]
+    },
+    "claims_principal_identity": {
+      "type": "boolean"
+    },
+    "claims_principal_authentication": {
+      "type": "boolean"
+    },
+    "contains_instruction": {
+      "type": "boolean"
+    },
+    "self_executes": {
+      "type": "boolean"
+    },
+    "claims_execution": {
+      "type": "boolean"
+    },
+    "candidate_kind": {
+      "type": "string",
+      "enum": [
+        "observation_update",
+        "attention_candidate",
+        "commitment_candidate",
+        "finding"
+      ]
+    },
+    "admitted_by_tg": {
+      "type": "boolean"
+    },
+    "governed_path_complete": {
+      "type": "boolean"
+    },
+    "derivations": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "derivation": {
+            "type": "string",
+            "enum": [
+              "transcript",
+              "speaker_attribution",
+              "summary",
+              "action_extraction"
+            ]
+          },
+          "weight": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "uncertainty": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "lineage_ref": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          }
+        },
+        "required": [
+          "derivation",
+          "weight",
+          "uncertainty",
+          "lineage_ref"
+        ]
+      }
+    },
+    "asserted_at": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    }
+  },
+  "required": [
+    "schema",
+    "pocket_id",
+    "tenant_id",
+    "credential_scope",
+    "source_ref",
+    "observation_ref",
+    "classification",
+    "claims_principal_identity",
+    "claims_principal_authentication",
+    "contains_instruction",
+    "self_executes",
+    "claims_execution",
+    "candidate_kind",
+    "admitted_by_tg",
+    "governed_path_complete",
+    "derivations",
+    "asserted_at"
+  ]
+}

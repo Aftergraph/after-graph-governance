@@ -26,6 +26,7 @@ LIFECYCLE_SCHEMA = ROOT / "docs/contracts/tenant-lifecycle/0.1.json"
 PROACTIVITY_SCHEMA = ROOT / "docs/contracts/proactivity/0.1.json"
 ORG_DELEGATION_SCHEMA = ROOT / "docs/contracts/org-delegation/0.1.json"
 EVAL_SCHEMA = ROOT / "docs/contracts/agent-eval/0.1.json"
+POCKET_SCHEMA = ROOT / "docs/contracts/pocket-source/0.1.json"
 VECTORS = ROOT / "docs/platform-conformance/v0.1/vectors.json"
 
 HEX32 = r"[a-f0-9]{32}"
@@ -47,6 +48,7 @@ ID_PATTERNS = {
     "sensing_id": re.compile(rf"^sen_{HEX32}$"),
     "delegation_id": re.compile(rf"^del_{HEX32}$"),
     "eval_id": re.compile(rf"^evl_{HEX32}$"),
+    "pocket_id": re.compile(rf"^pck_{HEX32}$"),
 }
 
 EVENT_REQUIRED = {
@@ -243,6 +245,29 @@ EVAL_REQUIRED = {
 }
 EVAL_ALLOWED = set(EVAL_REQUIRED)
 EVAL_VERDICTS = {"pass", "fail", "needs_review"}
+POCKET_REQUIRED = {
+    "schema",
+    "pocket_id",
+    "tenant_id",
+    "credential_scope",
+    "source_ref",
+    "observation_ref",
+    "classification",
+    "claims_principal_identity",
+    "claims_principal_authentication",
+    "contains_instruction",
+    "self_executes",
+    "claims_execution",
+    "candidate_kind",
+    "admitted_by_tg",
+    "governed_path_complete",
+    "derivations",
+    "asserted_at",
+}
+POCKET_ALLOWED = set(POCKET_REQUIRED)
+POCKET_CLASSES = {"authority", "enforcement", "runtime", "execution", "verification", "research"}
+POCKET_CANDIDATE_KINDS = {"observation_update", "attention_candidate", "commitment_candidate", "finding"}
+POCKET_DERIVATIONS = {"transcript", "speaker_attribution", "summary", "action_extraction"}
 EPISTEMIC_STATES = {"observed", "inferred", "predicted", "unknown"}
 CURRENTNESS_STATES = {"current", "stale", "disputed", "superseded"}
 EVIDENCE_REQUIREMENTS = {"none", "current_observed"}
@@ -1058,6 +1083,110 @@ def validate_agent_eval(document: Any) -> list[str]:
     return errors
 
 
+def valid_unit_weight(value: object) -> bool:
+    return isinstance(value, (int, float)) and not isinstance(value, bool) and 0 <= value <= 1
+
+
+def validate_pocket_source(document: object) -> list[str]:
+    errors: list[str] = []
+    if not isinstance(document, dict):
+        return ["pocket source must be an object"]
+
+    keys = set(document)
+    missing = POCKET_REQUIRED - keys
+    extra = keys - POCKET_ALLOWED
+    if missing:
+        errors.append(f"missing pocket-source fields: {sorted(missing)}")
+    if extra:
+        errors.append(f"unexpected pocket-source fields: {sorted(extra)}")
+
+    if document.get("schema") != "pocket-source/0.1":
+        errors.append("wrong pocket-source schema")
+    if not valid_id("pocket_id", document.get("pocket_id")):
+        errors.append("invalid pocket_id")
+    if not valid_id("tenant_id", document.get("tenant_id")):
+        errors.append("invalid tenant_id")
+    if not valid_id("tenant_id", document.get("credential_scope")):
+        errors.append("invalid credential_scope")
+    elif document.get("credential_scope") != document.get("tenant_id"):
+        errors.append("cross-tenant credential reuse is forbidden")
+    if not nonempty_string(document.get("source_ref")):
+        errors.append("invalid source_ref")
+    if not nonempty_string(document.get("observation_ref")):
+        errors.append("invalid observation_ref")
+    if document.get("classification") not in POCKET_CLASSES:
+        errors.append("invalid classification")
+
+    for field in (
+        "claims_principal_identity",
+        "claims_principal_authentication",
+        "contains_instruction",
+        "self_executes",
+        "claims_execution",
+        "admitted_by_tg",
+        "governed_path_complete",
+    ):
+        if not isinstance(document.get(field), bool):
+            errors.append(f"{field} must be a boolean")
+
+    if document.get("claims_principal_identity") is True:
+        errors.append("transcript is not principal identity")
+    if document.get("claims_principal_authentication") is True:
+        errors.append("speaker attribution is not principal authentication")
+    if document.get("claims_execution") is True:
+        errors.append("pocket source retains zero execution authority")
+    if document.get("self_executes") is True:
+        errors.append("spoken instruction never self-executes")
+
+    candidate_kind = document.get("candidate_kind")
+    if candidate_kind not in POCKET_CANDIDATE_KINDS:
+        errors.append("invalid candidate kind")
+    if candidate_kind == "commitment_candidate" and document.get("admitted_by_tg") is not True:
+        errors.append("candidates never self-admit to commitments")
+    if (
+        document.get("contains_instruction") is True
+        and candidate_kind == "commitment_candidate"
+        and document.get("governed_path_complete") is not True
+    ):
+        errors.append("spoken instruction requires AIE -> Trust Gateway -> Runtime -> WORKS -> verification")
+
+    derivations = document.get("derivations")
+    if not isinstance(derivations, list) or not 1 <= len(derivations) <= 4:
+        errors.append("derivations must contain 1..4 derivation entries")
+    else:
+        seen_kinds: set[str] = set()
+        seen_lineage: set[str] = set()
+        for entry in derivations:
+            if not isinstance(entry, dict):
+                errors.append("derivation entry must be an object")
+                continue
+            if set(entry) != {"derivation", "weight", "uncertainty", "lineage_ref"}:
+                errors.append("unexpected derivation entry fields")
+            derivation = entry.get("derivation")
+            if derivation not in POCKET_DERIVATIONS:
+                errors.append("invalid derivation kind")
+            elif derivation in seen_kinds:
+                errors.append("derivations must retain distinct derivation lineage")
+            else:
+                seen_kinds.add(derivation)
+            if not valid_unit_weight(entry.get("weight")):
+                errors.append("derivation weight must be a number in [0, 1]")
+            if not valid_unit_weight(entry.get("uncertainty")):
+                errors.append("derivation uncertainty must be a number in [0, 1]")
+            lineage = entry.get("lineage_ref")
+            if not nonempty_string(lineage):
+                errors.append("invalid derivation lineage_ref")
+            elif lineage in seen_lineage:
+                errors.append("derivations must retain distinct derivation lineage")
+            else:
+                seen_lineage.add(lineage)
+
+    if not parse_rfc3339(document.get("asserted_at")):
+        errors.append("invalid asserted_at")
+
+    return errors
+
+
 def validate_causal_chain(document: Any) -> list[str]:
     errors: list[str] = []
     if not isinstance(document, dict):
@@ -1142,6 +1271,8 @@ def validate_vector(vector: dict[str, Any]) -> list[str]:
         return validate_org_delegation(document)
     if kind == "agent_eval":
         return validate_agent_eval(document)
+    if kind == "pocket_source":
+        return validate_pocket_source(document)
     if kind == "causal_chain":
         return validate_causal_chain(document)
     return [f"unknown vector kind: {kind!r}"]
@@ -1289,6 +1420,36 @@ def valid_agent_eval() -> dict[str, Any]:
         "asserted_at": "2026-09-08T12:00:00Z",
         "tenant_id": "ten_11111111111111111111111111111111",
     }
+
+
+def valid_pocket_source() -> dict[str, Any]:
+    return {
+        "schema": "pocket-source/0.1",
+        "pocket_id": "pck_11111111111111111111111111111111",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "credential_scope": "ten_11111111111111111111111111111111",
+        "source_ref": "pocket:rest:observations:000001",
+        "observation_ref": "wie:observation:000001",
+        "classification": "research",
+        "claims_principal_identity": False,
+        "claims_principal_authentication": False,
+        "contains_instruction": False,
+        "self_executes": False,
+        "claims_execution": False,
+        "candidate_kind": "observation_update",
+        "admitted_by_tg": False,
+        "governed_path_complete": False,
+        "derivations": [
+            {
+                "derivation": "transcript",
+                "weight": 0.7,
+                "uncertainty": 0.3,
+                "lineage_ref": "pocket:transcript:000001",
+            }
+        ],
+        "asserted_at": "2026-09-08T12:00:00Z",
+    }
+
 
 
 class PlatformFabricsV01Tests(unittest.TestCase):
@@ -1481,6 +1642,58 @@ class PlatformFabricsV01Tests(unittest.TestCase):
             ("TEN-003", "reject"),
             ("TEN-004", "reject"),
             ("TEN-005", "reject"),
+        ):
+            self.assertIn(vector_id, by_id)
+            self.assertEqual(by_id[vector_id]["expected"], expected)
+
+    def test_pocket_source_contract_is_strict_and_experimental(self) -> None:
+        schema = load_json(POCKET_SCHEMA)
+        self.assertFalse(schema.get("additionalProperties"), schema["title"])
+        self.assertIn("EXPERIMENTAL", schema.get("description", ""))
+        self.assertIn("authority", schema.get("description", "").lower())
+        self.assertEqual(schema["properties"]["schema"]["const"], "pocket-source/0.1")
+
+    def test_pocket_source_rejects_cross_tenant_credential_reuse(self) -> None:
+        document = valid_pocket_source()
+        self.assertEqual(validate_pocket_source(document), [])
+        document["credential_scope"] = "ten_22222222222222222222222222222222"
+        errors = validate_pocket_source(document)
+        self.assertTrue(
+            any("cross-tenant credential reuse" in error for error in errors)
+        )
+        document = valid_pocket_source()
+        del document["credential_scope"]
+        self.assertTrue(validate_pocket_source(document))
+
+    def test_pocket_source_denies_identity_and_execution_authority(self) -> None:
+        document = valid_pocket_source()
+        document["claims_principal_identity"] = True
+        self.assertTrue(
+            any("not principal identity" in e for e in validate_pocket_source(document))
+        )
+        document = valid_pocket_source()
+        document["claims_principal_authentication"] = True
+        self.assertTrue(
+            any("not principal authentication" in e for e in validate_pocket_source(document))
+        )
+        document = valid_pocket_source()
+        document["contains_instruction"] = True
+        document["self_executes"] = True
+        self.assertTrue(
+            any("never self-executes" in e for e in validate_pocket_source(document))
+        )
+
+    def test_pocket_source_vectors_are_registered(self) -> None:
+        fixture = load_json(VECTORS)
+        by_id = {vector.get("id"): vector for vector in fixture["vectors"]}
+        for vector_id, expected in (
+            ("PCK-001", "accept"),
+            ("PCK-002", "reject"),
+            ("PCK-003", "reject"),
+            ("PCK-004", "reject"),
+            ("PCK-005", "reject"),
+            ("PCK-006", "accept"),
+            ("PCK-007", "accept"),
         ):
             self.assertIn(vector_id, by_id)
             self.assertEqual(by_id[vector_id]["expected"], expected)
