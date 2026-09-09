@@ -2007,6 +2007,15 @@ def validate_causal_chain(document: Any) -> list[str]:
     return errors
 
 
+def _is_avc_owner(value: Any) -> bool:
+    return isinstance(value, str) and (
+        value == "AVC"
+        or value == "Aftergraph/autonomous-venture-company"
+        or value.startswith("avc-")
+        or value.startswith("@avc/")
+    )
+
+
 def validate_avc_dissolution(document: dict[str, Any]) -> list[str]:
     errors: list[str] = []
     if not isinstance(document, dict):
@@ -2052,6 +2061,56 @@ def validate_avc_dissolution(document: dict[str, Any]) -> list[str]:
         errors.append(f"dissolution newly-minted AVC identifier {introduced!r} as active rejects")
     if (document.get("claims_owner_execution") is True or document.get("claims_extraction_complete") is True) and not document.get("owner_evidence_ref"):
         errors.append("dissolution owner-execution claim requires owner evidence")
+    skill_class = document.get("skill_class")
+    if skill_class is not None:
+        if skill_class not in ("generic-reusable", "persona-specific", "product-specific", "hermes-adapter"):
+            errors.append(f"dissolution unknown skill_class {skill_class!r} rejects")
+        for field in ("canonical_identifier", "generalization_ref", "ledger_skill_owner", "canonical_contract_owner", "reconciliation_ref", "attestation_source"):
+            if document.get(field) is not None and not isinstance(document.get(field), str):
+                errors.append(f"dissolution {field} must be a string")
+        for flag in ("asserts_canonical_ownership", "claims_migration_complete"):
+            if document.get(flag) is not None and not isinstance(document.get(flag), bool):
+                errors.append(f"dissolution {flag} must be a boolean")
+        for field in ("canonical_skills_owned_by_avc", "skills_vault_registry_refs", "skills_vault_evidence_refs"):
+            if document.get(field) is not None and not isinstance(document.get(field), list):
+                errors.append(f"dissolution {field} must be a list")
+        if skill_class == "generic-reusable" and disposition not in ("MIGRATED_VERIFIED", "MIGRATED_TRANSITIONAL"):
+            errors.append("dissolution skill migration disposition must be MIGRATED_VERIFIED or MIGRATED_TRANSITIONAL rejects")
+        if skill_class != "hermes-adapter" and document.get("target_owner") != "Aftergraph/skills-vault":
+            errors.append("dissolution skill migration target_owner must be skills-vault rejects")
+        if skill_class == "hermes-adapter":
+            verification_refs = document.get("verification")
+            if document.get("target_owner") != "Aftergraph/skills-vault" or not document.get("reconciliation_ref") or not isinstance(verification_refs, list) or len(verification_refs) == 0:
+                errors.append("dissolution hermes execution adapter ledgered without target_owner migration/reconciliation and verification refs rejects")
+        canonical_identifier = document.get("canonical_identifier")
+        if isinstance(canonical_identifier, str) and document.get("identifier_active") is True and (canonical_identifier.startswith("avc-") or canonical_identifier.startswith("@avc/")):
+            errors.append(f"dissolution skill migration newly-minted avc identifier {canonical_identifier!r} as active rejects")
+        elif not isinstance(canonical_identifier, str) or not canonical_identifier.startswith("@aftergraph/"):
+            errors.append("dissolution skill migration canonical identifier must be Aftergraph canonical rejects")
+        aliases = document.get("compatibility_aliases")
+        if not isinstance(aliases, list) or len(aliases) == 0:
+            errors.append("dissolution skill migration must retain legacy alias/provenance rejects")
+        avc_skills = document.get("canonical_skills_owned_by_avc")
+        if not isinstance(avc_skills, list) or len(avc_skills) > 0:
+            errors.append("dissolution skill migration must show zero canonical skills owned by AVC rejects")
+        if document.get("asserts_canonical_ownership") is True and _is_avc_owner(document.get("ledger_skill_owner")):
+            errors.append("dissolution skill migration asserts canonical ownership while ledger shows AVC as skill owner rejects")
+        if skill_class in ("persona-specific", "product-specific") and disposition != "RETIRE" and not document.get("generalization_ref"):
+            errors.append("dissolution persona/product-specific skill carried over verbatim without generalization or RETIRE rejects")
+        registry_refs = document.get("skills_vault_registry_refs")
+        if not isinstance(registry_refs, list) or len(registry_refs) == 0:
+            errors.append("dissolution skill migration requires non-empty skills-vault registry refs rejects")
+        else:
+            evidence_refs = document.get("skills_vault_evidence_refs")
+            if not isinstance(evidence_refs, list) or len(evidence_refs) == 0:
+                if document.get("attestation_source") == "legacy-repo":
+                    errors.append("dissolution skill migration proven by legacy-repo self-attestation without skills-vault-side evidence ref rejects")
+                else:
+                    errors.append("dissolution skill migration requires non-empty skills-vault evidence refs rejects")
+        if _is_avc_owner(document.get("canonical_contract_owner")):
+            errors.append("dissolution migration PASS with canonical contract still owned by AVC rejects")
+        if document.get("claims_migration_complete") is True and not document.get("owner_evidence_ref"):
+            errors.append("dissolution migration-completion claim requires owner execution evidence rejects")
     if document.get("executes_archival") is True:
         errors.append("dissolution governance never executes archival")
     return errors
@@ -4268,6 +4327,135 @@ class TestAvcDissolutionLedger(unittest.TestCase):
             else:
                 self.assertNotEqual(errors, [], vid)
         self.assertTrue(any("owner evidence" in e for e in validate_vector(vectors["RET-007"])))
+
+
+def valid_skill_migration() -> dict[str, Any]:
+    document = valid_avc_dissolution()
+    document.update({
+        "dissolution_id": "dis_01010101010101010101010101010101",
+        "tenant_id": "ten_01010101010101010101010101010101",
+        "retired_identity": "avc-legacy-skill-search",
+        "skill_class": "generic-reusable",
+        "canonical_identifier": "@aftergraph/skill-search",
+        "generalization_ref": "",
+        "ledger_skill_owner": "Aftergraph/skills-vault",
+        "asserts_canonical_ownership": True,
+        "canonical_skills_owned_by_avc": [],
+        "canonical_contract_owner": "Aftergraph/skills-vault",
+        "skills_vault_registry_refs": ["skills-vault:registry:skill-search"],
+        "skills_vault_evidence_refs": ["skills-vault:evidence:migration:000010"],
+        "reconciliation_ref": "",
+        "attestation_source": "skills-vault",
+        "claims_migration_complete": False,
+    })
+    return document
+
+
+class TestAvcSkillMigration(unittest.TestCase):
+    def test_accept_generic_reusable_skill_migration(self) -> None:
+        self.assertEqual(validate_avc_dissolution(valid_skill_migration()), [])
+
+    def test_accept_transitional_skill_migration(self) -> None:
+        document = valid_skill_migration()
+        document["disposition"] = "MIGRATED_TRANSITIONAL"
+        self.assertEqual(validate_avc_dissolution(document), [])
+
+    def test_reject_skill_migration_without_registry_refs(self) -> None:
+        document = valid_skill_migration()
+        document["skills_vault_registry_refs"] = []
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("skills-vault registry" in e for e in errors), errors)
+
+    def test_reject_skill_migration_without_evidence_refs(self) -> None:
+        document = valid_skill_migration()
+        document["skills_vault_evidence_refs"] = []
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("skills-vault evidence" in e for e in errors), errors)
+
+    def test_reject_canonical_ownership_while_ledger_shows_avc_owner(self) -> None:
+        document = valid_skill_migration()
+        document["ledger_skill_owner"] = "AVC"
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("ledger shows AVC as skill owner" in e for e in errors), errors)
+
+    def test_reject_persona_skill_verbatim_without_generalization_or_retire(self) -> None:
+        for skill_class in ("persona-specific", "product-specific"):
+            document = valid_skill_migration()
+            document["skill_class"] = skill_class
+            errors = validate_avc_dissolution(document)
+            self.assertTrue(any("without generalization or RETIRE" in e for e in errors), (skill_class, errors))
+
+    def test_accept_persona_skill_retired(self) -> None:
+        document = valid_skill_migration()
+        document["skill_class"] = "persona-specific"
+        document["disposition"] = "RETIRE"
+        self.assertEqual(validate_avc_dissolution(document), [])
+
+    def test_reject_hermes_without_migration_reconciliation_verification(self) -> None:
+        document = valid_skill_migration()
+        document["skill_class"] = "hermes-adapter"
+        document["target_owner"] = "Aftergraph/autonomous-venture-company"
+        document["verification"] = []
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("hermes execution adapter ledgered without target_owner" in e for e in errors), errors)
+
+    def test_reject_skill_minting_new_avc_identifier(self) -> None:
+        for canonical in ("avc-shiny-skill", "@avc/shiny-skill"):
+            document = valid_skill_migration()
+            document["canonical_identifier"] = canonical
+            document["identifier_active"] = True
+            errors = validate_avc_dissolution(document)
+            self.assertTrue(any("newly-minted avc identifier" in e for e in errors), (canonical, errors))
+
+    def test_reject_skill_self_attestation_without_vault_evidence(self) -> None:
+        document = valid_skill_migration()
+        document["attestation_source"] = "legacy-repo"
+        document["skills_vault_evidence_refs"] = []
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("self-attestation without skills-vault-side evidence" in e for e in errors), errors)
+
+    def test_reject_migration_pass_with_canonical_contract_owned_by_avc(self) -> None:
+        document = valid_skill_migration()
+        document["canonical_contract_owner"] = "AVC"
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("canonical contract still owned by AVC" in e for e in errors), errors)
+
+    def test_reject_migration_complete_claim_without_owner_evidence(self) -> None:
+        document = valid_skill_migration()
+        document["claims_migration_complete"] = True
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("migration-completion claim requires owner execution evidence" in e for e in errors), errors)
+
+    def test_accept_migration_complete_claim_with_owner_evidence(self) -> None:
+        document = valid_skill_migration()
+        document["claims_migration_complete"] = True
+        document["owner_evidence_ref"] = "owner:skills-vault:migration:000010"
+        self.assertEqual(validate_avc_dissolution(document), [])
+
+    def test_ret_skill_vectors_conform(self) -> None:
+        vectors = {v["id"]: v for v in load_json(VECTORS)["vectors"]}
+        expected = {
+            "RET-010": "accept", "RET-011": "reject", "RET-012": "reject",
+            "RET-013": "reject", "RET-014": "reject", "RET-015": "reject",
+            "RET-016": "reject", "RET-017": "reject",
+        }
+        for vid, exp in expected.items():
+            self.assertIn(vid, vectors, vid)
+            vector = vectors[vid]
+            self.assertEqual(vector["kind"], "avc_dissolution", vid)
+            self.assertEqual(vector["expected"], exp, vid)
+            errors = validate_vector(vector)
+            if exp == "accept":
+                self.assertEqual(errors, [], vid)
+            else:
+                self.assertNotEqual(errors, [], vid)
+        self.assertTrue(any("ledger shows AVC as skill owner" in e for e in validate_vector(vectors["RET-011"])))
+        self.assertTrue(any("without generalization or RETIRE" in e for e in validate_vector(vectors["RET-012"])))
+        self.assertTrue(any("hermes execution adapter ledgered without target_owner" in e for e in validate_vector(vectors["RET-013"])))
+        self.assertTrue(any("newly-minted avc identifier" in e for e in validate_vector(vectors["RET-014"])))
+        self.assertTrue(any("self-attestation without skills-vault-side evidence" in e for e in validate_vector(vectors["RET-015"])))
+        self.assertTrue(any("canonical contract still owned by AVC" in e for e in validate_vector(vectors["RET-016"])))
+        self.assertTrue(any("migration-completion claim requires owner execution evidence" in e for e in validate_vector(vectors["RET-017"])))
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
