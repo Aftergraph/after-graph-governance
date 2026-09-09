@@ -394,9 +394,18 @@ PROM_OPTIONAL = {
     "evaluator_ref",
     "claims_production_characterization",
     "production_evidence_ref",
+    "challenger_registration_ref",
+    "candidate_identity_disposable",
+    "promoted",
+    "promoted_by",
+    "promotion_subject",
+    "verifier_ref",
+    "lineage_refs",
+    "claims_challenger_quality",
 }
 PROM_ALLOWED = set(PROM_REQUIRED) | set(PROM_OPTIONAL)
 PROM_CLASSES = {"authority", "enforcement", "runtime", "execution", "verification", "research"}
+PROM_SUBJECTS = {"routing", "skill", "workflow", "model"}
 POCKET_SIGNATURE_SCHEMES = {"hmac-sha256"}
 POCKET_CLASSES = {"authority", "enforcement", "runtime", "execution", "verification", "research"}
 POCKET_CANDIDATE_KINDS = {"observation_update", "attention_candidate", "commitment_candidate", "finding"}
@@ -1770,6 +1779,9 @@ def validate_promotion_gates(document: Any) -> list[str]:
         "executor_ref",
         "evaluator_ref",
         "production_evidence_ref",
+        "verifier_ref",
+        "challenger_registration_ref",
+        "promoted_by",
     ):
         if document.get(field) is not None and not nonempty_string(document.get(field)):
             errors.append(f"invalid {field}")
@@ -1788,6 +1800,51 @@ def validate_promotion_gates(document: Any) -> list[str]:
     if document.get("claims_production_characterization") is True:
         if not nonempty_string(document.get("production_evidence_ref")):
             errors.append("production-trace characterization requires production evidence (evidence-gated; BLOCKED_ON_PROMOTION_EVIDENCE)")
+
+    if document.get("promoted") is not None and not isinstance(document.get("promoted"), bool):
+        errors.append("promoted must be a boolean")
+    if document.get("promotion_subject") is not None and document.get("promotion_subject") not in PROM_SUBJECTS:
+        errors.append("invalid promotion_subject")
+    if document.get("candidate_identity_disposable") is not None and not isinstance(
+        document.get("candidate_identity_disposable"), bool
+    ):
+        errors.append("candidate_identity_disposable must be a boolean")
+    if document.get("candidate_identity_disposable") is False:
+        errors.append("challenger candidate identity is disposable; reuse as durable authority across promotions rejects")
+    if document.get("claims_challenger_quality") is not None and not isinstance(
+        document.get("claims_challenger_quality"), bool
+    ):
+        errors.append("claims_challenger_quality must be a boolean")
+    if document.get("claims_challenger_quality") is True:
+        if not nonempty_string(document.get("production_evidence_ref")):
+            errors.append("challenger win-rate/quality claims require production evidence (evidence-gated; BLOCKED_ON_PROMOTION_EVIDENCE)")
+
+    if document.get("promoted") is True:
+        challenger_ref = document.get("challenger_ref")
+        promoted_by = document.get("promoted_by")
+        if (
+            nonempty_string(challenger_ref)
+            and nonempty_string(promoted_by)
+            and promoted_by == challenger_ref
+        ):
+            errors.append("challenger never promotes itself; promotion requires independent gate PASS + registry evidence")
+        if not nonempty_string(document.get("gate_evidence_ref")):
+            errors.append("promotion requires gate PASS evidence; challenger result is never promotion without gate + registry evidence")
+        if not nonempty_string(document.get("registry_evidence_ref")):
+            if document.get("promotion_subject") == "model":
+                errors.append("model promotion moves only through model-registry evidence; registry bypass rejects")
+            else:
+                errors.append("promotion requires registry evidence; challenger result is never promotion without gate + registry evidence")
+        if not nonempty_string(document.get("verifier_ref")):
+            errors.append("challenger result is never promotion without independent verification (continuum/sentinel-ally or gate)")
+
+    lineage = document.get("lineage_refs")
+    if lineage is not None and (
+        not isinstance(lineage, list)
+        or not 1 <= len(lineage) <= 32
+        or any(not nonempty_string(item) for item in lineage)
+    ):
+        errors.append("lineage_refs must contain 1..32 refs")
 
     refs = document.get("correlation_refs")
     if refs is not None and (
@@ -3233,6 +3290,14 @@ class PlatformFabricsV01Tests(unittest.TestCase):
             "evaluator_ref",
             "claims_production_characterization",
             "production_evidence_ref",
+            "challenger_registration_ref",
+            "candidate_identity_disposable",
+            "promoted",
+            "promoted_by",
+            "promotion_subject",
+            "verifier_ref",
+            "lineage_refs",
+            "claims_challenger_quality",
         ):
             self.assertIn(prop, schema["properties"])
             self.assertNotIn(prop, schema["required"])
@@ -3327,6 +3392,158 @@ class PlatformFabricsV01Tests(unittest.TestCase):
         document["production_evidence_ref"] = "production:trace-evidence:000001"
         self.assertEqual(validate_promotion_gates(document), [])
 
+    def test_promotion_challenger_routed_to_independent_gate_accepts(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "challenger_ref": "model-registry:challenger:000010",
+                "challenger_registration_ref": "model-registry:challenger-registration:000010",
+                "candidate_identity_disposable": True,
+                "gate_ref": "runtime:promotion-gate:000010",
+                "verifier_ref": "sentinel:verifier:000010",
+                "executor_ref": "afm:executor:000010",
+                "evaluator_ref": "sentinel:verifier:000011",
+            }
+        )
+        self.assertEqual(validate_promotion_gates(document), [])
+
+    def test_promotion_challenger_self_promotion_rejected(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "challenger_ref": "model-registry:challenger:000011",
+                "candidate_identity_disposable": True,
+                "promoted": True,
+                "promoted_by": "model-registry:challenger:000011",
+            }
+        )
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("never promotes itself" in error for error in errors)
+        )
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "challenger_ref": "model-registry:challenger:000011",
+                "promoted": True,
+                "promoted_by": "runtime:promotion-gate:000011",
+            }
+        )
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("promotion requires gate PASS evidence" in error for error in errors)
+        )
+        self.assertTrue(
+            any("promotion requires registry evidence" in error for error in errors)
+        )
+
+    def test_promotion_challenger_result_without_independent_verification_rejected(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "challenger_ref": "model-registry:challenger:000012",
+                "candidate_identity_disposable": True,
+                "promoted": True,
+                "promoted_by": "runtime:promotion-gate:000012",
+                "gate_evidence_ref": "runtime:promotion-gate:pass:000012",
+                "registry_evidence_ref": "model-registry:pass:000012",
+            }
+        )
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("independent verification" in error for error in errors)
+        )
+        document["verifier_ref"] = "sentinel:verifier:000012"
+        self.assertEqual(validate_promotion_gates(document), [])
+
+    def test_promotion_model_promotion_without_registry_evidence_rejected(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "challenger_ref": "model-registry:challenger:000013",
+                "candidate_identity_disposable": True,
+                "promotion_subject": "model",
+                "promoted": True,
+                "promoted_by": "afm:research:000013",
+                "gate_evidence_ref": "runtime:promotion-gate:pass:000013",
+                "verifier_ref": "continuum:verifier:000013",
+            }
+        )
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("model-registry" in error for error in errors)
+        )
+        document["registry_evidence_ref"] = "model-registry:pass:000013"
+        self.assertEqual(validate_promotion_gates(document), [])
+
+    def test_promotion_challenger_scored_by_own_evaluator_rejected(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "challenger_ref": "model-registry:challenger:000014",
+                "challenger_registration_ref": "model-registry:challenger-registration:000014",
+                "candidate_identity_disposable": True,
+                "verifier_ref": "sentinel:verifier:000014",
+                "executor_ref": "afm:executor:000014",
+                "evaluator_ref": "afm:executor:000014",
+            }
+        )
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("never score their own execution" in error for error in errors)
+        )
+
+    def test_promotion_challenger_lineage_propagated_accepts(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "challenger_ref": "model-registry:challenger:000015",
+                "challenger_registration_ref": "model-registry:challenger-registration:000015",
+                "candidate_identity_disposable": True,
+                "lineage_refs": ["wie:lineage:000015", "platform:event:000015"],
+            }
+        )
+        self.assertEqual(validate_promotion_gates(document), [])
+        document["lineage_refs"] = []
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("lineage_refs must contain 1..32 refs" in error for error in errors)
+        )
+
+    def test_promotion_challenger_identity_reuse_as_durable_authority_rejected(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "challenger_ref": "model-registry:challenger:000016",
+                "candidate_identity_disposable": False,
+                "promoted": True,
+                "promoted_by": "runtime:promotion-gate:000016",
+                "gate_evidence_ref": "runtime:promotion-gate:pass:000016",
+                "registry_evidence_ref": "model-registry:pass:000016",
+                "verifier_ref": "sentinel:verifier:000016",
+            }
+        )
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("durable authority" in error for error in errors)
+        )
+
+    def test_promotion_challenger_quality_claim_is_evidence_gated(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "challenger_ref": "model-registry:challenger:000017",
+                "candidate_identity_disposable": True,
+                "claims_challenger_quality": True,
+            }
+        )
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("BLOCKED_ON_PROMOTION_EVIDENCE" in error for error in errors)
+        )
+        document["production_evidence_ref"] = "production:trace-evidence:000017"
+        self.assertEqual(validate_promotion_gates(document), [])
+
     def test_promotion_gates_vectors_are_registered(self) -> None:
         fixture = load_json(VECTORS)
         by_id = {vector.get("id"): vector for vector in fixture["vectors"]}
@@ -3338,6 +3555,14 @@ class PlatformFabricsV01Tests(unittest.TestCase):
             ("PROM-005", "reject"),
             ("PROM-006", "reject"),
             ("PROM-007", "reject"),
+            ("PROM-010", "accept"),
+            ("PROM-011", "reject"),
+            ("PROM-012", "reject"),
+            ("PROM-013", "reject"),
+            ("PROM-014", "reject"),
+            ("PROM-015", "accept"),
+            ("PROM-016", "reject"),
+            ("PROM-017", "reject"),
         ):
             self.assertIn(vector_id, by_id)
             self.assertEqual(by_id[vector_id]["expected"], expected)
