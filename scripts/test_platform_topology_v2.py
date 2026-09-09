@@ -40,7 +40,8 @@ VERIFIED_AUTO_DOC = REPO_ROOT / "docs" / "VERIFIED-AUTO-V1.md"
 MEMORY_SEPARATION_DOC = REPO_ROOT / "docs" / "MEMORY-ACC-BRAIN-V1.md"
 HUMAN_GOVERNANCE_DOC = REPO_ROOT / "docs" / "HUMAN-GOVERNANCE-V1.md"
 PROACTIVITY_ORG_DOC = REPO_ROOT / "docs" / "PROACTIVITY-ORG-V1.md"
-CURRENT_DOCS = (V4_DOC, RECONCILIATION_DOC, CROSS_REPO_DOC, REGISTRY_DOC, VERIFIED_AUTO_DOC, MEMORY_SEPARATION_DOC, HUMAN_GOVERNANCE_DOC, PROACTIVITY_ORG_DOC)
+POCKET_SOURCE_DOC = REPO_ROOT / "docs" / "POCKET-SOURCE-V1.md"
+CURRENT_DOCS = (V4_DOC, RECONCILIATION_DOC, CROSS_REPO_DOC, REGISTRY_DOC, VERIFIED_AUTO_DOC, MEMORY_SEPARATION_DOC, HUMAN_GOVERNANCE_DOC, PROACTIVITY_ORG_DOC, POCKET_SOURCE_DOC)
 DESIGN_SPEC_NAMES = (
     "2026-09-08-aftergraph-platform-architecture-v4-and-platform-fabrics-v1-design.md",
     "2026-09-08-aftergraph-verified-auto-execution-design.md",
@@ -76,6 +77,21 @@ FORBIDDEN_PROACTIVITY_PHRASES = (
     "self-declares verified completion",
     "evaluator scores its own execution",
     "verdict waives verification",
+)
+POCKET_SOURCE_OWNERS = ("wi-backend", "aie", "trust-gateway", "runtime", "works-execution", "sentinel")
+FORBIDDEN_POCKET_PHRASES = (
+    "pocket is a principal",
+    "pocket is authoritative",
+    "pocket executes work",
+    "pocket is the oracle",
+    "transcript is identity",
+    "speaker attribution authenticates",
+    "spoken instruction grants permission",
+    "mcp is the ingestion source",
+    "mcp is canonical",
+    "webhook is truth",
+    "webhooks are truth",
+    "webhook is reconciliation truth",
 )
 FORBIDDEN_AUTO_PHRASES = (
     "runtime verifies",
@@ -367,6 +383,20 @@ class ActiveDocConsistencyTest(unittest.TestCase):
     def test_proactivity_org_binding_grants_no_authority(self):
         text = PROACTIVITY_ORG_DOC.read_text(encoding="utf-8").lower()
         for phrase in FORBIDDEN_PROACTIVITY_PHRASES:
+            self.assertNotIn(phrase, text, f"authority-conflating phrase {phrase!r}")
+
+    def test_pocket_source_binding_is_a_current_doc(self):
+        self.assertIn(POCKET_SOURCE_DOC, CURRENT_DOCS)
+        self.assertTrue(POCKET_SOURCE_DOC.is_file(), "docs/POCKET-SOURCE-V1.md is missing")
+
+    def test_pocket_source_binding_maps_seams_to_v4_owners(self):
+        text = POCKET_SOURCE_DOC.read_text(encoding="utf-8")
+        for owner in POCKET_SOURCE_OWNERS:
+            self.assertIn(owner, text, f"pocket owner {owner} is not mapped")
+
+    def test_pocket_source_binding_grants_no_authority(self):
+        text = POCKET_SOURCE_DOC.read_text(encoding="utf-8").lower()
+        for phrase in FORBIDDEN_POCKET_PHRASES:
             self.assertNotIn(phrase, text, f"authority-conflating phrase {phrase!r}")
 
     def test_v3_marked_superseded_not_deleted(self):
