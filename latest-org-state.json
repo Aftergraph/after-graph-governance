@@ -1,6 +1,6 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-09T00:19:36Z",
+  "generated_at": "2026-09-09T04:11:45Z",
   "generator": "/mnt/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
@@ -8,9 +8,9 @@
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "3223c6a3c5d3f2d8adbf9ffb424fcc89a83f2657",
-      "remote_head_short": "3223c6a",
-      "head_commit_message": "evidence(governance): Wave B Task 5 — cross-repo requests + wave close (#60)",
+      "remote_head_sha": "257f57956637b55b28ca866f464790901534965c",
+      "remote_head_short": "257f579",
+      "head_commit_message": "evidence(governance): Wave C Task 5 — cross-repo requests + wave close (#66)",
       "private": false,
       "archived": false,
       "protected": true,
@@ -121,6 +121,13 @@
       "archived": false,
       "protected": false,
       "open_pull_requests": [
+        {
+          "number": 103,
+          "title": "feat(muse-supervisor): Hermes ↔ Muse autonomous worker supervisor",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "195c549d8a5c950f71162cd9375c5d5544653435"
+        },
         {
           "number": 102,
           "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/triggers",
@@ -253,13 +260,6 @@
           "is_draft": false,
           "mergeable": "UNKNOWN",
           "head_sha": "f4c1dbec1ad22f3c618dde3118cd266dc2af4b7f"
-        },
-        {
-          "number": 83,
-          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/intelligence-gateway",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "72bdeb00f8b8f0dfd85723e4988927c96e19eef8"
         }
       ],
       "authoritative_contracts": [],
@@ -874,19 +874,26 @@
       "full_name": "Aftergraph/aftergraph.org",
       "role": "public-front-door",
       "canonical_branch": "main",
-      "remote_head_sha": "ec549794ec80b0f96c9764af04d15c88fd330c09",
-      "remote_head_short": "ec54979",
-      "head_commit_message": "ci(release-drafter): job-level contents: write only (#56)",
+      "remote_head_sha": "c29beca87f064e87ff0e965b8896ecec6cada7c5",
+      "remote_head_short": "c29beca",
+      "head_commit_message": "ci: add gated exact-head production deployment (#58)",
       "private": false,
       "archived": false,
       "protected": true,
       "open_pull_requests": [
         {
-          "number": 60,
-          "title": "feat(atlas): Aftergraph Atlas — evidence-aware development observatory",
+          "number": 63,
+          "title": "chore(deps-dev): bump vite and vitest in /atlas",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "4dccde014ec901e5fe58ba85372460a1918d8c4e"
+          "head_sha": "25e26056ee16fb9d408f61a07d789b028082a36d"
+        },
+        {
+          "number": 62,
+          "title": "chore(deps): bump @vitest/mocker and vitest in /atlas",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "36948b2f15f46693e37c6a7ec58f171c65e2955b"
         },
         {
           "number": 59,
@@ -894,13 +901,6 @@
           "is_draft": false,
           "mergeable": "UNKNOWN",
           "head_sha": "003f9717a99149aad6b953554a387027f0c2eb9a"
-        },
-        {
-          "number": 58,
-          "title": "ci: add gated exact-head production deployment",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "4568cce7c9e767ed220e94063acbacd39a72d496"
         },
         {
           "number": 57,
