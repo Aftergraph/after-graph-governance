@@ -1,6 +1,6 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-09T09:07:12Z",
+  "generated_at": "2026-09-09T09:19:30Z",
   "generator": "/mnt/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
@@ -8,9 +8,9 @@
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "c58b214ac9278a5eeaae0ca41341506751a2dffb",
-      "remote_head_short": "c58b214",
-      "head_commit_message": "evidence(governance): Wave F Task 3 — pocket consent/deletion/MCP acceptance PCK vectors (#91)",
+      "remote_head_sha": "3c1a955a49bc6a579db8c5529476e768df377cbd",
+      "remote_head_short": "3c1a955",
+      "head_commit_message": "docs(governance): Wave F Task 4 — pocket-source seam binding (#93)",
       "private": false,
       "archived": false,
       "protected": true,
