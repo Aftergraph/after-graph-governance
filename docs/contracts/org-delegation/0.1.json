@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.dev/contracts/org-delegation/0.1.json",
+  "title": "Aftergraph Org Delegation",
+  "description": "EXPERIMENTAL agent-organization delegation contract. It records one parent-to-child delegation with the child authority envelope and the parent budget partition. Child envelopes stay equal-or-narrower, sibling partitions never multiply the parent budget, no worker self-grants authority or self-declares verified completion, and verification stays independent. It confers no authority and replaces no canonical source.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "org-delegation/0.1"},
+    "delegation_id": {"type": "string", "pattern": "^del_[a-f0-9]{32}$"},
+    "parent_ref": {"type": "string", "minLength": 1, "maxLength": 512},
+    "child_ref": {"type": "string", "minLength": 1, "maxLength": 512},
+    "parent_actions": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "items": {"type": "string", "minLength": 1, "maxLength": 128}
+    },
+    "child_actions": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "items": {"type": "string", "minLength": 1, "maxLength": 128}
+    },
+    "parent_budget": {"type": "integer", "minimum": 0},
+    "child_budget": {"type": "integer", "minimum": 0},
+    "sibling_budgets": {
+      "type": "array",
+      "maxItems": 64,
+      "items": {"type": "integer", "minimum": 0}
+    },
+    "self_granted": {"type": "boolean"},
+    "declares_completion": {"type": "boolean"},
+    "verified_by_independent": {"type": "boolean"},
+    "asserted_at": {"type": "string", "minLength": 1, "maxLength": 64},
+    "tenant_id": {"type": "string", "pattern": "^ten_[a-f0-9]{32}$"}
+  },
+  "required": [
+    "schema",
+    "delegation_id",
+    "parent_ref",
+    "child_ref",
+    "parent_actions",
+    "child_actions",
+    "parent_budget",
+    "child_budget",
+    "sibling_budgets",
+    "self_granted",
+    "declares_completion",
+    "verified_by_independent",
+    "asserted_at",
+    "tenant_id"
+  ]
+}

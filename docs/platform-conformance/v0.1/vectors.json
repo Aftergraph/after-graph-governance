@@ -920,6 +920,94 @@
         "tenant_id": "ten_11111111111111111111111111111111"
       },
       "reason": "Cron scheduled read-only sensing reporting a finding claims no execution and stays within its authority."
+    },
+    {
+      "id": "ORG-001",
+      "kind": "org_delegation",
+      "expected": "accept",
+      "input": {
+        "schema": "org-delegation/0.1",
+        "delegation_id": "del_11111111111111111111111111111111",
+        "parent_ref": "runtime:team:000001",
+        "child_ref": "runtime:worker:000001",
+        "parent_actions": ["tasks.read", "tasks.write", "logs.read"],
+        "child_actions": ["tasks.read", "logs.read"],
+        "parent_budget": 100,
+        "child_budget": 40,
+        "sibling_budgets": [35, 25],
+        "self_granted": false,
+        "declares_completion": false,
+        "verified_by_independent": false,
+        "asserted_at": "2026-09-08T12:00:00Z",
+        "tenant_id": "ten_11111111111111111111111111111111"
+      },
+      "reason": "The child envelope is narrower than the parent and the parent budget is atomically partitioned across children with nothing multiplied."
+    },
+    {
+      "id": "ORG-002",
+      "kind": "org_delegation",
+      "expected": "reject",
+      "input": {
+        "schema": "org-delegation/0.1",
+        "delegation_id": "del_22222222222222222222222222222222",
+        "parent_ref": "runtime:team:000002",
+        "child_ref": "runtime:worker:000002",
+        "parent_actions": ["tasks.read", "tasks.write", "logs.read"],
+        "child_actions": ["tasks.read", "admin.grant"],
+        "parent_budget": 100,
+        "child_budget": 40,
+        "sibling_budgets": [35, 25],
+        "self_granted": false,
+        "declares_completion": false,
+        "verified_by_independent": false,
+        "asserted_at": "2026-09-08T12:00:01Z",
+        "tenant_id": "ten_11111111111111111111111111111111"
+      },
+      "reason": "The child envelope widens parent authority with an action the parent never held; delegation never multiplies authority."
+    },
+    {
+      "id": "ORG-003",
+      "kind": "org_delegation",
+      "expected": "reject",
+      "input": {
+        "schema": "org-delegation/0.1",
+        "delegation_id": "del_33333333333333333333333333333333",
+        "parent_ref": "runtime:team:000003",
+        "child_ref": "runtime:worker:000003",
+        "parent_actions": ["tasks.read", "tasks.write", "logs.read"],
+        "child_actions": ["tasks.read", "logs.read"],
+        "parent_budget": 100,
+        "child_budget": 60,
+        "sibling_budgets": [30, 30],
+        "self_granted": false,
+        "declares_completion": false,
+        "verified_by_independent": false,
+        "asserted_at": "2026-09-08T12:00:02Z",
+        "tenant_id": "ten_11111111111111111111111111111111"
+      },
+      "reason": "Sibling partitions summing beyond the parent budget would multiply the budget; the parent budget only partitions."
+    },
+    {
+      "id": "ORG-004",
+      "kind": "org_delegation",
+      "expected": "reject",
+      "input": {
+        "schema": "org-delegation/0.1",
+        "delegation_id": "del_44444444444444444444444444444444",
+        "parent_ref": "runtime:team:000004",
+        "child_ref": "runtime:worker:000004",
+        "parent_actions": ["tasks.read", "tasks.write", "logs.read"],
+        "child_actions": ["tasks.read"],
+        "parent_budget": 100,
+        "child_budget": 40,
+        "sibling_budgets": [35, 25],
+        "self_granted": true,
+        "declares_completion": true,
+        "verified_by_independent": false,
+        "asserted_at": "2026-09-08T12:00:03Z",
+        "tenant_id": "ten_11111111111111111111111111111111"
+      },
+      "reason": "A worker self-granting authority and self-declaring verified completion bypasses independent verification; both fail closed."
     }
   ]
 }
