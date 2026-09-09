@@ -2016,6 +2016,21 @@ def _is_avc_owner(value: Any) -> bool:
     )
 
 
+def _references_avc_identity(value: Any) -> bool:
+    return isinstance(value, str) and (
+        "@avc/" in value
+        or "avc-" in value.lower()
+        or "AVC" in value
+    )
+
+
+def _is_consumer_removal_record(document: dict[str, Any]) -> bool:
+    for field in ("active_package_dependencies", "canonical_services_owned_by_avc", "resolved_consumer_dispositions", "assets_without_disposition", "cross_repo_consumer_evidence_refs"):
+        if isinstance(document.get(field), list):
+            return True
+    return document.get("claims_zero_consumer_zero_ownership") is not None
+
+
 def validate_avc_dissolution(document: dict[str, Any]) -> list[str]:
     errors: list[str] = []
     if not isinstance(document, dict):
@@ -2111,6 +2126,38 @@ def validate_avc_dissolution(document: dict[str, Any]) -> list[str]:
             errors.append("dissolution migration PASS with canonical contract still owned by AVC rejects")
         if document.get("claims_migration_complete") is True and not document.get("owner_evidence_ref"):
             errors.append("dissolution migration-completion claim requires owner execution evidence rejects")
+    for field in ("active_package_dependencies", "provenance_allowlist", "canonical_services_owned_by_avc", "resolved_consumer_dispositions", "assets_without_disposition", "cross_repo_consumer_evidence_refs"):
+        if document.get(field) is not None and not isinstance(document.get(field), list):
+            errors.append(f"dissolution {field} must be a list")
+    if document.get("claims_zero_consumer_zero_ownership") is not None and not isinstance(document.get("claims_zero_consumer_zero_ownership"), bool):
+        errors.append("dissolution claims_zero_consumer_zero_ownership must be a boolean")
+    if _is_consumer_removal_record(document) and document.get("asserts_retirement") is True:
+        dependencies = document.get("active_package_dependencies")
+        if isinstance(dependencies, list):
+            allowlisted = set(document.get("provenance_allowlist")) if isinstance(document.get("provenance_allowlist"), list) else set()
+            for dependency in dependencies:
+                if isinstance(dependency, str) and dependency.startswith("@avc/") and dependency not in allowlisted:
+                    errors.append(f"dissolution active @avc/* dependency {dependency!r} outside the provenance allowlist rejects")
+                    break
+        owned_services = document.get("canonical_services_owned_by_avc")
+        if isinstance(owned_services, list) and len(owned_services) > 0:
+            errors.append("dissolution retirement PASS with a canonical service still owned by AVC rejects")
+        if _is_avc_owner(document.get("canonical_contract_owner")):
+            errors.append("dissolution retirement PASS with a current normative contract still owned by AVC rejects")
+        resolved = document.get("resolved_consumer_dispositions")
+        if not isinstance(resolved, list) or any(entry not in resolved for entry in ("tenant-lifecycle", "workspace-lifecycle", "World", "Situation", "Commitment", "Consent", "Attention")):
+            errors.append("dissolution retirement PASS with unresolved tenant/workspace lifecycle or primitive dispositions rejects")
+        verification_refs = document.get("verification")
+        cross_repo_refs = document.get("cross_repo_consumer_evidence_refs")
+        if isinstance(verification_refs, list) and len(verification_refs) > 0 and (not isinstance(cross_repo_refs, list) or len(cross_repo_refs) == 0):
+            errors.append("dissolution consumer removal proven by repository-local green without cross-repo consumer evidence refs rejects")
+    if document.get("retires_avc_identity") is True and any(_references_avc_identity(consumer) for consumer in consumers):
+        errors.append("dissolution ownership removed while an active consumer still references the AVC identity rejects")
+    undispositioned = document.get("assets_without_disposition")
+    if isinstance(undispositioned, list) and len(undispositioned) > 0:
+        errors.append("dissolution unclassified package/app/skill/ML/cell/infra asset left without a disposition rejects")
+    if document.get("claims_zero_consumer_zero_ownership") is True and not document.get("owner_evidence_ref"):
+        errors.append("dissolution live zero-consumer/zero-ownership claim requires owner execution evidence rejects")
     if document.get("executes_archival") is True:
         errors.append("dissolution governance never executes archival")
     return errors
@@ -4456,6 +4503,122 @@ class TestAvcSkillMigration(unittest.TestCase):
         self.assertTrue(any("self-attestation without skills-vault-side evidence" in e for e in validate_vector(vectors["RET-015"])))
         self.assertTrue(any("canonical contract still owned by AVC" in e for e in validate_vector(vectors["RET-016"])))
         self.assertTrue(any("migration-completion claim requires owner execution evidence" in e for e in validate_vector(vectors["RET-017"])))
+
+
+def valid_consumer_removal() -> dict[str, Any]:
+    document = valid_avc_dissolution()
+    document.update({
+        "dissolution_id": "dis_20202020202020202020202020202020",
+        "tenant_id": "ten_20202020202020202020202020202020",
+        "source_repo": "Aftergraph/runtime",
+        "target_owner": "Aftergraph/runtime",
+        "target_contract": "runtime-supply-chain/0.1",
+        "retired_identity": "avc-legacy-consumer-dep",
+        "active_package_dependencies": ["@avc/provenance-shim"],
+        "provenance_allowlist": ["@avc/provenance-shim"],
+        "canonical_services_owned_by_avc": [],
+        "canonical_contract_owner": "Aftergraph/trust-gateway",
+        "resolved_consumer_dispositions": [
+            "tenant-lifecycle",
+            "workspace-lifecycle",
+            "World",
+            "Situation",
+            "Commitment",
+            "Consent",
+            "Attention",
+        ],
+        "assets_without_disposition": [],
+        "cross_repo_consumer_evidence_refs": [
+            "runtime:evidence:consumer-removal:000020",
+            "aie:evidence:consumer-removal:000020",
+        ],
+        "claims_zero_consumer_zero_ownership": False,
+    })
+    return document
+
+
+class TestAvcConsumerRemoval(unittest.TestCase):
+    def test_accept_consumer_removal_ledgered(self) -> None:
+        self.assertEqual(validate_avc_dissolution(valid_consumer_removal()), [])
+
+    def test_reject_retirement_pass_with_active_avc_dependency_outside_allowlist(self) -> None:
+        document = valid_consumer_removal()
+        document["active_package_dependencies"] = ["@avc/legacy-runtime"]
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("outside the provenance allowlist" in e for e in errors), errors)
+
+    def test_reject_retirement_pass_with_canonical_service_owned_by_avc(self) -> None:
+        document = valid_consumer_removal()
+        document["canonical_services_owned_by_avc"] = ["svc:ledger-canonical"]
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("canonical service still owned by AVC" in e for e in errors), errors)
+
+    def test_reject_retirement_pass_with_normative_contract_owned_by_avc(self) -> None:
+        document = valid_consumer_removal()
+        document["canonical_contract_owner"] = "AVC"
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("current normative contract still owned by AVC" in e for e in errors), errors)
+
+    def test_reject_ownership_removed_with_consumer_referencing_avc_identity(self) -> None:
+        document = valid_consumer_removal()
+        document["active_consumers"] = ["Aftergraph/works-execution:consumer:@avc/legacy-adapter"]
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("active consumer still references the AVC identity" in e for e in errors), errors)
+
+    def test_reject_asset_left_without_disposition(self) -> None:
+        document = valid_consumer_removal()
+        document["assets_without_disposition"] = ["pkg:legacy-unclassified"]
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("left without a disposition" in e for e in errors), errors)
+
+    def test_reject_local_green_without_cross_repo_consumer_evidence(self) -> None:
+        document = valid_consumer_removal()
+        document["cross_repo_consumer_evidence_refs"] = []
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("without cross-repo consumer evidence refs" in e for e in errors), errors)
+
+    def test_reject_zero_consumer_zero_ownership_claim_without_owner_evidence(self) -> None:
+        document = valid_consumer_removal()
+        document["claims_zero_consumer_zero_ownership"] = True
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("zero-consumer/zero-ownership claim requires owner execution evidence" in e for e in errors), errors)
+
+    def test_accept_zero_consumer_zero_ownership_claim_with_owner_evidence(self) -> None:
+        document = valid_consumer_removal()
+        document["claims_zero_consumer_zero_ownership"] = True
+        document["owner_evidence_ref"] = "owner:runtime:consumer-removal:000020"
+        self.assertEqual(validate_avc_dissolution(document), [])
+
+    def test_reject_retirement_pass_with_unresolved_primitive_dispositions(self) -> None:
+        document = valid_consumer_removal()
+        document["resolved_consumer_dispositions"] = ["tenant-lifecycle", "workspace-lifecycle", "World"]
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("unresolved tenant/workspace lifecycle or primitive dispositions" in e for e in errors), errors)
+
+    def test_ret_consumer_vectors_conform(self) -> None:
+        vectors = {v["id"]: v for v in load_json(VECTORS)["vectors"]}
+        expected = {
+            "RET-020": "accept", "RET-021": "reject", "RET-022": "reject",
+            "RET-023": "reject", "RET-024": "reject", "RET-025": "reject",
+            "RET-026": "reject", "RET-027": "reject",
+        }
+        for vid, exp in expected.items():
+            self.assertIn(vid, vectors, vid)
+            vector = vectors[vid]
+            self.assertEqual(vector["kind"], "avc_dissolution", vid)
+            self.assertEqual(vector["expected"], exp, vid)
+            errors = validate_vector(vector)
+            if exp == "accept":
+                self.assertEqual(errors, [], vid)
+            else:
+                self.assertNotEqual(errors, [], vid)
+        self.assertTrue(any("outside the provenance allowlist" in e for e in validate_vector(vectors["RET-021"])))
+        self.assertTrue(any("canonical service still owned by AVC" in e for e in validate_vector(vectors["RET-022"])))
+        self.assertTrue(any("current normative contract still owned by AVC" in e for e in validate_vector(vectors["RET-023"])))
+        self.assertTrue(any("active consumer still references the AVC identity" in e for e in validate_vector(vectors["RET-024"])))
+        self.assertTrue(any("left without a disposition" in e for e in validate_vector(vectors["RET-025"])))
+        self.assertTrue(any("without cross-repo consumer evidence refs" in e for e in validate_vector(vectors["RET-026"])))
+        self.assertTrue(any("zero-consumer/zero-ownership claim requires owner execution evidence" in e for e in validate_vector(vectors["RET-027"])))
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
