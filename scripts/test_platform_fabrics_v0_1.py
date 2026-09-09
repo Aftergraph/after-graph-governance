@@ -28,6 +28,7 @@ ORG_DELEGATION_SCHEMA = ROOT / "docs/contracts/org-delegation/0.1.json"
 EVAL_SCHEMA = ROOT / "docs/contracts/agent-eval/0.1.json"
 POCKET_SCHEMA = ROOT / "docs/contracts/pocket-source/0.1.json"
 VOICE_SCHEMA = ROOT / "docs/contracts/voice-interaction/0.1.json"
+PROM_SCHEMA = ROOT / "docs/contracts/promotion-gates/0.1.json"
 VECTORS = ROOT / "docs/platform-conformance/v0.1/vectors.json"
 
 HEX32 = r"[a-f0-9]{32}"
@@ -370,6 +371,32 @@ VOICE_STOP_VERBS_CONSEQUENTIAL = {"PAUSE_MISSION", "CANCEL_MISSION", "FREEZE_AUT
 VOICE_STOP_VERBS = set(VOICE_STOP_VERBS_SPEECH_ONLY) | set(VOICE_STOP_VERBS_CONSEQUENTIAL)
 VOICE_TURN_BINDINGS = {"disposable_session", "durable_principal"}
 VOICE_CANDIDATE_KINDS = {"observation_update", "commitment_candidate"}
+PROM_REQUIRED = {
+    "schema",
+    "trace_id",
+    "tenant_id",
+    "observation_ref",
+    "classification",
+    "embeds_promotion_authority",
+    "embeds_promotion_grant",
+    "presented_as_gate_pass",
+    "correlation_claimed_as_registry_evidence",
+    "asserted_at",
+}
+PROM_OPTIONAL = {
+    "correlation_refs",
+    "gate_ref",
+    "registry_ref",
+    "gate_evidence_ref",
+    "registry_evidence_ref",
+    "challenger_ref",
+    "executor_ref",
+    "evaluator_ref",
+    "claims_production_characterization",
+    "production_evidence_ref",
+}
+PROM_ALLOWED = set(PROM_REQUIRED) | set(PROM_OPTIONAL)
+PROM_CLASSES = {"authority", "enforcement", "runtime", "execution", "verification", "research"}
 POCKET_SIGNATURE_SCHEMES = {"hmac-sha256"}
 POCKET_CLASSES = {"authority", "enforcement", "runtime", "execution", "verification", "research"}
 POCKET_CANDIDATE_KINDS = {"observation_update", "attention_candidate", "commitment_candidate", "finding"}
@@ -1685,6 +1712,97 @@ def validate_voice_interaction(document: Any) -> list[str]:
     return errors
 
 
+def validate_promotion_gates(document: Any) -> list[str]:
+    errors: list[str] = []
+    if not isinstance(document, dict):
+        return ["promotion trace must be an object"]
+
+    keys = set(document)
+    missing = PROM_REQUIRED - keys
+    extra = keys - PROM_ALLOWED
+    if missing:
+        errors.append(f"missing promotion-gates fields: {sorted(missing)}")
+    if extra:
+        errors.append(f"unexpected promotion-gates fields: {sorted(extra)}")
+
+    if document.get("schema") != "promotion-gates/0.1":
+        errors.append("wrong promotion-gates schema")
+    if not valid_id("trace_id", document.get("trace_id")):
+        errors.append("invalid trace_id")
+    if not valid_id("tenant_id", document.get("tenant_id")):
+        errors.append("invalid tenant_id")
+    if not nonempty_string(document.get("observation_ref")):
+        errors.append("invalid observation_ref")
+    if document.get("classification") not in PROM_CLASSES:
+        errors.append("invalid classification")
+
+    for field in (
+        "embeds_promotion_authority",
+        "embeds_promotion_grant",
+        "presented_as_gate_pass",
+        "correlation_claimed_as_registry_evidence",
+    ):
+        if not isinstance(document.get(field), bool):
+            errors.append(f"{field} must be a boolean")
+
+    if document.get("embeds_promotion_authority") is True:
+        errors.append("traces carry observation/correlation only; promotion authority lives outside traces in gate/registry-owned stores")
+    if document.get("embeds_promotion_grant") is True:
+        errors.append("promotion grants are never embedded in traces; grants live outside traces in gate/registry-owned stores")
+
+    if document.get("presented_as_gate_pass") is True:
+        if not nonempty_string(document.get("gate_evidence_ref")):
+            errors.append("trace is never a gate PASS by itself; promotion requires gate + registry evidence")
+        if not nonempty_string(document.get("registry_evidence_ref")):
+            errors.append("trace is never a gate PASS by itself; promotion requires gate + registry evidence")
+
+    if document.get("correlation_claimed_as_registry_evidence") is True:
+        errors.append("trace/registry correlation is correlation only; correlation is never registry evidence")
+
+    executor_ref = document.get("executor_ref")
+    evaluator_ref = document.get("evaluator_ref")
+    for field in (
+        "gate_ref",
+        "registry_ref",
+        "gate_evidence_ref",
+        "registry_evidence_ref",
+        "challenger_ref",
+        "executor_ref",
+        "evaluator_ref",
+        "production_evidence_ref",
+    ):
+        if document.get(field) is not None and not nonempty_string(document.get(field)):
+            errors.append(f"invalid {field}")
+    if (
+        executor_ref is not None
+        and evaluator_ref is not None
+        and nonempty_string(executor_ref)
+        and executor_ref == evaluator_ref
+    ):
+        errors.append("evaluators never score their own execution (inherited Wave E EVAL binding)")
+
+    if document.get("claims_production_characterization") is not None and not isinstance(
+        document.get("claims_production_characterization"), bool
+    ):
+        errors.append("claims_production_characterization must be a boolean")
+    if document.get("claims_production_characterization") is True:
+        if not nonempty_string(document.get("production_evidence_ref")):
+            errors.append("production-trace characterization requires production evidence (evidence-gated; BLOCKED_ON_PROMOTION_EVIDENCE)")
+
+    refs = document.get("correlation_refs")
+    if refs is not None and (
+        not isinstance(refs, list)
+        or not 1 <= len(refs) <= 32
+        or any(not nonempty_string(item) for item in refs)
+    ):
+        errors.append("correlation_refs must contain 1..32 refs")
+
+    if not parse_rfc3339(document.get("asserted_at")):
+        errors.append("invalid asserted_at")
+
+    return errors
+
+
 def validate_causal_chain(document: Any) -> list[str]:
     errors: list[str] = []
     if not isinstance(document, dict):
@@ -1773,6 +1891,8 @@ def validate_vector(vector: dict[str, Any]) -> list[str]:
         return validate_pocket_source(document)
     if kind == "voice_interaction":
         return validate_voice_interaction(document)
+    if kind == "promotion_gates":
+        return validate_promotion_gates(document)
     if kind == "causal_chain":
         return validate_causal_chain(document)
     return [f"unknown vector kind: {kind!r}"]
@@ -1978,6 +2098,24 @@ def valid_voice_interaction() -> dict[str, Any]:
         "memory_ref": "runtime:memory:000001",
         "mission_ref": "works:mission:000001",
         "consent_ref": "consent:ledger:000001",
+        "asserted_at": "2026-09-08T12:00:00Z",
+    }
+
+
+def valid_promotion_gates() -> dict[str, Any]:
+    return {
+        "schema": "promotion-gates/0.1",
+        "trace_id": "trc_11111111111111111111111111111111",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "observation_ref": "wie:observation:000001",
+        "classification": "execution",
+        "embeds_promotion_authority": False,
+        "embeds_promotion_grant": False,
+        "presented_as_gate_pass": False,
+        "correlation_claimed_as_registry_evidence": False,
+        "correlation_refs": ["platform:event:000001"],
+        "gate_ref": "runtime:promotion-gate:000001",
+        "registry_ref": "model-registry:evidence:000001",
         "asserted_at": "2026-09-08T12:00:00Z",
     }
 
@@ -3073,6 +3211,133 @@ class PlatformFabricsV01Tests(unittest.TestCase):
             ("VOI-025", "accept"),
             ("VOI-026", "reject"),
             ("VOI-027", "accept"),
+        ):
+            self.assertIn(vector_id, by_id)
+            self.assertEqual(by_id[vector_id]["expected"], expected)
+
+    def test_promotion_gates_contract_is_strict_and_experimental(self) -> None:
+        schema = load_json(PROM_SCHEMA)
+        self.assertFalse(schema.get("additionalProperties"), schema["title"])
+        self.assertIn("EXPERIMENTAL", schema.get("description", ""))
+        self.assertIn("authority", schema.get("description", "").lower())
+        self.assertEqual(schema["properties"]["schema"]["const"], "promotion-gates/0.1")
+        self.assertEqual(set(schema["required"]), PROM_REQUIRED)
+        for prop in (
+            "correlation_refs",
+            "gate_ref",
+            "registry_ref",
+            "gate_evidence_ref",
+            "registry_evidence_ref",
+            "challenger_ref",
+            "executor_ref",
+            "evaluator_ref",
+            "claims_production_characterization",
+            "production_evidence_ref",
+        ):
+            self.assertIn(prop, schema["properties"])
+            self.assertNotIn(prop, schema["required"])
+
+    def test_promotion_trace_with_outside_authority_refs_accepts(self) -> None:
+        document = valid_promotion_gates()
+        self.assertEqual(validate_promotion_gates(document), [])
+
+    def test_promotion_trace_embedding_authority_or_grant_rejected(self) -> None:
+        document = valid_promotion_gates()
+        document["embeds_promotion_authority"] = True
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("lives outside traces" in error for error in errors)
+        )
+        document = valid_promotion_gates()
+        document["embeds_promotion_grant"] = True
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("never embedded in traces" in error for error in errors)
+        )
+
+    def test_promotion_trace_as_gate_pass_without_evidence_rejected(self) -> None:
+        document = valid_promotion_gates()
+        document["presented_as_gate_pass"] = True
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("never a gate PASS by itself" in error for error in errors)
+        )
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "presented_as_gate_pass": True,
+                "gate_evidence_ref": "runtime:promotion-gate:pass:000001",
+                "registry_evidence_ref": "model-registry:pass:000001",
+            }
+        )
+        self.assertEqual(validate_promotion_gates(document), [])
+
+    def test_promotion_trace_without_tenant_scoping_or_classification_rejected(self) -> None:
+        document = valid_promotion_gates()
+        del document["tenant_id"]
+        del document["classification"]
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("missing promotion-gates fields" in error for error in errors)
+        )
+        document = valid_promotion_gates()
+        document["tenant_id"] = "ten_not-anchored"
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("invalid tenant_id" in error for error in errors)
+        )
+        document = valid_promotion_gates()
+        document["classification"] = "unscoped"
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("invalid classification" in error for error in errors)
+        )
+
+    def test_promotion_correlation_as_registry_evidence_rejected(self) -> None:
+        document = valid_promotion_gates()
+        document["correlation_claimed_as_registry_evidence"] = True
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("never registry evidence" in error for error in errors)
+        )
+
+    def test_promotion_challenger_scored_by_own_executor_rejected(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "challenger_ref": "model-registry:challenger:000001",
+                "executor_ref": "afm:executor:000001",
+                "evaluator_ref": "afm:executor:000001",
+            }
+        )
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("never score their own execution" in error for error in errors)
+        )
+        document["evaluator_ref"] = "sentinel:verifier:000001"
+        self.assertEqual(validate_promotion_gates(document), [])
+
+    def test_promotion_production_characterization_is_evidence_gated(self) -> None:
+        document = valid_promotion_gates()
+        document["claims_production_characterization"] = True
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("BLOCKED_ON_PROMOTION_EVIDENCE" in error for error in errors)
+        )
+        document["production_evidence_ref"] = "production:trace-evidence:000001"
+        self.assertEqual(validate_promotion_gates(document), [])
+
+    def test_promotion_gates_vectors_are_registered(self) -> None:
+        fixture = load_json(VECTORS)
+        by_id = {vector.get("id"): vector for vector in fixture["vectors"]}
+        for vector_id, expected in (
+            ("PROM-001", "accept"),
+            ("PROM-002", "reject"),
+            ("PROM-003", "reject"),
+            ("PROM-004", "reject"),
+            ("PROM-005", "reject"),
+            ("PROM-006", "reject"),
+            ("PROM-007", "reject"),
         ):
             self.assertIn(vector_id, by_id)
             self.assertEqual(by_id[vector_id]["expected"], expected)
