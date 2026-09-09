@@ -69,8 +69,12 @@ canonical AVC identifiers. Vector namespaces `PRO-*`, `ORG-*`, and
   projecting a native event to an Opportunity candidate with native meaning
   preserved, accept), `PRO-002` (Cron sensing path asserting execution
   authority, reject), `PRO-003` (Wie candidate presenting as an admitted
-  commitment without Trust Gateway admission, reject). Run → FAIL on
-  missing contract/kind/vectors.
+  commitment without Trust Gateway admission, reject), `PRO-004` (Runtime
+  mission-state sensing to an opportunity/recovery candidate, accept),
+  `PRO-005` (same native signal via Wie and Cron correlating and deduping
+  to a single AttentionCandidate, accept), `PRO-006` (Cron scheduled
+  read-only sensing to a finding with zero execution authority, accept).
+  Run → FAIL on missing contract/kind/vectors.
 - [ ] **Step 2: GREEN.** Add `docs/contracts/proactivity/0.1.json`
   (experimental), extend the conformance harness with a `proactivity` kind
   validator plus its own tests, add the three vectors to
@@ -174,6 +178,7 @@ request-content test green (acceptance vector IDs resolved against
 `vectors.json`, not merely "issued"), evidence record PASS, branch merged
 through the normal queue, and a fresh `main` exact-head snapshot
 regenerates. Downstream sensing/topology/delegation/eval runs are tracked
-by their owning repos — their results are never claimed here. Criterion 10
-(proactivity differentiation and Agent Organization evals) advances here
-but closes only with later-wave composition proof.
+by their owning repos — their results are never claimed here. No numbered
+criterion from the Wave B scheme advances here: criterion 10 (capability
+fallback with no authority widening) already closed in Wave B, and
+proactivity/organization composition proof belongs to later waves.
