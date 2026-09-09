@@ -1,0 +1,11 @@
+{
+  "id": "LAUNDER-001",
+  "expected": "reject",
+  "reason": "Refreshing observation time without new observation evidence is timestamp laundering; stale state must be represented as stale/unknown.",
+  "assertion": {
+    "assertion_id": "ast_55555555555555555555555555555555",
+    "observed_at": "2026-09-08T16:00:00Z",
+    "evidence_observed_at": "2026-09-08T12:00:00Z",
+    "currentness": "current"
+  }
+}

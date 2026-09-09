@@ -1,0 +1,37 @@
+{
+  "id": "REBUILD-001",
+  "expected": "accept",
+  "reason": "After Runtime failure, World State is rebuilt from canonical sources; the unavailable source yields stale/unknown state while the available source keeps its projection.",
+  "sources": [
+    {"source": "works-execution", "available": true},
+    {"source": "pocket-observer", "available": false}
+  ],
+  "projection_before": [
+    {
+      "assertion_id": "ast_11111111111111111111111111111111",
+      "source": "works-execution",
+      "epistemic": "observed",
+      "currentness": "current"
+    },
+    {
+      "assertion_id": "ast_44444444444444444444444444444444",
+      "source": "pocket-observer",
+      "epistemic": "observed",
+      "currentness": "current"
+    }
+  ],
+  "projection_after": [
+    {
+      "assertion_id": "ast_11111111111111111111111111111111",
+      "source": "works-execution",
+      "epistemic": "observed",
+      "currentness": "current"
+    },
+    {
+      "assertion_id": "ast_44444444444444444444444444444444",
+      "source": "pocket-observer",
+      "epistemic": "unknown",
+      "currentness": "stale"
+    }
+  ]
+}
