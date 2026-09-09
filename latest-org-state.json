@@ -1,6 +1,6 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-09T07:59:58Z",
+  "generated_at": "2026-09-09T08:29:02Z",
   "generator": "/mnt/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
@@ -8,9 +8,9 @@
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "c49c92396c77c6e1853f8d9df89ed85d85a35b5f",
-      "remote_head_short": "c49c923",
-      "head_commit_message": "evidence(governance): close platform architecture v4 wave e (#84)",
+      "remote_head_sha": "f1101676118d1b291ad0b7f74d7a8610ebf54065",
+      "remote_head_short": "f110167",
+      "head_commit_message": "evidence(governance): Wave F Task 1 — pocket-source contract + validator + PCK vectors (#87)",
       "private": false,
       "archived": false,
       "protected": true,
@@ -303,7 +303,7 @@
           "title": "feat(works): expose outcome verification separately from evidence integrity",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "546ab79d00ff68bef034412bb7f53faa2d47c249"
+          "head_sha": "d256a48b590f8aeae993fa8bafa067cc7b1346c3"
         },
         {
           "number": 69,
@@ -528,11 +528,18 @@
       "protected": true,
       "open_pull_requests": [
         {
+          "number": 53,
+          "title": "research: draft STUDY-012 institutional containment preregistration",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "bb79adbc603cf20d914bedfa0ccec48017afbea8"
+        },
+        {
           "number": 51,
           "title": "research: publish Paper 05 on frontier-agent institutional control",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "88809aedb8342e378462e28d15c55b66c82cb78c"
+          "head_sha": "1021c395caf1d7f44fcb7ce7ca67dd81e5d4d6fc"
         },
         {
           "number": 50,
