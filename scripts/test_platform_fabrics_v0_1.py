@@ -29,6 +29,7 @@ EVAL_SCHEMA = ROOT / "docs/contracts/agent-eval/0.1.json"
 POCKET_SCHEMA = ROOT / "docs/contracts/pocket-source/0.1.json"
 VOICE_SCHEMA = ROOT / "docs/contracts/voice-interaction/0.1.json"
 PROM_SCHEMA = ROOT / "docs/contracts/promotion-gates/0.1.json"
+DISSOLUTION_SCHEMA = ROOT / "docs/contracts/avc-dissolution/0.1.json"
 VECTORS = ROOT / "docs/platform-conformance/v0.1/vectors.json"
 
 HEX32 = r"[a-f0-9]{32}"
@@ -2006,6 +2007,89 @@ def validate_causal_chain(document: Any) -> list[str]:
     return errors
 
 
+def validate_avc_dissolution(document: dict[str, Any]) -> list[str]:
+    errors: list[str] = []
+    if not isinstance(document, dict):
+        return ["dissolution record must be an object"]
+    if document.get("schema") != "avc-dissolution/0.1":
+        errors.append('dissolution schema must be "avc-dissolution/0.1"')
+    dissolution_id = document.get("dissolution_id")
+    if not isinstance(dissolution_id, str) or re.fullmatch(r"dis_[a-f0-9]{32}", dissolution_id) is None:
+        errors.append("dissolution_id must match ^dis_[a-f0-9]{32}$")
+    tenant_id = document.get("tenant_id")
+    if not isinstance(tenant_id, str) or re.fullmatch(r"ten_[a-f0-9]{32}", tenant_id) is None:
+        errors.append("tenant_id must match ^ten_[a-f0-9]{32}$")
+    for field in ("source_repo", "source_ref", "source_path", "target_owner", "target_contract", "delta_audit_ref", "archive_gate_ref", "asserted_at"):
+        value = document.get(field)
+        if not isinstance(value, str) or len(value) == 0:
+            errors.append(f"dissolution {field} must be a non-empty string")
+    disposition = document.get("disposition")
+    if disposition not in ("MIGRATED_VERIFIED", "MIGRATED_TRANSITIONAL", "EXTRACT", "RETIRE", "HISTORY_ONLY"):
+        errors.append(f"dissolution unknown disposition {disposition!r}")
+    if document.get("baseline_pin") != "18317c7b2eebcc08bb2a1b30d9118935d5832540":
+        errors.append("dissolution baseline pin must be 18317c7b2eebcc08bb2a1b30d9118935d5832540")
+    for flag in ("retires_avc_identity", "canonical_doc_assigns_avc_ownership", "executes_archival", "ledger_record_present", "asserts_retirement", "identifier_active", "claims_owner_execution", "claims_extraction_complete"):
+        if not isinstance(document.get(flag), bool):
+            errors.append(f"dissolution {flag} must be a boolean")
+    consumers = document.get("active_consumers")
+    if not isinstance(consumers, list):
+        errors.append("dissolution active_consumers must be a list")
+        consumers = []
+    for field in ("compatibility_aliases", "verification", "canonical_doc_refs"):
+        if document.get(field) is not None and not isinstance(document.get(field), list):
+            errors.append(f"dissolution {field} must be a list")
+    if document.get("retires_avc_identity") is True and len(consumers) > 0:
+        errors.append("dissolution retirement with active consumers rejects")
+    if document.get("retires_avc_identity") is True and document.get("canonical_doc_assigns_avc_ownership") is True:
+        errors.append("dissolution canonical doc still assigns AVC ownership rejects")
+    if document.get("asserts_retirement") is True and document.get("ledger_record_present") is not True:
+        errors.append("dissolution retirement asserted outside the ledger rejects")
+    deletion_gate = document.get("deletion_gate")
+    if not isinstance(deletion_gate, str) or len(deletion_gate) == 0:
+        errors.append("dissolution deletion_gate is required")
+    introduced = document.get("introduced_identifier")
+    if document.get("identifier_active") is True and isinstance(introduced, str) and len(introduced) > 0 and (introduced.startswith("avc-") or introduced.startswith("@avc/") or "AVC" in introduced):
+        errors.append(f"dissolution newly-minted AVC identifier {introduced!r} as active rejects")
+    if (document.get("claims_owner_execution") is True or document.get("claims_extraction_complete") is True) and not document.get("owner_evidence_ref"):
+        errors.append("dissolution owner-execution claim requires owner evidence")
+    if document.get("executes_archival") is True:
+        errors.append("dissolution governance never executes archival")
+    return errors
+
+
+def valid_avc_dissolution() -> dict[str, Any]:
+    return {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "tenant_id": "ten_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "source_repo": "Aftergraph/autonomous-venture-company",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000001",
+        "target_owner": "Aftergraph/skills-vault",
+        "target_contract": "skills-vault-supply-chain/0.1",
+        "retires_avc_identity": True,
+        "retired_identity": "avc-legacy-identity",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": False,
+        "canonical_doc_refs": ["docs/canonical:ownership-table"],
+        "compatibility_aliases": ["legacy:avc-alias"],
+        "verification": ["verifier:continuum:report:000001"],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000001",
+        "executes_archival": False,
+        "ledger_record_present": True,
+        "asserts_retirement": True,
+        "introduced_identifier": "",
+        "identifier_active": False,
+        "claims_owner_execution": False,
+        "claims_extraction_complete": False,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+    }
+
 def validate_vector(vector: dict[str, Any]) -> list[str]:
     kind = vector.get("kind")
     document = vector.get("input")
@@ -2033,6 +2117,8 @@ def validate_vector(vector: dict[str, Any]) -> list[str]:
         return validate_voice_interaction(document)
     if kind == "promotion_gates":
         return validate_promotion_gates(document)
+    if kind == "avc_dissolution":
+        return validate_avc_dissolution(document)
     if kind == "causal_chain":
         return validate_causal_chain(document)
     return [f"unknown vector kind: {kind!r}"]
@@ -4041,6 +4127,147 @@ class PlatformFabricsV01Tests(unittest.TestCase):
         self.assertTrue(parse_rfc3339("2026-09-08T12:00:00Z"))
         self.assertTrue(parse_rfc3339("2026-09-08T12:00:00+02:00"))
 
+
+
+class TestAvcDissolutionLedger(unittest.TestCase):
+    def test_contract_is_strict_and_experimental(self) -> None:
+        contract = load_json(DISSOLUTION_SCHEMA)
+        self.assertIn("EXPERIMENTAL", contract["description"])
+        self.assertFalse(contract.get("additionalProperties", True))
+        self.assertEqual(contract["properties"]["schema"]["const"], "avc-dissolution/0.1")
+        self.assertEqual(
+            set(contract["properties"]["disposition"]["enum"]),
+            {"MIGRATED_VERIFIED", "MIGRATED_TRANSITIONAL", "EXTRACT", "RETIRE", "HISTORY_ONLY"},
+        )
+        self.assertEqual(
+            contract["properties"]["baseline_pin"]["const"],
+            "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        )
+        self.assertEqual(
+            set(contract["required"]),
+            {
+                "schema", "dissolution_id", "tenant_id", "source_repo", "source_ref",
+                "source_path", "disposition", "baseline_pin", "delta_audit_ref",
+                "target_owner", "target_contract", "retires_avc_identity",
+                "active_consumers", "canonical_doc_assigns_avc_ownership",
+                "compatibility_aliases", "verification", "deletion_gate",
+                "archive_gate_ref", "executes_archival", "ledger_record_present",
+                "asserts_retirement", "identifier_active", "claims_owner_execution",
+                "claims_extraction_complete", "asserted_at",
+            },
+        )
+
+    def test_accept_full_dissolution_record(self) -> None:
+        self.assertEqual(validate_avc_dissolution(valid_avc_dissolution()), [])
+
+    def test_accept_every_disposition(self) -> None:
+        for disposition in ("MIGRATED_VERIFIED", "MIGRATED_TRANSITIONAL", "EXTRACT", "RETIRE", "HISTORY_ONLY"):
+            document = valid_avc_dissolution()
+            document["disposition"] = disposition
+            self.assertEqual(validate_avc_dissolution(document), [], disposition)
+
+    def test_reject_retirement_with_active_consumers(self) -> None:
+        document = valid_avc_dissolution()
+        document["active_consumers"] = ["svc:legacy-search"]
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("retirement with active consumers" in e for e in errors), errors)
+
+    def test_reject_canonical_doc_still_assigns_ownership(self) -> None:
+        document = valid_avc_dissolution()
+        document["canonical_doc_assigns_avc_ownership"] = True
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("canonical doc still assigns AVC ownership" in e for e in errors), errors)
+
+    def test_reject_retirement_outside_ledger(self) -> None:
+        document = valid_avc_dissolution()
+        document["ledger_record_present"] = False
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("asserted outside the ledger" in e for e in errors), errors)
+
+    def test_reject_unknown_disposition(self) -> None:
+        document = valid_avc_dissolution()
+        document["disposition"] = "DELETED_FOREVER"
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("unknown disposition" in e for e in errors), errors)
+
+    def test_reject_missing_deletion_gate(self) -> None:
+        document = valid_avc_dissolution()
+        del document["deletion_gate"]
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("deletion_gate is required" in e for e in errors), errors)
+
+    def test_reject_newly_minted_identifiers(self) -> None:
+        for introduced in ("avc-shiny-new", "@avc/shiny-new", "LegacyAVCModule"):
+            document = valid_avc_dissolution()
+            document["retires_avc_identity"] = False
+            document["asserts_retirement"] = False
+            document["introduced_identifier"] = introduced
+            document["identifier_active"] = True
+            errors = validate_avc_dissolution(document)
+            self.assertTrue(any("newly-minted AVC identifier" in e for e in errors), (introduced, errors))
+
+    def test_reject_owner_execution_claim_without_evidence(self) -> None:
+        document = valid_avc_dissolution()
+        document["claims_extraction_complete"] = True
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("owner evidence" in e for e in errors), errors)
+
+    def test_accept_owner_claim_with_evidence_ref(self) -> None:
+        document = valid_avc_dissolution()
+        document["claims_extraction_complete"] = True
+        document["owner_evidence_ref"] = "owner:extraction:report:000001"
+        self.assertEqual(validate_avc_dissolution(document), [])
+
+    def test_reject_archival_execution(self) -> None:
+        document = valid_avc_dissolution()
+        document["executes_archival"] = True
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("never executes archival" in e for e in errors), errors)
+
+    def test_reject_baseline_mismatch(self) -> None:
+        document = valid_avc_dissolution()
+        document["baseline_pin"] = "0000000000000000000000000000000000000000"
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("baseline pin must be" in e for e in errors), errors)
+
+    def test_reject_unanchored_ids(self) -> None:
+        document = valid_avc_dissolution()
+        document["dissolution_id"] = "dis_SHORT"
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("dissolution_id must match" in e for e in errors), errors)
+        document = valid_avc_dissolution()
+        document["tenant_id"] = "ten_SHORT"
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("tenant_id must match" in e for e in errors), errors)
+
+    def test_strict_booleans_and_strings(self) -> None:
+        document = valid_avc_dissolution()
+        document["retires_avc_identity"] = "true"
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("must be a boolean" in e for e in errors), errors)
+        document = valid_avc_dissolution()
+        del document["source_repo"]
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("non-empty string" in e for e in errors), errors)
+
+    def test_ret_vectors_conform(self) -> None:
+        vectors = {v["id"]: v for v in load_json(VECTORS)["vectors"]}
+        expected = {
+            "RET-001": "accept", "RET-002": "reject", "RET-003": "reject",
+            "RET-004": "reject", "RET-005": "reject", "RET-006": "reject",
+            "RET-007": "reject",
+        }
+        for vid, exp in expected.items():
+            self.assertIn(vid, vectors, vid)
+            vector = vectors[vid]
+            self.assertEqual(vector["kind"], "avc_dissolution", vid)
+            self.assertEqual(vector["expected"], exp, vid)
+            errors = validate_vector(vector)
+            if exp == "accept":
+                self.assertEqual(errors, [], vid)
+            else:
+                self.assertNotEqual(errors, [], vid)
+        self.assertTrue(any("owner evidence" in e for e in validate_vector(vectors["RET-007"])))
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
