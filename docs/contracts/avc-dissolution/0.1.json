@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.dev/contracts/avc-dissolution/0.1.json",
+  "title": "Aftergraph AVC Dissolution Ledger",
+  "description": "EXPERIMENTAL avc-dissolution contract for the Wave I AVC-retirement slice. A dissolution record is ledger-owned evidence that an AVC identity moved to a disposition of MIGRATED_VERIFIED/MIGRATED_TRANSITIONAL/EXTRACT/RETIRE/HISTORY_ONLY, pinned to extraction baseline 18317c7b2eebcc08bb2a1b30d9118935d5832540 with a delta-audit ref. No AVC identity retires while an active consumer or a canonical-doc ownership ref still names it; retirement asserted outside the ledger rejects. No newly-minted avc-/@avc-scoped/AVC identifier is ever active. Archive-gate refs are references only: governance pins ledger, gates, and vectors and NEVER executes archival or deletion; the final legacy-repo archive action REQUIRES_EXPLICIT_OWNER_AUTHORIZATION. Owner-execution and extraction-completion claims are evidence-gated on owner evidence.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "avc-dissolution/0.1"
+    },
+    "dissolution_id": {
+      "type": "string",
+      "pattern": "^dis_[a-f0-9]{32}$"
+    },
+    "tenant_id": {
+      "type": "string",
+      "pattern": "^ten_[a-f0-9]{32}$"
+    },
+    "source_repo": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "source_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "source_path": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "disposition": {
+      "type": "string",
+      "enum": [
+        "MIGRATED_VERIFIED",
+        "MIGRATED_TRANSITIONAL",
+        "EXTRACT",
+        "RETIRE",
+        "HISTORY_ONLY"
+      ]
+    },
+    "baseline_pin": {
+      "type": "string",
+      "const": "18317c7b2eebcc08bb2a1b30d9118935d5832540"
+    },
+    "delta_audit_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "target_owner": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "target_contract": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "retires_avc_identity": {
+      "type": "boolean"
+    },
+    "retired_identity": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "active_consumers": {
+      "type": "array",
+      "maxItems": 64,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512
+      }
+    },
+    "canonical_doc_assigns_avc_ownership": {
+      "type": "boolean"
+    },
+    "canonical_doc_refs": {
+      "type": "array",
+      "maxItems": 32,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512
+      }
+    },
+    "compatibility_aliases": {
+      "type": "array",
+      "maxItems": 32,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512
+      }
+    },
+    "verification": {
+      "type": "array",
+      "maxItems": 32,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512
+      }
+    },
+    "deletion_gate": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "archive_gate_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Reference to the owner-held archive gate; a reference only, never an archival execution."
+    },
+    "executes_archival": {
+      "type": "boolean",
+      "description": "True executes archival/deletion and always rejects; governance never executes archival."
+    },
+    "ledger_record_present": {
+      "type": "boolean"
+    },
+    "asserts_retirement": {
+      "type": "boolean"
+    },
+    "introduced_identifier": {
+      "type": "string",
+      "maxLength": 512
+    },
+    "identifier_active": {
+      "type": "boolean"
+    },
+    "claims_owner_execution": {
+      "type": "boolean"
+    },
+    "claims_extraction_complete": {
+      "type": "boolean"
+    },
+    "owner_evidence_ref": {
+      "type": "string",
+      "maxLength": 512
+    },
+    "asserted_at": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    }
+  },
+  "required": [
+    "schema",
+    "dissolution_id",
+    "tenant_id",
+    "source_repo",
+    "source_ref",
+    "source_path",
+    "disposition",
+    "baseline_pin",
+    "delta_audit_ref",
+    "target_owner",
+    "target_contract",
+    "retires_avc_identity",
+    "active_consumers",
+    "canonical_doc_assigns_avc_ownership",
+    "compatibility_aliases",
+    "verification",
+    "deletion_gate",
+    "archive_gate_ref",
+    "executes_archival",
+    "ledger_record_present",
+    "asserts_retirement",
+    "identifier_active",
+    "claims_owner_execution",
+    "claims_extraction_complete",
+    "asserted_at"
+  ]
+}

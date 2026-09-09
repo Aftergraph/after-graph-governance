@@ -3480,5 +3480,309 @@
       },
       "reason": "A registry-bypass emergency promotion without gate evidence rejects; bypass is never promotion."
     }
+,
+    {
+      "id": "RET-001",
+      "kind": "avc_dissolution",
+      "expected": "accept",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "tenant_id": "ten_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "source_repo": "Aftergraph/autonomous-venture-company",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000001",
+        "target_owner": "Aftergraph/skills-vault",
+        "target_contract": "skills-vault-supply-chain/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-identity",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-alias"
+        ],
+        "verification": [
+          "verifier:continuum:report:000001"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000001",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z"
+      },
+      "reason": "Full dissolution record with valid disposition pinned to the extraction baseline accepts."
+    },
+    {
+      "id": "RET-002",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "tenant_id": "ten_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "source_repo": "Aftergraph/autonomous-venture-company",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000001",
+        "target_owner": "Aftergraph/skills-vault",
+        "target_contract": "skills-vault-supply-chain/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-identity",
+        "active_consumers": [
+          "svc:legacy-search"
+        ],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-alias"
+        ],
+        "verification": [
+          "verifier:continuum:report:000001"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000001",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z"
+      },
+      "reason": "Retirement rejects while active_consumers is non-empty."
+    },
+    {
+      "id": "RET-003",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_cccccccccccccccccccccccccccccccc",
+        "tenant_id": "ten_cccccccccccccccccccccccccccccccc",
+        "source_repo": "Aftergraph/autonomous-venture-company",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000001",
+        "target_owner": "Aftergraph/skills-vault",
+        "target_contract": "skills-vault-supply-chain/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-identity",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": true,
+        "canonical_doc_refs": [
+          "docs/canonical:skills-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-alias"
+        ],
+        "verification": [
+          "verifier:continuum:report:000001"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000001",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z"
+      },
+      "reason": "Retirement rejects while a canonical doc still assigns AVC ownership."
+    },
+    {
+      "id": "RET-004",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_dddddddddddddddddddddddddddddddd",
+        "tenant_id": "ten_dddddddddddddddddddddddddddddddd",
+        "source_repo": "Aftergraph/autonomous-venture-company",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000001",
+        "target_owner": "Aftergraph/skills-vault",
+        "target_contract": "skills-vault-supply-chain/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-identity",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-alias"
+        ],
+        "verification": [
+          "verifier:continuum:report:000001"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000001",
+        "executes_archival": false,
+        "ledger_record_present": false,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z"
+      },
+      "reason": "Retirement asserted outside the ledger without a dissolution record rejects."
+    },
+    {
+      "id": "RET-005",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "tenant_id": "ten_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "source_repo": "Aftergraph/autonomous-venture-company",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "DELETED_FOREVER",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000001",
+        "target_owner": "Aftergraph/skills-vault",
+        "target_contract": "skills-vault-supply-chain/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-identity",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-alias"
+        ],
+        "verification": [
+          "verifier:continuum:report:000001"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000001",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z"
+      },
+      "reason": "Unknown disposition rejects; deletion_gate is separately required."
+    },
+    {
+      "id": "RET-006",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_ffffffffffffffffffffffffffffffff",
+        "tenant_id": "ten_ffffffffffffffffffffffffffffffff",
+        "source_repo": "Aftergraph/autonomous-venture-company",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000001",
+        "target_owner": "Aftergraph/skills-vault",
+        "target_contract": "skills-vault-supply-chain/0.1",
+        "retires_avc_identity": false,
+        "retired_identity": "avc-legacy-identity",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-alias"
+        ],
+        "verification": [
+          "verifier:continuum:report:000001"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000001",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": false,
+        "introduced_identifier": "avc-shiny-new",
+        "identifier_active": true,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z"
+      },
+      "reason": "Newly-minted avc-* identifier introduced as active rejects."
+    },
+    {
+      "id": "RET-007",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_99999999999999999999999999999999",
+        "tenant_id": "ten_99999999999999999999999999999999",
+        "source_repo": "Aftergraph/autonomous-venture-company",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000001",
+        "target_owner": "Aftergraph/skills-vault",
+        "target_contract": "skills-vault-supply-chain/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-identity",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-alias"
+        ],
+        "verification": [
+          "verifier:continuum:report:000001"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000001",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": true,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z"
+      },
+      "reason": "Evidence-gated: extraction-completion claim without owner evidence rejects."
+    }
   ]
 }
