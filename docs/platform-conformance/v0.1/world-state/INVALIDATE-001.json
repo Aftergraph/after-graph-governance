@@ -1,0 +1,18 @@
+{
+  "id": "INVALIDATE-001",
+  "expected": "accept",
+  "reason": "Source deletion invalidates derived state per provenance; historical audit/evidence is preserved, never rewritten.",
+  "event": {"deleted_source": "pocket-observer"},
+  "derived_before": [
+    {"id": "der-001", "provenance": ["works-execution"]},
+    {"id": "der-002", "provenance": ["pocket-observer"]},
+    {"id": "der-003", "provenance": ["works-execution", "pocket-observer"]}
+  ],
+  "audit_before": [
+    {"id": "aud-001", "entry": "works:event:000007 committed"},
+    {"id": "aud-002", "entry": "pocket:observation:000003 ingested"}
+  ],
+  "derived_after": [
+    {"id": "der-001", "provenance": ["works-execution"]}
+  ]
+}
