@@ -37,13 +37,23 @@ RECONCILIATION_DOC = REPO_ROOT / "docs" / "PLATFORM-RECONCILIATION-V1.md"
 CROSS_REPO_DOC = REPO_ROOT / "docs" / "cross-repo-contracts.md"
 REGISTRY_DOC = REPO_ROOT / "docs" / "REPOSITORY-REGISTRY-v0.1.md"
 VERIFIED_AUTO_DOC = REPO_ROOT / "docs" / "VERIFIED-AUTO-V1.md"
-CURRENT_DOCS = (V4_DOC, RECONCILIATION_DOC, CROSS_REPO_DOC, REGISTRY_DOC, VERIFIED_AUTO_DOC)
+MEMORY_SEPARATION_DOC = REPO_ROOT / "docs" / "MEMORY-ACC-BRAIN-V1.md"
+CURRENT_DOCS = (V4_DOC, RECONCILIATION_DOC, CROSS_REPO_DOC, REGISTRY_DOC, VERIFIED_AUTO_DOC, MEMORY_SEPARATION_DOC)
 DESIGN_SPEC_NAMES = (
     "2026-09-08-aftergraph-platform-architecture-v4-and-platform-fabrics-v1-design.md",
     "2026-09-08-aftergraph-verified-auto-execution-design.md",
 )
 RATIONALE_MARK = re.compile(r"rationale", re.IGNORECASE)
 VERIFIED_AUTO_OWNERS = ("trust-gateway", "runtime", "works-execution", "studio", "sentinel", "aie")
+MEMORY_SEPARATION_OWNERS = ("runtime", "works-execution", "context-continuity", "ACC")
+FORBIDDEN_MEMORY_PHRASES = (
+    "memory is authoritative",
+    "authoritative memory",
+    "memory grants authority",
+    "brain grants authority",
+    "capsule grants authority",
+    "memory defines success",
+)
 FORBIDDEN_AUTO_PHRASES = (
     "runtime verifies",
     "runtime approves",
@@ -293,6 +303,20 @@ class ActiveDocConsistencyTest(unittest.TestCase):
         text = VERIFIED_AUTO_DOC.read_text(encoding="utf-8").lower()
         for phrase in FORBIDDEN_AUTO_PHRASES:
             self.assertNotIn(phrase, text, f"authority-widening phrase {phrase!r}")
+
+    def test_memory_separation_binding_is_a_current_doc(self):
+        self.assertIn(MEMORY_SEPARATION_DOC, CURRENT_DOCS)
+        self.assertTrue(MEMORY_SEPARATION_DOC.is_file(), "docs/MEMORY-ACC-BRAIN-V1.md is missing")
+
+    def test_memory_binding_maps_stores_to_v4_owners(self):
+        text = MEMORY_SEPARATION_DOC.read_text(encoding="utf-8")
+        for owner in MEMORY_SEPARATION_OWNERS:
+            self.assertIn(owner, text, f"memory owner {owner} is not mapped")
+
+    def test_memory_binding_grants_no_authority(self):
+        text = MEMORY_SEPARATION_DOC.read_text(encoding="utf-8").lower()
+        for phrase in FORBIDDEN_MEMORY_PHRASES:
+            self.assertNotIn(phrase, text, f"authority-conflating phrase {phrase!r}")
 
     def test_v3_marked_superseded_not_deleted(self):
         lines = V3_DOC.read_text(encoding="utf-8").splitlines()[:12]
