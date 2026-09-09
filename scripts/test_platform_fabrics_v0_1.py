@@ -402,6 +402,14 @@ PROM_OPTIONAL = {
     "verifier_ref",
     "lineage_refs",
     "claims_challenger_quality",
+    "subject_gate_evidence_ref",
+    "supply_chain_evidence_ref",
+    "authority_transport",
+    "authority_readmission_ref",
+    "evidence_superseded",
+    "reverification_ref",
+    "cross_repo_gate_evidence_ref",
+    "claims_subject_quality",
 }
 PROM_ALLOWED = set(PROM_REQUIRED) | set(PROM_OPTIONAL)
 PROM_CLASSES = {"authority", "enforcement", "runtime", "execution", "verification", "research"}
@@ -1782,6 +1790,11 @@ def validate_promotion_gates(document: Any) -> list[str]:
         "verifier_ref",
         "challenger_registration_ref",
         "promoted_by",
+        "subject_gate_evidence_ref",
+        "supply_chain_evidence_ref",
+        "authority_readmission_ref",
+        "reverification_ref",
+        "cross_repo_gate_evidence_ref",
     ):
         if document.get(field) is not None and not nonempty_string(document.get(field)):
             errors.append(f"invalid {field}")
@@ -1819,6 +1832,24 @@ def validate_promotion_gates(document: Any) -> list[str]:
         if not nonempty_string(document.get("production_evidence_ref")):
             errors.append("challenger win-rate/quality claims require production evidence (evidence-gated; BLOCKED_ON_PROMOTION_EVIDENCE)")
 
+    if document.get("authority_transport") is not None and not isinstance(
+        document.get("authority_transport"), bool
+    ):
+        errors.append("authority_transport must be a boolean")
+    if document.get("authority_transport") is True:
+        errors.append("promotion never moves authority into challenger/trace payloads; authority is re-admitted at promotion, never transported")
+    if document.get("evidence_superseded") is not None and not isinstance(
+        document.get("evidence_superseded"), bool
+    ):
+        errors.append("evidence_superseded must be a boolean")
+    if document.get("claims_subject_quality") is not None and not isinstance(
+        document.get("claims_subject_quality"), bool
+    ):
+        errors.append("claims_subject_quality must be a boolean")
+    if document.get("claims_subject_quality") is True:
+        if not nonempty_string(document.get("production_evidence_ref")):
+            errors.append("routing/skill/workflow subject quality claims require production evidence (evidence-gated; BLOCKED_ON_PROMOTION_EVIDENCE)")
+
     if document.get("promoted") is True:
         challenger_ref = document.get("challenger_ref")
         promoted_by = document.get("promoted_by")
@@ -1837,6 +1868,24 @@ def validate_promotion_gates(document: Any) -> list[str]:
                 errors.append("promotion requires registry evidence; challenger result is never promotion without gate + registry evidence")
         if not nonempty_string(document.get("verifier_ref")):
             errors.append("challenger result is never promotion without independent verification (continuum/sentinel-ally or gate)")
+        subject = document.get("promotion_subject")
+        if subject in ("routing", "skill", "workflow"):
+            if subject in ("routing", "workflow") and not nonempty_string(
+                document.get("subject_gate_evidence_ref")
+            ):
+                errors.append(f"{subject} promotion requires runtime gate evidence owned by runtime; local assertion is never a gate PASS")
+            if subject == "skill" and not nonempty_string(
+                document.get("supply_chain_evidence_ref")
+            ):
+                errors.append("skill promotion requires skills-vault supply-chain gate evidence; skill supply chain is owned by skills-vault")
+            if not nonempty_string(document.get("authority_readmission_ref")):
+                errors.append("promotion requires authority re-admitted at promotion; authority is never transported in challenger/trace payloads")
+            if not nonempty_string(document.get("cross_repo_gate_evidence_ref")):
+                errors.append("repository-local green is never a cross-repo gate PASS; routing/skill/workflow promotion requires cross-repo gate evidence")
+            if document.get("evidence_superseded") is True and not nonempty_string(
+                document.get("reverification_ref")
+            ):
+                errors.append("superseded challenger evidence requires re-verification before promotion; stale evidence never promotes")
 
     lineage = document.get("lineage_refs")
     if lineage is not None and (
@@ -3298,6 +3347,14 @@ class PlatformFabricsV01Tests(unittest.TestCase):
             "verifier_ref",
             "lineage_refs",
             "claims_challenger_quality",
+            "subject_gate_evidence_ref",
+            "supply_chain_evidence_ref",
+            "authority_transport",
+            "authority_readmission_ref",
+            "evidence_superseded",
+            "reverification_ref",
+            "cross_repo_gate_evidence_ref",
+            "claims_subject_quality",
         ):
             self.assertIn(prop, schema["properties"])
             self.assertNotIn(prop, schema["required"])
@@ -3544,6 +3601,192 @@ class PlatformFabricsV01Tests(unittest.TestCase):
         document["production_evidence_ref"] = "production:trace-evidence:000017"
         self.assertEqual(validate_promotion_gates(document), [])
 
+    def test_promotion_routing_through_runtime_gate_accepts(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "challenger_ref": "model-registry:challenger:000020",
+                "challenger_registration_ref": "model-registry:challenger-registration:000020",
+                "candidate_identity_disposable": True,
+                "promotion_subject": "routing",
+                "promoted": True,
+                "promoted_by": "runtime:promotion-gate:000020",
+                "gate_evidence_ref": "runtime:promotion-gate:pass:000020",
+                "registry_evidence_ref": "model-registry:pass:000020",
+                "verifier_ref": "sentinel:verifier:000020",
+                "subject_gate_evidence_ref": "runtime:routing-gate:pass:000020",
+                "authority_readmission_ref": "runtime:authority-readmission:000020",
+                "cross_repo_gate_evidence_ref": "runtime:cross-repo-gate:pass:000020",
+                "executor_ref": "runtime:executor:000020",
+                "evaluator_ref": "sentinel:verifier:000021",
+            }
+        )
+        self.assertEqual(validate_promotion_gates(document), [])
+
+    def test_promotion_routing_self_assertion_rejected(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "challenger_ref": "model-registry:challenger:000021",
+                "challenger_registration_ref": "model-registry:challenger-registration:000021",
+                "candidate_identity_disposable": True,
+                "promotion_subject": "routing",
+                "promoted": True,
+                "promoted_by": "model-registry:challenger:000021",
+                "gate_evidence_ref": "runtime:promotion-gate:pass:000021",
+                "registry_evidence_ref": "model-registry:pass:000021",
+                "verifier_ref": "sentinel:verifier:000021",
+                "subject_gate_evidence_ref": "runtime:routing-gate:pass:000021",
+                "authority_readmission_ref": "runtime:authority-readmission:000021",
+                "cross_repo_gate_evidence_ref": "runtime:cross-repo-gate:pass:000021",
+            }
+        )
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("never promotes itself" in error for error in errors)
+        )
+
+    def test_promotion_skill_without_supply_chain_rejected(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "challenger_ref": "model-registry:challenger:000022",
+                "challenger_registration_ref": "model-registry:challenger-registration:000022",
+                "candidate_identity_disposable": True,
+                "promotion_subject": "skill",
+                "promoted": True,
+                "promoted_by": "skills-vault:supply-chain-gate:000022",
+                "gate_evidence_ref": "skills-vault:supply-chain-gate:pass:000022",
+                "registry_evidence_ref": "model-registry:pass:000022",
+                "verifier_ref": "sentinel:verifier:000022",
+                "authority_readmission_ref": "runtime:authority-readmission:000022",
+                "cross_repo_gate_evidence_ref": "skills-vault:cross-repo-gate:pass:000022",
+            }
+        )
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("skills-vault supply-chain" in error for error in errors)
+        )
+        document["supply_chain_evidence_ref"] = "skills-vault:supply-chain:pass:000022"
+        self.assertEqual(validate_promotion_gates(document), [])
+
+    def test_promotion_workflow_without_runtime_gate_rejected(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "challenger_ref": "model-registry:challenger:000023",
+                "challenger_registration_ref": "model-registry:challenger-registration:000023",
+                "candidate_identity_disposable": True,
+                "promotion_subject": "workflow",
+                "promoted": True,
+                "promoted_by": "runtime:promotion-gate:000023",
+                "gate_evidence_ref": "runtime:promotion-gate:pass:000023",
+                "registry_evidence_ref": "model-registry:pass:000023",
+                "verifier_ref": "continuum:verifier:000023",
+                "authority_readmission_ref": "runtime:authority-readmission:000023",
+                "cross_repo_gate_evidence_ref": "runtime:cross-repo-gate:pass:000023",
+            }
+        )
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("workflow promotion requires runtime" in error for error in errors)
+        )
+        document["subject_gate_evidence_ref"] = "runtime:workflow-gate:pass:000023"
+        self.assertEqual(validate_promotion_gates(document), [])
+
+    def test_promotion_authority_transport_rejected(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "challenger_ref": "model-registry:challenger:000024",
+                "challenger_registration_ref": "model-registry:challenger-registration:000024",
+                "candidate_identity_disposable": True,
+                "promotion_subject": "routing",
+                "promoted": True,
+                "promoted_by": "runtime:promotion-gate:000024",
+                "gate_evidence_ref": "runtime:promotion-gate:pass:000024",
+                "registry_evidence_ref": "model-registry:pass:000024",
+                "verifier_ref": "sentinel:verifier:000024",
+                "subject_gate_evidence_ref": "runtime:routing-gate:pass:000024",
+                "authority_readmission_ref": "runtime:authority-readmission:000024",
+                "cross_repo_gate_evidence_ref": "runtime:cross-repo-gate:pass:000024",
+                "authority_transport": True,
+            }
+        )
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("never moves authority" in error for error in errors)
+        )
+        document["authority_transport"] = False
+        self.assertEqual(validate_promotion_gates(document), [])
+
+    def test_promotion_superseded_evidence_requires_reverification(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "challenger_ref": "model-registry:challenger:000025",
+                "challenger_registration_ref": "model-registry:challenger-registration:000025",
+                "candidate_identity_disposable": True,
+                "promotion_subject": "routing",
+                "promoted": True,
+                "promoted_by": "runtime:promotion-gate:000025",
+                "gate_evidence_ref": "runtime:promotion-gate:pass:000025",
+                "registry_evidence_ref": "model-registry:pass:000025",
+                "verifier_ref": "sentinel:verifier:000025",
+                "subject_gate_evidence_ref": "runtime:routing-gate:pass:000025",
+                "authority_readmission_ref": "runtime:authority-readmission:000025",
+                "cross_repo_gate_evidence_ref": "runtime:cross-repo-gate:pass:000025",
+                "evidence_superseded": True,
+            }
+        )
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("requires re-verification" in error for error in errors)
+        )
+        document["reverification_ref"] = "sentinel:reverification:000025"
+        self.assertEqual(validate_promotion_gates(document), [])
+
+    def test_promotion_local_green_without_cross_repo_rejected(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "challenger_ref": "model-registry:challenger:000026",
+                "challenger_registration_ref": "model-registry:challenger-registration:000026",
+                "candidate_identity_disposable": True,
+                "promotion_subject": "routing",
+                "promoted": True,
+                "promoted_by": "runtime:promotion-gate:000026",
+                "gate_evidence_ref": "runtime:promotion-gate:pass:000026",
+                "registry_evidence_ref": "model-registry:pass:000026",
+                "verifier_ref": "sentinel:verifier:000026",
+                "subject_gate_evidence_ref": "runtime:routing-gate:pass:000026",
+                "authority_readmission_ref": "runtime:authority-readmission:000026",
+            }
+        )
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("repository-local green is never" in error for error in errors)
+        )
+        document["cross_repo_gate_evidence_ref"] = "runtime:cross-repo-gate:pass:000026"
+        self.assertEqual(validate_promotion_gates(document), [])
+
+    def test_promotion_subject_quality_claim_is_evidence_gated(self) -> None:
+        document = valid_promotion_gates()
+        document.update(
+            {
+                "challenger_ref": "model-registry:challenger:000027",
+                "candidate_identity_disposable": True,
+                "promotion_subject": "routing",
+                "claims_subject_quality": True,
+            }
+        )
+        errors = validate_promotion_gates(document)
+        self.assertTrue(
+            any("subject quality claims require production evidence" in error for error in errors)
+        )
+        document["production_evidence_ref"] = "production:trace-evidence:000027"
+        self.assertEqual(validate_promotion_gates(document), [])
+
     def test_promotion_gates_vectors_are_registered(self) -> None:
         fixture = load_json(VECTORS)
         by_id = {vector.get("id"): vector for vector in fixture["vectors"]}
@@ -3563,6 +3806,14 @@ class PlatformFabricsV01Tests(unittest.TestCase):
             ("PROM-015", "accept"),
             ("PROM-016", "reject"),
             ("PROM-017", "reject"),
+            ("PROM-020", "accept"),
+            ("PROM-021", "reject"),
+            ("PROM-022", "reject"),
+            ("PROM-023", "reject"),
+            ("PROM-024", "reject"),
+            ("PROM-025", "reject"),
+            ("PROM-026", "reject"),
+            ("PROM-027", "reject"),
         ):
             self.assertIn(vector_id, by_id)
             self.assertEqual(by_id[vector_id]["expected"], expected)
