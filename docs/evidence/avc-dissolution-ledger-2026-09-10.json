@@ -1,0 +1,142 @@
+{
+ "schema": "dissolution-ledger/0.1",
+ "binding": "docs/AVC-RETIREMENT-V1.md",
+ "baseline": "AVC main e08d337 (2026-09-10 cut)",
+ "consumer_method": "grep count of @avc/* refs in package.json manifests across packages/apps/product-cells",
+ "totals": {
+  "distinct_avc_packages_consumed": 40,
+  "manifests_with_avc_refs": 46,
+  "top_consumers": {
+   "@avc/contracts": 26,
+   "@avc/kernel-core": 18,
+   "@avc/job-runtime": 7
+  }
+ },
+ "rows": [
+  {
+   "responsibility": "session/agent lifecycle",
+   "canonical_owner": "runtime",
+   "avc_source": [
+    "packages/hermes-adapter (4 manifests)",
+    "packages/agent-harness",
+    "Aftergraph/autonomous-venture-company#1018"
+   ],
+   "consumer_inventory": "@avc/hermes-adapter x4, @avc/agent-harness x3",
+   "target_capability_proof": "proposed (Hermes behavior extraction #1018 open)",
+   "consumer_cutover": "pending",
+   "integration_evidence": "pending",
+   "legacy_removal": "pending",
+   "status": "extraction_proposed",
+   "next": "Drive #1018 to Runtime seam; ledger gate on cutover."
+  },
+  {
+   "responsibility": "authority/budgets",
+   "canonical_owner": "aie/trust-gateway/works-execution",
+   "avc_source": [
+    "packages/constitution (3)",
+    "packages/identity-core (4)",
+    "@avc/contracts (26, shared)"
+   ],
+   "consumer_inventory": "@avc/contracts x26 (cross-cutting), constitution x3, identity-core x4",
+   "target_capability_proof": "proven (runtime#111, trust-gateway#81/#82, works-execution#72)",
+   "consumer_cutover": "pending",
+   "integration_evidence": "pending",
+   "legacy_removal": "pending",
+   "status": "target_capability_proven",
+   "next": "@avc/contracts is the highest-fanout migration; split by seam before cutover."
+  },
+  {
+   "responsibility": "durable work/recovery",
+   "canonical_owner": "works-execution",
+   "avc_source": [
+    "packages/job-runtime (7 manifests)",
+    "packages/proactive-runtime (4)",
+    "packages/mission-graph (4)"
+   ],
+   "consumer_inventory": "@avc/job-runtime x7, proactive-runtime x4, mission-graph x4",
+   "target_capability_proof": "proven (works-execution#72 dispatch.acceptance/1.0 + RFC-0008)",
+   "consumer_cutover": "pending",
+   "integration_evidence": "pending",
+   "legacy_removal": "pending",
+   "status": "target_capability_proven",
+   "next": "Consumer cutover per package with exact-head integration evidence."
+  },
+  {
+   "responsibility": "independent completion",
+   "canonical_owner": "sentinel/verifier",
+   "avc_source": [
+    "packages/agent-eval",
+    "packages/incident (4)",
+    "in-flight WORKS verdict PRs"
+   ],
+   "consumer_inventory": "@avc/incident x4; verification verdict PRs open in works-execution",
+   "target_capability_proof": "proposed (verdict separation PRs unmerged)",
+   "consumer_cutover": "pending",
+   "integration_evidence": "pending",
+   "legacy_removal": "pending",
+   "status": "proposed",
+   "next": "Land verifier-verdict separation, then migrate completion checks."
+  },
+  {
+   "responsibility": "human operating UX",
+   "canonical_owner": "studio",
+   "avc_source": [
+    "packages/company-daemon scheduler (#1017)",
+    "apps/* dashboards"
+   ],
+   "consumer_inventory": "CompanyDaemon scheduler retirement #1017 open; dashboard.html + apps",
+   "target_capability_proof": "proven-projection (studio#48 goal projection; render-only, no truth owned)",
+   "consumer_cutover": "pending",
+   "integration_evidence": "pending",
+   "legacy_removal": "pending",
+   "status": "target_capability_proven",
+   "next": "Drive #1017; Studio consumes canonical APIs only."
+  },
+  {
+   "responsibility": "skills",
+   "canonical_owner": "skills-vault",
+   "avc_source": [
+    "skills/avc/* and skills/imported/avc-* already in vault",
+    "115 catalog skills"
+   ],
+   "consumer_inventory": "avc-category skills present in vault catalog",
+   "target_capability_proof": "proven (skills-vault#64 provenance+hash enforcement)",
+   "consumer_cutover": "partial (imported, aliases/provenance per-skill pending)",
+   "integration_evidence": "pending",
+   "legacy_removal": "pending",
+   "status": "target_capability_proven",
+   "next": "Per-skill legacy alias + provenance backfill; then AVC skill source retirement."
+  },
+  {
+   "responsibility": "portable continuity",
+   "canonical_owner": "context-continuity",
+   "avc_source": [
+    "ACC-adjacent handoff logic in AVC apps (to be enumerated)"
+   ],
+   "consumer_inventory": "pending detailed scan",
+   "target_capability_proof": "proven (context-continuity#6 crossing seal/receive/authorize)",
+   "consumer_cutover": "pending",
+   "integration_evidence": "pending",
+   "legacy_removal": "pending",
+   "status": "target_capability_proven",
+   "next": "Enumerate AVC handoff consumers against the crossing contract."
+  },
+  {
+   "responsibility": "CompanyDaemon scheduler",
+   "canonical_owner": "works-execution (scheduler)",
+   "avc_source": [
+    "packages/company-daemon",
+    "Aftergraph/autonomous-venture-company#1017"
+   ],
+   "consumer_inventory": "scheduler consumers pending scan",
+   "target_capability_proof": "proposed (#1017 open)",
+   "consumer_cutover": "pending",
+   "integration_evidence": "pending",
+   "legacy_removal": "pending",
+   "status": "extraction_proposed",
+   "next": "Drive #1017 with consumer inventory."
+  }
+ ],
+ "archive_readiness": "NOT READY: 40 distinct @avc/* packages still consumed by 46 manifests; zero legacy removals evidenced. Archive action remains REQUIRES_EXPLICIT_OWNER_AUTHORIZATION per binding.",
+ "verdict": "BASELINED"
+}
