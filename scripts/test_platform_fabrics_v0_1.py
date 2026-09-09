@@ -2031,6 +2031,16 @@ def _is_consumer_removal_record(document: dict[str, Any]) -> bool:
     return document.get("claims_zero_consumer_zero_ownership") is not None
 
 
+def _is_golden_mission_record(document: dict[str, Any]) -> bool:
+    for field in ("mission_branches", "mission_path_dependencies", "mission_executor_ref", "mission_verifier_ref"):
+        if document.get(field) is not None:
+            return True
+    for flag in ("mission_causal_identity_preserved", "mission_provenance_reachable_after_archive", "mission_exact_head", "claims_mission_success"):
+        if document.get(flag) is not None:
+            return True
+    return isinstance(document.get("mission_exact_head_evidence_refs"), list)
+
+
 def validate_avc_dissolution(document: dict[str, Any]) -> list[str]:
     errors: list[str] = []
     if not isinstance(document, dict):
@@ -2158,6 +2168,39 @@ def validate_avc_dissolution(document: dict[str, Any]) -> list[str]:
         errors.append("dissolution unclassified package/app/skill/ML/cell/infra asset left without a disposition rejects")
     if document.get("claims_zero_consumer_zero_ownership") is True and not document.get("owner_evidence_ref"):
         errors.append("dissolution live zero-consumer/zero-ownership claim requires owner execution evidence rejects")
+    for field in ("mission_branches", "mission_path_dependencies", "mission_exact_head_evidence_refs"):
+        if document.get(field) is not None and not isinstance(document.get(field), list):
+            errors.append(f"dissolution {field} must be a list")
+    for field in ("mission_executor_ref", "mission_verifier_ref"):
+        if document.get(field) is not None and not isinstance(document.get(field), str):
+            errors.append(f"dissolution {field} must be a string")
+    for flag in ("mission_causal_identity_preserved", "mission_provenance_reachable_after_archive", "mission_exact_head", "claims_mission_success"):
+        if document.get(flag) is not None and not isinstance(document.get(flag), bool):
+            errors.append(f"dissolution {flag} must be a boolean")
+    if _is_golden_mission_record(document):
+        mission_branches = document.get("mission_branches")
+        if not isinstance(mission_branches, list) or any(entry not in mission_branches for entry in ("success", "refusal", "revocation", "crash-recovery", "verifier-failure")):
+            errors.append("dissolution golden mission proving only the happy path without refusal/revocation/crash-recovery/verifier-failure branches rejects")
+        mission_dependencies = document.get("mission_path_dependencies")
+        if isinstance(mission_dependencies, list):
+            for dependency in mission_dependencies:
+                if isinstance(dependency, str) and dependency.startswith("@avc/"):
+                    errors.append(f"dissolution golden mission with an @avc/* dependency in the mission path {dependency!r} rejects")
+                    break
+        if document.get("mission_causal_identity_preserved") is not True:
+            errors.append("dissolution golden mission causal-identity mismatch across the consequential seam rejects")
+        mission_executor = document.get("mission_executor_ref")
+        mission_verifier = document.get("mission_verifier_ref")
+        if not isinstance(mission_verifier, str) or len(mission_verifier) == 0 or mission_verifier == mission_executor:
+            errors.append("dissolution golden mission verified by its own executor without independent verification rejects")
+        if document.get("mission_provenance_reachable_after_archive") is not True:
+            errors.append("dissolution golden mission provenance unreachable after archive rejects")
+        if (document.get("claims_mission_success") is True or document.get("asserts_retirement") is True) and document.get("mission_exact_head") is not True:
+            errors.append("dissolution golden mission asserted against non-exact-head repos as platform PASS rejects")
+        if document.get("claims_mission_success") is True:
+            mission_evidence = document.get("mission_exact_head_evidence_refs")
+            if not isinstance(mission_evidence, list) or len(mission_evidence) == 0:
+                errors.append("dissolution live Aftergraph-only golden mission success claim requires exact-head owner-repo evidence rejects")
     if document.get("executes_archival") is True:
         errors.append("dissolution governance never executes archival")
     return errors
@@ -4619,6 +4662,106 @@ class TestAvcConsumerRemoval(unittest.TestCase):
         self.assertTrue(any("left without a disposition" in e for e in validate_vector(vectors["RET-025"])))
         self.assertTrue(any("without cross-repo consumer evidence refs" in e for e in validate_vector(vectors["RET-026"])))
         self.assertTrue(any("zero-consumer/zero-ownership claim requires owner execution evidence" in e for e in validate_vector(vectors["RET-027"])))
+
+
+def valid_golden_mission() -> dict[str, Any]:
+    document = valid_avc_dissolution()
+    document.update({
+        "dissolution_id": "dis_30303030303030303030303030303030",
+        "tenant_id": "ten_30303030303030303030303030303030",
+        "source_repo": "Aftergraph/works-execution",
+        "target_owner": "Aftergraph/works-execution",
+        "target_contract": "golden-mission-gate/0.1",
+        "retired_identity": "avc-legacy-mission-dep",
+        "mission_branches": ["success", "refusal", "revocation", "crash-recovery", "verifier-failure"],
+        "mission_path_dependencies": ["@aftergraph/runtime:mission-step", "@aftergraph/trust-gateway:mission-step"],
+        "mission_causal_identity_preserved": True,
+        "mission_executor_ref": "works-execution:mission-executor:000030",
+        "mission_verifier_ref": "continuum:verifier:000030",
+        "mission_provenance_reachable_after_archive": True,
+        "mission_exact_head": True,
+        "claims_mission_success": False,
+        "mission_exact_head_evidence_refs": [],
+    })
+    return document
+
+
+class TestAvcGoldenMission(unittest.TestCase):
+    def test_accept_golden_mission_gate(self) -> None:
+        self.assertEqual(validate_avc_dissolution(valid_golden_mission()), [])
+
+    def test_accept_mission_success_claim_with_exact_head_evidence(self) -> None:
+        document = valid_golden_mission()
+        document["claims_mission_success"] = True
+        document["mission_exact_head_evidence_refs"] = ["works-execution:evidence:golden-mission:000030"]
+        self.assertEqual(validate_avc_dissolution(document), [])
+
+    def test_reject_mission_pass_with_avc_dependency_in_path(self) -> None:
+        document = valid_golden_mission()
+        document["mission_path_dependencies"] = ["@avc/legacy-mission-adapter"]
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("@avc/* dependency in the mission path" in e for e in errors), errors)
+
+    def test_reject_mission_proving_only_happy_path(self) -> None:
+        document = valid_golden_mission()
+        document["mission_branches"] = ["success"]
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("without refusal/revocation/crash-recovery/verifier-failure branches" in e for e in errors), errors)
+
+    def test_reject_mission_causal_identity_mismatch(self) -> None:
+        document = valid_golden_mission()
+        document["mission_causal_identity_preserved"] = False
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("causal-identity mismatch across the consequential seam" in e for e in errors), errors)
+
+    def test_reject_mission_verified_by_own_executor(self) -> None:
+        document = valid_golden_mission()
+        document["mission_verifier_ref"] = document["mission_executor_ref"]
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("without independent verification" in e for e in errors), errors)
+
+    def test_reject_mission_provenance_unreachable_after_archive(self) -> None:
+        document = valid_golden_mission()
+        document["mission_provenance_reachable_after_archive"] = False
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("provenance unreachable after archive" in e for e in errors), errors)
+
+    def test_reject_mission_asserted_against_non_exact_head(self) -> None:
+        document = valid_golden_mission()
+        document["mission_exact_head"] = False
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("non-exact-head repos as platform PASS" in e for e in errors), errors)
+
+    def test_reject_live_mission_success_without_exact_head_evidence(self) -> None:
+        document = valid_golden_mission()
+        document["claims_mission_success"] = True
+        errors = validate_avc_dissolution(document)
+        self.assertTrue(any("requires exact-head owner-repo evidence" in e for e in errors), errors)
+
+    def test_ret_mission_vectors_conform(self) -> None:
+        vectors = {v["id"]: v for v in load_json(VECTORS)["vectors"]}
+        expected = {
+            "RET-030": "accept", "RET-031": "reject", "RET-032": "reject",
+            "RET-033": "reject", "RET-034": "reject", "RET-035": "reject",
+            "RET-036": "reject", "RET-037": "reject",
+        }
+        for vid, exp in expected.items():
+            self.assertIn(vid, vectors, vid)
+            vector = vectors[vid]
+            self.assertEqual(vector["kind"], "avc_dissolution", vid)
+            self.assertEqual(vector["expected"], exp, vid)
+            errors = validate_vector(vector)
+            if exp == "accept":
+                self.assertEqual(errors, [], vid)
+            else:
+                self.assertNotEqual(errors, [], vid)
+        self.assertTrue(any("@avc/* dependency in the mission path" in e for e in validate_vector(vectors["RET-031"])))
+        self.assertTrue(any("without refusal/revocation/crash-recovery/verifier-failure branches" in e for e in validate_vector(vectors["RET-032"])))
+        self.assertTrue(any("causal-identity mismatch across the consequential seam" in e for e in validate_vector(vectors["RET-033"])))
+        self.assertTrue(any("without independent verification" in e for e in validate_vector(vectors["RET-034"])))
+        self.assertTrue(any("provenance unreachable after archive" in e for e in validate_vector(vectors["RET-035"])))
+        self.assertTrue(any("non-exact-head repos as platform PASS" in e for e in validate_vector(vectors["RET-036"])))
+        self.assertTrue(any("requires exact-head owner-repo evidence" in e for e in validate_vector(vectors["RET-037"])))
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
