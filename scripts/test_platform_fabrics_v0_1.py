@@ -24,6 +24,7 @@ SITUATION_SCHEMA = ROOT / "docs/contracts/situation/0.1.json"
 CONSENT_SCHEMA = ROOT / "docs/contracts/consent-ledger/0.1.json"
 LIFECYCLE_SCHEMA = ROOT / "docs/contracts/tenant-lifecycle/0.1.json"
 PROACTIVITY_SCHEMA = ROOT / "docs/contracts/proactivity/0.1.json"
+ORG_DELEGATION_SCHEMA = ROOT / "docs/contracts/org-delegation/0.1.json"
 VECTORS = ROOT / "docs/platform-conformance/v0.1/vectors.json"
 
 HEX32 = r"[a-f0-9]{32}"
@@ -43,6 +44,7 @@ ID_PATTERNS = {
     "ledger_id": re.compile(rf"^led_{HEX32}$"),
     "lifecycle_id": re.compile(rf"^lif_{HEX32}$"),
     "sensing_id": re.compile(rf"^sen_{HEX32}$"),
+    "delegation_id": re.compile(rf"^del_{HEX32}$"),
 }
 
 EVENT_REQUIRED = {
@@ -205,6 +207,23 @@ PRO_REQUIRED = {
 PRO_ALLOWED = set(PRO_REQUIRED)
 SENSING_PATHS = {"wie", "runtime", "cron"}
 CANDIDATE_KINDS = {"opportunity", "attention_candidate", "commitment_candidate", "observation_update", "finding"}
+ORG_REQUIRED = {
+    "schema",
+    "delegation_id",
+    "parent_ref",
+    "child_ref",
+    "parent_actions",
+    "child_actions",
+    "parent_budget",
+    "child_budget",
+    "sibling_budgets",
+    "self_granted",
+    "declares_completion",
+    "verified_by_independent",
+    "asserted_at",
+    "tenant_id",
+}
+ORG_ALLOWED = set(ORG_REQUIRED)
 EPISTEMIC_STATES = {"observed", "inferred", "predicted", "unknown"}
 CURRENTNESS_STATES = {"current", "stale", "disputed", "superseded"}
 EVIDENCE_REQUIREMENTS = {"none", "current_observed"}
@@ -866,6 +885,93 @@ def validate_proactivity(document: Any) -> list[str]:
     return errors
 
 
+def _is_budget(value: Any) -> bool:
+    return isinstance(value, int) and not isinstance(value, bool) and value >= 0
+
+
+def _is_action_list(value: Any) -> bool:
+    return (
+        isinstance(value, list)
+        and 1 <= len(value) <= 64
+        and all(isinstance(item, str) and 0 < len(item) <= 128 for item in value)
+    )
+
+
+def validate_org_delegation(document: Any) -> list[str]:
+    errors: list[str] = []
+    if not isinstance(document, dict):
+        return ["org delegation must be an object"]
+
+    keys = set(document)
+    missing = ORG_REQUIRED - keys
+    extra = keys - ORG_ALLOWED
+    if missing:
+        errors.append(f"missing org-delegation fields: {sorted(missing)}")
+    if extra:
+        errors.append(f"unexpected org-delegation fields: {sorted(extra)}")
+
+    if document.get("schema") != "org-delegation/0.1":
+        errors.append("wrong org-delegation schema")
+    if not valid_id("delegation_id", document.get("delegation_id")):
+        errors.append("invalid delegation_id")
+    if not nonempty_string(document.get("parent_ref")):
+        errors.append("invalid parent_ref")
+    if not nonempty_string(document.get("child_ref")):
+        errors.append("invalid child_ref")
+
+    parent_actions = document.get("parent_actions")
+    child_actions = document.get("child_actions")
+    if not _is_action_list(parent_actions):
+        errors.append("invalid parent_actions")
+    if not _is_action_list(child_actions):
+        errors.append("invalid child_actions")
+
+    parent_budget = document.get("parent_budget")
+    child_budget = document.get("child_budget")
+    sibling_budgets = document.get("sibling_budgets")
+    if not _is_budget(parent_budget):
+        errors.append("invalid parent_budget")
+    if not _is_budget(child_budget):
+        errors.append("invalid child_budget")
+    if not isinstance(sibling_budgets, list) or any(
+        not _is_budget(item) for item in sibling_budgets
+    ):
+        errors.append("invalid sibling_budgets")
+
+    for field in ("self_granted", "declares_completion", "verified_by_independent"):
+        if not isinstance(document.get(field), bool):
+            errors.append(f"{field} must be a boolean")
+
+    if not parse_rfc3339(document.get("asserted_at")):
+        errors.append("invalid asserted_at")
+    if not valid_id("tenant_id", document.get("tenant_id")):
+        errors.append("invalid tenant_id")
+
+    if (
+        _is_action_list(parent_actions)
+        and _is_action_list(child_actions)
+        and not set(child_actions) <= set(parent_actions)
+    ):
+        errors.append("child envelope must stay equal-or-narrower than the parent")
+    if (
+        _is_budget(parent_budget)
+        and _is_budget(child_budget)
+        and isinstance(sibling_budgets, list)
+        and all(_is_budget(item) for item in sibling_budgets)
+        and child_budget + sum(sibling_budgets) > parent_budget
+    ):
+        errors.append("sibling partitions exceed parent budget")
+    if document.get("self_granted") is True:
+        errors.append("no worker self-grants authority")
+    if (
+        document.get("declares_completion") is True
+        and document.get("verified_by_independent") is not True
+    ):
+        errors.append("verification stays independent: no self-declared verified completion")
+
+    return errors
+
+
 def validate_causal_chain(document: Any) -> list[str]:
     errors: list[str] = []
     if not isinstance(document, dict):
@@ -946,6 +1052,8 @@ def validate_vector(vector: dict[str, Any]) -> list[str]:
         return validate_tenant_lifecycle(document)
     if kind == "proactivity":
         return validate_proactivity(document)
+    if kind == "org_delegation":
+        return validate_org_delegation(document)
     if kind == "causal_chain":
         return validate_causal_chain(document)
     return [f"unknown vector kind: {kind!r}"]
@@ -1053,6 +1161,25 @@ def valid_proactivity() -> dict[str, Any]:
         "claims_admission": False,
         "admitted_by_tg": False,
         "correlated_paths": ["wie"],
+        "asserted_at": "2026-09-08T12:00:00Z",
+        "tenant_id": "ten_11111111111111111111111111111111",
+    }
+
+
+def valid_org_delegation() -> dict[str, Any]:
+    return {
+        "schema": "org-delegation/0.1",
+        "delegation_id": "del_11111111111111111111111111111111",
+        "parent_ref": "runtime:team:000001",
+        "child_ref": "runtime:worker:000001",
+        "parent_actions": ["tasks.read", "tasks.write", "logs.read"],
+        "child_actions": ["tasks.read", "logs.read"],
+        "parent_budget": 100,
+        "child_budget": 40,
+        "sibling_budgets": [35, 25],
+        "self_granted": False,
+        "declares_completion": False,
+        "verified_by_independent": False,
         "asserted_at": "2026-09-08T12:00:00Z",
         "tenant_id": "ten_11111111111111111111111111111111",
     }
@@ -1290,6 +1417,61 @@ class PlatformFabricsV01Tests(unittest.TestCase):
             ("PRO-004", "accept"),
             ("PRO-005", "accept"),
             ("PRO-006", "accept"),
+        ):
+            self.assertIn(vector_id, by_id)
+            self.assertEqual(by_id[vector_id]["expected"], expected)
+
+    def test_org_delegation_contract_is_strict_and_experimental(self) -> None:
+        schema = load_json(ORG_DELEGATION_SCHEMA)
+        self.assertFalse(schema.get("additionalProperties"), schema["title"])
+        self.assertIn("EXPERIMENTAL", schema.get("description", ""))
+        self.assertIn("authority", schema.get("description", "").lower())
+        self.assertEqual(schema["properties"]["schema"]["const"], "org-delegation/0.1")
+
+    def test_child_envelope_must_be_equal_or_narrower(self) -> None:
+        document = valid_org_delegation()
+        self.assertEqual(validate_org_delegation(document), [])
+        document["child_actions"] = ["tasks.read", "logs.read", "admin.grant"]
+        errors = validate_org_delegation(document)
+        self.assertTrue(
+            any("equal-or-narrower" in error for error in errors)
+        )
+
+    def test_sibling_partitions_cannot_exceed_parent_budget(self) -> None:
+        document = valid_org_delegation()
+        self.assertEqual(validate_org_delegation(document), [])
+        document["child_budget"] = 60
+        document["sibling_budgets"] = [30, 30]
+        errors = validate_org_delegation(document)
+        self.assertTrue(
+            any("exceed parent budget" in error for error in errors)
+        )
+
+    def test_worker_cannot_self_grant_authority(self) -> None:
+        document = valid_org_delegation()
+        document["self_granted"] = True
+        errors = validate_org_delegation(document)
+        self.assertTrue(
+            any("self-grant" in error for error in errors)
+        )
+
+    def test_worker_cannot_self_declare_verified_completion(self) -> None:
+        document = valid_org_delegation()
+        document["declares_completion"] = True
+        document["verified_by_independent"] = False
+        errors = validate_org_delegation(document)
+        self.assertTrue(
+            any("independent" in error for error in errors)
+        )
+
+    def test_org_delegation_vectors_are_registered(self) -> None:
+        fixture = load_json(VECTORS)
+        by_id = {vector.get("id"): vector for vector in fixture["vectors"]}
+        for vector_id, expected in (
+            ("ORG-001", "accept"),
+            ("ORG-002", "reject"),
+            ("ORG-003", "reject"),
+            ("ORG-004", "reject"),
         ):
             self.assertIn(vector_id, by_id)
             self.assertEqual(by_id[vector_id]["expected"], expected)
