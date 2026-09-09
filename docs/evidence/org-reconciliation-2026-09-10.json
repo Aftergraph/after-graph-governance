@@ -1,0 +1,715 @@
+{
+ "schema": "org-reconciliation/1.0",
+ "architecture": "PLATFORM-ARCHITECTURE-V4",
+ "topology": "platform-topology/2.0",
+ "topology_evidence_cut": "2026-09-08",
+ "evidence_cut": "2026-09-09T22:35:50Z",
+ "generator": "gh API enumeration (repo list + per-repo view/commits/prs/issues); no hand-authored SHAs in topology",
+ "method": "gh repo list Aftergraph (limit 100) compared against topology repositories[] by exact name",
+ "live_count": 25,
+ "topology_count": 24,
+ "delta": [
+  "sentinel-firetest2"
+ ],
+ "repositories": [
+  {
+   "name": ".github",
+   "in_topology_2_0": true,
+   "visibility": "PUBLIC",
+   "default_branch": "main",
+   "lifecycle": "active",
+   "architecture_plane": null,
+   "system_class": "foundation",
+   "role": "organization-community",
+   "remote_head_sha": "e9662a4c638e653ca1ce893ed3f45d44584ebd01",
+   "remote_head_date": "2026-09-08T13:02:27Z",
+   "remote_head_subject": "docs(org): align public front door with current repository identities",
+   "pushed_at": "2026-09-09T22:26:35Z",
+   "open_prs": 1,
+   "open_pr_titles": [
+    "docs(brand): add AFTERGRAPH-BRAND-ADOPTION-MATRIX.md"
+   ],
+   "open_issues": 3,
+   "open_issue_titles": [
+    "#20 P2: Add organization-level routing for Portable Intelligence Infrastructure program",
+    "#7 Set AUTOMERGE_PAT org secret to enable dependabot auto-merge",
+    "#6 Apply canonical GitHub discoverability metadata across public repositories"
+   ],
+   "p0p1_labeled": []
+  },
+  {
+   "name": "afm",
+   "in_topology_2_0": true,
+   "visibility": "PRIVATE",
+   "default_branch": "main",
+   "lifecycle": "active",
+   "architecture_plane": null,
+   "system_class": "models",
+   "role": "model-program",
+   "remote_head_sha": "e139d3e1b28b6ca32123ba6172dca58f559429c7",
+   "remote_head_date": "2026-09-08T16:38:51Z",
+   "remote_head_subject": "chore(deps): enable Dependabot version updates (private repo, free tier)",
+   "pushed_at": "2026-09-08T16:47:23Z",
+   "open_prs": 2,
+   "open_pr_titles": [
+    "chore(deps): bump actions/checkout from 4.4.0 to 7.0.1",
+    "chore(deps): bump actions/setup-python from 5.6.0 to 7.0.0"
+   ],
+   "open_issues": 1,
+   "open_issue_titles": [
+    "#5 P2: Evaluate AFM as a replaceable worker inside persistent governed missions"
+   ],
+   "p0p1_labeled": []
+  },
+  {
+   "name": "after-graph-governance",
+   "in_topology_2_0": true,
+   "visibility": "PUBLIC",
+   "default_branch": "main",
+   "lifecycle": "active",
+   "architecture_plane": null,
+   "system_class": "governance",
+   "role": "canonical-contracts",
+   "remote_head_sha": "3e59010133bb73063fb2e1748ca7b5ce49341c41",
+   "remote_head_date": "2026-09-09T13:47:11Z",
+   "remote_head_subject": "chore(org-state): refresh exact-head snapshot on post-merge main (#133)",
+   "pushed_at": "2026-09-09T13:47:31Z",
+   "open_prs": 3,
+   "open_pr_titles": [
+    "fix(governance): reconcile Runtime and Wie topology truth",
+    "feat(governance): complete ARI Phase 1 registry, RBOM, and query",
+    "feat(governance): build ARI Phase 0/1 compatibility foundation"
+   ],
+   "open_issues": 3,
+   "open_issue_titles": [
+    "#68 Program: Portable Intelligence Infrastructure V1 \u2014 converge on governed persistent agent systems",
+    "#47 Topology drift: reconcile platform-topology/1.0 with current 24-repo org",
+    "#12 V6 canonicalization: Adaptive Workspace 6.0.0 landing + org-state registration"
+   ],
+   "p0p1_labeled": []
+  },
+  {
+   "name": "aftergraph-cron-fabric",
+   "in_topology_2_0": true,
+   "visibility": "PUBLIC",
+   "default_branch": "main",
+   "lifecycle": "active",
+   "architecture_plane": null,
+   "system_class": "operations",
+   "role": "scheduled-observation-fabric",
+   "remote_head_sha": "5f418ee8999aaee6d8c2712b121bbf7c4effdf2a",
+   "remote_head_date": "2026-09-08T23:21:37Z",
+   "remote_head_subject": "Merge pull request #27 from Aftergraph/docs/shadow-acceptance-procedure-2026-09-09",
+   "pushed_at": "2026-09-08T23:21:37Z",
+   "open_prs": 0,
+   "open_pr_titles": [],
+   "open_issues": 2,
+   "open_issue_titles": [
+    "#28 P1: Preserve observation-only boundary while integrating persistent-agent escalation",
+    "#2 v0.4: reconcile Cron Fabric against current 24-repo Aftergraph topology"
+   ],
+   "p0p1_labeled": []
+  },
+  {
+   "name": "aftergraph.org",
+   "in_topology_2_0": true,
+   "visibility": "PUBLIC",
+   "default_branch": "main",
+   "lifecycle": "active",
+   "architecture_plane": null,
+   "system_class": "public",
+   "role": "public-front-door",
+   "remote_head_sha": "c29beca87f064e87ff0e965b8896ecec6cada7c5",
+   "remote_head_date": "2026-09-09T03:42:01Z",
+   "remote_head_subject": "ci: add gated exact-head production deployment (#58)",
+   "pushed_at": "2026-09-09T18:05:53Z",
+   "open_prs": 4,
+   "open_pr_titles": [
+    "chore(deps-dev): bump vite and vitest in /atlas",
+    "chore(deps): bump @vitest/mocker and vitest in /atlas",
+    "docs: define Aftergraph V3 product front door",
+    "community: expose public discussions and RFC plane"
+   ],
+   "open_issues": 1,
+   "open_issue_titles": [
+    "#64 P2: Reposition public front door around portable governed intelligence infrastructure"
+   ],
+   "p0p1_labeled": []
+  },
+  {
+   "name": "aie",
+   "in_topology_2_0": true,
+   "visibility": "PUBLIC",
+   "default_branch": "main",
+   "lifecycle": "active",
+   "architecture_plane": "authority",
+   "system_class": "institution",
+   "role": "normative-authority",
+   "remote_head_sha": "343b43dfb3aad09c751eda5387788f78e31ca815",
+   "remote_head_date": "2026-09-09T22:29:59Z",
+   "remote_head_subject": "feat(gateway): add freshness watermark transport (Task 4) (#66)",
+   "pushed_at": "2026-09-09T22:30:17Z",
+   "open_prs": 2,
+   "open_pr_titles": [
+    "feat(aie): human-governance authority grants, delegation, budgets, revocation",
+    "research(aie): register Meta Muse prior art and narrow novelty boundary"
+   ],
+   "open_issues": 9,
+   "open_issue_titles": [
+    "#61 SDD Task 1: canonical revocation-state digest",
+    "#60 SDD ledger: revocation freshness watermark implementation",
+    "#55 P0: Integrate Muse prior art and tighten AIE novelty boundary",
+    "#10 Draft 0.4 promotion: Interop Draft release gate",
+    "#9 S5: independent second implementation and cross-implementation conformance",
+    "#8 S4: federation chaos proof \u2014 partitions, clock skew and monotonic revocation",
+    "#7 S3: prove OPA \u2194 Cedar policy-engine semantic parity",
+    "#6 S2: official A2A TCK interoperability through AIE",
+    "#5 S1.2: obtain first external SPIRE + official MCP PASS attestation"
+   ],
+   "p0p1_labeled": []
+  },
+  {
+   "name": "autonomous-venture-company",
+   "in_topology_2_0": true,
+   "visibility": "PRIVATE",
+   "default_branch": "main",
+   "lifecycle": "legacy-transition",
+   "architecture_plane": null,
+   "system_class": "legacy-transition",
+   "role": "legacy-migration-source",
+   "remote_head_sha": "e08d3372dda352564cd9b657d6a8e473c0eee6b0",
+   "remote_head_date": "2026-09-08T10:11:56Z",
+   "remote_head_subject": "fix(ci): lint cleanup, expired LeadRescue fixture refresh, security overrides for transitive deps (#1016)",
+   "pushed_at": "2026-09-08T10:11:59Z",
+   "open_prs": 30,
+   "open_pr_titles": [
+    "chore(deps): bump eslint from 10.9.1 to 10.10.0 in /ml/avc-llm",
+    "chore(deps): bump openai from 4.104.0 to 7.10.0 in /ml/avc-llm",
+    "chore(deps): bump openai from 4.104.0 to 7.10.0 in /ml/avc-eval",
+    "chore(deps): bump eslint from 10.9.1 to 10.10.0 in /ml/avc-eval",
+    "chore(deps): bump lxml from 6.1.1 to 6.1.3 in /scripts/branding",
+    "chore(deps): bump agents from 0.20.1 to 0.22.0",
+    "chore(deps): bump electron-vite from 4.0.1 to 5.0.0",
+    "chore(deps): bump tsx from 4.23.1 to 4.23.13 in /ml/avc-llm"
+   ],
+   "open_issues": 30,
+   "open_issue_titles": [
+    "#1018 P1: Extract remaining Hermes/persistent-agent behavior into canonical Aftergraph owners",
+    "#1017 Migration: retire local CompanyDaemon scheduler into canonical Runtime",
+    "#984 ADR-0027 D4 (prepared): evidence-binding for Hard actions on Trust Gateway hash-chain substrate",
+    "#983 ADR-0027 D3: out-of-model resource metering for mission-class jobs (T6, CONF-006)",
+    "#982 ADR-0027 D2: delegation attenuation for inter-bot dispatch (INV-001, CONF-001/002/004)",
+    "#865 feat(agent-runtime): wire governed Agent Harness into canonical production execution path",
+    "#863 spike(agent-runtime): evaluate Temporal as governed durable execution adapter",
+    "#735 product(validation): execute Persistent Company Runtime Validation Wave 1",
+    "#721 ci(runner): enforce verifier resource isolation and security-gate resource preflight",
+    "#717 feat(control-plane): codify permanent Design D guest provisioning"
+   ],
+   "p0p1_labeled": []
+  },
+  {
+   "name": "brand",
+   "in_topology_2_0": true,
+   "visibility": "PUBLIC",
+   "default_branch": "main",
+   "lifecycle": "active",
+   "architecture_plane": null,
+   "system_class": "foundation",
+   "role": "brand-design-system",
+   "remote_head_sha": "4f8b5a771fe4e751a2b983c0203598e6d1126e08",
+   "remote_head_date": "2026-09-09T22:32:36Z",
+   "remote_head_subject": "docs(handoff): post-merge record for PR20/release-1.1.0 (#21)",
+   "pushed_at": "2026-09-09T22:32:54Z",
+   "open_prs": 1,
+   "open_pr_titles": [
+    "docs(brand): reconcile canonical masterbrand positioning"
+   ],
+   "open_issues": 1,
+   "open_issue_titles": [
+    "#19 P0: Coordinate Sentinel naming decision before further brand rollout"
+   ],
+   "p0p1_labeled": []
+  },
+  {
+   "name": "context-continuity",
+   "in_topology_2_0": true,
+   "visibility": "PRIVATE",
+   "default_branch": "main",
+   "lifecycle": "active",
+   "architecture_plane": null,
+   "system_class": "continuity",
+   "role": "continuity-contract",
+   "remote_head_sha": "7094b01683d2027d0dfea62673f8993d854b83c7",
+   "remote_head_date": "2026-09-08T16:38:57Z",
+   "remote_head_subject": "chore(deps): enable Dependabot version updates (private repo, free tier)",
+   "pushed_at": "2026-09-08T16:39:52Z",
+   "open_prs": 2,
+   "open_pr_titles": [
+    "chore(deps): bump actions/setup-python from 5.6.0 to 7.0.0",
+    "chore(deps): bump actions/checkout from 4.4.0 to 7.0.1"
+   ],
+   "open_issues": 2,
+   "open_issue_titles": [
+    "#5 P1: Prove cross-runtime mission continuity for replaceable persistent agents",
+    "#2 Bind ACC handoffs to paired recoverable checkpoints"
+   ],
+   "p0p1_labeled": []
+  },
+  {
+   "name": "continuum",
+   "in_topology_2_0": true,
+   "visibility": "PRIVATE",
+   "default_branch": "main",
+   "lifecycle": "active",
+   "architecture_plane": null,
+   "system_class": "assurance",
+   "role": "continuity-containment-verification",
+   "remote_head_sha": "6ca7b0c3dc4c526e0806c977c0f9e01b0c6772e7",
+   "remote_head_date": "2026-09-09T04:50:43Z",
+   "remote_head_subject": "feat(continuum): split failure classes from injection modes",
+   "pushed_at": "2026-09-09T04:50:43Z",
+   "open_prs": 3,
+   "open_pr_titles": [
+    "chore(deps-dev): update setuptools requirement from >=68.0 to >=84.0.0",
+    "chore(deps): bump actions/checkout from 4.4.0 to 7.0.1",
+    "chore(deps): bump actions/setup-python from 5.6.0 to 7.0.0"
+   ],
+   "open_issues": 3,
+   "open_issue_titles": [
+    "#13 P0: Split failure-class taxonomy from MISSION-Bench injection modes",
+    "#3 Make Continuum a pure continuity/containment evaluation layer",
+    "#1 Composition proposal: ACC capsules as rupture-mitigation fixture (no code, docs only)"
+   ],
+   "p0p1_labeled": []
+  },
+  {
+   "name": "docs",
+   "in_topology_2_0": true,
+   "visibility": "PUBLIC",
+   "default_branch": "main",
+   "lifecycle": "active",
+   "architecture_plane": null,
+   "system_class": "knowledge",
+   "role": "knowledge-plane",
+   "remote_head_sha": "5cc016c62199db78ab71567df8661124695dd6c4",
+   "remote_head_date": "2026-09-08T16:40:40Z",
+   "remote_head_subject": "chore(deps): enable Dependabot version updates",
+   "pushed_at": "2026-09-09T20:34:39Z",
+   "open_prs": 5,
+   "open_pr_titles": [
+    "chore(deps-dev): bump typescript from 5.9.3 to 7.0.2",
+    "chore(deps): bump cloudflare/wrangler-action from 3.15.0 to 4.0.0",
+    "chore(deps): bump actions/setup-node from 4.4.0 to 7.0.0",
+    "chore(deps): bump actions/upload-artifact from 4.6.2 to 7.0.1",
+    "chore(deps): bump actions/checkout from 4.4.0 to 7.0.1"
+   ],
+   "open_issues": 4,
+   "open_issue_titles": [
+    "#18 P2: Render Portable Intelligence Infrastructure V1 only from canonical sources",
+    "#12 sources.ts still pins dead work-intelligence-v2 slug; wi-backend/wi-frontend unpinned",
+    "#11 ops: configure and verify exact-head production deploy",
+    "#1 ACC conformance status for ADR-005 interop (not yet requesting)"
+   ],
+   "p0p1_labeled": []
+  },
+  {
+   "name": "intelligence-systems-research",
+   "in_topology_2_0": true,
+   "visibility": "PUBLIC",
+   "default_branch": "main",
+   "lifecycle": "active",
+   "architecture_plane": null,
+   "system_class": "research-assurance",
+   "role": "research-assurance",
+   "remote_head_sha": "18358399c4fffedbf285762af022452994e11391",
+   "remote_head_date": "2026-09-09T22:34:12Z",
+   "remote_head_subject": "feat(sdc): add B0 telemetry collector with write-ahead durability (Task 60) (#66)",
+   "pushed_at": "2026-09-09T22:34:31Z",
+   "open_prs": 3,
+   "open_pr_titles": [
+    "spike(sdc): OpenAI Sandbox Agents adapter prototype (#59)",
+    "research: draft STUDY-012 institutional containment preregistration",
+    "research: add Meta Muse prior-art amendment and tighten claims"
+   ],
+   "open_issues": 9,
+   "open_issue_titles": [
+    "#59 SDC-B0 Spike \u2014 OpenAI Sandbox Agents execution-backend adapter",
+    "#58 SDC-B0 Task 4 \u2014 green-branch reconciliation and independent verifier protocol",
+    "#57 SDC-B0 Task 3 \u2014 semantic-progress metric and benchmark selection",
+    "#56 SDC-B0 Task 2 \u2014 Hermes VDS execution telemetry and replay evidence",
+    "#55 SDC-B0 Task 1 \u2014 freeze recursive planner/worker baseline protocol",
+    "#54 TRACK-SDC-001 \u2014 Governed self-driving codebases",
+    "#52 STUDY-012: Institutional Containment Track implementation and freeze",
+    "#49 P0: Add Muse/Muse Code as dated prior art; preserve STUDY-011 evidence boundary",
+    "#3 JAR-EXP-0013: Execute controlled Windows host performance run"
+   ],
+   "p0p1_labeled": []
+  },
+  {
+   "name": "llm-research-development",
+   "in_topology_2_0": true,
+   "visibility": "PRIVATE",
+   "default_branch": "main",
+   "lifecycle": "active",
+   "architecture_plane": null,
+   "system_class": "models",
+   "role": "model-rnd-methodology",
+   "remote_head_sha": "a4a7d460c327b32f09517e7dddcdadcda6b70bf5",
+   "remote_head_date": "2026-09-08T16:38:49Z",
+   "remote_head_subject": "chore(deps): enable Dependabot version updates (private repo, free tier)",
+   "pushed_at": "2026-09-08T16:39:41Z",
+   "open_prs": 3,
+   "open_pr_titles": [
+    "chore(deps): bump actions/setup-python from 5.6.0 to 7.0.0",
+    "chore(deps): bump actions/checkout from 4.4.0 to 7.0.1",
+    "docs(rnd): reconcile active methodology-transfer status"
+   ],
+   "open_issues": 1,
+   "open_issue_titles": [
+    "#6 P2: Add persistent-agent model evaluation profile without coupling platform architecture to one mode"
+   ],
+   "p0p1_labeled": []
+  },
+  {
+   "name": "model-registry",
+   "in_topology_2_0": true,
+   "visibility": "PRIVATE",
+   "default_branch": "main",
+   "lifecycle": "active",
+   "architecture_plane": null,
+   "system_class": "models",
+   "role": "model-lifecycle-registry",
+   "remote_head_sha": "a0d77e5e9b1f04e3149356d314f3a2d28a9f1898",
+   "remote_head_date": "2026-09-08T16:38:55Z",
+   "remote_head_subject": "chore(deps): enable Dependabot version updates (private repo, free tier)",
+   "pushed_at": "2026-09-08T16:39:41Z",
+   "open_prs": 3,
+   "open_pr_titles": [
+    "chore(deps): bump actions/checkout from 4.4.0 to 7.0.1",
+    "chore(deps): bump actions/setup-python from 5.6.0 to 7.0.0",
+    "docs(registry): reconcile AFM lifecycle state (candidate R3X2, champion none)"
+   ],
+   "open_issues": 1,
+   "open_issue_titles": [
+    "#8 P1: Make persistent-agent runtime/model replacement consume immutable promoted model identities"
+   ],
+   "p0p1_labeled": []
+  },
+  {
+   "name": "runtime",
+   "in_topology_2_0": true,
+   "visibility": "PRIVATE",
+   "default_branch": "main",
+   "lifecycle": "active",
+   "architecture_plane": "runtime",
+   "system_class": "runtime",
+   "role": "agent-runtime",
+   "remote_head_sha": "7585a28bb15a463847c152f60adac6aa575464f6",
+   "remote_head_date": "2026-09-09T22:14:54Z",
+   "remote_head_subject": "Merge pull request #110 from Aftergraph/feat/rt-opportunity-recovery",
+   "pushed_at": "2026-09-09T22:14:54Z",
+   "open_prs": 30,
+   "open_pr_titles": [
+    "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/triggers",
+    "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/tenant-core",
+    "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/telemetry",
+    "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/scheduler",
+    "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/proactive-runtime",
+    "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/portfolio",
+    "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/peer-protocol",
+    "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/outcomes"
+   ],
+   "open_issues": 4,
+   "open_issue_titles": [
+    "#104 P0: Define OS-isolated agent execution target + data-flow lineage hooks",
+    "#61 Wave 7: add minimal production composition seam for AVC local-node cutover",
+    "#55 Wave 7: Purify Runtime ownership boundaries",
+    "#39 Wave 6: company-daemon decomposition map (migrate / overlap-verify / drop)"
+   ],
+   "p0p1_labeled": []
+  },
+  {
+   "name": "sentinel",
+   "in_topology_2_0": true,
+   "visibility": "PUBLIC",
+   "default_branch": "main",
+   "lifecycle": "active",
+   "architecture_plane": "verification",
+   "system_class": "assurance",
+   "role": "verified-code-review",
+   "remote_head_sha": "75fee89e00256ba381d0c2dce36b03c72979e0b4",
+   "remote_head_date": "2026-09-08T16:40:43Z",
+   "remote_head_subject": "chore(deps): enable Dependabot version updates",
+   "pushed_at": "2026-09-08T16:40:46Z",
+   "open_prs": 2,
+   "open_pr_titles": [
+    "ci: run test suite on push to main and pull requests",
+    "docs: reconcile Sentinel evidence with v1.7 implementation"
+   ],
+   "open_issues": 1,
+   "open_issue_titles": [
+    "#7 P0: Naming/trademark collision review after Meta Sentinel launch"
+   ],
+   "p0p1_labeled": []
+  },
+  {
+   "name": "sentinel-firetest",
+   "in_topology_2_0": true,
+   "visibility": "PRIVATE",
+   "default_branch": "main",
+   "lifecycle": "temporary",
+   "architecture_plane": null,
+   "system_class": "assurance-fixture",
+   "role": "temporary-verification-fixture",
+   "remote_head_sha": "dd84e5257a11e5614e8f5f809765a06dcc49924e",
+   "remote_head_date": "2026-09-08T16:39:02Z",
+   "remote_head_subject": "chore(deps): enable Dependabot version updates (private repo, free tier)",
+   "pushed_at": "2026-09-08T16:39:43Z",
+   "open_prs": 1,
+   "open_pr_titles": [
+    "Bump actions/checkout from 4.4.0 to 7.0.1"
+   ],
+   "open_issues": 0,
+   "open_issue_titles": [],
+   "p0p1_labeled": []
+  },
+  {
+   "name": "sentinel-firetest2",
+   "in_topology_2_0": false,
+   "visibility": "PUBLIC",
+   "default_branch": "main",
+   "lifecycle": null,
+   "architecture_plane": null,
+   "system_class": null,
+   "role": null,
+   "remote_head_sha": "e59ce259306303f08fcdfed328f957e6434a1299",
+   "remote_head_date": "2026-09-08T12:17:53Z",
+   "remote_head_subject": "mover 8 (pre-pushed)",
+   "pushed_at": "2026-09-08T12:21:40Z",
+   "open_prs": 0,
+   "open_pr_titles": [],
+   "open_issues": 0,
+   "open_issue_titles": [],
+   "p0p1_labeled": []
+  },
+  {
+   "name": "skills-vault",
+   "in_topology_2_0": true,
+   "visibility": "PRIVATE",
+   "default_branch": "main",
+   "lifecycle": "active",
+   "architecture_plane": null,
+   "system_class": "capabilities",
+   "role": "capability-supply-chain",
+   "remote_head_sha": "85b96bb345e0f389b4b3017bca51a4a06bde8673",
+   "remote_head_date": "2026-09-08T16:38:45Z",
+   "remote_head_subject": "chore(deps): enable Dependabot version updates (private repo, free tier)",
+   "pushed_at": "2026-09-08T16:39:41Z",
+   "open_prs": 2,
+   "open_pr_titles": [
+    "chore(deps): bump actions/checkout from 4.4.0 to 7.0.1",
+    "chore(deps): bump actions/upload-artifact from 4.6.2 to 7.0.1"
+   ],
+   "open_issues": 2,
+   "open_issue_titles": [
+    "#63 P1: Govern self-authored/generated skills as capability supply-chain objects",
+    "#5 chore(governance): protect main and require Skills Vault validation"
+   ],
+   "p0p1_labeled": []
+  },
+  {
+   "name": "studio",
+   "in_topology_2_0": true,
+   "visibility": "PUBLIC",
+   "default_branch": "main",
+   "lifecycle": "active",
+   "architecture_plane": "experience",
+   "system_class": "experience",
+   "role": "primary-experience",
+   "remote_head_sha": "d332fe03d12211879ff28ddee02ca35341b6e291",
+   "remote_head_date": "2026-09-08T11:51:16Z",
+   "remote_head_subject": "ci(auto-merge): job-level pull-requests: write only (#45)",
+   "pushed_at": "2026-09-09T17:27:27Z",
+   "open_prs": 2,
+   "open_pr_titles": [
+    "feat(studio): tenant-bound workspace experience (render-only)",
+    "ci: non-blocking Sentinel dogfood (informational only)"
+   ],
+   "open_issues": 1,
+   "open_issue_titles": [
+    "#46 P0: Make Goals \u2192 Progress \u2192 Needs You \u2192 Verified Outcome the primary work loop"
+   ],
+   "p0p1_labeled": []
+  },
+  {
+   "name": "trust-gateway",
+   "in_topology_2_0": true,
+   "visibility": "PUBLIC",
+   "default_branch": "main",
+   "lifecycle": "active",
+   "architecture_plane": "trust",
+   "system_class": "enforcement",
+   "role": "runtime-enforcement",
+   "remote_head_sha": "5ec9dc45b123be712eea78580c3de008bf7e3745",
+   "remote_head_date": "2026-09-08T11:52:01Z",
+   "remote_head_subject": "ci(auto-merge): job-level pull-requests: write only (#79)",
+   "pushed_at": "2026-09-09T22:03:15Z",
+   "open_prs": 6,
+   "open_pr_titles": [
+    "feat(tg): tenant lifecycle TEN-001..005 acceptance coverage",
+    "feat(tg): consent ledger state and enforcement (CON-001..004, CONS-REV-001/002)",
+    "feat(tg): credential surrogation + governed egress implementation",
+    "docs(tg): credential surrogation + governed egress v0.1",
+    "feat(tg): add platform event correlation projection",
+    "feat(router): Verified Auto policy-aware shadow routing v0.2"
+   ],
+   "open_issues": 1,
+   "open_issue_titles": [
+    "#80 P0: Credential surrogation + governed network egress boundary"
+   ],
+   "p0p1_labeled": []
+  },
+  {
+   "name": "veranza",
+   "in_topology_2_0": true,
+   "visibility": "PRIVATE",
+   "default_branch": "main",
+   "lifecycle": "internal-hold",
+   "architecture_plane": null,
+   "system_class": "incubation",
+   "role": "assurance-incubation",
+   "remote_head_sha": "b7936bd2c613a106e158140d71811430de2a7a03",
+   "remote_head_date": "2026-09-08T16:40:46Z",
+   "remote_head_subject": "chore(deps): enable Dependabot version updates",
+   "pushed_at": "2026-09-08T16:41:30Z",
+   "open_prs": 1,
+   "open_pr_titles": [
+    "chore(deps): bump actions/checkout from 4.4.0 to 7.0.1"
+   ],
+   "open_issues": 0,
+   "open_issue_titles": [],
+   "p0p1_labeled": []
+  },
+  {
+   "name": "wi-backend",
+   "in_topology_2_0": true,
+   "visibility": "PUBLIC",
+   "default_branch": "main",
+   "lifecycle": "active",
+   "architecture_plane": "intelligence",
+   "system_class": "work-intelligence",
+   "role": "work-inference",
+   "remote_head_sha": "f2c7843b30d3cffaa8756399463edfed90a01fc0",
+   "remote_head_date": "2026-09-08T13:10:26Z",
+   "remote_head_subject": "fix: drift collector/policy track renamed wi-backend/wi-frontend units (#66)",
+   "pushed_at": "2026-09-08T13:10:29Z",
+   "open_prs": 0,
+   "open_pr_titles": [],
+   "open_issues": 3,
+   "open_issue_titles": [
+    "#67 P1: Project proactive observations into proposed Goals/Missions without acquiring execution authorit",
+    "#24 P0: Complete cleanup after production credentials were committed to public git history",
+    "#18 PROGRAM: Work Intelligence completeness gap map and exit ledger"
+   ],
+   "p0p1_labeled": []
+  },
+  {
+   "name": "wi-frontend",
+   "in_topology_2_0": true,
+   "visibility": "PRIVATE",
+   "default_branch": "main",
+   "lifecycle": "active",
+   "architecture_plane": "experience",
+   "system_class": "specialist-experience",
+   "role": "work-intelligence-experience",
+   "remote_head_sha": "104ea8e7e159db408d6597939187e030a0c8dd01",
+   "remote_head_date": "2026-09-08T16:39:05Z",
+   "remote_head_subject": "chore(deps): enable Dependabot version updates (private repo, free tier)",
+   "pushed_at": "2026-09-08T16:40:16Z",
+   "open_prs": 3,
+   "open_pr_titles": [
+    "chore(deps): bump actions/setup-node from 4.4.0 to 7.0.0",
+    "chore(deps): bump actions/setup-python from 5.6.0 to 7.0.0",
+    "chore(deps): bump actions/checkout from 4.4.0 to 7.0.1"
+   ],
+   "open_issues": 1,
+   "open_issue_titles": [
+    "#16 P2: Consume canonical Goal/Needs You projections without owning work truth"
+   ],
+   "p0p1_labeled": []
+  },
+  {
+   "name": "works-execution",
+   "in_topology_2_0": true,
+   "visibility": "PUBLIC",
+   "default_branch": "main",
+   "lifecycle": "active",
+   "architecture_plane": "execution",
+   "system_class": "execution",
+   "role": "durable-execution",
+   "remote_head_sha": "1267f03b7ae50212173f3f93cca6d93547fb2906",
+   "remote_head_date": "2026-09-08T11:53:34Z",
+   "remote_head_subject": "ci(auto-merge): job-level pull-requests: write only (#66)",
+   "pushed_at": "2026-09-09T18:46:56Z",
+   "open_prs": 4,
+   "open_pr_titles": [
+    "feat(store): persist independent outcome verification verdicts",
+    "feat(works): expose outcome verification separately from evidence integrity",
+    "feat(works): require independent verifier verdict before quittance",
+    "feat(works): add platform event correlation projection"
+   ],
+   "open_issues": 1,
+   "open_issue_titles": [
+    "#68 P0: Seal persistent-agent execution contract across Runtime \u2192 WORKS \u2192 verifier"
+   ],
+   "p0p1_labeled": []
+  }
+ ],
+ "reconciliations": [
+  {
+   "subject": "sentinel-firetest",
+   "finding": "In topology (lifecycle temporary, system_class assurance-fixture, private). Live: private, head dd84e525, 1 open dependabot PR, 0 issues. Classified ephemeral fixture; retained only while a live Sentinel proof references it.",
+   "disposition": "keep-temporary",
+   "action": "Retire (delete or archive) once no open Sentinel proof references it; topology already marks temporary so no topology edit needed."
+  },
+  {
+   "subject": "sentinel-firetest2",
+   "finding": "NOT in platform-topology/2.0. Live: PUBLIC, created 2026-09-08, head e59ce259 'mover 8 (pre-pushed)', 0 PRs, 0 issues. A public ephemeral fixture contradicts least-visibility practice and is invisible to org-state-verify.sh scope (derived from topology).",
+   "disposition": "classify-or-retire",
+   "action": "Either register in topology as lifecycle ephemeral with an expiry, or delete the repository, or flip to private. Until then org-state snapshots undercount the org. Flagged as Phase 12 CI gap: unknown-repo detection."
+  },
+  {
+   "subject": "veranza",
+   "finding": "In topology (lifecycle internal-hold, system_class incubation, private). Live matches: private, head b7936bd2, 1 dependabot PR, 0 issues. No drift.",
+   "disposition": "keep",
+   "action": "None. Naming/clearance hold stays; no public or production responsibility."
+  },
+  {
+   "subject": "autonomous-venture-company",
+   "finding": "In topology (lifecycle legacy-transition, system_class legacy-transition, private). Live matches: private, head e08d3372, 30 open dependabot PRs, 30 open issues incl. P1-titled migration items #1017 (CompanyDaemon scheduler retirement) and #1018 (Hermes behavior extraction). Dependabot backlog on a migration-source repo burns review capacity; dependency bumps should be frozen except security fixes per AVC-RETIREMENT-V1.",
+   "disposition": "keep-migration-source",
+   "action": "Freeze non-security dependabot merges; drive #1017/#1018 to canonical owners (Phase 10)."
+  },
+  {
+   "subject": "renamed WI repositories",
+   "finding": "Slug Aftergraph/work-intelligence-v2 no longer names a repository: the API resolves it to wi-backend via GitHub rename redirect (rename proven, not deletion). Canonical live repos wi-backend (public) and wi-frontend (private) are both in topology with correct planes (intelligence / experience-specialist). Any consumer pinning work-intelligence-v2 is redirect-dependent, not canonical.",
+   "disposition": "renamed",
+   "action": "Docs #12 must replace the dead slug with wi-backend + wi-frontend pins and make redirect-dependent identities fail CI (Phase 1 P0.1)."
+  },
+  {
+   "subject": "visibility audit",
+   "finding": "Private repos live: runtime, wi-frontend, context-continuity, continuum, sentinel-firetest, afm, veranza, llm-research-development, skills-vault, model-registry, autonomous-venture-company (11). Public: 14 including sentinel-firetest2 (anomaly above). Topology visibility fields match live on all 24 registered repos.",
+   "disposition": "one-anomaly",
+   "action": "Resolve sentinel-firetest2 visibility/registration as above."
+  },
+  {
+   "subject": "priority labeling",
+   "finding": "No P0/P1 labels exist org-wide; priority is expressed in issue titles (e.g. runtime#104 P0 OS-isolation target, aie#55 P0 Muse prior-art boundary, docs#12 dead-slug pin, AVC P1 migration items). Title-based priority is not machine-enforceable.",
+   "disposition": "process-gap",
+   "action": "Phase 12: adopt machine-readable priority labels or a registry field so P0/P1 queries are exact, not title greps."
+  }
+ ],
+ "claim_vs_evidence_notes": "Claimed maturity and L0-L6 conformance per repo are not yet machine-readable anywhere; topology carries ownership/lifecycle only. Capability maturity view is Phase 1 P0.4 work (generated, not prose). Actual evidence maturity at this cut: governance has passing wave-evidence files (a-i) and org-state machinery; plane repos carry their own CI which was not exhaustively graded in this pass beyond open PR/issue counts.",
+ "verdict": "RECONCILED-WITH-ONE-OPEN-ITEM",
+ "open_item": "sentinel-firetest2 registration-or-retirement decision (owner: sentinel/assurance + governance)."
+}
