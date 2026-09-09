@@ -1,6 +1,6 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-09T05:33:34Z",
+  "generated_at": "2026-09-09T05:49:08Z",
   "generator": "/mnt/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
@@ -8,9 +8,9 @@
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "e483e92ceee89235756df44dfff580971284ba39",
-      "remote_head_short": "e483e92",
-      "head_commit_message": "evidence(governance): Wave E Task 1 — proactivity contract + validator + PRO vectors (#76)",
+      "remote_head_sha": "7ce7c9591af15388f06b5a35a043e79c542d0fdb",
+      "remote_head_short": "7ce7c95",
+      "head_commit_message": "evidence(governance): Wave E Task 2 — org-delegation contract + validator + ORG vectors (#78)",
       "private": false,
       "archived": false,
       "protected": true,
@@ -148,7 +148,7 @@
           "title": "feat(muse-supervisor): Hermes ↔ Muse autonomous worker supervisor",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "e9a9d01ad2f3aa07fa1b5bf0c1ac3f03d1a279ca"
+          "head_sha": "6f55d7c869231b336d2a49dcc09581f582c604c6"
         },
         {
           "number": 102,
