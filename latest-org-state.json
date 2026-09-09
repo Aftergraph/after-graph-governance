@@ -1,6 +1,6 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-09T10:42:32Z",
+  "generated_at": "2026-09-09T11:01:17Z",
   "generator": "/mnt/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
@@ -8,9 +8,9 @@
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "baad3b5afdb6b846ae4fa6dfde22e20fa6a023c7",
-      "remote_head_short": "baad3b5",
-      "head_commit_message": "evidence(governance): close platform architecture v4 wave g (#106)",
+      "remote_head_sha": "8c4bbe0340b968257ccba04a47ac189332832a74",
+      "remote_head_short": "8c4bbe0",
+      "head_commit_message": "evidence(governance): Wave H Task 1 — promotion-trace contract + validator + PROM vectors (#109)",
       "private": false,
       "archived": false,
       "protected": true,
