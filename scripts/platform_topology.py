@@ -35,6 +35,8 @@ REQUIRED_REPO_FIELDS = {
     "owns",
     "must_not_own",
 }
+OPTIONAL_REPO_FIELDS = {"expires_at"}
+EXPIRES_AT_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 FORBIDDEN_ACTIVE_NAME_PARTS = ("@avc/", "avc-")
 VISIBILITY_VALUES = {"public", "private"}
 STRING_REPO_FIELDS = ("name", "role", "system_class", "lifecycle", "owns", "must_not_own")
@@ -102,8 +104,18 @@ def validate_topology(doc: Mapping[str, Any]) -> list[str]:
         missing = REQUIRED_REPO_FIELDS - set(entry)
         if missing:
             errors.append(f"repository {name} is missing fields: {sorted(missing)}")
-        for field in set(entry) - REQUIRED_REPO_FIELDS:
+        for field in set(entry) - REQUIRED_REPO_FIELDS - OPTIONAL_REPO_FIELDS:
             errors.append(f"repository {name} has unexpected field: {field}")
+        # Phase 12 ephemeral-lifetime enforcement: temporary fixtures must
+        # declare an expiry date; permanent entries must not carry one.
+        expires_at = entry.get("expires_at")
+        if entry.get("lifecycle") == "temporary":
+            if not isinstance(expires_at, str) or not EXPIRES_AT_RE.match(expires_at):
+                errors.append(
+                    f"repository {name} is temporary but lacks a valid expires_at date (YYYY-MM-DD)"
+                )
+        elif expires_at is not None:
+            errors.append(f"repository {name} is not temporary but carries expires_at")
         plane = entry.get("architecture_plane")
         if plane is not None and plane not in PLANE_VALUES:
             errors.append(f"repository {name} has unknown architecture plane: {plane!r}")

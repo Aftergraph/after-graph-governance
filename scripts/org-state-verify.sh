@@ -144,6 +144,29 @@ if [ "${#entries[@]}" -ne "$expected_count" ]; then
   exit 1
 fi
 
+# Phase 12 unknown-repo enforcement: enumerate the LIVE org and fail closed
+# when any live repository is absent from platform-topology. Unclassified
+# repos must be registered or retired — never silently escape the registry.
+live_names=$(gh api "orgs/$ORG/repos?per_page=100" --paginate --jq '.[].name' 2>/dev/null || { echo "ORG-STATE-FAIL: cannot list org repositories" >&2; exit 1; })
+topology_names=$(jq -r '.repositories[].name' "$TOPOLOGY")
+unknown_repos=$(comm -23 <(echo "$live_names" | sort -u) <(echo "$topology_names" | sort -u) || true)
+if [ -n "$unknown_repos" ]; then
+  echo "ORG-STATE-FAIL: unknown live repositories absent from platform-topology/2.0:" >&2
+  echo "$unknown_repos" | sed 's/^/  - /' >&2
+  exit 1
+fi
+
+# Phase 12 ephemeral-lifetime enforcement: any temporary topology entry whose
+# expires_at date has passed fails closed until the fixture is retired or
+# re-registered with a new expiry. Date comparison is lexicographic (YYYY-MM-DD).
+today=$(date -u +%F)
+expired=$(jq -r --arg today "$today" '.repositories[] | select(.lifecycle == "temporary" and .expires_at != null and .expires_at < $today) | "\(.name) expired \(.expires_at)"' "$TOPOLOGY")
+if [ -n "$expired" ]; then
+  echo "ORG-STATE-FAIL: ephemeral repositories exceeding allowed lifetime:" >&2
+  echo "$expired" | sed 's/^/  - /' >&2
+  exit 1
+fi
+
 combined=$(jq -nc \
   --arg v "org-state/1.0" --arg ts "$ts" \
   --arg gen "$SCRIPT_DIR/org-state-verify.sh" --arg org "$ORG" \
