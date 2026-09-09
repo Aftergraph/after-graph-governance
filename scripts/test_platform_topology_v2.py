@@ -43,7 +43,8 @@ PROACTIVITY_ORG_DOC = REPO_ROOT / "docs" / "PROACTIVITY-ORG-V1.md"
 POCKET_SOURCE_DOC = REPO_ROOT / "docs" / "POCKET-SOURCE-V1.md"
 VOICE_INTERACTION_DOC = REPO_ROOT / "docs" / "VOICE-INTERACTION-V1.md"
 PROMOTION_GATES_DOC = REPO_ROOT / "docs" / "PROMOTION-GATES-V1.md"
-CURRENT_DOCS = (V4_DOC, RECONCILIATION_DOC, CROSS_REPO_DOC, REGISTRY_DOC, VERIFIED_AUTO_DOC, MEMORY_SEPARATION_DOC, HUMAN_GOVERNANCE_DOC, PROACTIVITY_ORG_DOC, POCKET_SOURCE_DOC, VOICE_INTERACTION_DOC, PROMOTION_GATES_DOC)
+RETIREMENT_DOC = REPO_ROOT / "docs" / "AVC-RETIREMENT-V1.md"
+CURRENT_DOCS = (V4_DOC, RECONCILIATION_DOC, CROSS_REPO_DOC, REGISTRY_DOC, VERIFIED_AUTO_DOC, MEMORY_SEPARATION_DOC, HUMAN_GOVERNANCE_DOC, PROACTIVITY_ORG_DOC, POCKET_SOURCE_DOC, VOICE_INTERACTION_DOC, PROMOTION_GATES_DOC, RETIREMENT_DOC)
 DESIGN_SPEC_NAMES = (
     "2026-09-08-aftergraph-platform-architecture-v4-and-platform-fabrics-v1-design.md",
     "2026-09-08-aftergraph-verified-auto-execution-design.md",
@@ -118,6 +119,18 @@ FORBIDDEN_PROMOTION_PHRASES = (
     "evaluator scores its own execution",
     "local green is promotion",
     "bypass counts as promotion",
+)
+RETIREMENT_OWNERS = ("autonomous-venture-company", "skills-vault", "runtime", "aie", "trust-gateway", "works-execution", "continuum", "sentinel")
+FORBIDDEN_RETIREMENT_PHRASES = (
+    "retirement outside the ledger",
+    "ownership removed with active consumer",
+    "canonical doc still assigns avc ownership",
+    "governance executes archival",
+    "archive as autonomous action",
+    "new avc identifier as active",
+    "self-attested migration",
+    "local green as retirement",
+    "bypass as dissolution",
 )
 FORBIDDEN_AUTO_PHRASES = (
     "runtime verifies",
@@ -452,6 +465,33 @@ class ActiveDocConsistencyTest(unittest.TestCase):
         text = PROMOTION_GATES_DOC.read_text(encoding="utf-8").lower()
         for phrase in FORBIDDEN_PROMOTION_PHRASES:
             self.assertNotIn(phrase, text, f"authority-conflating phrase {phrase!r}")
+
+    def test_retirement_binding_is_a_current_doc(self):
+        self.assertIn(RETIREMENT_DOC, CURRENT_DOCS)
+        self.assertTrue(RETIREMENT_DOC.is_file(), "docs/AVC-RETIREMENT-V1.md is missing")
+
+    def test_retirement_binding_maps_seams_to_v4_owners(self):
+        text = RETIREMENT_DOC.read_text(encoding="utf-8")
+        for owner in RETIREMENT_OWNERS:
+            self.assertIn(owner, text, f"retirement owner {owner} is not mapped")
+
+    def test_retirement_binding_forbids_retirement_conflation(self):
+        text = RETIREMENT_DOC.read_text(encoding="utf-8").lower()
+        for phrase in FORBIDDEN_RETIREMENT_PHRASES:
+            self.assertNotIn(phrase, text, f"retirement-conflating phrase {phrase!r}")
+
+    def test_retirement_binding_pins_normative_content(self):
+        text = RETIREMENT_DOC.read_text(encoding="utf-8")
+        for marker in (
+            "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+            "MIGRATED_VERIFIED",
+            "MIGRATED_TRANSITIONAL",
+            "HISTORY_ONLY",
+            "REQUIRES_EXPLICIT_OWNER_AUTHORIZATION",
+            "BLOCKED_ON_OWNER_EXECUTION",
+            "governance never executes archival",
+        ):
+            self.assertIn(marker, text, f"normative marker {marker!r} is missing")
 
     def test_v3_marked_superseded_not_deleted(self):
         lines = V3_DOC.read_text(encoding="utf-8").splitlines()[:12]
