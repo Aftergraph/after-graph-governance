@@ -1,0 +1,24 @@
+{
+  "id": "CONS-REV-001",
+  "expected": "accept",
+  "reason": "A ConsentRevoked record for one source/purpose invalidates derived memory, ACC projections, and World State assertions sourced solely from it; unrelated uses survive and audit history is preserved.",
+  "revocation": {
+    "source": "pocket-observer",
+    "purpose": "personalization",
+    "revoked_at": "2026-09-08T13:00:00Z",
+    "ledger_record": "consent:ledger:000002"
+  },
+  "derived_before": [
+    {"id": "mem-001", "kind": "memory", "source": "pocket-observer", "purpose": "personalization"},
+    {"id": "acc-001", "kind": "acc_projection", "source": "pocket-observer", "purpose": "personalization"},
+    {"id": "ast-001", "kind": "world_assertion", "source": "pocket-observer", "purpose": "personalization"},
+    {"id": "mem-002", "kind": "memory", "source": "works-execution", "purpose": "mission-evidence"}
+  ],
+  "derived_after": [
+    {"id": "mem-002", "kind": "memory", "source": "works-execution", "purpose": "mission-evidence"}
+  ],
+  "audit_before": [
+    {"id": "aud-001", "entry": "works:event:000007 committed"},
+    {"id": "aud-002", "entry": "pocket:observation:000003 ingested"}
+  ]
+}

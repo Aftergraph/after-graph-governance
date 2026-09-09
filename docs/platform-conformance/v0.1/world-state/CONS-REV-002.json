@@ -1,0 +1,38 @@
+{
+  "id": "CONS-REV-002",
+  "expected": "accept",
+  "reason": "The same revocation denies new connector ingestion from the revoked source, invalidates active context bundles built on it, and blocks future research/personalization processing for it; unrelated uses survive.",
+  "revocation": {
+    "source": "pocket-observer",
+    "purpose": "personalization",
+    "revoked_at": "2026-09-08T13:00:00Z",
+    "ledger_record": "consent:ledger:000002"
+  },
+  "ingestion_before": [
+    {"source": "pocket-observer"},
+    {"source": "works-execution"}
+  ],
+  "ingestion_after": [
+    {"source": "pocket-observer", "admitted": false},
+    {"source": "works-execution", "admitted": true}
+  ],
+  "bundles_before": [
+    {"id": "bun-001", "sources": ["pocket-observer"], "purposes": ["personalization"]},
+    {"id": "bun-002", "sources": ["works-execution"], "purposes": ["mission-evidence"]}
+  ],
+  "bundles_after": [
+    {"id": "bun-002", "sources": ["works-execution"], "purposes": ["mission-evidence"]}
+  ],
+  "future_before": [
+    {"source": "pocket-observer", "purpose": "personalization"},
+    {"source": "works-execution", "purpose": "mission-evidence"}
+  ],
+  "future_after": [
+    {"source": "pocket-observer", "purpose": "personalization", "blocked": true},
+    {"source": "works-execution", "purpose": "mission-evidence", "blocked": false}
+  ],
+  "audit_before": [
+    {"id": "aud-001", "entry": "works:event:000007 committed"},
+    {"id": "aud-002", "entry": "pocket:observation:000003 ingested"}
+  ]
+}
