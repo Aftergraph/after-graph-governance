@@ -36,7 +36,21 @@ V3_DOC = REPO_ROOT / "docs" / "PLATFORM-ARCHITECTURE-V3.md"
 RECONCILIATION_DOC = REPO_ROOT / "docs" / "PLATFORM-RECONCILIATION-V1.md"
 CROSS_REPO_DOC = REPO_ROOT / "docs" / "cross-repo-contracts.md"
 REGISTRY_DOC = REPO_ROOT / "docs" / "REPOSITORY-REGISTRY-v0.1.md"
-CURRENT_DOCS = (V4_DOC, RECONCILIATION_DOC, CROSS_REPO_DOC, REGISTRY_DOC)
+VERIFIED_AUTO_DOC = REPO_ROOT / "docs" / "VERIFIED-AUTO-V1.md"
+CURRENT_DOCS = (V4_DOC, RECONCILIATION_DOC, CROSS_REPO_DOC, REGISTRY_DOC, VERIFIED_AUTO_DOC)
+DESIGN_SPEC_NAMES = (
+    "2026-09-08-aftergraph-platform-architecture-v4-and-platform-fabrics-v1-design.md",
+    "2026-09-08-aftergraph-verified-auto-execution-design.md",
+)
+RATIONALE_MARK = re.compile(r"rationale", re.IGNORECASE)
+VERIFIED_AUTO_OWNERS = ("trust-gateway", "runtime", "works-execution", "studio", "sentinel", "aie")
+FORBIDDEN_AUTO_PHRASES = (
+    "runtime verifies",
+    "runtime approves",
+    "self-approves",
+    "verification owner: runtime",
+    "executor verifies",
+)
 STALE_CURRENT_NAMES = ("work-intelligence-v2", "work-intelligence-web", "venture-os-consumer")
 HISTORICAL_MARK = re.compile(r"historical|provenance|legacy|superseded|2026-09-07|19-repo", re.IGNORECASE)
 
@@ -259,6 +273,26 @@ class ActiveDocConsistencyTest(unittest.TestCase):
             for lineno, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
                 if any(stale in line for stale in STALE_CURRENT_NAMES):
                     self.assertRegex(line, HISTORICAL_MARK, f"{path.name}:{lineno}")
+
+    def test_verified_auto_binding_is_a_current_doc(self):
+        self.assertIn(VERIFIED_AUTO_DOC, CURRENT_DOCS)
+        self.assertTrue(VERIFIED_AUTO_DOC.is_file(), "docs/VERIFIED-AUTO-V1.md is missing")
+
+    def test_active_docs_cite_design_spec_only_as_rationale(self):
+        for path in CURRENT_DOCS:
+            for lineno, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+                if any(name in line for name in DESIGN_SPEC_NAMES):
+                    self.assertRegex(line, RATIONALE_MARK, f"{path.name}:{lineno}")
+
+    def test_verified_auto_maps_seams_to_v4_owners(self):
+        text = VERIFIED_AUTO_DOC.read_text(encoding="utf-8")
+        for owner in VERIFIED_AUTO_OWNERS:
+            self.assertIn(owner, text, f"seam owner {owner} is not mapped")
+
+    def test_verified_auto_grants_no_new_authority(self):
+        text = VERIFIED_AUTO_DOC.read_text(encoding="utf-8").lower()
+        for phrase in FORBIDDEN_AUTO_PHRASES:
+            self.assertNotIn(phrase, text, f"authority-widening phrase {phrase!r}")
 
     def test_v3_marked_superseded_not_deleted(self):
         lines = V3_DOC.read_text(encoding="utf-8").splitlines()[:12]
