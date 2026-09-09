@@ -42,7 +42,8 @@ HUMAN_GOVERNANCE_DOC = REPO_ROOT / "docs" / "HUMAN-GOVERNANCE-V1.md"
 PROACTIVITY_ORG_DOC = REPO_ROOT / "docs" / "PROACTIVITY-ORG-V1.md"
 POCKET_SOURCE_DOC = REPO_ROOT / "docs" / "POCKET-SOURCE-V1.md"
 VOICE_INTERACTION_DOC = REPO_ROOT / "docs" / "VOICE-INTERACTION-V1.md"
-CURRENT_DOCS = (V4_DOC, RECONCILIATION_DOC, CROSS_REPO_DOC, REGISTRY_DOC, VERIFIED_AUTO_DOC, MEMORY_SEPARATION_DOC, HUMAN_GOVERNANCE_DOC, PROACTIVITY_ORG_DOC, POCKET_SOURCE_DOC, VOICE_INTERACTION_DOC)
+PROMOTION_GATES_DOC = REPO_ROOT / "docs" / "PROMOTION-GATES-V1.md"
+CURRENT_DOCS = (V4_DOC, RECONCILIATION_DOC, CROSS_REPO_DOC, REGISTRY_DOC, VERIFIED_AUTO_DOC, MEMORY_SEPARATION_DOC, HUMAN_GOVERNANCE_DOC, PROACTIVITY_ORG_DOC, POCKET_SOURCE_DOC, VOICE_INTERACTION_DOC, PROMOTION_GATES_DOC)
 DESIGN_SPEC_NAMES = (
     "2026-09-08-aftergraph-platform-architecture-v4-and-platform-fabrics-v1-design.md",
     "2026-09-08-aftergraph-verified-auto-execution-design.md",
@@ -106,6 +107,17 @@ FORBIDDEN_VOICE_PHRASES = (
     "correlation grants authority",
     "surface is authoritative",
     "persona grants authority",
+)
+PROMOTION_GATES_OWNERS = ("model-registry", "afm", "llm-research-development", "skills-vault", "runtime", "continuum", "sentinel")
+FORBIDDEN_PROMOTION_PHRASES = (
+    "challenger promotes itself",
+    "self-promotion is gate approval",
+    "trace grants authority",
+    "correlation is evidence",
+    "embedded pass is registry approval",
+    "evaluator scores its own execution",
+    "local green is promotion",
+    "bypass counts as promotion",
 )
 FORBIDDEN_AUTO_PHRASES = (
     "runtime verifies",
@@ -425,6 +437,20 @@ class ActiveDocConsistencyTest(unittest.TestCase):
     def test_voice_interaction_binding_grants_no_authority(self):
         text = VOICE_INTERACTION_DOC.read_text(encoding="utf-8").lower()
         for phrase in FORBIDDEN_VOICE_PHRASES:
+            self.assertNotIn(phrase, text, f"authority-conflating phrase {phrase!r}")
+
+    def test_promotion_gates_binding_is_a_current_doc(self):
+        self.assertIn(PROMOTION_GATES_DOC, CURRENT_DOCS)
+        self.assertTrue(PROMOTION_GATES_DOC.is_file(), "docs/PROMOTION-GATES-V1.md is missing")
+
+    def test_promotion_gates_binding_maps_seams_to_v4_owners(self):
+        text = PROMOTION_GATES_DOC.read_text(encoding="utf-8")
+        for owner in PROMOTION_GATES_OWNERS:
+            self.assertIn(owner, text, f"promotion owner {owner} is not mapped")
+
+    def test_promotion_gates_binding_grants_no_authority(self):
+        text = PROMOTION_GATES_DOC.read_text(encoding="utf-8").lower()
+        for phrase in FORBIDDEN_PROMOTION_PHRASES:
             self.assertNotIn(phrase, text, f"authority-conflating phrase {phrase!r}")
 
     def test_v3_marked_superseded_not_deleted(self):
