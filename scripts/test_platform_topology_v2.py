@@ -38,7 +38,8 @@ CROSS_REPO_DOC = REPO_ROOT / "docs" / "cross-repo-contracts.md"
 REGISTRY_DOC = REPO_ROOT / "docs" / "REPOSITORY-REGISTRY-v0.1.md"
 VERIFIED_AUTO_DOC = REPO_ROOT / "docs" / "VERIFIED-AUTO-V1.md"
 MEMORY_SEPARATION_DOC = REPO_ROOT / "docs" / "MEMORY-ACC-BRAIN-V1.md"
-CURRENT_DOCS = (V4_DOC, RECONCILIATION_DOC, CROSS_REPO_DOC, REGISTRY_DOC, VERIFIED_AUTO_DOC, MEMORY_SEPARATION_DOC)
+HUMAN_GOVERNANCE_DOC = REPO_ROOT / "docs" / "HUMAN-GOVERNANCE-V1.md"
+CURRENT_DOCS = (V4_DOC, RECONCILIATION_DOC, CROSS_REPO_DOC, REGISTRY_DOC, VERIFIED_AUTO_DOC, MEMORY_SEPARATION_DOC, HUMAN_GOVERNANCE_DOC)
 DESIGN_SPEC_NAMES = (
     "2026-09-08-aftergraph-platform-architecture-v4-and-platform-fabrics-v1-design.md",
     "2026-09-08-aftergraph-verified-auto-execution-design.md",
@@ -53,6 +54,16 @@ FORBIDDEN_MEMORY_PHRASES = (
     "brain grants authority",
     "capsule grants authority",
     "memory defines success",
+)
+HUMAN_GOVERNANCE_OWNERS = ("aie", "trust-gateway", "studio")
+FORBIDDEN_GOVERNANCE_PHRASES = (
+    "role label confers",
+    "label is authority",
+    "labels are authority",
+    "workspace grants authority",
+    "surface grants authority",
+    "studio mints authority",
+    "workspace is authoritative",
 )
 FORBIDDEN_AUTO_PHRASES = (
     "runtime verifies",
@@ -316,6 +327,20 @@ class ActiveDocConsistencyTest(unittest.TestCase):
     def test_memory_binding_grants_no_authority(self):
         text = MEMORY_SEPARATION_DOC.read_text(encoding="utf-8").lower()
         for phrase in FORBIDDEN_MEMORY_PHRASES:
+            self.assertNotIn(phrase, text, f"authority-conflating phrase {phrase!r}")
+
+    def test_human_governance_binding_is_a_current_doc(self):
+        self.assertIn(HUMAN_GOVERNANCE_DOC, CURRENT_DOCS)
+        self.assertTrue(HUMAN_GOVERNANCE_DOC.is_file(), "docs/HUMAN-GOVERNANCE-V1.md is missing")
+
+    def test_human_governance_binding_maps_seams_to_v4_owners(self):
+        text = HUMAN_GOVERNANCE_DOC.read_text(encoding="utf-8")
+        for owner in HUMAN_GOVERNANCE_OWNERS:
+            self.assertIn(owner, text, f"governance owner {owner} is not mapped")
+
+    def test_human_governance_binding_grants_no_authority(self):
+        text = HUMAN_GOVERNANCE_DOC.read_text(encoding="utf-8").lower()
+        for phrase in FORBIDDEN_GOVERNANCE_PHRASES:
             self.assertNotIn(phrase, text, f"authority-conflating phrase {phrase!r}")
 
     def test_v3_marked_superseded_not_deleted(self):
