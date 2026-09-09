@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.dev/contracts/promotion-gates/0.1.json",
+  "title": "Aftergraph Promotion Gates",
+  "description": "EXPERIMENTAL promotion-gates contract for the Wave H verified-improvement slice. A production trace carries observation/correlation content only: promotion authority and promotion grants live outside the trace in gate/registry-owned stores and are referenced, never embedded. A trace is never a gate PASS by itself; routing/skill/workflow/model promotion moves only through gates plus registry evidence, and no challenger promotes itself. Trace/registry correlation is correlation only: correlation is never registry evidence and never promotion authority. Challenger traces inherit the Wave E EVAL binding (evaluators never score their own execution), not re-derived here. The trace confers no promotion authority. Production-trace characterization claims are evidence-gated on production evidence.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "promotion-gates/0.1"
+    },
+    "trace_id": {
+      "type": "string",
+      "pattern": "^trc_[a-f0-9]{32}$"
+    },
+    "tenant_id": {
+      "type": "string",
+      "pattern": "^ten_[a-f0-9]{32}$"
+    },
+    "observation_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "authority",
+        "enforcement",
+        "runtime",
+        "execution",
+        "verification",
+        "research"
+      ]
+    },
+    "embeds_promotion_authority": {
+      "type": "boolean"
+    },
+    "embeds_promotion_grant": {
+      "type": "boolean"
+    },
+    "presented_as_gate_pass": {
+      "type": "boolean"
+    },
+    "correlation_claimed_as_registry_evidence": {
+      "type": "boolean"
+    },
+    "asserted_at": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "correlation_refs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 32,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512
+      },
+      "description": "platform-event-ref/0.1 correlation/provenance references composed by reference; possession never grants authority and correlation is never registry evidence."
+    },
+    "gate_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Reference to the promotion gate owning the promotion decision; authority lives in the gate-owned store, never in the trace."
+    },
+    "registry_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Reference to the registry-owned store holding promotion evidence; authority lives in the registry-owned store, never in the trace."
+    },
+    "gate_evidence_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Gate-owned PASS evidence required before a trace is ever presented as a gate PASS."
+    },
+    "registry_evidence_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Registry-owned PASS evidence required before a trace is ever presented as a gate PASS."
+    },
+    "challenger_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Disposable challenger-candidate identity attached to the trace; a challenger never promotes itself."
+    },
+    "executor_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Reference to the executor that produced the challenger trace."
+    },
+    "evaluator_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Reference to the evaluator scoring the challenger trace; inherited Wave E binding requires it to differ from the executor."
+    },
+    "claims_production_characterization": {
+      "type": "boolean",
+      "description": "True claims a production-trace characterization; requires production evidence and is otherwise evidence-gated."
+    },
+    "production_evidence_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Production-trace/model evidence backing a production characterization claim."
+    }
+  },
+  "required": [
+    "schema",
+    "trace_id",
+    "tenant_id",
+    "observation_ref",
+    "classification",
+    "embeds_promotion_authority",
+    "embeds_promotion_grant",
+    "presented_as_gate_pass",
+    "correlation_claimed_as_registry_evidence",
+    "asserted_at"
+  ]
+}

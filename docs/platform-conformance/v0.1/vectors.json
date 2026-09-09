@@ -2607,6 +2607,155 @@
         "asserted_at": "2026-09-08T12:00:27Z"
       },
       "reason": "Prompt-injection content inside a voice transcript is contained as untrusted observation, never instruction or authority."
+    },
+    {
+      "id": "PROM-001",
+      "kind": "promotion_gates",
+      "expected": "accept",
+      "input": {
+        "schema": "promotion-gates/0.1",
+        "trace_id": "trc_33333333333333333333333333333333",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "observation_ref": "wie:observation:000033",
+        "classification": "execution",
+        "embeds_promotion_authority": false,
+        "embeds_promotion_grant": false,
+        "presented_as_gate_pass": false,
+        "correlation_claimed_as_registry_evidence": false,
+        "correlation_refs": ["platform:event:000033"],
+        "gate_ref": "runtime:promotion-gate:000033",
+        "registry_ref": "model-registry:evidence:000033",
+        "asserted_at": "2026-09-08T12:00:33Z"
+      },
+      "reason": "A production trace carrying schema-d observation/correlation content, with promotion authority referenced outside the trace in gate/registry-owned stores, stays observation only."
+    },
+    {
+      "id": "PROM-002",
+      "kind": "promotion_gates",
+      "expected": "reject",
+      "input": {
+        "schema": "promotion-gates/0.1",
+        "trace_id": "trc_44444444444444444444444444444444",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "observation_ref": "wie:observation:000034",
+        "classification": "execution",
+        "embeds_promotion_authority": true,
+        "embeds_promotion_grant": false,
+        "presented_as_gate_pass": false,
+        "correlation_claimed_as_registry_evidence": false,
+        "correlation_refs": ["platform:event:000034"],
+        "gate_ref": "runtime:promotion-gate:000034",
+        "registry_ref": "model-registry:evidence:000034",
+        "asserted_at": "2026-09-08T12:00:34Z"
+      },
+      "reason": "A trace embedding promotion authority confuses observation with authority; promotion authority lives outside traces in gate/registry-owned stores."
+    },
+    {
+      "id": "PROM-003",
+      "kind": "promotion_gates",
+      "expected": "reject",
+      "input": {
+        "schema": "promotion-gates/0.1",
+        "trace_id": "trc_55555555555555555555555555555555",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "observation_ref": "wie:observation:000035",
+        "classification": "execution",
+        "embeds_promotion_authority": false,
+        "embeds_promotion_grant": false,
+        "presented_as_gate_pass": true,
+        "correlation_claimed_as_registry_evidence": false,
+        "correlation_refs": ["platform:event:000035"],
+        "gate_ref": "runtime:promotion-gate:000035",
+        "registry_ref": "model-registry:evidence:000035",
+        "asserted_at": "2026-09-08T12:00:35Z"
+      },
+      "reason": "A trace presented as a gate PASS by itself moves nothing; promotion requires gate plus registry evidence."
+    },
+    {
+      "id": "PROM-004",
+      "kind": "promotion_gates",
+      "expected": "reject",
+      "input": {
+        "schema": "promotion-gates/0.1",
+        "trace_id": "trc_66666666666666666666666666666666",
+        "observation_ref": "wie:observation:000036",
+        "embeds_promotion_authority": false,
+        "embeds_promotion_grant": false,
+        "presented_as_gate_pass": false,
+        "correlation_claimed_as_registry_evidence": false,
+        "correlation_refs": ["platform:event:000036"],
+        "gate_ref": "runtime:promotion-gate:000036",
+        "registry_ref": "model-registry:evidence:000036",
+        "asserted_at": "2026-09-08T12:00:36Z"
+      },
+      "reason": "A trace admitted without tenant scoping and classification cannot be governed; tenant scoping and classification are required."
+    },
+    {
+      "id": "PROM-005",
+      "kind": "promotion_gates",
+      "expected": "reject",
+      "input": {
+        "schema": "promotion-gates/0.1",
+        "trace_id": "trc_77777777777777777777777777777777",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "observation_ref": "wie:observation:000037",
+        "classification": "execution",
+        "embeds_promotion_authority": false,
+        "embeds_promotion_grant": false,
+        "presented_as_gate_pass": false,
+        "correlation_claimed_as_registry_evidence": true,
+        "correlation_refs": ["platform:event:000037"],
+        "gate_ref": "runtime:promotion-gate:000037",
+        "registry_ref": "model-registry:evidence:000037",
+        "asserted_at": "2026-09-08T12:00:37Z"
+      },
+      "reason": "Trace/registry correlation is correlation only; correlation presented as registry evidence is rejected."
+    },
+    {
+      "id": "PROM-006",
+      "kind": "promotion_gates",
+      "expected": "reject",
+      "input": {
+        "schema": "promotion-gates/0.1",
+        "trace_id": "trc_88888888888888888888888888888888",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "observation_ref": "wie:observation:000038",
+        "classification": "execution",
+        "embeds_promotion_authority": false,
+        "embeds_promotion_grant": false,
+        "presented_as_gate_pass": false,
+        "correlation_claimed_as_registry_evidence": false,
+        "correlation_refs": ["platform:event:000038"],
+        "gate_ref": "runtime:promotion-gate:000038",
+        "registry_ref": "model-registry:evidence:000038",
+        "challenger_ref": "model-registry:challenger:000038",
+        "executor_ref": "afm:executor:000038",
+        "evaluator_ref": "afm:executor:000038",
+        "asserted_at": "2026-09-08T12:00:38Z"
+      },
+      "reason": "A challenger trace scored by its own executor violates evaluator independence (inherited Wave E EVAL binding, not re-derived)."
+    },
+    {
+      "id": "PROM-007",
+      "kind": "promotion_gates",
+      "expected": "reject",
+      "input": {
+        "schema": "promotion-gates/0.1",
+        "trace_id": "trc_99999999999999999999999999999999",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "observation_ref": "wie:observation:000039",
+        "classification": "execution",
+        "embeds_promotion_authority": false,
+        "embeds_promotion_grant": false,
+        "presented_as_gate_pass": false,
+        "correlation_claimed_as_registry_evidence": false,
+        "correlation_refs": ["platform:event:000039"],
+        "gate_ref": "runtime:promotion-gate:000039",
+        "registry_ref": "model-registry:evidence:000039",
+        "claims_production_characterization": true,
+        "asserted_at": "2026-09-08T12:00:39Z"
+      },
+      "reason": "A production-trace characterization claim without production evidence is evidence-gated (BLOCKED_ON_PROMOTION_EVIDENCE), never proven with fixtures."
     }
   ]
 }
