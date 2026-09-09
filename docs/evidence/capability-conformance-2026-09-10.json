@@ -1,0 +1,125 @@
+{
+ "coverage_note": "Levels rate only evidence re-verified 2026-09-10. Prior-session landings (model-registry, brand sweep, sentinel, AIE revocation-freshness) are recorded in the mission final report narrative; exact merged-PR refs will be pinned in a follow-up matrix revision, not guessed here.",
+ "evidence_cut": "2026-09-10T00:30:00Z",
+ "ladder": "docs/PLATFORM-ARCHITECTURE-V4.md section 7 at gov main 2c44d0e (L0 REGISTERED .. L6 SCIENTIFICALLY-SUPPORTED). No capability claims L5/L6: no live characterization or preregistered reproducible research evidence exists. Single-implementation simulated results are not interoperability evidence.",
+ "rows": [
+  {
+   "blocker": "None. Follow-up: second unknown-repo live-fire probe to exercise the fail path against live API.",
+   "capability": "org-enforcement: unknown-repo and ephemeral-lifetime gates",
+   "evidence_class": "live",
+   "evidence_ref": "org-state-verify.sh live run 25 repos SCHEMA-OK DONE 2026-09-10 on gov main 2c44d0e; suites topology 59 OK / enforcement 7 OK / org-state 5 OK; expiry gate functionally probed with synthetic expired entry",
+   "last_verified": "2026-09-10",
+   "level": "L1",
+   "owner": "after-graph-governance"
+  },
+  {
+   "blocker": "docs#20 REVIEW_REQUIRED (owner review); live cross-service execution with exact-head repos not yet run",
+   "capability": "golden-mission executable scenario + fault campaign",
+   "evidence_class": "simulated",
+   "evidence_ref": "docs mission/phase4-golden-scenario 2d9fdb0 (unmerged): node scripts/golden-mission.mjs PASS (10 steps, 7 faults CONTAINED), re-executed locally 2026-09-10; validate.mjs PASS; CI gates pass, deploy skipping",
+   "last_verified": "2026-09-10",
+   "level": "L4",
+   "owner": "docs"
+  },
+  {
+   "blocker": "works-execution#69/#71/#72 REVIEW_REQUIRED (owner review); 12-case adversarial campaign evidence lives on unmerged branches",
+   "capability": "runtime-works dispatch seal",
+   "evidence_class": "internal",
+   "evidence_ref": "works-execution#70 merged 2026-09-09T23:27:12Z; #71 head 6144ecd CI test+Analyze+CodeQL green with ErrVerificationVerdictConflict fail-closed (44 pkgs go test ./... 0 FAIL re-run locally); seal contract vetos SUCCEEDED->VERIFIED without independent verdict",
+   "last_verified": "2026-09-10",
+   "level": "L1",
+   "owner": "works-execution"
+  },
+  {
+   "blocker": "Trust Gateway admission + AIE lease binding against the seam proven only in scenario simulation, not live",
+   "capability": "runtime execution isolation seam",
+   "evidence_class": "internal",
+   "evidence_ref": "runtime#111 merged 2026-09-09T23:27:45Z (TDD isolation seam: egress intent, lineage, resume revalidation)",
+   "last_verified": "2026-09-10",
+   "level": "L1",
+   "owner": "runtime"
+  },
+  {
+   "blocker": "trust-gateway#82/#83/#84 REVIEW_REQUIRED (owner review); implementation off-main",
+   "capability": "trust-gateway credential surrogation + governed egress",
+   "evidence_class": "internal",
+   "evidence_ref": "trust-gateway#82 CI green (test 1m22s, gate/integration 1m12s, CodeQL pass) on unmerged branch; opaque-handle + pre-dispatch revalidation contract",
+   "last_verified": "2026-09-09",
+   "level": "L0",
+   "owner": "trust-gateway"
+  },
+  {
+   "blocker": "Second independent runtime family (LangGraph/Temporal/Restate) not yet campaigned",
+   "capability": "continuum containment evaluation",
+   "evidence_class": "internal",
+   "evidence_ref": "continuum#15 merged 2026-09-09T23:24:47Z (containment STOP never scores as recovery); validate 10s pass",
+   "last_verified": "2026-09-10",
+   "level": "L1",
+   "owner": "continuum"
+  },
+  {
+   "blocker": "Cross-runtime capsule reception (Runtime B + Model B) demonstrated in tests only",
+   "capability": "portable continuity crossing",
+   "evidence_class": "internal",
+   "evidence_ref": "context-continuity#6 merged 2026-09-09T23:26:32Z (fail-closed tuples bound to checkpoint/epoch/hash/freshness)",
+   "last_verified": "2026-09-10",
+   "level": "L1",
+   "owner": "context-continuity"
+  },
+  {
+   "blocker": "Quarantine-by-default + promotion-path enforcement beyond hash pinning not yet evidenced",
+   "capability": "skill supply-chain provenance",
+   "evidence_class": "internal",
+   "evidence_ref": "skills-vault#64 merged 2026-09-09T23:26:35Z (AI-authored skills must pin content hash)",
+   "last_verified": "2026-09-10",
+   "level": "L1",
+   "owner": "skills-vault"
+  },
+  {
+   "blocker": "studio#47/#48 REVIEW_REQUIRED (owner review); controls use canonical upstream APIs only on branch",
+   "capability": "studio goal projection (needs-you, lifecycle, verification stages)",
+   "evidence_class": "internal",
+   "evidence_ref": "studio#48 CI green (18-gate release verification 2m19s pass) on unmerged branch; declared/executed/pending/verified rendered as distinct states",
+   "last_verified": "2026-09-09",
+   "level": "L0",
+   "owner": "studio"
+  },
+  {
+   "blocker": "aie#58 REVIEW_REQUIRED (owner review); A2A TCK / OPA-Cedar / federation chaos gates untouched",
+   "capability": "aie authority grants, delegation, budgets, revocation",
+   "evidence_class": "internal",
+   "evidence_ref": "aie#58 open (human-governance authority grants); existing revocation-freshness work preserved, not duplicated",
+   "last_verified": "2026-09-09",
+   "level": "L0",
+   "owner": "aie"
+  },
+  {
+   "blocker": "Production deploy credentials/configuration unavailable; deploy check skips in CI (docs#20). Precise BLOCKED record carried in mission final report.",
+   "capability": "docs production deployment (exact-SHA verified)",
+   "evidence_class": "internal",
+   "evidence_ref": "No CLOUDFLARE_API_TOKEN/account deploy performed; build-manifest site_commit comparison never executed against live https://docs.aftergraph.org; never claimed",
+   "last_verified": "2026-09-10",
+   "level": "L0",
+   "owner": "docs"
+  },
+  {
+   "blocker": "Zero consumer cutovers evidenced; 8 ledger rows all pre-removal; archive action REQUIRES_EXPLICIT_OWNER_AUTHORIZATION",
+   "capability": "avc legacy dissolution",
+   "evidence_class": "internal",
+   "evidence_ref": "docs/evidence/avc-dissolution-ledger-2026-09-10.json verdict BASELINED on AVC main e08d3372dda3; recount 2026-09-10: 46 manifests with @avc/* refs (unchanged); 5 rows target_capability_proven, 2 extraction_proposed, 1 proposed",
+   "last_verified": "2026-09-10",
+   "level": "L0",
+   "owner": "after-graph-governance"
+  },
+  {
+   "blocker": "sentinel-firetest (expires 2026-09-21) and sentinel-firetest2 (expires 2026-09-22) retire or re-register on expiry; enforcement gate fails closed past expiry",
+   "capability": "ephemeral fixture lifecycle (firetests)",
+   "evidence_class": "live",
+   "evidence_ref": "platform-topology/2.0.json 25 repos on gov main 2c44d0e; live org diff 2026-09-10: 0 unknown repos; expires_at enforced by validator + generator",
+   "last_verified": "2026-09-10",
+   "level": "L1",
+   "owner": "after-graph-governance"
+  }
+ ],
+ "schema": "capability-conformance/0.1"
+}
