@@ -13,6 +13,7 @@ on:
       - 'scripts/test_platform_fabrics_v0_1.py'
       - 'scripts/test_golden_mission_skeleton_v0_1.py'
       - 'scripts/test_wave_b_requests_v0_1.py'
+      - 'scripts/test_wave_c_requests_v0_1.py'
       - 'scripts/test_world_state_conformance_v0_1.py'
       - '.github/workflows/platform-fabrics.yml'
   push:
@@ -28,6 +29,7 @@ on:
       - 'scripts/test_platform_fabrics_v0_1.py'
       - 'scripts/test_golden_mission_skeleton_v0_1.py'
       - 'scripts/test_wave_b_requests_v0_1.py'
+      - 'scripts/test_wave_c_requests_v0_1.py'
       - 'scripts/test_world_state_conformance_v0_1.py'
       - '.github/workflows/platform-fabrics.yml'
 
@@ -51,3 +53,5 @@ jobs:
         run: python scripts/test_wave_b_requests_v0_1.py
       - name: Run World State conformance
         run: python scripts/test_world_state_conformance_v0_1.py
+      - name: Run Wave C request conformance
+        run: python scripts/test_wave_c_requests_v0_1.py
