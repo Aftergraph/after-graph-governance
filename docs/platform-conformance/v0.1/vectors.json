@@ -1008,6 +1008,69 @@
         "tenant_id": "ten_11111111111111111111111111111111"
       },
       "reason": "A worker self-granting authority and self-declaring verified completion bypasses independent verification; both fail closed."
+    },
+    {
+      "id": "EVAL-001",
+      "kind": "agent_eval",
+      "expected": "accept",
+      "input": {
+        "schema": "agent-eval/0.1",
+        "eval_id": "evl_11111111111111111111111111111111",
+        "delegation_ref": "del_11111111111111111111111111111111",
+        "executor_ref": "runtime:worker:000001",
+        "evaluator_ref": "verification:eval:000001",
+        "criteria_refs": ["org:delegation:envelope-narrower", "org:delegation:budget-partition"],
+        "evidence_refs": ["works:evidence:000007"],
+        "verdict": "pass",
+        "self_promoting": false,
+        "mutates_governance": false,
+        "waives_verification": false,
+        "asserted_at": "2026-09-08T12:00:00Z",
+        "tenant_id": "ten_11111111111111111111111111111111"
+      },
+      "reason": "An evaluator distinct from the executor scoring a delegation record against explicit criteria with evidence references stays independent and advisory."
+    },
+    {
+      "id": "EVAL-002",
+      "kind": "agent_eval",
+      "expected": "reject",
+      "input": {
+        "schema": "agent-eval/0.1",
+        "eval_id": "evl_22222222222222222222222222222222",
+        "delegation_ref": "del_22222222222222222222222222222222",
+        "executor_ref": "runtime:worker:000002",
+        "evaluator_ref": "runtime:worker:000002",
+        "criteria_refs": ["org:delegation:envelope-narrower"],
+        "evidence_refs": ["works:evidence:000008"],
+        "verdict": "pass",
+        "self_promoting": false,
+        "mutates_governance": false,
+        "waives_verification": false,
+        "asserted_at": "2026-09-08T12:00:01Z",
+        "tenant_id": "ten_11111111111111111111111111111111"
+      },
+      "reason": "Evaluators never score their own execution: an evaluator identical to the executor fails closed."
+    },
+    {
+      "id": "EVAL-003",
+      "kind": "agent_eval",
+      "expected": "reject",
+      "input": {
+        "schema": "agent-eval/0.1",
+        "eval_id": "evl_33333333333333333333333333333333",
+        "delegation_ref": "del_33333333333333333333333333333333",
+        "executor_ref": "runtime:worker:000003",
+        "evaluator_ref": "verification:eval:000003",
+        "criteria_refs": ["org:delegation:envelope-narrower"],
+        "evidence_refs": ["works:evidence:000009"],
+        "verdict": "pass",
+        "self_promoting": true,
+        "mutates_governance": true,
+        "waives_verification": true,
+        "asserted_at": "2026-09-08T12:00:02Z",
+        "tenant_id": "ten_11111111111111111111111111111111"
+      },
+      "reason": "The verdict is advisory only: a verdict that declares its own authority, mutates governance state, or waives verification fails closed."
     }
   ]
 }

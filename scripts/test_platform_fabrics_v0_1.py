@@ -25,6 +25,7 @@ CONSENT_SCHEMA = ROOT / "docs/contracts/consent-ledger/0.1.json"
 LIFECYCLE_SCHEMA = ROOT / "docs/contracts/tenant-lifecycle/0.1.json"
 PROACTIVITY_SCHEMA = ROOT / "docs/contracts/proactivity/0.1.json"
 ORG_DELEGATION_SCHEMA = ROOT / "docs/contracts/org-delegation/0.1.json"
+EVAL_SCHEMA = ROOT / "docs/contracts/agent-eval/0.1.json"
 VECTORS = ROOT / "docs/platform-conformance/v0.1/vectors.json"
 
 HEX32 = r"[a-f0-9]{32}"
@@ -45,6 +46,7 @@ ID_PATTERNS = {
     "lifecycle_id": re.compile(rf"^lif_{HEX32}$"),
     "sensing_id": re.compile(rf"^sen_{HEX32}$"),
     "delegation_id": re.compile(rf"^del_{HEX32}$"),
+    "eval_id": re.compile(rf"^evl_{HEX32}$"),
 }
 
 EVENT_REQUIRED = {
@@ -224,6 +226,23 @@ ORG_REQUIRED = {
     "tenant_id",
 }
 ORG_ALLOWED = set(ORG_REQUIRED)
+EVAL_REQUIRED = {
+    "schema",
+    "eval_id",
+    "delegation_ref",
+    "executor_ref",
+    "evaluator_ref",
+    "criteria_refs",
+    "evidence_refs",
+    "verdict",
+    "self_promoting",
+    "mutates_governance",
+    "waives_verification",
+    "asserted_at",
+    "tenant_id",
+}
+EVAL_ALLOWED = set(EVAL_REQUIRED)
+EVAL_VERDICTS = {"pass", "fail", "needs_review"}
 EPISTEMIC_STATES = {"observed", "inferred", "predicted", "unknown"}
 CURRENTNESS_STATES = {"current", "stale", "disputed", "superseded"}
 EVIDENCE_REQUIREMENTS = {"none", "current_observed"}
@@ -972,6 +991,73 @@ def validate_org_delegation(document: Any) -> list[str]:
     return errors
 
 
+def _is_ref_list(value: Any) -> bool:
+    return (
+        isinstance(value, list)
+        and 1 <= len(value) <= 32
+        and all(isinstance(item, str) and 0 < len(item) <= 512 for item in value)
+    )
+
+
+def validate_agent_eval(document: Any) -> list[str]:
+    errors: list[str] = []
+    if not isinstance(document, dict):
+        return ["agent eval must be an object"]
+
+    keys = set(document)
+    missing = EVAL_REQUIRED - keys
+    extra = keys - EVAL_ALLOWED
+    if missing:
+        errors.append(f"missing agent-eval fields: {sorted(missing)}")
+    if extra:
+        errors.append(f"unexpected agent-eval fields: {sorted(extra)}")
+
+    if document.get("schema") != "agent-eval/0.1":
+        errors.append("wrong agent-eval schema")
+    if not valid_id("eval_id", document.get("eval_id")):
+        errors.append("invalid eval_id")
+    if not valid_id("delegation_id", document.get("delegation_ref")):
+        errors.append("invalid delegation_ref")
+    if not nonempty_string(document.get("executor_ref")):
+        errors.append("invalid executor_ref")
+    if not nonempty_string(document.get("evaluator_ref")):
+        errors.append("invalid evaluator_ref")
+
+    if not _is_ref_list(document.get("criteria_refs")):
+        errors.append("scoring requires explicit criteria: criteria_refs must contain 1..32 references")
+    if not _is_ref_list(document.get("evidence_refs")):
+        errors.append("scoring requires evidence references: evidence_refs must contain 1..32 references")
+
+    if document.get("verdict") not in EVAL_VERDICTS:
+        errors.append("invalid verdict")
+
+    for field in ("self_promoting", "mutates_governance", "waives_verification"):
+        if not isinstance(document.get(field), bool):
+            errors.append(f"{field} must be a boolean")
+
+    if not parse_rfc3339(document.get("asserted_at")):
+        errors.append("invalid asserted_at")
+    if not valid_id("tenant_id", document.get("tenant_id")):
+        errors.append("invalid tenant_id")
+
+    executor_ref = document.get("executor_ref")
+    evaluator_ref = document.get("evaluator_ref")
+    if (
+        isinstance(executor_ref, str)
+        and executor_ref
+        and evaluator_ref == executor_ref
+    ):
+        errors.append("evaluators never score their own execution")
+    if document.get("self_promoting") is True:
+        errors.append("eval verdict is advisory only: it never declares its own authority")
+    if document.get("mutates_governance") is True:
+        errors.append("eval verdict is advisory only: it mutates no governance state")
+    if document.get("waives_verification") is True:
+        errors.append("eval verdict is advisory only: it waives no verification requirement")
+
+    return errors
+
+
 def validate_causal_chain(document: Any) -> list[str]:
     errors: list[str] = []
     if not isinstance(document, dict):
@@ -1054,6 +1140,8 @@ def validate_vector(vector: dict[str, Any]) -> list[str]:
         return validate_proactivity(document)
     if kind == "org_delegation":
         return validate_org_delegation(document)
+    if kind == "agent_eval":
+        return validate_agent_eval(document)
     if kind == "causal_chain":
         return validate_causal_chain(document)
     return [f"unknown vector kind: {kind!r}"]
@@ -1180,6 +1268,24 @@ def valid_org_delegation() -> dict[str, Any]:
         "self_granted": False,
         "declares_completion": False,
         "verified_by_independent": False,
+        "asserted_at": "2026-09-08T12:00:00Z",
+        "tenant_id": "ten_11111111111111111111111111111111",
+    }
+
+
+def valid_agent_eval() -> dict[str, Any]:
+    return {
+        "schema": "agent-eval/0.1",
+        "eval_id": "evl_11111111111111111111111111111111",
+        "delegation_ref": "del_11111111111111111111111111111111",
+        "executor_ref": "runtime:worker:000001",
+        "evaluator_ref": "verification:eval:000001",
+        "criteria_refs": ["org:delegation:envelope-narrower", "org:delegation:budget-partition"],
+        "evidence_refs": ["works:evidence:000007"],
+        "verdict": "pass",
+        "self_promoting": False,
+        "mutates_governance": False,
+        "waives_verification": False,
         "asserted_at": "2026-09-08T12:00:00Z",
         "tenant_id": "ten_11111111111111111111111111111111",
     }
@@ -1472,6 +1578,66 @@ class PlatformFabricsV01Tests(unittest.TestCase):
             ("ORG-002", "reject"),
             ("ORG-003", "reject"),
             ("ORG-004", "reject"),
+        ):
+            self.assertIn(vector_id, by_id)
+            self.assertEqual(by_id[vector_id]["expected"], expected)
+
+    def test_agent_eval_contract_is_strict_and_experimental(self) -> None:
+        schema = load_json(EVAL_SCHEMA)
+        self.assertFalse(schema.get("additionalProperties"), schema["title"])
+        self.assertIn("EXPERIMENTAL", schema.get("description", ""))
+        self.assertIn("authority", schema.get("description", "").lower())
+        self.assertEqual(schema["properties"]["schema"]["const"], "agent-eval/0.1")
+
+    def test_independent_evaluator_scoring_a_delegation_accepts(self) -> None:
+        document = valid_agent_eval()
+        self.assertEqual(validate_agent_eval(document), [])
+
+    def test_executor_cannot_score_own_execution(self) -> None:
+        document = valid_agent_eval()
+        self.assertEqual(validate_agent_eval(document), [])
+        document["evaluator_ref"] = document["executor_ref"]
+        errors = validate_agent_eval(document)
+        self.assertTrue(
+            any("never score their own execution" in error for error in errors)
+        )
+
+    def test_eval_scoring_requires_criteria_and_evidence(self) -> None:
+        document = valid_agent_eval()
+        document["criteria_refs"] = []
+        errors = validate_agent_eval(document)
+        self.assertTrue(
+            any("explicit criteria" in error for error in errors)
+        )
+        document = valid_agent_eval()
+        document["evidence_refs"] = []
+        errors = validate_agent_eval(document)
+        self.assertTrue(
+            any("evidence references" in error for error in errors)
+        )
+
+    def test_eval_verdict_stays_advisory_only(self) -> None:
+        for field, marker in (
+            ("self_promoting", "advisory only"),
+            ("mutates_governance", "mutates no governance"),
+            ("waives_verification", "waives no verification"),
+        ):
+            with self.subTest(field=field):
+                document = valid_agent_eval()
+                document[field] = True
+                errors = validate_agent_eval(document)
+                self.assertTrue(
+                    any(marker in error for error in errors),
+                    f"{field} must fail closed",
+                )
+
+    def test_agent_eval_vectors_are_registered(self) -> None:
+        fixture = load_json(VECTORS)
+        by_id = {vector.get("id"): vector for vector in fixture["vectors"]}
+        for vector_id, expected in (
+            ("EVAL-001", "accept"),
+            ("EVAL-002", "reject"),
+            ("EVAL-003", "reject"),
         ):
             self.assertIn(vector_id, by_id)
             self.assertEqual(by_id[vector_id]["expected"], expected)
