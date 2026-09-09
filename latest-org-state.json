@@ -1,6 +1,6 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-09T11:28:00Z",
+  "generated_at": "2026-09-09T11:41:27Z",
   "generator": "/mnt/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
@@ -8,9 +8,9 @@
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "45e621519401a3119ff1891995aedd8d42abb37c",
-      "remote_head_short": "45e6215",
-      "head_commit_message": "evidence(governance): Wave H Task 3 — routing/skill/workflow gates PROM vectors (#113)",
+      "remote_head_sha": "b27b8a6e8e98e88c49560c854142be7039622016",
+      "remote_head_short": "b27b8a6",
+      "head_commit_message": "evidence(governance): Wave H Task 4 — model promotion gate PROM vectors (#115)",
       "private": false,
       "archived": false,
       "protected": true,
