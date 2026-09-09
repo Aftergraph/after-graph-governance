@@ -19,6 +19,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 EVENT_SCHEMA = ROOT / "docs/contracts/platform-event-ref/0.1.json"
 CAPABILITY_SCHEMA = ROOT / "docs/contracts/capability-action/0.1.json"
+ASSERTION_SCHEMA = ROOT / "docs/contracts/world-assertion/0.1.json"
 VECTORS = ROOT / "docs/platform-conformance/v0.1/vectors.json"
 
 HEX32 = r"[a-f0-9]{32}"
@@ -33,6 +34,7 @@ ID_PATTERNS = {
     "action_decision_id": re.compile(rf"^pdr_{HEX32}$"),
     "trace_id": re.compile(rf"^trc_{HEX32}$"),
     "action_id": re.compile(rf"^act_{HEX32}$"),
+    "assertion_id": re.compile(rf"^ast_{HEX32}$"),
 }
 
 EVENT_REQUIRED = {
@@ -98,6 +100,32 @@ SELECTION_KEYS = {
     "minimize_context_pressure",
     "allow_fallback",
 }
+WA_REQUIRED = {
+    "schema",
+    "assertion_id",
+    "subject",
+    "predicate",
+    "value_or_ref",
+    "epistemic",
+    "currentness",
+    "source_refs",
+    "evidence_refs",
+    "observed_at",
+    "evidence_observed_at",
+    "asserted_at",
+    "valid_until",
+    "tenant_id",
+    "domain",
+    "classification",
+    "consent_record",
+    "consent_version",
+    "purpose",
+    "evidence_requirement",
+}
+WA_ALLOWED = set(WA_REQUIRED) | {"confidence"}
+EPISTEMIC_STATES = {"observed", "inferred", "predicted", "unknown"}
+CURRENTNESS_STATES = {"current", "stale", "disputed", "superseded"}
+EVIDENCE_REQUIREMENTS = {"none", "current_observed"}
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -294,6 +322,87 @@ def validate_capability_action(document: Any) -> list[str]:
     return errors
 
 
+def validate_world_assertion(document: Any) -> list[str]:
+    errors: list[str] = []
+    if not isinstance(document, dict):
+        return ["world assertion must be an object"]
+
+    keys = set(document)
+    missing = WA_REQUIRED - keys
+    extra = keys - WA_ALLOWED
+    if missing:
+        errors.append(f"missing assertion fields: {sorted(missing)}")
+    if extra:
+        errors.append(f"unexpected assertion fields: {sorted(extra)}")
+
+    if document.get("schema") != "world-assertion/0.1":
+        errors.append("wrong world-assertion schema")
+    if not valid_id("assertion_id", document.get("assertion_id")):
+        errors.append("invalid assertion_id")
+    for field in ("subject", "predicate", "value_or_ref"):
+        if not nonempty_string(document.get(field)):
+            errors.append(f"invalid {field}")
+
+    epistemic = document.get("epistemic")
+    if epistemic not in EPISTEMIC_STATES:
+        errors.append("invalid epistemic state")
+    currentness = document.get("currentness")
+    if currentness not in CURRENTNESS_STATES:
+        errors.append("invalid currentness state")
+
+    for field in ("source_refs", "evidence_refs"):
+        refs = document.get(field)
+        if (
+            not isinstance(refs, list)
+            or not 1 <= len(refs) <= 32
+            or any(not nonempty_string(item) for item in refs)
+        ):
+            errors.append(f"{field} must contain 1..32 references")
+
+    timing_ok = True
+    for field in ("observed_at", "evidence_observed_at", "asserted_at", "valid_until"):
+        if not parse_rfc3339(document.get(field)):
+            errors.append(f"invalid {field}")
+            timing_ok = False
+
+    if not valid_id("tenant_id", document.get("tenant_id")):
+        errors.append("invalid tenant_id")
+    for field in ("domain", "classification", "consent_record", "purpose"):
+        if not nonempty_string(document.get(field), maximum=256):
+            errors.append(f"invalid {field}")
+    if not nonempty_string(document.get("consent_version"), maximum=64):
+        errors.append("invalid consent_version")
+
+    confidence = document.get("confidence")
+    if confidence is not None and (
+        isinstance(confidence, bool)
+        or not isinstance(confidence, (int, float))
+        or not 0 <= confidence <= 1
+    ):
+        errors.append("confidence must be between 0 and 1")
+
+    requirement = document.get("evidence_requirement")
+    if requirement not in EVIDENCE_REQUIREMENTS:
+        errors.append("invalid evidence_requirement")
+    elif (
+        requirement == "current_observed"
+        and (epistemic != "observed" or currentness != "current")
+    ):
+        errors.append("only current observed state satisfies a current observed evidence requirement")
+
+    if timing_ok:
+        observed_at = document.get("observed_at")
+        evidence_observed_at = document.get("evidence_observed_at")
+        asserted_at = document.get("asserted_at")
+        valid_until = document.get("valid_until")
+        if observed_at > evidence_observed_at:
+            errors.append("assertion observation postdates its evidence without new observation")
+        if valid_until < asserted_at and currentness == "current":
+            errors.append("expired validity must be represented as stale or unknown, not current")
+
+    return errors
+
+
 def validate_causal_chain(document: Any) -> list[str]:
     errors: list[str] = []
     if not isinstance(document, dict):
@@ -364,9 +473,37 @@ def validate_vector(vector: dict[str, Any]) -> list[str]:
         return validate_event_ref(document)
     if kind == "capability_action":
         return validate_capability_action(document)
+    if kind == "world_assertion":
+        return validate_world_assertion(document)
     if kind == "causal_chain":
         return validate_causal_chain(document)
     return [f"unknown vector kind: {kind!r}"]
+
+
+def valid_world_assertion() -> dict[str, Any]:
+    return {
+        "schema": "world-assertion/0.1",
+        "assertion_id": "ast_11111111111111111111111111111111",
+        "subject": "work:commit",
+        "predicate": "completed_by",
+        "value_or_ref": "works:event:000007",
+        "epistemic": "observed",
+        "currentness": "current",
+        "source_refs": ["works-execution"],
+        "evidence_refs": ["works:evidence:000007"],
+        "observed_at": "2026-09-08T12:00:00Z",
+        "evidence_observed_at": "2026-09-08T12:00:00Z",
+        "asserted_at": "2026-09-08T12:00:00Z",
+        "valid_until": "2026-09-09T12:00:00Z",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "domain": "execution",
+        "classification": "operations",
+        "consent_record": "consent:ledger:000001",
+        "consent_version": "v3",
+        "purpose": "mission-evidence",
+        "confidence": 0.9,
+        "evidence_requirement": "current_observed",
+    }
 
 
 class PlatformFabricsV01Tests(unittest.TestCase):
@@ -416,6 +553,46 @@ class PlatformFabricsV01Tests(unittest.TestCase):
         ):
             self.assertIn(vector_id, by_id)
             self.assertEqual(by_id[vector_id]["expected"], expected)
+
+    def test_world_assertion_vectors_are_registered(self) -> None:
+        fixture = load_json(VECTORS)
+        by_id = {vector.get("id"): vector for vector in fixture["vectors"]}
+        for vector_id, expected in (
+            ("WA-001", "accept"),
+            ("WA-002", "reject"),
+            ("WA-003", "reject"),
+        ):
+            self.assertIn(vector_id, by_id)
+            self.assertEqual(by_id[vector_id]["expected"], expected)
+
+    def test_world_assertion_contract_is_strict_and_experimental(self) -> None:
+        schema = load_json(ASSERTION_SCHEMA)
+        self.assertFalse(schema.get("additionalProperties"), schema["title"])
+        self.assertIn("EXPERIMENTAL", schema.get("description", ""))
+        self.assertIn("authority", schema.get("description", "").lower())
+        self.assertEqual(schema["properties"]["schema"]["const"], "world-assertion/0.1")
+
+    def test_prediction_cannot_satisfy_observed_requirement(self) -> None:
+        document = valid_world_assertion()
+        self.assertEqual(validate_world_assertion(document), [])
+        document["epistemic"] = "predicted"
+        errors = validate_world_assertion(document)
+        self.assertTrue(
+            any("only current observed state satisfies" in error for error in errors)
+        )
+
+    def test_observation_cannot_postdate_evidence(self) -> None:
+        document = valid_world_assertion()
+        document["observed_at"] = "2026-09-08T14:00:00Z"
+        document["asserted_at"] = "2026-09-08T14:00:01Z"
+        errors = validate_world_assertion(document)
+        self.assertTrue(any("postdates its evidence" in error for error in errors))
+
+    def test_expired_validity_must_not_claim_current(self) -> None:
+        document = valid_world_assertion()
+        document["valid_until"] = "2026-09-08T11:00:00Z"
+        errors = validate_world_assertion(document)
+        self.assertTrue(any("stale or unknown, not current" in error for error in errors))
 
     def test_fallback_acceptance_vectors_are_registered(self) -> None:
         fixture = load_json(VECTORS)

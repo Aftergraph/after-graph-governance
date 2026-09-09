@@ -446,6 +446,91 @@
         ]
       },
       "reason": "A broken canonical action identity across the consequential works seam, with no action-time decision to bind the effect, fails closed."
+    },
+    {
+      "id": "WA-001",
+      "kind": "world_assertion",
+      "expected": "accept",
+      "input": {
+        "schema": "world-assertion/0.1",
+        "assertion_id": "ast_11111111111111111111111111111111",
+        "subject": "work:commit",
+        "predicate": "completed_by",
+        "value_or_ref": "works:event:000007",
+        "epistemic": "observed",
+        "currentness": "current",
+        "source_refs": ["works-execution"],
+        "evidence_refs": ["works:evidence:000007"],
+        "observed_at": "2026-09-08T12:00:00Z",
+        "evidence_observed_at": "2026-09-08T12:00:00Z",
+        "asserted_at": "2026-09-08T12:00:00Z",
+        "valid_until": "2026-09-09T12:00:00Z",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "domain": "execution",
+        "classification": "operations",
+        "consent_record": "consent:ledger:000001",
+        "consent_version": "v3",
+        "purpose": "mission-evidence",
+        "confidence": 0.9,
+        "evidence_requirement": "current_observed"
+      },
+      "reason": "Current observed state with full provenance, timing, scope, and consent/purpose lineage satisfies a current-observed evidence requirement."
+    },
+    {
+      "id": "WA-002",
+      "kind": "world_assertion",
+      "expected": "reject",
+      "input": {
+        "schema": "world-assertion/0.1",
+        "assertion_id": "ast_22222222222222222222222222222222",
+        "subject": "work:commit",
+        "predicate": "completed_by",
+        "value_or_ref": "works:event:000008",
+        "epistemic": "predicted",
+        "currentness": "current",
+        "source_refs": ["works-execution"],
+        "evidence_refs": ["works:evidence:000008"],
+        "observed_at": "2026-09-08T12:00:01Z",
+        "evidence_observed_at": "2026-09-08T12:00:01Z",
+        "asserted_at": "2026-09-08T12:00:01Z",
+        "valid_until": "2026-09-09T12:00:01Z",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "domain": "execution",
+        "classification": "operations",
+        "consent_record": "consent:ledger:000001",
+        "consent_version": "v3",
+        "purpose": "mission-evidence",
+        "evidence_requirement": "current_observed"
+      },
+      "reason": "Predicted state may guide planning but cannot silently satisfy a policy that requires current observed evidence."
+    },
+    {
+      "id": "WA-003",
+      "kind": "world_assertion",
+      "expected": "reject",
+      "input": {
+        "schema": "world-assertion/0.1",
+        "assertion_id": "ast_33333333333333333333333333333333",
+        "subject": "work:commit",
+        "predicate": "completed_by",
+        "value_or_ref": "works:event:000009",
+        "epistemic": "observed",
+        "currentness": "current",
+        "source_refs": ["works-execution"],
+        "evidence_refs": ["works:evidence:000009"],
+        "observed_at": "2026-09-08T14:00:00Z",
+        "evidence_observed_at": "2026-09-08T12:00:00Z",
+        "asserted_at": "2026-09-08T14:00:01Z",
+        "valid_until": "2026-09-08T13:00:00Z",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "domain": "execution",
+        "classification": "operations",
+        "consent_record": "consent:ledger:000001",
+        "consent_version": "v3",
+        "purpose": "mission-evidence",
+        "evidence_requirement": "none"
+      },
+      "reason": "Stale state re-stamped with a fresh observation time and claimed current past its validity is timestamp laundering, not freshness."
     }
   ]
 }
