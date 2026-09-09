@@ -23,6 +23,7 @@ ASSERTION_SCHEMA = ROOT / "docs/contracts/world-assertion/0.1.json"
 SITUATION_SCHEMA = ROOT / "docs/contracts/situation/0.1.json"
 CONSENT_SCHEMA = ROOT / "docs/contracts/consent-ledger/0.1.json"
 LIFECYCLE_SCHEMA = ROOT / "docs/contracts/tenant-lifecycle/0.1.json"
+PROACTIVITY_SCHEMA = ROOT / "docs/contracts/proactivity/0.1.json"
 VECTORS = ROOT / "docs/platform-conformance/v0.1/vectors.json"
 
 HEX32 = r"[a-f0-9]{32}"
@@ -41,6 +42,7 @@ ID_PATTERNS = {
     "situation_id": re.compile(rf"^sit_{HEX32}$"),
     "ledger_id": re.compile(rf"^led_{HEX32}$"),
     "lifecycle_id": re.compile(rf"^lif_{HEX32}$"),
+    "sensing_id": re.compile(rf"^sen_{HEX32}$"),
 }
 
 EVENT_REQUIRED = {
@@ -187,6 +189,22 @@ TENANT_TRANSITIONS = {
 }
 TENANT_ACKS = {"export", "deletion", "retention"}
 TENANT_ACTIONS = {"none", "grant", "ingestion", "execution", "complete_export", "complete_deletion"}
+PRO_REQUIRED = {
+    "schema",
+    "sensing_id",
+    "path",
+    "native_ref",
+    "candidate_kind",
+    "claims_execution",
+    "claims_admission",
+    "admitted_by_tg",
+    "correlated_paths",
+    "asserted_at",
+    "tenant_id",
+}
+PRO_ALLOWED = set(PRO_REQUIRED)
+SENSING_PATHS = {"wie", "runtime", "cron"}
+CANDIDATE_KINDS = {"opportunity", "attention_candidate", "commitment_candidate", "observation_update", "finding"}
 EPISTEMIC_STATES = {"observed", "inferred", "predicted", "unknown"}
 CURRENTNESS_STATES = {"current", "stale", "disputed", "superseded"}
 EVIDENCE_REQUIREMENTS = {"none", "current_observed"}
@@ -793,6 +811,61 @@ def validate_tenant_lifecycle(document: Any) -> list[str]:
     return errors
 
 
+def validate_proactivity(document: Any) -> list[str]:
+    errors: list[str] = []
+    if not isinstance(document, dict):
+        return ["proactivity sensing must be an object"]
+
+    keys = set(document)
+    missing = PRO_REQUIRED - keys
+    extra = keys - PRO_ALLOWED
+    if missing:
+        errors.append(f"missing proactivity fields: {sorted(missing)}")
+    if extra:
+        errors.append(f"unexpected proactivity fields: {sorted(extra)}")
+
+    if document.get("schema") != "proactivity/0.1":
+        errors.append("wrong proactivity schema")
+    if not valid_id("sensing_id", document.get("sensing_id")):
+        errors.append("invalid sensing_id")
+
+    path = document.get("path")
+    if path not in SENSING_PATHS:
+        errors.append("invalid sensing path")
+    if not nonempty_string(document.get("native_ref")):
+        errors.append("invalid native_ref")
+
+    candidate_kind = document.get("candidate_kind")
+    if candidate_kind not in CANDIDATE_KINDS:
+        errors.append("invalid candidate kind")
+
+    for field in ("claims_execution", "claims_admission", "admitted_by_tg"):
+        if not isinstance(document.get(field), bool):
+            errors.append(f"{field} must be a boolean")
+
+    correlated = document.get("correlated_paths")
+    if (
+        not isinstance(correlated, list)
+        or not 1 <= len(correlated) <= 3
+        or any(item not in SENSING_PATHS for item in correlated)
+    ):
+        errors.append("correlated_paths must contain 1..3 sensing paths")
+    elif path in SENSING_PATHS and path not in correlated:
+        errors.append("sensing path must be among its correlated paths")
+
+    if not parse_rfc3339(document.get("asserted_at")):
+        errors.append("invalid asserted_at")
+    if not valid_id("tenant_id", document.get("tenant_id")):
+        errors.append("invalid tenant_id")
+
+    if path == "cron" and document.get("claims_execution") is True:
+        errors.append("cron fabric retains zero execution authority")
+    if candidate_kind == "commitment_candidate" and document.get("admitted_by_tg") is not True:
+        errors.append("candidates never self-admit to commitments")
+
+    return errors
+
+
 def validate_causal_chain(document: Any) -> list[str]:
     errors: list[str] = []
     if not isinstance(document, dict):
@@ -871,6 +944,8 @@ def validate_vector(vector: dict[str, Any]) -> list[str]:
         return validate_consent_ledger(document)
     if kind == "tenant_lifecycle":
         return validate_tenant_lifecycle(document)
+    if kind == "proactivity":
+        return validate_proactivity(document)
     if kind == "causal_chain":
         return validate_causal_chain(document)
     return [f"unknown vector kind: {kind!r}"]
@@ -964,6 +1039,22 @@ def valid_tenant_lifecycle() -> dict[str, Any]:
         ],
         "attempted_action": {"kind": "grant", "at": "2026-09-08T12:00:00Z"},
         "recorded_at": "2026-09-08T12:00:00Z",
+    }
+
+
+def valid_proactivity() -> dict[str, Any]:
+    return {
+        "schema": "proactivity/0.1",
+        "sensing_id": "sen_11111111111111111111111111111111",
+        "path": "wie",
+        "native_ref": "wie:signal:000001",
+        "candidate_kind": "opportunity",
+        "claims_execution": False,
+        "claims_admission": False,
+        "admitted_by_tg": False,
+        "correlated_paths": ["wie"],
+        "asserted_at": "2026-09-08T12:00:00Z",
+        "tenant_id": "ten_11111111111111111111111111111111",
     }
 
 
@@ -1157,6 +1248,48 @@ class PlatformFabricsV01Tests(unittest.TestCase):
             ("TEN-003", "reject"),
             ("TEN-004", "reject"),
             ("TEN-005", "reject"),
+        ):
+            self.assertIn(vector_id, by_id)
+            self.assertEqual(by_id[vector_id]["expected"], expected)
+
+    def test_proactivity_contract_is_strict_and_experimental(self) -> None:
+        schema = load_json(PROACTIVITY_SCHEMA)
+        self.assertFalse(schema.get("additionalProperties"), schema["title"])
+        self.assertIn("EXPERIMENTAL", schema.get("description", ""))
+        self.assertIn("authority", schema.get("description", "").lower())
+        self.assertEqual(schema["properties"]["schema"]["const"], "proactivity/0.1")
+
+    def test_cron_path_claims_no_execution_authority(self) -> None:
+        document = valid_proactivity()
+        self.assertEqual(validate_proactivity(document), [])
+        document["path"] = "cron"
+        document["correlated_paths"] = ["cron"]
+        document["claims_execution"] = True
+        errors = validate_proactivity(document)
+        self.assertTrue(
+            any("zero execution authority" in error for error in errors)
+        )
+
+    def test_commitment_candidate_requires_tg_admission(self) -> None:
+        document = valid_proactivity()
+        document["candidate_kind"] = "commitment_candidate"
+        document["claims_admission"] = True
+        document["admitted_by_tg"] = False
+        errors = validate_proactivity(document)
+        self.assertTrue(
+            any("never self-admit" in error for error in errors)
+        )
+
+    def test_proactivity_vectors_are_registered(self) -> None:
+        fixture = load_json(VECTORS)
+        by_id = {vector.get("id"): vector for vector in fixture["vectors"]}
+        for vector_id, expected in (
+            ("PRO-001", "accept"),
+            ("PRO-002", "reject"),
+            ("PRO-003", "reject"),
+            ("PRO-004", "accept"),
+            ("PRO-005", "accept"),
+            ("PRO-006", "accept"),
         ):
             self.assertIn(vector_id, by_id)
             self.assertEqual(by_id[vector_id]["expected"], expected)
