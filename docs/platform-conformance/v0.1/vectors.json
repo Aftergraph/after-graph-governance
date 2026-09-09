@@ -3224,6 +3224,261 @@
         "asserted_at": "2026-09-08T12:00:57Z"
       },
       "reason": "A production-gated routing/skill/workflow quality claim without production evidence is evidence-gated (BLOCKED_ON_PROMOTION_EVIDENCE), never proven with fixtures."
+    },
+    {
+      "id": "PROM-030",
+      "kind": "promotion_gates",
+      "expected": "accept",
+      "input": {
+        "schema": "promotion-gates/0.1",
+        "trace_id": "trc_30303030303030303030303030303030",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "observation_ref": "wie:observation:000030",
+        "classification": "research",
+        "embeds_promotion_authority": false,
+        "embeds_promotion_grant": false,
+        "presented_as_gate_pass": false,
+        "correlation_claimed_as_registry_evidence": false,
+        "correlation_refs": [
+          "platform:event:000030"
+        ],
+        "gate_ref": "runtime:promotion-gate:000030",
+        "registry_ref": "model-registry:evidence:000030",
+        "challenger_ref": "model-registry:challenger:000030",
+        "challenger_registration_ref": "model-registry:challenger-registration:000030",
+        "candidate_identity_disposable": true,
+        "promotion_subject": "model",
+        "promoted": true,
+        "promoted_by": "runtime:promotion-gate:000030",
+        "gate_evidence_ref": "runtime:promotion-gate:pass:000030",
+        "registry_evidence_ref": "model-registry:pass:000030",
+        "verifier_ref": "continuum:verifier:000030",
+        "executor_ref": "afm:executor:000030",
+        "evaluator_ref": "continuum:verifier:000031",
+        "research_evidence_ref": "llm-research-development:research:000030",
+        "afm_implementation_ref": "afm:implementation:000030",
+        "asserted_at": "2026-09-08T12:01:10Z"
+      },
+      "reason": "A model promotion through llm-research-development research evidence plus the afm implementation path plus a registry-owned model-registry PASS with independent verification moves only through gates plus registry evidence."
+    },
+    {
+      "id": "PROM-031",
+      "kind": "promotion_gates",
+      "expected": "reject",
+      "input": {
+        "schema": "promotion-gates/0.1",
+        "trace_id": "trc_31313131313131313131313131313131",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "observation_ref": "wie:observation:000031",
+        "classification": "execution",
+        "embeds_promotion_authority": false,
+        "embeds_promotion_grant": false,
+        "presented_as_gate_pass": false,
+        "correlation_claimed_as_registry_evidence": false,
+        "correlation_refs": [
+          "platform:event:000031"
+        ],
+        "gate_ref": "runtime:promotion-gate:000031",
+        "registry_ref": "model-registry:evidence:000031",
+        "challenger_ref": "model-registry:challenger:000031",
+        "challenger_registration_ref": "model-registry:challenger-registration:000031",
+        "candidate_identity_disposable": true,
+        "promotion_subject": "model",
+        "promoted": true,
+        "promoted_by": "runtime:promotion-gate:000031",
+        "gate_evidence_ref": "runtime:promotion-gate:pass:000031",
+        "verifier_ref": "continuum:verifier:000031",
+        "research_evidence_ref": "llm-research-development:research:000031",
+        "afm_implementation_ref": "afm:implementation:000031",
+        "asserted_at": "2026-09-08T12:01:11Z"
+      },
+      "reason": "A model promotion without model-registry evidence bypasses the registry gate and rejects; registry PASS is necessary, never self-asserted."
+    },
+    {
+      "id": "PROM-032",
+      "kind": "promotion_gates",
+      "expected": "reject",
+      "input": {
+        "schema": "promotion-gates/0.1",
+        "trace_id": "trc_32323232323232323232323232323232",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "observation_ref": "wie:observation:000032",
+        "classification": "execution",
+        "embeds_promotion_authority": false,
+        "embeds_promotion_grant": false,
+        "presented_as_gate_pass": false,
+        "correlation_claimed_as_registry_evidence": false,
+        "correlation_refs": [
+          "platform:event:000032"
+        ],
+        "gate_ref": "runtime:promotion-gate:000032",
+        "registry_ref": "model-registry:evidence:000032",
+        "challenger_ref": "model-registry:challenger:000032",
+        "challenger_registration_ref": "model-registry:challenger-registration:000032",
+        "candidate_identity_disposable": true,
+        "promotion_subject": "model",
+        "promoted": true,
+        "promoted_by": "model-registry:challenger:000032",
+        "gate_evidence_ref": "runtime:promotion-gate:pass:000032",
+        "registry_evidence_ref": "model-registry:pass:000032",
+        "verifier_ref": "continuum:verifier:000032",
+        "research_evidence_ref": "llm-research-development:research:000032",
+        "afm_implementation_ref": "afm:implementation:000032",
+        "asserted_at": "2026-09-08T12:01:12Z"
+      },
+      "reason": "A model promotion on challenger self-attestation alone is self-promotion and rejects; the challenger never promotes itself."
+    },
+    {
+      "id": "PROM-033",
+      "kind": "promotion_gates",
+      "expected": "reject",
+      "input": {
+        "schema": "promotion-gates/0.1",
+        "trace_id": "trc_33333333333333333333333333330033",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "observation_ref": "wie:observation:000033",
+        "classification": "execution",
+        "embeds_promotion_authority": false,
+        "embeds_promotion_grant": false,
+        "presented_as_gate_pass": false,
+        "correlation_claimed_as_registry_evidence": false,
+        "correlation_refs": [
+          "platform:event:000033"
+        ],
+        "gate_ref": "runtime:promotion-gate:000033",
+        "registry_ref": "model-registry:evidence:000033",
+        "challenger_ref": "model-registry:challenger:000033",
+        "challenger_registration_ref": "model-registry:challenger-registration:000033",
+        "candidate_identity_disposable": true,
+        "promotion_subject": "model",
+        "executor_ref": "afm:model-evaluator:000033",
+        "evaluator_ref": "afm:model-evaluator:000033",
+        "asserted_at": "2026-09-08T12:01:13Z"
+      },
+      "reason": "A model evaluator scoring its own execution rejects under the inherited Wave E EVAL binding; evaluators never score their own execution."
+    },
+    {
+      "id": "PROM-034",
+      "kind": "promotion_gates",
+      "expected": "reject",
+      "input": {
+        "schema": "promotion-gates/0.1",
+        "trace_id": "trc_34343434343434343434343434343434",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "observation_ref": "wie:observation:000034",
+        "classification": "research",
+        "embeds_promotion_authority": false,
+        "embeds_promotion_grant": false,
+        "presented_as_gate_pass": false,
+        "correlation_claimed_as_registry_evidence": false,
+        "correlation_refs": [
+          "platform:event:000034"
+        ],
+        "gate_ref": "runtime:promotion-gate:000034",
+        "registry_ref": "model-registry:evidence:000034",
+        "challenger_ref": "model-registry:challenger:000034",
+        "challenger_registration_ref": "model-registry:challenger-registration:000034",
+        "candidate_identity_disposable": true,
+        "promotion_subject": "model",
+        "promoted": true,
+        "promoted_by": "runtime:promotion-gate:000034",
+        "gate_evidence_ref": "runtime:promotion-gate:pass:000034",
+        "registry_evidence_ref": "model-registry:pass:000034",
+        "verifier_ref": "continuum:verifier:000034",
+        "research_evidence_ref": "llm-research-development:research:000034",
+        "afm_implementation_ref": "afm:implementation:000034",
+        "registry_pass_embedded": true,
+        "asserted_at": "2026-09-08T12:01:14Z"
+      },
+      "reason": "A registry PASS forged or embedded in the challenger payload instead of registry-owned rejects; registry PASS is referenced, never embedded."
+    },
+    {
+      "id": "PROM-035",
+      "kind": "promotion_gates",
+      "expected": "reject",
+      "input": {
+        "schema": "promotion-gates/0.1",
+        "trace_id": "trc_33333333555555555555555555550035",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "observation_ref": "wie:observation:000035",
+        "classification": "execution",
+        "embeds_promotion_authority": false,
+        "embeds_promotion_grant": false,
+        "presented_as_gate_pass": false,
+        "correlation_claimed_as_registry_evidence": false,
+        "correlation_refs": [
+          "platform:event:000035"
+        ],
+        "gate_ref": "runtime:promotion-gate:000035",
+        "registry_ref": "model-registry:evidence:000035",
+        "challenger_ref": "model-registry:challenger:000035",
+        "candidate_identity_disposable": true,
+        "promotion_subject": "model",
+        "model_rollback": true,
+        "asserted_at": "2026-09-08T12:01:15Z"
+      },
+      "reason": "A model rollback/supersede without a registry evidence update rejects; rollback moves only through updated registry evidence."
+    },
+    {
+      "id": "PROM-036",
+      "kind": "promotion_gates",
+      "expected": "reject",
+      "input": {
+        "schema": "promotion-gates/0.1",
+        "trace_id": "trc_33333333666666666666666666660036",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "observation_ref": "wie:observation:000036",
+        "classification": "execution",
+        "embeds_promotion_authority": false,
+        "embeds_promotion_grant": false,
+        "presented_as_gate_pass": false,
+        "correlation_claimed_as_registry_evidence": false,
+        "correlation_refs": [
+          "platform:event:000036"
+        ],
+        "gate_ref": "runtime:promotion-gate:000036",
+        "registry_ref": "model-registry:evidence:000036",
+        "challenger_ref": "model-registry:challenger:000036",
+        "candidate_identity_disposable": true,
+        "promotion_subject": "model",
+        "claims_model_quality": true,
+        "asserted_at": "2026-09-08T12:01:16Z"
+      },
+      "reason": "A live-model quality/latency/capability claim without production/model evidence is evidence-gated (BLOCKED_ON_PROMOTION_EVIDENCE), never proven with fixtures."
+    },
+    {
+      "id": "PROM-037",
+      "kind": "promotion_gates",
+      "expected": "reject",
+      "input": {
+        "schema": "promotion-gates/0.1",
+        "trace_id": "trc_37373737373737373737373737373737",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "observation_ref": "wie:observation:000037",
+        "classification": "execution",
+        "embeds_promotion_authority": false,
+        "embeds_promotion_grant": false,
+        "presented_as_gate_pass": false,
+        "correlation_claimed_as_registry_evidence": false,
+        "correlation_refs": [
+          "platform:event:000037"
+        ],
+        "gate_ref": "runtime:promotion-gate:000037",
+        "registry_ref": "model-registry:evidence:000037",
+        "challenger_ref": "model-registry:challenger:000037",
+        "challenger_registration_ref": "model-registry:challenger-registration:000037",
+        "candidate_identity_disposable": true,
+        "promotion_subject": "model",
+        "promoted": true,
+        "promoted_by": "runtime:promotion-gate:000037",
+        "registry_evidence_ref": "model-registry:pass:000037",
+        "verifier_ref": "continuum:verifier:000037",
+        "research_evidence_ref": "llm-research-development:research:000037",
+        "afm_implementation_ref": "afm:implementation:000037",
+        "emergency_bypass": true,
+        "asserted_at": "2026-09-08T12:01:17Z"
+      },
+      "reason": "A registry-bypass emergency promotion without gate evidence rejects; bypass is never promotion."
     }
   ]
 }
