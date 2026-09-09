@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.dev/contracts/consent-ledger/0.1.json",
+  "title": "Aftergraph Consent Ledger",
+  "description": "EXPERIMENTAL Consent Ledger use-evaluation contract. It pairs a ledger event (granted, restricted, revoked, expired) with an attempted use, so conformance can decide whether the use is permitted. Consent is a separate axis from execution authority: this contract permits or denies uses, never grants authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "consent-ledger/0.1"},
+    "ledger_id": {"type": "string", "pattern": "^led_[a-f0-9]{32}$"},
+    "event": {
+      "type": "string",
+      "enum": ["granted", "restricted", "revoked", "expired"]
+    },
+    "subject": {"type": "string", "minLength": 1, "maxLength": 512},
+    "purpose": {"type": "string", "minLength": 1, "maxLength": 256},
+    "narrowed_purpose": {"type": ["string", "null"], "maxLength": 256},
+    "scope_tenant": {"type": "string", "pattern": "^ten_[a-f0-9]{32}$"},
+    "scope_domain": {"type": "string", "minLength": 1, "maxLength": 160},
+    "ledger_record": {"type": "string", "minLength": 1, "maxLength": 256},
+    "ledger_version": {"type": "string", "minLength": 1, "maxLength": 64},
+    "recorded_at": {"type": "string", "minLength": 1, "maxLength": 64},
+    "valid_until": {"type": "string", "minLength": 1, "maxLength": 64},
+    "revoked_at": {"type": ["string", "null"], "maxLength": 64},
+    "use_purpose": {"type": "string", "minLength": 1, "maxLength": 256},
+    "use_at": {"type": "string", "minLength": 1, "maxLength": 64}
+  },
+  "required": [
+    "schema",
+    "ledger_id",
+    "event",
+    "subject",
+    "purpose",
+    "narrowed_purpose",
+    "scope_tenant",
+    "scope_domain",
+    "ledger_record",
+    "ledger_version",
+    "recorded_at",
+    "valid_until",
+    "revoked_at",
+    "use_purpose",
+    "use_at"
+  ]
+}
