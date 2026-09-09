@@ -161,6 +161,106 @@
       "type": "string",
       "minLength": 1,
       "maxLength": 64
+    },
+    "handoff_checkpoint": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "HandoffCheckpoint reference carrying cross-surface continuity; transports correlation/provenance only, never authority."
+    },
+    "correlation_refs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 32,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512
+      },
+      "description": "platform-event-ref/0.1 correlation/provenance references composed by reference; possession never grants authority."
+    },
+    "destination_readmission_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Destination Trust Gateway re-admission reference; authority is re-admitted at the destination, never transported."
+    },
+    "authority_transport": {
+      "type": "boolean",
+      "description": "True claims the handoff/session moved authority; always rejected - continuity never moves authority."
+    },
+    "continuity_basis": {
+      "type": "string",
+      "enum": [
+        "correlation_provenance",
+        "conversation",
+        "memory",
+        "session_authority"
+      ],
+      "description": "Claimed basis of continuity; only correlation_provenance accepts. Conversation != Memory != Continuity != Authority."
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "description": "Consent/purpose lineage attached to the voice turn/observation and propagated to derivatives."
+    },
+    "lineage_refs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 32,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512
+      },
+      "description": "Explicit lineage references propagated to derivatives and required for cross-surface attribution."
+    },
+    "revocation_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Consent revocation reference invalidating downstream voice-derived use per provenance."
+    },
+    "downstream_invalidated": {
+      "type": "boolean",
+      "description": "True records that downstream voice-derived use was invalidated per provenance after revocation."
+    },
+    "audit_rewritten": {
+      "type": "boolean",
+      "description": "True claims historical audit/evidence was rewritten; always rejected."
+    },
+    "deletion_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Source/turn deletion reference withdrawing reads and derivatives."
+    },
+    "withdrawn": {
+      "type": "boolean",
+      "description": "True withdraws reads and derivatives; requires deletion_ref and tombstone_ref."
+    },
+    "tombstone_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Tombstone marker for deleted turns; historical audit is preserved, never rewritten."
+    },
+    "source_surface_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Surface where the voice content originated."
+    },
+    "attributed_surface_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Surface where the content is attributed; differing surfaces require explicit lineage."
+    },
+    "injection_contained": {
+      "type": "boolean",
+      "description": "True records prompt-injection content in the transcript was contained as untrusted observation."
     }
   },
   "required": [
