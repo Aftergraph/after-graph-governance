@@ -1,6 +1,6 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-09T11:01:17Z",
+  "generated_at": "2026-09-09T11:15:16Z",
   "generator": "/mnt/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
@@ -8,9 +8,9 @@
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "8c4bbe0340b968257ccba04a47ac189332832a74",
-      "remote_head_short": "8c4bbe0",
-      "head_commit_message": "evidence(governance): Wave H Task 1 — promotion-trace contract + validator + PROM vectors (#109)",
+      "remote_head_sha": "5a78bfa72286175703a399145d49a2fcdd51e302",
+      "remote_head_short": "5a78bfa",
+      "head_commit_message": "evidence(governance): Wave H Task 2 — challenger flow PROM vectors (#111)",
       "private": false,
       "archived": false,
       "protected": true,
