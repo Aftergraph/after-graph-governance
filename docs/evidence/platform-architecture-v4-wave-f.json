@@ -1,0 +1,24 @@
+{
+  "schema": "platform-architecture-v4-wave-f-evidence/1.0",
+  "architecture": "PLATFORM-ARCHITECTURE-V4",
+  "topology": "platform-topology/2.0",
+  "org_state": "org-state/1.0",
+  "repository_count": 24,
+  "checks": [
+    "topology_v2",
+    "pocket_source_vectors",
+    "webhook_reconciliation_vectors",
+    "consent_deletion_vectors",
+    "seam_binding",
+    "request_content",
+    "hardware_gated_blocked",
+    "platform_fabrics_regression"
+  ],
+  "hardware_gated_blocked": {
+    "device audio-capture characterization": "BLOCKED",
+    "microphone-array characterization": "BLOCKED",
+    "realtime-audio pipeline characterization": "BLOCKED",
+    "acoustic-environment characterization": "BLOCKED"
+  },
+  "result": "PASS"
+}
