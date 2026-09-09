@@ -1,6 +1,6 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-09T13:02:59Z",
+  "generated_at": "2026-09-09T13:16:13Z",
   "generator": "/mnt/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
@@ -8,9 +8,9 @@
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "759049654dac6bf168e12ec91d682b6063c11843",
-      "remote_head_short": "7590496",
-      "head_commit_message": "evidence(governance): Wave I Task 3 — consumer-removal RET vectors (#126)",
+      "remote_head_sha": "4848e9df8e078cf8c897b25123f78ae940910f77",
+      "remote_head_short": "4848e9d",
+      "head_commit_message": "evidence(governance): Wave I Task 4 — aftergraph-only golden mission RET vectors (#128)",
       "private": false,
       "archived": false,
       "protected": true,
