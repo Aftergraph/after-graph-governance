@@ -1,6 +1,6 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-09T04:11:45Z",
+  "generated_at": "2026-09-09T05:18:36Z",
   "generator": "/mnt/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
@@ -8,9 +8,9 @@
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "257f57956637b55b28ca866f464790901534965c",
-      "remote_head_short": "257f579",
-      "head_commit_message": "evidence(governance): Wave C Task 5 — cross-repo requests + wave close (#66)",
+      "remote_head_sha": "0e4b9905e4e2df677cba6528f6f013985a878d02",
+      "remote_head_short": "0e4b990",
+      "head_commit_message": "evidence(governance): Wave D Task 5 — cross-repo requests + wave close (#74)",
       "private": false,
       "archived": false,
       "protected": true,
@@ -63,7 +63,15 @@
       "private": false,
       "archived": false,
       "protected": true,
-      "open_pull_requests": [],
+      "open_pull_requests": [
+        {
+          "number": 56,
+          "title": "research(aie): register Meta Muse prior art and narrow novelty boundary",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "79cd620fa898fc5f03165209368efa23bcc4e8cc"
+        }
+      ],
       "authoritative_contracts": [],
       "consumed_contracts": [
         {
@@ -83,6 +91,20 @@
       "archived": false,
       "protected": true,
       "open_pull_requests": [
+        {
+          "number": 82,
+          "title": "feat(tg): credential surrogation + governed egress implementation",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "f7c4e0f9e1eeb4b534ab546bf76ac77b9bb21a5b"
+        },
+        {
+          "number": 81,
+          "title": "docs(tg): credential surrogation + governed egress v0.1",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "4c8a16f073d2a4c1bb38f26ba3b74080220b2136"
+        },
         {
           "number": 78,
           "title": "feat(tg): add platform event correlation projection",
@@ -114,9 +136,9 @@
       "full_name": "Aftergraph/runtime",
       "role": "agent-runtime",
       "canonical_branch": "main",
-      "remote_head_sha": "ab6c74243076c539376b45b0a9de3382152b17e9",
-      "remote_head_short": "ab6c742",
-      "head_commit_message": "chore(deps): enable Dependabot version updates (private repo, free tier)",
+      "remote_head_sha": "779bbb54015b03d8377b0c9d414d3e21d6132dee",
+      "remote_head_short": "779bbb5",
+      "head_commit_message": "docs(runtime): OS isolation + data-lineage profile v0.1",
       "private": true,
       "archived": false,
       "protected": false,
@@ -126,7 +148,7 @@
           "title": "feat(muse-supervisor): Hermes ↔ Muse autonomous worker supervisor",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "195c549d8a5c950f71162cd9375c5d5544653435"
+          "head_sha": "e9a9d01ad2f3aa07fa1b5bf0c1ac3f03d1a279ca"
         },
         {
           "number": 102,
@@ -277,6 +299,13 @@
       "protected": true,
       "open_pull_requests": [
         {
+          "number": 69,
+          "title": "feat(works): require independent verifier verdict before quittance",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "f4b1faa64680adc87c19620ffdb97a21431d33e1"
+        },
+        {
           "number": 67,
           "title": "feat(works): add platform event correlation projection",
           "is_draft": false,
@@ -397,9 +426,9 @@
       "full_name": "Aftergraph/continuum",
       "role": "continuity-containment-verification",
       "canonical_branch": "main",
-      "remote_head_sha": "8891628e93d4c5c5d9b89422c085b7a1fc9bf2a3",
-      "remote_head_short": "8891628",
-      "head_commit_message": "chore(deps): enable Dependabot version updates (private repo, free tier)",
+      "remote_head_sha": "6ca7b0c3dc4c526e0806c977c0f9e01b0c6772e7",
+      "remote_head_short": "6ca7b0c",
+      "head_commit_message": "feat(continuum): split failure classes from injection modes",
       "private": true,
       "archived": false,
       "protected": false,
@@ -490,7 +519,22 @@
       "private": false,
       "archived": false,
       "protected": true,
-      "open_pull_requests": [],
+      "open_pull_requests": [
+        {
+          "number": 51,
+          "title": "research: publish Paper 05 on frontier-agent institutional control",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "88809aedb8342e378462e28d15c55b66c82cb78c"
+        },
+        {
+          "number": 50,
+          "title": "research: add Meta Muse prior-art amendment and tighten claims",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "ee55536faebffb7f89e6d7d3d0678321fcd6d925"
+        }
+      ],
       "authoritative_contracts": [],
       "consumed_contracts": [
         {
