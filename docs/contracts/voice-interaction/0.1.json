@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://aftergraph.dev/contracts/voice-interaction/0.1.json",
   "title": "Aftergraph Voice Interaction",
-  "description": "EXPERIMENTAL voice-interaction contract for the Interaction Fabric realtime voice edge. A disposable voice session carries turn/observation content only: durable principal identity and durable interaction/memory/mission state live outside the session in Runtime/WORKS/consent-ledger-owned stores and are referenced, never embedded. Session admission and egress/effects pass Trust Gateway grant enforcement. Transcript is not principal identity and speaker attribution is not principal authentication (inherited Wave F pocket-source binding, not re-derived). The session confers no authority and replaces no canonical source.",
+  "description": "EXPERIMENTAL voice-interaction contract for the Interaction Fabric realtime voice edge. A disposable voice session carries turn/observation content only: durable principal identity and durable interaction/memory/mission state live outside the session in Runtime/WORKS/consent-ledger-owned stores and are referenced, never embedded. Session admission and egress/effects pass Trust Gateway grant enforcement. Transcript is not principal identity and speaker attribution is not principal authentication (inherited Wave F pocket-source binding, not re-derived). The session confers no authority and replaces no canonical source. Turn/stop/barge-in semantics follow V4 section 14: STOP_SPEAKING/CANCEL_TURN interrupt speech/turn only while PAUSE_MISSION/CANCEL_MISSION/FREEZE_AUTONOMY require the governed consequential path (AIE -> Trust Gateway -> Runtime -> WORKS -> verification); barge-in never terminates consequential execution; session identity stays disposable and is never reused as a durable principal; realtime raw-audio streaming claims are evidence-gated on device/API evidence.",
   "type": "object",
   "additionalProperties": false,
   "properties": {
@@ -109,6 +109,53 @@
       "type": "string",
       "minLength": 1,
       "maxLength": 256
+    },
+    "turn_binding": {
+      "type": "string",
+      "enum": [
+        "disposable_session",
+        "durable_principal"
+      ]
+    },
+    "stop_verb": {
+      "type": "string",
+      "enum": [
+        "STOP_SPEAKING",
+        "CANCEL_TURN",
+        "PAUSE_MISSION",
+        "CANCEL_MISSION",
+        "FREEZE_AUTONOMY"
+      ]
+    },
+    "governed_path_complete": {
+      "type": "boolean"
+    },
+    "barge_in_terminates_execution": {
+      "type": "boolean"
+    },
+    "contains_instruction": {
+      "type": "boolean"
+    },
+    "self_executes": {
+      "type": "boolean"
+    },
+    "candidate_kind": {
+      "type": "string",
+      "enum": [
+        "observation_update",
+        "commitment_candidate"
+      ]
+    },
+    "session_identity_reused_as_durable_principal": {
+      "type": "boolean"
+    },
+    "claims_realtime_raw_audio": {
+      "type": "boolean"
+    },
+    "device_api_evidence_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
     },
     "asserted_at": {
       "type": "string",
