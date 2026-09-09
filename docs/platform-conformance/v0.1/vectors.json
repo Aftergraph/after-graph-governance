@@ -4251,6 +4251,537 @@
         "claims_migration_complete": true
       },
       "reason": "Evidence-gated: live migration-completion claim without owner execution evidence rejects."
+    },
+    {
+      "id": "RET-020",
+      "kind": "avc_dissolution",
+      "expected": "accept",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_20202020202020202020202020202020",
+        "tenant_id": "ten_20202020202020202020202020202020",
+        "source_repo": "Aftergraph/runtime",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000020",
+        "target_owner": "Aftergraph/runtime",
+        "target_contract": "runtime-supply-chain/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-consumer-dep",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-consumer"
+        ],
+        "verification": [
+          "verifier:continuum:report:000020"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000020",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+        "active_package_dependencies": [
+          "@avc/provenance-shim"
+        ],
+        "provenance_allowlist": [
+          "@avc/provenance-shim"
+        ],
+        "canonical_services_owned_by_avc": [],
+        "canonical_contract_owner": "Aftergraph/trust-gateway",
+        "resolved_consumer_dispositions": [
+          "tenant-lifecycle",
+          "workspace-lifecycle",
+          "World",
+          "Situation",
+          "Commitment",
+          "Consent",
+          "Attention"
+        ],
+        "assets_without_disposition": [],
+        "cross_repo_consumer_evidence_refs": [
+          "runtime:evidence:consumer-removal:000020",
+          "aie:evidence:consumer-removal:000020"
+        ],
+        "claims_zero_consumer_zero_ownership": false
+      },
+      "reason": "Consumer ledgered with zero active @avc/* package dependencies except allowlisted provenance, zero canonical services owned by AVC, and resolved tenant/workspace lifecycle plus World/Situation/Commitment/Consent/Attention primitive dispositions accepts."
+    },
+    {
+      "id": "RET-021",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_21212121212121212121212121212121",
+        "tenant_id": "ten_21212121212121212121212121212121",
+        "source_repo": "Aftergraph/runtime",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000021",
+        "target_owner": "Aftergraph/runtime",
+        "target_contract": "runtime-supply-chain/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-consumer-dep",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-consumer"
+        ],
+        "verification": [
+          "verifier:continuum:report:000021"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000021",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+        "active_package_dependencies": [
+          "@avc/legacy-runtime"
+        ],
+        "provenance_allowlist": [
+          "@avc/provenance-shim"
+        ],
+        "canonical_services_owned_by_avc": [],
+        "canonical_contract_owner": "Aftergraph/trust-gateway",
+        "resolved_consumer_dispositions": [
+          "tenant-lifecycle",
+          "workspace-lifecycle",
+          "World",
+          "Situation",
+          "Commitment",
+          "Consent",
+          "Attention"
+        ],
+        "assets_without_disposition": [],
+        "cross_repo_consumer_evidence_refs": [
+          "runtime:evidence:consumer-removal:000021",
+          "aie:evidence:consumer-removal:000021"
+        ],
+        "claims_zero_consumer_zero_ownership": false
+      },
+      "reason": "Retirement PASS claimed while an active @avc/* dependency remains outside the provenance allowlist rejects."
+    },
+    {
+      "id": "RET-022",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_22222222222222222222222222222222",
+        "tenant_id": "ten_22222222222222222222222222222222",
+        "source_repo": "Aftergraph/runtime",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000022",
+        "target_owner": "Aftergraph/runtime",
+        "target_contract": "runtime-supply-chain/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-consumer-dep",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-consumer"
+        ],
+        "verification": [
+          "verifier:continuum:report:000022"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000022",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+        "active_package_dependencies": [
+          "@avc/provenance-shim"
+        ],
+        "provenance_allowlist": [
+          "@avc/provenance-shim"
+        ],
+        "canonical_services_owned_by_avc": [
+          "svc:ledger-canonical"
+        ],
+        "canonical_contract_owner": "Aftergraph/trust-gateway",
+        "resolved_consumer_dispositions": [
+          "tenant-lifecycle",
+          "workspace-lifecycle",
+          "World",
+          "Situation",
+          "Commitment",
+          "Consent",
+          "Attention"
+        ],
+        "assets_without_disposition": [],
+        "cross_repo_consumer_evidence_refs": [
+          "runtime:evidence:consumer-removal:000022",
+          "aie:evidence:consumer-removal:000022"
+        ],
+        "claims_zero_consumer_zero_ownership": false
+      },
+      "reason": "Retirement PASS claimed while a canonical service is still owned by AVC rejects."
+    },
+    {
+      "id": "RET-023",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_23232323232323232323232323232323",
+        "tenant_id": "ten_23232323232323232323232323232323",
+        "source_repo": "Aftergraph/runtime",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000023",
+        "target_owner": "Aftergraph/runtime",
+        "target_contract": "runtime-supply-chain/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-consumer-dep",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-consumer"
+        ],
+        "verification": [
+          "verifier:continuum:report:000023"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000023",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+        "active_package_dependencies": [
+          "@avc/provenance-shim"
+        ],
+        "provenance_allowlist": [
+          "@avc/provenance-shim"
+        ],
+        "canonical_services_owned_by_avc": [],
+        "canonical_contract_owner": "AVC",
+        "resolved_consumer_dispositions": [
+          "tenant-lifecycle",
+          "workspace-lifecycle",
+          "World",
+          "Situation",
+          "Commitment",
+          "Consent",
+          "Attention"
+        ],
+        "assets_without_disposition": [],
+        "cross_repo_consumer_evidence_refs": [
+          "runtime:evidence:consumer-removal:000023",
+          "aie:evidence:consumer-removal:000023"
+        ],
+        "claims_zero_consumer_zero_ownership": false
+      },
+      "reason": "Retirement PASS claimed while a current normative contract is still owned by AVC rejects."
+    },
+    {
+      "id": "RET-024",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_24242424242424242424242424242424",
+        "tenant_id": "ten_24242424242424242424242424242424",
+        "source_repo": "Aftergraph/runtime",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000024",
+        "target_owner": "Aftergraph/runtime",
+        "target_contract": "runtime-supply-chain/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-consumer-dep",
+        "active_consumers": [
+          "Aftergraph/works-execution:consumer:@avc/legacy-adapter"
+        ],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-consumer"
+        ],
+        "verification": [
+          "verifier:continuum:report:000024"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000024",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+        "active_package_dependencies": [
+          "@avc/provenance-shim"
+        ],
+        "provenance_allowlist": [
+          "@avc/provenance-shim"
+        ],
+        "canonical_services_owned_by_avc": [],
+        "canonical_contract_owner": "Aftergraph/trust-gateway",
+        "resolved_consumer_dispositions": [
+          "tenant-lifecycle",
+          "workspace-lifecycle",
+          "World",
+          "Situation",
+          "Commitment",
+          "Consent",
+          "Attention"
+        ],
+        "assets_without_disposition": [],
+        "cross_repo_consumer_evidence_refs": [
+          "runtime:evidence:consumer-removal:000024",
+          "aie:evidence:consumer-removal:000024"
+        ],
+        "claims_zero_consumer_zero_ownership": false
+      },
+      "reason": "Ownership removed while an active consumer fixture still references the AVC identity rejects."
+    },
+    {
+      "id": "RET-025",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_25252525252525252525252525252525",
+        "tenant_id": "ten_25252525252525252525252525252525",
+        "source_repo": "Aftergraph/runtime",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000025",
+        "target_owner": "Aftergraph/runtime",
+        "target_contract": "runtime-supply-chain/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-consumer-dep",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-consumer"
+        ],
+        "verification": [
+          "verifier:continuum:report:000025"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000025",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+        "active_package_dependencies": [
+          "@avc/provenance-shim"
+        ],
+        "provenance_allowlist": [
+          "@avc/provenance-shim"
+        ],
+        "canonical_services_owned_by_avc": [],
+        "canonical_contract_owner": "Aftergraph/trust-gateway",
+        "resolved_consumer_dispositions": [
+          "tenant-lifecycle",
+          "workspace-lifecycle",
+          "World",
+          "Situation",
+          "Commitment",
+          "Consent",
+          "Attention"
+        ],
+        "assets_without_disposition": [
+          "pkg:legacy-unclassified"
+        ],
+        "cross_repo_consumer_evidence_refs": [
+          "runtime:evidence:consumer-removal:000025",
+          "aie:evidence:consumer-removal:000025"
+        ],
+        "claims_zero_consumer_zero_ownership": false
+      },
+      "reason": "Unclassified package/app/skill/ML/cell/infra asset fixture left without a disposition rejects."
+    },
+    {
+      "id": "RET-026",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_26262626262626262626262626262626",
+        "tenant_id": "ten_26262626262626262626262626262626",
+        "source_repo": "Aftergraph/runtime",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000026",
+        "target_owner": "Aftergraph/runtime",
+        "target_contract": "runtime-supply-chain/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-consumer-dep",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-consumer"
+        ],
+        "verification": [
+          "verifier:continuum:report:000026"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000026",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+        "active_package_dependencies": [
+          "@avc/provenance-shim"
+        ],
+        "provenance_allowlist": [
+          "@avc/provenance-shim"
+        ],
+        "canonical_services_owned_by_avc": [],
+        "canonical_contract_owner": "Aftergraph/trust-gateway",
+        "resolved_consumer_dispositions": [
+          "tenant-lifecycle",
+          "workspace-lifecycle",
+          "World",
+          "Situation",
+          "Commitment",
+          "Consent",
+          "Attention"
+        ],
+        "assets_without_disposition": [],
+        "cross_repo_consumer_evidence_refs": [],
+        "claims_zero_consumer_zero_ownership": false
+      },
+      "reason": "Consumer removal proven by repository-local green without cross-repo consumer evidence refs rejects."
+    },
+    {
+      "id": "RET-027",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_27272727272727272727272727272727",
+        "tenant_id": "ten_27272727272727272727272727272727",
+        "source_repo": "Aftergraph/runtime",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000027",
+        "target_owner": "Aftergraph/runtime",
+        "target_contract": "runtime-supply-chain/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-consumer-dep",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-consumer"
+        ],
+        "verification": [
+          "verifier:continuum:report:000027"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000027",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+        "active_package_dependencies": [
+          "@avc/provenance-shim"
+        ],
+        "provenance_allowlist": [
+          "@avc/provenance-shim"
+        ],
+        "canonical_services_owned_by_avc": [],
+        "canonical_contract_owner": "Aftergraph/trust-gateway",
+        "resolved_consumer_dispositions": [
+          "tenant-lifecycle",
+          "workspace-lifecycle",
+          "World",
+          "Situation",
+          "Commitment",
+          "Consent",
+          "Attention"
+        ],
+        "assets_without_disposition": [],
+        "cross_repo_consumer_evidence_refs": [
+          "runtime:evidence:consumer-removal:000027",
+          "aie:evidence:consumer-removal:000027"
+        ],
+        "claims_zero_consumer_zero_ownership": true
+      },
+      "reason": "Evidence-gated: live zero-consumer/zero-ownership claim without owner execution evidence rejects."
     }
   ]
 }
