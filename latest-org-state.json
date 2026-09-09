@@ -1,6 +1,6 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-09T11:41:27Z",
+  "generated_at": "2026-09-09T11:55:00Z",
   "generator": "/mnt/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
@@ -8,9 +8,9 @@
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "b27b8a6e8e98e88c49560c854142be7039622016",
-      "remote_head_short": "b27b8a6",
-      "head_commit_message": "evidence(governance): Wave H Task 4 — model promotion gate PROM vectors (#115)",
+      "remote_head_sha": "7d15ecaab199c74491ad3173093964596deb9675",
+      "remote_head_short": "7d15eca",
+      "head_commit_message": "docs(governance): Wave H Task 5 — promotion-gates seam binding (#117)",
       "private": false,
       "archived": false,
       "protected": true,
@@ -144,6 +144,13 @@
       "protected": false,
       "open_pull_requests": [
         {
+          "number": 106,
+          "title": "feat(muse-supervisor): close all production gaps (B-F, I, J) after PR #103",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "3f1a9360dfedecfaf9cb1fb8ba2ac4e14594eb54"
+        },
+        {
           "number": 102,
           "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/triggers",
           "is_draft": false,
@@ -275,13 +282,6 @@
           "is_draft": false,
           "mergeable": "UNKNOWN",
           "head_sha": "159e869221ff6ffc2fb2934801deadce3311a368"
-        },
-        {
-          "number": 83,
-          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/intelligence-gateway",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "3e8d9fe76a7c9893709b689c674f0cf652257b0e"
         }
       ],
       "authoritative_contracts": [],
