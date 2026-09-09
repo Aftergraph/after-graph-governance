@@ -1,6 +1,6 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-09T10:31:19Z",
+  "generated_at": "2026-09-09T10:42:32Z",
   "generator": "/mnt/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
@@ -8,9 +8,9 @@
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "709fa6e41745e29df4f6b61795cbe6b6f8aa2a18",
-      "remote_head_short": "709fa6e",
-      "head_commit_message": "docs(governance): Wave G Task 4 — voice-interaction seam binding (#104)",
+      "remote_head_sha": "baad3b5afdb6b846ae4fa6dfde22e20fa6a023c7",
+      "remote_head_short": "baad3b5",
+      "head_commit_message": "evidence(governance): close platform architecture v4 wave g (#106)",
       "private": false,
       "archived": false,
       "protected": true,
