@@ -1,6 +1,6 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-09T09:19:30Z",
+  "generated_at": "2026-09-09T09:31:47Z",
   "generator": "/mnt/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
@@ -8,9 +8,9 @@
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "3c1a955a49bc6a579db8c5529476e768df377cbd",
-      "remote_head_short": "3c1a955",
-      "head_commit_message": "docs(governance): Wave F Task 4 — pocket-source seam binding (#93)",
+      "remote_head_sha": "cf7f25f8a4a5f9edf246fd214887c88f2eb2ff60",
+      "remote_head_short": "cf7f25f",
+      "head_commit_message": "evidence(governance): close platform architecture v4 wave f (#95)",
       "private": false,
       "archived": false,
       "protected": true,
