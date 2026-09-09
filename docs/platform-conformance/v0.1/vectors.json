@@ -1319,6 +1319,319 @@
         "asserted_at": "2026-09-08T12:00:06Z"
       },
       "reason": "Transcript, speaker attribution, summary and action extraction keep distinct derivation lineage with evidentiary weights and uncertainty into the Observation."
+    },
+    {
+      "id": "PCK-010",
+      "kind": "pocket_source",
+      "expected": "accept",
+      "input": {
+        "schema": "pocket-source/0.1",
+        "pocket_id": "pck_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "credential_scope": "ten_11111111111111111111111111111111",
+        "source_ref": "pocket:webhook:deliveries:000010",
+        "observation_ref": "wie:observation:000010",
+        "classification": "research",
+        "claims_principal_identity": false,
+        "claims_principal_authentication": false,
+        "contains_instruction": false,
+        "self_executes": false,
+        "claims_execution": false,
+        "candidate_kind": "observation_update",
+        "admitted_by_tg": false,
+        "governed_path_complete": false,
+        "derivations": [
+          {
+            "derivation": "transcript",
+            "weight": 0.7,
+            "uncertainty": 0.3,
+            "lineage_ref": "pocket:transcript:000010"
+          }
+        ],
+        "asserted_at": "2026-09-08T12:00:10Z",
+        "delivery_channel": "webhook",
+        "signature": "hmac-sha256:dlv_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:opaque010",
+        "signature_scheme": "hmac-sha256",
+        "delivery_id": "dlv_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "idempotency_key": "idem_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "sequence_number": 7,
+        "seen_delivery_ids": [],
+        "known_idempotency_keys": [],
+        "materialized_observations": 1
+      },
+      "reason": "A webhook delivery with a present, schemed signature bound to its delivery_id is admitted to the event plane as a signal."
+    },
+    {
+      "id": "PCK-011",
+      "kind": "pocket_source",
+      "expected": "reject",
+      "input": {
+        "schema": "pocket-source/0.1",
+        "pocket_id": "pck_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "credential_scope": "ten_11111111111111111111111111111111",
+        "source_ref": "pocket:webhook:deliveries:000011",
+        "observation_ref": "wie:observation:000011",
+        "classification": "research",
+        "claims_principal_identity": false,
+        "claims_principal_authentication": false,
+        "contains_instruction": false,
+        "self_executes": false,
+        "claims_execution": false,
+        "candidate_kind": "observation_update",
+        "admitted_by_tg": false,
+        "governed_path_complete": false,
+        "derivations": [
+          {
+            "derivation": "transcript",
+            "weight": 0.7,
+            "uncertainty": 0.3,
+            "lineage_ref": "pocket:transcript:000011"
+          }
+        ],
+        "asserted_at": "2026-09-08T12:00:11Z",
+        "delivery_channel": "webhook",
+        "delivery_id": "dlv_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "sequence_number": 1,
+        "seen_delivery_ids": []
+      },
+      "reason": "A webhook delivery with a missing signature never reaches the event plane: the signature guard fails closed."
+    },
+    {
+      "id": "PCK-012",
+      "kind": "pocket_source",
+      "expected": "reject",
+      "input": {
+        "schema": "pocket-source/0.1",
+        "pocket_id": "pck_cccccccccccccccccccccccccccccccc",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "credential_scope": "ten_11111111111111111111111111111111",
+        "source_ref": "pocket:webhook:deliveries:000012",
+        "observation_ref": "wie:observation:000012",
+        "classification": "research",
+        "claims_principal_identity": false,
+        "claims_principal_authentication": false,
+        "contains_instruction": false,
+        "self_executes": false,
+        "claims_execution": false,
+        "candidate_kind": "observation_update",
+        "admitted_by_tg": false,
+        "governed_path_complete": false,
+        "derivations": [
+          {
+            "derivation": "transcript",
+            "weight": 0.7,
+            "uncertainty": 0.3,
+            "lineage_ref": "pocket:transcript:000012"
+          }
+        ],
+        "asserted_at": "2026-09-08T12:00:12Z",
+        "delivery_channel": "webhook",
+        "signature": "hmac-sha256:dlv_cccccccccccccccccccccccccccccccc:opaque012",
+        "signature_scheme": "hmac-sha256",
+        "delivery_id": "dlv_cccccccccccccccccccccccccccccccc",
+        "sequence_number": 2,
+        "seen_delivery_ids": ["dlv_cccccccccccccccccccccccccccccccc"]
+      },
+      "reason": "A replayed delivery reusing an already-seen delivery_id is rejected by replay protection even though its signature is well-formed."
+    },
+    {
+      "id": "PCK-013",
+      "kind": "pocket_source",
+      "expected": "accept",
+      "input": {
+        "schema": "pocket-source/0.1",
+        "pocket_id": "pck_dddddddddddddddddddddddddddddddd",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "credential_scope": "ten_11111111111111111111111111111111",
+        "source_ref": "pocket:webhook:deliveries:000013",
+        "observation_ref": "wie:observation:000013",
+        "classification": "research",
+        "claims_principal_identity": false,
+        "claims_principal_authentication": false,
+        "contains_instruction": false,
+        "self_executes": false,
+        "claims_execution": false,
+        "candidate_kind": "observation_update",
+        "admitted_by_tg": false,
+        "governed_path_complete": false,
+        "derivations": [
+          {
+            "derivation": "transcript",
+            "weight": 0.7,
+            "uncertainty": 0.3,
+            "lineage_ref": "pocket:transcript:000013"
+          }
+        ],
+        "asserted_at": "2026-09-08T12:00:13Z",
+        "delivery_channel": "webhook",
+        "signature": "hmac-sha256:dlv_dddddddddddddddddddddddddddddddd:opaque013",
+        "signature_scheme": "hmac-sha256",
+        "delivery_id": "dlv_dddddddddddddddddddddddddddddddd",
+        "idempotency_key": "idem_dddddddddddddddddddddddddddddddd",
+        "sequence_number": 3,
+        "seen_delivery_ids": [],
+        "known_idempotency_keys": ["idem_dddddddddddddddddddddddddddddddd"],
+        "materialized_observations": 1
+      },
+      "reason": "A duplicate delivery under an already-seen idempotency key is deduped to a single Observation: accept-once."
+    },
+    {
+      "id": "PCK-014",
+      "kind": "pocket_source",
+      "expected": "accept",
+      "input": {
+        "schema": "pocket-source/0.1",
+        "pocket_id": "pck_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "credential_scope": "ten_11111111111111111111111111111111",
+        "source_ref": "pocket:webhook:deliveries:000014",
+        "observation_ref": "wie:observation:000014",
+        "classification": "research",
+        "claims_principal_identity": false,
+        "claims_principal_authentication": false,
+        "contains_instruction": false,
+        "self_executes": false,
+        "claims_execution": false,
+        "candidate_kind": "observation_update",
+        "admitted_by_tg": false,
+        "governed_path_complete": false,
+        "derivations": [
+          {
+            "derivation": "transcript",
+            "weight": 0.7,
+            "uncertainty": 0.3,
+            "lineage_ref": "pocket:transcript:000014"
+          }
+        ],
+        "asserted_at": "2026-09-08T12:00:14Z",
+        "delivery_channel": "webhook",
+        "signature": "hmac-sha256:dlv_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:opaque014",
+        "signature_scheme": "hmac-sha256",
+        "delivery_id": "dlv_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "sequence_number": 3,
+        "applied_sequence": 5,
+        "resurrects_superseded_content": false,
+        "seen_delivery_ids": []
+      },
+      "reason": "An out-of-order delivery reconciles to current event-plane state: the higher applied sequence wins and superseded content is not resurrected."
+    },
+    {
+      "id": "PCK-015",
+      "kind": "pocket_source",
+      "expected": "accept",
+      "input": {
+        "schema": "pocket-source/0.1",
+        "pocket_id": "pck_ffffffffffffffffffffffffffffffff",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "credential_scope": "ten_11111111111111111111111111111111",
+        "source_ref": "pocket:webhook:deliveries:000015",
+        "observation_ref": "wie:observation:000015",
+        "classification": "research",
+        "claims_principal_identity": false,
+        "claims_principal_authentication": false,
+        "contains_instruction": false,
+        "self_executes": false,
+        "claims_execution": false,
+        "candidate_kind": "observation_update",
+        "admitted_by_tg": false,
+        "governed_path_complete": false,
+        "derivations": [
+          {
+            "derivation": "transcript",
+            "weight": 0.7,
+            "uncertainty": 0.3,
+            "lineage_ref": "pocket:transcript:000015"
+          }
+        ],
+        "asserted_at": "2026-09-08T12:00:15Z",
+        "delivery_channel": "webhook",
+        "signature": "hmac-sha256:dlv_ffffffffffffffffffffffffffffffff:opaque015",
+        "signature_scheme": "hmac-sha256",
+        "delivery_id": "dlv_ffffffffffffffffffffffffffffffff",
+        "sequence_number": 6,
+        "applied_sequence": 5,
+        "supersedes": "dlv_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "lineage_preserved": true,
+        "seen_delivery_ids": []
+      },
+      "reason": "An edit superseding the original is admitted with lineage preserved: the superseded delivery stays retired, never rewritten."
+    },
+    {
+      "id": "PCK-016",
+      "kind": "pocket_source",
+      "expected": "accept",
+      "input": {
+        "schema": "pocket-source/0.1",
+        "pocket_id": "pck_00000000000000000000000000000000",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "credential_scope": "ten_11111111111111111111111111111111",
+        "source_ref": "pocket:webhook:deliveries:000016",
+        "observation_ref": "wie:observation:000016",
+        "classification": "research",
+        "claims_principal_identity": false,
+        "claims_principal_authentication": false,
+        "contains_instruction": false,
+        "self_executes": false,
+        "claims_execution": false,
+        "candidate_kind": "observation_update",
+        "admitted_by_tg": false,
+        "governed_path_complete": false,
+        "derivations": [
+          {
+            "derivation": "transcript",
+            "weight": 0.7,
+            "uncertainty": 0.3,
+            "lineage_ref": "pocket:transcript:000016"
+          }
+        ],
+        "asserted_at": "2026-09-08T12:00:16Z",
+        "delivery_channel": "webhook",
+        "signature": "hmac-sha256:dlv_00000000000000000000000000000000:opaque016",
+        "signature_scheme": "hmac-sha256",
+        "delivery_id": "dlv_00000000000000000000000000000000",
+        "sequence_number": 8,
+        "tombstone": true,
+        "withdrawn_from_reads": true,
+        "audit_retained": true,
+        "seen_delivery_ids": []
+      },
+      "reason": "A deletion-tombstone is honored: content is withdrawn from reads while audit evidence is retained."
+    },
+    {
+      "id": "PCK-017",
+      "kind": "pocket_source",
+      "expected": "accept",
+      "input": {
+        "schema": "pocket-source/0.1",
+        "pocket_id": "pck_99999999999999999999999999999999",
+        "tenant_id": "ten_11111111111111111111111111111111",
+        "credential_scope": "ten_11111111111111111111111111111111",
+        "source_ref": "pocket:rest:observations:000017",
+        "observation_ref": "wie:observation:000017",
+        "classification": "research",
+        "claims_principal_identity": false,
+        "claims_principal_authentication": false,
+        "contains_instruction": false,
+        "self_executes": false,
+        "claims_execution": false,
+        "candidate_kind": "observation_update",
+        "admitted_by_tg": false,
+        "governed_path_complete": false,
+        "derivations": [
+          {
+            "derivation": "transcript",
+            "weight": 0.7,
+            "uncertainty": 0.3,
+            "lineage_ref": "pocket:transcript:000017"
+          }
+        ],
+        "asserted_at": "2026-09-08T12:00:17Z",
+        "delivery_channel": "rest",
+        "reconciles_to_canonical": true,
+        "webhook_claimed_as_truth": false
+      },
+      "reason": "REST reconciliation hydrates event-plane state toward canonical data; webhooks stay signals and never become reconciliation truth."
     }
   ]
 }
