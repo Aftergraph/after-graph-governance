@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://aftergraph.dev/contracts/pocket-source/0.1.json",
   "title": "Aftergraph Pocket Source",
-  "description": "EXPERIMENTAL Pocket physical-world perception source contract. It records one tenant-scoped Pocket payload projecting to a Wie Observation with provenance, classification, and derivation lineage. Pocket output is observation only: transcript is not principal identity, speaker attribution is not principal authentication, and spoken instruction never self-executes \u2014 a consequential step still follows AIE -> Trust Gateway -> Runtime -> WORKS -> verification. It confers no authority and replaces no canonical source.",
+  "description": "EXPERIMENTAL Pocket physical-world perception source contract. It records one tenant-scoped Pocket payload projecting to a Wie Observation with provenance, classification, and derivation lineage. Pocket output is observation only: transcript is not principal identity, speaker attribution is not principal authentication, and spoken instruction never self-executes \u2014 a consequential step still follows AIE -> Trust Gateway -> Runtime -> WORKS -> verification. It confers no authority and replaces no canonical source. Webhook deliveries are event-plane signals guarded by structural signature binding, replay protection, and idempotency dedupe; REST hydration reconciles event-plane state to canonical data, and webhooks never become reconciliation truth.",
   "type": "object",
   "additionalProperties": false,
   "properties": {
@@ -117,6 +117,78 @@
       "type": "string",
       "minLength": 1,
       "maxLength": 64
+    },
+    "delivery_channel": {
+      "type": "string",
+      "enum": ["rest", "webhook"]
+    },
+    "signature": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "signature_scheme": {
+      "type": "string",
+      "enum": ["hmac-sha256"]
+    },
+    "delivery_id": {
+      "type": "string",
+      "pattern": "^dlv_[a-f0-9]{32}$"
+    },
+    "idempotency_key": {
+      "type": "string",
+      "pattern": "^idem_[a-f0-9]{32}$"
+    },
+    "sequence_number": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "applied_sequence": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "resurrects_superseded_content": {
+      "type": "boolean"
+    },
+    "seen_delivery_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^dlv_[a-f0-9]{32}$"
+      }
+    },
+    "known_idempotency_keys": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^idem_[a-f0-9]{32}$"
+      }
+    },
+    "materialized_observations": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "supersedes": {
+      "type": "string",
+      "pattern": "^dlv_[a-f0-9]{32}$"
+    },
+    "lineage_preserved": {
+      "type": "boolean"
+    },
+    "tombstone": {
+      "type": "boolean"
+    },
+    "withdrawn_from_reads": {
+      "type": "boolean"
+    },
+    "audit_retained": {
+      "type": "boolean"
+    },
+    "reconciles_to_canonical": {
+      "type": "boolean"
+    },
+    "webhook_claimed_as_truth": {
+      "type": "boolean"
     }
   },
   "required": [

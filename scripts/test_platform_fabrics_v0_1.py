@@ -49,6 +49,8 @@ ID_PATTERNS = {
     "delegation_id": re.compile(rf"^del_{HEX32}$"),
     "eval_id": re.compile(rf"^evl_{HEX32}$"),
     "pocket_id": re.compile(rf"^pck_{HEX32}$"),
+    "delivery_id": re.compile(rf"^dlv_{HEX32}$"),
+    "idempotency_key": re.compile(rf"^idem_{HEX32}$"),
 }
 
 EVENT_REQUIRED = {
@@ -264,7 +266,29 @@ POCKET_REQUIRED = {
     "derivations",
     "asserted_at",
 }
-POCKET_ALLOWED = set(POCKET_REQUIRED)
+POCKET_WEBHOOK_OPTIONAL = {
+    "delivery_channel",
+    "signature",
+    "signature_scheme",
+    "delivery_id",
+    "idempotency_key",
+    "sequence_number",
+    "applied_sequence",
+    "resurrects_superseded_content",
+    "seen_delivery_ids",
+    "known_idempotency_keys",
+    "materialized_observations",
+    "supersedes",
+    "lineage_preserved",
+    "tombstone",
+    "withdrawn_from_reads",
+    "audit_retained",
+    "reconciles_to_canonical",
+    "webhook_claimed_as_truth",
+}
+POCKET_ALLOWED = set(POCKET_REQUIRED) | set(POCKET_WEBHOOK_OPTIONAL)
+POCKET_CHANNELS = {"rest", "webhook"}
+POCKET_SIGNATURE_SCHEMES = {"hmac-sha256"}
 POCKET_CLASSES = {"authority", "enforcement", "runtime", "execution", "verification", "research"}
 POCKET_CANDIDATE_KINDS = {"observation_update", "attention_candidate", "commitment_candidate", "finding"}
 POCKET_DERIVATIONS = {"transcript", "speaker_attribution", "summary", "action_extraction"}
@@ -1184,6 +1208,114 @@ def validate_pocket_source(document: object) -> list[str]:
     if not parse_rfc3339(document.get("asserted_at")):
         errors.append("invalid asserted_at")
 
+    channel = document.get("delivery_channel")
+    if channel is not None and channel not in POCKET_CHANNELS:
+        errors.append("invalid delivery_channel")
+    if document.get("delivery_id") is not None and not valid_id(
+        "delivery_id", document.get("delivery_id")
+    ):
+        errors.append("invalid delivery_id")
+    if document.get("idempotency_key") is not None and not valid_id(
+        "idempotency_key", document.get("idempotency_key")
+    ):
+        errors.append("invalid idempotency_key")
+    scheme = document.get("signature_scheme")
+    if scheme is not None and scheme not in POCKET_SIGNATURE_SCHEMES:
+        errors.append("invalid signature_scheme")
+    signature = document.get("signature")
+    if signature is not None and not nonempty_string(signature):
+        errors.append("invalid signature")
+    if channel == "webhook":
+        if (
+            not nonempty_string(signature)
+            or scheme not in POCKET_SIGNATURE_SCHEMES
+            or not valid_id("delivery_id", document.get("delivery_id"))
+        ):
+            errors.append("webhook delivery requires a bound signature and delivery_id")
+        elif document.get("delivery_id") not in signature:
+            errors.append("webhook signature is not bound to delivery_id")
+        seen = document.get("seen_delivery_ids")
+        if seen is not None:
+            if not isinstance(seen, list) or any(
+                not valid_id("delivery_id", entry) for entry in seen
+            ):
+                errors.append("invalid seen_delivery_ids")
+            elif document.get("delivery_id") in seen:
+                errors.append("replayed webhook delivery rejected by replay protection")
+
+    known = document.get("known_idempotency_keys")
+    if known is not None:
+        if not isinstance(known, list) or any(
+            not valid_id("idempotency_key", entry) for entry in known
+        ):
+            errors.append("invalid known_idempotency_keys")
+    materialized = document.get("materialized_observations")
+    if materialized is not None and (
+        isinstance(materialized, bool)
+        or not isinstance(materialized, int)
+        or materialized < 1
+    ):
+        errors.append("invalid materialized_observations")
+    key = document.get("idempotency_key")
+    if (
+        key is not None
+        and valid_id("idempotency_key", key)
+        and isinstance(known, list)
+        and key in known
+        and materialized != 1
+    ):
+        errors.append("duplicate delivery must dedupe to a single Observation")
+    sequence = document.get("sequence_number")
+    if sequence is not None and (
+        isinstance(sequence, bool) or not isinstance(sequence, int) or sequence < 0
+    ):
+        errors.append("invalid sequence_number")
+    applied = document.get("applied_sequence")
+    if applied is not None and (
+        isinstance(applied, bool) or not isinstance(applied, int) or applied < 0
+    ):
+        errors.append("invalid applied_sequence")
+    resurrects = document.get("resurrects_superseded_content")
+    if resurrects is not None and not isinstance(resurrects, bool):
+        errors.append("resurrects_superseded_content must be a boolean")
+    if (
+        isinstance(sequence, int)
+        and not isinstance(sequence, bool)
+        and isinstance(applied, int)
+        and not isinstance(applied, bool)
+        and sequence < applied
+        and resurrects is True
+    ):
+        errors.append("superseded content must never be resurrected")
+    supersedes = document.get("supersedes")
+    if supersedes is not None and not valid_id("delivery_id", supersedes):
+        errors.append("invalid supersedes")
+    lineage = document.get("lineage_preserved")
+    if lineage is not None and not isinstance(lineage, bool):
+        errors.append("lineage_preserved must be a boolean")
+    if (
+        supersedes is not None
+        and valid_id("delivery_id", supersedes)
+        and lineage is not True
+    ):
+        errors.append("superseding edit must preserve lineage")
+    for field in ("tombstone", "withdrawn_from_reads", "audit_retained"):
+        if document.get(field) is not None and not isinstance(document.get(field), bool):
+            errors.append(f"{field} must be a boolean")
+    if document.get("tombstone") is True:
+        if document.get("withdrawn_from_reads") is not True:
+            errors.append("tombstone must withdraw content from reads")
+        if document.get("audit_retained") is not True:
+            errors.append("tombstone must retain audit")
+    reconciles = document.get("reconciles_to_canonical")
+    if reconciles is not None and not isinstance(reconciles, bool):
+        errors.append("reconciles_to_canonical must be a boolean")
+    claimed = document.get("webhook_claimed_as_truth")
+    if claimed is not None and not isinstance(claimed, bool):
+        errors.append("webhook_claimed_as_truth must be a boolean")
+    if claimed is True:
+        errors.append("webhooks are event-plane signals, never reconciliation truth")
+
     return errors
 
 
@@ -1452,6 +1584,26 @@ def valid_pocket_source() -> dict[str, Any]:
 
 
 
+def valid_pocket_webhook() -> dict[str, Any]:
+    document = valid_pocket_source()
+    document.update(
+        {
+            "source_ref": "pocket:webhook:deliveries:000010",
+            "observation_ref": "wie:observation:000010",
+            "delivery_channel": "webhook",
+            "signature": "hmac-sha256:dlv_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:opaque010",
+            "signature_scheme": "hmac-sha256",
+            "delivery_id": "dlv_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "idempotency_key": "idem_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "sequence_number": 7,
+            "seen_delivery_ids": [],
+            "known_idempotency_keys": [],
+            "materialized_observations": 1,
+        }
+    )
+    return document
+
+
 class PlatformFabricsV01Tests(unittest.TestCase):
     def test_contract_files_are_strict_and_experimental(self) -> None:
         event_schema = load_json(EVENT_SCHEMA)
@@ -1694,9 +1846,96 @@ class PlatformFabricsV01Tests(unittest.TestCase):
             ("PCK-005", "reject"),
             ("PCK-006", "accept"),
             ("PCK-007", "accept"),
+            ("PCK-010", "accept"),
+            ("PCK-011", "reject"),
+            ("PCK-012", "reject"),
+            ("PCK-013", "accept"),
+            ("PCK-014", "accept"),
+            ("PCK-015", "accept"),
+            ("PCK-016", "accept"),
+            ("PCK-017", "accept"),
         ):
             self.assertIn(vector_id, by_id)
             self.assertEqual(by_id[vector_id]["expected"], expected)
+
+    def test_pocket_webhook_valid_signature_accepted(self) -> None:
+        self.assertEqual(validate_pocket_source(valid_pocket_webhook()), [])
+
+    def test_pocket_webhook_bad_signature_rejected(self) -> None:
+        document = valid_pocket_webhook()
+        del document["signature"]
+        self.assertTrue(validate_pocket_source(document))
+        document = valid_pocket_webhook()
+        document["signature_scheme"] = "none"
+        self.assertTrue(validate_pocket_source(document))
+        document = valid_pocket_webhook()
+        document["signature"] = "hmac-sha256:dlv_ffffffffffffffffffffffffffffffff:opaque"
+        self.assertTrue(
+            any("not bound to delivery_id" in e for e in validate_pocket_source(document))
+        )
+
+    def test_pocket_webhook_replay_rejected(self) -> None:
+        document = valid_pocket_webhook()
+        document["seen_delivery_ids"] = [document["delivery_id"]]
+        self.assertTrue(any("replay" in e for e in validate_pocket_source(document)))
+
+    def test_pocket_webhook_duplicate_deduped_to_single_observation(self) -> None:
+        document = valid_pocket_webhook()
+        document["known_idempotency_keys"] = [document["idempotency_key"]]
+        document["materialized_observations"] = 1
+        self.assertEqual(validate_pocket_source(document), [])
+        document["materialized_observations"] = 2
+        self.assertTrue(
+            any("single Observation" in e for e in validate_pocket_source(document))
+        )
+
+    def test_pocket_webhook_out_of_order_never_resurrects(self) -> None:
+        document = valid_pocket_webhook()
+        document["sequence_number"] = 3
+        document["applied_sequence"] = 5
+        document["resurrects_superseded_content"] = False
+        self.assertEqual(validate_pocket_source(document), [])
+        document["resurrects_superseded_content"] = True
+        self.assertTrue(
+            any("never be resurrected" in e for e in validate_pocket_source(document))
+        )
+
+    def test_pocket_edit_supersedes_with_lineage(self) -> None:
+        document = valid_pocket_webhook()
+        document["supersedes"] = "dlv_eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        document["lineage_preserved"] = True
+        self.assertEqual(validate_pocket_source(document), [])
+        document["lineage_preserved"] = False
+        self.assertTrue(
+            any("preserve lineage" in e for e in validate_pocket_source(document))
+        )
+
+    def test_pocket_tombstone_withdraws_but_retains_audit(self) -> None:
+        document = valid_pocket_webhook()
+        document["tombstone"] = True
+        document["withdrawn_from_reads"] = True
+        document["audit_retained"] = True
+        self.assertEqual(validate_pocket_source(document), [])
+        document["withdrawn_from_reads"] = False
+        self.assertTrue(
+            any("withdraw content from reads" in e for e in validate_pocket_source(document))
+        )
+        document["withdrawn_from_reads"] = True
+        document["audit_retained"] = False
+        self.assertTrue(
+            any("retain audit" in e for e in validate_pocket_source(document))
+        )
+
+    def test_pocket_rest_reconciliation_converges_without_webhook_truth(self) -> None:
+        document = valid_pocket_source()
+        document["delivery_channel"] = "rest"
+        document["reconciles_to_canonical"] = True
+        document["webhook_claimed_as_truth"] = False
+        self.assertEqual(validate_pocket_source(document), [])
+        document["webhook_claimed_as_truth"] = True
+        self.assertTrue(
+            any("never reconciliation truth" in e for e in validate_pocket_source(document))
+        )
 
     def test_proactivity_contract_is_strict_and_experimental(self) -> None:
         schema = load_json(PROACTIVITY_SCHEMA)
