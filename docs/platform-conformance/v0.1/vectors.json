@@ -4782,6 +4782,483 @@
         "claims_zero_consumer_zero_ownership": true
       },
       "reason": "Evidence-gated: live zero-consumer/zero-ownership claim without owner execution evidence rejects."
+    },
+    {
+      "id": "RET-030",
+      "kind": "avc_dissolution",
+      "expected": "accept",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_30303030303030303030303030303030",
+        "tenant_id": "ten_30303030303030303030303030303030",
+        "source_repo": "Aftergraph/works-execution",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000030",
+        "target_owner": "Aftergraph/works-execution",
+        "target_contract": "golden-mission-gate/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-mission-dep",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-mission"
+        ],
+        "verification": [
+          "verifier:continuum:report:000030"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000030",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+        "mission_branches": [
+          "success",
+          "refusal",
+          "revocation",
+          "crash-recovery",
+          "verifier-failure"
+        ],
+        "mission_path_dependencies": [
+          "@aftergraph/runtime:mission-step",
+          "@aftergraph/trust-gateway:mission-step"
+        ],
+        "mission_causal_identity_preserved": true,
+        "mission_executor_ref": "works-execution:mission-executor:000030",
+        "mission_verifier_ref": "continuum:verifier:000030",
+        "mission_provenance_reachable_after_archive": true,
+        "mission_exact_head": true,
+        "claims_mission_success": false,
+        "mission_exact_head_evidence_refs": []
+      },
+      "reason": "Golden Mission gate defined as Aftergraph-only: zero AVC dependencies in the mission path, canonical identity preserved across the consequential chain, and success plus fail-closed refusal/revocation/crash-recovery/verifier-failure branches listed accepts."
+    },
+    {
+      "id": "RET-031",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_31313131313131313131313131313131",
+        "tenant_id": "ten_31313131313131313131313131313131",
+        "source_repo": "Aftergraph/works-execution",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000031",
+        "target_owner": "Aftergraph/works-execution",
+        "target_contract": "golden-mission-gate/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-mission-dep",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-mission"
+        ],
+        "verification": [
+          "verifier:continuum:report:000031"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000031",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+        "mission_branches": [
+          "success",
+          "refusal",
+          "revocation",
+          "crash-recovery",
+          "verifier-failure"
+        ],
+        "mission_path_dependencies": [
+          "@avc/legacy-mission-adapter"
+        ],
+        "mission_causal_identity_preserved": true,
+        "mission_executor_ref": "works-execution:mission-executor:000031",
+        "mission_verifier_ref": "continuum:verifier:000031",
+        "mission_provenance_reachable_after_archive": true,
+        "mission_exact_head": true,
+        "claims_mission_success": false,
+        "mission_exact_head_evidence_refs": []
+      },
+      "reason": "Golden Mission PASS claimed with an @avc/* dependency in the mission path rejects."
+    },
+    {
+      "id": "RET-032",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_32323232323232323232323232323232",
+        "tenant_id": "ten_32323232323232323232323232323232",
+        "source_repo": "Aftergraph/works-execution",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000032",
+        "target_owner": "Aftergraph/works-execution",
+        "target_contract": "golden-mission-gate/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-mission-dep",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-mission"
+        ],
+        "verification": [
+          "verifier:continuum:report:000032"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000032",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+        "mission_branches": [
+          "success"
+        ],
+        "mission_path_dependencies": [
+          "@aftergraph/runtime:mission-step"
+        ],
+        "mission_causal_identity_preserved": true,
+        "mission_executor_ref": "works-execution:mission-executor:000032",
+        "mission_verifier_ref": "continuum:verifier:000032",
+        "mission_provenance_reachable_after_archive": true,
+        "mission_exact_head": true,
+        "claims_mission_success": false,
+        "mission_exact_head_evidence_refs": []
+      },
+      "reason": "Golden Mission proving only the happy path without refusal/revocation/crash-recovery/verifier-failure branches rejects."
+    },
+    {
+      "id": "RET-033",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_33333333333333333333333333333333",
+        "tenant_id": "ten_33333333333333333333333333333333",
+        "source_repo": "Aftergraph/works-execution",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000033",
+        "target_owner": "Aftergraph/works-execution",
+        "target_contract": "golden-mission-gate/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-mission-dep",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-mission"
+        ],
+        "verification": [
+          "verifier:continuum:report:000033"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000033",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+        "mission_branches": [
+          "success",
+          "refusal",
+          "revocation",
+          "crash-recovery",
+          "verifier-failure"
+        ],
+        "mission_path_dependencies": [
+          "@aftergraph/runtime:mission-step"
+        ],
+        "mission_causal_identity_preserved": false,
+        "mission_executor_ref": "works-execution:mission-executor:000033",
+        "mission_verifier_ref": "continuum:verifier:000033",
+        "mission_provenance_reachable_after_archive": true,
+        "mission_exact_head": true,
+        "claims_mission_success": false,
+        "mission_exact_head_evidence_refs": []
+      },
+      "reason": "Golden Mission with causal-identity mismatch across the consequential seam presented as PASS rejects."
+    },
+    {
+      "id": "RET-034",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_34343434343434343434343434343434",
+        "tenant_id": "ten_34343434343434343434343434343434",
+        "source_repo": "Aftergraph/works-execution",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000034",
+        "target_owner": "Aftergraph/works-execution",
+        "target_contract": "golden-mission-gate/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-mission-dep",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-mission"
+        ],
+        "verification": [
+          "verifier:continuum:report:000034"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000034",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+        "mission_branches": [
+          "success",
+          "refusal",
+          "revocation",
+          "crash-recovery",
+          "verifier-failure"
+        ],
+        "mission_path_dependencies": [
+          "@aftergraph/runtime:mission-step"
+        ],
+        "mission_causal_identity_preserved": true,
+        "mission_executor_ref": "works-execution:mission-executor:000034",
+        "mission_verifier_ref": "works-execution:mission-executor:000034",
+        "mission_provenance_reachable_after_archive": true,
+        "mission_exact_head": true,
+        "claims_mission_success": false,
+        "mission_exact_head_evidence_refs": []
+      },
+      "reason": "Golden Mission verified by its own executor without independent verification rejects."
+    },
+    {
+      "id": "RET-035",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_35353535353535353535353535353535",
+        "tenant_id": "ten_35353535353535353535353535353535",
+        "source_repo": "Aftergraph/works-execution",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000035",
+        "target_owner": "Aftergraph/works-execution",
+        "target_contract": "golden-mission-gate/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-mission-dep",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-mission"
+        ],
+        "verification": [
+          "verifier:continuum:report:000035"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000035",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+        "mission_branches": [
+          "success",
+          "refusal",
+          "revocation",
+          "crash-recovery",
+          "verifier-failure"
+        ],
+        "mission_path_dependencies": [
+          "@aftergraph/runtime:mission-step"
+        ],
+        "mission_causal_identity_preserved": true,
+        "mission_executor_ref": "works-execution:mission-executor:000035",
+        "mission_verifier_ref": "continuum:verifier:000035",
+        "mission_provenance_reachable_after_archive": false,
+        "mission_exact_head": true,
+        "claims_mission_success": false,
+        "mission_exact_head_evidence_refs": []
+      },
+      "reason": "Golden Mission gate fixture with provenance unreachable after archive rejects."
+    },
+    {
+      "id": "RET-036",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_36363636363636363636363636363636",
+        "tenant_id": "ten_36363636363636363636363636363636",
+        "source_repo": "Aftergraph/works-execution",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000036",
+        "target_owner": "Aftergraph/works-execution",
+        "target_contract": "golden-mission-gate/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-mission-dep",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-mission"
+        ],
+        "verification": [
+          "verifier:continuum:report:000036"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000036",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+        "mission_branches": [
+          "success",
+          "refusal",
+          "revocation",
+          "crash-recovery",
+          "verifier-failure"
+        ],
+        "mission_path_dependencies": [
+          "@aftergraph/runtime:mission-step"
+        ],
+        "mission_causal_identity_preserved": true,
+        "mission_executor_ref": "works-execution:mission-executor:000036",
+        "mission_verifier_ref": "continuum:verifier:000036",
+        "mission_provenance_reachable_after_archive": true,
+        "mission_exact_head": false,
+        "claims_mission_success": false,
+        "mission_exact_head_evidence_refs": []
+      },
+      "reason": "Mission asserted against non-exact-head repos as platform PASS rejects."
+    },
+    {
+      "id": "RET-037",
+      "kind": "avc_dissolution",
+      "expected": "reject",
+      "input": {
+        "schema": "avc-dissolution/0.1",
+        "dissolution_id": "dis_37373737373737373737373737373737",
+        "tenant_id": "ten_37373737373737373737373737373737",
+        "source_repo": "Aftergraph/works-execution",
+        "source_ref": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "source_path": "ledger/dissolution/records.json",
+        "disposition": "MIGRATED_VERIFIED",
+        "baseline_pin": "18317c7b2eebcc08bb2a1b30d9118935d5832540",
+        "delta_audit_ref": "audit:delta:000037",
+        "target_owner": "Aftergraph/works-execution",
+        "target_contract": "golden-mission-gate/0.1",
+        "retires_avc_identity": true,
+        "retired_identity": "avc-legacy-mission-dep",
+        "active_consumers": [],
+        "canonical_doc_assigns_avc_ownership": false,
+        "canonical_doc_refs": [
+          "docs/canonical:ownership-table"
+        ],
+        "compatibility_aliases": [
+          "legacy:avc-mission"
+        ],
+        "verification": [
+          "verifier:continuum:report:000037"
+        ],
+        "deletion_gate": "gate:owner-archive-authorization",
+        "archive_gate_ref": "gate:archive:000037",
+        "executes_archival": false,
+        "ledger_record_present": true,
+        "asserts_retirement": true,
+        "introduced_identifier": "",
+        "identifier_active": false,
+        "claims_owner_execution": false,
+        "claims_extraction_complete": false,
+        "owner_evidence_ref": "",
+        "asserted_at": "2026-09-09T00:00:00Z",
+        "mission_branches": [
+          "success",
+          "refusal",
+          "revocation",
+          "crash-recovery",
+          "verifier-failure"
+        ],
+        "mission_path_dependencies": [
+          "@aftergraph/runtime:mission-step"
+        ],
+        "mission_causal_identity_preserved": true,
+        "mission_executor_ref": "works-execution:mission-executor:000037",
+        "mission_verifier_ref": "continuum:verifier:000037",
+        "mission_provenance_reachable_after_archive": true,
+        "mission_exact_head": true,
+        "claims_mission_success": true,
+        "mission_exact_head_evidence_refs": []
+      },
+      "reason": "Evidence-gated: live Aftergraph-only Golden Mission success claim without exact-head owner-repo evidence rejects."
     }
   ]
 }
