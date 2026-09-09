@@ -1,6 +1,6 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-09T08:29:02Z",
+  "generated_at": "2026-09-09T08:47:37Z",
   "generator": "/mnt/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
@@ -8,9 +8,9 @@
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "f1101676118d1b291ad0b7f74d7a8610ebf54065",
-      "remote_head_short": "f110167",
-      "head_commit_message": "evidence(governance): Wave F Task 1 — pocket-source contract + validator + PCK vectors (#87)",
+      "remote_head_sha": "629cd86a5005af5fa41cf95c7a356e8bb1320e0b",
+      "remote_head_short": "629cd86",
+      "head_commit_message": "evidence(governance): Wave F Task 2 — pocket webhook guards + REST reconciliation PCK vectors (#89)",
       "private": false,
       "archived": false,
       "protected": true,
