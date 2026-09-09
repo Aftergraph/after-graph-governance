@@ -189,6 +189,57 @@
     },
     "webhook_claimed_as_truth": {
       "type": "boolean"
+    },
+    "consent_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "consent_revoked": {
+      "type": "boolean"
+    },
+    "downstream_invalidated": {
+      "type": "boolean"
+    },
+    "audit_rewritten": {
+      "type": "boolean"
+    },
+    "source_deleted": {
+      "type": "boolean"
+    },
+    "deletion_propagated": {
+      "type": "boolean"
+    },
+    "projection_recomputed": {
+      "type": "boolean"
+    },
+    "stale_served_as_current": {
+      "type": "boolean"
+    },
+    "injection_contained": {
+      "type": "boolean"
+    },
+    "conversation_scope": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "attributed_conversation": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "cross_conversation_lineage": {
+      "type": "boolean"
+    },
+    "access_mode": {
+      "type": "string",
+      "enum": ["interactive", "canonical"]
     }
   },
   "required": [

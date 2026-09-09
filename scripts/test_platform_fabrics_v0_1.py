@@ -286,8 +286,25 @@ POCKET_WEBHOOK_OPTIONAL = {
     "reconciles_to_canonical",
     "webhook_claimed_as_truth",
 }
-POCKET_ALLOWED = set(POCKET_REQUIRED) | set(POCKET_WEBHOOK_OPTIONAL)
+POCKET_TASK3_OPTIONAL = {
+    "consent_ref",
+    "purpose",
+    "consent_revoked",
+    "downstream_invalidated",
+    "audit_rewritten",
+    "source_deleted",
+    "deletion_propagated",
+    "projection_recomputed",
+    "stale_served_as_current",
+    "injection_contained",
+    "conversation_scope",
+    "attributed_conversation",
+    "cross_conversation_lineage",
+    "access_mode",
+}
+POCKET_ALLOWED = set(POCKET_REQUIRED) | set(POCKET_WEBHOOK_OPTIONAL) | set(POCKET_TASK3_OPTIONAL)
 POCKET_CHANNELS = {"rest", "webhook"}
+POCKET_ACCESS_MODES = {"interactive", "canonical"}
 POCKET_SIGNATURE_SCHEMES = {"hmac-sha256"}
 POCKET_CLASSES = {"authority", "enforcement", "runtime", "execution", "verification", "research"}
 POCKET_CANDIDATE_KINDS = {"observation_update", "attention_candidate", "commitment_candidate", "finding"}
@@ -1316,6 +1333,71 @@ def validate_pocket_source(document: object) -> list[str]:
     if claimed is True:
         errors.append("webhooks are event-plane signals, never reconciliation truth")
 
+    consent_ref = document.get("consent_ref")
+    if consent_ref is not None and not nonempty_string(consent_ref, maximum=256):
+        errors.append("invalid consent_ref")
+    purpose = document.get("purpose")
+    if purpose is not None and not nonempty_string(purpose, maximum=256):
+        errors.append("invalid purpose")
+    revoked = document.get("consent_revoked")
+    if revoked is not None and not isinstance(revoked, bool):
+        errors.append("consent_revoked must be a boolean")
+    invalidated = document.get("downstream_invalidated")
+    if invalidated is not None and not isinstance(invalidated, bool):
+        errors.append("downstream_invalidated must be a boolean")
+    if revoked is True and invalidated is not True:
+        errors.append("consent revocation invalidates downstream use per provenance")
+    rewritten = document.get("audit_rewritten")
+    if rewritten is not None and not isinstance(rewritten, bool):
+        errors.append("audit_rewritten must be a boolean")
+    if rewritten is True:
+        errors.append("historical audit/evidence is never rewritten")
+    deleted = document.get("source_deleted")
+    if deleted is not None and not isinstance(deleted, bool):
+        errors.append("source_deleted must be a boolean")
+    propagated = document.get("deletion_propagated")
+    if propagated is not None and not isinstance(propagated, bool):
+        errors.append("deletion_propagated must be a boolean")
+    if deleted is True:
+        if propagated is not True:
+            errors.append("source deletion propagates withdrawal to reads and derivatives")
+        if document.get("withdrawn_from_reads") is not True:
+            errors.append("source deletion withdraws content from reads")
+    recomputed = document.get("projection_recomputed")
+    if recomputed is not None and not isinstance(recomputed, bool):
+        errors.append("projection_recomputed must be a boolean")
+    stale = document.get("stale_served_as_current")
+    if stale is not None and not isinstance(stale, bool):
+        errors.append("stale_served_as_current must be a boolean")
+    if stale is True:
+        errors.append("projections never stale-served as current")
+    contained = document.get("injection_contained")
+    if contained is not None and not isinstance(contained, bool):
+        errors.append("injection_contained must be a boolean")
+    scope = document.get("conversation_scope")
+    if scope is not None and not nonempty_string(scope):
+        errors.append("invalid conversation_scope")
+    attributed = document.get("attributed_conversation")
+    if attributed is not None and not nonempty_string(attributed):
+        errors.append("invalid attributed_conversation")
+    cross_lineage = document.get("cross_conversation_lineage")
+    if cross_lineage is not None and not isinstance(cross_lineage, bool):
+        errors.append("cross_conversation_lineage must be a boolean")
+    if (
+        scope is not None
+        and attributed is not None
+        and nonempty_string(scope)
+        and nonempty_string(attributed)
+        and attributed != scope
+        and cross_lineage is not True
+    ):
+        errors.append("cross-conversation attribution without lineage rejected")
+    access = document.get("access_mode")
+    if access is not None and access not in POCKET_ACCESS_MODES:
+        errors.append("invalid access_mode")
+    if access == "canonical":
+        errors.append("MCP is optional interactive access, never canonical ingestion")
+
     return errors
 
 
@@ -1854,9 +1936,114 @@ class PlatformFabricsV01Tests(unittest.TestCase):
             ("PCK-015", "accept"),
             ("PCK-016", "accept"),
             ("PCK-017", "accept"),
+            ("PCK-020", "accept"),
+            ("PCK-021", "accept"),
+            ("PCK-022", "accept"),
+            ("PCK-023", "accept"),
+            ("PCK-024", "accept"),
+            ("PCK-025", "reject"),
+            ("PCK-026", "accept"),
+            ("PCK-027", "reject"),
         ):
             self.assertIn(vector_id, by_id)
             self.assertEqual(by_id[vector_id]["expected"], expected)
+
+    def test_pocket_consent_purpose_lineage_accepted(self) -> None:
+        document = valid_pocket_source()
+        document["consent_ref"] = "consent:ledger:000020"
+        document["purpose"] = "personalization"
+        self.assertEqual(validate_pocket_source(document), [])
+        document["consent_ref"] = ""
+        self.assertTrue(
+            any("invalid consent_ref" in e for e in validate_pocket_source(document))
+        )
+
+    def test_pocket_consent_revocation_invalidates_without_rewriting_audit(self) -> None:
+        document = valid_pocket_source()
+        document["consent_ref"] = "consent:ledger:000021"
+        document["purpose"] = "personalization"
+        document["consent_revoked"] = True
+        document["downstream_invalidated"] = True
+        self.assertEqual(validate_pocket_source(document), [])
+        document = valid_pocket_source()
+        document["consent_revoked"] = True
+        self.assertTrue(
+            any("invalidates downstream use" in e for e in validate_pocket_source(document))
+        )
+        document = valid_pocket_source()
+        document["consent_revoked"] = True
+        document["downstream_invalidated"] = True
+        document["audit_rewritten"] = True
+        self.assertTrue(
+            any("never rewritten" in e for e in validate_pocket_source(document))
+        )
+
+    def test_pocket_source_deletion_propagates_with_tombstone(self) -> None:
+        document = valid_pocket_source()
+        document["source_deleted"] = True
+        document["deletion_propagated"] = True
+        document["tombstone"] = True
+        document["withdrawn_from_reads"] = True
+        document["audit_retained"] = True
+        self.assertEqual(validate_pocket_source(document), [])
+        document = valid_pocket_source()
+        document["source_deleted"] = True
+        self.assertTrue(
+            any("propagates withdrawal" in e for e in validate_pocket_source(document))
+        )
+
+    def test_pocket_world_state_invalidation_never_stale(self) -> None:
+        document = valid_pocket_source()
+        document["consent_revoked"] = True
+        document["downstream_invalidated"] = True
+        document["projection_recomputed"] = True
+        document["stale_served_as_current"] = False
+        self.assertEqual(validate_pocket_source(document), [])
+        document["stale_served_as_current"] = True
+        self.assertTrue(
+            any("never stale-served" in e for e in validate_pocket_source(document))
+        )
+
+    def test_pocket_prompt_injection_contained_never_instruction(self) -> None:
+        document = valid_pocket_source()
+        document["contains_instruction"] = True
+        document["self_executes"] = False
+        document["claims_execution"] = False
+        document["injection_contained"] = True
+        self.assertEqual(validate_pocket_source(document), [])
+        document["self_executes"] = True
+        self.assertTrue(
+            any("never self-executes" in e for e in validate_pocket_source(document))
+        )
+        document = valid_pocket_source()
+        document["contains_instruction"] = True
+        document["claims_execution"] = True
+        self.assertTrue(
+            any("zero execution authority" in e for e in validate_pocket_source(document))
+        )
+
+    def test_pocket_cross_conversation_leak_rejected(self) -> None:
+        document = valid_pocket_source()
+        document["conversation_scope"] = "pocket:conversation:00AA"
+        document["attributed_conversation"] = "pocket:conversation:00BB"
+        self.assertTrue(
+            any("without lineage" in e for e in validate_pocket_source(document))
+        )
+        document["cross_conversation_lineage"] = True
+        self.assertEqual(validate_pocket_source(document), [])
+        document = valid_pocket_source()
+        document["conversation_scope"] = "pocket:conversation:00AA"
+        document["attributed_conversation"] = "pocket:conversation:00AA"
+        self.assertEqual(validate_pocket_source(document), [])
+
+    def test_pocket_mcp_interactive_accepted_canonical_rejected(self) -> None:
+        document = valid_pocket_source()
+        document["access_mode"] = "interactive"
+        self.assertEqual(validate_pocket_source(document), [])
+        document["access_mode"] = "canonical"
+        self.assertTrue(
+            any("never canonical ingestion" in e for e in validate_pocket_source(document))
+        )
 
     def test_pocket_webhook_valid_signature_accepted(self) -> None:
         self.assertEqual(validate_pocket_source(valid_pocket_webhook()), [])
