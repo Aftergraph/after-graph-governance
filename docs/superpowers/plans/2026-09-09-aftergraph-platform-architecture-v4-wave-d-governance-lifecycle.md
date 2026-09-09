@@ -70,7 +70,9 @@ canonical platform IDs.
   subject, purpose, scope, ledger record/version, accept), `CON-002`
   (use of already-derived contextual memory where a ConsentRevoked record
   ends the purpose, reject), `CON-003` (use past ConsentExpired validity,
-  reject). Run → FAIL on missing contract/kind/vectors.
+  reject), `CON-004` (ConsentRestricted narrows the purpose and a use
+  outside the narrowed purpose is attempted, reject). Run → FAIL on
+  missing contract/kind/vectors.
 - [ ] **Step 2: GREEN.** Add `docs/contracts/consent-ledger/0.1.json`
   (experimental), extend the conformance harness with a `consent_ledger`
   kind validator plus its own tests, add the three vectors to
@@ -85,7 +87,9 @@ canonical platform IDs.
   operational truth and domain-owner acknowledgements recorded, accept),
   `TEN-002` (new grant/ingestion/execution admitted while DELETING,
   reject), `TEN-003` (transition to DELETED without every required owner's
-  export/deletion/retention acknowledgement, reject). Run → FAIL.
+  export/deletion/retention acknowledgement, reject), `TEN-004` (new
+  execution admitted while SUSPENDED, reject), `TEN-005` (new ingestion
+  admitted while EXPORTING, reject). Run → FAIL.
 - [ ] **Step 2: GREEN.** Add `docs/contracts/tenant-lifecycle/0.1.json`
   (experimental; states ACTIVE/SUSPENDED/EXPORTING/DELETING/DELETED),
   extend the harness with a `tenant_lifecycle` kind validator plus its own
@@ -100,7 +104,11 @@ canonical platform IDs.
   `CONS-REV-001`: a ConsentRevoked record for one source/purpose
   invalidates derived memory, ACC projections, and World State assertions
   sourced solely from it, while unrelated uses survive and audit history is
-  preserved byte-for-byte. Run → FAIL (no fixture).
+  preserved byte-for-byte; and `CONS-REV-002`: the same revocation denies
+  new connector ingestion from the revoked source, invalidates active
+  context bundles built on it, and blocks future research/personalization
+  processing for it, while unrelated uses survive. Together both fixtures
+  cover all six §12 invalidation targets. Run → FAIL (no fixtures).
 - [ ] **Step 2: GREEN.** Add the fixture under
   `docs/platform-conformance/v0.1/world-state/`; suite → PASS. Fixtures
   carry consent/purpose lineage as the selection key; revocation behavior
@@ -116,7 +124,8 @@ canonical platform IDs.
   grants are the authority truth; workspace binding immutable under the
   TG registry; Studio owns experience state only; seams mapped to V4
   owners; nothing that makes a label, surface, or workspace an authority
-  source) and to forbid label-as-authority phrases. Run → FAIL.
+  source) and to forbid label-, surface-, and workspace-as-authority
+  phrases. Run → FAIL.
 - [ ] **Step 2: GREEN.** Add the document (sourced from the V4 spec
   §§5.2–5.3/12, which stay as rationale); suite → PASS; no new authority,
   role, or ownership anywhere in the diff.
