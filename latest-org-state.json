@@ -1,6 +1,6 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-09T12:47:27Z",
+  "generated_at": "2026-09-09T13:02:59Z",
   "generator": "/mnt/c/Users/empir/after-graph-governance/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
@@ -8,9 +8,9 @@
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "765d739ea7d9282f01f7a73dbaea1028ff4717fb",
-      "remote_head_short": "765d739",
-      "head_commit_message": "evidence(governance): Wave I Task 2 — skill-hermes migration RET vectors (#124)",
+      "remote_head_sha": "759049654dac6bf168e12ec91d682b6063c11843",
+      "remote_head_short": "7590496",
+      "head_commit_message": "evidence(governance): Wave I Task 3 — consumer-removal RET vectors (#126)",
       "private": false,
       "archived": false,
       "protected": true,
