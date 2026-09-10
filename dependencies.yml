@@ -169,3 +169,9 @@ modules:
     role: skill-portability-benchmark
     consumes: [skill-abi, skills-vault]
     provides: [portability-benchmarks]
+
+  relay:
+    repo: Aftergraph/relay
+    role: human-operator-plane
+    consumes: [after-graph-governance, aie, trust-gateway, runtime, works-execution, sentinel, context-continuity]
+    provides: [operator-surface, pty-broker, fleet-mesh, mission-dag, human-attention, continuity-capsules]

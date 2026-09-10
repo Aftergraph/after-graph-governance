@@ -178,14 +178,15 @@ def load_json(path: Path) -> dict:
 
 
 class TopologyV2DataTest(unittest.TestCase):
-    def test_has_exactly_27_unique_repositories(self):
-        # 27 = 24 canonical + sentinel-firetest2 (live-verified 2026-09-10,
+    def test_has_exactly_28_unique_repositories(self):
+        # 28 = 24 canonical + sentinel-firetest2 (live-verified 2026-09-10,
         # temporary-verification-fixture with expires_at) + skill-abi and
-        # skillport (live-verified 2026-09-10, active capability/assurance).
+        # skillport (live-verified 2026-09-10, active capability/assurance)
+        # + relay (enrolled 2026-09-10, canonical human-operator-plane).
         doc = load_json(TOPOLOGY)
         names = [r["name"] for r in doc["repositories"]]
-        self.assertEqual(len(names), 27)
-        self.assertEqual(len(set(names)), 27)
+        self.assertEqual(len(names), 28)
+        self.assertEqual(len(set(names)), 28)
 
     def test_only_seven_non_null_architecture_planes_exist(self):
         doc = load_json(TOPOLOGY)

@@ -84,6 +84,7 @@ The table below is a generated projection of `docs/platform-topology/2.0.json` â
 | Runtime | runtime | `runtime` | agent-runtime | active | Agent lifecycle, orchestration, dispatch, checkpoints, metering and observability. |
 | Execution | execution | `works-execution` | durable-execution | active | Durable work state, scheduling, workers, leases, recovery, execution evidence and quittance. |
 | Verification | assurance | `sentinel` | verified-code-review | active | Exact-HEAD verified code-review verdicts with stale-base invalidation and cited evidence. |
+| Experience | operator-plane | `relay` | human-operator-plane | active | Governed operator plane for supervising autonomous work across agents, missions, execution nodes, Runtime projection, and Aftergraph infrastructure. |
 | Experience | experience | `studio` | primary-experience | active | General-purpose human operating environment for Chat, Work, Space, control and evidence surfaces. |
 | Experience | specialist-experience | `wi-frontend` | work-intelligence-experience | active | Wie browser experience and least-privilege BFF consuming canonical Work Intelligence state from wi-backend. |
 | Support | foundation | `.github` | organization-community | active | Organization profile, contribution defaults, security/support routing and shared community infrastructure. |
