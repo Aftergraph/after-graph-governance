@@ -191,6 +191,42 @@ class ScorecardTests(unittest.TestCase):
         self.assertEqual(data["ratchet_rules_total"], 1)
         self.assertIsInstance(data["guide_staleness_days_median"], float)
 
+    def test_control_plane_cost_is_measured_and_the_token_budget_is_flagged(self):
+        """Guide text is control-plane cost: the scorecard reports it and flags breaches of the budget."""
+        write(self.tmp / "covered" / "AGENTS.md",
+              "## Project\n\n  Name covered\n  Role test fixture\n  Pad " + ("x" * 2400)
+              + "\n\nPrecedence: this file beats the conversation\n\n## Rules\n\n- one\n")
+        write(self.tmp / "uncovered" / "AGENTS.md",
+              "## Project\n\n  Name uncovered\n\nPrecedence: this file beats the conversation\n")
+        data = self.scorecard()
+        cpc = data["control_plane_cost"]
+        per = {r["repo"]: r for r in cpc["per_repo"]}
+        self.assertGreater(per["covered"]["tier1_bytes"], 2400)
+        self.assertGreaterEqual(per["covered"]["guide_bytes"], per["covered"]["tier1_bytes"])
+        self.assertIn("covered", cpc["tier1_over_500_token_budget"])
+        self.assertNotIn("uncovered", cpc["tier1_over_500_token_budget"])
+        self.assertGreaterEqual(cpc["guide_tokens_total_all_repos"], per["covered"]["guide_tokens_est"])
+
+    def test_role_coverage_reads_the_machine_readable_inventory(self):
+        write(self.tmp / "covered" / "AGENTS.md",
+              "## Project\n\n  Name covered\n\nPrecedence: this file beats the conversation\n")
+        inv = json.loads((self.tmp / "REPOSITORY_INVENTORY.json").read_text())
+        for row in inv["repos"]:
+            row["role"] = "infra" if row["name"] == "covered" else "undeclared"
+            row["role_detail"] = "fixture"
+            row["role_declared"] = row["name"] == "covered"
+        write(self.tmp / "REPOSITORY_INVENTORY.json", json.dumps(inv))
+        data = self.scorecard()
+        rc = data["role_coverage"]
+        self.assertEqual(rc["declared"], 1)
+        self.assertEqual(rc["total"], 2)
+        self.assertEqual(rc["pct"], 50.0)
+        self.assertIn("uncovered", rc["undeclared"])
+        self.assertEqual(rc["distribution"]["infra"], 1)
+        rows = [json.loads(l) for l in (self.tmp / "SCORECARD_HISTORY.jsonl").read_text().splitlines() if l.strip()]
+        self.assertEqual(rows[-1]["role_declared_count"], 1)
+        self.assertIsNotNone(rows[-1]["tier1_tokens_median"])
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
