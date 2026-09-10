@@ -61,6 +61,17 @@
       "must_not_own": "Agent persona, AIE authority semantics, Trust Gateway admission or independent verification."
     },
     {
+      "name": "relay",
+      "canonical_branch": "main",
+      "visibility": "private",
+      "architecture_plane": "experience",
+      "system_class": "operator-plane",
+      "role": "human-operator-plane",
+      "lifecycle": "active",
+      "owns": "Governed operator plane for supervising autonomous work across agents, missions, execution nodes, Runtime projection, and Aftergraph infrastructure.",
+      "must_not_own": "Runtime authority, AIE semantics, Trust Gateway admission, WORKS durable execution, or independent verification verdicts."
+    },
+    {
       "name": "studio",
       "canonical_branch": "main",
       "visibility": "public",
