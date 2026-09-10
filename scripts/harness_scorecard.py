@@ -91,6 +91,21 @@ def main():
         if rows:
             prev_rules = rows[-1].get("ratchet_rules")
 
+    # Primary metric, read from the instrument's own artifact so the history row carries the measured
+    # values AND the definition that produced them. Without the definition a definition change looks like a
+    # movement in the metric.
+    dc = None
+    dc_path = os.path.join(root, "AGENT_DISCOVERY_COST.json")
+    if os.path.exists(dc_path):
+        raw = json.load(open(dc_path))
+        totals = raw.get("all_repos") or {}
+        dc = {"definition_version": raw.get("definition_version"),
+              "window_days": raw.get("window_days"),
+              "slices": totals.get("slices"),
+              "pct_that_verified": totals.get("pct_that_verified"),
+              "pct_that_mutated_without_verifying": totals.get("pct_that_mutated_without_verifying"),
+              "calls_before_verify_median": totals.get("calls_before_verify_median")}
+
     scorecard = {
         "generated_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "root": root,
@@ -113,6 +128,7 @@ def main():
         },
         "evidence_freshness": {"current_at_live_head": sorted(current),
                                "stale_vs_live_head": stale},
+        "discovery_cost": dc,
         "not_instrumented": {
             "cost_per_verified_result": "no per-task cost accounting in this workspace; trust-gateway BudgetLedger is the candidate source",
             "rework_rate": "requires PR-level attempt history (gh api check runs per head) — not collected locally",
@@ -131,7 +147,8 @@ def main():
                                 "sensor_coverage_pct": scorecard["sensor_coverage"]["pct"],
                                 "ratchet_rules": rules,
                                 "stale_evidence_count": len(stale),
-                                "current_evidence_count": len(current)}) + "\n")
+                                "current_evidence_count": len(current),
+                                "discovery_cost": dc}) + "\n")
         md = [f"# Aftergraph Harness Scorecard — {scorecard['generated_at']}", "",
               f"Repos: {len(inv)} in inventory, {len(present)} present locally", "",
               "| metric | value | direction |", "|---|---|---|",
