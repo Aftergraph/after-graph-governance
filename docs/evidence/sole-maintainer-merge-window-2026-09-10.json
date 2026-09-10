@@ -379,7 +379,7 @@
       "number": 71,
       "url": "https://github.com/Aftergraph/works-execution/pull/71",
       "title": "feat(store): persist independent outcome verification verdicts",
-      "head_sha": "6144ecdaa31857322c50f4284772eadd62f0b60a",
+      "head_sha": "9fd4efdece9fa797e7689bab3c86517e7b63b88d",
       "head_branch": "feat/durable-outcome-verdict",
       "base": "main",
       "mergeable": "MERGEABLE",
@@ -418,7 +418,8 @@
           "state": "COMMENTED"
         }
       ],
-      "all_required_checks_green": true
+      "all_required_checks_green": true,
+      "note": "head advanced 6144ecd->9fd4efd (evidence_handler verdict projection fix for Codex thread); CI re-verified green 2026-09-10; threads resolved"
     },
     {
       "repo": "works-execution",

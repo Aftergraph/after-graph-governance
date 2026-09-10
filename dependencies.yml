@@ -157,3 +157,15 @@ modules:
     role: organization-community
     consumes: [after-graph-governance, brand]
     provides: [organization-profile, contribution-defaults, security-routing, support-routing, community-health]
+
+  skill-abi:
+    repo: Aftergraph/skill-abi
+    role: skill-compatibility-contract
+    consumes: [after-graph-governance]
+    provides: [skill-compatibility-contract, bounded-effects, degradation-contract]
+
+  skillport:
+    repo: Aftergraph/skillport
+    role: skill-portability-benchmark
+    consumes: [skill-abi, skills-vault]
+    provides: [portability-benchmarks]
