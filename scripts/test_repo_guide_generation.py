@@ -169,6 +169,18 @@ class ScorecardTests(unittest.TestCase):
         self.assertEqual(data["sensor_coverage"]["with_recorded_executed_verification"], 1)
         self.assertIn("uncovered", data["sensor_coverage"]["no_recorded_sensor"])
 
+    def test_history_row_carries_the_primary_metric_with_its_definition(self):
+        """A definition change must not read as a movement in the metric."""
+        run_generator(self.tmp)
+        write(self.tmp / "AGENT_DISCOVERY_COST.json", json.dumps({
+            "definition_version": "v9", "window_days": 14,
+            "all_repos": {"slices": 5, "pct_that_verified": 40.0,
+                          "pct_that_mutated_without_verifying": 60.0, "calls_before_verify_median": 3}}))
+        data = self.scorecard()
+        self.assertEqual(data["discovery_cost"]["definition_version"], "v9")
+        rows = [json.loads(l) for l in (self.tmp / "SCORECARD_HISTORY.jsonl").read_text().splitlines() if l.strip()]
+        self.assertEqual(rows[-1]["discovery_cost"]["pct_that_verified"], 40.0)
+
     def test_ratchet_rules_and_staleness_are_reported(self):
         run_generator(self.tmp)
         guide = self.tmp / "covered" / "AGENTS.md"
