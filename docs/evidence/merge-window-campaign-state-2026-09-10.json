@@ -25,8 +25,10 @@
       "docs": "OK",
       "after-graph-governance": "N/A"
     },
-    "pending_runs": []
+    "pending_runs": [],
+    "pr_heads_fetched": true
   },
   "next": "owner opens window -> queue-merge 14 in order -> mission on VDS -> AVC -> verdict",
-  "merge_readiness_scan": "zero CHANGES_REQUESTED across all 14 PRs; all MERGEABLE; required checks green (2 null-name rollup ghosts documented non-blocking)"
+  "merge_readiness_scan": "zero CHANGES_REQUESTED across all 14 PRs; all MERGEABLE; required checks green (2 null-name rollup ghosts documented non-blocking)",
+  "sha_corroboration": "14/14 PR head SHAs match between gh-API packets and independent VDS git fetch (run_93a2dff79cc44e54b738d73daebf820d); zero drift, zero new comments, zero change-requests"
 }
