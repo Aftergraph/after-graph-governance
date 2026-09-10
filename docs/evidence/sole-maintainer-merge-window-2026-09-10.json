@@ -1,0 +1,767 @@
+{
+  "protocol": "sole-maintainer-merge-window/0.1",
+  "maturity": "working-draft with experimental implementation pending; NOT stable, NOT a standing bypass",
+  "classification": {
+    "decision": "ADOPT GitHub repository-ruleset mechanism; PROFILE with Aftergraph ledger binding",
+    "prior_art": [
+      "GitHub repository rulesets + merge queue (adopted mechanism, not reinvented)",
+      "Solo-maintainer practice: temporarily drop required-reviewer rule, merge green PRs, restore",
+      "Rejected: standing bypass actor (fails open permanently \u2014 documented failure mode in third-party postmortems)",
+      "Rejected: machine-user approver (feigns independence; same-human control)",
+      "Rejected: bot auto-approval workflow (manufactured review)",
+      "Rejected: direct-to-main push (defeats merge queue behind its back)"
+    ]
+  },
+  "problem": "Aftergraph is a sole-member org with required-review rules. Author cannot self-approve (platform bar), no second human exists (verified: members, teams, collaborators), no bypass grants exist. Gate is unsatisfiable: 14 CI-green MERGEABLE PRs blocked. Two agent sessions independently hit this wall.",
+  "owner": "Aftergraph (after-graph-governance); decision authority: JonasAbde",
+  "scope_prs": [
+    "trust-gateway#82",
+    "trust-gateway#83",
+    "trust-gateway#84",
+    "trust-gateway#86",
+    "works-execution#69",
+    "works-execution#71",
+    "works-execution#72",
+    "works-execution#73",
+    "studio#47",
+    "studio#48",
+    "docs#19",
+    "docs#20",
+    "aie#58",
+    "wi-backend#69"
+  ],
+  "preconditions": [
+    "Every listed PR is MERGEABLE with all required checks SUCCESS (packets below, OBSERVED 2026-09-10)",
+    "Owner directive recorded (chat 2026-09-10) + gov#143 decision record on main",
+    "No PR head may advance after packet capture: any new head SHA invalidates that packet and re-runs its checks before queueing"
+  ],
+  "owner_application_steps": [
+    "1. Open org ruleset governing required reviews (github.com/organizations/Aftergraph/settings/rules).",
+    "2. Temporarily set required approving reviews to 0 (or disable that single rule). Do NOT touch required status checks or the merge queue.",
+    "3. Tell the agent the window is open. Merge execution is agent-side, queue-only, in dependency order.",
+    "4. After the agent reports all merges with SHAs, re-enable the rule and tell the agent; agent verifies restoration is OBSERVED."
+  ],
+  "execution_order": [
+    "trust-gateway#82",
+    "trust-gateway#83",
+    "trust-gateway#84",
+    "trust-gateway#86",
+    "works-execution#69",
+    "works-execution#71",
+    "works-execution#72",
+    "works-execution#73",
+    "studio#47",
+    "studio#48",
+    "docs#19",
+    "docs#20",
+    "aie#58",
+    "wi-backend#69"
+  ],
+  "per_merge_verification": "queue entry accepted; merge commit SHA recorded; packet head SHA equals merged head",
+  "restore_and_close": "Owner re-enables required reviews; agent confirms a subsequent PR shows BLOCKED/REVIEW_REQUIRED again; ledger closed with window timestamps",
+  "safeguards": [
+    "Queue-only merges; no direct pushes (ruleset still forbids them)",
+    "Window covers exactly the 14 listed heads; anything else merged in-window is a protocol violation",
+    "Standing bypass is explicitly NOT created (anti-entropy: no lingering second authority)",
+    "Ghost check-rollup nodes (null name, aie#58 + wi-backend#69) recorded as non-blocking artifacts, not required contexts"
+  ],
+  "evidence_grades": "packet fields OBSERVED via gh API 2026-09-10; owner directive ASSERTED in session (to be cited in per-merge ledger)",
+  "unverified": [
+    "Org ruleset name/ID (no admin:org scope to read it; owner locates it in UI)",
+    "VDS staging run approval (parked in Hermes)"
+  ],
+  "packets": [
+    {
+      "repo": "trust-gateway",
+      "number": 82,
+      "url": "https://github.com/Aftergraph/trust-gateway/pull/82",
+      "title": "feat(tg): credential surrogation + governed egress implementation",
+      "head_sha": "a304525c7027eab43b6e990e9209285f8a7d007b",
+      "head_branch": "feat/credential-surrogation-egress-impl",
+      "base": "main",
+      "mergeable": "MERGEABLE",
+      "merge_state": "BLOCKED",
+      "review_decision": "REVIEW_REQUIRED",
+      "diffstat": {
+        "additions": 896,
+        "deletions": 121,
+        "files": 13
+      },
+      "checks": [
+        {
+          "name": "auto-merge",
+          "status": "COMPLETED",
+          "conclusion": "SKIPPED"
+        },
+        {
+          "name": "test",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "Analyze (javascript)",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "gate / integration",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "CodeQL",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        }
+      ],
+      "reviews": [
+        {
+          "author": "chatgpt-codex-connector",
+          "state": "COMMENTED"
+        },
+        {
+          "author": "JonasAbde",
+          "state": "COMMENTED"
+        }
+      ],
+      "all_required_checks_green": true
+    },
+    {
+      "repo": "trust-gateway",
+      "number": 83,
+      "url": "https://github.com/Aftergraph/trust-gateway/pull/83",
+      "title": "feat(tg): consent ledger state and enforcement (CON-001..004, CONS-REV-001/002)",
+      "head_sha": "da5d934450a24debae08b5d31ccef55d54abc6a6",
+      "head_branch": "feat/tg-consent-ledger-v0-1",
+      "base": "main",
+      "mergeable": "MERGEABLE",
+      "merge_state": "BLOCKED",
+      "review_decision": "REVIEW_REQUIRED",
+      "diffstat": {
+        "additions": 1018,
+        "deletions": 0,
+        "files": 2
+      },
+      "checks": [
+        {
+          "name": "auto-merge",
+          "status": "COMPLETED",
+          "conclusion": "SKIPPED"
+        },
+        {
+          "name": "test",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "Analyze (javascript)",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "gate / integration",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "CodeQL",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        }
+      ],
+      "reviews": [
+        {
+          "author": "chatgpt-codex-connector",
+          "state": "COMMENTED"
+        },
+        {
+          "author": "JonasAbde",
+          "state": "COMMENTED"
+        },
+        {
+          "author": "JonasAbde",
+          "state": "COMMENTED"
+        },
+        {
+          "author": "JonasAbde",
+          "state": "COMMENTED"
+        },
+        {
+          "author": "chatgpt-codex-connector",
+          "state": "COMMENTED"
+        }
+      ],
+      "all_required_checks_green": true
+    },
+    {
+      "repo": "trust-gateway",
+      "number": 84,
+      "url": "https://github.com/Aftergraph/trust-gateway/pull/84",
+      "title": "feat(tg): tenant lifecycle TEN-001..005 acceptance coverage",
+      "head_sha": "0280d9a5effb0c67a32507367b618154b0730599",
+      "head_branch": "feat/tg-tenant-lifecycle-ten-vectors",
+      "base": "main",
+      "mergeable": "MERGEABLE",
+      "merge_state": "BLOCKED",
+      "review_decision": "REVIEW_REQUIRED",
+      "diffstat": {
+        "additions": 455,
+        "deletions": 0,
+        "files": 2
+      },
+      "checks": [
+        {
+          "name": "auto-merge",
+          "status": "COMPLETED",
+          "conclusion": "SKIPPED"
+        },
+        {
+          "name": "test",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "Analyze (javascript)",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "gate / integration",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "CodeQL",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        }
+      ],
+      "reviews": [
+        {
+          "author": "chatgpt-codex-connector",
+          "state": "COMMENTED"
+        },
+        {
+          "author": "JonasAbde",
+          "state": "COMMENTED"
+        },
+        {
+          "author": "chatgpt-codex-connector",
+          "state": "COMMENTED"
+        },
+        {
+          "author": "JonasAbde",
+          "state": "COMMENTED"
+        },
+        {
+          "author": "JonasAbde",
+          "state": "COMMENTED"
+        },
+        {
+          "author": "JonasAbde",
+          "state": "COMMENTED"
+        }
+      ],
+      "all_required_checks_green": true
+    },
+    {
+      "repo": "trust-gateway",
+      "number": 86,
+      "url": "https://github.com/Aftergraph/trust-gateway/pull/86",
+      "title": "feat(tg): tenant lifecycle transition endpoint + record store (TG85)",
+      "head_sha": "621652b98a2bf17fc9ae5cbbf84f0b5b9bbb8ff5",
+      "head_branch": "tg85-lifecycle-endpoint",
+      "base": "feat/tg-tenant-lifecycle-ten-vectors",
+      "mergeable": "MERGEABLE",
+      "merge_state": "CLEAN",
+      "review_decision": "",
+      "diffstat": {
+        "additions": 407,
+        "deletions": 0,
+        "files": 4
+      },
+      "checks": [
+        {
+          "name": "auto-merge",
+          "status": "COMPLETED",
+          "conclusion": "SKIPPED"
+        },
+        {
+          "name": "test",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "gate / integration",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        }
+      ],
+      "reviews": [],
+      "all_required_checks_green": true
+    },
+    {
+      "repo": "works-execution",
+      "number": 69,
+      "url": "https://github.com/Aftergraph/works-execution/pull/69",
+      "title": "feat(works): require independent verifier verdict before quittance",
+      "head_sha": "32bfba0635093f1db34abb0e6369d6d78dca5a1b",
+      "head_branch": "feat/independent-verifier-quittance",
+      "base": "main",
+      "mergeable": "MERGEABLE",
+      "merge_state": "BLOCKED",
+      "review_decision": "REVIEW_REQUIRED",
+      "diffstat": {
+        "additions": 542,
+        "deletions": 118,
+        "files": 12
+      },
+      "checks": [
+        {
+          "name": "auto-merge",
+          "status": "COMPLETED",
+          "conclusion": "SKIPPED"
+        },
+        {
+          "name": "Analyze (go)",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "test",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "CodeQL",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        }
+      ],
+      "reviews": [
+        {
+          "author": "chatgpt-codex-connector",
+          "state": "COMMENTED"
+        },
+        {
+          "author": "chatgpt-codex-connector",
+          "state": "COMMENTED"
+        },
+        {
+          "author": "JonasAbde",
+          "state": "COMMENTED"
+        },
+        {
+          "author": "JonasAbde",
+          "state": "COMMENTED"
+        },
+        {
+          "author": "JonasAbde",
+          "state": "COMMENTED"
+        },
+        {
+          "author": "JonasAbde",
+          "state": "COMMENTED"
+        },
+        {
+          "author": "JonasAbde",
+          "state": "COMMENTED"
+        },
+        {
+          "author": "JonasAbde",
+          "state": "COMMENTED"
+        }
+      ],
+      "all_required_checks_green": true
+    },
+    {
+      "repo": "works-execution",
+      "number": 71,
+      "url": "https://github.com/Aftergraph/works-execution/pull/71",
+      "title": "feat(store): persist independent outcome verification verdicts",
+      "head_sha": "6144ecdaa31857322c50f4284772eadd62f0b60a",
+      "head_branch": "feat/durable-outcome-verdict",
+      "base": "main",
+      "mergeable": "MERGEABLE",
+      "merge_state": "BLOCKED",
+      "review_decision": "REVIEW_REQUIRED",
+      "diffstat": {
+        "additions": 564,
+        "deletions": 78,
+        "files": 7
+      },
+      "checks": [
+        {
+          "name": "auto-merge",
+          "status": "COMPLETED",
+          "conclusion": "SKIPPED"
+        },
+        {
+          "name": "Analyze (go)",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "test",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "CodeQL",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        }
+      ],
+      "reviews": [
+        {
+          "author": "chatgpt-codex-connector",
+          "state": "COMMENTED"
+        }
+      ],
+      "all_required_checks_green": true
+    },
+    {
+      "repo": "works-execution",
+      "number": 72,
+      "url": "https://github.com/Aftergraph/works-execution/pull/72",
+      "title": "feat(dispatch): Runtime\u2192WORKS dispatch acceptance seal 1.0 (RFC-0008)",
+      "head_sha": "5320e2019df82f977cd3b4a1c8eeeb76610c77d7",
+      "head_branch": "mission/phase3-dispatch-seal",
+      "base": "main",
+      "mergeable": "MERGEABLE",
+      "merge_state": "BLOCKED",
+      "review_decision": "REVIEW_REQUIRED",
+      "diffstat": {
+        "additions": 733,
+        "deletions": 2,
+        "files": 8
+      },
+      "checks": [
+        {
+          "name": "auto-merge",
+          "status": "COMPLETED",
+          "conclusion": "SKIPPED"
+        },
+        {
+          "name": "Analyze (go)",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "test",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "CodeQL",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        }
+      ],
+      "reviews": [],
+      "all_required_checks_green": true
+    },
+    {
+      "repo": "works-execution",
+      "number": 73,
+      "url": "https://github.com/Aftergraph/works-execution/pull/73",
+      "title": "feat(works): brain governance admission gate (durable knowledge only)",
+      "head_sha": "f83108e291b9418459eb99521c810aad91f5bc9f",
+      "head_branch": "feat/works-brain-governance",
+      "base": "main",
+      "mergeable": "MERGEABLE",
+      "merge_state": "BLOCKED",
+      "review_decision": "REVIEW_REQUIRED",
+      "diffstat": {
+        "additions": 711,
+        "deletions": 0,
+        "files": 2
+      },
+      "checks": [
+        {
+          "name": "auto-merge",
+          "status": "COMPLETED",
+          "conclusion": "SKIPPED"
+        },
+        {
+          "name": "Analyze (go)",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "test",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "CodeQL",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        }
+      ],
+      "reviews": [],
+      "all_required_checks_green": true
+    },
+    {
+      "repo": "studio",
+      "number": 47,
+      "url": "https://github.com/Aftergraph/studio/pull/47",
+      "title": "feat(studio): tenant-bound workspace experience (render-only)",
+      "head_sha": "66a0f59e55367987a49b9715333e794b4c949fc0",
+      "head_branch": "feat/studio-workspace-experience",
+      "base": "main",
+      "mergeable": "MERGEABLE",
+      "merge_state": "BLOCKED",
+      "review_decision": "REVIEW_REQUIRED",
+      "diffstat": {
+        "additions": 476,
+        "deletions": 0,
+        "files": 2
+      },
+      "checks": [
+        {
+          "name": "auto-merge",
+          "status": "COMPLETED",
+          "conclusion": "SKIPPED"
+        },
+        {
+          "name": "Monolithic Release Verification (18 Gates)",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "Analyze (javascript)",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "CodeQL",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        }
+      ],
+      "reviews": [],
+      "all_required_checks_green": true
+    },
+    {
+      "repo": "studio",
+      "number": 48,
+      "url": "https://github.com/Aftergraph/studio/pull/48",
+      "title": "feat(goal): canonical Goal projection \u2014 needs-you, lifecycle, verification stages",
+      "head_sha": "c0f7115f009ecea4f6311a4962f1335ec98db0b2",
+      "head_branch": "mission/phase5-goal-projection",
+      "base": "main",
+      "mergeable": "MERGEABLE",
+      "merge_state": "BLOCKED",
+      "review_decision": "REVIEW_REQUIRED",
+      "diffstat": {
+        "additions": 251,
+        "deletions": 0,
+        "files": 2
+      },
+      "checks": [
+        {
+          "name": "auto-merge",
+          "status": "COMPLETED",
+          "conclusion": "SKIPPED"
+        },
+        {
+          "name": "Monolithic Release Verification (18 Gates)",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "Analyze (javascript)",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "CodeQL",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        }
+      ],
+      "reviews": [],
+      "all_required_checks_green": true
+    },
+    {
+      "repo": "docs",
+      "number": 19,
+      "url": "https://github.com/Aftergraph/docs/pull/19",
+      "title": "fix(sources): resolve #12 \u2014 wi-backend canonical pin + redirect-fail CI gate",
+      "head_sha": "f7d2f02f40c2a94758ffb2ee08471f10a3a2e598",
+      "head_branch": "mission/phase1-docs-issue-12",
+      "base": "main",
+      "mergeable": "MERGEABLE",
+      "merge_state": "BLOCKED",
+      "review_decision": "REVIEW_REQUIRED",
+      "diffstat": {
+        "additions": 216,
+        "deletions": 84,
+        "files": 17
+      },
+      "checks": [
+        {
+          "name": "gates",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "deploy",
+          "status": "COMPLETED",
+          "conclusion": "SKIPPED"
+        }
+      ],
+      "reviews": [],
+      "all_required_checks_green": true
+    },
+    {
+      "repo": "docs",
+      "number": 20,
+      "url": "https://github.com/Aftergraph/docs/pull/20",
+      "title": "feat(golden-mission): executable scenario 0.1 + fault campaign in CI",
+      "head_sha": "2d9fdb0a7e23c23772899f4066b478269c687e5d",
+      "head_branch": "mission/phase4-golden-scenario",
+      "base": "main",
+      "mergeable": "MERGEABLE",
+      "merge_state": "BLOCKED",
+      "review_decision": "REVIEW_REQUIRED",
+      "diffstat": {
+        "additions": 338,
+        "deletions": 1,
+        "files": 5
+      },
+      "checks": [
+        {
+          "name": "gates",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "deploy",
+          "status": "COMPLETED",
+          "conclusion": "SKIPPED"
+        }
+      ],
+      "reviews": [],
+      "all_required_checks_green": true
+    },
+    {
+      "repo": "aie",
+      "number": 58,
+      "url": "https://github.com/Aftergraph/aie/pull/58",
+      "title": "feat(aie): human-governance authority grants, delegation, budgets, revocation",
+      "head_sha": "e3b7f88579a3317dc1f31f0b567ec14d42cc7fcd",
+      "head_branch": "feat/aie-human-governance-v0-1",
+      "base": "main",
+      "mergeable": "MERGEABLE",
+      "merge_state": "BLOCKED",
+      "review_decision": "REVIEW_REQUIRED",
+      "diffstat": {
+        "additions": 1139,
+        "deletions": 0,
+        "files": 3
+      },
+      "checks": [
+        {
+          "name": "auto-merge",
+          "status": "COMPLETED",
+          "conclusion": "SKIPPED"
+        },
+        {
+          "name": "test (3.11)",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "Analyze (python)",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "test (3.12)",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "test (3.13)",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "CodeQL",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": null,
+          "status": null,
+          "conclusion": null
+        }
+      ],
+      "reviews": [],
+      "all_required_checks_green": false
+    },
+    {
+      "repo": "wi-backend",
+      "number": 69,
+      "url": "https://github.com/Aftergraph/wi-backend/pull/69",
+      "title": "feat(wi): proactivity sensing candidates with strict claim types (PRO-001,003,005)",
+      "head_sha": "1a433b93757c553ed143b08dc158ea90eb2d2b1b",
+      "head_branch": "feat/wi-proactivity-sensing",
+      "base": "main",
+      "mergeable": "MERGEABLE",
+      "merge_state": "BLOCKED",
+      "review_decision": "REVIEW_REQUIRED",
+      "diffstat": {
+        "additions": 989,
+        "deletions": 1,
+        "files": 7
+      },
+      "checks": [
+        {
+          "name": "auto-merge",
+          "status": "COMPLETED",
+          "conclusion": "SKIPPED"
+        },
+        {
+          "name": "test (3.11)",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "Analyze (python)",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "test (3.12)",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "production-container-smoke",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": "CodeQL",
+          "status": "COMPLETED",
+          "conclusion": "SUCCESS"
+        },
+        {
+          "name": null,
+          "status": null,
+          "conclusion": null
+        }
+      ],
+      "reviews": [
+        {
+          "author": "github-advanced-security",
+          "state": "COMMENTED"
+        }
+      ],
+      "all_required_checks_green": false
+    }
+  ]
+}
