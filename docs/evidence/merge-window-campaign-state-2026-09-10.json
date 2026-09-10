@@ -1,0 +1,29 @@
+{
+  "campaign": "merge-window-0.1 execution",
+  "updated": "2026-09-10",
+  "protocol_sha": "5860a915e3981a0eb5826e53cf5d942513e5f6aa",
+  "window": "closed (all 13 queue-governed PRs OPEN/BLOCKED; TG86 CLEAN stacked)",
+  "packets_sha": "no drift at last poll",
+  "vds": {
+    "host": "vmi3517816 (Ubuntu 26.04, node 22, python 3.11, go 1.23, 73G free)",
+    "staging_run": "run_a3a9ecdb62bf47749c29c006be0622e2 completed: 7 main SHAs recorded",
+    "main_shas": {
+      "trust-gateway": "f9dbaa6e865e249d946bbfb4b663894ee7225923",
+      "works-execution": "7543af6fe1183b832bb91ea47244074a2f27e3ef",
+      "aie": "f3460dc1ec225fd2fd72d63359bea87f4b34b390",
+      "runtime": "f47aff9df66feac1bcd0a8e42e7f5e7e168e04f4",
+      "studio": "c6b305da48f80a0a1e037debb456a67ad25f6a34",
+      "docs": "5df797a072ffc841045f63e79a27836e6f966d31",
+      "after-graph-governance": "979dc0a02884cd93a732409ed4523d41cac2aee4 (pre-#144; now 5860a91)"
+    },
+    "toolchain": {
+      "aie": "OK (316 tests collected)",
+      "studio": "FAIL npm ci (no lockfile; retry with npm install pending approval)",
+      "trust-gateway/works-execution/runtime/docs": "pending (run_0a4b7f6690a241f6970455eb3a12ee41 waiting_for_approval)"
+    },
+    "pending_runs": [
+      "run_0a4b7f6690a241f6970455eb3a12ee41 waiting_for_approval"
+    ]
+  },
+  "next": "owner opens window -> queue-merge 14 in order -> mission on VDS -> AVC -> verdict"
+}
