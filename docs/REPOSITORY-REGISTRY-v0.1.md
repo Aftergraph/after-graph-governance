@@ -21,7 +21,7 @@
 
 ## 2. Canonical organisation map
 
-Current repository scope and roles are defined by `docs/platform-topology/2.0.json` (24 repositories; `docs/platform-topology/1.0.json` retained for historical provenance).
+Current repository scope and roles are defined by `docs/platform-topology/2.0.json` (27 repositories; `docs/platform-topology/1.0.json` retained for historical provenance).
 
 | Domain | Canonical repository | Role | Default branch | Evidence boundary |
 |---|---|---|---|---|
@@ -31,6 +31,8 @@ Current repository scope and roles are defined by `docs/platform-topology/2.0.js
 | Knowledge Plane | `Aftergraph/docs` | Provenance-stamped documentation, architecture, API and context packs | `main` | Exact-source plus published-site evidence |
 | Authority standard | `Aftergraph/aie` | Independent authority, delegation, lifecycle, budget, revocation and conformance semantics | `main` | Versioned conformance and external interoperability evidence |
 | Research | `Aftergraph/intelligence-systems-research` | Research programme, benchmarks, experiments, papers and reference runtimes | `main` | Study, evaluation and reproduction evidence |
+| Portability contract | `Aftergraph/skill-abi` | Semantic compatibility, bounded effects, degradation and conformance for portable agent skills (SABI v0.1 alpha) | `main` | Versioned spec, schemas, reference CLI, conformance and release evidence |
+| Portability benchmark | `Aftergraph/skillport` | Open benchmark and evaluation suite for semantic portability of agent skills (private until publication scrub gate) | `main` | Study, evaluation and reproduction evidence |
 | Runtime enforcement | `Aftergraph/trust-gateway` | Runtime trust and enforcement boundary | `main` | Exact-head test, integration and runtime evidence |
 | Durable work | `Aftergraph/works-execution` | Mission lifecycle, durable execution, budgets and evidence-bearing work | `main` | Exact-head test, integration and runtime evidence |
 | Work inference | `Aftergraph/wi-backend` | Source-neutral observation to canonical WorkItem inference | `main` | Exact-head test, adapter/integration and runtime evidence |
