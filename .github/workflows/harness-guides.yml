@@ -1,0 +1,30 @@
+name: Repository Agent Guides
+
+# Unfiltered by design, for the same reason as platform-topology.yml: a
+# paths-filtered required check would stay pending on pull requests that touch
+# none of its paths. The job runs in seconds and needs no network beyond the
+# package already in the runner image.
+on:
+  merge_group:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  guides:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Contract tests for the guide generator and the scorecard
+        run: |
+          python scripts/test_repo_guide_generation.py
+      - name: Syntax check the generator and scorecard
+        run: |
+          python -m py_compile scripts/gen_repo_guides.py scripts/harness_scorecard.py
