@@ -12,6 +12,9 @@ Metrics
   guide_staleness_days    median days since each guide last changed
   sensor_coverage         repos with >=1 executed verification row recorded against an exact SHA
   evidence_freshness      recorded SHA vs live HEAD: current / stale / unrecorded
+  control_plane_cost      guide text an agent must carry: Tier-1 block + full guide, in bytes and
+                          estimated tokens (CPT input — text the control plane pays for, per paper 03)
+  role_coverage           repos whose operational role is machine-readable in the inventory
   not_instrumented        metrics the playbook requires that no local data can produce yet
 
 Usage: harness_scorecard.py [--root DIR] [--write]
@@ -43,6 +46,12 @@ def ratchet_rules(text):
     return len([l for l in m.group(1).splitlines() if re.match(r"^\s*-\s+\S", l)])
 
 
+def tier1_bytes(text):
+    """Agent-facing Tier-1 block (Project + Local conventions) — the part every agent carries."""
+    m = re.search(r"^## Project(.*?)^Precedence", text, re.S | re.M)
+    return len(m.group(1).strip().encode()) if m else 0
+
+
 def main():
     root = ROOT
     if "--root" in sys.argv:
@@ -58,7 +67,7 @@ def main():
     for row in ci.get("results", []):
         recorded.setdefault(row.get("repo", "").split(":")[0], []).append(row)
 
-    guides, rules, stale_days = [], 0, []
+    guides, rules, stale_days, sizes = [], 0, [], []
     for r in present:
         name = r["name"]
         gpath = os.path.join(root, name, "AGENTS.md")
@@ -69,6 +78,32 @@ def main():
             d = days_ago(gpath)
             if d is not None:
                 stale_days.append(d)
+            t1 = tier1_bytes(text)
+            sizes.append({"repo": name, "tier1_bytes": t1, "tier1_tokens_est": t1 // 4,
+                          "guide_bytes": len(text.encode()), "guide_tokens_est": len(text.encode()) // 4})
+
+    # Control-plane cost (paper 03's CPT applied to guides): text is not free — it rides in every
+    # agent context that opens the repo. Tokens are estimated at 4 bytes/token.
+    cpc = None
+    if sizes:
+        t1s = sorted(s["tier1_tokens_est"] for s in sizes)
+        cpc = {
+            "definition": "tier1 = '## Project' block up to 'Precedence' (agent-facing); guide = whole file; tokens ~ bytes/4",
+            "tier1_tokens_median": statistics.median(t1s),
+            "tier1_tokens_max": t1s[-1],
+            "tier1_over_500_token_budget": sorted(s["repo"] for s in sizes if s["tier1_tokens_est"] > 500),
+            "guide_tokens_total_all_repos": sum(s["guide_tokens_est"] for s in sizes),
+            "guide_tokens_median": statistics.median(sorted(s["guide_tokens_est"] for s in sizes)),
+            "per_repo": sizes,
+        }
+
+    # Role coverage (paper 05: "policy as prose" vs enforceable state — an undeclared role is not a role).
+    role_dist, undeclared_roles = {}, []
+    for r in inv:
+        role = r.get("role", "absent")
+        role_dist[role] = role_dist.get(role, 0) + 1
+        if not r.get("role_declared", False):
+            undeclared_roles.append(r["name"])
 
     sensor_covered, unrecorded, current, stale = [], [], [], []
     for r in present:
@@ -128,6 +163,10 @@ def main():
         },
         "evidence_freshness": {"current_at_live_head": sorted(current),
                                "stale_vs_live_head": stale},
+        "control_plane_cost": cpc,
+        "role_coverage": {"declared": len(inv) - len(undeclared_roles), "total": len(inv),
+                          "pct": round(100.0 * (len(inv) - len(undeclared_roles)) / max(len(inv), 1), 1),
+                          "distribution": role_dist, "undeclared": sorted(undeclared_roles)},
         "discovery_cost": dc,
         "not_instrumented": {
             "cost_per_verified_result": "no per-task cost accounting in this workspace; trust-gateway BudgetLedger is the candidate source",
@@ -148,6 +187,8 @@ def main():
                                 "ratchet_rules": rules,
                                 "stale_evidence_count": len(stale),
                                 "current_evidence_count": len(current),
+                                "role_declared_count": scorecard["role_coverage"]["declared"],
+                                "tier1_tokens_median": (cpc or {}).get("tier1_tokens_median"),
                                 "discovery_cost": dc}) + "\n")
         md = [f"# Aftergraph Harness Scorecard — {scorecard['generated_at']}", "",
               f"Repos: {len(inv)} in inventory, {len(present)} present locally", "",
@@ -157,8 +198,11 @@ def main():
               f"| Median guide staleness | {scorecard['guide_staleness_days_median']} days | down |",
               f"| Repos with a recorded executed sensor | {len(sensor_covered)}/{len(present)} ({scorecard['sensor_coverage']['pct']}%) | up |",
               f"| Evidence current at live HEAD | {len(current)} | up |",
-              f"| Evidence stale vs live HEAD | {len(stale)} | down |", "",
-              "## Repos with no recorded computational sensor", ""]
+              f"| Evidence stale vs live HEAD | {len(stale)} | down |",
+              f"| Control-plane text — Tier-1 tokens (median / max) | {(cpc or {}).get('tier1_tokens_median')} / {(cpc or {}).get('tier1_tokens_max')} | down (budget 500) |",
+              f"| Control-plane text — full-guide tokens, all repos | {(cpc or {}).get('guide_tokens_total_all_repos')} | flat; growth needs a ratchet reason |",
+              f"| Roles machine-readable | {scorecard['role_coverage']['declared']}/{len(inv)} ({scorecard['role_coverage']['pct']}%) | up |",
+              "", "## Repos with no recorded computational sensor", ""]
         md += [f"- {n}" for n in sorted(unrecorded)] or ["- none"]
         md += ["", "## Stale evidence (recorded SHA != live HEAD)", ""]
         md += [f"- {s['repo']}: recorded {','.join(s['recorded'])} vs live {s['live']}" for s in stale] or ["- none"]
