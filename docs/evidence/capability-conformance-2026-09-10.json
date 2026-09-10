@@ -13,7 +13,7 @@
    "owner": "after-graph-governance"
   },
   {
-   "blocker": "docs#20 REVIEW_REQUIRED (owner review); live cross-service execution with exact-head repos not yet run",
+   "blocker": "docs#20 REVIEW_REQUIRED (owner review); live cross-service exact-head execution not run \u2014 requires merged services (TG#82-84, WE#69/71/72, runtime landed) plus a live environment; no such environment exists in current authority",
    "capability": "golden-mission executable scenario + fault campaign",
    "evidence_class": "simulated",
    "evidence_ref": "docs mission/phase4-golden-scenario 2d9fdb0 (unmerged): node scripts/golden-mission.mjs PASS (10 steps, 7 faults CONTAINED), re-executed locally 2026-09-10; validate.mjs PASS; CI gates pass, deploy skipping",
@@ -22,10 +22,10 @@
    "owner": "docs"
   },
   {
-   "blocker": "works-execution#69/#71/#72 REVIEW_REQUIRED (owner review); 12-case adversarial campaign evidence lives on unmerged branches",
+   "blocker": "REVIEW_REQUIRED on #69/#71/#72 (owner merge); settlement-intake provenance needs quittance.rules minor revision through contract-freeze process",
    "capability": "runtime-works dispatch seal",
    "evidence_class": "internal",
-   "evidence_ref": "works-execution#70 merged 2026-09-09T23:27:12Z; #71 head 6144ecd CI test+Analyze+CodeQL green with ErrVerificationVerdictConflict fail-closed (44 pkgs go test ./... 0 FAIL re-run locally); seal contract vetos SUCCEEDED->VERIFIED without independent verdict",
+   "evidence_ref": "works-execution#70 merged 2026-09-09T23:27:12Z; #69 head 1ceb3cf CI green (test 44s, Analyze, CodeQL): verdicts bound to assessed bundle, executor self-verification refused, runner identity required, unattributed SUCCEEDED-rejection refused, 44 pkgs go test ./... 0 FAIL; #71 head 6144ecd CI green with ErrVerificationVerdictConflict fail-closed",
    "last_verified": "2026-09-10",
    "level": "L1",
    "owner": "works-execution"
@@ -40,11 +40,11 @@
    "owner": "runtime"
   },
   {
-   "blocker": "trust-gateway#82/#83/#84 REVIEW_REQUIRED (owner review); implementation off-main",
+   "blocker": "REVIEW_REQUIRED on #82/#83/#84 (owner merge); TG84 P1 needs owner seam decision (which live path consults decideTenantAction, TEN-to-disabled mapping, record store)",
    "capability": "trust-gateway credential surrogation + governed egress",
    "evidence_class": "internal",
-   "evidence_ref": "trust-gateway#82 CI green (test 1m22s, gate/integration 1m12s, CodeQL pass) on unmerged branch; opaque-handle + pre-dispatch revalidation contract",
-   "last_verified": "2026-09-09",
+   "evidence_ref": "trust-gateway#82 CI green (test 1m22s, gate/integration 1m12s, CodeQL pass); #83 head da5d934 CI green (test 1m15s, gate 1m14s): audit genesis binds grant fields (cross-tenant forgery refused), expiry denies at cutoff, no pre-dated derivations, 33/33 consent tests; #84 head 0280d9a CI green: lifecycle shape gate requires full audit identity, 36/36 tests; 0 unresolved threads on #82/#83, 1 open design thread on #84 (enforcement seam)",
+   "last_verified": "2026-09-10",
    "level": "L0",
    "owner": "trust-gateway"
   },
@@ -79,8 +79,8 @@
    "blocker": "studio#47/#48 REVIEW_REQUIRED (owner review); controls use canonical upstream APIs only on branch",
    "capability": "studio goal projection (needs-you, lifecycle, verification stages)",
    "evidence_class": "internal",
-   "evidence_ref": "studio#48 CI green (18-gate release verification 2m19s pass) on unmerged branch; declared/executed/pending/verified rendered as distinct states",
-   "last_verified": "2026-09-09",
+   "evidence_ref": "studio#48 CI green (18-gate release verification 2m19s, Analyze, CodeQL) on unmerged branch c0f7115; #47 CI green (18 gates 3m26s); 0 review threads on both; declared/executed/pending/verified rendered as distinct states",
+   "last_verified": "2026-09-10",
    "level": "L0",
    "owner": "studio"
   },
@@ -88,13 +88,13 @@
    "blocker": "aie#58 REVIEW_REQUIRED (owner review); A2A TCK / OPA-Cedar / federation chaos gates untouched",
    "capability": "aie authority grants, delegation, budgets, revocation",
    "evidence_class": "internal",
-   "evidence_ref": "aie#58 open (human-governance authority grants); existing revocation-freshness work preserved, not duplicated",
-   "last_verified": "2026-09-09",
+   "evidence_ref": "aie#58 open (human-governance authority grants), CI green (test 3.11/3.12/3.13, Analyze, CodeQL); existing revocation-freshness work preserved, not duplicated",
+   "last_verified": "2026-09-10",
    "level": "L0",
    "owner": "aie"
   },
   {
-   "blocker": "Production deploy credentials/configuration unavailable; deploy check skips in CI (docs#20). Precise BLOCKED record carried in mission final report.",
+   "blocker": "REVIEW_REQUIRED on docs#19/#20 (owner merge); production deploy credentials absent from environment (CLOUDFLARE_API_TOKEN/ACCOUNT_ID unset); deploy check skips in CI (docs#20). Precise BLOCKED record carried in mission final report.",
    "capability": "docs production deployment (exact-SHA verified)",
    "evidence_class": "internal",
    "evidence_ref": "No CLOUDFLARE_API_TOKEN/account deploy performed; build-manifest site_commit comparison never executed against live https://docs.aftergraph.org; never claimed",
