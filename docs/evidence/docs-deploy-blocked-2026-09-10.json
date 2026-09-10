@@ -1,1 +1,22 @@
-{"credential_paths_exhausted":["wrangler whoami 2026-09-10: not authenticated; login is browser-interactive (headless impossible)","docs repo secrets: 0; variables: 0 (ENABLE_DEPLOY unset) → CI deploy job skips by design","no token materializable in current authority"],"evidence_cut":"2026-09-10T00:20:25Z","live_probe":{"build_id":"local","environment":"local","fetched_utc":"2026-09-10T00:20:25Z","generated_at":"2026-09-07T13:07:11.553Z","site_commit":"96eb4978824a3b870ee09b1b6250572fc2d2c39a","url":"https://docs.aftergraph.org/build-manifest.json (HTTP 200)"},"schema":"docs-deploy-blocked/0.1","verdict":"BLOCKED","verdict_reason":"Production exact-head verification FAILS (stale local-build manifest live) and redeploy is impossible without credentials. Nothing deployed or claimed by this mission."}
+{
+ "credential_paths_exhausted": [
+  "wrangler whoami 2026-09-10: not authenticated; login is browser-interactive (headless impossible)",
+  "docs repo secrets: 0; variables: 0 (ENABLE_DEPLOY unset) \u2192 CI deploy job skips by design",
+  "no token materializable in current authority"
+ ],
+ "evidence_cut": "2026-09-10T00:28:00Z",
+ "live_probe": {
+  "build_id": "local",
+  "docs_main_then": "5df797a072ffc841045f63e79a27836e6f966d31",
+  "environment": "local",
+  "fetched_utc": "2026-09-10T00:20:25Z",
+  "generated_at": "2026-09-07T13:07:11.553Z",
+  "note": "docs#22 (live production capture) and #21 merged after the first probe; live manifest still 96eb497 (local build 2026-09-07): mismatch persists against new main. Capture #22 records product_version unknown \u2014 visual evidence only, not a SHA proof.",
+  "rechecked_utc": "2026-09-10T00:28:00Z",
+  "site_commit": "96eb4978824a3b870ee09b1b6250572fc2d2c39a",
+  "url": "https://docs.aftergraph.org/build-manifest.json (HTTP 200)"
+ },
+ "schema": "docs-deploy-blocked/0.1",
+ "verdict": "BLOCKED",
+ "verdict_reason": "Production exact-head verification FAILS (stale local-build manifest live) and redeploy is impossible without credentials. Nothing deployed or claimed by this mission."
+}
