@@ -97,7 +97,7 @@
    "blocker": "REVIEW_REQUIRED on docs#19/#20 (owner merge); production deploy credentials absent from environment (CLOUDFLARE_API_TOKEN/ACCOUNT_ID unset); deploy check skips in CI (docs#20). Precise BLOCKED record carried in mission final report.",
    "capability": "docs production deployment (exact-SHA verified)",
    "evidence_class": "internal",
-   "evidence_ref": "No CLOUDFLARE_API_TOKEN/account deploy performed; build-manifest site_commit comparison never executed against live https://docs.aftergraph.org; never claimed",
+   "evidence_ref": "Live probe 2026-09-10T00:20:25Z: site HTTP 200 but manifest proves staleness \u2014 site_commit 96eb497 (local build, 2026-09-07) != docs main 1e019b9. Production exact-head verification FAILS. Redeploy impossible: wrangler unauthenticated, 0 repo secrets/variables, ENABLE_DEPLOY unset. Record: docs/evidence/docs-deploy-blocked-2026-09-10.json. Never claimed.",
    "last_verified": "2026-09-10",
    "level": "L0",
    "owner": "docs"
