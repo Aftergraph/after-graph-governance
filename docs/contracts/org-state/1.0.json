@@ -60,7 +60,8 @@
             "skills-library",
             "agent-workforce",
             "skill-compatibility-contract",
-            "skill-portability-benchmark"
+            "skill-portability-benchmark",
+            "human-operator-plane"
           ],
           "description": "Current repository roles are defined by docs/platform-topology/2.0.json. The final five enum values are legacy org-state/1.0 compatibility values for already-generated snapshots and MUST NOT be emitted by the current topology-driven generator."
         },
