@@ -62,11 +62,12 @@ effect, evidence and verification is a platform verification failure.
 ## 4. Machine truth relation
 
 `docs/platform-topology/2.0.json` is the slow-changing canonical
-repository/ownership source: 24 repositories, `architecture_plane` (one of the
-seven planes, or null for support systems) kept separate from the extensible
-`system_class`, plus `role`, `lifecycle`, `owns` and `must_not_own` per
-repository. Topology membership never upgrades maturity, evidence,
-conformance or authority.
+repository/ownership source. Its repository membership is machine-managed and
+must not be duplicated as a hard-coded count in current architecture prose.
+`architecture_plane` (one of the seven planes, or null for support systems) is
+kept separate from the extensible `system_class`, plus `role`, `lifecycle`,
+`owns` and `must_not_own` per repository. Topology membership never upgrades
+maturity, evidence, conformance or authority.
 
 ```text
 platform-topology/2.0  = slow-changing repository/ownership truth
