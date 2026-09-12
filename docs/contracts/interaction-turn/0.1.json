@@ -1,0 +1,293 @@
+{
+  "$defs": {
+    "contentPart": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "text",
+            "artifact_ref",
+            "image_ref",
+            "audio_ref"
+          ]
+        },
+        "mime_type": {
+          "maxLength": 160,
+          "type": "string"
+        },
+        "ref": {
+          "$ref": "#/$defs/ref"
+        },
+        "text": {
+          "maxLength": 131072,
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "type": "object"
+    },
+    "ref": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "$id": "https://aftergraph.dev/contracts/interaction-turn/0.1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "turn_submit"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "turn_ref",
+          "idempotency_key",
+          "modality",
+          "input_parts"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "turn_event"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "turn_ref",
+          "sequence",
+          "cursor",
+          "event_type"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "turn_cancel"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "turn_ref",
+          "idempotency_key",
+          "cancel_scope"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "handoff_checkpoint"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "turn_ref",
+          "handoff_checkpoint_ref",
+          "correlation_refs",
+          "destination_readmission_ref",
+          "authority_transport"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "egress_effect": {
+            "const": true
+          }
+        },
+        "required": [
+          "egress_effect"
+        ]
+      },
+      "then": {
+        "required": [
+          "grant_ref"
+        ]
+      }
+    }
+  ],
+  "description": "Surface-neutral Interaction Fabric protocol. Runtime owns thread continuity and turn orchestration; surfaces adapt by reference.",
+  "properties": {
+    "admission_ref": {
+      "$ref": "#/$defs/ref"
+    },
+    "authority_transport": {
+      "const": false
+    },
+    "cancel_scope": {
+      "const": "turn"
+    },
+    "capability_refs": {
+      "items": {
+        "$ref": "#/$defs/ref"
+      },
+      "maxItems": 128,
+      "type": "array"
+    },
+    "claims_authority": {
+      "const": false
+    },
+    "context_refs": {
+      "items": {
+        "$ref": "#/$defs/ref"
+      },
+      "maxItems": 128,
+      "type": "array"
+    },
+    "correlation_refs": {
+      "items": {
+        "$ref": "#/$defs/ref"
+      },
+      "maxItems": 32,
+      "minItems": 1,
+      "type": "array"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "cursor": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "destination_readmission_ref": {
+      "$ref": "#/$defs/ref"
+    },
+    "egress_effect": {
+      "type": "boolean"
+    },
+    "event_type": {
+      "enum": [
+        "thread_opened",
+        "turn_accepted",
+        "run_started",
+        "output_delta",
+        "artifact_created",
+        "decision_required",
+        "tool_activity",
+        "checkpoint",
+        "turn_completed",
+        "turn_failed",
+        "turn_cancelled",
+        "thread_closed"
+      ]
+    },
+    "grant_ref": {
+      "$ref": "#/$defs/ref"
+    },
+    "handoff_checkpoint_ref": {
+      "$ref": "#/$defs/ref"
+    },
+    "idempotency_key": {
+      "maxLength": 256,
+      "minLength": 1,
+      "type": "string"
+    },
+    "input_parts": {
+      "items": {
+        "$ref": "#/$defs/contentPart"
+      },
+      "maxItems": 64,
+      "type": "array"
+    },
+    "kind": {
+      "enum": [
+        "thread_open",
+        "turn_submit",
+        "turn_event",
+        "turn_cancel",
+        "handoff_checkpoint",
+        "thread_close"
+      ]
+    },
+    "lineage_refs": {
+      "items": {
+        "$ref": "#/$defs/ref"
+      },
+      "maxItems": 32,
+      "minItems": 1,
+      "type": "array"
+    },
+    "modality": {
+      "enum": [
+        "text",
+        "multimodal",
+        "voice",
+        "cli",
+        "api"
+      ]
+    },
+    "payload_ref": {
+      "$ref": "#/$defs/ref"
+    },
+    "principal_ref": {
+      "$ref": "#/$defs/ref"
+    },
+    "purpose": {
+      "maxLength": 256,
+      "minLength": 1,
+      "type": "string"
+    },
+    "requested_model_ref": {
+      "$ref": "#/$defs/ref"
+    },
+    "schema": {
+      "const": "interaction-turn/0.1"
+    },
+    "sequence": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "surface_ref": {
+      "$ref": "#/$defs/ref"
+    },
+    "tenant_id": {
+      "pattern": "^ten_[a-f0-9]{32}$",
+      "type": "string"
+    },
+    "thread_ref": {
+      "$ref": "#/$defs/ref"
+    },
+    "trace_id": {
+      "pattern": "^trc_[a-f0-9]{32}$",
+      "type": "string"
+    },
+    "turn_ref": {
+      "$ref": "#/$defs/ref"
+    }
+  },
+  "required": [
+    "schema",
+    "kind",
+    "tenant_id",
+    "surface_ref",
+    "thread_ref",
+    "principal_ref",
+    "admission_ref",
+    "trace_id",
+    "claims_authority",
+    "purpose",
+    "lineage_refs",
+    "created_at"
+  ],
+  "title": "Aftergraph Interaction Turn",
+  "type": "object"
+}

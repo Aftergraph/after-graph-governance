@@ -14,12 +14,14 @@ on:
       - 'docs/contracts/agent-eval/**'
       - 'docs/contracts/pocket-source/**'
       - 'docs/contracts/voice-interaction/**'
+      - 'docs/contracts/interaction-turn/**'
       - 'docs/contracts/promotion-gates/**'
       - 'docs/contracts/avc-dissolution/**'
       - 'docs/platform-conformance/**'
       - 'docs/golden-mission/**'
       - 'docs/superpowers/requests/**'
       - 'scripts/test_platform_fabrics_v0_1.py'
+      - 'scripts/test_interaction_turn_v0_1.py'
       - 'scripts/test_golden_mission_skeleton_v0_1.py'
       - 'scripts/test_wave_b_requests_v0_1.py'
       - 'scripts/test_wave_c_requests_v0_1.py'
@@ -40,12 +42,14 @@ on:
       - 'docs/contracts/agent-eval/**'
       - 'docs/contracts/pocket-source/**'
       - 'docs/contracts/voice-interaction/**'
+      - 'docs/contracts/interaction-turn/**'
       - 'docs/contracts/promotion-gates/**'
       - 'docs/contracts/avc-dissolution/**'
       - 'docs/platform-conformance/**'
       - 'docs/golden-mission/**'
       - 'docs/superpowers/requests/**'
       - 'scripts/test_platform_fabrics_v0_1.py'
+      - 'scripts/test_interaction_turn_v0_1.py'
       - 'scripts/test_golden_mission_skeleton_v0_1.py'
       - 'scripts/test_wave_b_requests_v0_1.py'
       - 'scripts/test_wave_c_requests_v0_1.py'
@@ -65,8 +69,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install Interaction contract validator
+        run: python -m pip install jsonschema==4.23.0
       - name: Run Phase-0 platform fabric conformance
         run: python scripts/test_platform_fabrics_v0_1.py
+      - name: Run Interaction Turn conformance
+        run: python scripts/test_interaction_turn_v0_1.py
       - name: Run Golden Mission skeleton conformance
         run: python scripts/test_golden_mission_skeleton_v0_1.py
       - name: Run Wave B request conformance
