@@ -37,7 +37,7 @@ class InteractionTurnSemanticTests(unittest.TestCase):
         required=set(self.schema["required"])
         for clause in self.schema["allOf"]:
             props=clause.get("if",{}).get("properties",{})
-            if props.get("kind",{}).get("const")==kind:
+            if props.get("kind",{}).get("const")==kind and set(props)=={"kind"}:
                 required.update(clause["then"].get("required",[]))
         return required
 
@@ -46,7 +46,8 @@ class InteractionTurnSemanticTests(unittest.TestCase):
         self.assertNotIn("thread_ref",self.required_for("thread_open"))
         self.assertTrue({"thread_ref","idempotency_key","input_parts"} <= self.required_for("turn_submit"))
         self.assertNotIn("turn_ref",self.required_for("turn_submit"))
-        self.assertTrue({"turn_ref","sequence","cursor","event_type"} <= self.required_for("turn_event"))
+        self.assertTrue({"thread_ref","sequence","cursor","event_type"} <= self.required_for("turn_event"))
+        self.assertNotIn("turn_ref",self.required_for("turn_event"))
         self.assertTrue({"turn_ref","cancel_scope"} <= self.required_for("turn_cancel"))
         self.assertTrue({"handoff_checkpoint_ref","destination_readmission_ref"} <= self.required_for("handoff_checkpoint"))
 
@@ -94,6 +95,15 @@ class InteractionTurnInstanceTests(unittest.TestCase):
         with self.assertRaises(self.jsonschema.ValidationError):
             self.jsonschema.Draft202012Validator(self.schema).validate({**self.base,"egress_effect":True})
         self.jsonschema.Draft202012Validator(self.schema).validate({**self.base,"egress_effect":True,"grant_ref":"tg:grant:01"})
+
+    def test_thread_lifecycle_events_do_not_require_turn_ref(self):
+        common={k:v for k,v in self.base.items() if k not in {"idempotency_key","modality","input_parts"}}
+        for event_type in ["thread_opened","thread_closed"]:
+            event={**common,"kind":"turn_event","event_type":event_type,"sequence":1,"cursor":1}
+            self.jsonschema.Draft202012Validator(self.schema).validate(event)
+        with self.assertRaises(self.jsonschema.ValidationError):
+            self.jsonschema.Draft202012Validator(self.schema).validate({**common,"kind":"turn_event","event_type":"turn_accepted","sequence":1,"cursor":1})
+
 
 class InteractionTurnBindingTests(unittest.TestCase):
     def test_binding_preserves_canonical_owners(self):

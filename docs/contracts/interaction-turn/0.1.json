@@ -80,10 +80,41 @@
       "then": {
         "required": [
           "thread_ref",
-          "turn_ref",
           "sequence",
           "cursor",
           "event_type"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "turn_event"
+          },
+          "event_type": {
+            "enum": [
+              "turn_accepted",
+              "run_started",
+              "output_delta",
+              "artifact_created",
+              "decision_required",
+              "tool_activity",
+              "checkpoint",
+              "turn_completed",
+              "turn_failed",
+              "turn_cancelled"
+            ]
+          }
+        },
+        "required": [
+          "kind",
+          "event_type"
+        ]
+      },
+      "then": {
+        "required": [
+          "turn_ref"
         ]
       }
     },
