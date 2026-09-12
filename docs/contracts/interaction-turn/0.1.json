@@ -42,13 +42,27 @@
       "if": {
         "properties": {
           "kind": {
+            "const": "thread_open"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "idempotency_key"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
             "const": "turn_submit"
           }
         }
       },
       "then": {
         "required": [
-          "turn_ref",
+          "thread_ref",
           "idempotency_key",
           "modality",
           "input_parts"
@@ -65,6 +79,7 @@
       },
       "then": {
         "required": [
+          "thread_ref",
           "turn_ref",
           "sequence",
           "cursor",
@@ -82,6 +97,7 @@
       },
       "then": {
         "required": [
+          "thread_ref",
           "turn_ref",
           "idempotency_key",
           "cancel_scope"
@@ -98,11 +114,27 @@
       },
       "then": {
         "required": [
+          "thread_ref",
           "turn_ref",
           "handoff_checkpoint_ref",
           "correlation_refs",
           "destination_readmission_ref",
           "authority_transport"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "thread_close"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "thread_ref",
+          "idempotency_key"
         ]
       }
     },
@@ -279,7 +311,6 @@
     "kind",
     "tenant_id",
     "surface_ref",
-    "thread_ref",
     "principal_ref",
     "admission_ref",
     "trace_id",

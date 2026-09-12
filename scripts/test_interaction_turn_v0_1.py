@@ -42,8 +42,10 @@ class InteractionTurnSemanticTests(unittest.TestCase):
         return required
 
     def test_each_operation_has_owner_safe_required_fields(self):
-        self.assertIn("thread_ref",self.required_for("thread_open"))
-        self.assertTrue({"turn_ref","idempotency_key","input_parts"} <= self.required_for("turn_submit"))
+        self.assertIn("idempotency_key",self.required_for("thread_open"))
+        self.assertNotIn("thread_ref",self.required_for("thread_open"))
+        self.assertTrue({"thread_ref","idempotency_key","input_parts"} <= self.required_for("turn_submit"))
+        self.assertNotIn("turn_ref",self.required_for("turn_submit"))
         self.assertTrue({"turn_ref","sequence","cursor","event_type"} <= self.required_for("turn_event"))
         self.assertTrue({"turn_ref","cancel_scope"} <= self.required_for("turn_cancel"))
         self.assertTrue({"handoff_checkpoint_ref","destination_readmission_ref"} <= self.required_for("handoff_checkpoint"))
@@ -74,7 +76,6 @@ class InteractionTurnInstanceTests(unittest.TestCase):
             "purpose":"user-request",
             "lineage_refs":["evt:root"],
             "created_at":"2026-09-12T08:00:00Z",
-            "turn_ref":"turn_01",
             "idempotency_key":"idem-01",
             "modality":"text",
             "input_parts":[{"kind":"text","text":"hello"}],
