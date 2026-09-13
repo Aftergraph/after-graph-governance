@@ -21,7 +21,7 @@
 
 ## 2. Canonical organisation map
 
-Current repository scope and roles are defined by `docs/platform-topology/2.0.json` (24 repositories; `docs/platform-topology/1.0.json` retained for historical provenance).
+Current repository scope and roles are defined by `docs/platform-topology/2.0.json` (28 repositories; `docs/platform-topology/1.0.json` retained for historical provenance).
 
 | Domain | Canonical repository | Role | Default branch | Evidence boundary |
 |---|---|---|---|---|
