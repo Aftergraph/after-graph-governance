@@ -24,6 +24,16 @@ class OrgStateTopologyBindingTest(unittest.TestCase):
         self.assertIn("platform-topology/2.0", text)
         self.assertNotIn('TOPOLOGY="$SCRIPT_DIR/../docs/platform-topology/1.0.json"', text)
 
+    def test_generator_emits_explicit_evidence_cut_policy(self):
+        text = GENERATOR.read_text(encoding="utf-8")
+        self.assertIn('generator_commit=$(git -C "$SCRIPT_DIR/.." rev-parse HEAD', text)
+        self.assertIn('self_snapshot_policy: "pre-write-head"', text)
+
+        schema = json.loads(ORG_STATE_SCHEMA.read_text(encoding="utf-8"))
+        evidence_cut = schema["properties"]["evidence_cut"]
+        self.assertEqual(evidence_cut["properties"]["self_snapshot_policy"]["const"], "pre-write-head")
+        self.assertNotIn("evidence_cut", schema["required"])
+
     def test_org_state_contract_points_current_generation_to_v2(self):
         schema = json.loads(ORG_STATE_SCHEMA.read_text(encoding="utf-8"))
         self.assertIn("platform-topology/2.0", schema["description"])

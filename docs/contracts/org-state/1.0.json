@@ -2,21 +2,63 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://aftergraph.dev/contracts/org-state/1.0.json",
   "title": "Aftergraph Org State Contract",
-  "description": "Machine-verifiable org truth surface: exact remote HEAD, canonical branch, role, contracts and CI/PR status per repository, generated automatically from GitHub (never manually typed SHA claims). Consumers MUST verify exact heads against this contract (or regenerate it) before gap analysis, delegation or merge decisions. Any claim about a repo's state in a handoff/roadmap/briefing is a CLAIM; this contract (or a fresh generation of it) is TRUTH. Repository scope and current role classification are defined by platform-topology/2.0; historical snapshots remain schema-readable. Version 1.0 retains legacy role enum values so previously generated snapshots remain schema-readable; the current generator emits topology roles only.",
+  "description": "Machine-verifiable org truth surface: exact remote HEAD, canonical branch, role, contracts and CI/PR status per repository, generated automatically from GitHub (never manually typed SHA claims). Consumers MUST verify exact heads against this contract (or regenerate it) before gap analysis, delegation or merge decisions. Any claim about a repo's state in a handoff/roadmap/briefing is a CLAIM; this contract (or a fresh generation of it) is TRUTH. Repository scope and current role classification are defined by platform-topology/2.0; historical snapshots remain schema-readable. Version 1.0 retains legacy role enum values so previously generated snapshots remain schema-readable; the current generator emits topology roles only. New snapshots also carry optional evidence_cut metadata: because the generated artifact is committed into this repository, the governance self-entry represents the pre-write HEAD and is not expected to equal the post-write governance HEAD.",
   "type": "object",
   "properties": {
-    "schema_version": { "type": "string", "const": "org-state/1.0" },
-    "generated_at": { "type": "string", "description": "ISO-8601 UTC timestamp of generation." },
-    "generator": { "type": "string", "description": "Absolute path or command identity of the generating script." },
-    "org": { "type": "string", "const": "Aftergraph", "description": "GitHub organization this contract covers (private repos require an authenticated gh session with org access)." },
+    "schema_version": {
+      "type": "string",
+      "const": "org-state/1.0"
+    },
+    "generated_at": {
+      "type": "string",
+      "description": "ISO-8601 UTC timestamp at the evidence cut. Repository heads in this snapshot are authoritative for this cut, not a promise that current live HEADs remain unchanged after generation."
+    },
+    "generator": {
+      "type": "string",
+      "description": "Absolute path or command identity of the generating script."
+    },
+    "org": {
+      "type": "string",
+      "const": "Aftergraph",
+      "description": "GitHub organization this contract covers (private repos require an authenticated gh session with org access)."
+    },
     "repositories": {
       "type": "array",
-      "items": { "$ref": "#/$defs/repository" },
+      "items": {
+        "$ref": "#/$defs/repository"
+      },
       "minItems": 1,
-      "description": "Generated repository entries. Current generation scope is loaded from docs/platform-topology/2.0.json; older checked-in snapshots may contain the historical subset and are freshness-stamped by generated_at."
+      "description": "Generated repository entries observed at the evidence cut. The governance self-entry is the pre-write HEAD identified by evidence_cut.generator_commit; historical snapshots may contain an older scope and remain schema-readable."
+    },
+    "evidence_cut": {
+      "type": "object",
+      "description": "Provenance for the immutable observation cut. Optional so historical org-state/1.0 snapshots remain schema-readable. self_snapshot_policy=pre-write-head means the governance repository entry is the exact HEAD observed before this artifact was written and committed.",
+      "properties": {
+        "generator_commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$",
+          "description": "Exact governance repository HEAD used as the generator's pre-write source identity."
+        },
+        "self_snapshot_policy": {
+          "type": "string",
+          "const": "pre-write-head",
+          "description": "The governance self-entry is expected to advance when the generated artifact is committed."
+        }
+      },
+      "required": [
+        "generator_commit",
+        "self_snapshot_policy"
+      ],
+      "additionalProperties": false
     }
   },
-  "required": ["schema_version", "generated_at", "generator", "org", "repositories"],
+  "required": [
+    "schema_version",
+    "generated_at",
+    "generator",
+    "org",
+    "repositories"
+  ],
   "$defs": {
     "repository": {
       "type": "object",
@@ -65,41 +107,118 @@
           ],
           "description": "Current repository roles are defined by docs/platform-topology/2.0.json. The final five enum values are legacy org-state/1.0 compatibility values for already-generated snapshots and MUST NOT be emitted by the current topology-driven generator."
         },
-        "canonical_branch": { "type": "string", "description": "Default/canonical branch as reported by GitHub and reconciled against platform-topology/2.0 for current generation." },
-        "remote_head_sha": { "type": "string", "pattern": "^[0-9a-f]{40}$", "description": "Full SHA of remote canonical branch head - THE authoritative state for the snapshot timestamp. Never accept an abbreviated SHA as truth." },
-        "remote_head_short": { "type": "string", "pattern": "^[0-9a-f]{7}$" },
-        "head_commit_message": { "type": "string", "description": "First line of the head commit message (human orientation only; SHA is truth)." },
-        "private": { "type": "boolean" },
-        "archived": { "type": "boolean" },
-        "protected": { "type": "boolean", "description": "True when the canonical branch reports branch protection/rules through the generation path available to the authenticated GitHub client." },
+        "canonical_branch": {
+          "type": "string",
+          "description": "Default/canonical branch as reported by GitHub and reconciled against platform-topology/2.0 for current generation."
+        },
+        "remote_head_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$",
+          "description": "Full SHA of remote canonical branch head - THE authoritative state for the snapshot timestamp. Never accept an abbreviated SHA as truth."
+        },
+        "remote_head_short": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{7}$"
+        },
+        "head_commit_message": {
+          "type": "string",
+          "description": "First line of the head commit message (human orientation only; SHA is truth)."
+        },
+        "private": {
+          "type": "boolean"
+        },
+        "archived": {
+          "type": "boolean"
+        },
+        "protected": {
+          "type": "boolean",
+          "description": "True when the canonical branch reports branch protection/rules through the generation path available to the authenticated GitHub client."
+        },
         "open_pull_requests": {
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
-              "number": { "type": "integer" },
-              "title": { "type": "string" },
-              "is_draft": { "type": "boolean" },
-              "mergeable": { "type": "string", "enum": ["MERGEABLE", "CONFLICTING", "UNKNOWN"] },
-              "head_sha": { "type": "string", "pattern": "^[0-9a-f]{40}$" }
+              "number": {
+                "type": "integer"
+              },
+              "title": {
+                "type": "string"
+              },
+              "is_draft": {
+                "type": "boolean"
+              },
+              "mergeable": {
+                "type": "string",
+                "enum": [
+                  "MERGEABLE",
+                  "CONFLICTING",
+                  "UNKNOWN"
+                ]
+              },
+              "head_sha": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{40}$"
+              }
             },
-            "required": ["number", "title", "is_draft", "mergeable", "head_sha"]
+            "required": [
+              "number",
+              "title",
+              "is_draft",
+              "mergeable",
+              "head_sha"
+            ]
           },
           "description": "Open PRs on this repo at generation time (blockers surface here; head SHAs must be re-verified per PR, bodies may be stale)."
         },
-        "authoritative_contracts": { "type": "array", "items": { "$ref": "#/$defs/contract_ref" }, "description": "Contracts this repo OWNS normatively." },
-        "consumed_contracts": { "type": "array", "items": { "$ref": "#/$defs/contract_ref" }, "description": "Contracts this repo references/consumes, with pinned version." },
-        "evidence_note": { "type": "string", "description": "Optional provenance note: how the entry was generated (e.g. generated from GitHub API via scripts/org-state-verify.sh; local clone divergence detected)." }
+        "authoritative_contracts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/contract_ref"
+          },
+          "description": "Contracts this repo OWNS normatively."
+        },
+        "consumed_contracts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/contract_ref"
+          },
+          "description": "Contracts this repo references/consumes, with pinned version."
+        },
+        "evidence_note": {
+          "type": "string",
+          "description": "Optional provenance note: how the entry was generated (e.g. generated from GitHub API via scripts/org-state-verify.sh; local clone divergence detected)."
+        }
       },
-      "required": ["full_name", "role", "canonical_branch", "remote_head_sha", "remote_head_short", "private", "archived", "protected", "authoritative_contracts", "consumed_contracts"]
+      "required": [
+        "full_name",
+        "role",
+        "canonical_branch",
+        "remote_head_sha",
+        "remote_head_short",
+        "private",
+        "archived",
+        "protected",
+        "authoritative_contracts",
+        "consumed_contracts"
+      ]
     },
     "contract_ref": {
       "type": "object",
       "properties": {
-        "name": { "type": "string", "description": "Contract name, e.g. mission-state" },
-        "version": { "type": "string", "description": "Pinned version, e.g. 1.0" }
+        "name": {
+          "type": "string",
+          "description": "Contract name, e.g. mission-state"
+        },
+        "version": {
+          "type": "string",
+          "description": "Pinned version, e.g. 1.0"
+        }
       },
-      "required": ["name", "version"]
+      "required": [
+        "name",
+        "version"
+      ]
     }
   }
 }
