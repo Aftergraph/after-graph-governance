@@ -97,6 +97,17 @@ consumes_of() { # $1=repo
   esac
 }
 
+# Evidence-cut semantics: the snapshot records the exact remote heads observed
+# before this generator writes latest-org-state.json. Writing that artifact creates
+# a new governance commit, so the governance self-entry is intentionally the
+# pre-write HEAD. Consumers MUST use evidence_cut.generator_commit and
+# self_snapshot_policy when comparing the snapshot with current governance HEAD.
+generator_commit=$(git -C "$SCRIPT_DIR/.." rev-parse HEAD 2>/dev/null || true)
+if ! [[ "$generator_commit" =~ ^[0-9a-f]{40}$ ]]; then
+  echo "EVIDENCE-CUT-FAIL: cannot determine exact generator repository HEAD" >&2
+  exit 1
+fi
+
 ts=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 entries=()
 
@@ -170,8 +181,11 @@ fi
 combined=$(jq -nc \
   --arg v "org-state/1.0" --arg ts "$ts" \
   --arg gen "$SCRIPT_DIR/org-state-verify.sh" --arg org "$ORG" \
+  --arg gcommit "$generator_commit" \
   --argjson repos "$(printf '%s\n' "${entries[@]}" | jq -s .)" \
-  '{schema_version: $v, generated_at: $ts, generator: $gen, org: $org, repositories: $repos}')
+  '{schema_version: $v, generated_at: $ts, generator: $gen, org: $org,
+    evidence_cut: {generator_commit: $gcommit, self_snapshot_policy: "pre-write-head"},
+    repositories: $repos}')
 
 # Structural + schema validation. Prefer jsonschema when installed; jq fallback
 # validates every topology-derived role plus core shape, not only counts.
