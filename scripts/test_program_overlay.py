@@ -125,6 +125,7 @@ class ProgramOverlayFixtureTests(unittest.TestCase):
 
     def test_valid_no_claims_passes(self):
         module, overlay, topology, seams, claims = self._inputs()
+        overlay["blocked_by"] = []
         result = module.evaluate_direction(overlay, topology, seams, claims, now=None)
         self.assertEqual(result["decision"], "PASS")
 

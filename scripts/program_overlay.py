@@ -259,9 +259,24 @@ def evaluate_direction(
     )
 
     unknowns = seam_errors + overlay_errors + claim_errors + independence_unknowns
+    blockers = overlay.get("blocked_by", [])
+    blocker_reasons: list[str] = []
+    if not isinstance(blockers, list):
+        unknowns.append("blocked_by must be a list")
+    else:
+        for blocker in blockers:
+            if not isinstance(blocker, Mapping):
+                unknowns.append("blocked_by entry must be an object")
+                continue
+            contract = blocker.get("contract")
+            if not isinstance(contract, str) or not contract.strip():
+                unknowns.append("blocked_by contract must be a non-empty string")
+                continue
+            blocker_reasons.append(f"declared blocker: contract {contract.strip()}")
+
     if unknowns:
         decision = "UNKNOWN"
-    elif conflicts:
+    elif conflicts or blocker_reasons:
         decision = "BLOCK"
     else:
         decision = "PASS"
@@ -272,7 +287,7 @@ def evaluate_direction(
         "decision": decision,
         "program_id": overlay.get("program_id"),
         "active_slices": active_slices,
-        "reasons": [],
+        "reasons": blocker_reasons,
         "violated_invariants": [],
         "conflicting_claims": conflicts,
         "unknowns": unknowns,
