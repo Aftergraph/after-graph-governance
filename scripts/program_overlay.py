@@ -25,6 +25,7 @@ FORBIDDEN_TRUTH_FIELDS = {
     "owns", "must_not_own",
 }
 OVERLAY_STATUSES = {"proposed", "active", "paused", "complete", "superseded"}
+SEAM_REGISTRY_STATUSES = {"experimental"}
 TOUCH_MODES = {"core", "next", "consumer", "observer"}
 CLAIM_MODES = {"READ", "WRITE", "MIGRATE", "VERIFY", "OBSERVE"}
 CLAIM_STATUSES = {"active", "released", "expired", "superseded"}
@@ -61,6 +62,12 @@ def parse_utc_timestamp(value: str) -> datetime:
 
 def validate_seam_registry(seams: Mapping[str, Any], topology: Mapping[str, Any]) -> list[str]:
     errors: list[str] = []
+    if seams.get("schema") != "semantic-seams/0.1":
+        errors.append(f"unsupported seam registry schema: {seams.get('schema')!r}")
+    status = seams.get("status")
+    if status not in SEAM_REGISTRY_STATUSES:
+        errors.append(f"unknown seam registry status: {status!r}")
+
     repos = topology_index(topology)
     seen: set[str] = set()
     rows = seams.get("seams", [])
@@ -207,6 +214,35 @@ def claim_conflicts(claims: Mapping[str, Any], now: datetime | None) -> list[dic
     return conflicts
 
 
+def verification_independence_unknowns(
+    claims: Mapping[str, Any], now: datetime | None
+) -> list[str]:
+    """Return unresolved same-seam VERIFY/WRITE independence conditions."""
+    rows = active_claims(claims, now)
+    unknowns: list[str] = []
+    for i, left in enumerate(rows):
+        for right in rows[i + 1:]:
+            if left.get("seam") != right.get("seam"):
+                continue
+            if {left.get("mode"), right.get("mode")} != {"VERIFY", "WRITE"}:
+                continue
+            verifier = left if left.get("mode") == "VERIFY" else right
+            evidence = verifier.get("independence")
+            proven = (
+                isinstance(evidence, Mapping)
+                and evidence.get("independent_principal") is True
+                and evidence.get("subject_mutation") is False
+                and isinstance(evidence.get("evidence_ref"), str)
+                and bool(evidence.get("evidence_ref", "").strip())
+            )
+            if not proven:
+                unknowns.append(
+                    "VERIFY/WRITE independence unresolved on "
+                    f"{left.get('seam')!r}: verifier={verifier.get('claim_id')!r}"
+                )
+    return unknowns
+
+
 def evaluate_direction(
     overlay: Mapping[str, Any],
     topology: Mapping[str, Any],
@@ -218,8 +254,11 @@ def evaluate_direction(
     overlay_errors = validate_overlay(overlay, topology, seams)
     claim_errors = validate_claims(claims, seams)
     conflicts = claim_conflicts(claims, now) if not claim_errors else []
+    independence_unknowns = (
+        verification_independence_unknowns(claims, now) if not claim_errors else []
+    )
 
-    unknowns = seam_errors + overlay_errors + claim_errors
+    unknowns = seam_errors + overlay_errors + claim_errors + independence_unknowns
     if unknowns:
         decision = "UNKNOWN"
     elif conflicts:
