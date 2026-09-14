@@ -212,6 +212,39 @@ class ProgramOverlayFixtureTests(unittest.TestCase):
         self.assertEqual(result["decision"], "UNKNOWN")
         self.assertTrue(any("overlay status" in item for item in result["unknowns"]))
 
+    def test_unknown_seam_registry_schema_is_unknown(self):
+        module, overlay, topology, seams, claims = self._inputs()
+        seams["schema"] = "semantic-seams/999"
+        result = module.evaluate_direction(overlay, topology, seams, claims, now=None)
+        self.assertEqual(result["decision"], "UNKNOWN")
+        self.assertTrue(any("seam registry schema" in item for item in result["unknowns"]))
+
+    def test_unknown_seam_registry_status_is_unknown(self):
+        module, overlay, topology, seams, claims = self._inputs()
+        seams["status"] = "canonical"
+        result = module.evaluate_direction(overlay, topology, seams, claims, now=None)
+        self.assertEqual(result["decision"], "UNKNOWN")
+        self.assertTrue(any("seam registry status" in item for item in result["unknowns"]))
+
+    def test_verify_write_same_seam_without_independence_evidence_is_unknown(self):
+        module, overlay, topology, seams, _ = self._inputs()
+        claims = {
+            "schema": "semantic-claims/0.1",
+            "claims": [
+                {"claim_id": "writer", "seam": "seam://runtime/runtime-binding", "mode": "WRITE", "status": "active"},
+                {"claim_id": "verifier", "seam": "seam://runtime/runtime-binding", "mode": "VERIFY", "status": "active"},
+            ],
+        }
+        result = module.evaluate_direction(overlay, topology, seams, claims, now=None)
+        self.assertEqual(result["decision"], "UNKNOWN")
+        self.assertTrue(any("VERIFY/WRITE independence" in item for item in result["unknowns"]))
+
+    def test_sentinel_seam_is_code_review_specific(self):
+        _, _, _, seams, _ = self._inputs()
+        seam_ids = {row["id"] for row in seams["seams"]}
+        self.assertIn("seam://verification/code-review-verdict", seam_ids)
+        self.assertNotIn("seam://verification/outcome-verdict", seam_ids)
+
     def test_seam_owner_must_exist_in_topology(self):
         module, _, topology, seams, _ = self._inputs()
         seams["seams"][0]["owner_repo"] = "missing-owner"
