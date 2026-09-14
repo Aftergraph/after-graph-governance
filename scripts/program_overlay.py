@@ -2,7 +2,9 @@
 """Experimental zero-dependency Program Overlay validator and shadow evaluator."""
 from __future__ import annotations
 
+import argparse
 import json
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Mapping
@@ -48,6 +50,30 @@ def seam_index(doc: Mapping[str, Any]) -> dict[str, Mapping[str, Any]]:
     return {entry["id"]: entry for entry in seams if isinstance(entry, Mapping) and "id" in entry}
 
 
+def validate_seam_registry(seams: Mapping[str, Any], topology: Mapping[str, Any]) -> list[str]:
+    errors: list[str] = []
+    repos = topology_index(topology)
+    seen: set[str] = set()
+    rows = seams.get("seams", [])
+    if not isinstance(rows, list):
+        return ["seams must be a list"]
+    for row in rows:
+        if not isinstance(row, Mapping):
+            errors.append("seam entry must be an object")
+            continue
+        seam_id = row.get("id")
+        owner = row.get("owner_repo")
+        if not isinstance(seam_id, str) or not seam_id:
+            errors.append("seam id must be a non-empty string")
+            continue
+        if seam_id in seen:
+            errors.append(f"duplicate seam id: {seam_id}")
+        seen.add(seam_id)
+        if owner not in repos:
+            errors.append(f"unknown seam owner repo: {owner!r}")
+    return errors
+
+
 def validate_overlay(overlay: Mapping[str, Any], topology: Mapping[str, Any], seams: Mapping[str, Any]) -> list[str]:
     errors: list[str] = []
     if overlay.get("schema") != "aftergraph-program/0.1":
@@ -76,6 +102,11 @@ def validate_overlay(overlay: Mapping[str, Any], topology: Mapping[str, Any], se
             errors.append(f"unknown repo in touch: {repo!r}")
         if seam not in seam_map:
             errors.append(f"unknown seam in touch: {seam!r}")
+        elif mode in {"core", "next"} and repo != seam_map[seam].get("owner_repo"):
+            errors.append(
+                f"{mode} touch does not match seam owner: repo={repo!r}, "
+                f"seam={seam!r}, owner={seam_map[seam].get('owner_repo')!r}"
+            )
         if mode not in TOUCH_MODES:
             errors.append(f"unknown touch mode: {mode!r}")
     return errors
@@ -135,3 +166,73 @@ def claim_conflicts(claims: Mapping[str, Any], now: datetime | None) -> list[dic
                     "claims": [left.get("claim_id"), right.get("claim_id")],
                 })
     return conflicts
+
+
+def evaluate_direction(
+    overlay: Mapping[str, Any],
+    topology: Mapping[str, Any],
+    seams: Mapping[str, Any],
+    claims: Mapping[str, Any],
+    now: datetime | None = None,
+) -> dict[str, Any]:
+    seam_errors = validate_seam_registry(seams, topology)
+    overlay_errors = validate_overlay(overlay, topology, seams)
+    claim_errors = validate_claims(claims, seams)
+    conflicts = claim_conflicts(claims, now) if not claim_errors else []
+
+    unknowns = seam_errors + overlay_errors + claim_errors
+    if unknowns:
+        decision = "UNKNOWN"
+    elif conflicts:
+        decision = "BLOCK"
+    else:
+        decision = "PASS"
+
+    return {
+        "decision": decision,
+        "program_id": overlay.get("program_id"),
+        "active_slices": list(overlay.get("active_slices", [])),
+        "reasons": [],
+        "violated_invariants": [],
+        "conflicting_claims": conflicts,
+        "unknowns": unknowns,
+        "evidence_refs": ["docs/platform-topology/2.0.json"],
+        "mode": "shadow",
+    }
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description=__doc__)
+    sub = parser.add_subparsers(dest="command", required=True)
+    sub.add_parser("check", help="validate default Program Overlay inputs")
+    evaluate = sub.add_parser("evaluate", help="evaluate direction in shadow mode")
+    evaluate.add_argument("--claims", type=Path, default=DEFAULT_CLAIMS)
+    return parser
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = build_parser().parse_args(argv)
+    overlay = load_json(DEFAULT_OVERLAY)
+    topology = load_json(DEFAULT_TOPOLOGY)
+    seams = load_json(DEFAULT_SEAMS)
+    claims_path = getattr(args, "claims", DEFAULT_CLAIMS)
+    claims = load_json(claims_path)
+
+    seam_errors = validate_seam_registry(seams, topology)
+    overlay_errors = validate_overlay(overlay, topology, seams)
+    claim_errors = validate_claims(claims, seams)
+    if args.command == "check":
+        errors = seam_errors + overlay_errors + claim_errors
+        if errors:
+            print(json.dumps({"decision": "UNKNOWN", "unknowns": errors}, indent=2, sort_keys=True))
+            return 3
+        print(json.dumps({"decision": "PASS", "mode": "shadow"}, indent=2, sort_keys=True))
+        return 0
+
+    result = evaluate_direction(overlay, topology, seams, claims)
+    print(json.dumps(result, indent=2, sort_keys=True))
+    return {"PASS": 0, "WARN": 0, "BLOCK": 2, "UNKNOWN": 3}[result["decision"]]
+
+
+if __name__ == "__main__":
+    sys.exit(main())
