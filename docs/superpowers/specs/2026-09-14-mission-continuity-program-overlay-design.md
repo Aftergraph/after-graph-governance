@@ -148,13 +148,13 @@ seam://works/effect-ledger
 seam://runtime/runtime-binding
 seam://runtime/mission-supervision
 seam://continuity/context-transfer
-seam://verification/outcome-verdict
+seam://verification/code-review-verdict
 seam://studio/mission-projection
 seam://relay/operator-projection
 seam://operations/cron-observation
 ```
 
-Seams MUST resolve to canonical owners from topology/contracts. A seam registry is coordination metadata only; it grants no authority.
+Seams MUST resolve to canonical owners from topology/contracts. A seam registry is coordination metadata only; it grants no authority. Sentinel only owns the code-review-verdict seam. General/domain outcome verification is resolved through the applicable registered domain verifier and is not assigned to Sentinel by this registry.
 
 ## 7. Semantic claims
 
