@@ -50,7 +50,8 @@ jobs:
           else
             realization_rc=3
             direction_rc=3
-            printf '{"decision":"UNKNOWN","unknowns":["contract realization observation failed"]}\n' > /tmp/contract-realization.json            printf '{"decision":"UNKNOWN","unknowns":["contract realization observation failed"]}\n' > /tmp/mission-continuity-direction.json
+            printf '{"decision":"UNKNOWN","unknowns":["contract realization observation failed"]}\n' > /tmp/contract-realization.json
+            printf '{"decision":"UNKNOWN","unknowns":["contract realization observation failed"]}\n' > /tmp/mission-continuity-direction.json
           fi
           {
             echo '## Contract realization shadow'
