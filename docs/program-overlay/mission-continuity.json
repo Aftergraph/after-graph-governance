@@ -1,0 +1,31 @@
+{
+  "schema": "aftergraph-program/0.1",
+  "program_id": "mission-continuity",
+  "parent_program": "portable-intelligence-infrastructure-v1",
+  "objective": "Preserve a governed Mission across runtime replacement through independent verification.",
+  "status": "active",
+  "active_slices": [
+    "MC-001",
+    "MC-002"
+  ],
+  "touches": [
+    {"repo": "works-execution", "seam": "seam://works/execution-context", "mode": "core"},
+    {"repo": "runtime", "seam": "seam://runtime/runtime-binding", "mode": "next"},
+    {"repo": "studio", "seam": "seam://studio/mission-projection", "mode": "consumer"}
+  ],
+  "invariants": [
+    "runtime_completion != verification",
+    "revocation != recoverable_failure",
+    "budget_exhaustion != recoverable_failure",
+    "projection != canonical_truth"
+  ],
+  "blocked_by": [
+    {"contract": "execution-context/1.0"}
+  ],
+  "success": [
+    "golden_mission_runtime_replacement",
+    "no_duplicate_effect",
+    "authority_lineage_preserved",
+    "independent_verification"
+  ]
+}
