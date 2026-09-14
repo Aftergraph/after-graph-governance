@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Mapping
 
@@ -97,3 +98,40 @@ def validate_claims(claims: Mapping[str, Any], seams: Mapping[str, Any]) -> list
         if row.get("mode") not in CLAIM_MODES:
             errors.append(f"unknown claim mode: {row.get('mode')!r}")
     return errors
+
+
+def active_claims(claims: Mapping[str, Any], now: datetime | None) -> list[Mapping[str, Any]]:
+    current = now or datetime.now(timezone.utc)
+    result: list[Mapping[str, Any]] = []
+    for claim in claims.get("claims", []):
+        if not isinstance(claim, Mapping) or claim.get("status") != "active":
+            continue
+        expires_at = claim.get("expires_at")
+        if isinstance(expires_at, str):
+            expires = datetime.fromisoformat(expires_at.replace("Z", "+00:00"))
+            if expires <= current:
+                continue
+        result.append(claim)
+    return result
+
+
+def claim_conflicts(claims: Mapping[str, Any], now: datetime | None) -> list[dict[str, Any]]:
+    rows = active_claims(claims, now)
+    conflicts: list[dict[str, Any]] = []
+    for i, left in enumerate(rows):
+        for right in rows[i + 1:]:
+            if left.get("seam") != right.get("seam"):
+                continue
+            pair = {left.get("mode"), right.get("mode")}
+            kind = None
+            if pair == {"WRITE"}:
+                kind = "WRITE_WRITE"
+            elif "MIGRATE" in pair and ("WRITE" in pair or "MIGRATE" in pair):
+                kind = "MIGRATE_WRITE" if "WRITE" in pair else "MIGRATE_MIGRATE"
+            if kind:
+                conflicts.append({
+                    "kind": kind,
+                    "seam": left.get("seam"),
+                    "claims": [left.get("claim_id"), right.get("claim_id")],
+                })
+    return conflicts
