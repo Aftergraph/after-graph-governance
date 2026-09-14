@@ -108,6 +108,60 @@ class ProgramOverlayFixtureTests(unittest.TestCase):
         }
         self.assertEqual(module.claim_conflicts(claims, now=None), [])
 
+    def test_valid_no_claims_passes(self):
+        module = load_module()
+        result = module.evaluate_direction(
+            module.load_json(ROOT / "docs/program-overlay/mission-continuity.json"),
+            module.load_json(ROOT / "docs/platform-topology/2.0.json"),
+            module.load_json(ROOT / "docs/semantic-seams/0.1.json"),
+            module.load_json(ROOT / "docs/semantic-claims/empty.json"),
+            now=None,
+        )
+        self.assertEqual(result["decision"], "PASS")
+
+    def test_conflicting_write_claims_block(self):
+        module = load_module()
+        result = module.evaluate_direction(
+            module.load_json(ROOT / "docs/program-overlay/mission-continuity.json"),
+            module.load_json(ROOT / "docs/platform-topology/2.0.json"),
+            module.load_json(ROOT / "docs/semantic-seams/0.1.json"),
+            module.load_json(ROOT / "docs/semantic-claims/conflict-example.json"),
+            now=None,
+        )
+        self.assertEqual(result["decision"], "BLOCK")
+        self.assertTrue(result["conflicting_claims"])
+
+    def test_invalid_or_unknown_input_is_unknown_not_pass(self):
+        module = load_module()
+        overlay = module.load_json(ROOT / "docs/program-overlay/mission-continuity.json")
+        overlay["touches"][0]["seam"] = "seam://missing/value"
+        result = module.evaluate_direction(
+            overlay,
+            module.load_json(ROOT / "docs/platform-topology/2.0.json"),
+            module.load_json(ROOT / "docs/semantic-seams/0.1.json"),
+            module.load_json(ROOT / "docs/semantic-claims/empty.json"),
+            now=None,
+        )
+        self.assertEqual(result["decision"], "UNKNOWN")
+        self.assertTrue(result["unknowns"])
+
+    def test_seam_owner_must_exist_in_topology(self):
+        module = load_module()
+        seams = module.load_json(ROOT / "docs/semantic-seams/0.1.json")
+        topology = module.load_json(ROOT / "docs/platform-topology/2.0.json")
+        seams["seams"][0]["owner_repo"] = "missing-owner"
+        errors = module.validate_seam_registry(seams, topology)
+        self.assertTrue(any("owner repo" in error for error in errors))
+
+    def test_core_touch_must_match_seam_owner(self):
+        module = load_module()
+        overlay = module.load_json(ROOT / "docs/program-overlay/mission-continuity.json")
+        topology = module.load_json(ROOT / "docs/platform-topology/2.0.json")
+        seams = module.load_json(ROOT / "docs/semantic-seams/0.1.json")
+        overlay["touches"][0]["repo"] = "runtime"
+        errors = module.validate_overlay(overlay, topology, seams)
+        self.assertTrue(any("core touch does not match seam owner" in error for error in errors))
+
 
 if __name__ == "__main__":
     unittest.main()
