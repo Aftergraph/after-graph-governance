@@ -258,5 +258,26 @@ class ProgramOverlayFixtureTests(unittest.TestCase):
         self.assertTrue(any("core touch does not match seam owner" in error for error in errors))
 
 
+    def test_declared_program_blocker_blocks_shadow_evaluation(self):
+        module, overlay, topology, seams, claims = self._inputs()
+        result = module.evaluate_direction(overlay, topology, seams, claims, now=None)
+        self.assertEqual(result["decision"], "BLOCK")
+        self.assertTrue(any("execution-context/1.0" in item for item in result["reasons"]))
+
+    def test_cleared_program_blockers_restore_pass(self):
+        module, overlay, topology, seams, claims = self._inputs()
+        overlay["blocked_by"] = []
+        result = module.evaluate_direction(overlay, topology, seams, claims, now=None)
+        self.assertEqual(result["decision"], "PASS")
+        self.assertEqual(result["reasons"], [])
+
+    def test_malformed_blocked_by_is_unknown_not_pass(self):
+        module, overlay, topology, seams, claims = self._inputs()
+        overlay["blocked_by"] = [{"contract": ""}, "bad-row"]
+        result = module.evaluate_direction(overlay, topology, seams, claims, now=None)
+        self.assertEqual(result["decision"], "UNKNOWN")
+        self.assertTrue(any("blocked_by" in item for item in result["unknowns"]))
+
+
 if __name__ == "__main__":
     unittest.main()
