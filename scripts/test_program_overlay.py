@@ -34,6 +34,33 @@ class ProgramOverlayFixtureTests(unittest.TestCase):
         self.assertNotIn("head_sha", serialized)
         self.assertNotIn("commit_sha", serialized)
 
+    def test_unknown_repo_is_rejected(self):
+        module = load_module()
+        overlay = module.load_json(ROOT / "docs/program-overlay/mission-continuity.json")
+        topology = module.load_json(ROOT / "docs/platform-topology/2.0.json")
+        seams = module.load_json(ROOT / "docs/semantic-seams/0.1.json")
+        overlay["touches"][0]["repo"] = "not-a-real-repo"
+        errors = module.validate_overlay(overlay, topology, seams)
+        self.assertTrue(any("unknown repo" in error for error in errors))
+
+    def test_unknown_seam_is_rejected(self):
+        module = load_module()
+        overlay = module.load_json(ROOT / "docs/program-overlay/mission-continuity.json")
+        topology = module.load_json(ROOT / "docs/platform-topology/2.0.json")
+        seams = module.load_json(ROOT / "docs/semantic-seams/0.1.json")
+        overlay["touches"][0]["seam"] = "seam://unknown/value"
+        errors = module.validate_overlay(overlay, topology, seams)
+        self.assertTrue(any("unknown seam" in error for error in errors))
+
+    def test_forbidden_exact_git_truth_field_is_rejected(self):
+        module = load_module()
+        overlay = module.load_json(ROOT / "docs/program-overlay/mission-continuity.json")
+        topology = module.load_json(ROOT / "docs/platform-topology/2.0.json")
+        seams = module.load_json(ROOT / "docs/semantic-seams/0.1.json")
+        overlay["head_sha"] = "0" * 40
+        errors = module.validate_overlay(overlay, topology, seams)
+        self.assertTrue(any("forbidden truth field" in error for error in errors))
+
 
 if __name__ == "__main__":
     unittest.main()
