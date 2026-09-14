@@ -61,6 +61,53 @@ class ProgramOverlayFixtureTests(unittest.TestCase):
         errors = module.validate_overlay(overlay, topology, seams)
         self.assertTrue(any("forbidden truth field" in error for error in errors))
 
+    def test_write_write_same_seam_blocks(self):
+        module = load_module()
+        claims = {
+            "schema": "semantic-claims/0.1",
+            "claims": [
+                {"claim_id": "c1", "seam": "seam://runtime/runtime-binding", "mode": "WRITE", "status": "active"},
+                {"claim_id": "c2", "seam": "seam://runtime/runtime-binding", "mode": "WRITE", "status": "active"}
+            ]
+        }
+        conflicts = module.claim_conflicts(claims, now=None)
+        self.assertEqual(len(conflicts), 1)
+        self.assertEqual(conflicts[0]["kind"], "WRITE_WRITE")
+
+    def test_read_write_same_seam_is_allowed(self):
+        module = load_module()
+        claims = {
+            "schema": "semantic-claims/0.1",
+            "claims": [
+                {"claim_id": "c1", "seam": "seam://runtime/runtime-binding", "mode": "READ", "status": "active"},
+                {"claim_id": "c2", "seam": "seam://runtime/runtime-binding", "mode": "WRITE", "status": "active"}
+            ]
+        }
+        self.assertEqual(module.claim_conflicts(claims, now=None), [])
+
+    def test_migrate_write_same_seam_blocks(self):
+        module = load_module()
+        claims = {
+            "schema": "semantic-claims/0.1",
+            "claims": [
+                {"claim_id": "c1", "seam": "seam://works/execution-context", "mode": "MIGRATE", "status": "active"},
+                {"claim_id": "c2", "seam": "seam://works/execution-context", "mode": "WRITE", "status": "active"}
+            ]
+        }
+        conflicts = module.claim_conflicts(claims, now=None)
+        self.assertEqual(conflicts[0]["kind"], "MIGRATE_WRITE")
+
+    def test_unrelated_write_claims_do_not_conflict(self):
+        module = load_module()
+        claims = {
+            "schema": "semantic-claims/0.1",
+            "claims": [
+                {"claim_id": "c1", "seam": "seam://runtime/runtime-binding", "mode": "WRITE", "status": "active"},
+                {"claim_id": "c2", "seam": "seam://studio/mission-projection", "mode": "WRITE", "status": "active"}
+            ]
+        }
+        self.assertEqual(module.claim_conflicts(claims, now=None), [])
+
 
 if __name__ == "__main__":
     unittest.main()
