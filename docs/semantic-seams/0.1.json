@@ -11,7 +11,7 @@
     {"id": "seam://runtime/runtime-binding", "owner_repo": "runtime"},
     {"id": "seam://runtime/mission-supervision", "owner_repo": "runtime"},
     {"id": "seam://continuity/context-transfer", "owner_repo": "context-continuity"},
-    {"id": "seam://verification/outcome-verdict", "owner_repo": "sentinel"},
+    {"id": "seam://verification/code-review-verdict", "owner_repo": "sentinel"},
     {"id": "seam://studio/mission-projection", "owner_repo": "studio"},
     {"id": "seam://relay/operator-projection", "owner_repo": "relay"},
     {"id": "seam://operations/cron-observation", "owner_repo": "aftergraph-cron-fabric"}
