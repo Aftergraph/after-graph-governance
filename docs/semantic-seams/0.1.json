@@ -2,18 +2,58 @@
   "schema": "semantic-seams/0.1",
   "status": "experimental",
   "seams": [
-    {"id": "seam://governance/platform-topology", "owner_repo": "after-graph-governance"},
-    {"id": "seam://governance/correlation", "owner_repo": "after-graph-governance"},
-    {"id": "seam://aie/authority-lease", "owner_repo": "aie"},
-    {"id": "seam://trust/action-admission", "owner_repo": "trust-gateway"},
-    {"id": "seam://works/execution-context", "owner_repo": "works-execution"},
-    {"id": "seam://works/effect-ledger", "owner_repo": "works-execution"},
-    {"id": "seam://runtime/runtime-binding", "owner_repo": "runtime"},
-    {"id": "seam://runtime/mission-supervision", "owner_repo": "runtime"},
-    {"id": "seam://continuity/context-transfer", "owner_repo": "context-continuity"},
-    {"id": "seam://verification/code-review-verdict", "owner_repo": "sentinel"},
-    {"id": "seam://studio/mission-projection", "owner_repo": "studio"},
-    {"id": "seam://relay/operator-projection", "owner_repo": "relay"},
-    {"id": "seam://operations/cron-observation", "owner_repo": "aftergraph-cron-fabric"}
+    {
+      "id": "seam://governance/platform-topology",
+      "owner_repo": "after-graph-governance"
+    },
+    {
+      "id": "seam://governance/correlation",
+      "owner_repo": "after-graph-governance"
+    },
+    {
+      "id": "seam://aie/authority-lease",
+      "owner_repo": "aie"
+    },
+    {
+      "id": "seam://trust/action-admission",
+      "owner_repo": "trust-gateway"
+    },
+    {
+      "id": "seam://works/execution-context",
+      "owner_repo": "works-execution",
+      "requires_contract": "execution-context/1.0"
+    },
+    {
+      "id": "seam://works/effect-ledger",
+      "owner_repo": "works-execution"
+    },
+    {
+      "id": "seam://runtime/runtime-binding",
+      "owner_repo": "runtime"
+    },
+    {
+      "id": "seam://runtime/mission-supervision",
+      "owner_repo": "runtime"
+    },
+    {
+      "id": "seam://continuity/context-transfer",
+      "owner_repo": "context-continuity"
+    },
+    {
+      "id": "seam://verification/code-review-verdict",
+      "owner_repo": "sentinel"
+    },
+    {
+      "id": "seam://studio/mission-projection",
+      "owner_repo": "studio"
+    },
+    {
+      "id": "seam://relay/operator-projection",
+      "owner_repo": "relay"
+    },
+    {
+      "id": "seam://operations/cron-observation",
+      "owner_repo": "aftergraph-cron-fabric"
+    }
   ]
 }

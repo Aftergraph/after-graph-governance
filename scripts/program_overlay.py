@@ -243,12 +243,56 @@ def verification_independence_unknowns(
     return unknowns
 
 
+def contract_dependency_findings(
+    overlay: Mapping[str, Any],
+    seams: Mapping[str, Any],
+    contract_realization: Mapping[str, Any] | None,
+) -> tuple[list[str], list[str]]:
+    seam_map = seam_index(seams)
+    required: set[str] = set()
+    for touch in overlay.get("touches", []):
+        if not isinstance(touch, Mapping):
+            continue
+        seam = seam_map.get(touch.get("seam"))
+        if not isinstance(seam, Mapping):
+            continue
+        contract = seam.get("requires_contract")
+        if isinstance(contract, str) and contract.strip():
+            required.add(contract.strip())
+    if not required:
+        return [], []
+    if contract_realization is None:
+        return [], ["contract realization evidence missing for required seams"]
+    rows = contract_realization.get("contracts")
+    if not isinstance(rows, Mapping):
+        return [], ["contract realization evidence has no contracts object"]
+    blockers: list[str] = []
+    unknowns: list[str] = []
+    allowed = {"REALIZED", "CONFORMANT", "COMPOSED_PROVEN"}
+    for contract in sorted(required):
+        row = rows.get(contract)
+        if not isinstance(row, Mapping):
+            unknowns.append(f"contract realization missing entry: {contract}")
+            continue
+        state = row.get("state")
+        if state == "DECLARED_NOT_REALIZED":
+            blockers.append(f"contract realization missing: {contract}")
+        elif state in allowed:
+            continue
+        elif state == "UNKNOWN":
+            unknowns.append(f"contract realization unknown: {contract}")
+        else:
+            unknowns.append(f"contract realization has unsupported state for {contract}: {state!r}")
+    return blockers, unknowns
+
+
 def evaluate_direction(
     overlay: Mapping[str, Any],
     topology: Mapping[str, Any],
     seams: Mapping[str, Any],
     claims: Mapping[str, Any],
     now: datetime | None = None,
+    contract_realization: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     seam_errors = validate_seam_registry(seams, topology)
     overlay_errors = validate_overlay(overlay, topology, seams)
@@ -258,9 +302,12 @@ def evaluate_direction(
         verification_independence_unknowns(claims, now) if not claim_errors else []
     )
 
-    unknowns = seam_errors + overlay_errors + claim_errors + independence_unknowns
+    dependency_blockers, dependency_unknowns = contract_dependency_findings(
+        overlay, seams, contract_realization
+    )
+    unknowns = seam_errors + overlay_errors + claim_errors + independence_unknowns + dependency_unknowns
     blockers = overlay.get("blocked_by", [])
-    blocker_reasons: list[str] = []
+    blocker_reasons: list[str] = list(dependency_blockers)
     if not isinstance(blockers, list):
         unknowns.append("blocked_by must be a list")
     else:
@@ -302,6 +349,7 @@ def build_parser() -> argparse.ArgumentParser:
     sub.add_parser("check", help="validate default Program Overlay inputs")
     evaluate = sub.add_parser("evaluate", help="evaluate direction in shadow mode")
     evaluate.add_argument("--claims", type=Path, default=DEFAULT_CLAIMS)
+    evaluate.add_argument("--contract-realization", type=Path)
     return parser
 
 
@@ -324,7 +372,11 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps({"decision": "PASS", "mode": "shadow"}, indent=2, sort_keys=True))
         return 0
 
-    result = evaluate_direction(overlay, topology, seams, claims)
+    realization_path = getattr(args, "contract_realization", None)
+    realization = load_json(realization_path) if realization_path else None
+    result = evaluate_direction(
+        overlay, topology, seams, claims, contract_realization=realization
+    )
     print(json.dumps(result, indent=2, sort_keys=True))
     return {"PASS": 0, "WARN": 0, "BLOCK": 2, "UNKNOWN": 3}[result["decision"]]
 

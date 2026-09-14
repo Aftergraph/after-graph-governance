@@ -30,6 +30,9 @@ class ProgramOverlayFixtureTests(unittest.TestCase):
             module.load_json(ROOT / "docs/semantic-claims/empty.json"),
         )
 
+    def _realized(self):
+        return {"contracts": {"execution-context/1.0": {"state": "REALIZED"}}}
+
     def test_canonical_fixture_validates(self):
         module, overlay, topology, seams, _ = self._inputs()
         self.assertEqual(module.validate_overlay(overlay, topology, seams), [])
@@ -126,7 +129,7 @@ class ProgramOverlayFixtureTests(unittest.TestCase):
     def test_valid_no_claims_passes(self):
         module, overlay, topology, seams, claims = self._inputs()
         overlay["blocked_by"] = []
-        result = module.evaluate_direction(overlay, topology, seams, claims, now=None)
+        result = module.evaluate_direction(overlay, topology, seams, claims, now=None, contract_realization=self._realized())
         self.assertEqual(result["decision"], "PASS")
 
     def test_conflicting_write_claims_block(self):
@@ -137,6 +140,7 @@ class ProgramOverlayFixtureTests(unittest.TestCase):
             seams,
             module.load_json(ROOT / "docs/semantic-claims/conflict-example.json"),
             now=None,
+            contract_realization=self._realized(),
         )
         self.assertEqual(result["decision"], "BLOCK")
         self.assertTrue(result["conflicting_claims"])
@@ -261,14 +265,15 @@ class ProgramOverlayFixtureTests(unittest.TestCase):
 
     def test_declared_program_blocker_blocks_shadow_evaluation(self):
         module, overlay, topology, seams, claims = self._inputs()
-        result = module.evaluate_direction(overlay, topology, seams, claims, now=None)
+        overlay["blocked_by"] = [{"contract": "execution-context/1.0"}]
+        result = module.evaluate_direction(overlay, topology, seams, claims, now=None, contract_realization=self._realized())
         self.assertEqual(result["decision"], "BLOCK")
         self.assertTrue(any("execution-context/1.0" in item for item in result["reasons"]))
 
     def test_cleared_program_blockers_restore_pass(self):
         module, overlay, topology, seams, claims = self._inputs()
         overlay["blocked_by"] = []
-        result = module.evaluate_direction(overlay, topology, seams, claims, now=None)
+        result = module.evaluate_direction(overlay, topology, seams, claims, now=None, contract_realization=self._realized())
         self.assertEqual(result["decision"], "PASS")
         self.assertEqual(result["reasons"], [])
 
@@ -278,6 +283,37 @@ class ProgramOverlayFixtureTests(unittest.TestCase):
         result = module.evaluate_direction(overlay, topology, seams, claims, now=None)
         self.assertEqual(result["decision"], "UNKNOWN")
         self.assertTrue(any("blocked_by" in item for item in result["unknowns"]))
+
+    def test_contract_dependency_missing_realization_blocks_without_manual_blocker(self):
+        module, overlay, topology, seams, claims = self._inputs()
+        overlay["blocked_by"] = []
+        for seam in seams["seams"]:
+            if seam["id"] == "seam://works/execution-context":
+                seam["requires_contract"] = "execution-context/1.0"
+        realization = {"contracts": {"execution-context/1.0": {"state": "DECLARED_NOT_REALIZED"}}}
+        result = module.evaluate_direction(overlay, topology, seams, claims, now=None, contract_realization=realization)
+        self.assertEqual(result["decision"], "BLOCK")
+        self.assertTrue(any("execution-context/1.0" in item for item in result["reasons"]))
+
+    def test_contract_dependency_realized_clears_without_manual_blocker(self):
+        module, overlay, topology, seams, claims = self._inputs()
+        overlay["blocked_by"] = []
+        for seam in seams["seams"]:
+            if seam["id"] == "seam://works/execution-context":
+                seam["requires_contract"] = "execution-context/1.0"
+        realization = {"contracts": {"execution-context/1.0": {"state": "REALIZED"}}}
+        result = module.evaluate_direction(overlay, topology, seams, claims, now=None, contract_realization=realization)
+        self.assertEqual(result["decision"], "PASS")
+
+    def test_contract_dependency_without_realization_evidence_is_unknown(self):
+        module, overlay, topology, seams, claims = self._inputs()
+        overlay["blocked_by"] = []
+        for seam in seams["seams"]:
+            if seam["id"] == "seam://works/execution-context":
+                seam["requires_contract"] = "execution-context/1.0"
+        result = module.evaluate_direction(overlay, topology, seams, claims, now=None, contract_realization=None)
+        self.assertEqual(result["decision"], "UNKNOWN")
+        self.assertTrue(any("contract realization" in item for item in result["unknowns"]))
 
 
 if __name__ == "__main__":

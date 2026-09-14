@@ -9,9 +9,21 @@
     "MC-002"
   ],
   "touches": [
-    {"repo": "works-execution", "seam": "seam://works/execution-context", "mode": "core"},
-    {"repo": "runtime", "seam": "seam://runtime/runtime-binding", "mode": "next"},
-    {"repo": "studio", "seam": "seam://studio/mission-projection", "mode": "consumer"}
+    {
+      "repo": "works-execution",
+      "seam": "seam://works/execution-context",
+      "mode": "core"
+    },
+    {
+      "repo": "runtime",
+      "seam": "seam://runtime/runtime-binding",
+      "mode": "next"
+    },
+    {
+      "repo": "studio",
+      "seam": "seam://studio/mission-projection",
+      "mode": "consumer"
+    }
   ],
   "invariants": [
     "runtime_completion != verification",
@@ -19,9 +31,7 @@
     "budget_exhaustion != recoverable_failure",
     "projection != canonical_truth"
   ],
-  "blocked_by": [
-    {"contract": "execution-context/1.0"}
-  ],
+  "blocked_by": [],
   "success": [
     "golden_mission_runtime_replacement",
     "no_duplicate_effect",
