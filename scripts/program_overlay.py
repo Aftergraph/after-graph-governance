@@ -24,8 +24,10 @@ FORBIDDEN_TRUTH_FIELDS = {
     "remote_head_sha", "head_sha", "commit_sha", "canonical_branch",
     "owns", "must_not_own",
 }
+OVERLAY_STATUSES = {"proposed", "active", "paused", "complete", "superseded"}
 TOUCH_MODES = {"core", "next", "consumer", "observer"}
 CLAIM_MODES = {"READ", "WRITE", "MIGRATE", "VERIFY", "OBSERVE"}
+CLAIM_STATUSES = {"active", "released", "expired", "superseded"}
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -48,6 +50,13 @@ def seam_index(doc: Mapping[str, Any]) -> dict[str, Mapping[str, Any]]:
     if not isinstance(seams, list):
         raise ValueError("semantic seam document has no seam list")
     return {entry["id"]: entry for entry in seams if isinstance(entry, Mapping) and "id" in entry}
+
+
+def parse_utc_timestamp(value: str) -> datetime:
+    parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    if parsed.tzinfo is None:
+        raise ValueError("timestamp must include timezone")
+    return parsed.astimezone(timezone.utc)
 
 
 def validate_seam_registry(seams: Mapping[str, Any], topology: Mapping[str, Any]) -> list[str]:
@@ -86,6 +95,16 @@ def validate_overlay(overlay: Mapping[str, Any], topology: Mapping[str, Any], se
     for field in set(overlay) - ALLOWED_OVERLAY_FIELDS - FORBIDDEN_TRUTH_FIELDS:
         errors.append(f"unexpected overlay field: {field}")
 
+    status = overlay.get("status")
+    if status not in OVERLAY_STATUSES:
+        errors.append(f"unknown overlay status: {status!r}")
+
+    active_slices = overlay.get("active_slices")
+    if not isinstance(active_slices, list) or any(
+        not isinstance(item, str) or not item.strip() for item in active_slices
+    ):
+        errors.append("active_slices must be a list of non-empty strings")
+
     repos = topology_index(topology)
     seam_map = seam_index(seams)
     touches = overlay.get("touches", [])
@@ -120,26 +139,46 @@ def validate_claims(claims: Mapping[str, Any], seams: Mapping[str, Any]) -> list
     rows = claims.get("claims", [])
     if not isinstance(rows, list):
         return errors + ["claims must be a list"]
+    seen_ids: set[str] = set()
     for row in rows:
         if not isinstance(row, Mapping):
             errors.append("claim must be an object")
             continue
+        claim_id = row.get("claim_id")
+        if not isinstance(claim_id, str) or not claim_id.strip():
+            errors.append("claim_id must be a non-empty string")
+        elif claim_id in seen_ids:
+            errors.append(f"duplicate claim_id: {claim_id}")
+        else:
+            seen_ids.add(claim_id)
         if row.get("seam") not in seam_map:
             errors.append(f"unknown seam in claim: {row.get('seam')!r}")
         if row.get("mode") not in CLAIM_MODES:
             errors.append(f"unknown claim mode: {row.get('mode')!r}")
+        status = row.get("status")
+        if status not in CLAIM_STATUSES:
+            errors.append(f"unknown claim status: {status!r}")
+        expires_at = row.get("expires_at")
+        if expires_at is not None:
+            if not isinstance(expires_at, str):
+                errors.append("expires_at must be an ISO-8601 string")
+            else:
+                try:
+                    parse_utc_timestamp(expires_at)
+                except ValueError:
+                    errors.append(f"invalid expires_at timestamp: {expires_at!r}")
     return errors
 
 
 def active_claims(claims: Mapping[str, Any], now: datetime | None) -> list[Mapping[str, Any]]:
-    current = now or datetime.now(timezone.utc)
+    current = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
     result: list[Mapping[str, Any]] = []
     for claim in claims.get("claims", []):
         if not isinstance(claim, Mapping) or claim.get("status") != "active":
             continue
         expires_at = claim.get("expires_at")
         if isinstance(expires_at, str):
-            expires = datetime.fromisoformat(expires_at.replace("Z", "+00:00"))
+            expires = parse_utc_timestamp(expires_at)
             if expires <= current:
                 continue
         result.append(claim)
@@ -188,10 +227,12 @@ def evaluate_direction(
     else:
         decision = "PASS"
 
+    active_slices_value = overlay.get("active_slices", [])
+    active_slices = list(active_slices_value) if isinstance(active_slices_value, list) else []
     return {
         "decision": decision,
         "program_id": overlay.get("program_id"),
-        "active_slices": list(overlay.get("active_slices", [])),
+        "active_slices": active_slices,
         "reasons": [],
         "violated_invariants": [],
         "conflicting_claims": conflicts,
