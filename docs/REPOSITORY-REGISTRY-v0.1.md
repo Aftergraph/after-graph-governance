@@ -21,12 +21,13 @@
 
 ## 2. Canonical organisation map
 
-Current repository scope and roles are defined by `docs/platform-topology/2.0.json` (24 repositories; `docs/platform-topology/1.0.json` retained for historical provenance).
+Current repository scope and roles are defined by `docs/platform-topology/2.0.json` (28 repositories; `docs/platform-topology/1.0.json` retained for historical provenance).
 
 | Domain | Canonical repository | Role | Default branch | Evidence boundary |
 |---|---|---|---|---|
 | Portfolio governance | `Aftergraph/after-graph-governance` | Cross-repository contracts, ownership, terminology, release and claim boundaries | `main` | Documented decision and exact-source evidence |
 | Agent runtime | `Aftergraph/runtime` | Active canonical runtime owner: agent lifecycle, orchestration, dispatch, checkpoints, metering | `main` | Exact-head test, integration and runtime evidence |
+| Human operator plane | `Aftergraph/relay` | Governed operator plane for supervising autonomous work and bounded external execution; private implementation, public boundary registered in Governance | `main` | Exact-head runtime/release evidence inside Relay; public role/boundary evidence in Governance |
 | Public entry point | `Aftergraph/aftergraph.org` | Public platform entry, launcher, health and agent index | `main` | Deployment and public-surface evidence |
 | Knowledge Plane | `Aftergraph/docs` | Provenance-stamped documentation, architecture, API and context packs | `main` | Exact-source plus published-site evidence |
 | Authority standard | `Aftergraph/aie` | Independent authority, delegation, lifecycle, budget, revocation and conformance semantics | `main` | Versioned conformance and external interoperability evidence |

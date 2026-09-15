@@ -73,6 +73,7 @@ verification. See `docs/PLATFORM-FABRICS-v0.1.md`.
 | `works-execution` | durable-execution | Durable work state, workers, recovery and execution evidence. |
 | `studio` | primary-experience | General-purpose human Chat/Work/Space/control experience. |
 | `runtime` | agent-runtime | Active canonical runtime owner: agent lifecycle, orchestration, dispatch, checkpoints, metering. Never durable execution or enforcement. |
+| `relay` | human-operator-plane | Experience-plane operator/control projection. May expose bounded lease-gated external operations; never becomes AIE authority, Trust admission, WORKS durable execution, Runtime orchestration truth, or independent verification. |
 | `wi-backend` | work-inference | Observation → WorkItem; a WorkItem is not a WORKS Work. |
 | `wi-frontend` | work-intelligence-experience | Specialist UI/BFF projection of Work Intelligence state. |
 | `context-continuity` | continuity-contract | Portable actionable state transfer; carries authority context but never grants authority. |
