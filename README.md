@@ -94,6 +94,7 @@ The table below is a generated projection of `docs/platform-topology/2.0.json` â
 | Support | public | `aftergraph.org` | public-front-door | active | Public website, marketing information architecture and system launcher. |
 | Support | legacy-transition | `autonomous-venture-company` | legacy-migration-source | legacy-transition | Legacy product, Hermes integration and migration-source behavior pending governed extraction. |
 | Support | foundation | `brand` | brand-design-system | active | Visual identity, semantic design tokens, master assets and public communication design rules. |
+| Support | service-business-domain | `business-ops` | canonical-service-business-domain | active | Canonical tenant-neutral service-business domain state, invariants, migration mappings, charge-source facts and shadow-conformance semantics. |
 | Support | continuity | `context-continuity` | continuity-contract | active | Portable transfer of actionable context/state across model, agent, session and runtime boundaries. |
 | Support | assurance | `continuum` | continuity-containment-verification | active | Continuity and containment fault-injection campaigns and verification harnesses. |
 | Support | knowledge | `docs` | knowledge-plane | active | Provenance-pinned rendering, discovery, developer documentation and agent-readable context surfaces. |
