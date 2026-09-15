@@ -314,6 +314,17 @@
       "lifecycle": "active",
       "owns": "Open benchmark and evaluation suite for semantic portability of skills across models, runtimes and capability environments.",
       "must_not_own": "Skill compatibility contract truth, model lifecycle truth, or execution authority."
+    },
+    {
+      "name": "business-ops",
+      "canonical_branch": "main",
+      "visibility": "private",
+      "architecture_plane": null,
+      "system_class": "service-business-domain",
+      "role": "canonical-service-business-domain",
+      "lifecycle": "active",
+      "owns": "Canonical tenant-neutral service-business domain state, invariants, migration mappings, charge-source facts and shadow-conformance semantics.",
+      "must_not_own": "AIE authority, Trust admission/approval/secrets, Runtime orchestration, WORKS durable execution/evidence, Studio/Relay conversation/control experience, Billing invoice/payment truth, or independent verification."
     }
   ]
 }

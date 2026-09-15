@@ -178,15 +178,25 @@ def load_json(path: Path) -> dict:
 
 
 class TopologyV2DataTest(unittest.TestCase):
-    def test_has_exactly_28_unique_repositories(self):
-        # 28 = 24 canonical + sentinel-firetest2 (live-verified 2026-09-10,
+    def test_has_exactly_29_unique_repositories(self):
+        # 29 = 24 canonical + sentinel-firetest2 (live-verified 2026-09-10,
         # temporary-verification-fixture with expires_at) + skill-abi and
         # skillport (live-verified 2026-09-10, active capability/assurance)
         # + relay (enrolled 2026-09-10, canonical human-operator-plane).
         doc = load_json(TOPOLOGY)
         names = [r["name"] for r in doc["repositories"]]
-        self.assertEqual(len(names), 28)
-        self.assertEqual(len(set(names)), 28)
+        self.assertEqual(len(names), 29)
+        self.assertEqual(len(set(names)), 29)
+
+    def test_business_ops_is_registered_as_domain_not_platform_plane(self):
+        repo = topology_index(load_json(TOPOLOGY))["business-ops"]
+        self.assertIsNone(repo["architecture_plane"])
+        self.assertEqual(repo["system_class"], "service-business-domain")
+        self.assertEqual(repo["role"], "canonical-service-business-domain")
+        self.assertIn("service-business", repo["owns"].lower())
+        self.assertIn("authority", repo["must_not_own"].lower())
+        self.assertIn("runtime", repo["must_not_own"].lower())
+        self.assertIn("verification", repo["must_not_own"].lower())
 
     def test_only_seven_non_null_architecture_planes_exist(self):
         doc = load_json(TOPOLOGY)
