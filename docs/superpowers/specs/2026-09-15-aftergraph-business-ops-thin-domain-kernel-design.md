@@ -124,6 +124,8 @@ Business Ops owns canonical service-business facts and invariant-preserving tran
 - assignments and assignment membership;
 - execution actuals and corrections;
 - charge-source facts derived from governed business rules;
+
+`ChargeFact` is a **read-only domain projection emitted by Business Ops for Aftergraph Billing consumption**. It contains tenant scope, verified execution references, the governing policy/version reference and provenance digest/reference. It is not a ledger entry, invoice line, invoice, delivery record or payment record. The exact `ChargeFact` schema is a P1 deliverable and must be characterized before implementation.
 - domain exceptions and their lifecycle;
 - domain evidence references and provenance links;
 - domain events required to reconstruct or project Business Ops state.
@@ -140,7 +142,8 @@ The following remain canonical elsewhere:
 | Durable attempts, retries, recovery, execution evidence | WORKS |
 | Conversation threads, turns, multimodal UX, assistant/operator experience | Studio / Interaction Fabric |
 | Human operator/control projection | Relay |
-| Invoice generation/delivery/payment workflow | Aftergraph Billing / Studio billing seam |
+| Invoice generation/delivery/payment workflow | Aftergraph Billing domain, currently incubated in `Aftergraph/studio`; `docs/billing/EXTRACTION.md` defines the target extraction boundary to `Aftergraph/billing` |
+| Charge-source fact emission and provenance | Business Ops domain |
 | Code verification | Sentinel |
 | Non-code outcome verification | registered independent domain verifier |
 | Semantic capability identity/provider implementation routing | Capability Fabric / Runtime |
@@ -530,6 +533,9 @@ Mandatory characterization families:
 15. cancellation/failure truth;
 16. exception deduplication and attention policy;
 17. legacy mapping/quarantine;
+   - ambiguous source-to-target identity mappings must produce a quarantined mapping record with `status=AMBIGUOUS`;
+   - they must not create or attach a canonical target entity;
+   - downstream reads must expose unknown/degraded identity rather than a guessed match;
 18. non-compensable authorization/privacy/safety eval gates.
 
 A test pass proves only the bounded contract under test. It does not prove production deployment, data migration correctness or independent outcome verification.
@@ -699,6 +705,19 @@ P0 design is complete when all of the following are approved and machine-recorda
 8. The source-of-truth transition map is accepted.
 9. Security remediation is a blocking gate for affected repo transfer/credential reuse.
 10. Current production remains unchanged until shadow/conformance/cutover evidence exists.
+11. Production deployment provenance gate: before any capability-specific cutover can be declared complete, the implementation plan must define how exact deployed source identity will be established through build attestation, deploy-log digest, immutable release reference or equivalent evidence. Absence of this provenance invalidates exact-head/cutover verification claims.
+
+### 20.1 P1 readiness gate
+
+P1 implementation planning may begin only when the following are machine-recorded:
+
+1. The four independent-review changes accepted on 2026-09-15 are present in this specification.
+2. A `ChargeFact` schema draft and at least one characterization vector exist.
+3. A legacy-ID ambiguity/quarantine characterization vector exists.
+4. The production deployed-source provenance resolution strategy is documented, even if production attestation execution remains deferred until cutover.
+5. Security-remediation status is recorded for every P−1 repository flagged for credential/history risk.
+6. The current production database migration ledger/schema inventory has been inspected read-only or, if inaccessible, is explicitly recorded as a blocking dependency with an owner and acquisition method.
+7. Privacy-safe cardinality/reconciliation baselines are defined for Customer, Lead, Booking/WorkOrder and Assignment migration classes; raw customer data is not copied into Governance evidence.
 
 After written-spec approval, the next step is an implementation plan. No production migration, repository transfer, domain-schema deployment or provider write is authorized by this document alone.
 
