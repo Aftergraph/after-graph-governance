@@ -1,0 +1,164 @@
+{
+  "schema": "business-ops-conformance/0.1",
+  "vectors": [
+    {
+      "id": "CTX-001",
+      "algorithm": "A1",
+      "case": "missing canonical match",
+      "input": {
+        "tenant_id": "tenant-a",
+        "conversation_candidate": "legacy-customer-404"
+      },
+      "expected": {
+        "status": "UNKNOWN",
+        "canonical_entity_created": false
+      }
+    },
+    {
+      "id": "MAP-001",
+      "algorithm": "A2",
+      "case": "one deterministic candidate",
+      "input": {
+        "candidate_target_ids": [
+          "cus_01"
+        ]
+      },
+      "expected": {
+        "status": "EXACT",
+        "target_entity_id": "cus_01"
+      }
+    },
+    {
+      "id": "MAP-002",
+      "algorithm": "A2",
+      "case": "ambiguous legacy identity",
+      "input": {
+        "candidate_target_ids": [
+          "cus_01",
+          "cus_02"
+        ]
+      },
+      "expected": {
+        "status": "AMBIGUOUS",
+        "target_entity_id": null,
+        "canonical_entity_created": false
+      }
+    },
+    {
+      "id": "CHG-001",
+      "algorithm": "A3",
+      "case": "verified actuals produce charge fact",
+      "input": {
+        "work_status": "completed",
+        "actual_work_minutes": 120,
+        "actuals_verification_ref": "verify:actuals:1",
+        "policy_ref": {
+          "id": "policy:rendetalje",
+          "version": "v1"
+        }
+      },
+      "expected": {
+        "emit": true,
+        "forbidden_financial_fields": []
+      }
+    },
+    {
+      "id": "CHG-002",
+      "algorithm": "A3",
+      "case": "unverified actuals fail closed",
+      "input": {
+        "work_status": "completed",
+        "actual_work_minutes": 120,
+        "actuals_verification_ref": null
+      },
+      "expected": {
+        "emit": false,
+        "reason": "actuals_not_verified"
+      }
+    },
+    {
+      "id": "ACT-001",
+      "algorithm": "A4",
+      "case": "denied authority stops before provider",
+      "input": {
+        "authority": "denied"
+      },
+      "expected": {
+        "provider_called": false,
+        "status": "DENIED"
+      }
+    },
+    {
+      "id": "REC-001",
+      "algorithm": "A5",
+      "case": "receipt without readback is not reconciled",
+      "input": {
+        "provider_receipt": true,
+        "readback": "timeout"
+      },
+      "expected": {
+        "status": "RECONCILE_REQUIRED",
+        "domain_success": false
+      }
+    },
+    {
+      "id": "EVD-001",
+      "algorithm": "A6",
+      "case": "digest mismatch invalidates evidence",
+      "input": {
+        "digest_matches": false
+      },
+      "expected": {
+        "verification_usable": false
+      }
+    },
+    {
+      "id": "EXC-001",
+      "algorithm": "A7",
+      "case": "same material exception is deduplicated",
+      "input": {
+        "same_exception_key": true,
+        "existing_open": true
+      },
+      "expected": {
+        "new_exception_created": false,
+        "refresh_existing": true
+      }
+    },
+    {
+      "id": "SHD-001",
+      "algorithm": "A8",
+      "case": "material dual-read mismatch blocks cutover",
+      "input": {
+        "comparison": "MISMATCH",
+        "explained": false
+      },
+      "expected": {
+        "cutover_allowed": false
+      }
+    },
+    {
+      "id": "CUT-001",
+      "algorithm": "A9",
+      "case": "missing release provenance blocks cutover",
+      "input": {
+        "release_provenance": false
+      },
+      "expected": {
+        "cutover_allowed": false
+      }
+    },
+    {
+      "id": "EST-001",
+      "algorithm": "A10",
+      "case": "estimate cannot silently become agreement",
+      "input": {
+        "estimate_exists": true,
+        "accepted_terms_recorded": false
+      },
+      "expected": {
+        "agreement_created": false
+      }
+    }
+  ]
+}
