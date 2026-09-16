@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/roro/0.1/consolidation-candidates.schema.json",
+  "title": "R.O.R.O. Consolidation Candidates 0.1",
+  "type": "object",
+  "required": ["schema_version", "source_snapshot_generated_at", "policy", "candidates"],
+  "properties": {
+    "schema_version": {"const": "roro-consolidation-candidates/0.1"},
+    "source_snapshot_generated_at": {"type": "string", "minLength": 1},
+    "policy": {"type": "object"},
+    "candidates": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["candidate_id", "workspace_count", "hypothesis", "workspaces"], "properties": {
+      "candidate_id": {"type": "string", "minLength": 1},
+      "workspace_count": {"type": "integer", "minimum": 2},
+      "hypothesis": {"type": "string", "minLength": 1},
+      "workspaces": {"type": "array", "minItems": 2, "items": {"type": "object"}}
+    }, "additionalProperties": true}}
+  },
+  "additionalProperties": false
+}

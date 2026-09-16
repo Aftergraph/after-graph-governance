@@ -71,6 +71,9 @@ not frozen platform law.
 | `roro-runtime-topology-disposition/0.1` | Experimental | Governance registration; runtime owners retain deployment authority | Records a bounded reviewed disposition for declared-vs-running topology without declaring the observed transition to be the target architecture. |
 | `roro-coverage-report/0.1` | Experimental | Governance registration; native evidence remains native truth | Reports multidimensional reality coverage without collapsing it into one health score. |
 | `roro-coverage-gate/0.1` | Experimental | Governance registration | Issues a scoped readiness decision for source/topology consolidation only; it does not authorize runtime, state, credential, authority, or production-cutover migration. |
+| `roro-consolidation-candidates/0.1` | Experimental | Governance registration | Declares bounded 2/3/4/5 source-workspace hypotheses; candidates are not architecture decisions. |
+| `roro-consolidation-simulation/0.1` | Experimental | Governance registration | Compares source-workspace hypotheses across separate dimensions without an overall score or selected winner. |
+| `roro-consolidation-boundary-analysis/0.1` | Experimental | Governance registration | Records strict-boundary lower bounds as falsification evidence, never as a recommendation. |
 
 Machine-executable Phase-0 vectors live at
 `docs/platform-conformance/v0.1/vectors.json` and are exercised by

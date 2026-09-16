@@ -1,0 +1,31 @@
+{
+  "policy": {
+    "lower_bound_is_not_recommendation": true,
+    "no_overall_score": true,
+    "source_workspace_only": true
+  },
+  "schema_version": "roro-consolidation-boundary-analysis/0.1",
+  "source_snapshot_generated_at": "2026-09-16T08:04:39Z",
+  "strict_hypothesis": {
+    "constraints": [
+      {
+        "constraint": "visibility_purity",
+        "effect": "public and private sources cannot share a workspace"
+      },
+      {
+        "constraint": "trust_boundary_separation",
+        "effect": "authority, trust, execution, and independent verification may not share a source workspace with each other under this strict hypothesis"
+      },
+      {
+        "constraint": "research_isolation",
+        "effect": "public research does not share a source workspace with production platform code"
+      },
+      {
+        "constraint": "legacy_isolation",
+        "effect": "legacy-transition source does not share a private workspace with canonical active source"
+      }
+    ],
+    "derivation": "At least five public source workspaces under simultaneous trust-boundary separation plus research isolation, and at least two private workspaces under legacy isolation.",
+    "minimum_workspace_lower_bound": 7
+  }
+}

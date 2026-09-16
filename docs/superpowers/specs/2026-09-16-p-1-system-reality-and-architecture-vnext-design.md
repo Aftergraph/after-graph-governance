@@ -609,3 +609,15 @@ The bootstrap now includes a deterministic reconciliation layer over the promote
 At the 2026-09-16 source cut, the scoped gate is `READY` with zero blockers after 31/31 repository semantic coverage, 8/8 exact deployment bindings, remediation of active credential permission drift, and explicit route dispositions. Residual issues remain visible as `DRIFT` rather than being erased: historical Hermes credential snapshot sprawl, stale `wie.aftergraph.org` source references, transitional VDS topology, and outer-host concentration.
 
 R.O.R.O. remains observational/reconciliatory: native systems remain native truth, and any future runtime/state/credential/authority migration still requires a separately scoped gate plus the ordinary AIE/Trust/WORKS/independent-verification path.
+
+## 19. R.O.R.O. Shadow source-workspace simulation
+
+The scoped `SOURCE_TOPOLOGY_CONSOLIDATION` READY gate permits source/topology simulation only. It does not authorize any repository move or runtime/state/credential/authority migration.
+
+`consolidation-candidates.json` declares 2/3/4/5-workspace hypotheses generated from the current 31-repository topology. Each repository is assigned exactly once and public/private visibility mixing is prohibited.
+
+`consolidation-simulation.json` evaluates candidates separately across dependency crossings, trust-boundary co-location, legacy/canonical mixing, research/production mixing, domain/platform mixing, deployment co-location and workspace concentration. No overall score, winner, or recommendation is emitted.
+
+Observed tradeoff at the current source cut: increasing separation reduces legacy, trust-boundary and deployment co-location but increases cross-workspace dependency edges. This is evidence for design review, not a selected architecture.
+
+`consolidation-boundary-analysis.json` adds a strict falsification hypothesis. If visibility purity, research isolation, AVC legacy isolation, and pairwise separation of authority/trust/execution/independent-verification are all required simultaneously, the derived source-workspace lower bound is at least seven. This lower bound is explicitly not a recommendation.
