@@ -178,13 +178,13 @@ def load_json(path: Path) -> dict:
 
 
 class TopologyV2DataTest(unittest.TestCase):
-    def test_has_exactly_30_unique_repositories(self):
-        # 30 = prior 29 + war-room (live-observed 2026-09-16,
+    def test_has_exactly_31_unique_repositories(self):
+        # 31 = prior 29 + war-room + rendetalje (live-observed 2026-09-16;
         # operational-intelligence experience surface with explicit non-ownership boundaries).
         doc = load_json(TOPOLOGY)
         names = [r["name"] for r in doc["repositories"]]
-        self.assertEqual(len(names), 30)
-        self.assertEqual(len(set(names)), 30)
+        self.assertEqual(len(names), 31)
+        self.assertEqual(len(set(names)), 31)
 
     def test_business_ops_is_registered_as_domain_not_platform_plane(self):
         repo = topology_index(load_json(TOPOLOGY))["business-ops"]
@@ -204,6 +204,15 @@ class TopologyV2DataTest(unittest.TestCase):
         boundary = repo["must_not_own"].lower()
         for term in ("authority", "execution", "verification", "native truth"):
             self.assertIn(term, boundary)
+
+    def test_rendetalje_is_reference_domain_not_platform_plane(self):
+        repo = topology_index(load_json(TOPOLOGY))["rendetalje"]
+        self.assertIsNone(repo["architecture_plane"])
+        self.assertEqual(repo["system_class"], "tenant-domain")
+        self.assertEqual(repo["role"], "reference-tenant-domain")
+        self.assertIn("business-ops", repo["owns"].lower())
+        self.assertIn("authority", repo["must_not_own"].lower())
+        self.assertIn("execution", repo["must_not_own"].lower())
 
     def test_only_seven_non_null_architecture_planes_exist(self):
         doc = load_json(TOPOLOGY)

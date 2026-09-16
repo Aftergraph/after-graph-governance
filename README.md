@@ -48,7 +48,7 @@ Explicit special states:
   veranza = private incubation / INTERNAL HOLD
 ```
 
-Cross-cutting governance lives here. The topology contract contains **30 repositories** at the 2026-09-16 reconciliation cut. Topology membership never upgrades maturity, evidence, conformance or authority.
+Cross-cutting governance lives here. The topology contract contains **31 repositories** at the 2026-09-16 reconciliation cut. Topology membership never upgrades maturity, evidence, conformance or authority.
 
 ## Canonical topology
 
@@ -102,6 +102,7 @@ The table below is a generated projection of `docs/platform-topology/2.0.json` â
 | Support | research-assurance | `intelligence-systems-research` | research-assurance | active | SPEC-001, MISSION-Bench methodology, scientific claims, experiments, assurance and publication evidence. |
 | Support | models | `llm-research-development` | model-rnd-methodology | active | Reusable model research, experiment, evaluation, promotion and provenance methodology. |
 | Support | models | `model-registry` | model-lifecycle-registry | active | Immutable promoted model identities, versions, aliases, lifecycle, provenance and artifact locations. |
+| Support | tenant-domain | `rendetalje` | reference-tenant-domain | active | Rendetalje-specific tenant profile, read-only RenOS adapters, shadow projections, and bounded bridge composition over canonical business-ops semantics. |
 | Support | assurance-fixture | `sentinel-firetest` | temporary-verification-fixture | temporary | Throwaway live-fire fixture for Sentinel proofs. Topology membership is temporary and grants no permanent platform responsibility. |
 | Support | assurance-fixture | `sentinel-firetest2` | temporary-verification-fixture | temporary | Throwaway live-fire fixture for Sentinel proofs (second instance, live-verified 2026-09-10). Topology membership is temporary and grants no permanent platform responsibility. |
 | Support | capabilities | `skill-abi` | skill-compatibility-contract | active | Semantic compatibility, bounded effects, degradation and conformance for portable AI agent skills. |

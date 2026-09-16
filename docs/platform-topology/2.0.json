@@ -336,6 +336,17 @@
       "lifecycle": "active",
       "owns": "Operational intelligence projections, incident/attention views, system graph exploration, risk/decision support and governed operator control surfaces over native Aftergraph systems.",
       "must_not_own": "Native truth, AIE authority, Trust admission or secret authority, Runtime/WORKS execution truth, independent verification verdicts, or domain canonical state."
+    },
+    {
+      "name": "rendetalje",
+      "canonical_branch": "main",
+      "visibility": "private",
+      "architecture_plane": null,
+      "system_class": "tenant-domain",
+      "role": "reference-tenant-domain",
+      "lifecycle": "active",
+      "owns": "Rendetalje-specific tenant profile, read-only RenOS adapters, shadow projections, and bounded bridge composition over canonical business-ops semantics.",
+      "must_not_own": "Canonical tenant-neutral business domain semantics, AIE authority, Trust admission or secrets, Runtime orchestration, WORKS durable execution/evidence, Billing invoice/payment truth, or independent verification."
     }
   ]
 }

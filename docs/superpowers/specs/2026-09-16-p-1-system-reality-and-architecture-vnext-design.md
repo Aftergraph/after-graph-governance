@@ -604,8 +604,8 @@ The bootstrap now includes a deterministic reconciliation layer over the promote
 
 `coverage-report.json` reports separate dimensions for source, deployment, routes, cloud ownership, credential mapping, recovery, runtime topology, and unresolved RealityDiffs. These dimensions MUST NOT be collapsed into one platform health score.
 
-`coverage-gate.json` is a fail-closed readiness decision for consequential repository consolidation/migration. `NOT_READY` is a valid expected result while evidence is incomplete; the gate grants no execution authority.
+`coverage-gate.json` is now explicitly scoped to `SOURCE_TOPOLOGY_ONLY`. Its required dimensions are source semantics, exact deployment/source binding, credential-consumer/permission posture, and route disposition. A `READY` verdict therefore means only that source/topology consolidation simulations may proceed; it does **not** authorize runtime, state, credential, authority, or production-cutover migration.
 
-Current known blockers include semantic component coverage, deployment/source drift, credential-consumer mapping, permission drift, restore proof, runtime-topology disposition, route disposition, and cloud ownership classification.
+At the 2026-09-16 source cut, the scoped gate is `READY` with zero blockers after 31/31 repository semantic coverage, 8/8 exact deployment bindings, remediation of active credential permission drift, and explicit route dispositions. Residual issues remain visible as `DRIFT` rather than being erased: historical Hermes credential snapshot sprawl, stale `wie.aftergraph.org` source references, transitional VDS topology, and outer-host concentration.
 
-R.O.R.O. remains observational/reconciliatory: native systems remain native truth, and any future migration still requires the ordinary AIE/Trust/WORKS/verification path.
+R.O.R.O. remains observational/reconciliatory: native systems remain native truth, and any future runtime/state/credential/authority migration still requires a separately scoped gate plus the ordinary AIE/Trust/WORKS/independent-verification path.

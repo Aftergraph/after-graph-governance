@@ -2,31 +2,54 @@
   "observations": [
     {
       "build_provenance": {
-        "epistemic_status": "OBSERVED",
-        "evidence_ref": "vds://works-api/go-build-info",
+        "artifact_sha256": "ec118a4d933955fbc299786b1814aebeaf82d2b3acdd6929260952613656d32e",
+        "epistemic_status": "VERIFIED",
+        "evidence_ref": "vds://works-api/post-deploy-go-build-info",
         "module_path": "github.com/JonasAbde/works-execution",
         "running_binary_matches_disk_binary": true,
-        "vcs_modified": true,
-        "vcs_revision": "f53447fdf8d98070593aa507e2d3cdee637ef6f0"
+        "vcs_modified": false,
+        "vcs_revision": "f69e5182f9d3d7e74817ec8ec2cee52ba2f9c62d"
       },
       "canonical_head_at_source_snapshot": "f69e5182f9d3d7e74817ec8ec2cee52ba2f9c62d",
       "canonical_repository": "Aftergraph/works-execution",
-      "epistemic_status": "OBSERVED",
+      "epistemic_status": "VERIFIED",
       "evidence_refs": [
-        "vds://works-api/git-head",
-        "vds://works-api/git-origin",
+        "vds://works-api/post-deploy-go-build-info",
+        "vds://works-api/post-deploy-sha256",
+        "vds://works-api/healthz",
+        "vds://works-api/worker-reregistration",
+        "vds://works-api/runtime-file-comparison",
         "github-lineage://Aftergraph/works-execution"
       ],
-      "origin_relation": "NON_CANONICAL_REMOTE",
+      "origin_relation": "CANONICAL_ARTIFACT_LEGACY_WORKTREE",
       "revisions": [
+        {
+          "commits_behind": 0,
+          "relation": "MATCH",
+          "role": "RUNTIME_ARTIFACT_SOURCE",
+          "sha": "f69e5182f9d3d7e74817ec8ec2cee52ba2f9c62d"
+        },
         {
           "commits_behind": 58,
           "relation": "CANONICAL_ANCESTOR",
-          "role": "RUNTIME_SOURCE",
+          "role": "WORKING_DIRECTORY_SOURCE",
           "sha": "f53447fdf8d98070593aa507e2d3cdee637ef6f0"
         }
       ],
-      "service": "works-api.service"
+      "service": "works-api.service",
+      "working_directory_provenance": {
+        "dirty": true,
+        "disposition": "DRIFT_NONBLOCKING_FOR_SOURCE_TOPOLOGY_CONSOLIDATION",
+        "epistemic_status": "OBSERVED",
+        "relation": "LEGACY_NON_CANONICAL_WORKTREE",
+        "repository": "JonasAbde/works-execution",
+        "revision": "f53447fdf8d98070593aa507e2d3cdee637ef6f0",
+        "runtime_files_match_canonical_head": true,
+        "verified_runtime_files": [
+          "policies/lease_grant.rego",
+          "works.yml"
+        ]
+      }
     },
     {
       "canonical_head_at_source_snapshot": "cd504fcde295ba652646684db106585f9c7ecd15",
@@ -48,7 +71,7 @@
       "service": "tg-gateway.service"
     },
     {
-      "canonical_head_at_source_snapshot": "693d8c9c8c6ab3f666c93d31322d9d7c6397a16a",
+      "canonical_head_at_source_snapshot": "9979875f7875cfdf89f9577e69d25b6f10731e75",
       "canonical_repository": "Aftergraph/studio",
       "epistemic_status": "OBSERVED",
       "evidence_refs": [
@@ -58,7 +81,7 @@
       "origin_relation": "CANONICAL_RELEASE",
       "revisions": [
         {
-          "commits_behind": 2,
+          "commits_behind": 3,
           "relation": "CANONICAL_ANCESTOR",
           "role": "RELEASE_SOURCE",
           "sha": "10750932ba43ecf8e07031f2c5f03afae31e0de2"
@@ -169,7 +192,8 @@
       "service": "avc-runner-bridge.service"
     }
   ],
-  "observed_at": "2026-09-16T07:10:16Z",
-  "observer": "roro:scout:vds+github-lineage",
-  "schema_version": "roro-deployment-observations/0.1"
+  "observed_at": "2026-09-16T07:57:31Z",
+  "observer": "roro:scout:vds+github-lineage+post-deploy-verification",
+  "schema_version": "roro-deployment-observations/0.1",
+  "source_snapshot_generated_at": "2026-09-16T08:04:39Z"
 }

@@ -66,10 +66,11 @@ not frozen platform law.
 | `roro-state-store/0.1` | Experimental | Governance registration; domain owners retain state authority | Describes durable stores, backup observation and independently verified recoverability. |
 | `roro-route-observation/0.1` | Experimental | Governance registration; DNS/provider remains native truth | Records current DNS/HTTP route observation while preserving absence vs unknown. |
 | `roro-route-disposition/0.1` | Experimental | Governance registration; product/domain owners retain desired-route authority | Separates observed DNS absence from superseded, non-required, or conflicting desired route state. |
+| `roro-source-binding-disposition/0.1` | Experimental | Governance registration; native source owners retain canonical source authority | Dispositions duplicate source identities such as vendored projections without silently promoting multiple canonical owners. |
 | `roro-recovery-verification/0.1` | Experimental | Governance registration; recovery owner retains native state | Records bounded restore/guard verification without equating backup presence with recoverability. |
 | `roro-runtime-topology-disposition/0.1` | Experimental | Governance registration; runtime owners retain deployment authority | Records a bounded reviewed disposition for declared-vs-running topology without declaring the observed transition to be the target architecture. |
 | `roro-coverage-report/0.1` | Experimental | Governance registration; native evidence remains native truth | Reports multidimensional reality coverage without collapsing it into one health score. |
-| `roro-coverage-gate/0.1` | Experimental | Governance registration | Fails consequential migration closed while required reality dimensions contain unresolved blockers. |
+| `roro-coverage-gate/0.1` | Experimental | Governance registration | Issues a scoped readiness decision for source/topology consolidation only; it does not authorize runtime, state, credential, authority, or production-cutover migration. |
 
 Machine-executable Phase-0 vectors live at
 `docs/platform-conformance/v0.1/vectors.json` and are exercised by

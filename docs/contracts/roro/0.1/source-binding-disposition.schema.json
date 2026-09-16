@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/roro/0.1/source-binding-disposition.schema.json",
+  "title": "R.O.R.O. Source Binding Disposition 0.1",
+  "type": "object",
+  "required": [
+    "component_id",
+    "disposition",
+    "canonical_source",
+    "projection_source",
+    "epistemic_status",
+    "reason",
+    "evidence_refs"
+  ],
+  "properties": {
+    "component_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "disposition": {
+      "enum": [
+        "VENDORED_PROJECTION",
+        "MIRROR",
+        "DUPLICATE_CANONICAL_CONFLICT",
+        "UNKNOWN"
+      ]
+    },
+    "canonical_source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "projection_source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "epistemic_status": {
+      "enum": [
+        "VERIFIED",
+        "OBSERVED",
+        "INFERRED",
+        "DECLARED",
+        "PROPOSED",
+        "STALE",
+        "CONFLICTING",
+        "UNKNOWN"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

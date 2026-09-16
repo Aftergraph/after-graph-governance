@@ -152,7 +152,7 @@ def build_report() -> dict[str, Any]:
             authorizes_runtime_migration=runtime_disposition["authorizes_runtime_migration"],
         ),
         "reality_diff": dimension(
-            "BLOCKED" if diffs["summary"]["conflicting"] or diffs["summary"]["unknown"] else "PASS",
+            "BLOCKED" if diffs["summary"]["conflicting"] else ("PARTIAL" if diffs["summary"]["unknown"] or diffs["summary"]["total"] else "PASS"),
             observed=diffs["summary"]["total"],
             conflicts=diffs["summary"]["conflicting"],
             unknowns=diffs["summary"]["unknown"],
@@ -174,7 +174,8 @@ def build_report() -> dict[str, Any]:
         "dimensions": dimensions,
         "policy": {
             "overall_scalar_score_prohibited": True,
-            "unknowns_fail_closed_for_consequential_migration": True,
+            "unknowns_fail_closed_within_required_dimensions": True,
+            "gate_scope_does_not_imply_global_migration_readiness": True,
         },
     }
 
@@ -182,6 +183,8 @@ def build_report() -> dict[str, Any]:
 def build_gate(report: dict[str, Any]) -> dict[str, Any]:
     d = report["dimensions"]
     blockers: list[dict[str, str]] = []
+    required_dimensions = ["source", "deployment", "credentials", "routes"]
+    excluded_dimensions = ["runtime", "recovery", "cloud", "reality_diff"]
 
     def block(blocker_id: str, dimension_name: str, reason: str) -> None:
         blockers.append({"id": blocker_id, "dimension": dimension_name, "reason": reason})
@@ -194,30 +197,25 @@ def build_gate(report: dict[str, Any]) -> dict[str, Any]:
               "Running deployments include source conflicts or unknown exact revisions.")
     if d["credentials"]["consumer_mapping"] == "UNKNOWN":
         block("credential-consumer-mapping", "credentials",
-              "Credential consumers are not yet fully mapped to stable component identities.")
+              "Credential consumers are not mapped sufficiently for source/topology consolidation analysis.")
     if d["credentials"]["permission_drift_observations"]:
         block("credential-permission-drift", "credentials",
-              "Credential metadata shows unresolved permission drift.")
-    if d["recovery"]["status"] != "PASS":
-        block("restore-proof", "recovery",
-              "Observed backups do not yet have independent restore/recoverability proof.")
-    if d["runtime"].get("blocking", True):
-        block("runtime-topology-disposition", "runtime",
-              "Declared and running control-plane topology lack an explicit bounded disposition.")
+              "Credential metadata shows unresolved active permission drift.")
     if d["routes"]["blocking_dispositions"]:
         block("route-disposition", "routes",
               "At least one observed route has conflicting or unknown desired-state disposition.")
-    if d["cloud"]["aftergraph_adjacent_unclassified"]:
-        block("cloud-ownership", "cloud",
-              "Aftergraph-adjacent cloud resources remain ownership-unclassified.")
 
     return {
         "schema_version": "roro-coverage-gate/0.1",
-        "gate": "CONSOLIDATION_MIGRATION",
+        "gate": "SOURCE_TOPOLOGY_CONSOLIDATION",
         "as_of": report["as_of"],
         "decision": "READY" if not blockers else "NOT_READY",
+        "scope": "SOURCE_TOPOLOGY_ONLY",
+        "required_dimensions": required_dimensions,
+        "excluded_dimensions": excluded_dimensions,
+        "excluded_migrations": ["RUNTIME_MIGRATION", "STATE_MIGRATION", "CREDENTIAL_MIGRATION", "AUTHORITY_MIGRATION", "PRODUCTION_CUTOVER"],
         "blockers": blockers,
-        "rule": "Consequential migration fails closed while required reality dimensions contain unresolved blockers.",
+        "rule": "Source/topology consolidation may proceed only when required dimensions are clear. READY does not authorize runtime, state, credential, authority, or production cutover migration.",
     }
 
 

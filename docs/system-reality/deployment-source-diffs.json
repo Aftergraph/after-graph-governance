@@ -67,7 +67,7 @@
       "status": "OBSERVED_MATCH"
     },
     {
-      "canonical_head_at_source_snapshot": "693d8c9c8c6ab3f666c93d31322d9d7c6397a16a",
+      "canonical_head_at_source_snapshot": "9979875f7875cfdf89f9577e69d25b6f10731e75",
       "canonical_repository": "Aftergraph/studio",
       "epistemic_status": "OBSERVED",
       "evidence_refs": [
@@ -77,7 +77,7 @@
       "observed_deployed_revision": "10750932ba43ecf8e07031f2c5f03afae31e0de2",
       "observed_revisions": [
         {
-          "commits_behind": 2,
+          "commits_behind": 3,
           "relation": "CANONICAL_ANCESTOR",
           "role": "RELEASE_SOURCE",
           "sha": "10750932ba43ecf8e07031f2c5f03afae31e0de2"
@@ -164,29 +164,38 @@
     {
       "canonical_head_at_source_snapshot": "f69e5182f9d3d7e74817ec8ec2cee52ba2f9c62d",
       "canonical_repository": "Aftergraph/works-execution",
-      "epistemic_status": "CONFLICTING",
+      "epistemic_status": "VERIFIED",
       "evidence_refs": [
-        "vds://works-api/git-head",
-        "vds://works-api/git-origin",
+        "vds://works-api/post-deploy-go-build-info",
+        "vds://works-api/post-deploy-sha256",
+        "vds://works-api/healthz",
+        "vds://works-api/worker-reregistration",
+        "vds://works-api/runtime-file-comparison",
         "github-lineage://Aftergraph/works-execution"
       ],
-      "observed_deployed_revision": "f53447fdf8d98070593aa507e2d3cdee637ef6f0",
+      "observed_deployed_revision": "f69e5182f9d3d7e74817ec8ec2cee52ba2f9c62d",
       "observed_revisions": [
+        {
+          "commits_behind": 0,
+          "relation": "MATCH",
+          "role": "RUNTIME_ARTIFACT_SOURCE",
+          "sha": "f69e5182f9d3d7e74817ec8ec2cee52ba2f9c62d"
+        },
         {
           "commits_behind": 58,
           "relation": "CANONICAL_ANCESTOR",
-          "role": "RUNTIME_SOURCE",
+          "role": "WORKING_DIRECTORY_SOURCE",
           "sha": "f53447fdf8d98070593aa507e2d3cdee637ef6f0"
         }
       ],
-      "origin_relation": "NON_CANONICAL_REMOTE",
-      "reason": "Observed running binary was built from modified source and the runtime checkout origin is not the canonical Aftergraph repository.",
+      "origin_relation": "CANONICAL_ARTIFACT_LEGACY_WORKTREE",
+      "reason": "Running artifact is a clean canonical build; legacy working-directory checkout remains visible as non-blocking drift and runtime-read files match the canonical head.",
       "service": "works-api.service",
-      "status": "CONFLICTING"
+      "status": "CANONICAL_COMPOSITE_LAG"
     }
   ],
-  "deployment_observed_at": "2026-09-16T07:10:16Z",
-  "generated_at": "2026-09-16T07:10:16Z",
+  "deployment_observed_at": "2026-09-16T07:57:31Z",
+  "generated_at": "2026-09-16T07:57:31Z",
   "schema_version": "roro-deployment-source-diffs/0.2",
-  "source_snapshot_generated_at": null
+  "source_snapshot_generated_at": "2026-09-16T08:04:39Z"
 }

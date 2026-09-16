@@ -63,7 +63,8 @@
             "skill-portability-benchmark",
             "human-operator-plane",
             "canonical-service-business-domain",
-            "operational-intelligence-surface"
+            "operational-intelligence-surface",
+            "reference-tenant-domain"
           ],
           "description": "Current repository roles are defined by docs/platform-topology/2.0.json. The final five enum values are legacy org-state/1.0 compatibility values for already-generated snapshots and MUST NOT be emitted by the current topology-driven generator."
         },

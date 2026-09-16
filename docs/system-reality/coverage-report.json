@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-16T07:10:16Z",
+  "as_of": "2026-09-16T08:04:39Z",
   "dimensions": {
     "cloud": {
       "aftergraph_adjacent_unclassified": 0,
@@ -20,20 +20,20 @@
       "values_collected": false
     },
     "deployment": {
-      "conflicts": 1,
+      "conflicts": 0,
       "coverage": 1.0,
       "metric": "exact_deployment_revision_coverage",
       "observed": 8,
-      "status": "BLOCKED",
+      "status": "PASS",
       "total": 8,
       "unknown": 0
     },
     "reality_diff": {
-      "conflicts": 1,
-      "observed": 29,
+      "conflicts": 0,
+      "observed": 4,
       "stale": 0,
-      "status": "BLOCKED",
-      "unknowns": 26
+      "status": "PARTIAL",
+      "unknowns": 0
     },
     "recovery": {
       "backup_present": 5,
@@ -82,8 +82,9 @@
     }
   },
   "policy": {
+    "gate_scope_does_not_imply_global_migration_readiness": true,
     "overall_scalar_score_prohibited": true,
-    "unknowns_fail_closed_for_consequential_migration": true
+    "unknowns_fail_closed_within_required_dimensions": true
   },
   "schema_version": "roro-coverage-report/0.1"
 }

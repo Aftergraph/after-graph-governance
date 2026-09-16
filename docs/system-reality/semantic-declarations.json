@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-16T07:10:16Z",
+  "as_of": "2026-09-16T08:04:39Z",
   "declarations": [
     {
       "architecture_plane": null,
@@ -144,6 +144,15 @@
       "repository": "Aftergraph/relay",
       "semantic_role": "human-operator-plane",
       "system_class": "operator-plane"
+    },
+    {
+      "architecture_plane": null,
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/rendetalje",
+      "semantic_role": "reference-tenant-domain",
+      "system_class": "tenant-domain"
     },
     {
       "architecture_plane": "runtime",

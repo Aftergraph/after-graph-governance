@@ -19,8 +19,11 @@ def classify(item: dict[str, Any]) -> tuple[str, str]:
     origin_relation = item["origin_relation"]
 
     build = item.get("build_provenance", {})
+    workspace = item.get("working_directory_provenance", {})
     if origin_relation == "NON_CANONICAL_REMOTE" and build.get("vcs_modified") is True:
         return "CONFLICTING", "Observed running binary was built from modified source and the runtime checkout origin is not the canonical Aftergraph repository."
+    if origin_relation == "CANONICAL_ARTIFACT_LEGACY_WORKTREE" and build.get("vcs_modified") is False and workspace.get("relation") == "LEGACY_NON_CANONICAL_WORKTREE" and workspace.get("runtime_files_match_canonical_head") is True:
+        return "CANONICAL_COMPOSITE_LAG", "Running artifact is a clean canonical build; legacy working-directory checkout remains visible as non-blocking drift and runtime-read files match the canonical head."
     if origin_relation == "NON_CANONICAL_REMOTE":
         return "CONFLICTING", "Observed runtime origin is not the canonical Aftergraph repository."
     if build.get("vcs_modified") is True:
@@ -35,7 +38,7 @@ def classify(item: dict[str, Any]) -> tuple[str, str]:
 
 
 def primary_revision(item: dict[str, Any]) -> str | None:
-    preferred = ("FRONTEND_ARTIFACT_SOURCE", "RELEASE_SOURCE", "RUNTIME_SOURCE", "SERVER_SOURCE")
+    preferred = ("RUNTIME_ARTIFACT_SOURCE", "FRONTEND_ARTIFACT_SOURCE", "RELEASE_SOURCE", "RUNTIME_SOURCE", "SERVER_SOURCE")
     by_role = {rev["role"]: rev["sha"] for rev in item["revisions"]}
     for role in preferred:
         if role in by_role:

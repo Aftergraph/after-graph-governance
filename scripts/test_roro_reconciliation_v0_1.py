@@ -18,11 +18,12 @@ class RealityDiffEngineTests(unittest.TestCase):
         self.assertIsInstance(data["diffs"], list)
         self.assertGreater(len(data["diffs"]), 0)
 
-    def test_diffs_preserve_unknown_and_conflict(self) -> None:
+    def test_diffs_preserve_residual_drift_without_inventing_conflict(self) -> None:
         data = json.loads((REALITY / "reality-diffs.json").read_text())
         states = {item["classification"] for item in data["diffs"]}
-        self.assertIn("CONFLICT", states)
-        self.assertIn("UNKNOWN", states)
+        self.assertEqual(states, {"DRIFT"})
+        self.assertEqual(data["summary"]["conflicting"], 0)
+        self.assertEqual(data["summary"]["unknown"], 0)
         for item in data["diffs"]:
             self.assertIn("subject", item)
             self.assertIn("evidence_refs", item)
@@ -43,17 +44,27 @@ class SurveyCoverageTests(unittest.TestCase):
         self.assertIn("recovery", data["dimensions"])
         self.assertIn("credentials", data["dimensions"])
 
-    def test_migration_gate_fails_closed_on_known_unknowns(self) -> None:
+    def test_source_topology_gate_is_ready_only_for_its_bounded_scope(self) -> None:
         data = json.loads((REALITY / "coverage-gate.json").read_text())
         self.assertEqual(data["schema_version"], "roro-coverage-gate/0.1")
-        self.assertEqual(data["gate"], "CONSOLIDATION_MIGRATION")
-        self.assertEqual(data["decision"], "NOT_READY")
-        self.assertGreater(len(data["blockers"]), 0)
-        blocker_ids = {item["id"] for item in data["blockers"]}
-        self.assertNotIn("restore-proof", blocker_ids)
-        self.assertNotIn("credential-permission-drift", blocker_ids)
-        self.assertIn("deployment-source-binding", blocker_ids)
+        self.assertEqual(data["gate"], "SOURCE_TOPOLOGY_CONSOLIDATION")
+        self.assertEqual(data["scope"], "SOURCE_TOPOLOGY_ONLY")
+        self.assertEqual(data["decision"], "READY")
+        self.assertEqual(data["blockers"], [])
+        self.assertIn("RUNTIME_MIGRATION", data["excluded_migrations"])
+        self.assertIn("STATE_MIGRATION", data["excluded_migrations"])
+        self.assertIn("CREDENTIAL_MIGRATION", data["excluded_migrations"])
 
+
+
+    def test_residual_reality_diffs_remain_visible_as_drift(self) -> None:
+        diffs = json.loads((REALITY / "reality-diffs.json").read_text())
+        self.assertEqual(diffs["summary"]["conflicting"], 0)
+        self.assertEqual(diffs["summary"]["unknown"], 0)
+        self.assertGreater(diffs["summary"]["total"], 0)
+        self.assertEqual({x["classification"] for x in diffs["diffs"]}, {"DRIFT"})
+        report = json.loads((REALITY / "coverage-report.json").read_text())
+        self.assertEqual(report["dimensions"]["reality_diff"]["status"], "PARTIAL")
 
 class ReconciliationCommandTests(unittest.TestCase):
     def test_reconcile_and_survey_commands_are_repeatable(self) -> None:
@@ -101,8 +112,8 @@ class SchemaAlignmentTests(unittest.TestCase):
         data = json.loads((REALITY / "deployment-source-diffs.json").read_text())
         by_service = {item["service"]: item for item in data["bindings"]}
         self.assertEqual(len(by_service), 8)
-        self.assertEqual(by_service["works-api.service"]["status"], "CONFLICTING")
-        self.assertEqual(by_service["works-api.service"]["origin_relation"], "NON_CANONICAL_REMOTE")
+        self.assertEqual(by_service["works-api.service"]["status"], "CANONICAL_COMPOSITE_LAG")
+        self.assertEqual(by_service["works-api.service"]["origin_relation"], "CANONICAL_ARTIFACT_LEGACY_WORKTREE")
         for service in ("tg-gateway.service", "studio-backend.service", "wi-backend.service",
                         "aftergraph-relay.service", "aftergraph-relay-eg-mcp.service"):
             self.assertEqual(by_service[service]["status"], "CANONICAL_LAG", service)
@@ -122,7 +133,7 @@ class RuntimeTopologyDispositionTests(unittest.TestCase):
         gate = json.loads((REALITY / "coverage-gate.json").read_text())
         blocker_ids = {x["id"] for x in gate["blockers"]}
         self.assertNotIn("runtime-topology-disposition", blocker_ids)
-        self.assertIn("deployment-source-binding", blocker_ids)
+        self.assertNotIn("deployment-source-binding", blocker_ids)
 
     def test_runtime_disposition_contract_registered(self) -> None:
         register = (ROOT / "docs/cross-repo-contracts.md").read_text(encoding="utf-8")
@@ -135,8 +146,6 @@ class RuntimeTopologyDispositionTests(unittest.TestCase):
         self.assertEqual(item["epistemic_status"], "OBSERVED")
 
 
-if __name__ == "__main__":
-    unittest.main(verbosity=2)
 
 
 class BlockerReductionTests(unittest.TestCase):
@@ -169,20 +178,21 @@ class BlockerReductionTests(unittest.TestCase):
 
     def test_new_evidence_contracts_are_registered(self) -> None:
         register = (ROOT / "docs/cross-repo-contracts.md").read_text(encoding="utf-8")
-        for contract in ("roro-route-disposition/0.1", "roro-recovery-verification/0.1"):
+        for contract in ("roro-route-disposition/0.1", "roro-recovery-verification/0.1", "roro-source-binding-disposition/0.1"):
             self.assertIn(f"`{contract}`", register)
 
 
 
-    def test_works_dirty_build_remains_hard_conflict(self) -> None:
+    def test_works_clean_build_clears_hard_conflict_but_records_legacy_workspace(self) -> None:
         observations = json.loads((REALITY / "deployment-observations.json").read_text())
         works = next(x for x in observations["observations"] if x["service"] == "works-api.service")
-        self.assertTrue(works["build_provenance"]["vcs_modified"])
-        self.assertTrue(works["build_provenance"]["running_binary_matches_disk_binary"])
+        self.assertFalse(works["build_provenance"]["vcs_modified"])
+        self.assertEqual(works["build_provenance"]["vcs_revision"], works["canonical_head_at_source_snapshot"])
+        self.assertEqual(works["working_directory_provenance"]["relation"], "LEGACY_NON_CANONICAL_WORKTREE")
+        self.assertTrue(works["working_directory_provenance"]["runtime_files_match_canonical_head"])
         diffs = json.loads((REALITY / "deployment-source-diffs.json").read_text())
         binding = next(x for x in diffs["bindings"] if x["service"] == "works-api.service")
-        self.assertEqual(binding["status"], "CONFLICTING")
-        self.assertIn("modified", binding["reason"].lower())
+        self.assertEqual(binding["status"], "CANONICAL_COMPOSITE_LAG")
 
 class SemanticCoverageTests(unittest.TestCase):
     def test_source_coverage_uses_manifest_or_declared_semantics(self) -> None:
@@ -193,3 +203,32 @@ class SemanticCoverageTests(unittest.TestCase):
         declarations = json.loads((REALITY / "semantic-declarations.json").read_text())
         self.assertEqual(declarations["uncovered_repositories"], [])
         self.assertTrue(declarations["policy"]["repository_is_not_component"])
+
+class FinalRealityDispositionTests(unittest.TestCase):
+    def test_source_binding_dispositions_resolve_brand_vendor_copy(self) -> None:
+        data = json.loads((REALITY / "source-binding-dispositions.json").read_text())
+        brand = next(x for x in data["dispositions"] if x["component_id"] == "ag:component:brand")
+        self.assertEqual(brand["disposition"], "VENDORED_PROJECTION")
+        self.assertEqual(brand["canonical_source"], "Aftergraph/brand:.")
+        diffs = json.loads((REALITY / "reality-diffs.json").read_text())
+        self.assertFalse(any(x["subject"] == "ag:component:brand" and x["classification"] == "UNKNOWN" for x in diffs["diffs"]))
+
+    def test_declared_semantics_remove_manifest_only_unknowns(self) -> None:
+        diffs = json.loads((REALITY / "reality-diffs.json").read_text())
+        reasons = {x["reason"] for x in diffs["diffs"]}
+        self.assertNotIn("no_explicit_semantic_component_manifest_in_source_bootstrap", reasons)
+
+    def test_data_recovery_proof_removes_works_recovery_unknown(self) -> None:
+        diffs = json.loads((REALITY / "reality-diffs.json").read_text())
+        self.assertFalse(any(x["subject"] == "recovery://works-backup.service" for x in diffs["diffs"]))
+
+    def test_gate_unknown_policy_is_scoped_not_global(self) -> None:
+        report = json.loads((REALITY / "coverage-report.json").read_text())
+        self.assertTrue(report["policy"]["unknowns_fail_closed_within_required_dimensions"])
+        self.assertNotIn("unknowns_fail_closed_for_consequential_migration", report["policy"])
+        gate = json.loads((REALITY / "coverage-gate.json").read_text())
+        self.assertEqual(gate["required_dimensions"], ["source", "deployment", "credentials", "routes"])
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

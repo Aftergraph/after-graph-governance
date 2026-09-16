@@ -287,7 +287,7 @@ class OperationalReconciliationTests(unittest.TestCase):
         by_service = {item["service"]: item for item in data["bindings"]}
         self.assertIn("works-api.service", by_service)
         self.assertEqual(by_service["works-api.service"]["canonical_repository"], "Aftergraph/works-execution")
-        self.assertEqual(by_service["works-api.service"]["status"], "CONFLICTING")
+        self.assertEqual(by_service["works-api.service"]["status"], "CANONICAL_COMPOSITE_LAG")
         for item in data["bindings"]:
             self.assertIn(item["status"], {"VERIFIED_MATCH", "OBSERVED_MATCH", "CANONICAL_LAG", "CANONICAL_COMPOSITE_LAG", "CONFLICTING", "UNKNOWN"})
 

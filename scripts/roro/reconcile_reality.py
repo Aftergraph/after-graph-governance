@@ -52,22 +52,49 @@ def build() -> dict[str, Any]:
     recovery_verifications = load("recovery-verifications.json")
     route_dispositions = load("route-dispositions.json")
     runtime_disposition = load("runtime-topology-disposition.json")
+    semantic_declarations = load("semantic-declarations.json")
+    source_dispositions = load("source-binding-dispositions.json")
+    cloud = load("cloud-resource-classification.json")
 
+    declared_repos = {item["repository"] for item in semantic_declarations["declarations"]}
+    disposition_by_component = {item["component_id"]: item for item in source_dispositions["dispositions"]}
     for gap in source_gaps["gaps"]:
+        reason = gap["reason"]
+        subject = gap["subject"]
+        if reason == "no_explicit_semantic_component_manifest_in_source_bootstrap" and subject in declared_repos:
+            continue
+        if reason == "live_repository_missing_from_platform_topology_2.0" and subject in declared_repos:
+            continue
+        if reason == "same_component_identity_observed_at_multiple_source_bindings":
+            disposition = disposition_by_component.get(subject)
+            if disposition and disposition["disposition"] in {"VENDORED_PROJECTION", "MIRROR"}:
+                continue
         add(
             diffs,
             diff_id=f"diff:source:{len(diffs)+1}",
-            subject=gap["subject"],
+            subject=subject,
             classification="UNKNOWN",
             dimension="SOURCE",
-            reason=gap["reason"],
-            evidence=[evidence_ref("reality-gaps.json", gap["subject"])],
+            reason=reason,
+            evidence=[evidence_ref("reality-gaps.json", subject)],
             severity="MEDIUM",
         )
 
     route_by_host = {r["host"]: r for r in route_dispositions["routes"]}
+    cloud_adjacent_unclassified = [r for r in cloud["resources"] if r.get("owner_class") == "AFTERGRAPH_ADJACENT_UNCLASSIFIED"]
+    recovery_verified_count = sum(v.get("verdict") in {"RECOVERABLE_VERIFIED", "DATA_RECOVERY_VERIFIED"} for v in recovery_verifications["verifications"])
     for gap in operational_gaps["gaps"]:
-        if gap["type"] == "PUBLIC_ROUTE_ABSENT":
+        if gap["type"] == "CLOUD_OWNERSHIP_UNCLASSIFIED" and not cloud_adjacent_unclassified:
+            continue
+        if gap["type"] == "CREDENTIAL_SNAPSHOT_SPRAWL":
+            epistemic = "OBSERVED"
+            classification = "DRIFT"
+        elif gap["type"] == "HOST_CONCENTRATION":
+            epistemic = "OBSERVED"
+            classification = "DRIFT"
+        elif gap["type"] == "RECOVERY_PROOF_UNKNOWN" and recovery_verified_count == len(recovery["mechanisms"]):
+            continue
+        elif gap["type"] == "PUBLIC_ROUTE_ABSENT":
             host = gap["subject"].removeprefix("route://")
             disposition = route_by_host.get(host)
             if disposition and disposition["disposition"] in {"NOT_REQUIRED", "NOT_DECLARED_PUBLIC"}:
@@ -121,7 +148,7 @@ def build() -> dict[str, Any]:
 
     recovery_by_service = {v["service"]: v for v in recovery_verifications["verifications"]}
     for mechanism in recovery["mechanisms"]:
-        if recovery_by_service.get(mechanism["service"], {}).get("verdict") == "RECOVERABLE_VERIFIED":
+        if recovery_by_service.get(mechanism["service"], {}).get("verdict") in {"RECOVERABLE_VERIFIED", "DATA_RECOVERY_VERIFIED"}:
             continue
         service = mechanism["service"]
         add(
