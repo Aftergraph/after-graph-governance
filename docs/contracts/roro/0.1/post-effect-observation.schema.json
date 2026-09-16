@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/roro/0.1/post-effect-observation.schema.json",
+  "title": "R.O.R.O. post-effect observation",
+  "type": "object",
+  "required": ["schema_version", "effect_receipt_subject", "effect_subject_preserved", "subject", "predicate", "expected", "after", "classification", "epistemic_status", "verification_claim", "authority_granted", "execution_authorized"],
+  "properties": {
+    "schema_version": {"const": "roro-post-effect-observation/0.1"},
+    "effect_receipt_subject": {"type": "string", "pattern": "^effect-receipt:[^:]+:sha256:[a-f0-9]{64}$"},
+    "effect_subject_preserved": {"const": true},
+    "subject": {"type": ["string", "null"]},
+    "predicate": {"type": ["string", "null"]},
+    "expected": {},
+    "before": {},
+    "after": {},
+    "classification": {"enum": ["MATCHED", "DIVERGED", "STALE", "INDETERMINATE"]},
+    "epistemic_status": {"enum": ["VERIFIED", "OBSERVED", "STALE", "CONFLICTING", "UNKNOWN"]},
+    "verification_claim": {"type": "boolean"},
+    "authority_granted": {"const": false},
+    "execution_authorized": {"const": false}
+  },
+  "additionalProperties": true
+}

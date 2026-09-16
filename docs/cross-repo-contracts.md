@@ -79,6 +79,7 @@ not frozen platform law.
 | `roro-component-partition-simulation/0.1` | Experimental | Governance registration | Simulates component-level source partitions across semantic, visibility and lifecycle boundaries without selecting a target. |
 | `roro-component-dependency-graph/0.1` | Experimental | Governance registration; Git manifests remain source evidence | Records exact-cut internal component dependency edges without granting ownership, authority, or Circuit semantics. |
 | `roro-component-boundary-analysis/0.1` | Experimental | Governance registration | Summarizes component dependency coupling across semantic families; import direction is not Circuit flow. |
+| `roro-post-effect-observation/0.1` | Experimental | Governance registration; observed systems retain native truth | Re-observes an exact effect subject after execution and classifies intended-vs-observed reality without granting authority. |
 | `circuit-spec/0.1` | Experimental | Governance registration; Circuit has zero authority | Declares semantic operator composition only; it does not grant authority, execution permission, durable state ownership, or verification truth. |
 | `circuit-validation/0.1` | Experimental | Governance registration | Validates Circuit composition invariants fail-closed while always leaving execution authorization and authority grants false. |
 | `circuit-compiler-input/0.1` | Experimental | Governance registration | Declares bounded mission intent, effect/risk class and reality posture for pure Circuit compilation; grants no authority. |

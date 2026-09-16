@@ -1,0 +1,173 @@
+{
+  "schema_version": "roro-post-effect-observation-vectors/0.1",
+  "vectors": [
+    {
+      "name": "matched",
+      "input": {
+        "schema_version": "roro-post-effect-observation-input/0.1",
+        "effect_receipt_subject": "effect-receipt:ercpt_golden:sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "intended_outcome": {
+          "subject": "service/works-api",
+          "predicate": "health",
+          "expected": "HEALTHY"
+        },
+        "before": {
+          "value": "DEGRADED",
+          "epistemic_status": "OBSERVED",
+          "observed_at": "2026-09-16T18:00:00Z"
+        },
+        "after": {
+          "value": "HEALTHY",
+          "epistemic_status": "OBSERVED",
+          "observed_at": "2026-09-16T18:00:10Z"
+        },
+        "max_age_seconds": 60,
+        "evaluated_at": "2026-09-16T18:00:20Z"
+      },
+      "result": {
+        "schema_version": "roro-post-effect-observation/0.1",
+        "effect_receipt_subject": "effect-receipt:ercpt_golden:sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "effect_subject_preserved": true,
+        "subject": "service/works-api",
+        "predicate": "health",
+        "expected": "HEALTHY",
+        "before": "DEGRADED",
+        "after": "HEALTHY",
+        "classification": "MATCHED",
+        "epistemic_status": "VERIFIED",
+        "after_observed_at": "2026-09-16T18:00:10Z",
+        "evaluated_at": "2026-09-16T18:00:20Z",
+        "age_seconds": 10.0,
+        "verification_claim": true,
+        "authority_granted": false,
+        "execution_authorized": false
+      }
+    },
+    {
+      "name": "diverged",
+      "input": {
+        "schema_version": "roro-post-effect-observation-input/0.1",
+        "effect_receipt_subject": "effect-receipt:ercpt_golden:sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "intended_outcome": {
+          "subject": "service/works-api",
+          "predicate": "health",
+          "expected": "HEALTHY"
+        },
+        "before": {
+          "value": "DEGRADED",
+          "epistemic_status": "OBSERVED",
+          "observed_at": "2026-09-16T18:00:00Z"
+        },
+        "after": {
+          "value": "DEGRADED",
+          "epistemic_status": "OBSERVED",
+          "observed_at": "2026-09-16T18:00:10Z"
+        },
+        "max_age_seconds": 60,
+        "evaluated_at": "2026-09-16T18:00:20Z"
+      },
+      "result": {
+        "schema_version": "roro-post-effect-observation/0.1",
+        "effect_receipt_subject": "effect-receipt:ercpt_golden:sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "effect_subject_preserved": true,
+        "subject": "service/works-api",
+        "predicate": "health",
+        "expected": "HEALTHY",
+        "before": "DEGRADED",
+        "after": "DEGRADED",
+        "classification": "DIVERGED",
+        "epistemic_status": "OBSERVED",
+        "after_observed_at": "2026-09-16T18:00:10Z",
+        "evaluated_at": "2026-09-16T18:00:20Z",
+        "age_seconds": 10.0,
+        "verification_claim": false,
+        "authority_granted": false,
+        "execution_authorized": false
+      }
+    },
+    {
+      "name": "stale",
+      "input": {
+        "schema_version": "roro-post-effect-observation-input/0.1",
+        "effect_receipt_subject": "effect-receipt:ercpt_golden:sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "intended_outcome": {
+          "subject": "service/works-api",
+          "predicate": "health",
+          "expected": "HEALTHY"
+        },
+        "before": {
+          "value": "DEGRADED",
+          "epistemic_status": "OBSERVED",
+          "observed_at": "2026-09-16T18:00:00Z"
+        },
+        "after": {
+          "value": "HEALTHY",
+          "epistemic_status": "OBSERVED",
+          "observed_at": "2026-09-16T17:00:00Z"
+        },
+        "max_age_seconds": 60,
+        "evaluated_at": "2026-09-16T18:00:20Z"
+      },
+      "result": {
+        "schema_version": "roro-post-effect-observation/0.1",
+        "effect_receipt_subject": "effect-receipt:ercpt_golden:sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "effect_subject_preserved": true,
+        "subject": "service/works-api",
+        "predicate": "health",
+        "expected": "HEALTHY",
+        "before": "DEGRADED",
+        "after": "HEALTHY",
+        "classification": "STALE",
+        "epistemic_status": "STALE",
+        "after_observed_at": "2026-09-16T17:00:00Z",
+        "evaluated_at": "2026-09-16T18:00:20Z",
+        "age_seconds": 3620.0,
+        "verification_claim": false,
+        "authority_granted": false,
+        "execution_authorized": false
+      }
+    },
+    {
+      "name": "unknown",
+      "input": {
+        "schema_version": "roro-post-effect-observation-input/0.1",
+        "effect_receipt_subject": "effect-receipt:ercpt_golden:sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "intended_outcome": {
+          "subject": "service/works-api",
+          "predicate": "health",
+          "expected": "HEALTHY"
+        },
+        "before": {
+          "value": "DEGRADED",
+          "epistemic_status": "OBSERVED",
+          "observed_at": "2026-09-16T18:00:00Z"
+        },
+        "after": {
+          "value": null,
+          "epistemic_status": "UNKNOWN",
+          "observed_at": "2026-09-16T18:00:10Z"
+        },
+        "max_age_seconds": 60,
+        "evaluated_at": "2026-09-16T18:00:20Z"
+      },
+      "result": {
+        "schema_version": "roro-post-effect-observation/0.1",
+        "effect_receipt_subject": "effect-receipt:ercpt_golden:sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "effect_subject_preserved": true,
+        "subject": "service/works-api",
+        "predicate": "health",
+        "expected": "HEALTHY",
+        "before": "DEGRADED",
+        "after": null,
+        "classification": "INDETERMINATE",
+        "epistemic_status": "UNKNOWN",
+        "after_observed_at": "2026-09-16T18:00:10Z",
+        "evaluated_at": "2026-09-16T18:00:20Z",
+        "age_seconds": 10.0,
+        "verification_claim": false,
+        "authority_granted": false,
+        "execution_authorized": false
+      }
+    }
+  ]
+}
