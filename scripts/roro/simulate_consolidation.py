@@ -85,6 +85,18 @@ def build():
             },
             'workspace_summaries':[{'workspace_id':w['workspace_id'],'visibility':w['visibility'],'repository_count':len(w['repositories'])} for w in c['workspaces']],
         })
+    by_count={item['workspace_count']:item for item in out}
+    transition_pairs=[(2,3),(3,4),(4,5),(5,7),(7,8)]
+    transition_deltas=[]
+    for before,after in transition_pairs:
+        left=by_count[before]['dimensions']; right=by_count[after]['dimensions']
+        numeric=sorted(k for k,v in left.items() if isinstance(v,(int,float)) and isinstance(right.get(k),(int,float)))
+        transition_deltas.append({
+            'transition':f'{before}->{after}',
+            'from_candidate':by_count[before]['candidate_id'],
+            'to_candidate':by_count[after]['candidate_id'],
+            'dimension_deltas':{k:right[k]-left[k] for k in numeric},
+        })
     return {
         'schema_version':'roro-consolidation-simulation/0.1',
         'source_snapshot_generated_at':candidates['source_snapshot_generated_at'],
@@ -96,6 +108,7 @@ def build():
             'runtime_state_credential_authority_migrations_excluded':True,
         },
         'candidates':out,
+        'transition_deltas':transition_deltas,
     }
 
 def main():

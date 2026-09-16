@@ -3,12 +3,13 @@
   "$id": "https://aftergraph.org/contracts/roro/0.1/consolidation-simulation.schema.json",
   "title": "R.O.R.O. Consolidation Simulation 0.1",
   "type": "object",
-  "required": ["schema_version", "source_snapshot_generated_at", "gate_scope", "policy", "candidates"],
+  "required": ["schema_version", "source_snapshot_generated_at", "gate_scope", "policy", "candidates", "transition_deltas"],
   "properties": {
     "schema_version": {"const": "roro-consolidation-simulation/0.1"},
     "source_snapshot_generated_at": {"type": "string", "minLength": 1},
     "gate_scope": {"const": "SOURCE_TOPOLOGY_ONLY"},
     "policy": {"type": "object"},
+    "transition_deltas": {"type": "array", "items": {"type": "object"}},
     "candidates": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["candidate_id", "workspace_count", "hard_blockers", "dimensions", "workspace_summaries"], "properties": {
       "candidate_id": {"type": "string", "minLength": 1},
       "workspace_count": {"type": "integer", "minimum": 2},

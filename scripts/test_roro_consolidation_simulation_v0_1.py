@@ -108,3 +108,22 @@ class StrictCandidateTests(unittest.TestCase):
         self.assertLess(by_count[8]['dimensions']['research_production_colocations'],by_count[7]['dimensions']['research_production_colocations'])
         self.assertEqual(by_count[8]['dimensions']['research_production_colocations'],0)
         self.assertGreaterEqual(by_count[8]['dimensions']['cross_workspace_dependency_edges'],by_count[7]['dimensions']['cross_workspace_dependency_edges'])
+
+class SplitAblationTests(unittest.TestCase):
+    def test_transition_deltas_are_explicit(self):
+        data=json.loads((REALITY/'consolidation-simulation.json').read_text())
+        transitions=data['transition_deltas']
+        ids={x['transition'] for x in transitions}
+        self.assertEqual(ids,{'2->3','3->4','4->5','5->7','7->8'})
+        for item in transitions:
+            self.assertIn('dimension_deltas',item)
+            self.assertNotIn('score',json.dumps(item).lower())
+
+    def test_observed_split_effects_are_preserved(self):
+        data=json.loads((REALITY/'consolidation-simulation.json').read_text())
+        t={x['transition']:x['dimension_deltas'] for x in data['transition_deltas']}
+        self.assertLess(t['3->4']['legacy_canonical_colocations'],0)
+        self.assertLess(t['4->5']['trust_boundary_colocations'],0)
+        self.assertLess(t['5->7']['trust_boundary_colocations'],0)
+        self.assertLess(t['5->7']['cross_workspace_dependency_edges'],0)
+        self.assertLess(t['7->8']['research_production_colocations'],0)

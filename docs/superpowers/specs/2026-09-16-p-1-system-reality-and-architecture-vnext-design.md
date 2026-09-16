@@ -621,3 +621,15 @@ The scoped `SOURCE_TOPOLOGY_CONSOLIDATION` READY gate permits source/topology si
 Observed tradeoff at the current source cut: separation reduces legacy, trust-boundary and deployment co-location, but dependency crossings are topology-sensitive rather than monotonic in workspace count. The strict 7-workspace hypothesis has 0 trust-boundary co-locations and 51 cross-workspace dependency edges, compared with 3 and 55 respectively in the 5-workspace hypothesis. The 8-workspace hypothesis additionally reduces modeled research/production co-location to 0 at 52 dependency crossings. This is evidence for design review, not a selected architecture.
 
 `consolidation-boundary-analysis.json` adds a strict falsification hypothesis. If visibility purity, research isolation, AVC legacy isolation, and pairwise separation of authority/trust/execution/independent-verification are all required simultaneously, the derived source-workspace lower bound is at least seven. This lower bound is explicitly not a recommendation.
+
+### 19.1 Split-ablation evidence
+
+Shadow records transition deltas rather than treating workspace count as a quality proxy. At the current evidence cut:
+
+- `2→3`: +5 dependency crossings; −15 research/production co-locations.
+- `3→4`: +1 dependency crossing; −14 legacy/canonical co-locations; −2 deployment co-locations.
+- `4→5`: +18 dependency crossings; −3 trust-boundary co-locations; −4 deployment co-locations.
+- `5→7`: −4 dependency crossings; −3 trust-boundary co-locations; −1 deployment co-location.
+- `7→8`: +1 dependency crossing; −33 research/production co-locations; −6 domain/platform co-locations.
+
+This falsifies any assumption that more source workspaces monotonically increase dependency friction. Placement matters more than count alone. These deltas remain descriptive evidence, not a ranking or migration authorization.

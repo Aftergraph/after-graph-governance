@@ -256,5 +256,82 @@
     "workspace_is_not_security_boundary": true
   },
   "schema_version": "roro-consolidation-simulation/0.1",
-  "source_snapshot_generated_at": "2026-09-16T08:04:39Z"
+  "source_snapshot_generated_at": "2026-09-16T08:04:39Z",
+  "transition_deltas": [
+    {
+      "dimension_deltas": {
+        "cross_workspace_dependency_edges": 5,
+        "deployment_colocation_pairs": 0,
+        "domain_platform_colocations": 0,
+        "largest_workspace_repositories": -1,
+        "legacy_canonical_colocations": 0,
+        "mixed_visibility_workspaces": 0,
+        "research_production_colocations": -15,
+        "trust_boundary_colocations": 0
+      },
+      "from_candidate": "ws2-visibility-only",
+      "to_candidate": "ws3-research-isolated",
+      "transition": "2->3"
+    },
+    {
+      "dimension_deltas": {
+        "cross_workspace_dependency_edges": 1,
+        "deployment_colocation_pairs": -2,
+        "domain_platform_colocations": -2,
+        "largest_workspace_repositories": 0,
+        "legacy_canonical_colocations": -14,
+        "mixed_visibility_workspaces": 0,
+        "research_production_colocations": -3,
+        "trust_boundary_colocations": 0
+      },
+      "from_candidate": "ws3-research-isolated",
+      "to_candidate": "ws4-legacy-isolated",
+      "transition": "3->4"
+    },
+    {
+      "dimension_deltas": {
+        "cross_workspace_dependency_edges": 18,
+        "deployment_colocation_pairs": -4,
+        "domain_platform_colocations": 0,
+        "largest_workspace_repositories": -1,
+        "legacy_canonical_colocations": 0,
+        "mixed_visibility_workspaces": 0,
+        "research_production_colocations": 0,
+        "trust_boundary_colocations": -3
+      },
+      "from_candidate": "ws4-legacy-isolated",
+      "to_candidate": "ws5-verifier-split",
+      "transition": "4->5"
+    },
+    {
+      "dimension_deltas": {
+        "cross_workspace_dependency_edges": -4,
+        "deployment_colocation_pairs": -1,
+        "domain_platform_colocations": 0,
+        "largest_workspace_repositories": 0,
+        "legacy_canonical_colocations": 0,
+        "mixed_visibility_workspaces": 0,
+        "research_production_colocations": 0,
+        "trust_boundary_colocations": -3
+      },
+      "from_candidate": "ws5-verifier-split",
+      "to_candidate": "ws7-strict-public-boundaries",
+      "transition": "5->7"
+    },
+    {
+      "dimension_deltas": {
+        "cross_workspace_dependency_edges": 1,
+        "deployment_colocation_pairs": 0,
+        "domain_platform_colocations": -6,
+        "largest_workspace_repositories": -3,
+        "legacy_canonical_colocations": 0,
+        "mixed_visibility_workspaces": 0,
+        "research_production_colocations": -33,
+        "trust_boundary_colocations": 0
+      },
+      "from_candidate": "ws7-strict-public-boundaries",
+      "to_candidate": "ws8-private-research-isolated",
+      "transition": "7->8"
+    }
+  ]
 }
