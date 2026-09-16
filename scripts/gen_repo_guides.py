@@ -15,7 +15,10 @@ ROOT = os.path.abspath(os.environ.get("AFTERGRAPH_ROOT", "/root/workspace/afterg
 SCOPE = "Aftergraph local repository-native verification"
 TODAY = datetime.date.today().isoformat()
 
-ROLE = {
+# Fallback roles used only when docs/platform-topology/2.0.json is not present
+# (keeps the contract tests self-contained). The topology file is the source of
+# truth and is loaded by load_roles() below.
+ROLE_FALLBACK = {
     "after-graph-governance": ("Governance source of truth", "contracts, schemas, terminology"),
     "trust-gateway": ("Trust boundary", "policy, approvals, audit"),
     "works-execution": ("Execution plane", "missions, WorkGraph, workers"),
@@ -40,6 +43,28 @@ ROLE = {
     ".github": ("Not declared in the workspace contract", "organization profile and org-wide workflows"),
     "veranza": ("Not declared in the workspace contract", "not present locally"),
 }
+
+
+def load_roles():
+    """Roles from the canonical platform topology; fall back to ROLE_FALLBACK when absent.
+
+    The topology file names every repository and is the only place the org declares
+    which repositories exist, so reading it here keeps the generator from drifting
+    out of sync with newly added repositories.
+    """
+    topo_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                            "docs", "platform-topology", "2.0.json")
+    if not os.path.exists(topo_path):
+        return dict(ROLE_FALLBACK)
+    roles = {}
+    topo = json.load(open(topo_path))
+    for r in topo.get("repositories", []):
+        roles[r["name"]] = (r.get("role") or "Not declared in the workspace contract",
+                            r.get("system_class") or "-")
+    return roles
+
+
+ROLE = load_roles()
 
 
 def sh(args, cwd):
