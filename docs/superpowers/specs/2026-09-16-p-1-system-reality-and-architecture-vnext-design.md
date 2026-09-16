@@ -633,3 +633,13 @@ Shadow records transition deltas rather than treating workspace count as a quali
 - `7→8`: +1 dependency crossing; −33 research/production co-locations; −6 domain/platform co-locations.
 
 This falsifies any assumption that more source workspaces monotonically increase dependency friction. Placement matters more than count alone. These deltas remain descriptive evidence, not a ranking or migration authorization.
+
+## 20. Component-level partition evidence
+
+Repository identity is no longer used as a proxy for semantic architecture. `component-semantic-projection.json` projects all 97 observed ComponentIDs into bounded semantic families with explicit epistemic basis and source evidence. A projection is descriptive only: it does not grant ownership or authority.
+
+The current projection contains 10 non-unknown families. Only two source repositories are semantically mixed at component level: `Aftergraph/runtime` spans 6 families and `Aftergraph/autonomous-venture-company` spans 10. Together, current repo placement creates 1,312 modeled cross-family component co-locations.
+
+A strict family + visibility + lifecycle probe produces 22 hypothetical source workspaces, clears modeled cross-family, mixed-visibility, and legacy/canonical co-location, and reduces the largest workspace from 44 to 13 components. It would require component splits across 14 existing source repositories. This is intentionally an upper-separation falsification probe, not a target architecture.
+
+`COVENANT_SUPPORT` is explicitly non-authoritative: semantic proximity to authority/policy concerns does not grant AIE authority. Inferred classifications remain `INFERRED`, and component placement never upgrades epistemic status.

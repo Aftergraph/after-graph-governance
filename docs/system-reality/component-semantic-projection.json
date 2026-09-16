@@ -1,0 +1,1664 @@
+{
+  "components": [
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:agent-eval",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/agent-eval/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/agent-eval",
+      "owns_semantic_family": false,
+      "semantic_family": "WITNESS",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:agent-harness",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/agent-harness/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/agent-harness",
+      "owns_semantic_family": false,
+      "semantic_family": "WITNESS",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:agent-relay",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/agent-relay/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/agent-relay",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "explicit component/repository role in current governance topology",
+      "component_class": "project",
+      "component_id": "ag:component:atlas",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "github://Aftergraph/aftergraph.org@34ae4ee547f02233ae4a6f3159309d3adebeeaf8/atlas/package.json"
+      ],
+      "legacy": false,
+      "name": "aftergraph-atlas",
+      "owns_semantic_family": false,
+      "semantic_family": "EXPERIENCE",
+      "source_repositories": [
+        "Aftergraph/aftergraph.org"
+      ]
+    },
+    {
+      "boundary_note": "Semantic support classification only; does not grant authority or replace AIE.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:authorization",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/authorization/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/authorization",
+      "owns_semantic_family": false,
+      "semantic_family": "COVENANT_SUPPORT",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "explicit component/repository role in current governance topology",
+      "component_class": "package",
+      "component_id": "ag:component:brand",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "github://Aftergraph/brand@6abc51be903ffd1041a716d2adeec364de3d68c0/package.json",
+        "github://Aftergraph/studio@9979875f7875cfdf89f9577e69d25b6f10731e75/packages/brand/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/brand",
+      "owns_semantic_family": false,
+      "semantic_family": "COMMONS",
+      "source_repositories": [
+        "Aftergraph/brand",
+        "Aftergraph/studio"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "explicit component/repository role in current governance topology",
+      "component_class": "package",
+      "component_id": "ag:component:business-ops",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "github://Aftergraph/business-ops@7148f733fbe74acc5279860c1fbc1fb9235ead21/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/business-ops",
+      "owns_semantic_family": false,
+      "semantic_family": "DOMAIN",
+      "source_repositories": [
+        "Aftergraph/business-ops"
+      ]
+    },
+    {
+      "boundary_note": "Semantic support classification only; does not grant authority or replace AIE.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:constitution",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/constitution/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/constitution",
+      "owns_semantic_family": false,
+      "semantic_family": "COVENANT_SUPPORT",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:contracts",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/contracts/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/contracts",
+      "owns_semantic_family": false,
+      "semantic_family": "COMMONS",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:definitions",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/definitions/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/definitions",
+      "owns_semantic_family": false,
+      "semantic_family": "COMMONS",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "explicit component/repository role in current governance topology",
+      "component_class": "package",
+      "component_id": "ag:component:docs",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "github://Aftergraph/docs@a3ca2292a6926b055d54d3fc2df325a7e59814cd/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/docs",
+      "owns_semantic_family": false,
+      "semantic_family": "COMMONS",
+      "source_repositories": [
+        "Aftergraph/docs"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:events",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/events/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/events",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:goals",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/goals/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/goals",
+      "owns_semantic_family": false,
+      "semantic_family": "HELM",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:heartbeat",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/heartbeat/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/heartbeat",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic support classification only; does not grant authority or replace AIE.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:identity-core",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/identity-core/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/identity-core",
+      "owns_semantic_family": false,
+      "semantic_family": "COVENANT_SUPPORT",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:incident",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/incident/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/incident",
+      "owns_semantic_family": false,
+      "semantic_family": "SIGHTLINE",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:intelligence-gateway",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/intelligence-gateway/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/intelligence-gateway",
+      "owns_semantic_family": false,
+      "semantic_family": "HELM",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic support classification only; does not grant authority or replace AIE.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:invariants",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/invariants/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/invariants",
+      "owns_semantic_family": false,
+      "semantic_family": "COVENANT_SUPPORT",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:job-runtime",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/job-runtime/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/job-runtime",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:kernel-core",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/kernel-core/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/kernel-core",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:ledger",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/ledger/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/ledger",
+      "owns_semantic_family": false,
+      "semantic_family": "HELM",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:memory-store",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/memory-store/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/memory-store",
+      "owns_semantic_family": false,
+      "semantic_family": "HELM",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:metrics",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/metrics/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/metrics",
+      "owns_semantic_family": false,
+      "semantic_family": "SIGHTLINE",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:mission-graph",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/mission-graph/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/mission-graph",
+      "owns_semantic_family": false,
+      "semantic_family": "HELM",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:mission-inference",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/mission-inference/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/mission-inference",
+      "owns_semantic_family": false,
+      "semantic_family": "HELM",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:mission-routing",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/mission-routing/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/mission-routing",
+      "owns_semantic_family": false,
+      "semantic_family": "HELM",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:muse-supervisor",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/muse-supervisor/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/muse-supervisor",
+      "owns_semantic_family": false,
+      "semantic_family": "HELM",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:observability",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/observability/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/observability",
+      "owns_semantic_family": false,
+      "semantic_family": "SIGHTLINE",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:orchestrator",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/orchestrator/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/orchestrator",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:outcomes",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/outcomes/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/outcomes",
+      "owns_semantic_family": false,
+      "semantic_family": "HELM",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:peer-protocol",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/peer-protocol/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/peer-protocol",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:portfolio",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/portfolio/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/portfolio",
+      "owns_semantic_family": false,
+      "semantic_family": "HELM",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:proactive-runtime",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/proactive-runtime/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/proactive-runtime",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic support classification only; does not grant authority or replace AIE.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:promotion-gates",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/promotion-gates/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/promotion-gates",
+      "owns_semantic_family": false,
+      "semantic_family": "COVENANT_SUPPORT",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "explicit component/repository role in current governance topology",
+      "component_class": "project",
+      "component_id": "ag:component:relay",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "github://Aftergraph/relay@e9fe5fe8756fcb5b9cd578bb1f0b2d472a716033/pyproject.toml"
+      ],
+      "legacy": false,
+      "name": "aftergraph-relay",
+      "owns_semantic_family": false,
+      "semantic_family": "EXPERIENCE",
+      "source_repositories": [
+        "Aftergraph/relay"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "explicit component/repository role in current governance topology",
+      "component_class": "package",
+      "component_id": "ag:component:rendetalje",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "github://Aftergraph/rendetalje@4f16ed19c7d3c62564163ee38bd44ea318574a4c/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/rendetalje",
+      "owns_semantic_family": false,
+      "semantic_family": "DOMAIN",
+      "source_repositories": [
+        "Aftergraph/rendetalje"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:runtime",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/runtime",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:runtime-host",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/runtime-host/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/runtime-host",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:scheduler",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/scheduler/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/scheduler",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "explicit component/repository role in current governance topology",
+      "component_class": "package",
+      "component_id": "ag:component:sentinel",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "github://Aftergraph/sentinel@546f004230e90f1b211c065a6a05821605231be3/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/sentinel",
+      "owns_semantic_family": false,
+      "semantic_family": "WITNESS",
+      "source_repositories": [
+        "Aftergraph/sentinel"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "explicit component/repository role in current governance topology",
+      "component_class": "package",
+      "component_id": "ag:component:studio",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "github://Aftergraph/studio@9979875f7875cfdf89f9577e69d25b6f10731e75/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/studio",
+      "owns_semantic_family": false,
+      "semantic_family": "EXPERIENCE",
+      "source_repositories": [
+        "Aftergraph/studio"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:telemetry",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/telemetry/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/telemetry",
+      "owns_semantic_family": false,
+      "semantic_family": "SIGHTLINE",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic support classification only; does not grant authority or replace AIE.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:tenant-core",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/tenant-core/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/tenant-core",
+      "owns_semantic_family": false,
+      "semantic_family": "COVENANT_SUPPORT",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:triggers",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/triggers/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/triggers",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/runtime"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:veranza",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/veranza@18a860b54260326585f3306acc58ba4f15df7d69/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/veranza",
+      "owns_semantic_family": false,
+      "semantic_family": "WITNESS",
+      "source_repositories": [
+        "Aftergraph/veranza"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:veranza-control",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/veranza@18a860b54260326585f3306acc58ba4f15df7d69/packages/veranza-control/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/veranza-control",
+      "owns_semantic_family": false,
+      "semantic_family": "WITNESS",
+      "source_repositories": [
+        "Aftergraph/veranza"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:veranza-detect",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/veranza@18a860b54260326585f3306acc58ba4f15df7d69/packages/veranza-detect/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/veranza-detect",
+      "owns_semantic_family": false,
+      "semantic_family": "WITNESS",
+      "source_repositories": [
+        "Aftergraph/veranza"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:veranza-evidence",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/veranza@18a860b54260326585f3306acc58ba4f15df7d69/packages/veranza-evidence/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/veranza-evidence",
+      "owns_semantic_family": false,
+      "semantic_family": "WITNESS",
+      "source_repositories": [
+        "Aftergraph/veranza"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:veranza-gateway",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/veranza@18a860b54260326585f3306acc58ba4f15df7d69/packages/veranza-gateway/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/veranza-gateway",
+      "owns_semantic_family": false,
+      "semantic_family": "WITNESS",
+      "source_repositories": [
+        "Aftergraph/veranza"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:veranza-identity",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/veranza@18a860b54260326585f3306acc58ba4f15df7d69/packages/veranza-identity/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/veranza-identity",
+      "owns_semantic_family": false,
+      "semantic_family": "WITNESS",
+      "source_repositories": [
+        "Aftergraph/veranza"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:veranza-ledger",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/veranza@18a860b54260326585f3306acc58ba4f15df7d69/packages/veranza-ledger/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/veranza-ledger",
+      "owns_semantic_family": false,
+      "semantic_family": "WITNESS",
+      "source_repositories": [
+        "Aftergraph/veranza"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "package",
+      "component_id": "ag:component:veranza-runtime",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/veranza@18a860b54260326585f3306acc58ba4f15df7d69/packages/veranza-runtime/package.json"
+      ],
+      "legacy": false,
+      "name": "@aftergraph/veranza-runtime",
+      "owns_semantic_family": false,
+      "semantic_family": "WITNESS",
+      "source_repositories": [
+        "Aftergraph/veranza"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "explicit component/repository role in current governance topology",
+      "component_class": "project",
+      "component_id": "ag:component:work-intelligence",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "github://Aftergraph/wi-backend@cf7f26993450640951165aa6e6e0cd1481515938/pyproject.toml"
+      ],
+      "legacy": false,
+      "name": "aftergraph-work-intelligence",
+      "owns_semantic_family": false,
+      "semantic_family": "SIGHTLINE",
+      "source_repositories": [
+        "Aftergraph/wi-backend"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:agent-eval",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/agent-eval/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/agent-eval",
+      "owns_semantic_family": false,
+      "semantic_family": "WITNESS",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:agent-gateway",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/agent-gateway/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/agent-gateway",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:agent-harness",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/agent-harness/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/agent-harness",
+      "owns_semantic_family": false,
+      "semantic_family": "WITNESS",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:agent-observability",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/agent-observability/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/agent-observability",
+      "owns_semantic_family": false,
+      "semantic_family": "SIGHTLINE",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:agent-relay",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/agent-relay/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/agent-relay",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:avc-desktop",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/avc-desktop/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/avc-desktop",
+      "owns_semantic_family": false,
+      "semantic_family": "EXPERIENCE",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:avc-eval",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/ml/avc-eval/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/avc-eval",
+      "owns_semantic_family": false,
+      "semantic_family": "WITNESS",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:avc-llm",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/ml/avc-llm/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/avc-llm",
+      "owns_semantic_family": false,
+      "semantic_family": "REFINERY",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:cli",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/tools/avc-cli/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/cli",
+      "owns_semantic_family": false,
+      "semantic_family": "EXPERIENCE",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:company-daemon",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/company-daemon/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/company-daemon",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic support classification only; does not grant authority or replace AIE.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:constitution",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/constitution/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/constitution",
+      "owns_semantic_family": false,
+      "semantic_family": "COVENANT_SUPPORT",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:contracts",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/contracts/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/contracts",
+      "owns_semantic_family": false,
+      "semantic_family": "COMMONS",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:creative-assets",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/creative-assets/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/creative-assets",
+      "owns_semantic_family": false,
+      "semantic_family": "COMMONS",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:events",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/events/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/events",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:hermes-adapter",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/hermes-adapter/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/hermes-adapter",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic support classification only; does not grant authority or replace AIE.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:identity-core",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/identity-core/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/identity-core",
+      "owns_semantic_family": false,
+      "semantic_family": "COVENANT_SUPPORT",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic support classification only; does not grant authority or replace AIE.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:identity-worker",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/identity-worker/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/identity-worker",
+      "owns_semantic_family": false,
+      "semantic_family": "COVENANT_SUPPORT",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:incident",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/incident/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/incident",
+      "owns_semantic_family": false,
+      "semantic_family": "SIGHTLINE",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:intelligence-gateway",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/intelligence-gateway/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/intelligence-gateway",
+      "owns_semantic_family": false,
+      "semantic_family": "HELM",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic support classification only; does not grant authority or replace AIE.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:invariant-registry",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/invariant-registry/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/invariant-registry",
+      "owns_semantic_family": false,
+      "semantic_family": "COVENANT_SUPPORT",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:job-runtime",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/job-runtime/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/job-runtime",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:kernel-core",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/kernel-core/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/kernel-core",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:leadrescue",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/product-cells/leadrescue/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/leadrescue",
+      "owns_semantic_family": false,
+      "semantic_family": "DOMAIN",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:ledger",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/ledger/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/ledger",
+      "owns_semantic_family": false,
+      "semantic_family": "HELM",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:memory-store",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/memory-store/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/memory-store",
+      "owns_semantic_family": false,
+      "semantic_family": "HELM",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:mission-graph",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/mission-graph/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/mission-graph",
+      "owns_semantic_family": false,
+      "semantic_family": "HELM",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic support classification only; does not grant authority or replace AIE.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:mission-graph-authority",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/mission-graph-authority/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/mission-graph-authority",
+      "owns_semantic_family": false,
+      "semantic_family": "COVENANT_SUPPORT",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:model-edge",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/model-edge/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/model-edge",
+      "owns_semantic_family": false,
+      "semantic_family": "REFINERY",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:orchestrator",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/orchestrator/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/orchestrator",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:peer-protocol",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/peer-protocol/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/peer-protocol",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:plugin-deepsec",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/plugin-deepsec/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/plugin-deepsec",
+      "owns_semantic_family": false,
+      "semantic_family": "WITNESS",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:portfolio",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/portfolio/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/portfolio",
+      "owns_semantic_family": false,
+      "semantic_family": "HELM",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:proactive-runtime",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/proactive-runtime/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/proactive-runtime",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:product-catalog",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/product-catalog/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/product-catalog",
+      "owns_semantic_family": false,
+      "semantic_family": "LOOM",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:product-installer-adapter",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/product-installer-adapter/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/product-installer-adapter",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:runner-bridge",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/tools/avc-runner-bridge/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/runner-bridge",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:runtime-metrics",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/runtime-metrics/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/runtime-metrics",
+      "owns_semantic_family": false,
+      "semantic_family": "SIGHTLINE",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:runtime-orchestrator",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/runtime-orchestrator/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/runtime-orchestrator",
+      "owns_semantic_family": false,
+      "semantic_family": "DRIVE",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:security-assurance",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/security-assurance/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/security-assurance",
+      "owns_semantic_family": false,
+      "semantic_family": "WITNESS",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:serviceops",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/product-cells/serviceops/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/serviceops",
+      "owns_semantic_family": false,
+      "semantic_family": "DOMAIN",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:serviceops-mcp",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/serviceops-mcp/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/serviceops-mcp",
+      "owns_semantic_family": false,
+      "semantic_family": "DOMAIN",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:telemetry",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/telemetry/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/telemetry",
+      "owns_semantic_family": false,
+      "semantic_family": "SIGHTLINE",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic support classification only; does not grant authority or replace AIE.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:tenant-core",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/tenant-core/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/tenant-core",
+      "owns_semantic_family": false,
+      "semantic_family": "COVENANT_SUPPORT",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    },
+    {
+      "boundary_note": "Semantic projection only; does not grant ownership, authority, execution, or verification rights.",
+      "classification_basis": "name/path heuristic over observed source binding; does not grant canonical semantic ownership",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:visual-verifier",
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/mission-control/visual-verifier/package.json"
+      ],
+      "legacy": true,
+      "name": "@avc/visual-verifier",
+      "owns_semantic_family": false,
+      "semantic_family": "WITNESS",
+      "source_repositories": [
+        "Aftergraph/autonomous-venture-company"
+      ]
+    }
+  ],
+  "gate_scope": "SOURCE_TOPOLOGY_ONLY",
+  "policy": {
+    "inference_does_not_grant_ownership": true,
+    "projection_is_hypothesis_not_migration_plan": true,
+    "repository_is_not_semantic_family": true,
+    "unknowns_are_preserved": true
+  },
+  "schema_version": "roro-component-semantic-projection/0.1",
+  "source_snapshot_generated_at": "2026-09-16T08:04:39Z"
+}

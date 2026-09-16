@@ -1,0 +1,128 @@
+{
+  "components_total": 97,
+  "cross_family_colocation_pairs": 1312,
+  "mixed_semantic_repositories": [
+    "Aftergraph/autonomous-venture-company",
+    "Aftergraph/runtime"
+  ],
+  "policy": {
+    "analysis_does_not_authorize_moves": true,
+    "repository_is_not_semantic_boundary": true,
+    "scalar_score_prohibited": true
+  },
+  "repository_family_spread": {
+    "Aftergraph/aftergraph.org": {
+      "component_count": 1,
+      "families": [
+        "EXPERIENCE"
+      ],
+      "family_count": 1
+    },
+    "Aftergraph/autonomous-venture-company": {
+      "component_count": 44,
+      "families": [
+        "COMMONS",
+        "COVENANT_SUPPORT",
+        "DOMAIN",
+        "DRIVE",
+        "EXPERIENCE",
+        "HELM",
+        "LOOM",
+        "REFINERY",
+        "SIGHTLINE",
+        "WITNESS"
+      ],
+      "family_count": 10
+    },
+    "Aftergraph/brand": {
+      "component_count": 1,
+      "families": [
+        "COMMONS"
+      ],
+      "family_count": 1
+    },
+    "Aftergraph/business-ops": {
+      "component_count": 1,
+      "families": [
+        "DOMAIN"
+      ],
+      "family_count": 1
+    },
+    "Aftergraph/docs": {
+      "component_count": 1,
+      "families": [
+        "COMMONS"
+      ],
+      "family_count": 1
+    },
+    "Aftergraph/relay": {
+      "component_count": 1,
+      "families": [
+        "EXPERIENCE"
+      ],
+      "family_count": 1
+    },
+    "Aftergraph/rendetalje": {
+      "component_count": 1,
+      "families": [
+        "DOMAIN"
+      ],
+      "family_count": 1
+    },
+    "Aftergraph/runtime": {
+      "component_count": 36,
+      "families": [
+        "COMMONS",
+        "COVENANT_SUPPORT",
+        "DRIVE",
+        "HELM",
+        "SIGHTLINE",
+        "WITNESS"
+      ],
+      "family_count": 6
+    },
+    "Aftergraph/sentinel": {
+      "component_count": 1,
+      "families": [
+        "WITNESS"
+      ],
+      "family_count": 1
+    },
+    "Aftergraph/studio": {
+      "component_count": 1,
+      "families": [
+        "EXPERIENCE"
+      ],
+      "family_count": 1
+    },
+    "Aftergraph/veranza": {
+      "component_count": 8,
+      "families": [
+        "WITNESS"
+      ],
+      "family_count": 1
+    },
+    "Aftergraph/wi-backend": {
+      "component_count": 1,
+      "families": [
+        "SIGHTLINE"
+      ],
+      "family_count": 1
+    }
+  },
+  "schema_version": "roro-component-partition-analysis/0.1",
+  "semantic_family_count": 10,
+  "semantic_family_counts": {
+    "COMMONS": 6,
+    "COVENANT_SUPPORT": 12,
+    "DOMAIN": 5,
+    "DRIVE": 25,
+    "EXPERIENCE": 5,
+    "HELM": 15,
+    "LOOM": 1,
+    "REFINERY": 2,
+    "SIGHTLINE": 9,
+    "WITNESS": 17
+  },
+  "source_snapshot_generated_at": "2026-09-16T08:04:39Z"
+}
