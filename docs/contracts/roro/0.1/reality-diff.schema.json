@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/roro/0.1/reality-diff.schema.json",
+  "title": "R.O.R.O. Reality Diff",
+  "description": "Explicit disagreement between reality claims/facets. A diff records contradiction or drift; it does not choose a winner without evidence.",
+  "type": "object",
+  "properties": {
+    "diff_id": {"type": "string", "minLength": 1},
+    "subject": {"type": "string", "minLength": 1},
+    "classification": {"type": "string", "enum": ["MISSING", "DRIFT", "CONFLICT", "STALE", "UNMAPPED", "UNKNOWN"]},
+    "expected_facet": {"$ref": "reality-facet.schema.json#/$defs/reality_facet"},
+    "observed_facet": {"$ref": "reality-facet.schema.json#/$defs/reality_facet"},
+    "expected": {},
+    "observed": {},
+    "epistemic_status": {"$ref": "reality-facet.schema.json#/$defs/epistemic_status"},
+    "evidence_refs": {"type": "array", "items": {"type": "string"}},
+    "disposition": {"type": "string"}
+  },
+  "required": ["diff_id", "subject", "classification", "epistemic_status", "evidence_refs"],
+  "additionalProperties": false
+}

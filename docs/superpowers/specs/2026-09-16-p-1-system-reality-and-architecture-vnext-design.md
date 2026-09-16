@@ -1,6 +1,6 @@
 # P-1 System Reality Baseline and Architecture vNext Design
 
-**Status:** DRAFT FOR OWNER REVIEW  
+**Status:** OWNER-APPROVED FOR R.O.R.O. P−1 BOOTSTRAP; ARCHITECTURE vNEXT REMAINS A HYPOTHESIS
 **Date:** 2026-09-16  
 **Owner:** Aftergraph portfolio control  
 **Purpose:** Reconstruct the actual Aftergraph system from current repository reality before defining or implementing the next platform architecture, Brain, decision-intelligence kernel, learning loop, self-improvement, or daily verified mission path.
@@ -533,3 +533,63 @@ P-1 succeeds when an independent engineer can inspect the generated baseline and
 > **What is Aftergraph today, which exact components own each consequential responsibility, how does one real mission traverse the system, what is actually verified, and where are the remaining unknowns?**
 
 Only after that answer is evidence-backed should Architecture vNext and the Cognitive Control Loop become canonical implementation targets.
+
+---
+
+## 17. R.O.R.O. — Reality Observation, Reconciliation & Operations
+
+P−1 SHALL use R.O.R.O. as the protocol family for system-reality observation and reconciliation. R.O.R.O. is not a new native authority or replacement database for the systems it observes.
+
+The first invariant is:
+
+```text
+ComponentID != Repository != SourceBinding != Build != Deployment
+```
+
+Native truth remains native. GitHub owns Git state; deployment systems own deployed state; domain systems own their canonical domain state. R.O.R.O. records provenance-bound observations, relationships, contradictions and coverage over those sources.
+
+R.O.R.O. SHALL distinguish reality facet from epistemic status. A claim can concern `RUNNING` reality while still being epistemically `OBSERVED`, `STALE`, `CONFLICTING` or `UNKNOWN`.
+
+Initial facets are `DECLARED`, `CANONICAL`, `DESIRED`, `INSTALLED`, `CONFIGURED`, `RUNNING`, `REACHABLE`, `HEALTHY`, `VERIFIED`, `RECOVERABLE`.
+The first R.O.R.O. implementation slice consists of:
+
+- **Scout** — read-only collectors;
+- **Index** — normalized component/source registry;
+- **Anchor** — identity bindings across source/runtime/provider identities;
+- **Diff** — explicit disagreement and drift;
+- **Survey** — coverage and unknowns;
+- later slices add Chronicle, Watchtower, Seal, Lens and Shadow.
+
+`UNKNOWN` is a first-class result. Failure to observe is not equivalent to absence. A source that cannot be queried must be represented as unknown/unreachable rather than silently omitted.
+
+The bootstrap artifacts are:
+
+```text
+docs/contracts/roro/0.1/*.schema.json
+docs/system-reality/COMPONENT-MODEL.md
+docs/system-reality/component-registry.json
+docs/system-reality/component-lineage.json
+docs/system-reality/reality-gaps.json
+```
+
+The source registry is generated from live organization discovery. `platform-topology/2.0` is compared as a declared/canonical ownership source; it is not allowed to limit discovery scope.
+---
+
+## 18. Circuit remains a composition hypothesis
+
+Architecture vNext may compose semantic algorithm groups as an Aftergraph Circuit, but Circuit MUST NOT become an authority, execution-truth owner, verifier, or world-truth owner.
+
+The current hypothesis groups responsibilities as:
+
+```text
+Sightline  — perception / system reality
+Helm       — cognition / planning / decision intelligence
+Covenant   — governance / authority / admission
+Drive      — capability resolution / runtime / durable execution
+Witness    — evidence / independent assurance
+Refinery   — verified learning / experimentation / promotion
+```
+
+These names describe candidate semantic composition, not repository boundaries. Existing owners such as AIE, Trust Gateway, Runtime, WORKS, Work Intelligence, ACC and independent verifiers retain their explicit boundaries unless later evidence supports a governed migration.
+
+Circuit compilation is therefore downstream of R.O.R.O. reality coverage. Repository consolidation is also downstream: no 2/3/4/5-workspace target is canonical until component/source/deployment/state/credential relationships can be simulated against observed reality.

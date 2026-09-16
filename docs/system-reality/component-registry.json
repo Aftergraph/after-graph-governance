@@ -1,0 +1,2639 @@
+{
+  "components": [
+    {
+      "aliases": [
+        "@aftergraph/agent-eval"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:agent-eval",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/agent-eval",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/agent-eval/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/agent-eval",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/agent-harness"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:agent-harness",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/agent-harness",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/agent-harness/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/agent-harness",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/agent-relay"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:agent-relay",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/agent-relay",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/agent-relay/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/agent-relay",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "aftergraph-atlas"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "project",
+      "component_id": "ag:component:atlas",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "aftergraph-atlas",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/aftergraph.org@416a3e008b7078b8fbbe0248c87d70252e3da370/atlas/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "atlas",
+          "repository": "Aftergraph/aftergraph.org",
+          "revision": "416a3e008b7078b8fbbe0248c87d70252e3da370"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/authorization"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:authorization",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/authorization",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/authorization/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/authorization",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/brand"
+      ],
+      "classification_basis": "same semantic manifest identity observed at multiple source bindings",
+      "component_class": "package",
+      "component_id": "ag:component:brand",
+      "epistemic_status": "CONFLICTING",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/brand",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/brand@6abc51be903ffd1041a716d2adeec364de3d68c0/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": ".",
+          "repository": "Aftergraph/brand",
+          "revision": "6abc51be903ffd1041a716d2adeec364de3d68c0"
+        },
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/studio@da7feedfab2280cbb81314a277ee6df9d136e010/packages/brand/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/brand",
+          "repository": "Aftergraph/studio",
+          "revision": "da7feedfab2280cbb81314a277ee6df9d136e010"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/business-ops"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:business-ops",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/business-ops",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/business-ops@7148f733fbe74acc5279860c1fbc1fb9235ead21/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": ".",
+          "repository": "Aftergraph/business-ops",
+          "revision": "7148f733fbe74acc5279860c1fbc1fb9235ead21"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/constitution"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:constitution",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/constitution",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/constitution/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/constitution",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/contracts"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:contracts",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/contracts",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/contracts/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/contracts",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/definitions"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:definitions",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/definitions",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/definitions/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/definitions",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/docs"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:docs",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/docs",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/docs@a3ca2292a6926b055d54d3fc2df325a7e59814cd/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": ".",
+          "repository": "Aftergraph/docs",
+          "revision": "a3ca2292a6926b055d54d3fc2df325a7e59814cd"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/events"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:events",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/events",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/events/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/events",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/goals"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:goals",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/goals",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/goals/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/goals",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/heartbeat"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:heartbeat",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/heartbeat",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/heartbeat/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/heartbeat",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/identity-core"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:identity-core",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/identity-core",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/identity-core/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/identity-core",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/incident"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:incident",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/incident",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/incident/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/incident",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/intelligence-gateway"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:intelligence-gateway",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/intelligence-gateway",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/intelligence-gateway/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/intelligence-gateway",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/invariants"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:invariants",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/invariants",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/invariants/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/invariants",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/job-runtime"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:job-runtime",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/job-runtime",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/job-runtime/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/job-runtime",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/kernel-core"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:kernel-core",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/kernel-core",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/kernel-core/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/kernel-core",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/ledger"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:ledger",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/ledger",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/ledger/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/ledger",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/memory-store"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:memory-store",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/memory-store",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/memory-store/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/memory-store",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/metrics"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:metrics",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/metrics",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/metrics/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/metrics",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/mission-graph"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:mission-graph",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/mission-graph",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/mission-graph/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/mission-graph",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/mission-inference"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:mission-inference",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/mission-inference",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/mission-inference/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/mission-inference",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/mission-routing"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:mission-routing",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/mission-routing",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/mission-routing/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/mission-routing",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/muse-supervisor"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:muse-supervisor",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/muse-supervisor",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/muse-supervisor/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/muse-supervisor",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/observability"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:observability",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/observability",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/observability/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/observability",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/orchestrator"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:orchestrator",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/orchestrator",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/orchestrator/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/orchestrator",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/outcomes"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:outcomes",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/outcomes",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/outcomes/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/outcomes",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/peer-protocol"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:peer-protocol",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/peer-protocol",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/peer-protocol/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/peer-protocol",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/portfolio"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:portfolio",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/portfolio",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/portfolio/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/portfolio",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/proactive-runtime"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:proactive-runtime",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/proactive-runtime",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/proactive-runtime/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/proactive-runtime",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/promotion-gates"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:promotion-gates",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/promotion-gates",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/promotion-gates/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/promotion-gates",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "aftergraph-relay"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "project",
+      "component_id": "ag:component:relay",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "aftergraph-relay",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/relay@e9fe5fe8756fcb5b9cd578bb1f0b2d472a716033/pyproject.toml",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": ".",
+          "repository": "Aftergraph/relay",
+          "revision": "e9fe5fe8756fcb5b9cd578bb1f0b2d472a716033"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/rendetalje"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:rendetalje",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/rendetalje",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/rendetalje@7fa33a0c10a47f4c6a9d000c8973886385503c45/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": ".",
+          "repository": "Aftergraph/rendetalje",
+          "revision": "7fa33a0c10a47f4c6a9d000c8973886385503c45"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/runtime"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:runtime",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/runtime",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": ".",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/runtime-host"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:runtime-host",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/runtime-host",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/runtime-host/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/runtime-host",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/scheduler"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:scheduler",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/scheduler",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/scheduler/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/scheduler",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/sentinel"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:sentinel",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/sentinel",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/sentinel@29d3b1f30465e24335a637dad622ccb94f790005/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": ".",
+          "repository": "Aftergraph/sentinel",
+          "revision": "29d3b1f30465e24335a637dad622ccb94f790005"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/studio"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:studio",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/studio",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/studio@da7feedfab2280cbb81314a277ee6df9d136e010/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": ".",
+          "repository": "Aftergraph/studio",
+          "revision": "da7feedfab2280cbb81314a277ee6df9d136e010"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/telemetry"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:telemetry",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/telemetry",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/telemetry/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/telemetry",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/tenant-core"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:tenant-core",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/tenant-core",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/tenant-core/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/tenant-core",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/triggers"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:triggers",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/triggers",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/triggers/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/triggers",
+          "repository": "Aftergraph/runtime",
+          "revision": "45d1d95282ca0cb6926c49ce43847884e2eaae43"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/veranza"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:veranza",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/veranza",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/veranza@18a860b54260326585f3306acc58ba4f15df7d69/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": ".",
+          "repository": "Aftergraph/veranza",
+          "revision": "18a860b54260326585f3306acc58ba4f15df7d69"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/veranza-control"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:veranza-control",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/veranza-control",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/veranza@18a860b54260326585f3306acc58ba4f15df7d69/packages/veranza-control/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/veranza-control",
+          "repository": "Aftergraph/veranza",
+          "revision": "18a860b54260326585f3306acc58ba4f15df7d69"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/veranza-detect"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:veranza-detect",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/veranza-detect",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/veranza@18a860b54260326585f3306acc58ba4f15df7d69/packages/veranza-detect/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/veranza-detect",
+          "repository": "Aftergraph/veranza",
+          "revision": "18a860b54260326585f3306acc58ba4f15df7d69"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/veranza-evidence"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:veranza-evidence",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/veranza-evidence",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/veranza@18a860b54260326585f3306acc58ba4f15df7d69/packages/veranza-evidence/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/veranza-evidence",
+          "repository": "Aftergraph/veranza",
+          "revision": "18a860b54260326585f3306acc58ba4f15df7d69"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/veranza-gateway"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:veranza-gateway",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/veranza-gateway",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/veranza@18a860b54260326585f3306acc58ba4f15df7d69/packages/veranza-gateway/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/veranza-gateway",
+          "repository": "Aftergraph/veranza",
+          "revision": "18a860b54260326585f3306acc58ba4f15df7d69"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/veranza-identity"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:veranza-identity",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/veranza-identity",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/veranza@18a860b54260326585f3306acc58ba4f15df7d69/packages/veranza-identity/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/veranza-identity",
+          "repository": "Aftergraph/veranza",
+          "revision": "18a860b54260326585f3306acc58ba4f15df7d69"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/veranza-ledger"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:veranza-ledger",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/veranza-ledger",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/veranza@18a860b54260326585f3306acc58ba4f15df7d69/packages/veranza-ledger/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/veranza-ledger",
+          "repository": "Aftergraph/veranza",
+          "revision": "18a860b54260326585f3306acc58ba4f15df7d69"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@aftergraph/veranza-runtime"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "package",
+      "component_id": "ag:component:veranza-runtime",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "@aftergraph/veranza-runtime",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/veranza@18a860b54260326585f3306acc58ba4f15df7d69/packages/veranza-runtime/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/veranza-runtime",
+          "repository": "Aftergraph/veranza",
+          "revision": "18a860b54260326585f3306acc58ba4f15df7d69"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "aftergraph-work-intelligence"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "project",
+      "component_id": "ag:component:work-intelligence",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "ACTIVE",
+      "name": "aftergraph-work-intelligence",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/wi-backend@cf7f26993450640951165aa6e6e0cd1481515938/pyproject.toml",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": ".",
+          "repository": "Aftergraph/wi-backend",
+          "revision": "cf7f26993450640951165aa6e6e0cd1481515938"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/agent-eval"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:agent-eval",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/agent-eval",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/agent-eval/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/agent-eval",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/agent-gateway"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:agent-gateway",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/agent-gateway",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/agent-gateway/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "apps/agent-gateway",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/agent-harness"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:agent-harness",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/agent-harness",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/agent-harness/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/agent-harness",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/agent-observability"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:agent-observability",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/agent-observability",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/agent-observability/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/agent-observability",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/agent-relay"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:agent-relay",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/agent-relay",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/agent-relay/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/agent-relay",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/avc-desktop"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:avc-desktop",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/avc-desktop",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/avc-desktop/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "apps/avc-desktop",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/avc-eval"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:avc-eval",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/avc-eval",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/ml/avc-eval/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "ml/avc-eval",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/avc-llm"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:avc-llm",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/avc-llm",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/ml/avc-llm/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "ml/avc-llm",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/cli"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:cli",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/cli",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/tools/avc-cli/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "tools/avc-cli",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/company-daemon"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:company-daemon",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/company-daemon",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/company-daemon/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/company-daemon",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/constitution"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:constitution",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/constitution",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/constitution/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/constitution",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/contracts"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:contracts",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/contracts",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/contracts/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/contracts",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/creative-assets"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:creative-assets",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/creative-assets",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/creative-assets/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/creative-assets",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/events"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:events",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/events",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/events/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/events",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/hermes-adapter"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:hermes-adapter",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/hermes-adapter",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/hermes-adapter/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/hermes-adapter",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/identity-core"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:identity-core",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/identity-core",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/identity-core/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/identity-core",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/identity-worker"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:identity-worker",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/identity-worker",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/identity-worker/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "apps/identity-worker",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/incident"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:incident",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/incident",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/incident/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/incident",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/intelligence-gateway"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:intelligence-gateway",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/intelligence-gateway",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/intelligence-gateway/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/intelligence-gateway",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/invariant-registry"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:invariant-registry",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/invariant-registry",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/invariant-registry/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/invariant-registry",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/job-runtime"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:job-runtime",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/job-runtime",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/job-runtime/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/job-runtime",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/kernel-core"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:kernel-core",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/kernel-core",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/kernel-core/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/kernel-core",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/leadrescue"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:leadrescue",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/leadrescue",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/product-cells/leadrescue/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "product-cells/leadrescue",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/ledger"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:ledger",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/ledger",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/ledger/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/ledger",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/memory-store"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:memory-store",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/memory-store",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/memory-store/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/memory-store",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/mission-graph"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:mission-graph",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/mission-graph",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/mission-graph/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/mission-graph",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/mission-graph-authority"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:mission-graph-authority",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/mission-graph-authority",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/mission-graph-authority/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "apps/mission-graph-authority",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/model-edge"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:model-edge",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/model-edge",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/model-edge/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "apps/model-edge",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/orchestrator"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:orchestrator",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/orchestrator",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/orchestrator/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/orchestrator",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/peer-protocol"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:peer-protocol",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/peer-protocol",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/peer-protocol/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/peer-protocol",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/plugin-deepsec"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:plugin-deepsec",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/plugin-deepsec",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/plugin-deepsec/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/plugin-deepsec",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/portfolio"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:portfolio",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/portfolio",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/portfolio/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/portfolio",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/proactive-runtime"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:proactive-runtime",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/proactive-runtime",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/proactive-runtime/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/proactive-runtime",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/product-catalog"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:product-catalog",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/product-catalog",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/product-catalog/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/product-catalog",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/product-installer-adapter"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:product-installer-adapter",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/product-installer-adapter",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/product-installer-adapter/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/product-installer-adapter",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/runner-bridge"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:runner-bridge",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/runner-bridge",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/tools/avc-runner-bridge/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "tools/avc-runner-bridge",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/runtime-metrics"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:runtime-metrics",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/runtime-metrics",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/runtime-metrics/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/runtime-metrics",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/runtime-orchestrator"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:runtime-orchestrator",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/runtime-orchestrator",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/runtime-orchestrator/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/runtime-orchestrator",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/security-assurance"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:security-assurance",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/security-assurance",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/security-assurance/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/security-assurance",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/serviceops"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:serviceops",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/serviceops",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/product-cells/serviceops/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "product-cells/serviceops",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/serviceops-mcp"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:serviceops-mcp",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/serviceops-mcp",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/serviceops-mcp/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "apps/serviceops-mcp",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/telemetry"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:telemetry",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/telemetry",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/telemetry/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/telemetry",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/tenant-core"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:tenant-core",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/tenant-core",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/tenant-core/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "packages/tenant-core",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    },
+    {
+      "aliases": [
+        "@avc/visual-verifier"
+      ],
+      "classification_basis": "explicit source manifest identity",
+      "component_class": "legacy-package",
+      "component_id": "ag:legacy:avc:visual-verifier",
+      "epistemic_status": "OBSERVED",
+      "lifecycle": "LEGACY",
+      "name": "@avc/visual-verifier",
+      "source_bindings": [
+        {
+          "default_branch": "main",
+          "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/mission-control/visual-verifier/package.json",
+          "observed_at": "2026-09-16T00:15:54Z",
+          "observer": "roro:scout:github",
+          "path": "apps/mission-control/visual-verifier",
+          "repository": "Aftergraph/autonomous-venture-company",
+          "revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ]
+    }
+  ],
+  "generated_at": "2026-09-16T00:15:54Z",
+  "observer": "roro:scout:github",
+  "organization": "Aftergraph",
+  "repositories": [
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/.github",
+      "head_sha": "728aa7c3309e67a2bdd4b569170bc1bc4d4f6684",
+      "manifest_count": 0,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": null,
+        "lifecycle": "active",
+        "role": "organization-community",
+        "system_class": "foundation"
+      },
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/afm",
+      "head_sha": "ec9a47aa3458be87b42d2f56dc57aa28f28ca21c",
+      "manifest_count": 0,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": null,
+        "lifecycle": "active",
+        "role": "model-program",
+        "system_class": "models"
+      },
+      "visibility": "private"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/after-graph-governance",
+      "head_sha": "5cce213a8b74a9d586749bcbdce426811ba5ae57",
+      "manifest_count": 0,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": null,
+        "lifecycle": "active",
+        "role": "canonical-contracts",
+        "system_class": "governance"
+      },
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/aftergraph-cron-fabric",
+      "head_sha": "7c4bee3236fca24ab008574b68a6a44cc92b55d3",
+      "manifest_count": 0,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": null,
+        "lifecycle": "active",
+        "role": "scheduled-observation-fabric",
+        "system_class": "operations"
+      },
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/aftergraph.org",
+      "head_sha": "416a3e008b7078b8fbbe0248c87d70252e3da370",
+      "manifest_count": 1,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": null,
+        "lifecycle": "active",
+        "role": "public-front-door",
+        "system_class": "public"
+      },
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/aie",
+      "head_sha": "f92c3b76347316c9832cfba2457fabdc241a4831",
+      "manifest_count": 1,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": "authority",
+        "lifecycle": "active",
+        "role": "normative-authority",
+        "system_class": "institution"
+      },
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/autonomous-venture-company",
+      "head_sha": "6c474b9001e445eabed0c0f5ec34f167686d7a72",
+      "manifest_count": 49,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": null,
+        "lifecycle": "legacy-transition",
+        "role": "legacy-migration-source",
+        "system_class": "legacy-transition"
+      },
+      "visibility": "private"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/brand",
+      "head_sha": "6abc51be903ffd1041a716d2adeec364de3d68c0",
+      "manifest_count": 1,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": null,
+        "lifecycle": "active",
+        "role": "brand-design-system",
+        "system_class": "foundation"
+      },
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/business-ops",
+      "head_sha": "7148f733fbe74acc5279860c1fbc1fb9235ead21",
+      "manifest_count": 1,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": null,
+        "lifecycle": "active",
+        "role": "canonical-service-business-domain",
+        "system_class": "service-business-domain"
+      },
+      "visibility": "private"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/context-continuity",
+      "head_sha": "f9256490358e416c7e2556587042f2e250d4b032",
+      "manifest_count": 0,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": null,
+        "lifecycle": "active",
+        "role": "continuity-contract",
+        "system_class": "continuity"
+      },
+      "visibility": "private"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/continuum",
+      "head_sha": "c1d6ef80b82f797604c90b6db0b8075780fc3744",
+      "manifest_count": 1,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": null,
+        "lifecycle": "active",
+        "role": "continuity-containment-verification",
+        "system_class": "assurance"
+      },
+      "visibility": "private"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/docs",
+      "head_sha": "a3ca2292a6926b055d54d3fc2df325a7e59814cd",
+      "manifest_count": 1,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": null,
+        "lifecycle": "active",
+        "role": "knowledge-plane",
+        "system_class": "knowledge"
+      },
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/intelligence-systems-research",
+      "head_sha": "06d906bcab0159527e76fc866bb7c74ac294f32f",
+      "manifest_count": 0,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": null,
+        "lifecycle": "active",
+        "role": "research-assurance",
+        "system_class": "research-assurance"
+      },
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/llm-research-development",
+      "head_sha": "c65b1b855892d2687e4b4bc1a26f865cf4dc46da",
+      "manifest_count": 0,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": null,
+        "lifecycle": "active",
+        "role": "model-rnd-methodology",
+        "system_class": "models"
+      },
+      "visibility": "private"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/model-registry",
+      "head_sha": "6da2ee23b4b6c90bf348df9dc7ad9f8273a31053",
+      "manifest_count": 0,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": null,
+        "lifecycle": "active",
+        "role": "model-lifecycle-registry",
+        "system_class": "models"
+      },
+      "visibility": "private"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/relay",
+      "head_sha": "e9fe5fe8756fcb5b9cd578bb1f0b2d472a716033",
+      "manifest_count": 1,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": "experience",
+        "lifecycle": "active",
+        "role": "human-operator-plane",
+        "system_class": "operator-plane"
+      },
+      "visibility": "private"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/rendetalje",
+      "head_sha": "7fa33a0c10a47f4c6a9d000c8973886385503c45",
+      "manifest_count": 1,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": null,
+      "visibility": "private"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/runtime",
+      "head_sha": "45d1d95282ca0cb6926c49ce43847884e2eaae43",
+      "manifest_count": 36,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": "runtime",
+        "lifecycle": "active",
+        "role": "agent-runtime",
+        "system_class": "runtime"
+      },
+      "visibility": "private"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/sentinel",
+      "head_sha": "29d3b1f30465e24335a637dad622ccb94f790005",
+      "manifest_count": 2,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": "verification",
+        "lifecycle": "active",
+        "role": "verified-code-review",
+        "system_class": "assurance"
+      },
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/sentinel-firetest",
+      "head_sha": "47bcb00bb58d340ab93f44fbeade4d965a4adbc5",
+      "manifest_count": 0,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": null,
+        "lifecycle": "temporary",
+        "role": "temporary-verification-fixture",
+        "system_class": "assurance-fixture"
+      },
+      "visibility": "private"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/sentinel-firetest2",
+      "head_sha": "e59ce259306303f08fcdfed328f957e6434a1299",
+      "manifest_count": 0,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": null,
+        "lifecycle": "temporary",
+        "role": "temporary-verification-fixture",
+        "system_class": "assurance-fixture"
+      },
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/skill-abi",
+      "head_sha": "14dc965f05efef4fc917b775e1dcc9ef29ba4474",
+      "manifest_count": 0,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": null,
+        "lifecycle": "active",
+        "role": "skill-compatibility-contract",
+        "system_class": "capabilities"
+      },
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/skillport",
+      "head_sha": "9e4b86b95c3907dea4194fdd7abff274badc16da",
+      "manifest_count": 0,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": null,
+        "lifecycle": "active",
+        "role": "skill-portability-benchmark",
+        "system_class": "assurance"
+      },
+      "visibility": "private"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/skills-vault",
+      "head_sha": "aecd24a33587e29ed70a986a2eaddd2925b0c1c0",
+      "manifest_count": 0,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": null,
+        "lifecycle": "active",
+        "role": "capability-supply-chain",
+        "system_class": "capabilities"
+      },
+      "visibility": "private"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/studio",
+      "head_sha": "da7feedfab2280cbb81314a277ee6df9d136e010",
+      "manifest_count": 2,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": "experience",
+        "lifecycle": "active",
+        "role": "primary-experience",
+        "system_class": "experience"
+      },
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/trust-gateway",
+      "head_sha": "cd504fcde295ba652646684db106585f9c7ecd15",
+      "manifest_count": 1,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": "trust",
+        "lifecycle": "active",
+        "role": "runtime-enforcement",
+        "system_class": "enforcement"
+      },
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/veranza",
+      "head_sha": "18a860b54260326585f3306acc58ba4f15df7d69",
+      "manifest_count": 8,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": null,
+        "lifecycle": "internal-hold",
+        "role": "assurance-incubation",
+        "system_class": "incubation"
+      },
+      "visibility": "private"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/war-room",
+      "head_sha": "0313ad91ce9607e3b6ab097851e7352d39c05a62",
+      "manifest_count": 0,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": null,
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/wi-backend",
+      "head_sha": "cf7f26993450640951165aa6e6e0cd1481515938",
+      "manifest_count": 1,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": "intelligence",
+        "lifecycle": "active",
+        "role": "work-inference",
+        "system_class": "work-intelligence"
+      },
+      "visibility": "public"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/wi-frontend",
+      "head_sha": "3754fdc88799745d6bd495fa7a37186ff0ef4ced",
+      "manifest_count": 1,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": "experience",
+        "lifecycle": "active",
+        "role": "work-intelligence-experience",
+        "system_class": "specialist-experience"
+      },
+      "visibility": "private"
+    },
+    {
+      "archived": false,
+      "default_branch": "main",
+      "epistemic_status": "OBSERVED",
+      "full_name": "Aftergraph/works-execution",
+      "head_sha": "b9e6d9276f54bc259003c429ab81181092ffc8aa",
+      "manifest_count": 1,
+      "observed_at": "2026-09-16T00:15:54Z",
+      "topology": {
+        "architecture_plane": "execution",
+        "lifecycle": "active",
+        "role": "durable-execution",
+        "system_class": "execution"
+      },
+      "visibility": "public"
+    }
+  ],
+  "schema_version": "roro-component-registry/0.1"
+}

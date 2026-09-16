@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/roro/0.1/component.schema.json",
+  "title": "R.O.R.O. Component",
+  "description": "Stable semantic component identity. Repository, path and deployment identity live in bindings and must not define component identity.",
+  "type": "object",
+  "properties": {
+    "component_id": {"type": "string", "pattern": "^ag:[a-z0-9][a-z0-9:-]*$"},
+    "name": {"type": "string", "minLength": 1},
+    "component_class": {"type": "string", "minLength": 1},
+    "lifecycle": {"type": "string", "enum": ["ACTIVE", "LEGACY", "TEMPORARY", "INCUBATION", "RETIRED", "UNKNOWN"]},
+    "epistemic_status": {"$ref": "reality-facet.schema.json#/$defs/epistemic_status"},
+    "classification_basis": {"type": "string", "minLength": 1},
+    "source_bindings": {"type": "array", "items": {"$ref": "source-binding.schema.json"}, "minItems": 1},
+    "aliases": {"type": "array", "items": {"type": "string"}}
+  },
+  "required": ["component_id", "name", "component_class", "lifecycle", "epistemic_status", "classification_basis", "source_bindings"],
+  "additionalProperties": false
+}
