@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/roro/0.1/observation.schema.json",
+  "title": "R.O.R.O. Observation",
+  "description": "Evidence-bound observation. Observation describes reality without granting authority or silently upgrading epistemic status.",
+  "type": "object",
+  "properties": {
+    "observation_id": {"type": "string", "minLength": 1},
+    "subject": {"type": "string", "minLength": 1},
+    "predicate": {"type": "string", "minLength": 1},
+    "value": {},
+    "reality_facet": {"$ref": "reality-facet.schema.json#/$defs/reality_facet"},
+    "epistemic_status": {"$ref": "reality-facet.schema.json#/$defs/epistemic_status"},
+    "observer": {"type": "string", "minLength": 1},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1}
+  },
+  "required": ["observation_id", "subject", "predicate", "value", "reality_facet", "epistemic_status", "observer", "observed_at", "evidence_refs"],
+  "additionalProperties": false
+}

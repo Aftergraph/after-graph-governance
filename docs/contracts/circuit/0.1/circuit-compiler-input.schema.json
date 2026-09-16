@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/circuit-compiler-input/0.1",
+  "title": "Aftergraph Circuit Compiler Input 0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "mission_id", "intent", "effect_class", "risk_class", "reality"],
+  "properties": {
+    "schema_version": {"const": "circuit-compiler-input/0.1"},
+    "mission_id": {"type": "string", "minLength": 1},
+    "intent": {"enum": ["QUERY", "REPAIR", "IMPROVE"]},
+    "effect_class": {"enum": ["READ_ONLY", "REVERSIBLE_WRITE", "IRREVERSIBLE_WRITE"]},
+    "risk_class": {"enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]},
+    "reality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["epistemic_status", "fresh"],
+      "properties": {
+        "epistemic_status": {"enum": ["OBSERVED", "VERIFIED", "UNKNOWN", "CONFLICTING"]},
+        "fresh": {"type": "boolean"}
+      }
+    }
+  }
+}

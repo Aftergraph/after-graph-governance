@@ -1,0 +1,201 @@
+{
+  "bindings": [
+    {
+      "canonical_head_at_source_snapshot": "e9fe5fe8756fcb5b9cd578bb1f0b2d472a716033",
+      "canonical_repository": "Aftergraph/relay",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "vds://relay/deployment-provenance",
+        "github-lineage://Aftergraph/relay"
+      ],
+      "observed_deployed_revision": "3ea80f15254b4b7efc18ba84eaf20d16f11d5d83",
+      "observed_revisions": [
+        {
+          "commits_behind": 2,
+          "relation": "CANONICAL_ANCESTOR",
+          "role": "RELEASE_SOURCE",
+          "sha": "3ea80f15254b4b7efc18ba84eaf20d16f11d5d83"
+        }
+      ],
+      "origin_relation": "CANONICAL_RELEASE",
+      "reason": "Observed deployment revision is a canonical ancestor of the source snapshot head.",
+      "service": "aftergraph-relay-eg-mcp.service",
+      "status": "CANONICAL_LAG"
+    },
+    {
+      "canonical_head_at_source_snapshot": "e9fe5fe8756fcb5b9cd578bb1f0b2d472a716033",
+      "canonical_repository": "Aftergraph/relay",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "vds://relay/deployment-provenance",
+        "github-lineage://Aftergraph/relay"
+      ],
+      "observed_deployed_revision": "3ea80f15254b4b7efc18ba84eaf20d16f11d5d83",
+      "observed_revisions": [
+        {
+          "commits_behind": 2,
+          "relation": "CANONICAL_ANCESTOR",
+          "role": "RELEASE_SOURCE",
+          "sha": "3ea80f15254b4b7efc18ba84eaf20d16f11d5d83"
+        }
+      ],
+      "origin_relation": "CANONICAL_RELEASE",
+      "reason": "Observed deployment revision is a canonical ancestor of the source snapshot head.",
+      "service": "aftergraph-relay.service",
+      "status": "CANONICAL_LAG"
+    },
+    {
+      "canonical_head_at_source_snapshot": "6c474b9001e445eabed0c0f5ec34f167686d7a72",
+      "canonical_repository": "Aftergraph/autonomous-venture-company",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "vds://avc-runner-bridge/git-head",
+        "github-lineage://Aftergraph/autonomous-venture-company"
+      ],
+      "observed_deployed_revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72",
+      "observed_revisions": [
+        {
+          "commits_behind": 0,
+          "relation": "MATCH",
+          "role": "RUNTIME_SOURCE",
+          "sha": "6c474b9001e445eabed0c0f5ec34f167686d7a72"
+        }
+      ],
+      "origin_relation": "CANONICAL_REMOTE",
+      "reason": "Observed deployment revision matches the canonical source snapshot head.",
+      "service": "avc-runner-bridge.service",
+      "status": "OBSERVED_MATCH"
+    },
+    {
+      "canonical_head_at_source_snapshot": "9979875f7875cfdf89f9577e69d25b6f10731e75",
+      "canonical_repository": "Aftergraph/studio",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "vds://studio/release-directory",
+        "github-lineage://Aftergraph/studio"
+      ],
+      "observed_deployed_revision": "10750932ba43ecf8e07031f2c5f03afae31e0de2",
+      "observed_revisions": [
+        {
+          "commits_behind": 3,
+          "relation": "CANONICAL_ANCESTOR",
+          "role": "RELEASE_SOURCE",
+          "sha": "10750932ba43ecf8e07031f2c5f03afae31e0de2"
+        }
+      ],
+      "origin_relation": "CANONICAL_RELEASE",
+      "reason": "Observed deployment revision is a canonical ancestor of the source snapshot head.",
+      "service": "studio-backend.service",
+      "status": "CANONICAL_LAG"
+    },
+    {
+      "canonical_head_at_source_snapshot": "cd504fcde295ba652646684db106585f9c7ecd15",
+      "canonical_repository": "Aftergraph/trust-gateway",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "vds://trust-gateway/git-head",
+        "github-lineage://Aftergraph/trust-gateway"
+      ],
+      "observed_deployed_revision": "f69e48527ab571672f2f009e0c992ad2a703f198",
+      "observed_revisions": [
+        {
+          "commits_behind": 13,
+          "relation": "CANONICAL_ANCESTOR",
+          "role": "RUNTIME_SOURCE",
+          "sha": "f69e48527ab571672f2f009e0c992ad2a703f198"
+        }
+      ],
+      "origin_relation": "CANONICAL_REMOTE",
+      "reason": "Observed deployment revision is a canonical ancestor of the source snapshot head.",
+      "service": "tg-gateway.service",
+      "status": "CANONICAL_LAG"
+    },
+    {
+      "canonical_head_at_source_snapshot": "cf7f26993450640951165aa6e6e0cd1481515938",
+      "canonical_repository": "Aftergraph/wi-backend",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "vds://wi-backend/git-head",
+        "github-lineage://Aftergraph/wi-backend"
+      ],
+      "observed_deployed_revision": "249f6e6c3dcd5bbc02c8e5e023a350ac3db1dd32",
+      "observed_revisions": [
+        {
+          "commits_behind": 2,
+          "relation": "CANONICAL_ANCESTOR",
+          "role": "RUNTIME_SOURCE",
+          "sha": "249f6e6c3dcd5bbc02c8e5e023a350ac3db1dd32"
+        }
+      ],
+      "origin_relation": "CANONICAL_REMOTE",
+      "reason": "Observed deployment revision is a canonical ancestor of the source snapshot head.",
+      "service": "wi-backend.service",
+      "status": "CANONICAL_LAG"
+    },
+    {
+      "canonical_head_at_source_snapshot": "3754fdc88799745d6bd495fa7a37186ff0ef4ced",
+      "canonical_repository": "Aftergraph/wi-frontend",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "vds://wi-frontend/source-marker",
+        "vds://wi-frontend/release-manifest",
+        "github-lineage://Aftergraph/wi-frontend"
+      ],
+      "observed_deployed_revision": "159ad87c4df02b8ad9b65fabc3b4a89459956131",
+      "observed_revisions": [
+        {
+          "commits_behind": 111,
+          "relation": "CANONICAL_ANCESTOR",
+          "role": "SERVER_SOURCE",
+          "sha": "be6cbdb0d98aaa49a9626a787c7ba2e71baed8e5"
+        },
+        {
+          "commits_behind": 3,
+          "relation": "CANONICAL_ANCESTOR",
+          "role": "FRONTEND_ARTIFACT_SOURCE",
+          "sha": "159ad87c4df02b8ad9b65fabc3b4a89459956131"
+        }
+      ],
+      "origin_relation": "CANONICAL_RELEASE",
+      "reason": "All observed runtime/artifact revisions are canonical ancestors of the source snapshot head.",
+      "service": "wi-frontend.service",
+      "status": "CANONICAL_COMPOSITE_LAG"
+    },
+    {
+      "canonical_head_at_source_snapshot": "f69e5182f9d3d7e74817ec8ec2cee52ba2f9c62d",
+      "canonical_repository": "Aftergraph/works-execution",
+      "epistemic_status": "VERIFIED",
+      "evidence_refs": [
+        "vds://works-api/post-deploy-go-build-info",
+        "vds://works-api/post-deploy-sha256",
+        "vds://works-api/healthz",
+        "vds://works-api/worker-reregistration",
+        "vds://works-api/runtime-file-comparison",
+        "github-lineage://Aftergraph/works-execution"
+      ],
+      "observed_deployed_revision": "f69e5182f9d3d7e74817ec8ec2cee52ba2f9c62d",
+      "observed_revisions": [
+        {
+          "commits_behind": 0,
+          "relation": "MATCH",
+          "role": "RUNTIME_ARTIFACT_SOURCE",
+          "sha": "f69e5182f9d3d7e74817ec8ec2cee52ba2f9c62d"
+        },
+        {
+          "commits_behind": 58,
+          "relation": "CANONICAL_ANCESTOR",
+          "role": "WORKING_DIRECTORY_SOURCE",
+          "sha": "f53447fdf8d98070593aa507e2d3cdee637ef6f0"
+        }
+      ],
+      "origin_relation": "CANONICAL_ARTIFACT_LEGACY_WORKTREE",
+      "reason": "Running artifact is a clean canonical build; legacy working-directory checkout remains visible as non-blocking drift and runtime-read files match the canonical head.",
+      "service": "works-api.service",
+      "status": "CANONICAL_COMPOSITE_LAG"
+    }
+  ],
+  "deployment_observed_at": "2026-09-16T07:57:31Z",
+  "generated_at": "2026-09-16T07:57:31Z",
+  "schema_version": "roro-deployment-source-diffs/0.2",
+  "source_snapshot_generated_at": "2026-09-16T08:04:39Z"
+}

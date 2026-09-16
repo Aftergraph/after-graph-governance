@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/circuit-compile-result/0.1",
+  "title": "Aftergraph Circuit Compile Result 0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "vector_id", "mission_id", "compile_status", "composition_status", "violations", "circuit_spec", "execution_authorized", "authority_granted"],
+  "properties": {
+    "schema_version": {"const": "circuit-compile-result/0.1"},
+    "vector_id": {"type": "string", "minLength": 1},
+    "mission_id": {"type": "string", "minLength": 1},
+    "compile_status": {"enum": ["COMPILED", "REFUSED"]},
+    "composition_status": {"enum": ["VALID", "INVALID", "NOT_RUN"]},
+    "violations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["rule_id", "message"],
+        "properties": {"rule_id": {"type": "string"}, "message": {"type": "string"}}
+      }
+    },
+    "circuit_spec": {"anyOf": [{"$ref": "https://aftergraph.org/contracts/circuit-spec/0.1"}, {"type": "null"}]},
+    "execution_authorized": {"const": false},
+    "authority_granted": {"const": false}
+  }
+}

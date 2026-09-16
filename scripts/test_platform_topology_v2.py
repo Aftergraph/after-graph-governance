@@ -178,15 +178,13 @@ def load_json(path: Path) -> dict:
 
 
 class TopologyV2DataTest(unittest.TestCase):
-    def test_has_exactly_29_unique_repositories(self):
-        # 29 = 24 canonical + sentinel-firetest2 (live-verified 2026-09-10,
-        # temporary-verification-fixture with expires_at) + skill-abi and
-        # skillport (live-verified 2026-09-10, active capability/assurance)
-        # + relay (enrolled 2026-09-10, canonical human-operator-plane).
+    def test_has_exactly_31_unique_repositories(self):
+        # 31 = prior 29 + war-room + rendetalje (live-observed 2026-09-16;
+        # operational-intelligence experience surface with explicit non-ownership boundaries).
         doc = load_json(TOPOLOGY)
         names = [r["name"] for r in doc["repositories"]]
-        self.assertEqual(len(names), 29)
-        self.assertEqual(len(set(names)), 29)
+        self.assertEqual(len(names), 31)
+        self.assertEqual(len(set(names)), 31)
 
     def test_business_ops_is_registered_as_domain_not_platform_plane(self):
         repo = topology_index(load_json(TOPOLOGY))["business-ops"]
@@ -197,6 +195,24 @@ class TopologyV2DataTest(unittest.TestCase):
         self.assertIn("authority", repo["must_not_own"].lower())
         self.assertIn("runtime", repo["must_not_own"].lower())
         self.assertIn("verification", repo["must_not_own"].lower())
+
+    def test_war_room_is_operational_intelligence_not_truth_authority(self):
+        repo = topology_index(load_json(TOPOLOGY))["war-room"]
+        self.assertEqual(repo["architecture_plane"], "experience")
+        self.assertEqual(repo["system_class"], "operational-intelligence")
+        self.assertEqual(repo["role"], "operational-intelligence-surface")
+        boundary = repo["must_not_own"].lower()
+        for term in ("authority", "execution", "verification", "native truth"):
+            self.assertIn(term, boundary)
+
+    def test_rendetalje_is_reference_domain_not_platform_plane(self):
+        repo = topology_index(load_json(TOPOLOGY))["rendetalje"]
+        self.assertIsNone(repo["architecture_plane"])
+        self.assertEqual(repo["system_class"], "tenant-domain")
+        self.assertEqual(repo["role"], "reference-tenant-domain")
+        self.assertIn("business-ops", repo["owns"].lower())
+        self.assertIn("authority", repo["must_not_own"].lower())
+        self.assertIn("execution", repo["must_not_own"].lower())
 
     def test_only_seven_non_null_architecture_planes_exist(self):
         doc = load_json(TOPOLOGY)

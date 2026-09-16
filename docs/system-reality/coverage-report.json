@@ -1,0 +1,90 @@
+{
+  "as_of": "2026-09-16T08:04:39Z",
+  "dimensions": {
+    "cloud": {
+      "aftergraph_adjacent_unclassified": 0,
+      "coverage": 0.6471,
+      "epistemically_unknown": 12,
+      "metric": "ownership_evidence_coverage",
+      "observed": 22,
+      "status": "PARTIAL",
+      "total": 34
+    },
+    "credentials": {
+      "consumer_mapping": "PARTIAL",
+      "mapped_bindings": 19,
+      "permission_drift_observations": 0,
+      "snapshot_sprawl_observed": 19,
+      "status": "PARTIAL",
+      "unresolved_groups": 2,
+      "values_collected": false
+    },
+    "deployment": {
+      "conflicts": 0,
+      "coverage": 1.0,
+      "metric": "exact_deployment_revision_coverage",
+      "observed": 8,
+      "status": "PASS",
+      "total": 8,
+      "unknown": 0
+    },
+    "reality_diff": {
+      "conflicts": 0,
+      "observed": 4,
+      "stale": 0,
+      "status": "PARTIAL",
+      "unknowns": 0
+    },
+    "recovery": {
+      "backup_present": 5,
+      "coverage": 1.0,
+      "data_recovery_verified": 1,
+      "metric": "state_recovery_proof_coverage",
+      "observed": 5,
+      "recovery_proof_coverage": 1.0,
+      "status": "PASS",
+      "total": 5,
+      "verified_restores": 4
+    },
+    "routes": {
+      "blocking_dispositions": 0,
+      "coverage": 0.75,
+      "dispositions_total": 3,
+      "metric": "route_disposition_coverage",
+      "observed": 9,
+      "status": "PASS",
+      "total": 12,
+      "unresolved": 3
+    },
+    "runtime": {
+      "active_services": 28,
+      "authorizes_runtime_migration": false,
+      "blocking": false,
+      "containers": 8,
+      "disposition": "TRANSITIONAL_ACCEPTED",
+      "disposition_epistemic_status": "PROPOSED",
+      "self_hosted_runner_services": 11,
+      "status": "PARTIAL",
+      "target_architecture_claim": false
+    },
+    "source": {
+      "coverage": 1.0,
+      "exact_head_coverage": 1.0,
+      "exact_repo_heads": 31,
+      "metric": "semantic_manifest_or_declared_role_coverage",
+      "observed": 31,
+      "semantic_coverage_repositories": 31,
+      "semantic_manifest_gaps": 19,
+      "semantic_uncovered_repositories": 0,
+      "status": "PASS",
+      "total": 31,
+      "uncovered_repository_refs": []
+    }
+  },
+  "policy": {
+    "gate_scope_does_not_imply_global_migration_readiness": true,
+    "overall_scalar_score_prohibited": true,
+    "unknowns_fail_closed_within_required_dimensions": true
+  },
+  "schema_version": "roro-coverage-report/0.1"
+}

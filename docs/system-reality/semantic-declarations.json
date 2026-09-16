@@ -1,0 +1,303 @@
+{
+  "as_of": "2026-09-16T08:04:39Z",
+  "declarations": [
+    {
+      "architecture_plane": null,
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/.github",
+      "semantic_role": "organization-community",
+      "system_class": "foundation"
+    },
+    {
+      "architecture_plane": null,
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/afm",
+      "semantic_role": "model-program",
+      "system_class": "models"
+    },
+    {
+      "architecture_plane": null,
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/after-graph-governance",
+      "semantic_role": "canonical-contracts",
+      "system_class": "governance"
+    },
+    {
+      "architecture_plane": null,
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/aftergraph-cron-fabric",
+      "semantic_role": "scheduled-observation-fabric",
+      "system_class": "operations"
+    },
+    {
+      "architecture_plane": null,
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/aftergraph.org",
+      "semantic_role": "public-front-door",
+      "system_class": "public"
+    },
+    {
+      "architecture_plane": "authority",
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/aie",
+      "semantic_role": "normative-authority",
+      "system_class": "institution"
+    },
+    {
+      "architecture_plane": null,
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "legacy-transition",
+      "repository": "Aftergraph/autonomous-venture-company",
+      "semantic_role": "legacy-migration-source",
+      "system_class": "legacy-transition"
+    },
+    {
+      "architecture_plane": null,
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/brand",
+      "semantic_role": "brand-design-system",
+      "system_class": "foundation"
+    },
+    {
+      "architecture_plane": null,
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/business-ops",
+      "semantic_role": "canonical-service-business-domain",
+      "system_class": "service-business-domain"
+    },
+    {
+      "architecture_plane": null,
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/context-continuity",
+      "semantic_role": "continuity-contract",
+      "system_class": "continuity"
+    },
+    {
+      "architecture_plane": null,
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/continuum",
+      "semantic_role": "continuity-containment-verification",
+      "system_class": "assurance"
+    },
+    {
+      "architecture_plane": null,
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/docs",
+      "semantic_role": "knowledge-plane",
+      "system_class": "knowledge"
+    },
+    {
+      "architecture_plane": null,
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/intelligence-systems-research",
+      "semantic_role": "research-assurance",
+      "system_class": "research-assurance"
+    },
+    {
+      "architecture_plane": null,
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/llm-research-development",
+      "semantic_role": "model-rnd-methodology",
+      "system_class": "models"
+    },
+    {
+      "architecture_plane": null,
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/model-registry",
+      "semantic_role": "model-lifecycle-registry",
+      "system_class": "models"
+    },
+    {
+      "architecture_plane": "experience",
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/relay",
+      "semantic_role": "human-operator-plane",
+      "system_class": "operator-plane"
+    },
+    {
+      "architecture_plane": null,
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/rendetalje",
+      "semantic_role": "reference-tenant-domain",
+      "system_class": "tenant-domain"
+    },
+    {
+      "architecture_plane": "runtime",
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/runtime",
+      "semantic_role": "agent-runtime",
+      "system_class": "runtime"
+    },
+    {
+      "architecture_plane": "verification",
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/sentinel",
+      "semantic_role": "verified-code-review",
+      "system_class": "assurance"
+    },
+    {
+      "architecture_plane": null,
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "temporary",
+      "repository": "Aftergraph/sentinel-firetest",
+      "semantic_role": "temporary-verification-fixture",
+      "system_class": "assurance-fixture"
+    },
+    {
+      "architecture_plane": null,
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "temporary",
+      "repository": "Aftergraph/sentinel-firetest2",
+      "semantic_role": "temporary-verification-fixture",
+      "system_class": "assurance-fixture"
+    },
+    {
+      "architecture_plane": null,
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/skill-abi",
+      "semantic_role": "skill-compatibility-contract",
+      "system_class": "capabilities"
+    },
+    {
+      "architecture_plane": null,
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/skillport",
+      "semantic_role": "skill-portability-benchmark",
+      "system_class": "assurance"
+    },
+    {
+      "architecture_plane": null,
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/skills-vault",
+      "semantic_role": "capability-supply-chain",
+      "system_class": "capabilities"
+    },
+    {
+      "architecture_plane": "experience",
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/studio",
+      "semantic_role": "primary-experience",
+      "system_class": "experience"
+    },
+    {
+      "architecture_plane": "trust",
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/trust-gateway",
+      "semantic_role": "runtime-enforcement",
+      "system_class": "enforcement"
+    },
+    {
+      "architecture_plane": null,
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "internal-hold",
+      "repository": "Aftergraph/veranza",
+      "semantic_role": "assurance-incubation",
+      "system_class": "incubation"
+    },
+    {
+      "architecture_plane": "experience",
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/war-room",
+      "semantic_role": "operational-intelligence-surface",
+      "system_class": "operational-intelligence"
+    },
+    {
+      "architecture_plane": "intelligence",
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/wi-backend",
+      "semantic_role": "work-inference",
+      "system_class": "work-intelligence"
+    },
+    {
+      "architecture_plane": "experience",
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/wi-frontend",
+      "semantic_role": "work-intelligence-experience",
+      "system_class": "specialist-experience"
+    },
+    {
+      "architecture_plane": "execution",
+      "epistemic_status": "DECLARED",
+      "evidence_ref": "governance://platform-topology/2.0",
+      "lifecycle": "active",
+      "repository": "Aftergraph/works-execution",
+      "semantic_role": "durable-execution",
+      "system_class": "execution"
+    }
+  ],
+  "manifest_covered_repositories": [
+    "Aftergraph/aftergraph.org",
+    "Aftergraph/autonomous-venture-company",
+    "Aftergraph/brand",
+    "Aftergraph/business-ops",
+    "Aftergraph/docs",
+    "Aftergraph/relay",
+    "Aftergraph/rendetalje",
+    "Aftergraph/runtime",
+    "Aftergraph/sentinel",
+    "Aftergraph/studio",
+    "Aftergraph/veranza",
+    "Aftergraph/wi-backend"
+  ],
+  "policy": {
+    "repository_is_not_component": true
+  },
+  "schema_version": "roro-semantic-declarations/0.1",
+  "uncovered_repositories": []
+}

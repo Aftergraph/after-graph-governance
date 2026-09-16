@@ -1,0 +1,126 @@
+{
+  "gaps": [
+    {
+      "epistemic_status": "UNKNOWN",
+      "observed_at": "2026-09-16T08:04:39Z",
+      "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
+      "subject": "Aftergraph/.github"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "observed_at": "2026-09-16T08:04:39Z",
+      "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
+      "subject": "Aftergraph/afm"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "observed_at": "2026-09-16T08:04:39Z",
+      "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
+      "subject": "Aftergraph/after-graph-governance"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "observed_at": "2026-09-16T08:04:39Z",
+      "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
+      "subject": "Aftergraph/aftergraph-cron-fabric"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "observed_at": "2026-09-16T08:04:39Z",
+      "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
+      "subject": "Aftergraph/aie"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "observed_at": "2026-09-16T08:04:39Z",
+      "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
+      "subject": "Aftergraph/context-continuity"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "observed_at": "2026-09-16T08:04:39Z",
+      "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
+      "subject": "Aftergraph/continuum"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "observed_at": "2026-09-16T08:04:39Z",
+      "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
+      "subject": "Aftergraph/intelligence-systems-research"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "observed_at": "2026-09-16T08:04:39Z",
+      "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
+      "subject": "Aftergraph/llm-research-development"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "observed_at": "2026-09-16T08:04:39Z",
+      "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
+      "subject": "Aftergraph/model-registry"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "observed_at": "2026-09-16T08:04:39Z",
+      "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
+      "subject": "Aftergraph/sentinel-firetest"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "observed_at": "2026-09-16T08:04:39Z",
+      "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
+      "subject": "Aftergraph/sentinel-firetest2"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "observed_at": "2026-09-16T08:04:39Z",
+      "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
+      "subject": "Aftergraph/skill-abi"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "observed_at": "2026-09-16T08:04:39Z",
+      "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
+      "subject": "Aftergraph/skillport"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "observed_at": "2026-09-16T08:04:39Z",
+      "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
+      "subject": "Aftergraph/skills-vault"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "observed_at": "2026-09-16T08:04:39Z",
+      "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
+      "subject": "Aftergraph/trust-gateway"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "observed_at": "2026-09-16T08:04:39Z",
+      "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
+      "subject": "Aftergraph/war-room"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "observed_at": "2026-09-16T08:04:39Z",
+      "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
+      "subject": "Aftergraph/wi-frontend"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "observed_at": "2026-09-16T08:04:39Z",
+      "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
+      "subject": "Aftergraph/works-execution"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "observed_at": "2026-09-16T08:04:39Z",
+      "reason": "same_component_identity_observed_at_multiple_source_bindings",
+      "subject": "ag:component:brand"
+    }
+  ],
+  "generated_at": "2026-09-16T08:04:39Z",
+  "schema_version": "roro-reality-gaps/0.1"
+}

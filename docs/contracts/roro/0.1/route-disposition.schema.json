@@ -1,0 +1,55 @@
+{
+  "$id": "contract:roro-route-disposition/0.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "disposition": {
+      "enum": [
+        "REQUIRED",
+        "SUPERSEDED",
+        "NOT_REQUIRED",
+        "NOT_DECLARED_PUBLIC",
+        "CONFLICTING_DESIRED_STATE",
+        "UNKNOWN"
+      ]
+    },
+    "epistemic_status": {
+      "enum": [
+        "VERIFIED",
+        "OBSERVED",
+        "INFERRED",
+        "DECLARED",
+        "PROPOSED",
+        "STALE",
+        "CONFLICTING",
+        "UNKNOWN"
+      ]
+    },
+    "evidence_refs": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "host": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "reason": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "source_drift": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "host",
+    "disposition",
+    "epistemic_status",
+    "reason",
+    "evidence_refs"
+  ],
+  "title": "R.O.R.O. Route Disposition",
+  "type": "object"
+}

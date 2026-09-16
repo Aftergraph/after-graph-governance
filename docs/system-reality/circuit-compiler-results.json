@@ -1,0 +1,372 @@
+{
+  "policy": {
+    "compiled_grants_authority": false,
+    "compiled_is_not_execution_authorized": true,
+    "compiler_owns_durable_state": false,
+    "compiler_performs_runtime_calls": false
+  },
+  "results": [
+    {
+      "authority_granted": false,
+      "circuit_spec": null,
+      "compile_status": "REFUSED",
+      "composition_status": "NOT_RUN",
+      "execution_authorized": false,
+      "mission_id": "mission-conflict",
+      "schema_version": "circuit-compile-result/0.1",
+      "vector_id": "conflicting-reality",
+      "violations": [
+        {
+          "message": "mission reality contains unresolved conflict",
+          "rule_id": "REALITY_CONFLICTING"
+        },
+        {
+          "message": "high-risk consequential compilation requires VERIFIED reality",
+          "rule_id": "VERIFIED_REALITY_REQUIRED"
+        }
+      ]
+    },
+    {
+      "authority_granted": false,
+      "circuit_spec": null,
+      "compile_status": "REFUSED",
+      "composition_status": "NOT_RUN",
+      "execution_authorized": false,
+      "mission_id": "mission-high-unverified",
+      "schema_version": "circuit-compile-result/0.1",
+      "vector_id": "high-risk-unverified",
+      "violations": [
+        {
+          "message": "high-risk consequential compilation requires VERIFIED reality",
+          "rule_id": "VERIFIED_REALITY_REQUIRED"
+        }
+      ]
+    },
+    {
+      "authority_granted": false,
+      "circuit_spec": {
+        "circuit_id": "compiled-mission-improve",
+        "consequential": true,
+        "edges": [
+          {
+            "from": "sense",
+            "to": "think"
+          },
+          {
+            "from": "think",
+            "to": "learn"
+          },
+          {
+            "from": "learn",
+            "to": "admit"
+          },
+          {
+            "from": "admit",
+            "to": "execute"
+          },
+          {
+            "from": "execute",
+            "to": "verify"
+          }
+        ],
+        "mode": "IMPROVEMENT",
+        "nodes": [
+          {
+            "family": "SIGHTLINE",
+            "independence_key": "observe",
+            "operator_id": "sense"
+          },
+          {
+            "family": "HELM",
+            "independence_key": "cognition",
+            "operator_id": "think"
+          },
+          {
+            "family": "REFINERY",
+            "independence_key": "experiment",
+            "operator_id": "learn"
+          },
+          {
+            "family": "COVENANT",
+            "independence_key": "authority",
+            "operator_id": "admit"
+          },
+          {
+            "family": "DRIVE",
+            "independence_key": "shadow-execution",
+            "operator_id": "execute"
+          },
+          {
+            "family": "WITNESS",
+            "independence_key": "verification",
+            "operator_id": "verify"
+          }
+        ],
+        "schema_version": "circuit-spec/0.1"
+      },
+      "compile_status": "COMPILED",
+      "composition_status": "VALID",
+      "execution_authorized": false,
+      "mission_id": "mission-improve",
+      "schema_version": "circuit-compile-result/0.1",
+      "vector_id": "improve-reversible",
+      "violations": []
+    },
+    {
+      "authority_granted": false,
+      "circuit_spec": null,
+      "compile_status": "REFUSED",
+      "composition_status": "NOT_RUN",
+      "execution_authorized": false,
+      "mission_id": "mission-malformed",
+      "schema_version": "circuit-compile-result/0.1",
+      "vector_id": "missing-fresh",
+      "violations": [
+        {
+          "message": "reality.fresh must be boolean",
+          "rule_id": "MALFORMED_REALITY"
+        }
+      ]
+    },
+    {
+      "authority_granted": false,
+      "circuit_spec": {
+        "circuit_id": "compiled-mission-query",
+        "consequential": false,
+        "edges": [
+          {
+            "from": "sense",
+            "to": "think"
+          }
+        ],
+        "mode": "READ_ONLY",
+        "nodes": [
+          {
+            "family": "SIGHTLINE",
+            "independence_key": "observe",
+            "operator_id": "sense"
+          },
+          {
+            "family": "HELM",
+            "independence_key": "cognition",
+            "operator_id": "think"
+          }
+        ],
+        "schema_version": "circuit-spec/0.1"
+      },
+      "compile_status": "COMPILED",
+      "composition_status": "VALID",
+      "execution_authorized": false,
+      "mission_id": "mission-query",
+      "schema_version": "circuit-compile-result/0.1",
+      "vector_id": "query-read-only",
+      "violations": []
+    },
+    {
+      "authority_granted": false,
+      "circuit_spec": {
+        "circuit_id": "compiled-mission-critical-repair",
+        "consequential": true,
+        "edges": [
+          {
+            "from": "sense",
+            "to": "think"
+          },
+          {
+            "from": "think",
+            "to": "admit"
+          },
+          {
+            "from": "admit",
+            "to": "execute"
+          },
+          {
+            "from": "execute",
+            "to": "verify"
+          },
+          {
+            "from": "verify",
+            "to": "reobserve"
+          }
+        ],
+        "mode": "CONSEQUENTIAL",
+        "nodes": [
+          {
+            "family": "SIGHTLINE",
+            "independence_key": "observe",
+            "operator_id": "sense"
+          },
+          {
+            "family": "HELM",
+            "independence_key": "cognition",
+            "operator_id": "think"
+          },
+          {
+            "family": "COVENANT",
+            "independence_key": "authority",
+            "operator_id": "admit"
+          },
+          {
+            "family": "DRIVE",
+            "independence_key": "execution",
+            "operator_id": "execute"
+          },
+          {
+            "family": "WITNESS",
+            "independence_key": "verification",
+            "operator_id": "verify"
+          },
+          {
+            "family": "SIGHTLINE",
+            "independence_key": "reobserve",
+            "operator_id": "reobserve"
+          }
+        ],
+        "schema_version": "circuit-spec/0.1"
+      },
+      "compile_status": "COMPILED",
+      "composition_status": "VALID",
+      "execution_authorized": false,
+      "mission_id": "mission-critical-repair",
+      "schema_version": "circuit-compile-result/0.1",
+      "vector_id": "repair-irreversible-high-risk",
+      "violations": []
+    },
+    {
+      "authority_granted": false,
+      "circuit_spec": {
+        "circuit_id": "compiled-mission-repair",
+        "consequential": true,
+        "edges": [
+          {
+            "from": "sense",
+            "to": "think"
+          },
+          {
+            "from": "think",
+            "to": "admit"
+          },
+          {
+            "from": "admit",
+            "to": "execute"
+          },
+          {
+            "from": "execute",
+            "to": "verify"
+          },
+          {
+            "from": "verify",
+            "to": "reobserve"
+          }
+        ],
+        "mode": "CONSEQUENTIAL",
+        "nodes": [
+          {
+            "family": "SIGHTLINE",
+            "independence_key": "observe",
+            "operator_id": "sense"
+          },
+          {
+            "family": "HELM",
+            "independence_key": "cognition",
+            "operator_id": "think"
+          },
+          {
+            "family": "COVENANT",
+            "independence_key": "authority",
+            "operator_id": "admit"
+          },
+          {
+            "family": "DRIVE",
+            "independence_key": "execution",
+            "operator_id": "execute"
+          },
+          {
+            "family": "WITNESS",
+            "independence_key": "verification",
+            "operator_id": "verify"
+          },
+          {
+            "family": "SIGHTLINE",
+            "independence_key": "reobserve",
+            "operator_id": "reobserve"
+          }
+        ],
+        "schema_version": "circuit-spec/0.1"
+      },
+      "compile_status": "COMPILED",
+      "composition_status": "VALID",
+      "execution_authorized": false,
+      "mission_id": "mission-repair",
+      "schema_version": "circuit-compile-result/0.1",
+      "vector_id": "repair-reversible",
+      "violations": []
+    },
+    {
+      "authority_granted": false,
+      "circuit_spec": null,
+      "compile_status": "REFUSED",
+      "composition_status": "NOT_RUN",
+      "execution_authorized": false,
+      "mission_id": "mission-stale",
+      "schema_version": "circuit-compile-result/0.1",
+      "vector_id": "stale-consequential",
+      "violations": [
+        {
+          "message": "consequential compilation requires fresh reality",
+          "rule_id": "STALE_REALITY"
+        }
+      ]
+    },
+    {
+      "authority_granted": false,
+      "circuit_spec": null,
+      "compile_status": "REFUSED",
+      "composition_status": "NOT_RUN",
+      "execution_authorized": false,
+      "mission_id": "mission-bad-effect",
+      "schema_version": "circuit-compile-result/0.1",
+      "vector_id": "unknown-effect",
+      "violations": [
+        {
+          "message": "unsupported effect class 'MUTATE'",
+          "rule_id": "UNKNOWN_EFFECT_CLASS"
+        }
+      ]
+    },
+    {
+      "authority_granted": false,
+      "circuit_spec": null,
+      "compile_status": "REFUSED",
+      "composition_status": "NOT_RUN",
+      "execution_authorized": false,
+      "mission_id": "mission-bad-intent",
+      "schema_version": "circuit-compile-result/0.1",
+      "vector_id": "unknown-intent",
+      "violations": [
+        {
+          "message": "unsupported mission intent 'DEPLOY'",
+          "rule_id": "UNKNOWN_INTENT"
+        }
+      ]
+    },
+    {
+      "authority_granted": false,
+      "circuit_spec": null,
+      "compile_status": "REFUSED",
+      "composition_status": "NOT_RUN",
+      "execution_authorized": false,
+      "mission_id": "mission-unknown",
+      "schema_version": "circuit-compile-result/0.1",
+      "vector_id": "unknown-reality",
+      "violations": [
+        {
+          "message": "mission reality is unknown",
+          "rule_id": "REALITY_UNKNOWN"
+        }
+      ]
+    }
+  ],
+  "schema_version": "circuit-compiler-results/0.1",
+  "source_snapshot_generated_at": "2026-09-16T08:04:39Z"
+}

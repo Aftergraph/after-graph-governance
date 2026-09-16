@@ -1,0 +1,2309 @@
+{
+  "coverage": [
+    {
+      "component_id": "ag:component:agent-eval",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:agent-harness",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:agent-relay",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:atlas",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:authorization",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:brand",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:business-ops",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:constitution",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:contracts",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:definitions",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:docs",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:events",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:goals",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:heartbeat",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:identity-core",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:incident",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:intelligence-gateway",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:invariants",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:job-runtime",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:kernel-core",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:ledger",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:memory-store",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:metrics",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:mission-graph",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:mission-inference",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:mission-routing",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:muse-supervisor",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:observability",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:orchestrator",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:outcomes",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:peer-protocol",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:portfolio",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:proactive-runtime",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:promotion-gates",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:relay",
+      "observed_manifest_count": 0
+    },
+    {
+      "component_id": "ag:component:rendetalje",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:runtime",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:runtime-host",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:scheduler",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:sentinel",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:studio",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:telemetry",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:tenant-core",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:triggers",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:veranza",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:veranza-control",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:veranza-detect",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:veranza-evidence",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:veranza-gateway",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:veranza-identity",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:veranza-ledger",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:veranza-runtime",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:component:work-intelligence",
+      "observed_manifest_count": 0
+    },
+    {
+      "component_id": "ag:legacy:avc:agent-eval",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:agent-gateway",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:agent-harness",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:agent-observability",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:agent-relay",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:avc-desktop",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:avc-eval",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:avc-llm",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:cli",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:company-daemon",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:constitution",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:contracts",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:creative-assets",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:events",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:hermes-adapter",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:identity-core",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:identity-worker",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:incident",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:intelligence-gateway",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:invariant-registry",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:job-runtime",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:kernel-core",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:leadrescue",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:ledger",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:memory-store",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:mission-graph",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:mission-graph-authority",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:model-edge",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:orchestrator",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:peer-protocol",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:plugin-deepsec",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:portfolio",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:proactive-runtime",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:product-catalog",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:product-installer-adapter",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:runner-bridge",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:runtime-metrics",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:runtime-orchestrator",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:security-assurance",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:serviceops",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:serviceops-mcp",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:telemetry",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:tenant-core",
+      "observed_manifest_count": 1
+    },
+    {
+      "component_id": "ag:legacy:avc:visual-verifier",
+      "observed_manifest_count": 1
+    }
+  ],
+  "edges": [
+    {
+      "dependency_name": "@aftergraph/proactive-runtime",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/agent-eval/package.json"
+      ],
+      "source_component_id": "ag:component:agent-eval",
+      "target_component_id": "ag:component:proactive-runtime"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/agent-harness/package.json"
+      ],
+      "source_component_id": "ag:component:agent-harness",
+      "target_component_id": "ag:component:contracts"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/constitution/package.json"
+      ],
+      "source_component_id": "ag:component:constitution",
+      "target_component_id": "ag:component:kernel-core"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/events/package.json"
+      ],
+      "source_component_id": "ag:component:events",
+      "target_component_id": "ag:component:contracts"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/events/package.json"
+      ],
+      "source_component_id": "ag:component:events",
+      "target_component_id": "ag:component:kernel-core"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/goals/package.json"
+      ],
+      "source_component_id": "ag:component:goals",
+      "target_component_id": "ag:component:contracts"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/goals/package.json"
+      ],
+      "source_component_id": "ag:component:goals",
+      "target_component_id": "ag:component:kernel-core"
+    },
+    {
+      "dependency_name": "@aftergraph/authorization",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/heartbeat/package.json"
+      ],
+      "source_component_id": "ag:component:heartbeat",
+      "target_component_id": "ag:component:authorization"
+    },
+    {
+      "dependency_name": "@aftergraph/events",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/heartbeat/package.json"
+      ],
+      "source_component_id": "ag:component:heartbeat",
+      "target_component_id": "ag:component:events"
+    },
+    {
+      "dependency_name": "@aftergraph/goals",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/heartbeat/package.json"
+      ],
+      "source_component_id": "ag:component:heartbeat",
+      "target_component_id": "ag:component:goals"
+    },
+    {
+      "dependency_name": "@aftergraph/job-runtime",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/heartbeat/package.json"
+      ],
+      "source_component_id": "ag:component:heartbeat",
+      "target_component_id": "ag:component:job-runtime"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/heartbeat/package.json"
+      ],
+      "source_component_id": "ag:component:heartbeat",
+      "target_component_id": "ag:component:kernel-core"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/identity-core/package.json"
+      ],
+      "source_component_id": "ag:component:identity-core",
+      "target_component_id": "ag:component:contracts"
+    },
+    {
+      "dependency_name": "@aftergraph/events",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/incident/package.json"
+      ],
+      "source_component_id": "ag:component:incident",
+      "target_component_id": "ag:component:events"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/incident/package.json"
+      ],
+      "source_component_id": "ag:component:incident",
+      "target_component_id": "ag:component:kernel-core"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/intelligence-gateway/package.json"
+      ],
+      "source_component_id": "ag:component:intelligence-gateway",
+      "target_component_id": "ag:component:contracts"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/intelligence-gateway/package.json"
+      ],
+      "source_component_id": "ag:component:intelligence-gateway",
+      "target_component_id": "ag:component:kernel-core"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/job-runtime/package.json"
+      ],
+      "source_component_id": "ag:component:job-runtime",
+      "target_component_id": "ag:component:contracts"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/job-runtime/package.json"
+      ],
+      "source_component_id": "ag:component:job-runtime",
+      "target_component_id": "ag:component:kernel-core"
+    },
+    {
+      "dependency_name": "@aftergraph/mission-graph",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/job-runtime/package.json"
+      ],
+      "source_component_id": "ag:component:job-runtime",
+      "target_component_id": "ag:component:mission-graph"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/kernel-core/package.json"
+      ],
+      "source_component_id": "ag:component:kernel-core",
+      "target_component_id": "ag:component:contracts"
+    },
+    {
+      "dependency_name": "@aftergraph/identity-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/kernel-core/package.json"
+      ],
+      "source_component_id": "ag:component:kernel-core",
+      "target_component_id": "ag:component:identity-core"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/ledger/package.json"
+      ],
+      "source_component_id": "ag:component:ledger",
+      "target_component_id": "ag:component:contracts"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/ledger/package.json"
+      ],
+      "source_component_id": "ag:component:ledger",
+      "target_component_id": "ag:component:kernel-core"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/memory-store/package.json"
+      ],
+      "source_component_id": "ag:component:memory-store",
+      "target_component_id": "ag:component:contracts"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/memory-store/package.json"
+      ],
+      "source_component_id": "ag:component:memory-store",
+      "target_component_id": "ag:component:kernel-core"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/mission-graph/package.json"
+      ],
+      "source_component_id": "ag:component:mission-graph",
+      "target_component_id": "ag:component:kernel-core"
+    },
+    {
+      "dependency_name": "@aftergraph/intelligence-gateway",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/mission-inference/package.json"
+      ],
+      "source_component_id": "ag:component:mission-inference",
+      "target_component_id": "ag:component:intelligence-gateway"
+    },
+    {
+      "dependency_name": "@aftergraph/job-runtime",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/mission-inference/package.json"
+      ],
+      "source_component_id": "ag:component:mission-inference",
+      "target_component_id": "ag:component:job-runtime"
+    },
+    {
+      "dependency_name": "@aftergraph/mission-graph",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/mission-inference/package.json"
+      ],
+      "source_component_id": "ag:component:mission-inference",
+      "target_component_id": "ag:component:mission-graph"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/mission-routing/package.json"
+      ],
+      "source_component_id": "ag:component:mission-routing",
+      "target_component_id": "ag:component:contracts"
+    },
+    {
+      "dependency_name": "@aftergraph/job-runtime",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/mission-routing/package.json"
+      ],
+      "source_component_id": "ag:component:mission-routing",
+      "target_component_id": "ag:component:job-runtime"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/muse-supervisor/package.json"
+      ],
+      "source_component_id": "ag:component:muse-supervisor",
+      "target_component_id": "ag:component:contracts"
+    },
+    {
+      "dependency_name": "@aftergraph/events",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/muse-supervisor/package.json"
+      ],
+      "source_component_id": "ag:component:muse-supervisor",
+      "target_component_id": "ag:component:events"
+    },
+    {
+      "dependency_name": "@aftergraph/job-runtime",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/muse-supervisor/package.json"
+      ],
+      "source_component_id": "ag:component:muse-supervisor",
+      "target_component_id": "ag:component:job-runtime"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/muse-supervisor/package.json"
+      ],
+      "source_component_id": "ag:component:muse-supervisor",
+      "target_component_id": "ag:component:kernel-core"
+    },
+    {
+      "dependency_name": "@aftergraph/job-runtime",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/orchestrator/package.json"
+      ],
+      "source_component_id": "ag:component:orchestrator",
+      "target_component_id": "ag:component:job-runtime"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/orchestrator/package.json"
+      ],
+      "source_component_id": "ag:component:orchestrator",
+      "target_component_id": "ag:component:kernel-core"
+    },
+    {
+      "dependency_name": "@aftergraph/events",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/outcomes/package.json"
+      ],
+      "source_component_id": "ag:component:outcomes",
+      "target_component_id": "ag:component:events"
+    },
+    {
+      "dependency_name": "@aftergraph/goals",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/outcomes/package.json"
+      ],
+      "source_component_id": "ag:component:outcomes",
+      "target_component_id": "ag:component:goals"
+    },
+    {
+      "dependency_name": "@aftergraph/job-runtime",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/outcomes/package.json"
+      ],
+      "source_component_id": "ag:component:outcomes",
+      "target_component_id": "ag:component:job-runtime"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/outcomes/package.json"
+      ],
+      "source_component_id": "ag:component:outcomes",
+      "target_component_id": "ag:component:kernel-core"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/portfolio/package.json"
+      ],
+      "source_component_id": "ag:component:portfolio",
+      "target_component_id": "ag:component:contracts"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/portfolio/package.json"
+      ],
+      "source_component_id": "ag:component:portfolio",
+      "target_component_id": "ag:component:kernel-core"
+    },
+    {
+      "dependency_name": "@aftergraph/job-runtime",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/proactive-runtime/package.json"
+      ],
+      "source_component_id": "ag:component:proactive-runtime",
+      "target_component_id": "ag:component:job-runtime"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/proactive-runtime/package.json"
+      ],
+      "source_component_id": "ag:component:proactive-runtime",
+      "target_component_id": "ag:component:kernel-core"
+    },
+    {
+      "dependency_name": "@aftergraph/business-ops",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/rendetalje@4f16ed19c7d3c62564163ee38bd44ea318574a4c/package.json"
+      ],
+      "source_component_id": "ag:component:rendetalje",
+      "target_component_id": "ag:component:business-ops"
+    },
+    {
+      "dependency_name": "@aftergraph/job-runtime",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/runtime-host/package.json"
+      ],
+      "source_component_id": "ag:component:runtime-host",
+      "target_component_id": "ag:component:job-runtime"
+    },
+    {
+      "dependency_name": "@aftergraph/scheduler",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/runtime-host/package.json"
+      ],
+      "source_component_id": "ag:component:runtime-host",
+      "target_component_id": "ag:component:scheduler"
+    },
+    {
+      "dependency_name": "@aftergraph/job-runtime",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/scheduler/package.json"
+      ],
+      "source_component_id": "ag:component:scheduler",
+      "target_component_id": "ag:component:job-runtime"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/tenant-core/package.json"
+      ],
+      "source_component_id": "ag:component:tenant-core",
+      "target_component_id": "ag:component:contracts"
+    },
+    {
+      "dependency_name": "@aftergraph/authorization",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/triggers/package.json"
+      ],
+      "source_component_id": "ag:component:triggers",
+      "target_component_id": "ag:component:authorization"
+    },
+    {
+      "dependency_name": "@aftergraph/events",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/triggers/package.json"
+      ],
+      "source_component_id": "ag:component:triggers",
+      "target_component_id": "ag:component:events"
+    },
+    {
+      "dependency_name": "@aftergraph/job-runtime",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/triggers/package.json"
+      ],
+      "source_component_id": "ag:component:triggers",
+      "target_component_id": "ag:component:job-runtime"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/triggers/package.json"
+      ],
+      "source_component_id": "ag:component:triggers",
+      "target_component_id": "ag:component:kernel-core"
+    },
+    {
+      "dependency_name": "@avc/hermes-adapter",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/agent-eval/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:agent-eval",
+      "target_component_id": "ag:legacy:avc:hermes-adapter"
+    },
+    {
+      "dependency_name": "@avc/proactive-runtime",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/agent-eval/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:agent-eval",
+      "target_component_id": "ag:legacy:avc:proactive-runtime"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/agent-gateway/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:agent-gateway",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/agent-harness/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:agent-harness",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/events",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/agent-relay/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:agent-relay",
+      "target_component_id": "ag:legacy:avc:events"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/agent-relay/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:agent-relay",
+      "target_component_id": "ag:legacy:avc:kernel-core"
+    },
+    {
+      "dependency_name": "@avc/agent-harness",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/avc-desktop/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:avc-desktop",
+      "target_component_id": "ag:legacy:avc:agent-harness"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/ml/avc-eval/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:avc-eval",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/ml/avc-eval/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:avc-eval",
+      "target_component_id": "ag:legacy:avc:kernel-core"
+    },
+    {
+      "dependency_name": "@avc/avc-eval",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/ml/avc-llm/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:avc-llm",
+      "target_component_id": "ag:legacy:avc:avc-eval"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/ml/avc-llm/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:avc-llm",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/ml/avc-llm/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:avc-llm",
+      "target_component_id": "ag:legacy:avc:kernel-core"
+    },
+    {
+      "dependency_name": "@avc/agent-relay",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/company-daemon/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:company-daemon",
+      "target_component_id": "ag:legacy:avc:agent-relay"
+    },
+    {
+      "dependency_name": "@avc/constitution",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/company-daemon/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:company-daemon",
+      "target_component_id": "ag:legacy:avc:constitution"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/company-daemon/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:company-daemon",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/events",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/company-daemon/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:company-daemon",
+      "target_component_id": "ag:legacy:avc:events"
+    },
+    {
+      "dependency_name": "@avc/incident",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/company-daemon/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:company-daemon",
+      "target_component_id": "ag:legacy:avc:incident"
+    },
+    {
+      "dependency_name": "@avc/intelligence-gateway",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/company-daemon/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:company-daemon",
+      "target_component_id": "ag:legacy:avc:intelligence-gateway"
+    },
+    {
+      "dependency_name": "@avc/job-runtime",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/company-daemon/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:company-daemon",
+      "target_component_id": "ag:legacy:avc:job-runtime"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/company-daemon/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:company-daemon",
+      "target_component_id": "ag:legacy:avc:kernel-core"
+    },
+    {
+      "dependency_name": "@avc/mission-graph",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/company-daemon/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:company-daemon",
+      "target_component_id": "ag:legacy:avc:mission-graph"
+    },
+    {
+      "dependency_name": "@avc/portfolio",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/company-daemon/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:company-daemon",
+      "target_component_id": "ag:legacy:avc:portfolio"
+    },
+    {
+      "dependency_name": "@avc/proactive-runtime",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/company-daemon/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:company-daemon",
+      "target_component_id": "ag:legacy:avc:proactive-runtime"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/constitution/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:constitution",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/constitution/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:constitution",
+      "target_component_id": "ag:legacy:avc:kernel-core"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/events/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:events",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/events/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:events",
+      "target_component_id": "ag:legacy:avc:kernel-core"
+    },
+    {
+      "dependency_name": "@avc/agent-harness",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/hermes-adapter/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:hermes-adapter",
+      "target_component_id": "ag:legacy:avc:agent-harness"
+    },
+    {
+      "dependency_name": "@avc/company-daemon",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/hermes-adapter/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:hermes-adapter",
+      "target_component_id": "ag:legacy:avc:company-daemon"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/hermes-adapter/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:hermes-adapter",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/incident",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/hermes-adapter/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:hermes-adapter",
+      "target_component_id": "ag:legacy:avc:incident"
+    },
+    {
+      "dependency_name": "@avc/intelligence-gateway",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/hermes-adapter/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:hermes-adapter",
+      "target_component_id": "ag:legacy:avc:intelligence-gateway"
+    },
+    {
+      "dependency_name": "@avc/job-runtime",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/hermes-adapter/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:hermes-adapter",
+      "target_component_id": "ag:legacy:avc:job-runtime"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/hermes-adapter/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:hermes-adapter",
+      "target_component_id": "ag:legacy:avc:kernel-core"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/identity-core/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:identity-core",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/identity-worker/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:identity-worker",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/identity-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/identity-worker/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:identity-worker",
+      "target_component_id": "ag:legacy:avc:identity-core"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/incident/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:incident",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/incident/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:incident",
+      "target_component_id": "ag:legacy:avc:kernel-core"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/intelligence-gateway/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:intelligence-gateway",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/intelligence-gateway/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:intelligence-gateway",
+      "target_component_id": "ag:legacy:avc:kernel-core"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/job-runtime/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:job-runtime",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/job-runtime/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:job-runtime",
+      "target_component_id": "ag:legacy:avc:kernel-core"
+    },
+    {
+      "dependency_name": "@avc/mission-graph",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/job-runtime/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:job-runtime",
+      "target_component_id": "ag:legacy:avc:mission-graph"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/kernel-core/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:kernel-core",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/identity-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/kernel-core/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:kernel-core",
+      "target_component_id": "ag:legacy:avc:identity-core"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/product-cells/leadrescue/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:leadrescue",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/events",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/product-cells/leadrescue/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:leadrescue",
+      "target_component_id": "ag:legacy:avc:events"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/product-cells/leadrescue/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:leadrescue",
+      "target_component_id": "ag:legacy:avc:kernel-core"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/ledger/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:ledger",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/ledger/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:ledger",
+      "target_component_id": "ag:legacy:avc:kernel-core"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/memory-store/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:memory-store",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/memory-store/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:memory-store",
+      "target_component_id": "ag:legacy:avc:kernel-core"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/mission-graph/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:mission-graph",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/mission-graph/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:mission-graph",
+      "target_component_id": "ag:legacy:avc:kernel-core"
+    },
+    {
+      "dependency_name": "@avc/mission-graph",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/mission-graph-authority/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:mission-graph-authority",
+      "target_component_id": "ag:legacy:avc:mission-graph"
+    },
+    {
+      "dependency_name": "@avc/avc-llm",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/model-edge/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:model-edge",
+      "target_component_id": "ag:legacy:avc:avc-llm"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/orchestrator/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:orchestrator",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/job-runtime",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/orchestrator/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:orchestrator",
+      "target_component_id": "ag:legacy:avc:job-runtime"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/orchestrator/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:orchestrator",
+      "target_component_id": "ag:legacy:avc:kernel-core"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/peer-protocol/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:peer-protocol",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/peer-protocol/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:peer-protocol",
+      "target_component_id": "ag:legacy:avc:kernel-core"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/plugin-deepsec/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:plugin-deepsec",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/security-assurance",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/plugin-deepsec/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:plugin-deepsec",
+      "target_component_id": "ag:legacy:avc:security-assurance"
+    },
+    {
+      "dependency_name": "@avc/constitution",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/portfolio/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:portfolio",
+      "target_component_id": "ag:legacy:avc:constitution"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/portfolio/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:portfolio",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/portfolio/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:portfolio",
+      "target_component_id": "ag:legacy:avc:kernel-core"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/proactive-runtime/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:proactive-runtime",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/job-runtime",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/proactive-runtime/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:proactive-runtime",
+      "target_component_id": "ag:legacy:avc:job-runtime"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/proactive-runtime/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:proactive-runtime",
+      "target_component_id": "ag:legacy:avc:kernel-core"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/product-catalog/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:product-catalog",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/product-catalog",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/product-installer-adapter/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:product-installer-adapter",
+      "target_component_id": "ag:legacy:avc:product-catalog"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/runtime-orchestrator/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:runtime-orchestrator",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/hermes-adapter",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/runtime-orchestrator/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:runtime-orchestrator",
+      "target_component_id": "ag:legacy:avc:hermes-adapter"
+    },
+    {
+      "dependency_name": "@avc/intelligence-gateway",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/runtime-orchestrator/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:runtime-orchestrator",
+      "target_component_id": "ag:legacy:avc:intelligence-gateway"
+    },
+    {
+      "dependency_name": "@avc/job-runtime",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/runtime-orchestrator/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:runtime-orchestrator",
+      "target_component_id": "ag:legacy:avc:job-runtime"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/runtime-orchestrator/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:runtime-orchestrator",
+      "target_component_id": "ag:legacy:avc:kernel-core"
+    },
+    {
+      "dependency_name": "@avc/proactive-runtime",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/runtime-orchestrator/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:runtime-orchestrator",
+      "target_component_id": "ag:legacy:avc:proactive-runtime"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/security-assurance/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:security-assurance",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/events",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/security-assurance/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:security-assurance",
+      "target_component_id": "ag:legacy:avc:events"
+    },
+    {
+      "dependency_name": "@avc/incident",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/security-assurance/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:security-assurance",
+      "target_component_id": "ag:legacy:avc:incident"
+    },
+    {
+      "dependency_name": "@avc/invariant-registry",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/security-assurance/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:security-assurance",
+      "target_component_id": "ag:legacy:avc:invariant-registry"
+    },
+    {
+      "dependency_name": "@avc/job-runtime",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/security-assurance/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:security-assurance",
+      "target_component_id": "ag:legacy:avc:job-runtime"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/security-assurance/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:security-assurance",
+      "target_component_id": "ag:legacy:avc:kernel-core"
+    },
+    {
+      "dependency_name": "@avc/ledger",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/security-assurance/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:security-assurance",
+      "target_component_id": "ag:legacy:avc:ledger"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/product-cells/serviceops/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:serviceops",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/product-cells/serviceops/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:serviceops",
+      "target_component_id": "ag:legacy:avc:kernel-core"
+    },
+    {
+      "dependency_name": "@avc/leadrescue",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/product-cells/serviceops/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:serviceops",
+      "target_component_id": "ag:legacy:avc:leadrescue"
+    },
+    {
+      "dependency_name": "@avc/tenant-core",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/product-cells/serviceops/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:serviceops",
+      "target_component_id": "ag:legacy:avc:tenant-core"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/serviceops-mcp/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:serviceops-mcp",
+      "target_component_id": "ag:legacy:avc:contracts"
+    },
+    {
+      "dependency_name": "@avc/serviceops",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/serviceops-mcp/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:serviceops-mcp",
+      "target_component_id": "ag:legacy:avc:serviceops"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/tenant-core/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:tenant-core",
+      "target_component_id": "ag:legacy:avc:contracts"
+    }
+  ],
+  "nodes": [
+    {
+      "component_id": "ag:component:agent-eval",
+      "name": "@aftergraph/agent-eval",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "WITNESS"
+    },
+    {
+      "component_id": "ag:component:agent-harness",
+      "name": "@aftergraph/agent-harness",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "WITNESS"
+    },
+    {
+      "component_id": "ag:component:agent-relay",
+      "name": "@aftergraph/agent-relay",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:component:atlas",
+      "name": "aftergraph-atlas",
+      "semantic_epistemic_status": "DECLARED",
+      "semantic_family": "EXPERIENCE"
+    },
+    {
+      "component_id": "ag:component:authorization",
+      "name": "@aftergraph/authorization",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "COVENANT_SUPPORT"
+    },
+    {
+      "component_id": "ag:component:brand",
+      "name": "@aftergraph/brand",
+      "semantic_epistemic_status": "DECLARED",
+      "semantic_family": "COMMONS"
+    },
+    {
+      "component_id": "ag:component:business-ops",
+      "name": "@aftergraph/business-ops",
+      "semantic_epistemic_status": "DECLARED",
+      "semantic_family": "DOMAIN"
+    },
+    {
+      "component_id": "ag:component:constitution",
+      "name": "@aftergraph/constitution",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "COVENANT_SUPPORT"
+    },
+    {
+      "component_id": "ag:component:contracts",
+      "name": "@aftergraph/contracts",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "COMMONS"
+    },
+    {
+      "component_id": "ag:component:definitions",
+      "name": "@aftergraph/definitions",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "COMMONS"
+    },
+    {
+      "component_id": "ag:component:docs",
+      "name": "@aftergraph/docs",
+      "semantic_epistemic_status": "DECLARED",
+      "semantic_family": "COMMONS"
+    },
+    {
+      "component_id": "ag:component:events",
+      "name": "@aftergraph/events",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:component:goals",
+      "name": "@aftergraph/goals",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "HELM"
+    },
+    {
+      "component_id": "ag:component:heartbeat",
+      "name": "@aftergraph/heartbeat",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:component:identity-core",
+      "name": "@aftergraph/identity-core",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "COVENANT_SUPPORT"
+    },
+    {
+      "component_id": "ag:component:incident",
+      "name": "@aftergraph/incident",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "SIGHTLINE"
+    },
+    {
+      "component_id": "ag:component:intelligence-gateway",
+      "name": "@aftergraph/intelligence-gateway",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "HELM"
+    },
+    {
+      "component_id": "ag:component:invariants",
+      "name": "@aftergraph/invariants",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "COVENANT_SUPPORT"
+    },
+    {
+      "component_id": "ag:component:job-runtime",
+      "name": "@aftergraph/job-runtime",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:component:kernel-core",
+      "name": "@aftergraph/kernel-core",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:component:ledger",
+      "name": "@aftergraph/ledger",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "HELM"
+    },
+    {
+      "component_id": "ag:component:memory-store",
+      "name": "@aftergraph/memory-store",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "HELM"
+    },
+    {
+      "component_id": "ag:component:metrics",
+      "name": "@aftergraph/metrics",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "SIGHTLINE"
+    },
+    {
+      "component_id": "ag:component:mission-graph",
+      "name": "@aftergraph/mission-graph",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "HELM"
+    },
+    {
+      "component_id": "ag:component:mission-inference",
+      "name": "@aftergraph/mission-inference",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "HELM"
+    },
+    {
+      "component_id": "ag:component:mission-routing",
+      "name": "@aftergraph/mission-routing",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "HELM"
+    },
+    {
+      "component_id": "ag:component:muse-supervisor",
+      "name": "@aftergraph/muse-supervisor",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "HELM"
+    },
+    {
+      "component_id": "ag:component:observability",
+      "name": "@aftergraph/observability",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "SIGHTLINE"
+    },
+    {
+      "component_id": "ag:component:orchestrator",
+      "name": "@aftergraph/orchestrator",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:component:outcomes",
+      "name": "@aftergraph/outcomes",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "HELM"
+    },
+    {
+      "component_id": "ag:component:peer-protocol",
+      "name": "@aftergraph/peer-protocol",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:component:portfolio",
+      "name": "@aftergraph/portfolio",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "HELM"
+    },
+    {
+      "component_id": "ag:component:proactive-runtime",
+      "name": "@aftergraph/proactive-runtime",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:component:promotion-gates",
+      "name": "@aftergraph/promotion-gates",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "COVENANT_SUPPORT"
+    },
+    {
+      "component_id": "ag:component:relay",
+      "name": "aftergraph-relay",
+      "semantic_epistemic_status": "DECLARED",
+      "semantic_family": "EXPERIENCE"
+    },
+    {
+      "component_id": "ag:component:rendetalje",
+      "name": "@aftergraph/rendetalje",
+      "semantic_epistemic_status": "DECLARED",
+      "semantic_family": "DOMAIN"
+    },
+    {
+      "component_id": "ag:component:runtime",
+      "name": "@aftergraph/runtime",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:component:runtime-host",
+      "name": "@aftergraph/runtime-host",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:component:scheduler",
+      "name": "@aftergraph/scheduler",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:component:sentinel",
+      "name": "@aftergraph/sentinel",
+      "semantic_epistemic_status": "DECLARED",
+      "semantic_family": "WITNESS"
+    },
+    {
+      "component_id": "ag:component:studio",
+      "name": "@aftergraph/studio",
+      "semantic_epistemic_status": "DECLARED",
+      "semantic_family": "EXPERIENCE"
+    },
+    {
+      "component_id": "ag:component:telemetry",
+      "name": "@aftergraph/telemetry",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "SIGHTLINE"
+    },
+    {
+      "component_id": "ag:component:tenant-core",
+      "name": "@aftergraph/tenant-core",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "COVENANT_SUPPORT"
+    },
+    {
+      "component_id": "ag:component:triggers",
+      "name": "@aftergraph/triggers",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:component:veranza",
+      "name": "@aftergraph/veranza",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "WITNESS"
+    },
+    {
+      "component_id": "ag:component:veranza-control",
+      "name": "@aftergraph/veranza-control",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "WITNESS"
+    },
+    {
+      "component_id": "ag:component:veranza-detect",
+      "name": "@aftergraph/veranza-detect",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "WITNESS"
+    },
+    {
+      "component_id": "ag:component:veranza-evidence",
+      "name": "@aftergraph/veranza-evidence",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "WITNESS"
+    },
+    {
+      "component_id": "ag:component:veranza-gateway",
+      "name": "@aftergraph/veranza-gateway",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "WITNESS"
+    },
+    {
+      "component_id": "ag:component:veranza-identity",
+      "name": "@aftergraph/veranza-identity",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "WITNESS"
+    },
+    {
+      "component_id": "ag:component:veranza-ledger",
+      "name": "@aftergraph/veranza-ledger",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "WITNESS"
+    },
+    {
+      "component_id": "ag:component:veranza-runtime",
+      "name": "@aftergraph/veranza-runtime",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "WITNESS"
+    },
+    {
+      "component_id": "ag:component:work-intelligence",
+      "name": "aftergraph-work-intelligence",
+      "semantic_epistemic_status": "DECLARED",
+      "semantic_family": "SIGHTLINE"
+    },
+    {
+      "component_id": "ag:legacy:avc:agent-eval",
+      "name": "@avc/agent-eval",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "WITNESS"
+    },
+    {
+      "component_id": "ag:legacy:avc:agent-gateway",
+      "name": "@avc/agent-gateway",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:legacy:avc:agent-harness",
+      "name": "@avc/agent-harness",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "WITNESS"
+    },
+    {
+      "component_id": "ag:legacy:avc:agent-observability",
+      "name": "@avc/agent-observability",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "SIGHTLINE"
+    },
+    {
+      "component_id": "ag:legacy:avc:agent-relay",
+      "name": "@avc/agent-relay",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:legacy:avc:avc-desktop",
+      "name": "@avc/avc-desktop",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "EXPERIENCE"
+    },
+    {
+      "component_id": "ag:legacy:avc:avc-eval",
+      "name": "@avc/avc-eval",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "WITNESS"
+    },
+    {
+      "component_id": "ag:legacy:avc:avc-llm",
+      "name": "@avc/avc-llm",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "REFINERY"
+    },
+    {
+      "component_id": "ag:legacy:avc:cli",
+      "name": "@avc/cli",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "EXPERIENCE"
+    },
+    {
+      "component_id": "ag:legacy:avc:company-daemon",
+      "name": "@avc/company-daemon",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:legacy:avc:constitution",
+      "name": "@avc/constitution",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "COVENANT_SUPPORT"
+    },
+    {
+      "component_id": "ag:legacy:avc:contracts",
+      "name": "@avc/contracts",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "COMMONS"
+    },
+    {
+      "component_id": "ag:legacy:avc:creative-assets",
+      "name": "@avc/creative-assets",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "COMMONS"
+    },
+    {
+      "component_id": "ag:legacy:avc:events",
+      "name": "@avc/events",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:legacy:avc:hermes-adapter",
+      "name": "@avc/hermes-adapter",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:legacy:avc:identity-core",
+      "name": "@avc/identity-core",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "COVENANT_SUPPORT"
+    },
+    {
+      "component_id": "ag:legacy:avc:identity-worker",
+      "name": "@avc/identity-worker",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "COVENANT_SUPPORT"
+    },
+    {
+      "component_id": "ag:legacy:avc:incident",
+      "name": "@avc/incident",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "SIGHTLINE"
+    },
+    {
+      "component_id": "ag:legacy:avc:intelligence-gateway",
+      "name": "@avc/intelligence-gateway",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "HELM"
+    },
+    {
+      "component_id": "ag:legacy:avc:invariant-registry",
+      "name": "@avc/invariant-registry",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "COVENANT_SUPPORT"
+    },
+    {
+      "component_id": "ag:legacy:avc:job-runtime",
+      "name": "@avc/job-runtime",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:legacy:avc:kernel-core",
+      "name": "@avc/kernel-core",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:legacy:avc:leadrescue",
+      "name": "@avc/leadrescue",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DOMAIN"
+    },
+    {
+      "component_id": "ag:legacy:avc:ledger",
+      "name": "@avc/ledger",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "HELM"
+    },
+    {
+      "component_id": "ag:legacy:avc:memory-store",
+      "name": "@avc/memory-store",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "HELM"
+    },
+    {
+      "component_id": "ag:legacy:avc:mission-graph",
+      "name": "@avc/mission-graph",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "HELM"
+    },
+    {
+      "component_id": "ag:legacy:avc:mission-graph-authority",
+      "name": "@avc/mission-graph-authority",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "COVENANT_SUPPORT"
+    },
+    {
+      "component_id": "ag:legacy:avc:model-edge",
+      "name": "@avc/model-edge",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "REFINERY"
+    },
+    {
+      "component_id": "ag:legacy:avc:orchestrator",
+      "name": "@avc/orchestrator",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:legacy:avc:peer-protocol",
+      "name": "@avc/peer-protocol",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:legacy:avc:plugin-deepsec",
+      "name": "@avc/plugin-deepsec",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "WITNESS"
+    },
+    {
+      "component_id": "ag:legacy:avc:portfolio",
+      "name": "@avc/portfolio",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "HELM"
+    },
+    {
+      "component_id": "ag:legacy:avc:proactive-runtime",
+      "name": "@avc/proactive-runtime",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:legacy:avc:product-catalog",
+      "name": "@avc/product-catalog",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "LOOM"
+    },
+    {
+      "component_id": "ag:legacy:avc:product-installer-adapter",
+      "name": "@avc/product-installer-adapter",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:legacy:avc:runner-bridge",
+      "name": "@avc/runner-bridge",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:legacy:avc:runtime-metrics",
+      "name": "@avc/runtime-metrics",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "SIGHTLINE"
+    },
+    {
+      "component_id": "ag:legacy:avc:runtime-orchestrator",
+      "name": "@avc/runtime-orchestrator",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DRIVE"
+    },
+    {
+      "component_id": "ag:legacy:avc:security-assurance",
+      "name": "@avc/security-assurance",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "WITNESS"
+    },
+    {
+      "component_id": "ag:legacy:avc:serviceops",
+      "name": "@avc/serviceops",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DOMAIN"
+    },
+    {
+      "component_id": "ag:legacy:avc:serviceops-mcp",
+      "name": "@avc/serviceops-mcp",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "DOMAIN"
+    },
+    {
+      "component_id": "ag:legacy:avc:telemetry",
+      "name": "@avc/telemetry",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "SIGHTLINE"
+    },
+    {
+      "component_id": "ag:legacy:avc:tenant-core",
+      "name": "@avc/tenant-core",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "COVENANT_SUPPORT"
+    },
+    {
+      "component_id": "ag:legacy:avc:visual-verifier",
+      "name": "@avc/visual-verifier",
+      "semantic_epistemic_status": "INFERRED",
+      "semantic_family": "WITNESS"
+    }
+  ],
+  "policy": {
+    "dependency_edge_does_not_grant_ownership": true,
+    "dev_dependencies_excluded": true,
+    "exact_snapshot_manifests_only": true
+  },
+  "schema_version": "roro-component-dependency-graph/0.1",
+  "source_snapshot_generated_at": "2026-09-16T08:04:39Z",
+  "unresolved": []
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/roro/0.1/component-semantic-projection.schema.json",
+  "title": "R.O.R.O. Component Semantic Projection 0.1",
+  "type": "object",
+  "required": ["schema_version", "source_snapshot_generated_at", "gate_scope", "policy", "components"],
+  "properties": {
+    "schema_version": {"const": "roro-component-semantic-projection/0.1"},
+    "source_snapshot_generated_at": {"type": "string", "minLength": 1},
+    "gate_scope": {"const": "SOURCE_TOPOLOGY_ONLY"},
+    "policy": {"type": "object"},
+    "components": {"type": "array", "items": {"$ref": "#/$defs/component"}}
+  },
+  "$defs": {
+    "component": {
+      "type": "object",
+      "required": ["component_id", "semantic_family", "epistemic_status", "classification_basis", "source_repositories", "legacy"],
+      "properties": {
+        "component_id": {"type": "string", "minLength": 1},
+        "semantic_family": {"type": "string", "minLength": 1},
+        "epistemic_status": {"enum": ["DECLARED", "OBSERVED", "INFERRED", "UNKNOWN"]},
+        "classification_basis": {"type": "string", "minLength": 1},
+        "source_repositories": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+        "legacy": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

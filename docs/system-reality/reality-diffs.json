@@ -1,0 +1,60 @@
+{
+  "as_of": "2026-09-16T08:04:39Z",
+  "diffs": [
+    {
+      "classification": "DRIFT",
+      "diff_id": "diff:operational:opgap:credential:snapshots",
+      "dimension": "CREDENTIAL_SNAPSHOT_SPRAWL",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "roro-artifact://docs/system-reality/operational-reality-gaps.json#opgap:credential:snapshots"
+      ],
+      "reason": "19 historical Hermes backup/state-snapshot env files were observed.",
+      "severity": "HIGH",
+      "subject": "credential://lenovo/hermes-snapshots"
+    },
+    {
+      "classification": "DRIFT",
+      "diff_id": "diff:operational:opgap:route:wie",
+      "dimension": "PUBLIC_ROUTE_ABSENT",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "roro-artifact://docs/system-reality/operational-reality-gaps.json#opgap:route:wie"
+      ],
+      "reason": "live production and current backend/public evidence use work-intelligence.aftergraph.org; WI frontend still carries stale wie.aftergraph.org canonical references",
+      "severity": "MEDIUM",
+      "subject": "route://wie.aftergraph.org"
+    },
+    {
+      "classification": "DRIFT",
+      "diff_id": "diff:operational:opgap:runtime:declared-control-plane",
+      "dimension": "DECLARED_RUNTIME_MISMATCH",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "roro-artifact://docs/system-reality/operational-reality-gaps.json#opgap:runtime:declared-control-plane"
+      ],
+      "reason": "The historical AVC KVM guest design remains documented, while current observed Aftergraph services run on the outer VDS host. For Architecture vNext this mismatch is explicitly accepted as transitional reality so source/component consolidation can be evaluated without pretending the current host layout is the target architecture.",
+      "severity": "HIGH",
+      "subject": "runtime://vds-control-plane"
+    },
+    {
+      "classification": "DRIFT",
+      "diff_id": "diff:operational:opgap:runtime:host-concentration",
+      "dimension": "HOST_CONCENTRATION",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "roro-artifact://docs/system-reality/operational-reality-gaps.json#opgap:runtime:host-concentration"
+      ],
+      "reason": "Multiple control, execution, agent and CI services are concentrated on the outer VDS host.",
+      "severity": "HIGH",
+      "subject": "runtime://vmi3517816"
+    }
+  ],
+  "schema_version": "roro-reality-diffs/0.1",
+  "summary": {
+    "conflicting": 0,
+    "stale": 0,
+    "total": 4,
+    "unknown": 0
+  }
+}

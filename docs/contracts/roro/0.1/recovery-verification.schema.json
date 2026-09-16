@@ -1,0 +1,57 @@
+{
+  "$id": "contract:roro-recovery-verification/0.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "epistemic_status": {
+      "enum": [
+        "VERIFIED",
+        "OBSERVED",
+        "INFERRED",
+        "DECLARED",
+        "PROPOSED",
+        "STALE",
+        "CONFLICTING",
+        "UNKNOWN"
+      ]
+    },
+    "evidence_refs": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "reason": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "scope": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "service": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "verdict": {
+      "enum": [
+        "RECOVERABLE_VERIFIED",
+        "DATA_RECOVERY_VERIFIED",
+        "RESTORE_GUARDS_VERIFIED",
+        "FAILED",
+        "UNKNOWN"
+      ]
+    }
+  },
+  "required": [
+    "service",
+    "verdict",
+    "epistemic_status",
+    "scope",
+    "reason",
+    "evidence_refs"
+  ],
+  "title": "R.O.R.O. Recovery Verification",
+  "type": "object"
+}

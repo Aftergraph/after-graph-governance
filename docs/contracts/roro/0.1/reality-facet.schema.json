@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/roro/0.1/reality-facet.schema.json",
+  "title": "R.O.R.O. Reality Facet and Epistemic Status",
+  "description": "Shared vocabulary. Reality facets describe which aspect of reality a claim addresses; epistemic status describes how the claim is known.",
+  "$defs": {
+    "reality_facet": {
+      "type": "string",
+      "enum": ["DECLARED", "CANONICAL", "DESIRED", "INSTALLED", "CONFIGURED", "RUNNING", "REACHABLE", "HEALTHY", "VERIFIED", "RECOVERABLE"]
+    },
+    "epistemic_status": {
+      "type": "string",
+      "enum": ["VERIFIED", "OBSERVED", "INFERRED", "DECLARED", "PROPOSED", "STALE", "CONFLICTING", "UNKNOWN"]
+    }
+  }
+}

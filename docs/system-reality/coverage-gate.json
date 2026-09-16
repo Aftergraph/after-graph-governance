@@ -1,0 +1,28 @@
+{
+  "as_of": "2026-09-16T08:04:39Z",
+  "blockers": [],
+  "decision": "READY",
+  "excluded_dimensions": [
+    "runtime",
+    "recovery",
+    "cloud",
+    "reality_diff"
+  ],
+  "excluded_migrations": [
+    "RUNTIME_MIGRATION",
+    "STATE_MIGRATION",
+    "CREDENTIAL_MIGRATION",
+    "AUTHORITY_MIGRATION",
+    "PRODUCTION_CUTOVER"
+  ],
+  "gate": "SOURCE_TOPOLOGY_CONSOLIDATION",
+  "required_dimensions": [
+    "source",
+    "deployment",
+    "credentials",
+    "routes"
+  ],
+  "rule": "Source/topology consolidation may proceed only when required dimensions are clear. READY does not authorize runtime, state, credential, authority, or production cutover migration.",
+  "schema_version": "roro-coverage-gate/0.1",
+  "scope": "SOURCE_TOPOLOGY_ONLY"
+}

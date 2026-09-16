@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/circuit-validation/0.1",
+  "title": "Aftergraph Circuit Validation 0.1",
+  "type": "object",
+  "required": ["schema_version", "vector_id", "circuit_id", "composition_status", "violations", "execution_authorized", "authority_granted"],
+  "properties": {
+    "schema_version": {"const": "circuit-validation/0.1"},
+    "vector_id": {"type": "string", "minLength": 1},
+    "circuit_id": {"type": "string", "minLength": 1},
+    "composition_status": {"enum": ["VALID", "INVALID"]},
+    "execution_authorized": {"const": false},
+    "authority_granted": {"const": false},
+    "violations": {"type": "array", "items": {"$ref": "#/$defs/violation"}}
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "violation": {
+      "type": "object",
+      "required": ["rule_id", "message"],
+      "properties": {
+        "rule_id": {"type": "string", "minLength": 1},
+        "message": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    }
+  }
+}

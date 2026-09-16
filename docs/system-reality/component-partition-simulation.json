@@ -1,0 +1,1008 @@
+{
+  "candidates": [
+    {
+      "authorizes_source_moves": false,
+      "candidate_id": "current-repo",
+      "dimensions": {
+        "cross_family_colocations": 1312,
+        "largest_workspace_components": 44,
+        "legacy_canonical_colocations": 0,
+        "mixed_visibility_workspaces": 0,
+        "source_repository_split_count": 0,
+        "workspace_count": 12
+      },
+      "hard_blockers": [],
+      "target_architecture_claim": false,
+      "workspaces": [
+        {
+          "component_ids": [
+            "ag:component:atlas"
+          ],
+          "visibility": "public",
+          "workspace_id": "Aftergraph/aftergraph.org"
+        },
+        {
+          "component_ids": [
+            "ag:legacy:avc:agent-eval",
+            "ag:legacy:avc:agent-gateway",
+            "ag:legacy:avc:agent-harness",
+            "ag:legacy:avc:agent-observability",
+            "ag:legacy:avc:agent-relay",
+            "ag:legacy:avc:avc-desktop",
+            "ag:legacy:avc:avc-eval",
+            "ag:legacy:avc:avc-llm",
+            "ag:legacy:avc:cli",
+            "ag:legacy:avc:company-daemon",
+            "ag:legacy:avc:constitution",
+            "ag:legacy:avc:contracts",
+            "ag:legacy:avc:creative-assets",
+            "ag:legacy:avc:events",
+            "ag:legacy:avc:hermes-adapter",
+            "ag:legacy:avc:identity-core",
+            "ag:legacy:avc:identity-worker",
+            "ag:legacy:avc:incident",
+            "ag:legacy:avc:intelligence-gateway",
+            "ag:legacy:avc:invariant-registry",
+            "ag:legacy:avc:job-runtime",
+            "ag:legacy:avc:kernel-core",
+            "ag:legacy:avc:leadrescue",
+            "ag:legacy:avc:ledger",
+            "ag:legacy:avc:memory-store",
+            "ag:legacy:avc:mission-graph",
+            "ag:legacy:avc:mission-graph-authority",
+            "ag:legacy:avc:model-edge",
+            "ag:legacy:avc:orchestrator",
+            "ag:legacy:avc:peer-protocol",
+            "ag:legacy:avc:plugin-deepsec",
+            "ag:legacy:avc:portfolio",
+            "ag:legacy:avc:proactive-runtime",
+            "ag:legacy:avc:product-catalog",
+            "ag:legacy:avc:product-installer-adapter",
+            "ag:legacy:avc:runner-bridge",
+            "ag:legacy:avc:runtime-metrics",
+            "ag:legacy:avc:runtime-orchestrator",
+            "ag:legacy:avc:security-assurance",
+            "ag:legacy:avc:serviceops",
+            "ag:legacy:avc:serviceops-mcp",
+            "ag:legacy:avc:telemetry",
+            "ag:legacy:avc:tenant-core",
+            "ag:legacy:avc:visual-verifier"
+          ],
+          "visibility": "private",
+          "workspace_id": "Aftergraph/autonomous-venture-company"
+        },
+        {
+          "component_ids": [
+            "ag:component:brand"
+          ],
+          "visibility": "public",
+          "workspace_id": "Aftergraph/brand"
+        },
+        {
+          "component_ids": [
+            "ag:component:business-ops"
+          ],
+          "visibility": "private",
+          "workspace_id": "Aftergraph/business-ops"
+        },
+        {
+          "component_ids": [
+            "ag:component:docs"
+          ],
+          "visibility": "public",
+          "workspace_id": "Aftergraph/docs"
+        },
+        {
+          "component_ids": [
+            "ag:component:relay"
+          ],
+          "visibility": "private",
+          "workspace_id": "Aftergraph/relay"
+        },
+        {
+          "component_ids": [
+            "ag:component:rendetalje"
+          ],
+          "visibility": "private",
+          "workspace_id": "Aftergraph/rendetalje"
+        },
+        {
+          "component_ids": [
+            "ag:component:agent-eval",
+            "ag:component:agent-harness",
+            "ag:component:agent-relay",
+            "ag:component:authorization",
+            "ag:component:constitution",
+            "ag:component:contracts",
+            "ag:component:definitions",
+            "ag:component:events",
+            "ag:component:goals",
+            "ag:component:heartbeat",
+            "ag:component:identity-core",
+            "ag:component:incident",
+            "ag:component:intelligence-gateway",
+            "ag:component:invariants",
+            "ag:component:job-runtime",
+            "ag:component:kernel-core",
+            "ag:component:ledger",
+            "ag:component:memory-store",
+            "ag:component:metrics",
+            "ag:component:mission-graph",
+            "ag:component:mission-inference",
+            "ag:component:mission-routing",
+            "ag:component:muse-supervisor",
+            "ag:component:observability",
+            "ag:component:orchestrator",
+            "ag:component:outcomes",
+            "ag:component:peer-protocol",
+            "ag:component:portfolio",
+            "ag:component:proactive-runtime",
+            "ag:component:promotion-gates",
+            "ag:component:runtime",
+            "ag:component:runtime-host",
+            "ag:component:scheduler",
+            "ag:component:telemetry",
+            "ag:component:tenant-core",
+            "ag:component:triggers"
+          ],
+          "visibility": "private",
+          "workspace_id": "Aftergraph/runtime"
+        },
+        {
+          "component_ids": [
+            "ag:component:sentinel"
+          ],
+          "visibility": "public",
+          "workspace_id": "Aftergraph/sentinel"
+        },
+        {
+          "component_ids": [
+            "ag:component:studio"
+          ],
+          "visibility": "public",
+          "workspace_id": "Aftergraph/studio"
+        },
+        {
+          "component_ids": [
+            "ag:component:veranza",
+            "ag:component:veranza-control",
+            "ag:component:veranza-detect",
+            "ag:component:veranza-evidence",
+            "ag:component:veranza-gateway",
+            "ag:component:veranza-identity",
+            "ag:component:veranza-ledger",
+            "ag:component:veranza-runtime"
+          ],
+          "visibility": "private",
+          "workspace_id": "Aftergraph/veranza"
+        },
+        {
+          "component_ids": [
+            "ag:component:work-intelligence"
+          ],
+          "visibility": "public",
+          "workspace_id": "Aftergraph/wi-backend"
+        }
+      ]
+    },
+    {
+      "authorizes_source_moves": false,
+      "candidate_id": "family-only",
+      "dimensions": {
+        "cross_family_colocations": 0,
+        "largest_workspace_components": 25,
+        "legacy_canonical_colocations": 348,
+        "mixed_visibility_workspaces": 4,
+        "source_repository_split_count": 14,
+        "workspace_count": 10
+      },
+      "hard_blockers": [
+        {
+          "id": "mixed-visibility"
+        }
+      ],
+      "target_architecture_claim": false,
+      "workspaces": [
+        {
+          "component_ids": [
+            "ag:component:brand",
+            "ag:component:contracts",
+            "ag:component:definitions",
+            "ag:component:docs",
+            "ag:legacy:avc:contracts",
+            "ag:legacy:avc:creative-assets"
+          ],
+          "visibility": "MIXED",
+          "workspace_id": "COMMONS"
+        },
+        {
+          "component_ids": [
+            "ag:component:authorization",
+            "ag:component:constitution",
+            "ag:component:identity-core",
+            "ag:component:invariants",
+            "ag:component:promotion-gates",
+            "ag:component:tenant-core",
+            "ag:legacy:avc:constitution",
+            "ag:legacy:avc:identity-core",
+            "ag:legacy:avc:identity-worker",
+            "ag:legacy:avc:invariant-registry",
+            "ag:legacy:avc:mission-graph-authority",
+            "ag:legacy:avc:tenant-core"
+          ],
+          "visibility": "private",
+          "workspace_id": "COVENANT_SUPPORT"
+        },
+        {
+          "component_ids": [
+            "ag:component:business-ops",
+            "ag:component:rendetalje",
+            "ag:legacy:avc:leadrescue",
+            "ag:legacy:avc:serviceops",
+            "ag:legacy:avc:serviceops-mcp"
+          ],
+          "visibility": "private",
+          "workspace_id": "DOMAIN"
+        },
+        {
+          "component_ids": [
+            "ag:component:agent-relay",
+            "ag:component:events",
+            "ag:component:heartbeat",
+            "ag:component:job-runtime",
+            "ag:component:kernel-core",
+            "ag:component:orchestrator",
+            "ag:component:peer-protocol",
+            "ag:component:proactive-runtime",
+            "ag:component:runtime",
+            "ag:component:runtime-host",
+            "ag:component:scheduler",
+            "ag:component:triggers",
+            "ag:legacy:avc:agent-gateway",
+            "ag:legacy:avc:agent-relay",
+            "ag:legacy:avc:company-daemon",
+            "ag:legacy:avc:events",
+            "ag:legacy:avc:hermes-adapter",
+            "ag:legacy:avc:job-runtime",
+            "ag:legacy:avc:kernel-core",
+            "ag:legacy:avc:orchestrator",
+            "ag:legacy:avc:peer-protocol",
+            "ag:legacy:avc:proactive-runtime",
+            "ag:legacy:avc:product-installer-adapter",
+            "ag:legacy:avc:runner-bridge",
+            "ag:legacy:avc:runtime-orchestrator"
+          ],
+          "visibility": "private",
+          "workspace_id": "DRIVE"
+        },
+        {
+          "component_ids": [
+            "ag:component:atlas",
+            "ag:component:relay",
+            "ag:component:studio",
+            "ag:legacy:avc:avc-desktop",
+            "ag:legacy:avc:cli"
+          ],
+          "visibility": "MIXED",
+          "workspace_id": "EXPERIENCE"
+        },
+        {
+          "component_ids": [
+            "ag:component:goals",
+            "ag:component:intelligence-gateway",
+            "ag:component:ledger",
+            "ag:component:memory-store",
+            "ag:component:mission-graph",
+            "ag:component:mission-inference",
+            "ag:component:mission-routing",
+            "ag:component:muse-supervisor",
+            "ag:component:outcomes",
+            "ag:component:portfolio",
+            "ag:legacy:avc:intelligence-gateway",
+            "ag:legacy:avc:ledger",
+            "ag:legacy:avc:memory-store",
+            "ag:legacy:avc:mission-graph",
+            "ag:legacy:avc:portfolio"
+          ],
+          "visibility": "private",
+          "workspace_id": "HELM"
+        },
+        {
+          "component_ids": [
+            "ag:legacy:avc:product-catalog"
+          ],
+          "visibility": "private",
+          "workspace_id": "LOOM"
+        },
+        {
+          "component_ids": [
+            "ag:legacy:avc:avc-llm",
+            "ag:legacy:avc:model-edge"
+          ],
+          "visibility": "private",
+          "workspace_id": "REFINERY"
+        },
+        {
+          "component_ids": [
+            "ag:component:incident",
+            "ag:component:metrics",
+            "ag:component:observability",
+            "ag:component:telemetry",
+            "ag:component:work-intelligence",
+            "ag:legacy:avc:agent-observability",
+            "ag:legacy:avc:incident",
+            "ag:legacy:avc:runtime-metrics",
+            "ag:legacy:avc:telemetry"
+          ],
+          "visibility": "MIXED",
+          "workspace_id": "SIGHTLINE"
+        },
+        {
+          "component_ids": [
+            "ag:component:agent-eval",
+            "ag:component:agent-harness",
+            "ag:component:sentinel",
+            "ag:component:veranza",
+            "ag:component:veranza-control",
+            "ag:component:veranza-detect",
+            "ag:component:veranza-evidence",
+            "ag:component:veranza-gateway",
+            "ag:component:veranza-identity",
+            "ag:component:veranza-ledger",
+            "ag:component:veranza-runtime",
+            "ag:legacy:avc:agent-eval",
+            "ag:legacy:avc:agent-harness",
+            "ag:legacy:avc:avc-eval",
+            "ag:legacy:avc:plugin-deepsec",
+            "ag:legacy:avc:security-assurance",
+            "ag:legacy:avc:visual-verifier"
+          ],
+          "visibility": "MIXED",
+          "workspace_id": "WITNESS"
+        }
+      ]
+    },
+    {
+      "authorizes_source_moves": false,
+      "candidate_id": "family-visibility",
+      "dimensions": {
+        "cross_family_colocations": 0,
+        "largest_workspace_components": 25,
+        "legacy_canonical_colocations": 330,
+        "mixed_visibility_workspaces": 0,
+        "source_repository_split_count": 14,
+        "workspace_count": 14
+      },
+      "hard_blockers": [],
+      "target_architecture_claim": false,
+      "workspaces": [
+        {
+          "component_ids": [
+            "ag:component:contracts",
+            "ag:component:definitions",
+            "ag:legacy:avc:contracts",
+            "ag:legacy:avc:creative-assets"
+          ],
+          "visibility": "private",
+          "workspace_id": "COMMONS::private"
+        },
+        {
+          "component_ids": [
+            "ag:component:brand",
+            "ag:component:docs"
+          ],
+          "visibility": "public",
+          "workspace_id": "COMMONS::public"
+        },
+        {
+          "component_ids": [
+            "ag:component:authorization",
+            "ag:component:constitution",
+            "ag:component:identity-core",
+            "ag:component:invariants",
+            "ag:component:promotion-gates",
+            "ag:component:tenant-core",
+            "ag:legacy:avc:constitution",
+            "ag:legacy:avc:identity-core",
+            "ag:legacy:avc:identity-worker",
+            "ag:legacy:avc:invariant-registry",
+            "ag:legacy:avc:mission-graph-authority",
+            "ag:legacy:avc:tenant-core"
+          ],
+          "visibility": "private",
+          "workspace_id": "COVENANT_SUPPORT::private"
+        },
+        {
+          "component_ids": [
+            "ag:component:business-ops",
+            "ag:component:rendetalje",
+            "ag:legacy:avc:leadrescue",
+            "ag:legacy:avc:serviceops",
+            "ag:legacy:avc:serviceops-mcp"
+          ],
+          "visibility": "private",
+          "workspace_id": "DOMAIN::private"
+        },
+        {
+          "component_ids": [
+            "ag:component:agent-relay",
+            "ag:component:events",
+            "ag:component:heartbeat",
+            "ag:component:job-runtime",
+            "ag:component:kernel-core",
+            "ag:component:orchestrator",
+            "ag:component:peer-protocol",
+            "ag:component:proactive-runtime",
+            "ag:component:runtime",
+            "ag:component:runtime-host",
+            "ag:component:scheduler",
+            "ag:component:triggers",
+            "ag:legacy:avc:agent-gateway",
+            "ag:legacy:avc:agent-relay",
+            "ag:legacy:avc:company-daemon",
+            "ag:legacy:avc:events",
+            "ag:legacy:avc:hermes-adapter",
+            "ag:legacy:avc:job-runtime",
+            "ag:legacy:avc:kernel-core",
+            "ag:legacy:avc:orchestrator",
+            "ag:legacy:avc:peer-protocol",
+            "ag:legacy:avc:proactive-runtime",
+            "ag:legacy:avc:product-installer-adapter",
+            "ag:legacy:avc:runner-bridge",
+            "ag:legacy:avc:runtime-orchestrator"
+          ],
+          "visibility": "private",
+          "workspace_id": "DRIVE::private"
+        },
+        {
+          "component_ids": [
+            "ag:component:relay",
+            "ag:legacy:avc:avc-desktop",
+            "ag:legacy:avc:cli"
+          ],
+          "visibility": "private",
+          "workspace_id": "EXPERIENCE::private"
+        },
+        {
+          "component_ids": [
+            "ag:component:atlas",
+            "ag:component:studio"
+          ],
+          "visibility": "public",
+          "workspace_id": "EXPERIENCE::public"
+        },
+        {
+          "component_ids": [
+            "ag:component:goals",
+            "ag:component:intelligence-gateway",
+            "ag:component:ledger",
+            "ag:component:memory-store",
+            "ag:component:mission-graph",
+            "ag:component:mission-inference",
+            "ag:component:mission-routing",
+            "ag:component:muse-supervisor",
+            "ag:component:outcomes",
+            "ag:component:portfolio",
+            "ag:legacy:avc:intelligence-gateway",
+            "ag:legacy:avc:ledger",
+            "ag:legacy:avc:memory-store",
+            "ag:legacy:avc:mission-graph",
+            "ag:legacy:avc:portfolio"
+          ],
+          "visibility": "private",
+          "workspace_id": "HELM::private"
+        },
+        {
+          "component_ids": [
+            "ag:legacy:avc:product-catalog"
+          ],
+          "visibility": "private",
+          "workspace_id": "LOOM::private"
+        },
+        {
+          "component_ids": [
+            "ag:legacy:avc:avc-llm",
+            "ag:legacy:avc:model-edge"
+          ],
+          "visibility": "private",
+          "workspace_id": "REFINERY::private"
+        },
+        {
+          "component_ids": [
+            "ag:component:incident",
+            "ag:component:metrics",
+            "ag:component:observability",
+            "ag:component:telemetry",
+            "ag:legacy:avc:agent-observability",
+            "ag:legacy:avc:incident",
+            "ag:legacy:avc:runtime-metrics",
+            "ag:legacy:avc:telemetry"
+          ],
+          "visibility": "private",
+          "workspace_id": "SIGHTLINE::private"
+        },
+        {
+          "component_ids": [
+            "ag:component:work-intelligence"
+          ],
+          "visibility": "public",
+          "workspace_id": "SIGHTLINE::public"
+        },
+        {
+          "component_ids": [
+            "ag:component:agent-eval",
+            "ag:component:agent-harness",
+            "ag:component:veranza",
+            "ag:component:veranza-control",
+            "ag:component:veranza-detect",
+            "ag:component:veranza-evidence",
+            "ag:component:veranza-gateway",
+            "ag:component:veranza-identity",
+            "ag:component:veranza-ledger",
+            "ag:component:veranza-runtime",
+            "ag:legacy:avc:agent-eval",
+            "ag:legacy:avc:agent-harness",
+            "ag:legacy:avc:avc-eval",
+            "ag:legacy:avc:plugin-deepsec",
+            "ag:legacy:avc:security-assurance",
+            "ag:legacy:avc:visual-verifier"
+          ],
+          "visibility": "private",
+          "workspace_id": "WITNESS::private"
+        },
+        {
+          "component_ids": [
+            "ag:component:sentinel"
+          ],
+          "visibility": "public",
+          "workspace_id": "WITNESS::public"
+        }
+      ]
+    },
+    {
+      "authorizes_source_moves": false,
+      "candidate_id": "family-visibility-legacy",
+      "dimensions": {
+        "cross_family_colocations": 816,
+        "largest_workspace_components": 44,
+        "legacy_canonical_colocations": 0,
+        "mixed_visibility_workspaces": 0,
+        "source_repository_split_count": 5,
+        "workspace_count": 13
+      },
+      "hard_blockers": [],
+      "target_architecture_claim": false,
+      "workspaces": [
+        {
+          "component_ids": [
+            "ag:component:contracts",
+            "ag:component:definitions"
+          ],
+          "visibility": "private",
+          "workspace_id": "COMMONS::private"
+        },
+        {
+          "component_ids": [
+            "ag:component:brand",
+            "ag:component:docs"
+          ],
+          "visibility": "public",
+          "workspace_id": "COMMONS::public"
+        },
+        {
+          "component_ids": [
+            "ag:component:authorization",
+            "ag:component:constitution",
+            "ag:component:identity-core",
+            "ag:component:invariants",
+            "ag:component:promotion-gates",
+            "ag:component:tenant-core"
+          ],
+          "visibility": "private",
+          "workspace_id": "COVENANT_SUPPORT::private"
+        },
+        {
+          "component_ids": [
+            "ag:component:business-ops",
+            "ag:component:rendetalje"
+          ],
+          "visibility": "private",
+          "workspace_id": "DOMAIN::private"
+        },
+        {
+          "component_ids": [
+            "ag:component:agent-relay",
+            "ag:component:events",
+            "ag:component:heartbeat",
+            "ag:component:job-runtime",
+            "ag:component:kernel-core",
+            "ag:component:orchestrator",
+            "ag:component:peer-protocol",
+            "ag:component:proactive-runtime",
+            "ag:component:runtime",
+            "ag:component:runtime-host",
+            "ag:component:scheduler",
+            "ag:component:triggers"
+          ],
+          "visibility": "private",
+          "workspace_id": "DRIVE::private"
+        },
+        {
+          "component_ids": [
+            "ag:component:relay"
+          ],
+          "visibility": "private",
+          "workspace_id": "EXPERIENCE::private"
+        },
+        {
+          "component_ids": [
+            "ag:component:atlas",
+            "ag:component:studio"
+          ],
+          "visibility": "public",
+          "workspace_id": "EXPERIENCE::public"
+        },
+        {
+          "component_ids": [
+            "ag:component:goals",
+            "ag:component:intelligence-gateway",
+            "ag:component:ledger",
+            "ag:component:memory-store",
+            "ag:component:mission-graph",
+            "ag:component:mission-inference",
+            "ag:component:mission-routing",
+            "ag:component:muse-supervisor",
+            "ag:component:outcomes",
+            "ag:component:portfolio"
+          ],
+          "visibility": "private",
+          "workspace_id": "HELM::private"
+        },
+        {
+          "component_ids": [
+            "ag:legacy:avc:agent-eval",
+            "ag:legacy:avc:agent-gateway",
+            "ag:legacy:avc:agent-harness",
+            "ag:legacy:avc:agent-observability",
+            "ag:legacy:avc:agent-relay",
+            "ag:legacy:avc:avc-desktop",
+            "ag:legacy:avc:avc-eval",
+            "ag:legacy:avc:avc-llm",
+            "ag:legacy:avc:cli",
+            "ag:legacy:avc:company-daemon",
+            "ag:legacy:avc:constitution",
+            "ag:legacy:avc:contracts",
+            "ag:legacy:avc:creative-assets",
+            "ag:legacy:avc:events",
+            "ag:legacy:avc:hermes-adapter",
+            "ag:legacy:avc:identity-core",
+            "ag:legacy:avc:identity-worker",
+            "ag:legacy:avc:incident",
+            "ag:legacy:avc:intelligence-gateway",
+            "ag:legacy:avc:invariant-registry",
+            "ag:legacy:avc:job-runtime",
+            "ag:legacy:avc:kernel-core",
+            "ag:legacy:avc:leadrescue",
+            "ag:legacy:avc:ledger",
+            "ag:legacy:avc:memory-store",
+            "ag:legacy:avc:mission-graph",
+            "ag:legacy:avc:mission-graph-authority",
+            "ag:legacy:avc:model-edge",
+            "ag:legacy:avc:orchestrator",
+            "ag:legacy:avc:peer-protocol",
+            "ag:legacy:avc:plugin-deepsec",
+            "ag:legacy:avc:portfolio",
+            "ag:legacy:avc:proactive-runtime",
+            "ag:legacy:avc:product-catalog",
+            "ag:legacy:avc:product-installer-adapter",
+            "ag:legacy:avc:runner-bridge",
+            "ag:legacy:avc:runtime-metrics",
+            "ag:legacy:avc:runtime-orchestrator",
+            "ag:legacy:avc:security-assurance",
+            "ag:legacy:avc:serviceops",
+            "ag:legacy:avc:serviceops-mcp",
+            "ag:legacy:avc:telemetry",
+            "ag:legacy:avc:tenant-core",
+            "ag:legacy:avc:visual-verifier"
+          ],
+          "visibility": "private",
+          "workspace_id": "LEGACY::private"
+        },
+        {
+          "component_ids": [
+            "ag:component:incident",
+            "ag:component:metrics",
+            "ag:component:observability",
+            "ag:component:telemetry"
+          ],
+          "visibility": "private",
+          "workspace_id": "SIGHTLINE::private"
+        },
+        {
+          "component_ids": [
+            "ag:component:work-intelligence"
+          ],
+          "visibility": "public",
+          "workspace_id": "SIGHTLINE::public"
+        },
+        {
+          "component_ids": [
+            "ag:component:agent-eval",
+            "ag:component:agent-harness",
+            "ag:component:veranza",
+            "ag:component:veranza-control",
+            "ag:component:veranza-detect",
+            "ag:component:veranza-evidence",
+            "ag:component:veranza-gateway",
+            "ag:component:veranza-identity",
+            "ag:component:veranza-ledger",
+            "ag:component:veranza-runtime"
+          ],
+          "visibility": "private",
+          "workspace_id": "WITNESS::private"
+        },
+        {
+          "component_ids": [
+            "ag:component:sentinel"
+          ],
+          "visibility": "public",
+          "workspace_id": "WITNESS::public"
+        }
+      ]
+    },
+    {
+      "authorizes_source_moves": false,
+      "candidate_id": "family-visibility-lifecycle",
+      "dimensions": {
+        "cross_family_colocations": 0,
+        "largest_workspace_components": 13,
+        "legacy_canonical_colocations": 0,
+        "mixed_visibility_workspaces": 0,
+        "source_repository_split_count": 14,
+        "workspace_count": 22
+      },
+      "hard_blockers": [],
+      "target_architecture_claim": false,
+      "workspaces": [
+        {
+          "component_ids": [
+            "ag:component:contracts",
+            "ag:component:definitions"
+          ],
+          "visibility": "private",
+          "workspace_id": "COMMONS::private::CANONICAL"
+        },
+        {
+          "component_ids": [
+            "ag:legacy:avc:contracts",
+            "ag:legacy:avc:creative-assets"
+          ],
+          "visibility": "private",
+          "workspace_id": "COMMONS::private::LEGACY"
+        },
+        {
+          "component_ids": [
+            "ag:component:brand",
+            "ag:component:docs"
+          ],
+          "visibility": "public",
+          "workspace_id": "COMMONS::public::CANONICAL"
+        },
+        {
+          "component_ids": [
+            "ag:component:authorization",
+            "ag:component:constitution",
+            "ag:component:identity-core",
+            "ag:component:invariants",
+            "ag:component:promotion-gates",
+            "ag:component:tenant-core"
+          ],
+          "visibility": "private",
+          "workspace_id": "COVENANT_SUPPORT::private::CANONICAL"
+        },
+        {
+          "component_ids": [
+            "ag:legacy:avc:constitution",
+            "ag:legacy:avc:identity-core",
+            "ag:legacy:avc:identity-worker",
+            "ag:legacy:avc:invariant-registry",
+            "ag:legacy:avc:mission-graph-authority",
+            "ag:legacy:avc:tenant-core"
+          ],
+          "visibility": "private",
+          "workspace_id": "COVENANT_SUPPORT::private::LEGACY"
+        },
+        {
+          "component_ids": [
+            "ag:component:business-ops",
+            "ag:component:rendetalje"
+          ],
+          "visibility": "private",
+          "workspace_id": "DOMAIN::private::CANONICAL"
+        },
+        {
+          "component_ids": [
+            "ag:legacy:avc:leadrescue",
+            "ag:legacy:avc:serviceops",
+            "ag:legacy:avc:serviceops-mcp"
+          ],
+          "visibility": "private",
+          "workspace_id": "DOMAIN::private::LEGACY"
+        },
+        {
+          "component_ids": [
+            "ag:component:agent-relay",
+            "ag:component:events",
+            "ag:component:heartbeat",
+            "ag:component:job-runtime",
+            "ag:component:kernel-core",
+            "ag:component:orchestrator",
+            "ag:component:peer-protocol",
+            "ag:component:proactive-runtime",
+            "ag:component:runtime",
+            "ag:component:runtime-host",
+            "ag:component:scheduler",
+            "ag:component:triggers"
+          ],
+          "visibility": "private",
+          "workspace_id": "DRIVE::private::CANONICAL"
+        },
+        {
+          "component_ids": [
+            "ag:legacy:avc:agent-gateway",
+            "ag:legacy:avc:agent-relay",
+            "ag:legacy:avc:company-daemon",
+            "ag:legacy:avc:events",
+            "ag:legacy:avc:hermes-adapter",
+            "ag:legacy:avc:job-runtime",
+            "ag:legacy:avc:kernel-core",
+            "ag:legacy:avc:orchestrator",
+            "ag:legacy:avc:peer-protocol",
+            "ag:legacy:avc:proactive-runtime",
+            "ag:legacy:avc:product-installer-adapter",
+            "ag:legacy:avc:runner-bridge",
+            "ag:legacy:avc:runtime-orchestrator"
+          ],
+          "visibility": "private",
+          "workspace_id": "DRIVE::private::LEGACY"
+        },
+        {
+          "component_ids": [
+            "ag:component:relay"
+          ],
+          "visibility": "private",
+          "workspace_id": "EXPERIENCE::private::CANONICAL"
+        },
+        {
+          "component_ids": [
+            "ag:legacy:avc:avc-desktop",
+            "ag:legacy:avc:cli"
+          ],
+          "visibility": "private",
+          "workspace_id": "EXPERIENCE::private::LEGACY"
+        },
+        {
+          "component_ids": [
+            "ag:component:atlas",
+            "ag:component:studio"
+          ],
+          "visibility": "public",
+          "workspace_id": "EXPERIENCE::public::CANONICAL"
+        },
+        {
+          "component_ids": [
+            "ag:component:goals",
+            "ag:component:intelligence-gateway",
+            "ag:component:ledger",
+            "ag:component:memory-store",
+            "ag:component:mission-graph",
+            "ag:component:mission-inference",
+            "ag:component:mission-routing",
+            "ag:component:muse-supervisor",
+            "ag:component:outcomes",
+            "ag:component:portfolio"
+          ],
+          "visibility": "private",
+          "workspace_id": "HELM::private::CANONICAL"
+        },
+        {
+          "component_ids": [
+            "ag:legacy:avc:intelligence-gateway",
+            "ag:legacy:avc:ledger",
+            "ag:legacy:avc:memory-store",
+            "ag:legacy:avc:mission-graph",
+            "ag:legacy:avc:portfolio"
+          ],
+          "visibility": "private",
+          "workspace_id": "HELM::private::LEGACY"
+        },
+        {
+          "component_ids": [
+            "ag:legacy:avc:product-catalog"
+          ],
+          "visibility": "private",
+          "workspace_id": "LOOM::private::LEGACY"
+        },
+        {
+          "component_ids": [
+            "ag:legacy:avc:avc-llm",
+            "ag:legacy:avc:model-edge"
+          ],
+          "visibility": "private",
+          "workspace_id": "REFINERY::private::LEGACY"
+        },
+        {
+          "component_ids": [
+            "ag:component:incident",
+            "ag:component:metrics",
+            "ag:component:observability",
+            "ag:component:telemetry"
+          ],
+          "visibility": "private",
+          "workspace_id": "SIGHTLINE::private::CANONICAL"
+        },
+        {
+          "component_ids": [
+            "ag:legacy:avc:agent-observability",
+            "ag:legacy:avc:incident",
+            "ag:legacy:avc:runtime-metrics",
+            "ag:legacy:avc:telemetry"
+          ],
+          "visibility": "private",
+          "workspace_id": "SIGHTLINE::private::LEGACY"
+        },
+        {
+          "component_ids": [
+            "ag:component:work-intelligence"
+          ],
+          "visibility": "public",
+          "workspace_id": "SIGHTLINE::public::CANONICAL"
+        },
+        {
+          "component_ids": [
+            "ag:component:agent-eval",
+            "ag:component:agent-harness",
+            "ag:component:veranza",
+            "ag:component:veranza-control",
+            "ag:component:veranza-detect",
+            "ag:component:veranza-evidence",
+            "ag:component:veranza-gateway",
+            "ag:component:veranza-identity",
+            "ag:component:veranza-ledger",
+            "ag:component:veranza-runtime"
+          ],
+          "visibility": "private",
+          "workspace_id": "WITNESS::private::CANONICAL"
+        },
+        {
+          "component_ids": [
+            "ag:legacy:avc:agent-eval",
+            "ag:legacy:avc:agent-harness",
+            "ag:legacy:avc:avc-eval",
+            "ag:legacy:avc:plugin-deepsec",
+            "ag:legacy:avc:security-assurance",
+            "ag:legacy:avc:visual-verifier"
+          ],
+          "visibility": "private",
+          "workspace_id": "WITNESS::private::LEGACY"
+        },
+        {
+          "component_ids": [
+            "ag:component:sentinel"
+          ],
+          "visibility": "public",
+          "workspace_id": "WITNESS::public::CANONICAL"
+        }
+      ]
+    }
+  ],
+  "gate_scope": "SOURCE_TOPOLOGY_ONLY",
+  "policy": {
+    "component_partition_is_hypothesis_not_move_plan": true,
+    "multidimensional_only": true,
+    "no_selected_winner": true,
+    "runtime_state_credential_authority_migrations_excluded": true
+  },
+  "schema_version": "roro-component-partition-simulation/0.1",
+  "source_snapshot_generated_at": "2026-09-16T08:04:39Z"
+}

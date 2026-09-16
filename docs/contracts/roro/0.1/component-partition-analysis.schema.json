@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/roro/0.1/component-partition-analysis.schema.json",
+  "title": "R.O.R.O. Component Partition Analysis 0.1",
+  "type": "object",
+  "required": ["schema_version", "source_snapshot_generated_at", "components_total", "semantic_family_count", "semantic_family_counts", "repository_family_spread", "mixed_semantic_repositories", "cross_family_colocation_pairs", "policy"],
+  "properties": {
+    "schema_version": {"const": "roro-component-partition-analysis/0.1"},
+    "source_snapshot_generated_at": {"type": "string", "minLength": 1},
+    "components_total": {"type": "integer", "minimum": 1},
+    "semantic_family_count": {"type": "integer", "minimum": 1},
+    "semantic_family_counts": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+    "repository_family_spread": {"type": "object"},
+    "mixed_semantic_repositories": {"type": "array", "items": {"type": "string"}},
+    "cross_family_colocation_pairs": {"type": "integer", "minimum": 0},
+    "policy": {"type": "object"}
+  },
+  "additionalProperties": false
+}

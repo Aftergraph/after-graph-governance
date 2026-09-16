@@ -1,0 +1,57 @@
+{
+  "observed_at": "2026-09-16T06:26:37.300758+00:00",
+  "schema_version": "roro-recovery-verifications/0.1",
+  "verifications": [
+    {
+      "epistemic_status": "VERIFIED",
+      "evidence_refs": [
+        "vds-test://renos/disposable-postgres-restore/2026-09-16",
+        "vds-test://renos/restore-postgres-contract/2026-09-16"
+      ],
+      "reason": "latest actual RenOS custom-format dump restored into a network-isolated disposable Postgres 16 instance on tmpfs and produced 33 public tables; production database was not touched",
+      "scope": "DISPOSABLE_POSTGRES_RESTORE",
+      "service": "renos-control-backup.service",
+      "verdict": "RECOVERABLE_VERIFIED"
+    },
+    {
+      "epistemic_status": "VERIFIED",
+      "evidence_refs": [
+        "vds-test://roro-database/disposable-postgres-restore/2026-09-16"
+      ],
+      "reason": "latest actual R.O.R.O. database custom-format dump restored into a network-isolated disposable Postgres 16 instance on tmpfs and produced 45 public tables; production database was not touched",
+      "scope": "DISPOSABLE_POSTGRES_RESTORE",
+      "service": "roro-database-backup.service",
+      "verdict": "RECOVERABLE_VERIFIED"
+    },
+    {
+      "epistemic_status": "VERIFIED",
+      "evidence_refs": [
+        "vds-test://studio/state-backup-scratch-restore/2026-09-16"
+      ],
+      "reason": "latest actual Studio backup verified by manifest/SHA256, restored into a new temporary directory, and restored files independently matched size/hash; JSON state parsed successfully",
+      "scope": "SCRATCH_RESTORE",
+      "service": "studio-state-backup.service",
+      "verdict": "RECOVERABLE_VERIFIED"
+    },
+    {
+      "epistemic_status": "VERIFIED",
+      "evidence_refs": [
+        "vds-test://trust-gateway/restore-drill/2026-09-16"
+      ],
+      "reason": "isolated drill rejected tampered backup fail-closed and restored valid backup byte-for-byte into a temporary directory",
+      "scope": "SCRATCH_RESTORE",
+      "service": "tg-backup.service",
+      "verdict": "RECOVERABLE_VERIFIED"
+    },
+    {
+      "epistemic_status": "VERIFIED",
+      "evidence_refs": [
+        "vds-test://works/encrypted-archive-sqlite-recovery/2026-09-16"
+      ],
+      "reason": "latest actual WORKS backup HMAC verified, decrypted only into a temporary directory, archive paths were checked, and the restored SQLite snapshot passed PRAGMA integrity_check with 17 tables; full service recovery was not exercised",
+      "scope": "ENCRYPTED_ARCHIVE_AND_SQLITE_SNAPSHOT_RESTORE",
+      "service": "works-backup.service",
+      "verdict": "DATA_RECOVERY_VERIFIED"
+    }
+  ]
+}

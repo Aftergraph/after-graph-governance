@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/roro/0.1/coverage-gate.schema.json",
+  "title": "R.O.R.O. Coverage Gate 0.1",
+  "type": "object",
+  "required": ["schema_version", "gate", "as_of", "decision", "scope", "required_dimensions", "excluded_dimensions", "excluded_migrations", "blockers", "rule"],
+  "properties": {
+    "schema_version": {"const": "roro-coverage-gate/0.1"},
+    "gate": {"type": "string", "minLength": 1},
+    "as_of": {"type": "string", "minLength": 1},
+    "decision": {"enum": ["READY", "NOT_READY"]},
+    "scope": {"const": "SOURCE_TOPOLOGY_ONLY"},
+    "required_dimensions": {"type": "array", "items": {"type": "string"}, "minItems": 1, "uniqueItems": true},
+    "excluded_dimensions": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "excluded_migrations": {"type": "array", "items": {"enum": ["RUNTIME_MIGRATION", "STATE_MIGRATION", "CREDENTIAL_MIGRATION", "AUTHORITY_MIGRATION", "PRODUCTION_CUTOVER"]}, "uniqueItems": true},
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "dimension", "reason"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "dimension": {"type": "string", "minLength": 1},
+          "reason": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "rule": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,348 @@
+{
+  "allowed_edges": [
+    {
+      "from_family": "SIGHTLINE",
+      "rule_id": "OBSERVE_THEN_REASON",
+      "to_family": "HELM"
+    },
+    {
+      "from_family": "HELM",
+      "rule_id": "DECISION_THEN_ADMISSION",
+      "to_family": "COVENANT"
+    },
+    {
+      "from_family": "HELM",
+      "rule_id": "HYPOTHESIS_TO_EXPERIMENT",
+      "to_family": "REFINERY"
+    },
+    {
+      "from_family": "REFINERY",
+      "rule_id": "CANDIDATE_REQUIRES_ADMISSION",
+      "to_family": "COVENANT"
+    },
+    {
+      "from_family": "COVENANT",
+      "rule_id": "ADMITTED_EXECUTION",
+      "to_family": "DRIVE"
+    },
+    {
+      "from_family": "DRIVE",
+      "rule_id": "EXECUTION_TO_INDEPENDENT_VERIFICATION",
+      "to_family": "WITNESS"
+    },
+    {
+      "from_family": "WITNESS",
+      "rule_id": "VERDICT_TO_REOBSERVATION",
+      "to_family": "SIGHTLINE"
+    },
+    {
+      "from_family": "WITNESS",
+      "rule_id": "VERIFIED_OUTCOME_TO_LEARNING",
+      "to_family": "REFINERY"
+    }
+  ],
+  "forbidden_edges": [
+    {
+      "from_family": "SIGHTLINE",
+      "reason": "Observation cannot directly trigger consequential execution.",
+      "rule_id": "COVENANT_REQUIRED",
+      "to_family": "DRIVE"
+    },
+    {
+      "from_family": "HELM",
+      "reason": "Reasoning cannot bypass Covenant admission.",
+      "rule_id": "COVENANT_REQUIRED",
+      "to_family": "DRIVE"
+    },
+    {
+      "from_family": "REFINERY",
+      "reason": "A learned candidate cannot self-promote into execution.",
+      "rule_id": "COVENANT_REQUIRED",
+      "to_family": "DRIVE"
+    },
+    {
+      "from_family": "DRIVE",
+      "reason": "Learning must consume verified outcomes, not raw executor success.",
+      "rule_id": "VERIFIED_OUTCOME_REQUIRED",
+      "to_family": "REFINERY"
+    },
+    {
+      "from_family": "WITNESS",
+      "reason": "Independent verification cannot become the executor it verifies.",
+      "rule_id": "VERIFIER_CANNOT_EXECUTE",
+      "to_family": "DRIVE"
+    },
+    {
+      "from_family": "DRIVE",
+      "reason": "Execution feedback must be re-observed before becoming cognition input.",
+      "rule_id": "REOBSERVATION_REQUIRED",
+      "to_family": "HELM"
+    }
+  ],
+  "macro_families": [
+    "SIGHTLINE",
+    "HELM",
+    "COVENANT",
+    "DRIVE",
+    "WITNESS",
+    "REFINERY"
+  ],
+  "native_boundary_refs": {
+    "COVENANT": [
+      "Aftergraph/aie",
+      "Aftergraph/trust-gateway"
+    ],
+    "DRIVE": [
+      "Aftergraph/runtime",
+      "Aftergraph/works-execution",
+      "Aftergraph/relay"
+    ],
+    "SIGHTLINE": [
+      "Aftergraph/wi-backend",
+      "R.O.R.O."
+    ],
+    "WITNESS": [
+      "Aftergraph/sentinel",
+      "Aftergraph/continuum"
+    ]
+  },
+  "observed_dependency_coupling": [
+    {
+      "edge_count": 6,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "COVENANT_SUPPORT",
+      "to_family": "COMMONS"
+    },
+    {
+      "edge_count": 1,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "COVENANT_SUPPORT",
+      "to_family": "COVENANT_SUPPORT"
+    },
+    {
+      "edge_count": 2,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "COVENANT_SUPPORT",
+      "to_family": "DRIVE"
+    },
+    {
+      "edge_count": 1,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "COVENANT_SUPPORT",
+      "to_family": "HELM"
+    },
+    {
+      "edge_count": 3,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "DOMAIN",
+      "to_family": "COMMONS"
+    },
+    {
+      "edge_count": 1,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "DOMAIN",
+      "to_family": "COVENANT_SUPPORT"
+    },
+    {
+      "edge_count": 3,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "DOMAIN",
+      "to_family": "DOMAIN"
+    },
+    {
+      "edge_count": 3,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "DOMAIN",
+      "to_family": "DRIVE"
+    },
+    {
+      "edge_count": 13,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "DRIVE",
+      "to_family": "COMMONS"
+    },
+    {
+      "edge_count": 5,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "DRIVE",
+      "to_family": "COVENANT_SUPPORT"
+    },
+    {
+      "edge_count": 36,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "DRIVE",
+      "to_family": "DRIVE"
+    },
+    {
+      "edge_count": 8,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "DRIVE",
+      "to_family": "HELM"
+    },
+    {
+      "edge_count": 1,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "DRIVE",
+      "to_family": "LOOM"
+    },
+    {
+      "edge_count": 2,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "DRIVE",
+      "to_family": "SIGHTLINE"
+    },
+    {
+      "edge_count": 1,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "DRIVE",
+      "to_family": "WITNESS"
+    },
+    {
+      "edge_count": 1,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "EXPERIENCE",
+      "to_family": "WITNESS"
+    },
+    {
+      "edge_count": 12,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "HELM",
+      "to_family": "COMMONS"
+    },
+    {
+      "edge_count": 1,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "HELM",
+      "to_family": "COVENANT_SUPPORT"
+    },
+    {
+      "edge_count": 19,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "HELM",
+      "to_family": "DRIVE"
+    },
+    {
+      "edge_count": 3,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "HELM",
+      "to_family": "HELM"
+    },
+    {
+      "edge_count": 1,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "LOOM",
+      "to_family": "COMMONS"
+    },
+    {
+      "edge_count": 1,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "REFINERY",
+      "to_family": "COMMONS"
+    },
+    {
+      "edge_count": 1,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "REFINERY",
+      "to_family": "DRIVE"
+    },
+    {
+      "edge_count": 1,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "REFINERY",
+      "to_family": "REFINERY"
+    },
+    {
+      "edge_count": 1,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "REFINERY",
+      "to_family": "WITNESS"
+    },
+    {
+      "edge_count": 1,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "SIGHTLINE",
+      "to_family": "COMMONS"
+    },
+    {
+      "edge_count": 3,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "SIGHTLINE",
+      "to_family": "DRIVE"
+    },
+    {
+      "edge_count": 5,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "WITNESS",
+      "to_family": "COMMONS"
+    },
+    {
+      "edge_count": 1,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "WITNESS",
+      "to_family": "COVENANT_SUPPORT"
+    },
+    {
+      "edge_count": 7,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "WITNESS",
+      "to_family": "DRIVE"
+    },
+    {
+      "edge_count": 1,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "WITNESS",
+      "to_family": "HELM"
+    },
+    {
+      "edge_count": 1,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "WITNESS",
+      "to_family": "SIGHTLINE"
+    },
+    {
+      "edge_count": 1,
+      "evidence_class": "OBSERVED_DEPENDENCY",
+      "from_family": "WITNESS",
+      "to_family": "WITNESS"
+    }
+  ],
+  "policy": {
+    "circuit_compiler_has_authority": false,
+    "circuit_owns_durable_state": false,
+    "circuit_validator_grants_execution": false,
+    "consequential_drive_requires_covenant": true,
+    "dependency_graph_is_not_circuit_flow": true,
+    "executor_cannot_self_verify": true,
+    "roro_has_circuit_authority": false,
+    "valid_composition_is_not_execution_authorization": true
+  },
+  "schema_version": "circuit-boundary-model/0.1",
+  "semantic_support_families": [
+    {
+      "boundary_note": "Shared foundation; does not grant authority.",
+      "family": "COMMONS",
+      "grants_authority": false
+    },
+    {
+      "boundary_note": "Domain semantics remain bounded from platform authority.",
+      "family": "DOMAIN",
+      "grants_authority": false
+    },
+    {
+      "boundary_note": "Experience surfaces do not become truth or execution owners.",
+      "family": "EXPERIENCE",
+      "grants_authority": false
+    },
+    {
+      "boundary_note": "Capability supply does not itself authorize execution.",
+      "family": "LOOM",
+      "grants_authority": false
+    },
+    {
+      "boundary_note": "Semantic proximity to policy/authority does not grant authority.",
+      "family": "COVENANT_SUPPORT",
+      "grants_authority": false
+    }
+  ],
+  "source_snapshot_generated_at": "2026-09-16T08:04:39Z"
+}

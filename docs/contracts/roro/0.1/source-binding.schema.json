@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/roro/0.1/source-binding.schema.json",
+  "title": "R.O.R.O. Source Binding",
+  "description": "Observed binding from a stable semantic component to exact source state. A binding never grants canonical ownership.",
+  "type": "object",
+  "properties": {
+    "repository": {"type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"},
+    "path": {"type": "string", "minLength": 1},
+    "revision": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "default_branch": {"type": "string", "minLength": 1},
+    "observer": {"type": "string", "minLength": 1},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "evidence_ref": {"type": "string", "minLength": 1}
+  },
+  "required": ["repository", "path", "revision", "default_branch", "observer", "observed_at"],
+  "additionalProperties": false
+}

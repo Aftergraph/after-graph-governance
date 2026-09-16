@@ -1,0 +1,413 @@
+{
+  "candidates": [
+    {
+      "candidate_id": "ws2-visibility-only",
+      "hypothesis": "Collapse only by GitHub visibility boundary.",
+      "workspace_count": 2,
+      "workspaces": [
+        {
+          "repositories": [
+            ".github",
+            "after-graph-governance",
+            "aftergraph-cron-fabric",
+            "aftergraph.org",
+            "aie",
+            "brand",
+            "docs",
+            "intelligence-systems-research",
+            "sentinel",
+            "sentinel-firetest2",
+            "skill-abi",
+            "studio",
+            "trust-gateway",
+            "war-room",
+            "wi-backend",
+            "works-execution"
+          ],
+          "visibility": "public",
+          "workspace_id": "public"
+        },
+        {
+          "repositories": [
+            "afm",
+            "autonomous-venture-company",
+            "business-ops",
+            "context-continuity",
+            "continuum",
+            "llm-research-development",
+            "model-registry",
+            "relay",
+            "rendetalje",
+            "runtime",
+            "sentinel-firetest",
+            "skillport",
+            "skills-vault",
+            "veranza",
+            "wi-frontend"
+          ],
+          "visibility": "private",
+          "workspace_id": "internal"
+        }
+      ]
+    },
+    {
+      "candidate_id": "ws3-research-isolated",
+      "hypothesis": "Separate public research identity from the public platform while retaining one private internal workspace.",
+      "workspace_count": 3,
+      "workspaces": [
+        {
+          "repositories": [
+            ".github",
+            "after-graph-governance",
+            "aftergraph-cron-fabric",
+            "aftergraph.org",
+            "aie",
+            "brand",
+            "docs",
+            "sentinel",
+            "sentinel-firetest2",
+            "skill-abi",
+            "studio",
+            "trust-gateway",
+            "war-room",
+            "wi-backend",
+            "works-execution"
+          ],
+          "visibility": "public",
+          "workspace_id": "platform-public"
+        },
+        {
+          "repositories": [
+            "intelligence-systems-research"
+          ],
+          "visibility": "public",
+          "workspace_id": "research-public"
+        },
+        {
+          "repositories": [
+            "afm",
+            "autonomous-venture-company",
+            "business-ops",
+            "context-continuity",
+            "continuum",
+            "llm-research-development",
+            "model-registry",
+            "relay",
+            "rendetalje",
+            "runtime",
+            "sentinel-firetest",
+            "skillport",
+            "skills-vault",
+            "veranza",
+            "wi-frontend"
+          ],
+          "visibility": "private",
+          "workspace_id": "internal"
+        }
+      ]
+    },
+    {
+      "candidate_id": "ws4-legacy-isolated",
+      "hypothesis": "Add a dedicated private legacy workspace so AVC extraction source cannot silently become part of canonical internal code.",
+      "workspace_count": 4,
+      "workspaces": [
+        {
+          "repositories": [
+            ".github",
+            "after-graph-governance",
+            "aftergraph-cron-fabric",
+            "aftergraph.org",
+            "aie",
+            "brand",
+            "docs",
+            "sentinel",
+            "sentinel-firetest2",
+            "skill-abi",
+            "studio",
+            "trust-gateway",
+            "war-room",
+            "wi-backend",
+            "works-execution"
+          ],
+          "visibility": "public",
+          "workspace_id": "platform-public"
+        },
+        {
+          "repositories": [
+            "intelligence-systems-research"
+          ],
+          "visibility": "public",
+          "workspace_id": "research-public"
+        },
+        {
+          "repositories": [
+            "afm",
+            "business-ops",
+            "context-continuity",
+            "continuum",
+            "llm-research-development",
+            "model-registry",
+            "relay",
+            "rendetalje",
+            "runtime",
+            "sentinel-firetest",
+            "skillport",
+            "skills-vault",
+            "veranza",
+            "wi-frontend"
+          ],
+          "visibility": "private",
+          "workspace_id": "internal-active"
+        },
+        {
+          "repositories": [
+            "autonomous-venture-company"
+          ],
+          "visibility": "private",
+          "workspace_id": "legacy-private"
+        }
+      ]
+    },
+    {
+      "candidate_id": "ws5-verifier-split",
+      "hypothesis": "Preserve research and legacy isolation, and split public authority/execution control code from public verification/experience/foundation code.",
+      "workspace_count": 5,
+      "workspaces": [
+        {
+          "repositories": [
+            "after-graph-governance",
+            "aie",
+            "trust-gateway",
+            "works-execution"
+          ],
+          "visibility": "public",
+          "workspace_id": "control-public"
+        },
+        {
+          "repositories": [
+            ".github",
+            "aftergraph-cron-fabric",
+            "aftergraph.org",
+            "brand",
+            "docs",
+            "sentinel",
+            "sentinel-firetest2",
+            "skill-abi",
+            "studio",
+            "war-room",
+            "wi-backend"
+          ],
+          "visibility": "public",
+          "workspace_id": "verification-experience-public"
+        },
+        {
+          "repositories": [
+            "intelligence-systems-research"
+          ],
+          "visibility": "public",
+          "workspace_id": "research-public"
+        },
+        {
+          "repositories": [
+            "afm",
+            "business-ops",
+            "context-continuity",
+            "continuum",
+            "llm-research-development",
+            "model-registry",
+            "relay",
+            "rendetalje",
+            "runtime",
+            "sentinel-firetest",
+            "skillport",
+            "skills-vault",
+            "veranza",
+            "wi-frontend"
+          ],
+          "visibility": "private",
+          "workspace_id": "internal-active"
+        },
+        {
+          "repositories": [
+            "autonomous-venture-company"
+          ],
+          "visibility": "private",
+          "workspace_id": "legacy-private"
+        }
+      ]
+    },
+    {
+      "candidate_id": "ws7-strict-public-boundaries",
+      "hypothesis": "Instantiate the strict lower-bound hypothesis by separating public authority, trust, execution, verification, and research while keeping active private source together and AVC isolated.",
+      "workspace_count": 7,
+      "workspaces": [
+        {
+          "repositories": [
+            ".github",
+            "after-graph-governance",
+            "aftergraph-cron-fabric",
+            "aftergraph.org",
+            "aie",
+            "brand",
+            "docs",
+            "skill-abi",
+            "studio",
+            "war-room",
+            "wi-backend"
+          ],
+          "visibility": "public",
+          "workspace_id": "authority-foundation-public"
+        },
+        {
+          "repositories": [
+            "trust-gateway"
+          ],
+          "visibility": "public",
+          "workspace_id": "trust-public"
+        },
+        {
+          "repositories": [
+            "works-execution"
+          ],
+          "visibility": "public",
+          "workspace_id": "execution-public"
+        },
+        {
+          "repositories": [
+            "sentinel",
+            "sentinel-firetest2"
+          ],
+          "visibility": "public",
+          "workspace_id": "verification-public"
+        },
+        {
+          "repositories": [
+            "intelligence-systems-research"
+          ],
+          "visibility": "public",
+          "workspace_id": "research-public"
+        },
+        {
+          "repositories": [
+            "afm",
+            "business-ops",
+            "context-continuity",
+            "continuum",
+            "llm-research-development",
+            "model-registry",
+            "relay",
+            "rendetalje",
+            "runtime",
+            "sentinel-firetest",
+            "skillport",
+            "skills-vault",
+            "veranza",
+            "wi-frontend"
+          ],
+          "visibility": "private",
+          "workspace_id": "internal-active"
+        },
+        {
+          "repositories": [
+            "autonomous-venture-company"
+          ],
+          "visibility": "private",
+          "workspace_id": "legacy-private"
+        }
+      ]
+    },
+    {
+      "candidate_id": "ws8-private-research-isolated",
+      "hypothesis": "Extend the strict seven-workspace hypothesis by isolating private model/research source from other active private source.",
+      "workspace_count": 8,
+      "workspaces": [
+        {
+          "repositories": [
+            ".github",
+            "after-graph-governance",
+            "aftergraph-cron-fabric",
+            "aftergraph.org",
+            "aie",
+            "brand",
+            "docs",
+            "skill-abi",
+            "studio",
+            "war-room",
+            "wi-backend"
+          ],
+          "visibility": "public",
+          "workspace_id": "authority-foundation-public"
+        },
+        {
+          "repositories": [
+            "trust-gateway"
+          ],
+          "visibility": "public",
+          "workspace_id": "trust-public"
+        },
+        {
+          "repositories": [
+            "works-execution"
+          ],
+          "visibility": "public",
+          "workspace_id": "execution-public"
+        },
+        {
+          "repositories": [
+            "sentinel",
+            "sentinel-firetest2"
+          ],
+          "visibility": "public",
+          "workspace_id": "verification-public"
+        },
+        {
+          "repositories": [
+            "intelligence-systems-research"
+          ],
+          "visibility": "public",
+          "workspace_id": "research-public"
+        },
+        {
+          "repositories": [
+            "business-ops",
+            "context-continuity",
+            "continuum",
+            "relay",
+            "rendetalje",
+            "runtime",
+            "sentinel-firetest",
+            "skillport",
+            "skills-vault",
+            "veranza",
+            "wi-frontend"
+          ],
+          "visibility": "private",
+          "workspace_id": "internal-active"
+        },
+        {
+          "repositories": [
+            "afm",
+            "llm-research-development",
+            "model-registry"
+          ],
+          "visibility": "private",
+          "workspace_id": "private-research"
+        },
+        {
+          "repositories": [
+            "autonomous-venture-company"
+          ],
+          "visibility": "private",
+          "workspace_id": "legacy-private"
+        }
+      ]
+    }
+  ],
+  "policy": {
+    "candidate_is_hypothesis_not_decision": true,
+    "mixed_visibility_in_one_repository_prohibited": true,
+    "workspace_is_source_boundary_not_runtime_security_boundary": true
+  },
+  "schema_version": "roro-consolidation-candidates/0.1",
+  "source_snapshot_generated_at": "2026-09-16T08:04:39Z"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/roro/0.1/component-dependency-graph.schema.json",
+  "title": "R.O.R.O. Component Dependency Graph 0.1",
+  "type": "object",
+  "required": ["schema_version", "source_snapshot_generated_at", "policy", "nodes", "edges", "coverage", "unresolved"],
+  "properties": {
+    "schema_version": {"const": "roro-component-dependency-graph/0.1"},
+    "source_snapshot_generated_at": {"type": "string", "minLength": 1},
+    "policy": {"type": "object"},
+    "nodes": {"type": "array", "items": {"type": "object", "required": ["component_id", "name", "semantic_family", "semantic_epistemic_status"]}},
+    "edges": {"type": "array", "items": {"type": "object", "required": ["source_component_id", "target_component_id", "dependency_name", "epistemic_status", "evidence_refs"]}},
+    "coverage": {"type": "array", "items": {"type": "object", "required": ["component_id", "observed_manifest_count"]}},
+    "unresolved": {"type": "array", "items": {"type": "object"}}
+  },
+  "additionalProperties": false
+}

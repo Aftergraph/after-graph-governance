@@ -175,8 +175,20 @@ modules:
     role: human-operator-plane
     consumes: [after-graph-governance, aie, trust-gateway, runtime, works-execution, sentinel, context-continuity]
     provides: [operator-surface, pty-broker, fleet-mesh, mission-dag, human-attention, continuity-capsules]
+  war-room:
+    repo: Aftergraph/war-room
+    role: operational-intelligence-surface
+    consumes: [after-graph-governance, aie, trust-gateway, runtime, works-execution, sentinel, context-continuity, relay]
+    provides: [reality-projection, incident-intelligence, attention-routing, system-graph, risk-projection, operator-control-surface]
+
   business-ops:
     repo: Aftergraph/business-ops
     role: canonical-service-business-domain
     consumes: [after-graph-governance]
     provides: [service-business-domain, charge-fact, migration-mapping, shadow-conformance]
+
+  rendetalje:
+    repo: Aftergraph/rendetalje
+    role: reference-tenant-domain
+    consumes: [after-graph-governance, business-ops]
+    provides: [rendetalje-tenant-profile, renos-read-adapter, domain-shadow-projection, platform-bridge]

@@ -56,6 +56,33 @@ not frozen platform law.
 |---|---|---|---|
 | `platform-event-ref/0.1` | Experimental | Governance registration; domain events remain TG/WORKS-owned | Correlates heterogeneous native events without replacing their envelopes or granting authority. |
 | `capability-action/0.1` | Experimental | Runtime semantics; Governance registration | Separates semantic execution intent from provider/runtime-specific implementation while preserving authority bounds. |
+| `roro-observation/0.1` | Experimental | Governance registration; native systems retain truth | Provenance-bound observation without authority promotion. |
+| `roro-component/0.1` | Experimental | Governance registration | Stable semantic component identity independent of repository, source path, build and deployment. |
+| `roro-source-binding/0.1` | Experimental | Governance registration; Git remains source truth | Binds a component to exact repository/path/revision evidence without granting ownership. |
+| `roro-reality-facet/0.1` | Experimental | Governance registration | Shared reality-facet and epistemic-status vocabulary. |
+| `roro-reality-diff/0.1` | Experimental | Governance registration | Records drift, contradiction, stale claims and unknowns without silently choosing a winner. |
+| `roro-deployment-binding/0.1` | Experimental | Governance registration; runtime/deployer remains native truth | Binds semantic components to observed runtime identities without promoting deployment metadata to authority. |
+| `roro-credential-binding/0.1` | Experimental | Governance registration; secret stores remain native truth | Records credential references, consumers and permission posture; secret values are prohibited. |
+| `roro-state-store/0.1` | Experimental | Governance registration; domain owners retain state authority | Describes durable stores, backup observation and independently verified recoverability. |
+| `roro-route-observation/0.1` | Experimental | Governance registration; DNS/provider remains native truth | Records current DNS/HTTP route observation while preserving absence vs unknown. |
+| `roro-route-disposition/0.1` | Experimental | Governance registration; product/domain owners retain desired-route authority | Separates observed DNS absence from superseded, non-required, or conflicting desired route state. |
+| `roro-source-binding-disposition/0.1` | Experimental | Governance registration; native source owners retain canonical source authority | Dispositions duplicate source identities such as vendored projections without silently promoting multiple canonical owners. |
+| `roro-recovery-verification/0.1` | Experimental | Governance registration; recovery owner retains native state | Records bounded restore/guard verification without equating backup presence with recoverability. |
+| `roro-runtime-topology-disposition/0.1` | Experimental | Governance registration; runtime owners retain deployment authority | Records a bounded reviewed disposition for declared-vs-running topology without declaring the observed transition to be the target architecture. |
+| `roro-coverage-report/0.1` | Experimental | Governance registration; native evidence remains native truth | Reports multidimensional reality coverage without collapsing it into one health score. |
+| `roro-coverage-gate/0.1` | Experimental | Governance registration | Issues a scoped readiness decision for source/topology consolidation only; it does not authorize runtime, state, credential, authority, or production-cutover migration. |
+| `roro-consolidation-candidates/0.1` | Experimental | Governance registration | Declares bounded 2/3/4/5 source-workspace hypotheses; candidates are not architecture decisions. |
+| `roro-consolidation-simulation/0.1` | Experimental | Governance registration | Compares source-workspace hypotheses across separate dimensions without an overall score or selected winner. |
+| `roro-consolidation-boundary-analysis/0.1` | Experimental | Governance registration | Records strict-boundary lower bounds as falsification evidence, never as a recommendation. |
+| `roro-component-semantic-projection/0.1` | Experimental | Governance registration | Projects stable ComponentIDs into bounded semantic-family hypotheses while preserving declared/inferred/unknown epistemic status. |
+| `roro-component-partition-analysis/0.1` | Experimental | Governance registration | Measures semantic mixing inside current source repositories without equating repository placement with system ownership. |
+| `roro-component-partition-simulation/0.1` | Experimental | Governance registration | Simulates component-level source partitions across semantic, visibility and lifecycle boundaries without selecting a target. |
+| `roro-component-dependency-graph/0.1` | Experimental | Governance registration; Git manifests remain source evidence | Records exact-cut internal component dependency edges without granting ownership, authority, or Circuit semantics. |
+| `roro-component-boundary-analysis/0.1` | Experimental | Governance registration | Summarizes component dependency coupling across semantic families; import direction is not Circuit flow. |
+| `circuit-spec/0.1` | Experimental | Governance registration; Circuit has zero authority | Declares semantic operator composition only; it does not grant authority, execution permission, durable state ownership, or verification truth. |
+| `circuit-validation/0.1` | Experimental | Governance registration | Validates Circuit composition invariants fail-closed while always leaving execution authorization and authority grants false. |
+| `circuit-compiler-input/0.1` | Experimental | Governance registration | Declares bounded mission intent, effect/risk class and reality posture for pure Circuit compilation; grants no authority. |
+| `circuit-compile-result/0.1` | Experimental | Governance registration | Records COMPILED/REFUSED composition candidates; COMPILED never means authorized or executable. |
 
 Machine-executable Phase-0 vectors live at
 `docs/platform-conformance/v0.1/vectors.json` and are exercised by
