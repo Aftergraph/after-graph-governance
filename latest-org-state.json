@@ -1,20 +1,38 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-11T12:05:57Z",
-  "generator": "/tmp/gov-orgstate/scripts/org-state-verify.sh",
+  "generated_at": "2026-09-13T03:47:43Z",
+  "generator": "/root/workspace/aftergraph/codex-wt-org-state-evidence-20260913/scripts/org-state-verify.sh",
   "org": "Aftergraph",
+  "evidence_cut": {
+    "generator_commit": "8d743c42f7e5bc80558f7c1af4fe289d5b0edb2e",
+    "self_snapshot_policy": "pre-write-head"
+  },
   "repositories": [
     {
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "db136c855c5ad0b4b9c9fe5c99a66cef447cb053",
-      "remote_head_short": "db136c8",
-      "head_commit_message": "docs(governance): stop hard-coding topology repo count (#158)",
+      "remote_head_sha": "1689e32ef124e595d3e71e960932093e0412194e",
+      "remote_head_short": "1689e32",
+      "head_commit_message": "chore(org-state): refresh 28-repo exact-head snapshot (#159)",
       "private": false,
       "archived": false,
       "protected": true,
       "open_pull_requests": [
+        {
+          "number": 161,
+          "title": "fix(org-state): make evidence-cut self-snapshot semantics explicit",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "8d743c42f7e5bc80558f7c1af4fe289d5b0edb2e"
+        },
+        {
+          "number": 160,
+          "title": "docs(convergence): add collision register and align V4 reconciliation path",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "0e3fa713373ba116765799097549af593f410dca"
+        },
         {
           "number": 40,
           "title": "fix(governance): reconcile Runtime and Wie topology truth",
@@ -57,13 +75,20 @@
       "full_name": "Aftergraph/aie",
       "role": "normative-authority",
       "canonical_branch": "main",
-      "remote_head_sha": "eb0f6d794ca0890501159a0c135700bf5261a6d2",
-      "remote_head_short": "eb0f6d7",
-      "head_commit_message": "docs(agents): add repo-level agent execution contract (#80)",
+      "remote_head_sha": "53dcfc12ab00315cf9a8befb6db9c2051f3e0ae0",
+      "remote_head_short": "53dcfc1",
+      "head_commit_message": "feat(federation): publish revocation freshness watermarks (#82)",
       "private": false,
       "archived": false,
       "protected": true,
       "open_pull_requests": [
+        {
+          "number": 84,
+          "title": "feat(federation): accept authenticated freshness watermarks",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "0a0bef7a1ac774f4e46d1cfbd68edaeb28924e55"
+        },
         {
           "number": 56,
           "title": "research(aie): register Meta Muse prior art and narrow novelty boundary",
@@ -136,9 +161,9 @@
       "full_name": "Aftergraph/runtime",
       "role": "agent-runtime",
       "canonical_branch": "main",
-      "remote_head_sha": "ed375d42778b39eafb2845b69e802b6fcc6ceded",
-      "remote_head_short": "ed375d4",
-      "head_commit_message": "fix(runtime): allow least-privilege Remote MCP logon task (#141)",
+      "remote_head_sha": "58437e0e9eb8947b9b637d6c318779e83073ac9e",
+      "remote_head_short": "58437e0",
+      "head_commit_message": "fix(runtime): add Windows Remote MCP watchdog (#142)",
       "private": true,
       "archived": false,
       "protected": false,
@@ -299,6 +324,20 @@
       "protected": true,
       "open_pull_requests": [
         {
+          "number": 83,
+          "title": "docs(readme): add StartupScores verified shipping badge",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "241fc131430335474909f508f558295eca8cbec7"
+        },
+        {
+          "number": 82,
+          "title": "feat(works): expose Golden Mission integration probe",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "a8d655d0f8a6df99bb88133f1459239a966f5398"
+        },
+        {
           "number": 81,
           "title": "feat(works): durable mission handoff for long-running agent work",
           "is_draft": false,
@@ -351,7 +390,7 @@
           "title": "fix(v0.9.1): ConPTY quoting, broker meta retry, drain-ceiling, failure-ledger rows 1-8 closed",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "e6d3f5bee70106ba2f306211fef4266bc13c0b6d"
+          "head_sha": "a8f6a179b70307d570cdbe6318b0b2be3d295437"
         }
       ],
       "authoritative_contracts": [],
@@ -369,11 +408,25 @@
       "protected": true,
       "open_pull_requests": [
         {
-          "number": 55,
-          "title": "feat(billing): incubate review-first billing workflow",
+          "number": 57,
+          "title": "feat(studio): ship Aftergraph Compose mobile v0.1",
           "is_draft": true,
           "mergeable": "UNKNOWN",
-          "head_sha": "2bad9ba627c0b85820b7b53d5b2637211203a5f5"
+          "head_sha": "c8434d42f20eb57cb523b8f7c8926e3b81ca02cc"
+        },
+        {
+          "number": 56,
+          "title": "docs(studio): define Aftergraph Compose mobile v0.1",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "4b07f11d372d02a5ff7a7e09823f1cbaed2ab64b"
+        },
+        {
+          "number": 55,
+          "title": "feat(billing): ship standalone billing PWA and document pipeline",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "11eeb75e9ffd3db330ca8b4e609cd71e3f1d8c4a"
         },
         {
           "number": 48,
@@ -541,9 +594,9 @@
       "full_name": "Aftergraph/sentinel",
       "role": "verified-code-review",
       "canonical_branch": "main",
-      "remote_head_sha": "ac6b194d9dcfa474b9d9062cc496beac7e09e248",
-      "remote_head_short": "ac6b194",
-      "head_commit_message": "feat(verifier): add model evidence CLI",
+      "remote_head_sha": "bd8c809be641e3bc4936b0f73e4c5c21a816c32b",
+      "remote_head_short": "bd8c809",
+      "head_commit_message": "fix(verifier): align Ling evidence contract (#13)",
       "private": false,
       "archived": false,
       "protected": true,
@@ -690,9 +743,9 @@
       "full_name": "Aftergraph/llm-research-development",
       "role": "model-rnd-methodology",
       "canonical_branch": "main",
-      "remote_head_sha": "2b168d5b2ba899d5308438f260e7093e841a4d8e",
-      "remote_head_short": "2b168d5",
-      "head_commit_message": "test(eval): record Ling live provider qualification evidence (#11)",
+      "remote_head_sha": "c65b1b855892d2687e4b4bc1a26f865cf4dc46da",
+      "remote_head_short": "c65b1b8",
+      "head_commit_message": "docs(eval): record candidate admission plan",
       "private": true,
       "archived": false,
       "protected": false,
@@ -755,9 +808,9 @@
       "full_name": "Aftergraph/model-registry",
       "role": "model-lifecycle-registry",
       "canonical_branch": "main",
-      "remote_head_sha": "74a7af6039236a59e1008ecddefd22d7f1a411e0",
-      "remote_head_short": "74a7af6",
-      "head_commit_message": "chore: remove temporary Desktop Commander recovery workflow",
+      "remote_head_sha": "75708955028f462a876580c0a1a42b09c184e9f3",
+      "remote_head_short": "7570895",
+      "head_commit_message": "chore(registry): bind Ling candidate state",
       "private": true,
       "archived": false,
       "protected": false,
@@ -952,7 +1005,15 @@
       "private": false,
       "archived": false,
       "protected": true,
-      "open_pull_requests": [],
+      "open_pull_requests": [
+        {
+          "number": 33,
+          "title": "fix(coverage): bind Cron Fabric to topology v2",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "753000946f1fc0b4ae63eb94bfb6cf1880e9c267"
+        }
+      ],
       "authoritative_contracts": [],
       "consumed_contracts": []
     },
