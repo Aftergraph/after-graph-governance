@@ -643,3 +643,11 @@ The current projection contains 10 non-unknown families. Only two source reposit
 A strict family + visibility + lifecycle probe produces 22 hypothetical source workspaces, clears modeled cross-family, mixed-visibility, and legacy/canonical co-location, and reduces the largest workspace from 44 to 13 components. It would require component splits across 14 existing source repositories. This is intentionally an upper-separation falsification probe, not a target architecture.
 
 `COVENANT_SUPPORT` is explicitly non-authoritative: semantic proximity to authority/policy concerns does not grant AIE authority. Inferred classifications remain `INFERRED`, and component placement never upgrades epistemic status.
+
+### 20.1 Exact-cut component dependency evidence
+
+`component-dependency-graph.json` is derived from exact source-cut package manifests, not current working trees. It currently records 97 nodes, 147 internal component dependency edges, and 0 unresolved internal references. Development dependencies are excluded.
+
+`component-boundary-analysis.json` observes 102 cross-family and 45 within-family dependency edges. The strongest observed family coupling is DRIVE→DRIVE (36), HELM→DRIVE (19), DRIVE→COMMONS (13), HELM→COMMONS (12), and DRIVE→HELM (8).
+
+Import/dependency direction is explicitly not Circuit flow and grants neither ownership nor authority. The graph is evidence for boundary design and migration simulation only.

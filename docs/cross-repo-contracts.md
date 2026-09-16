@@ -77,6 +77,8 @@ not frozen platform law.
 | `roro-component-semantic-projection/0.1` | Experimental | Governance registration | Projects stable ComponentIDs into bounded semantic-family hypotheses while preserving declared/inferred/unknown epistemic status. |
 | `roro-component-partition-analysis/0.1` | Experimental | Governance registration | Measures semantic mixing inside current source repositories without equating repository placement with system ownership. |
 | `roro-component-partition-simulation/0.1` | Experimental | Governance registration | Simulates component-level source partitions across semantic, visibility and lifecycle boundaries without selecting a target. |
+| `roro-component-dependency-graph/0.1` | Experimental | Governance registration; Git manifests remain source evidence | Records exact-cut internal component dependency edges without granting ownership, authority, or Circuit semantics. |
+| `roro-component-boundary-analysis/0.1` | Experimental | Governance registration | Summarizes component dependency coupling across semantic families; import direction is not Circuit flow. |
 
 Machine-executable Phase-0 vectors live at
 `docs/platform-conformance/v0.1/vectors.json` and are exercised by

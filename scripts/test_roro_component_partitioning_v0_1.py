@@ -142,3 +142,54 @@ class ComponentProjectionEvidenceTests(unittest.TestCase):
         self.assertGreater(len(rows),0)
         for row in rows:
             self.assertIn('does not grant authority',row['boundary_note'].lower())
+
+class ComponentDependencyGraphTests(unittest.TestCase):
+    def test_graph_covers_all_projected_components(self):
+        proj=json.loads((REALITY/'component-semantic-projection.json').read_text())
+        graph=json.loads((REALITY/'component-dependency-graph.json').read_text())
+        self.assertEqual({x['component_id'] for x in proj['components']},{x['component_id'] for x in graph['nodes']})
+
+    def test_internal_edges_resolve_to_component_ids(self):
+        graph=json.loads((REALITY/'component-dependency-graph.json').read_text())
+        ids={x['component_id'] for x in graph['nodes']}
+        for edge in graph['edges']:
+            self.assertIn(edge['source_component_id'],ids)
+            self.assertIn(edge['target_component_id'],ids)
+            self.assertTrue(edge['evidence_refs'])
+            self.assertEqual(edge['epistemic_status'],'OBSERVED')
+
+    def test_known_exact_manifest_edges_exist(self):
+        graph=json.loads((REALITY/'component-dependency-graph.json').read_text())
+        edges={(x['source_component_id'],x['target_component_id']) for x in graph['edges']}
+        self.assertIn(('ag:component:mission-graph','ag:component:kernel-core'),edges)
+        self.assertIn(('ag:legacy:avc:mission-graph','ag:legacy:avc:contracts'),edges)
+        self.assertIn(('ag:legacy:avc:mission-graph','ag:legacy:avc:kernel-core'),edges)
+
+    def test_boundary_analysis_exposes_cross_family_edges(self):
+        data=json.loads((REALITY/'component-boundary-analysis.json').read_text())
+        self.assertGreater(data['cross_family_dependency_edges'],0)
+        self.assertIn('family_edges',data)
+        self.assertNotIn('winner',json.dumps(data).lower())
+        self.assertNotIn('recommended',json.dumps(data).lower())
+
+    def test_analyzer_is_repeatable(self):
+        p=REALITY/'component-boundary-analysis.json'; before=p.read_bytes()
+        r=subprocess.run([sys.executable,str(ROOT/'scripts/roro/analyze_component_boundaries.py')],cwd=ROOT,text=True,capture_output=True)
+        self.assertEqual(r.returncode,0,r.stdout+r.stderr)
+        self.assertEqual(before,p.read_bytes())
+
+class ComponentDependencyContractTests(unittest.TestCase):
+    def test_dependency_contracts_are_registered_experimental(self):
+        register=(ROOT/'docs/cross-repo-contracts.md').read_text()
+        for contract in ('roro-component-dependency-graph/0.1','roro-component-boundary-analysis/0.1'):
+            self.assertIn(f'`{contract}`',register)
+            self.assertIn('Experimental',register)
+
+    def test_dependency_schemas_exist(self):
+        for name in ('component-dependency-graph.schema.json','component-boundary-analysis.schema.json'):
+            self.assertTrue((ROOT/'docs/contracts/roro/0.1'/name).is_file())
+
+    def test_boundary_analysis_keeps_import_graph_distinct_from_circuit_flow(self):
+        data=json.loads((REALITY/'component-boundary-analysis.json').read_text())
+        self.assertTrue(data['policy']['dependency_graph_is_not_circuit_flow'])
+        self.assertFalse(data['policy']['dependency_edges_grant_authority'])

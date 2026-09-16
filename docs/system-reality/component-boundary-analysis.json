@@ -1,0 +1,1205 @@
+{
+  "cross_family_dependency_edges": 102,
+  "cross_family_edges": [
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/identity-core/package.json"
+      ],
+      "source_component_id": "ag:component:identity-core",
+      "source_family": "COVENANT_SUPPORT",
+      "target_component_id": "ag:component:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/tenant-core/package.json"
+      ],
+      "source_component_id": "ag:component:tenant-core",
+      "source_family": "COVENANT_SUPPORT",
+      "target_component_id": "ag:component:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/constitution/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:constitution",
+      "source_family": "COVENANT_SUPPORT",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/identity-core/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:identity-core",
+      "source_family": "COVENANT_SUPPORT",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/identity-worker/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:identity-worker",
+      "source_family": "COVENANT_SUPPORT",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/tenant-core/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:tenant-core",
+      "source_family": "COVENANT_SUPPORT",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/constitution/package.json"
+      ],
+      "source_component_id": "ag:component:constitution",
+      "source_family": "COVENANT_SUPPORT",
+      "target_component_id": "ag:component:kernel-core",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/constitution/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:constitution",
+      "source_family": "COVENANT_SUPPORT",
+      "target_component_id": "ag:legacy:avc:kernel-core",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@avc/mission-graph",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/mission-graph-authority/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:mission-graph-authority",
+      "source_family": "COVENANT_SUPPORT",
+      "target_component_id": "ag:legacy:avc:mission-graph",
+      "target_family": "HELM"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/product-cells/leadrescue/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:leadrescue",
+      "source_family": "DOMAIN",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/product-cells/serviceops/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:serviceops",
+      "source_family": "DOMAIN",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/serviceops-mcp/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:serviceops-mcp",
+      "source_family": "DOMAIN",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/tenant-core",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/product-cells/serviceops/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:serviceops",
+      "source_family": "DOMAIN",
+      "target_component_id": "ag:legacy:avc:tenant-core",
+      "target_family": "COVENANT_SUPPORT"
+    },
+    {
+      "dependency_name": "@avc/events",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/product-cells/leadrescue/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:leadrescue",
+      "source_family": "DOMAIN",
+      "target_component_id": "ag:legacy:avc:events",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/product-cells/leadrescue/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:leadrescue",
+      "source_family": "DOMAIN",
+      "target_component_id": "ag:legacy:avc:kernel-core",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/product-cells/serviceops/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:serviceops",
+      "source_family": "DOMAIN",
+      "target_component_id": "ag:legacy:avc:kernel-core",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/events/package.json"
+      ],
+      "source_component_id": "ag:component:events",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:component:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/job-runtime/package.json"
+      ],
+      "source_component_id": "ag:component:job-runtime",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:component:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/kernel-core/package.json"
+      ],
+      "source_component_id": "ag:component:kernel-core",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:component:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/agent-gateway/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:agent-gateway",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/company-daemon/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:company-daemon",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/events/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:events",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/hermes-adapter/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:hermes-adapter",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/job-runtime/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:job-runtime",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/kernel-core/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:kernel-core",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/orchestrator/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:orchestrator",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/peer-protocol/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:peer-protocol",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/proactive-runtime/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:proactive-runtime",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/runtime-orchestrator/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:runtime-orchestrator",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@aftergraph/authorization",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/heartbeat/package.json"
+      ],
+      "source_component_id": "ag:component:heartbeat",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:component:authorization",
+      "target_family": "COVENANT_SUPPORT"
+    },
+    {
+      "dependency_name": "@aftergraph/identity-core",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/kernel-core/package.json"
+      ],
+      "source_component_id": "ag:component:kernel-core",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:component:identity-core",
+      "target_family": "COVENANT_SUPPORT"
+    },
+    {
+      "dependency_name": "@aftergraph/authorization",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/triggers/package.json"
+      ],
+      "source_component_id": "ag:component:triggers",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:component:authorization",
+      "target_family": "COVENANT_SUPPORT"
+    },
+    {
+      "dependency_name": "@avc/constitution",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/company-daemon/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:company-daemon",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:legacy:avc:constitution",
+      "target_family": "COVENANT_SUPPORT"
+    },
+    {
+      "dependency_name": "@avc/identity-core",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/kernel-core/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:kernel-core",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:legacy:avc:identity-core",
+      "target_family": "COVENANT_SUPPORT"
+    },
+    {
+      "dependency_name": "@aftergraph/goals",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/heartbeat/package.json"
+      ],
+      "source_component_id": "ag:component:heartbeat",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:component:goals",
+      "target_family": "HELM"
+    },
+    {
+      "dependency_name": "@aftergraph/mission-graph",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/job-runtime/package.json"
+      ],
+      "source_component_id": "ag:component:job-runtime",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:component:mission-graph",
+      "target_family": "HELM"
+    },
+    {
+      "dependency_name": "@avc/intelligence-gateway",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/company-daemon/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:company-daemon",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:legacy:avc:intelligence-gateway",
+      "target_family": "HELM"
+    },
+    {
+      "dependency_name": "@avc/mission-graph",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/company-daemon/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:company-daemon",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:legacy:avc:mission-graph",
+      "target_family": "HELM"
+    },
+    {
+      "dependency_name": "@avc/portfolio",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/company-daemon/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:company-daemon",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:legacy:avc:portfolio",
+      "target_family": "HELM"
+    },
+    {
+      "dependency_name": "@avc/intelligence-gateway",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/hermes-adapter/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:hermes-adapter",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:legacy:avc:intelligence-gateway",
+      "target_family": "HELM"
+    },
+    {
+      "dependency_name": "@avc/mission-graph",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/job-runtime/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:job-runtime",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:legacy:avc:mission-graph",
+      "target_family": "HELM"
+    },
+    {
+      "dependency_name": "@avc/intelligence-gateway",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/runtime-orchestrator/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:runtime-orchestrator",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:legacy:avc:intelligence-gateway",
+      "target_family": "HELM"
+    },
+    {
+      "dependency_name": "@avc/product-catalog",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/product-installer-adapter/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:product-installer-adapter",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:legacy:avc:product-catalog",
+      "target_family": "LOOM"
+    },
+    {
+      "dependency_name": "@avc/incident",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/company-daemon/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:company-daemon",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:legacy:avc:incident",
+      "target_family": "SIGHTLINE"
+    },
+    {
+      "dependency_name": "@avc/incident",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/hermes-adapter/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:hermes-adapter",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:legacy:avc:incident",
+      "target_family": "SIGHTLINE"
+    },
+    {
+      "dependency_name": "@avc/agent-harness",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/hermes-adapter/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:hermes-adapter",
+      "source_family": "DRIVE",
+      "target_component_id": "ag:legacy:avc:agent-harness",
+      "target_family": "WITNESS"
+    },
+    {
+      "dependency_name": "@avc/agent-harness",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/avc-desktop/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:avc-desktop",
+      "source_family": "EXPERIENCE",
+      "target_component_id": "ag:legacy:avc:agent-harness",
+      "target_family": "WITNESS"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/goals/package.json"
+      ],
+      "source_component_id": "ag:component:goals",
+      "source_family": "HELM",
+      "target_component_id": "ag:component:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/intelligence-gateway/package.json"
+      ],
+      "source_component_id": "ag:component:intelligence-gateway",
+      "source_family": "HELM",
+      "target_component_id": "ag:component:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/ledger/package.json"
+      ],
+      "source_component_id": "ag:component:ledger",
+      "source_family": "HELM",
+      "target_component_id": "ag:component:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/memory-store/package.json"
+      ],
+      "source_component_id": "ag:component:memory-store",
+      "source_family": "HELM",
+      "target_component_id": "ag:component:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/mission-routing/package.json"
+      ],
+      "source_component_id": "ag:component:mission-routing",
+      "source_family": "HELM",
+      "target_component_id": "ag:component:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/muse-supervisor/package.json"
+      ],
+      "source_component_id": "ag:component:muse-supervisor",
+      "source_family": "HELM",
+      "target_component_id": "ag:component:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/portfolio/package.json"
+      ],
+      "source_component_id": "ag:component:portfolio",
+      "source_family": "HELM",
+      "target_component_id": "ag:component:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/intelligence-gateway/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:intelligence-gateway",
+      "source_family": "HELM",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/ledger/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:ledger",
+      "source_family": "HELM",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/memory-store/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:memory-store",
+      "source_family": "HELM",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/mission-graph/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:mission-graph",
+      "source_family": "HELM",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/portfolio/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:portfolio",
+      "source_family": "HELM",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/constitution",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/portfolio/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:portfolio",
+      "source_family": "HELM",
+      "target_component_id": "ag:legacy:avc:constitution",
+      "target_family": "COVENANT_SUPPORT"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/goals/package.json"
+      ],
+      "source_component_id": "ag:component:goals",
+      "source_family": "HELM",
+      "target_component_id": "ag:component:kernel-core",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/intelligence-gateway/package.json"
+      ],
+      "source_component_id": "ag:component:intelligence-gateway",
+      "source_family": "HELM",
+      "target_component_id": "ag:component:kernel-core",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/ledger/package.json"
+      ],
+      "source_component_id": "ag:component:ledger",
+      "source_family": "HELM",
+      "target_component_id": "ag:component:kernel-core",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/memory-store/package.json"
+      ],
+      "source_component_id": "ag:component:memory-store",
+      "source_family": "HELM",
+      "target_component_id": "ag:component:kernel-core",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/mission-graph/package.json"
+      ],
+      "source_component_id": "ag:component:mission-graph",
+      "source_family": "HELM",
+      "target_component_id": "ag:component:kernel-core",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@aftergraph/job-runtime",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/mission-inference/package.json"
+      ],
+      "source_component_id": "ag:component:mission-inference",
+      "source_family": "HELM",
+      "target_component_id": "ag:component:job-runtime",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@aftergraph/job-runtime",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/mission-routing/package.json"
+      ],
+      "source_component_id": "ag:component:mission-routing",
+      "source_family": "HELM",
+      "target_component_id": "ag:component:job-runtime",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@aftergraph/events",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/muse-supervisor/package.json"
+      ],
+      "source_component_id": "ag:component:muse-supervisor",
+      "source_family": "HELM",
+      "target_component_id": "ag:component:events",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@aftergraph/job-runtime",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/muse-supervisor/package.json"
+      ],
+      "source_component_id": "ag:component:muse-supervisor",
+      "source_family": "HELM",
+      "target_component_id": "ag:component:job-runtime",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/muse-supervisor/package.json"
+      ],
+      "source_component_id": "ag:component:muse-supervisor",
+      "source_family": "HELM",
+      "target_component_id": "ag:component:kernel-core",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@aftergraph/events",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/outcomes/package.json"
+      ],
+      "source_component_id": "ag:component:outcomes",
+      "source_family": "HELM",
+      "target_component_id": "ag:component:events",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@aftergraph/job-runtime",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/outcomes/package.json"
+      ],
+      "source_component_id": "ag:component:outcomes",
+      "source_family": "HELM",
+      "target_component_id": "ag:component:job-runtime",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/outcomes/package.json"
+      ],
+      "source_component_id": "ag:component:outcomes",
+      "source_family": "HELM",
+      "target_component_id": "ag:component:kernel-core",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/portfolio/package.json"
+      ],
+      "source_component_id": "ag:component:portfolio",
+      "source_family": "HELM",
+      "target_component_id": "ag:component:kernel-core",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/intelligence-gateway/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:intelligence-gateway",
+      "source_family": "HELM",
+      "target_component_id": "ag:legacy:avc:kernel-core",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/ledger/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:ledger",
+      "source_family": "HELM",
+      "target_component_id": "ag:legacy:avc:kernel-core",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/memory-store/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:memory-store",
+      "source_family": "HELM",
+      "target_component_id": "ag:legacy:avc:kernel-core",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/mission-graph/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:mission-graph",
+      "source_family": "HELM",
+      "target_component_id": "ag:legacy:avc:kernel-core",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/portfolio/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:portfolio",
+      "source_family": "HELM",
+      "target_component_id": "ag:legacy:avc:kernel-core",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/product-catalog/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:product-catalog",
+      "source_family": "LOOM",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/ml/avc-llm/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:avc-llm",
+      "source_family": "REFINERY",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/ml/avc-llm/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:avc-llm",
+      "source_family": "REFINERY",
+      "target_component_id": "ag:legacy:avc:kernel-core",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@avc/avc-eval",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/ml/avc-llm/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:avc-llm",
+      "source_family": "REFINERY",
+      "target_component_id": "ag:legacy:avc:avc-eval",
+      "target_family": "WITNESS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/incident/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:incident",
+      "source_family": "SIGHTLINE",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@aftergraph/events",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/incident/package.json"
+      ],
+      "source_component_id": "ag:component:incident",
+      "source_family": "SIGHTLINE",
+      "target_component_id": "ag:component:events",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@aftergraph/kernel-core",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/incident/package.json"
+      ],
+      "source_component_id": "ag:component:incident",
+      "source_family": "SIGHTLINE",
+      "target_component_id": "ag:component:kernel-core",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/incident/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:incident",
+      "source_family": "SIGHTLINE",
+      "target_component_id": "ag:legacy:avc:kernel-core",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@aftergraph/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/agent-harness/package.json"
+      ],
+      "source_component_id": "ag:component:agent-harness",
+      "source_family": "WITNESS",
+      "target_component_id": "ag:component:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/agent-harness/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:agent-harness",
+      "source_family": "WITNESS",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/ml/avc-eval/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:avc-eval",
+      "source_family": "WITNESS",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/plugin-deepsec/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:plugin-deepsec",
+      "source_family": "WITNESS",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/contracts",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/security-assurance/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:security-assurance",
+      "source_family": "WITNESS",
+      "target_component_id": "ag:legacy:avc:contracts",
+      "target_family": "COMMONS"
+    },
+    {
+      "dependency_name": "@avc/invariant-registry",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/security-assurance/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:security-assurance",
+      "source_family": "WITNESS",
+      "target_component_id": "ag:legacy:avc:invariant-registry",
+      "target_family": "COVENANT_SUPPORT"
+    },
+    {
+      "dependency_name": "@aftergraph/proactive-runtime",
+      "evidence_refs": [
+        "git://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/agent-eval/package.json"
+      ],
+      "source_component_id": "ag:component:agent-eval",
+      "source_family": "WITNESS",
+      "target_component_id": "ag:component:proactive-runtime",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@avc/hermes-adapter",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/agent-eval/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:agent-eval",
+      "source_family": "WITNESS",
+      "target_component_id": "ag:legacy:avc:hermes-adapter",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@avc/proactive-runtime",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/agent-eval/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:agent-eval",
+      "source_family": "WITNESS",
+      "target_component_id": "ag:legacy:avc:proactive-runtime",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/ml/avc-eval/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:avc-eval",
+      "source_family": "WITNESS",
+      "target_component_id": "ag:legacy:avc:kernel-core",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@avc/events",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/security-assurance/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:security-assurance",
+      "source_family": "WITNESS",
+      "target_component_id": "ag:legacy:avc:events",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@avc/job-runtime",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/security-assurance/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:security-assurance",
+      "source_family": "WITNESS",
+      "target_component_id": "ag:legacy:avc:job-runtime",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@avc/kernel-core",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/security-assurance/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:security-assurance",
+      "source_family": "WITNESS",
+      "target_component_id": "ag:legacy:avc:kernel-core",
+      "target_family": "DRIVE"
+    },
+    {
+      "dependency_name": "@avc/ledger",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/security-assurance/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:security-assurance",
+      "source_family": "WITNESS",
+      "target_component_id": "ag:legacy:avc:ledger",
+      "target_family": "HELM"
+    },
+    {
+      "dependency_name": "@avc/incident",
+      "evidence_refs": [
+        "git://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/security-assurance/package.json"
+      ],
+      "source_component_id": "ag:legacy:avc:security-assurance",
+      "source_family": "WITNESS",
+      "target_component_id": "ag:legacy:avc:incident",
+      "target_family": "SIGHTLINE"
+    }
+  ],
+  "dependency_edges_total": 147,
+  "family_edges": [
+    {
+      "edge_count": 6,
+      "source_family": "COVENANT_SUPPORT",
+      "target_family": "COMMONS"
+    },
+    {
+      "edge_count": 1,
+      "source_family": "COVENANT_SUPPORT",
+      "target_family": "COVENANT_SUPPORT"
+    },
+    {
+      "edge_count": 2,
+      "source_family": "COVENANT_SUPPORT",
+      "target_family": "DRIVE"
+    },
+    {
+      "edge_count": 1,
+      "source_family": "COVENANT_SUPPORT",
+      "target_family": "HELM"
+    },
+    {
+      "edge_count": 3,
+      "source_family": "DOMAIN",
+      "target_family": "COMMONS"
+    },
+    {
+      "edge_count": 1,
+      "source_family": "DOMAIN",
+      "target_family": "COVENANT_SUPPORT"
+    },
+    {
+      "edge_count": 3,
+      "source_family": "DOMAIN",
+      "target_family": "DOMAIN"
+    },
+    {
+      "edge_count": 3,
+      "source_family": "DOMAIN",
+      "target_family": "DRIVE"
+    },
+    {
+      "edge_count": 13,
+      "source_family": "DRIVE",
+      "target_family": "COMMONS"
+    },
+    {
+      "edge_count": 5,
+      "source_family": "DRIVE",
+      "target_family": "COVENANT_SUPPORT"
+    },
+    {
+      "edge_count": 36,
+      "source_family": "DRIVE",
+      "target_family": "DRIVE"
+    },
+    {
+      "edge_count": 8,
+      "source_family": "DRIVE",
+      "target_family": "HELM"
+    },
+    {
+      "edge_count": 1,
+      "source_family": "DRIVE",
+      "target_family": "LOOM"
+    },
+    {
+      "edge_count": 2,
+      "source_family": "DRIVE",
+      "target_family": "SIGHTLINE"
+    },
+    {
+      "edge_count": 1,
+      "source_family": "DRIVE",
+      "target_family": "WITNESS"
+    },
+    {
+      "edge_count": 1,
+      "source_family": "EXPERIENCE",
+      "target_family": "WITNESS"
+    },
+    {
+      "edge_count": 12,
+      "source_family": "HELM",
+      "target_family": "COMMONS"
+    },
+    {
+      "edge_count": 1,
+      "source_family": "HELM",
+      "target_family": "COVENANT_SUPPORT"
+    },
+    {
+      "edge_count": 19,
+      "source_family": "HELM",
+      "target_family": "DRIVE"
+    },
+    {
+      "edge_count": 3,
+      "source_family": "HELM",
+      "target_family": "HELM"
+    },
+    {
+      "edge_count": 1,
+      "source_family": "LOOM",
+      "target_family": "COMMONS"
+    },
+    {
+      "edge_count": 1,
+      "source_family": "REFINERY",
+      "target_family": "COMMONS"
+    },
+    {
+      "edge_count": 1,
+      "source_family": "REFINERY",
+      "target_family": "DRIVE"
+    },
+    {
+      "edge_count": 1,
+      "source_family": "REFINERY",
+      "target_family": "REFINERY"
+    },
+    {
+      "edge_count": 1,
+      "source_family": "REFINERY",
+      "target_family": "WITNESS"
+    },
+    {
+      "edge_count": 1,
+      "source_family": "SIGHTLINE",
+      "target_family": "COMMONS"
+    },
+    {
+      "edge_count": 3,
+      "source_family": "SIGHTLINE",
+      "target_family": "DRIVE"
+    },
+    {
+      "edge_count": 5,
+      "source_family": "WITNESS",
+      "target_family": "COMMONS"
+    },
+    {
+      "edge_count": 1,
+      "source_family": "WITNESS",
+      "target_family": "COVENANT_SUPPORT"
+    },
+    {
+      "edge_count": 7,
+      "source_family": "WITNESS",
+      "target_family": "DRIVE"
+    },
+    {
+      "edge_count": 1,
+      "source_family": "WITNESS",
+      "target_family": "HELM"
+    },
+    {
+      "edge_count": 1,
+      "source_family": "WITNESS",
+      "target_family": "SIGHTLINE"
+    },
+    {
+      "edge_count": 1,
+      "source_family": "WITNESS",
+      "target_family": "WITNESS"
+    }
+  ],
+  "nodes_total": 97,
+  "policy": {
+    "analysis_does_not_authorize_moves": true,
+    "dependency_edges_do_not_grant_ownership": true,
+    "dependency_edges_grant_authority": false,
+    "dependency_graph_is_not_circuit_flow": true,
+    "multidimensional_only": true
+  },
+  "schema_version": "roro-component-boundary-analysis/0.1",
+  "source_snapshot_generated_at": "2026-09-16T08:04:39Z",
+  "unresolved_observations": 0,
+  "within_family_dependency_edges": 45
+}

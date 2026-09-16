@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/roro/0.1/component-boundary-analysis.schema.json",
+  "title": "R.O.R.O. Component Boundary Analysis 0.1",
+  "type": "object",
+  "required": ["schema_version", "source_snapshot_generated_at", "policy", "nodes_total", "dependency_edges_total", "unresolved_observations", "cross_family_dependency_edges", "within_family_dependency_edges", "family_edges", "cross_family_edges"],
+  "properties": {
+    "schema_version": {"const": "roro-component-boundary-analysis/0.1"},
+    "source_snapshot_generated_at": {"type": "string", "minLength": 1},
+    "policy": {"type": "object"},
+    "nodes_total": {"type": "integer", "minimum": 0},
+    "dependency_edges_total": {"type": "integer", "minimum": 0},
+    "unresolved_observations": {"type": "integer", "minimum": 0},
+    "cross_family_dependency_edges": {"type": "integer", "minimum": 0},
+    "within_family_dependency_edges": {"type": "integer", "minimum": 0},
+    "family_edges": {"type": "array", "items": {"type": "object"}},
+    "cross_family_edges": {"type": "array", "items": {"type": "object"}}
+  },
+  "additionalProperties": false
+}
