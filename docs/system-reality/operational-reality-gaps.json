@@ -1,0 +1,96 @@
+{
+  "gaps": [
+    {
+      "epistemic_status": "CONFLICTING",
+      "id": "opgap:runtime:declared-control-plane",
+      "next_evidence": "Classify each running service and decide whether VM topology is superseded or incomplete.",
+      "reason": "Declared control-plane VMs are shut off while consequential services run on the outer VDS host.",
+      "severity": "HIGH",
+      "subject": "runtime://vds-control-plane",
+      "type": "DECLARED_RUNTIME_MISMATCH"
+    },
+    {
+      "epistemic_status": "OBSERVED",
+      "id": "opgap:credential:vds-permission",
+      "next_evidence": "Map consumers and tighten permissions only after compatibility review.",
+      "reason": "One gateway credential metadata file is world-readable at mode 0644. Values were not collected.",
+      "severity": "HIGH",
+      "subject": "credential://vds/gateway-env",
+      "type": "CREDENTIAL_PERMISSION_DRIFT"
+    },
+    {
+      "epistemic_status": "OBSERVED",
+      "id": "opgap:credential:lenovo-permission",
+      "next_evidence": "Confirm required consumer identity before ACL remediation.",
+      "reason": "One active Hermes profile env grants CodexSandboxUsers read access. Values were not collected.",
+      "severity": "HIGH",
+      "subject": "credential://lenovo/rendetalje-hermes-env",
+      "type": "CREDENTIAL_PERMISSION_DRIFT"
+    },
+    {
+      "epistemic_status": "OBSERVED",
+      "id": "opgap:credential:snapshots",
+      "next_evidence": "Map whether historical copies are required, then define retention/rotation policy.",
+      "reason": "19 historical Hermes backup/state-snapshot env files were observed.",
+      "severity": "HIGH",
+      "subject": "credential://lenovo/hermes-snapshots",
+      "type": "CREDENTIAL_SNAPSHOT_SPRAWL"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "id": "opgap:recovery:offhost",
+      "next_evidence": "Observe backup destinations and perform isolated restore verification.",
+      "reason": "Local backup mechanisms are observed, but off-host restore proof is not established by this wave.",
+      "severity": "HIGH",
+      "subject": "recovery://tier0",
+      "type": "RECOVERY_PROOF_UNKNOWN"
+    },
+    {
+      "epistemic_status": "OBSERVED",
+      "id": "opgap:route:wie",
+      "next_evidence": "Determine whether this route is desired, superseded, or intentionally absent.",
+      "reason": "No DNS resolution observed.",
+      "severity": "MEDIUM",
+      "subject": "route://wie.aftergraph.org",
+      "type": "PUBLIC_ROUTE_ABSENT"
+    },
+    {
+      "epistemic_status": "OBSERVED",
+      "id": "opgap:route:studio",
+      "next_evidence": "Determine desired public surface and canonical route.",
+      "reason": "No DNS resolution observed.",
+      "severity": "MEDIUM",
+      "subject": "route://studio.aftergraph.org",
+      "type": "PUBLIC_ROUTE_ABSENT"
+    },
+    {
+      "epistemic_status": "OBSERVED",
+      "id": "opgap:route:war-room",
+      "next_evidence": "Determine desired public/private operator route.",
+      "reason": "No DNS resolution observed.",
+      "severity": "MEDIUM",
+      "subject": "route://war-room.aftergraph.org",
+      "type": "PUBLIC_ROUTE_ABSENT"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "id": "opgap:cloud:ownership",
+      "next_evidence": "Classify every resource by owner, tenant, environment and retirement disposition.",
+      "reason": "The account contains Aftergraph, AVC, Rendetalje, Tekup and other resources; account membership does not imply Aftergraph ownership.",
+      "severity": "HIGH",
+      "subject": "cloud://cloudflare/account",
+      "type": "CLOUD_OWNERSHIP_UNCLASSIFIED"
+    },
+    {
+      "epistemic_status": "OBSERVED",
+      "id": "opgap:runtime:host-concentration",
+      "next_evidence": "Build dependency/blast-radius graph before structural migration.",
+      "reason": "Multiple control, execution, agent and CI services are concentrated on the outer VDS host.",
+      "severity": "HIGH",
+      "subject": "runtime://vmi3517816",
+      "type": "HOST_CONCENTRATION"
+    }
+  ],
+  "generated_at": "2026-09-16T00:34:50.296822+00:00",
+  "schema_version": "roro-operational-gaps/0.1"
+}

@@ -1,0 +1,47 @@
+{
+  "$id": "contract:roro-route-observation/0.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "dns_state": {
+      "enum": [
+        "RESOLVED",
+        "UNRESOLVED",
+        "UNKNOWN"
+      ]
+    },
+    "epistemic_status": {
+      "enum": [
+        "VERIFIED",
+        "OBSERVED",
+        "INFERRED",
+        "DECLARED",
+        "PROPOSED",
+        "STALE",
+        "CONFLICTING",
+        "UNKNOWN"
+      ]
+    },
+    "host": {
+      "type": "string"
+    },
+    "https_status": {
+      "maximum": 599,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "observed_at": {
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "required": [
+    "host",
+    "dns_state",
+    "https_status",
+    "observed_at",
+    "epistemic_status"
+  ],
+  "title": "R.O.R.O. Route Observation",
+  "type": "object"
+}

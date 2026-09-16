@@ -1,0 +1,60 @@
+{
+  "$id": "contract:roro-deployment-binding/0.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "component_id": {
+      "pattern": "^ag:[a-z0-9][a-z0-9:-]*$",
+      "type": "string"
+    },
+    "epistemic_status": {
+      "enum": [
+        "VERIFIED",
+        "OBSERVED",
+        "INFERRED",
+        "DECLARED",
+        "PROPOSED",
+        "STALE",
+        "CONFLICTING",
+        "UNKNOWN"
+      ]
+    },
+    "host_ref": {
+      "type": "string"
+    },
+    "observed_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "observed_revision": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "runtime_identity": {
+      "type": "string"
+    },
+    "runtime_kind": {
+      "enum": [
+        "SYSTEMD",
+        "CONTAINER",
+        "VM",
+        "PROCESS",
+        "CLOUD_WORKER",
+        "UNKNOWN"
+      ]
+    }
+  },
+  "required": [
+    "component_id",
+    "host_ref",
+    "runtime_kind",
+    "runtime_identity",
+    "epistemic_status",
+    "observed_at"
+  ],
+  "title": "R.O.R.O. Deployment Binding",
+  "type": "object"
+}

@@ -238,5 +238,47 @@ class GeneratedArtifactTests(unittest.TestCase):
         self.assertIn("R.O.R.O. registry OK", result.stdout)
 
 
+class OperationalRealityTests(unittest.TestCase):
+    def test_operational_contracts_exist(self) -> None:
+        base = ROOT / "docs/contracts/roro/0.1"
+        for name in (
+            "deployment-binding.schema.json",
+            "credential-binding.schema.json",
+            "state-store.schema.json",
+            "route-observation.schema.json",
+        ):
+            path = base / name
+            self.assertTrue(path.is_file(), path)
+            json.loads(path.read_text(encoding="utf-8"))
+
+    def test_operational_snapshot_is_sanitized_and_typed(self) -> None:
+        path = ROOT / "docs/system-reality/operational-reality.json"
+        data = json.loads(path.read_text(encoding="utf-8"))
+        self.assertEqual(data["schema_version"], "roro-operational-reality/0.1")
+        self.assertEqual(data["credential_summary"]["values_collected"], False)
+        self.assertGreaterEqual(data["runtime_summary"]["active_services"], 1)
+        self.assertGreaterEqual(data["cloud_summary"]["pages_projects"], 1)
+        raw = path.read_text(encoding="utf-8")
+        self.assertNotIn("C:\\Users\\", raw)
+        self.assertNotIn("/root/agent-workforce/data/gateway.env", raw)
+
+    def test_operational_gaps_encode_observed_drift(self) -> None:
+        path = ROOT / "docs/system-reality/operational-reality-gaps.json"
+        data = json.loads(path.read_text(encoding="utf-8"))
+        types = {item["type"] for item in data["gaps"]}
+        self.assertIn("DECLARED_RUNTIME_MISMATCH", types)
+        self.assertIn("CREDENTIAL_PERMISSION_DRIFT", types)
+        self.assertIn("CREDENTIAL_SNAPSHOT_SPRAWL", types)
+        self.assertIn("RECOVERY_PROOF_UNKNOWN", types)
+        self.assertIn("PUBLIC_ROUTE_ABSENT", types)
+
+    def test_route_snapshot_preserves_absence_vs_unobserved(self) -> None:
+        data = json.loads((ROOT / "docs/system-reality/operational-reality.json").read_text(encoding="utf-8"))
+        routes = {item["host"]: item for item in data["route_summary"]["routes"]}
+        self.assertEqual(routes["work-intelligence.aftergraph.org"]["https_status"], 200)
+        self.assertEqual(routes["wie.aftergraph.org"]["dns_state"], "UNRESOLVED")
+        self.assertEqual(routes["studio.aftergraph.org"]["dns_state"], "UNRESOLVED")
+        self.assertEqual(routes["war-room.aftergraph.org"]["dns_state"], "UNRESOLVED")
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

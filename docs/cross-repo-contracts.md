@@ -61,6 +61,10 @@ not frozen platform law.
 | `roro-source-binding/0.1` | Experimental | Governance registration; Git remains source truth | Binds a component to exact repository/path/revision evidence without granting ownership. |
 | `roro-reality-facet/0.1` | Experimental | Governance registration | Shared reality-facet and epistemic-status vocabulary. |
 | `roro-reality-diff/0.1` | Experimental | Governance registration | Records drift, contradiction, stale claims and unknowns without silently choosing a winner. |
+| `roro-deployment-binding/0.1` | Experimental | Governance registration; runtime/deployer remains native truth | Binds semantic components to observed runtime identities without promoting deployment metadata to authority. |
+| `roro-credential-binding/0.1` | Experimental | Governance registration; secret stores remain native truth | Records credential references, consumers and permission posture; secret values are prohibited. |
+| `roro-state-store/0.1` | Experimental | Governance registration; domain owners retain state authority | Describes durable stores, backup observation and independently verified recoverability. |
+| `roro-route-observation/0.1` | Experimental | Governance registration; DNS/provider remains native truth | Records current DNS/HTTP route observation while preserving absence vs unknown. |
 
 Machine-executable Phase-0 vectors live at
 `docs/platform-conformance/v0.1/vectors.json` and are exercised by

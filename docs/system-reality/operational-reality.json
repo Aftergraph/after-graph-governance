@@ -1,0 +1,197 @@
+{
+  "agent_automation_summary": {
+    "lenovo_agent_processes_observed": 47,
+    "lenovo_scheduled_tasks_observed": 10,
+    "lenovo_selected_listeners_observed": 4,
+    "vds_agent_related_services": 22,
+    "vds_cron_artifacts_observed": 45,
+    "vds_installed_hermes_profile_directories": 7
+  },
+  "cloud_summary": {
+    "d1_databases": 7,
+    "d1_names": [
+      "atlas-v3-db",
+      "mission-graph-authority-db",
+      "avc-identity-db",
+      "serviceops-mcp-db",
+      "serviceops-mcp-db-staging",
+      "tekbot-db-staging",
+      "tekbot-db"
+    ],
+    "known_worker_deployments_observed": 6,
+    "kv_names": [
+      "AG_STATS",
+      "serviceops-mcp-oauth",
+      "serviceops-mcp-oauth-staging",
+      "serviceops-mcp-session",
+      "serviceops-mcp-session-staging",
+      "tekbot-kv",
+      "tekbot-kv-staging",
+      "tekup-leads"
+    ],
+    "kv_namespaces": 8,
+    "observed_at": "2026-09-16T00:34:50.296822+00:00",
+    "observer": "jonas-lenovo/wrangler",
+    "ownership_classification": "INCOMPLETE",
+    "pages_project_names": [
+      "rendetalje-worker",
+      "aftergraph-docs",
+      "avc-platform-web-git",
+      "avc-marketing-site",
+      "avc-platform-web",
+      "fridayos",
+      "worldmind-site",
+      "forge-dashboard",
+      "forge-webs",
+      "tekup-digital",
+      "tekup-chatbot-widget"
+    ],
+    "pages_projects": 11,
+    "r2_buckets": 2,
+    "r2_names": [
+      "atlas-v3-artifacts",
+      "moltbot-data"
+    ],
+    "worker_names": [
+      "aftergraph-site",
+      "aftergraph-studio",
+      "studio-api-proxy",
+      "serviceops-mcp",
+      "avc-identity",
+      "mission-graph-authority"
+    ]
+  },
+  "credential_summary": {
+    "lenovo_backup_or_snapshot_env_files": 19,
+    "lenovo_env_files_observed": 26,
+    "permission_drift_observations": 2,
+    "public_snapshot_contains_key_names": false,
+    "public_snapshot_contains_secret_paths": false,
+    "values_collected": false,
+    "vds_env_files_observed": 17
+  },
+  "evidence_policy": {
+    "native_truth_remains_native": true,
+    "public_snapshot_redacted": true,
+    "secret_values_prohibited": true
+  },
+  "generated_at": "2026-09-16T00:34:50.296822+00:00",
+  "route_summary": {
+    "observed_at": "2026-09-16T00:28:50.767933+00:00",
+    "observer": "vmi3517816",
+    "routes": [
+      {
+        "dns_state": "RESOLVED",
+        "epistemic_status": "OBSERVED",
+        "host": "aftergraph.org",
+        "https_status": 200,
+        "observed_at": "2026-09-16T00:28:50.767933+00:00"
+      },
+      {
+        "dns_state": "RESOLVED",
+        "epistemic_status": "OBSERVED",
+        "host": "www.aftergraph.org",
+        "https_status": 200,
+        "observed_at": "2026-09-16T00:28:50.767933+00:00"
+      },
+      {
+        "dns_state": "RESOLVED",
+        "epistemic_status": "OBSERVED",
+        "host": "docs.aftergraph.org",
+        "https_status": 200,
+        "observed_at": "2026-09-16T00:28:50.767933+00:00"
+      },
+      {
+        "dns_state": "RESOLVED",
+        "epistemic_status": "OBSERVED",
+        "host": "billing.aftergraph.org",
+        "https_status": 200,
+        "observed_at": "2026-09-16T00:28:50.767933+00:00"
+      },
+      {
+        "dns_state": "RESOLVED",
+        "epistemic_status": "OBSERVED",
+        "host": "work-intelligence.aftergraph.org",
+        "https_status": 200,
+        "observed_at": "2026-09-16T00:28:50.767933+00:00"
+      },
+      {
+        "dns_state": "UNRESOLVED",
+        "epistemic_status": "OBSERVED",
+        "host": "wie.aftergraph.org",
+        "https_status": 0,
+        "observed_at": "2026-09-16T00:28:50.767933+00:00"
+      },
+      {
+        "dns_state": "UNRESOLVED",
+        "epistemic_status": "OBSERVED",
+        "host": "studio.aftergraph.org",
+        "https_status": 0,
+        "observed_at": "2026-09-16T00:28:50.767933+00:00"
+      },
+      {
+        "dns_state": "UNRESOLVED",
+        "epistemic_status": "OBSERVED",
+        "host": "war-room.aftergraph.org",
+        "https_status": 0,
+        "observed_at": "2026-09-16T00:28:50.767933+00:00"
+      },
+      {
+        "dns_state": "RESOLVED",
+        "epistemic_status": "OBSERVED",
+        "host": "intel.rendetalje.dk",
+        "https_status": 401,
+        "observed_at": "2026-09-16T00:28:50.767933+00:00"
+      },
+      {
+        "dns_state": "RESOLVED",
+        "epistemic_status": "OBSERVED",
+        "host": "work-intelligence.rendetalje.dk",
+        "https_status": 200,
+        "observed_at": "2026-09-16T00:28:50.767933+00:00"
+      },
+      {
+        "dns_state": "RESOLVED",
+        "epistemic_status": "OBSERVED",
+        "host": "rendetalje.dk",
+        "https_status": 200,
+        "observed_at": "2026-09-16T00:28:50.767933+00:00"
+      },
+      {
+        "dns_state": "RESOLVED",
+        "epistemic_status": "OBSERVED",
+        "host": "www.rendetalje.dk",
+        "https_status": 200,
+        "observed_at": "2026-09-16T00:28:50.767933+00:00"
+      }
+    ]
+  },
+  "runtime_summary": {
+    "active_services": 28,
+    "containers": 8,
+    "observed_at": "2026-09-16T00:24:52.869195+00:00",
+    "observer": "vmi3517816",
+    "relevant_services": 35,
+    "self_hosted_runner_services": 11,
+    "virtual_machines": [
+      {
+        "name": "avc-control-01",
+        "state": "shut off"
+      },
+      {
+        "name": "avc-gate-01",
+        "state": "shut off"
+      }
+    ],
+    "wi_frontend_state": "RUNNING"
+  },
+  "schema_version": "roro-operational-reality/0.1",
+  "state_recovery_summary": {
+    "active_backup_or_monitor_timers": 10,
+    "known_state_surfaces": 9,
+    "observed_at": "2026-09-16T00:25:17.175629+00:00",
+    "observer": "vmi3517816",
+    "off_host_recovery": "UNKNOWN",
+    "recoverability": "BACKUP_PRESENT_NOT_RECOVERABLE_VERIFIED"
+  }
+}

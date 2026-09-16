@@ -1,0 +1,59 @@
+{
+  "$id": "contract:roro-state-store/0.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "backup_state": {
+      "enum": [
+        "OBSERVED",
+        "ABSENT",
+        "UNKNOWN"
+      ]
+    },
+    "epistemic_status": {
+      "enum": [
+        "VERIFIED",
+        "OBSERVED",
+        "INFERRED",
+        "DECLARED",
+        "PROPOSED",
+        "STALE",
+        "CONFLICTING",
+        "UNKNOWN"
+      ]
+    },
+    "owner_component": {
+      "type": "string"
+    },
+    "recoverability": {
+      "enum": [
+        "RECOVERABLE_VERIFIED",
+        "BACKUP_PRESENT",
+        "UNKNOWN"
+      ]
+    },
+    "state_ref": {
+      "pattern": "^state://",
+      "type": "string"
+    },
+    "store_kind": {
+      "enum": [
+        "SQLITE",
+        "POSTGRES",
+        "FILE",
+        "ARTIFACT_STORE",
+        "UNKNOWN"
+      ]
+    }
+  },
+  "required": [
+    "state_ref",
+    "owner_component",
+    "store_kind",
+    "backup_state",
+    "recoverability",
+    "epistemic_status"
+  ],
+  "title": "R.O.R.O. State Store",
+  "type": "object"
+}
