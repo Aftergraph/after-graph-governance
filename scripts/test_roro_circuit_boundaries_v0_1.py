@@ -73,6 +73,9 @@ class CircuitValidationTests(unittest.TestCase):
             "missing-covenant-invalid",
             "self-verification-invalid",
             "unknown-family-invalid",
+            "mode-mismatch-invalid",
+            "missing-drive-invalid",
+            "disconnected-invalid",
         } <= ids)
 
     def test_validator_results_match_expected_vectors(self):
@@ -91,6 +94,9 @@ class CircuitValidationTests(unittest.TestCase):
         self.assertIn("COVENANT_REQUIRED", rules("missing-covenant-invalid"))
         self.assertIn("VERIFIER_NOT_INDEPENDENT", rules("self-verification-invalid"))
         self.assertIn("UNKNOWN_FAMILY", rules("unknown-family-invalid"))
+        self.assertIn("MODE_CONSEQUENTIAL_MISMATCH", rules("mode-mismatch-invalid"))
+        self.assertIn("DRIVE_REQUIRED", rules("missing-drive-invalid"))
+        self.assertIn("DISCONNECTED_GRAPH", rules("disconnected-invalid"))
 
     def test_validator_is_deterministic(self):
         before = RESULTS.read_bytes()

@@ -673,3 +673,9 @@ The bounded compiler vocabulary is `QUERY | REPAIR | IMPROVE`, effect classes `R
 Minimal generated graphs are deliberately small: read-only query = `SIGHTLINE→HELM`; repair = `SIGHTLINE→HELM→COVENANT→DRIVE→WITNESS→SIGHTLINE`; improvement = `SIGHTLINE→HELM→REFINERY→COVENANT→DRIVE→WITNESS`. Every compiled graph is immediately revalidated by the independent Circuit composition validator before it is emitted.
 
 `COMPILED` remains strictly weaker than `AUTHORIZED` or `EXECUTABLE`. CircuitRun/WORKS durable-state binding is a later slice and is not introduced here.
+
+### 22.1 Circuit validator hardening
+
+The composition validator now rejects mode/consequential mismatches, consequential graphs with no DRIVE operator, and disconnected operator graphs. These checks are structural fail-closed guards; they do not add authority or make a valid graph executable.
+
+Three falsification vectors demonstrate the former gaps: `mode-mismatch-invalid`, `missing-drive-invalid`, and `disconnected-invalid`. All are now rejected while the three original valid Circuit vectors remain valid.

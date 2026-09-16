@@ -2,9 +2,9 @@
   "schema_version": "circuit-spec-vectors/0.1",
   "vectors": [
     {
-      "expected_status": "VALID",
+      "expected_status": "INVALID",
       "spec": {
-        "circuit_id": "read-only",
+        "circuit_id": "disconnected",
         "consequential": false,
         "edges": [
           {
@@ -23,75 +23,16 @@
             "family": "HELM",
             "independence_key": "cognition",
             "operator_id": "think"
-          }
-        ],
-        "schema_version": "circuit-spec/0.1"
-      },
-      "vector_id": "read-only-valid"
-    },
-    {
-      "expected_status": "VALID",
-      "spec": {
-        "circuit_id": "production-repair",
-        "consequential": true,
-        "edges": [
-          {
-            "from": "sense",
-            "to": "think"
-          },
-          {
-            "from": "think",
-            "to": "admit"
-          },
-          {
-            "from": "admit",
-            "to": "execute"
-          },
-          {
-            "from": "execute",
-            "to": "verify"
-          },
-          {
-            "from": "verify",
-            "to": "reobserve"
-          }
-        ],
-        "mode": "CONSEQUENTIAL",
-        "nodes": [
-          {
-            "family": "SIGHTLINE",
-            "independence_key": "observe",
-            "operator_id": "sense"
-          },
-          {
-            "family": "HELM",
-            "independence_key": "cognition",
-            "operator_id": "think"
-          },
-          {
-            "family": "COVENANT",
-            "independence_key": "authority",
-            "operator_id": "admit"
-          },
-          {
-            "family": "DRIVE",
-            "independence_key": "execution",
-            "operator_id": "execute"
           },
           {
             "family": "WITNESS",
             "independence_key": "verification",
             "operator_id": "verify"
-          },
-          {
-            "family": "SIGHTLINE",
-            "independence_key": "reobserve",
-            "operator_id": "reobserve"
           }
         ],
         "schema_version": "circuit-spec/0.1"
       },
-      "vector_id": "production-repair-valid"
+      "vector_id": "disconnected-invalid"
     },
     {
       "expected_status": "VALID",
@@ -202,6 +143,168 @@
         "schema_version": "circuit-spec/0.1"
       },
       "vector_id": "missing-covenant-invalid"
+    },
+    {
+      "expected_status": "INVALID",
+      "spec": {
+        "circuit_id": "missing-drive",
+        "consequential": true,
+        "edges": [
+          {
+            "from": "sense",
+            "to": "think"
+          },
+          {
+            "from": "think",
+            "to": "admit"
+          }
+        ],
+        "mode": "CONSEQUENTIAL",
+        "nodes": [
+          {
+            "family": "SIGHTLINE",
+            "independence_key": "observe",
+            "operator_id": "sense"
+          },
+          {
+            "family": "HELM",
+            "independence_key": "cognition",
+            "operator_id": "think"
+          },
+          {
+            "family": "COVENANT",
+            "independence_key": "authority",
+            "operator_id": "admit"
+          },
+          {
+            "family": "WITNESS",
+            "independence_key": "verification",
+            "operator_id": "verify"
+          }
+        ],
+        "schema_version": "circuit-spec/0.1"
+      },
+      "vector_id": "missing-drive-invalid"
+    },
+    {
+      "expected_status": "INVALID",
+      "spec": {
+        "circuit_id": "mode-mismatch",
+        "consequential": true,
+        "edges": [
+          {
+            "from": "sense",
+            "to": "think"
+          }
+        ],
+        "mode": "READ_ONLY",
+        "nodes": [
+          {
+            "family": "SIGHTLINE",
+            "independence_key": "observe",
+            "operator_id": "sense"
+          },
+          {
+            "family": "HELM",
+            "independence_key": "cognition",
+            "operator_id": "think"
+          }
+        ],
+        "schema_version": "circuit-spec/0.1"
+      },
+      "vector_id": "mode-mismatch-invalid"
+    },
+    {
+      "expected_status": "VALID",
+      "spec": {
+        "circuit_id": "production-repair",
+        "consequential": true,
+        "edges": [
+          {
+            "from": "sense",
+            "to": "think"
+          },
+          {
+            "from": "think",
+            "to": "admit"
+          },
+          {
+            "from": "admit",
+            "to": "execute"
+          },
+          {
+            "from": "execute",
+            "to": "verify"
+          },
+          {
+            "from": "verify",
+            "to": "reobserve"
+          }
+        ],
+        "mode": "CONSEQUENTIAL",
+        "nodes": [
+          {
+            "family": "SIGHTLINE",
+            "independence_key": "observe",
+            "operator_id": "sense"
+          },
+          {
+            "family": "HELM",
+            "independence_key": "cognition",
+            "operator_id": "think"
+          },
+          {
+            "family": "COVENANT",
+            "independence_key": "authority",
+            "operator_id": "admit"
+          },
+          {
+            "family": "DRIVE",
+            "independence_key": "execution",
+            "operator_id": "execute"
+          },
+          {
+            "family": "WITNESS",
+            "independence_key": "verification",
+            "operator_id": "verify"
+          },
+          {
+            "family": "SIGHTLINE",
+            "independence_key": "reobserve",
+            "operator_id": "reobserve"
+          }
+        ],
+        "schema_version": "circuit-spec/0.1"
+      },
+      "vector_id": "production-repair-valid"
+    },
+    {
+      "expected_status": "VALID",
+      "spec": {
+        "circuit_id": "read-only",
+        "consequential": false,
+        "edges": [
+          {
+            "from": "sense",
+            "to": "think"
+          }
+        ],
+        "mode": "READ_ONLY",
+        "nodes": [
+          {
+            "family": "SIGHTLINE",
+            "independence_key": "observe",
+            "operator_id": "sense"
+          },
+          {
+            "family": "HELM",
+            "independence_key": "cognition",
+            "operator_id": "think"
+          }
+        ],
+        "schema_version": "circuit-spec/0.1"
+      },
+      "vector_id": "read-only-valid"
     },
     {
       "expected_status": "INVALID",

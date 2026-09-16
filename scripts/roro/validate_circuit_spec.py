@@ -76,7 +76,42 @@ def validate(spec: dict, model: dict, vector_id: str) -> dict:
     covenants = {x.get("operator_id") for x in nodes if x.get("family") == "COVENANT"}
     witnesses = {x.get("operator_id") for x in nodes if x.get("family") == "WITNESS"}
 
-    if spec.get("mode") == "READ_ONLY" and drives:
+    mode = spec.get("mode")
+    consequential = spec.get("consequential")
+    if mode == "READ_ONLY" and consequential is not False:
+        add("MODE_CONSEQUENTIAL_MISMATCH", "READ_ONLY mode requires consequential=false")
+    if mode in {"CONSEQUENTIAL", "IMPROVEMENT"} and consequential is not True:
+        add("MODE_CONSEQUENTIAL_MISMATCH", f"{mode} mode requires consequential=true")
+
+    if node_by_id:
+        undirected: dict[str, set[str]] = {key: set() for key in node_by_id}
+        for source, targets in graph.items():
+            for target in targets:
+                if source in undirected and target in undirected:
+                    undirected[source].add(target)
+                    undirected[target].add(source)
+        start = next(iter(node_by_id))
+        seen = {start}
+        queue = deque([start])
+        while queue:
+            current = queue.popleft()
+            for nxt in undirected[current]:
+                if nxt not in seen:
+                    seen.add(nxt)
+                    queue.append(nxt)
+        if seen != set(node_by_id):
+            missing = ", ".join(sorted(set(node_by_id) - seen))
+            add("DISCONNECTED_GRAPH", f"Circuit operators are not one connected composition graph; disconnected: {missing}")
+
+    if consequential:
+        if not drives:
+            add("DRIVE_REQUIRED", "consequential Circuit requires at least one DRIVE operator")
+        if not covenants:
+            add("COVENANT_REQUIRED", "consequential Circuit requires COVENANT admission")
+        if not witnesses:
+            add("WITNESS_REQUIRED", "consequential Circuit requires independent WITNESS verification")
+
+    if mode == "READ_ONLY" and drives:
         add("READ_ONLY_DRIVE_FORBIDDEN", "READ_ONLY circuits may not contain DRIVE operators")
 
     if spec.get("consequential"):

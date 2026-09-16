@@ -6,21 +6,17 @@
   "results": [
     {
       "authority_granted": false,
-      "circuit_id": "read-only",
-      "composition_status": "VALID",
+      "circuit_id": "disconnected",
+      "composition_status": "INVALID",
       "execution_authorized": false,
       "schema_version": "circuit-validation/0.1",
-      "vector_id": "read-only-valid",
-      "violations": []
-    },
-    {
-      "authority_granted": false,
-      "circuit_id": "production-repair",
-      "composition_status": "VALID",
-      "execution_authorized": false,
-      "schema_version": "circuit-validation/0.1",
-      "vector_id": "production-repair-valid",
-      "violations": []
+      "vector_id": "disconnected-invalid",
+      "violations": [
+        {
+          "message": "Circuit operators are not one connected composition graph; disconnected: verify",
+          "rule_id": "DISCONNECTED_GRAPH"
+        }
+      ]
     },
     {
       "authority_granted": false,
@@ -44,10 +40,76 @@
           "rule_id": "COVENANT_REQUIRED"
         },
         {
+          "message": "consequential Circuit requires COVENANT admission",
+          "rule_id": "COVENANT_REQUIRED"
+        },
+        {
           "message": "consequential DRIVE operator 'execute' is not downstream of COVENANT",
           "rule_id": "COVENANT_REQUIRED"
         }
       ]
+    },
+    {
+      "authority_granted": false,
+      "circuit_id": "missing-drive",
+      "composition_status": "INVALID",
+      "execution_authorized": false,
+      "schema_version": "circuit-validation/0.1",
+      "vector_id": "missing-drive-invalid",
+      "violations": [
+        {
+          "message": "Circuit operators are not one connected composition graph; disconnected: verify",
+          "rule_id": "DISCONNECTED_GRAPH"
+        },
+        {
+          "message": "consequential Circuit requires at least one DRIVE operator",
+          "rule_id": "DRIVE_REQUIRED"
+        }
+      ]
+    },
+    {
+      "authority_granted": false,
+      "circuit_id": "mode-mismatch",
+      "composition_status": "INVALID",
+      "execution_authorized": false,
+      "schema_version": "circuit-validation/0.1",
+      "vector_id": "mode-mismatch-invalid",
+      "violations": [
+        {
+          "message": "consequential Circuit requires COVENANT admission",
+          "rule_id": "COVENANT_REQUIRED"
+        },
+        {
+          "message": "consequential Circuit requires at least one DRIVE operator",
+          "rule_id": "DRIVE_REQUIRED"
+        },
+        {
+          "message": "READ_ONLY mode requires consequential=false",
+          "rule_id": "MODE_CONSEQUENTIAL_MISMATCH"
+        },
+        {
+          "message": "consequential Circuit requires independent WITNESS verification",
+          "rule_id": "WITNESS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "authority_granted": false,
+      "circuit_id": "production-repair",
+      "composition_status": "VALID",
+      "execution_authorized": false,
+      "schema_version": "circuit-validation/0.1",
+      "vector_id": "production-repair-valid",
+      "violations": []
+    },
+    {
+      "authority_granted": false,
+      "circuit_id": "read-only",
+      "composition_status": "VALID",
+      "execution_authorized": false,
+      "schema_version": "circuit-validation/0.1",
+      "vector_id": "read-only-valid",
+      "violations": []
     },
     {
       "authority_granted": false,
