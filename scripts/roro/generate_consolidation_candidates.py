@@ -40,6 +40,14 @@ def build():
         or r == 'after-graph-governance'
     }
     verification_experience = [r for r in public_platform if r not in control_public]
+    strict_authority = {'aie'}
+    strict_trust = {'trust-gateway'}
+    strict_execution = {'works-execution'}
+    strict_verification = {'sentinel', 'sentinel-firetest2'}
+    strict_reserved = strict_authority | strict_trust | strict_execution | strict_verification | research
+    strict_public_misc = [r for r in public if r not in strict_reserved]
+    private_research = {r for r in private_active if meta[r].get('system_class') in {'models', 'research-assurance'}}
+    private_nonresearch = [r for r in private_active if r not in private_research]
 
     candidates = [
         {
@@ -65,6 +73,18 @@ def build():
             'hypothesis': 'Preserve research and legacy isolation, and split public authority/execution control code from public verification/experience/foundation code.',
             'workspace_count': 5,
             'workspaces': [ws('control-public', 'public', control_public), ws('verification-experience-public', 'public', verification_experience), ws('research-public', 'public', research), ws('internal-active', 'private', private_active), ws('legacy-private', 'private', legacy)],
+        },
+        {
+            'candidate_id': 'ws7-strict-public-boundaries',
+            'hypothesis': 'Instantiate the strict lower-bound hypothesis by separating public authority, trust, execution, verification, and research while keeping active private source together and AVC isolated.',
+            'workspace_count': 7,
+            'workspaces': [ws('authority-foundation-public', 'public', strict_authority | set(strict_public_misc)), ws('trust-public', 'public', strict_trust), ws('execution-public', 'public', strict_execution), ws('verification-public', 'public', strict_verification), ws('research-public', 'public', research), ws('internal-active', 'private', private_active), ws('legacy-private', 'private', legacy)],
+        },
+        {
+            'candidate_id': 'ws8-private-research-isolated',
+            'hypothesis': 'Extend the strict seven-workspace hypothesis by isolating private model/research source from other active private source.',
+            'workspace_count': 8,
+            'workspaces': [ws('authority-foundation-public', 'public', strict_authority | set(strict_public_misc)), ws('trust-public', 'public', strict_trust), ws('execution-public', 'public', strict_execution), ws('verification-public', 'public', strict_verification), ws('research-public', 'public', research), ws('internal-active', 'private', private_nonresearch), ws('private-research', 'private', private_research), ws('legacy-private', 'private', legacy)],
         },
     ]
     payload = {
@@ -99,7 +119,7 @@ def main():
     payload, boundary = build()
     OUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + '\n', encoding='utf-8')
     BOUND.write_text(json.dumps(boundary, indent=2, sort_keys=True) + '\n', encoding='utf-8')
-    print('candidates=4 strict_lower_bound=7')
+    print('candidates=6 strict_lower_bound=7')
     return 0
 
 

@@ -235,6 +235,172 @@
           "workspace_id": "legacy-private"
         }
       ]
+    },
+    {
+      "candidate_id": "ws7-strict-public-boundaries",
+      "hypothesis": "Instantiate the strict lower-bound hypothesis by separating public authority, trust, execution, verification, and research while keeping active private source together and AVC isolated.",
+      "workspace_count": 7,
+      "workspaces": [
+        {
+          "repositories": [
+            ".github",
+            "after-graph-governance",
+            "aftergraph-cron-fabric",
+            "aftergraph.org",
+            "aie",
+            "brand",
+            "docs",
+            "skill-abi",
+            "studio",
+            "war-room",
+            "wi-backend"
+          ],
+          "visibility": "public",
+          "workspace_id": "authority-foundation-public"
+        },
+        {
+          "repositories": [
+            "trust-gateway"
+          ],
+          "visibility": "public",
+          "workspace_id": "trust-public"
+        },
+        {
+          "repositories": [
+            "works-execution"
+          ],
+          "visibility": "public",
+          "workspace_id": "execution-public"
+        },
+        {
+          "repositories": [
+            "sentinel",
+            "sentinel-firetest2"
+          ],
+          "visibility": "public",
+          "workspace_id": "verification-public"
+        },
+        {
+          "repositories": [
+            "intelligence-systems-research"
+          ],
+          "visibility": "public",
+          "workspace_id": "research-public"
+        },
+        {
+          "repositories": [
+            "afm",
+            "business-ops",
+            "context-continuity",
+            "continuum",
+            "llm-research-development",
+            "model-registry",
+            "relay",
+            "rendetalje",
+            "runtime",
+            "sentinel-firetest",
+            "skillport",
+            "skills-vault",
+            "veranza",
+            "wi-frontend"
+          ],
+          "visibility": "private",
+          "workspace_id": "internal-active"
+        },
+        {
+          "repositories": [
+            "autonomous-venture-company"
+          ],
+          "visibility": "private",
+          "workspace_id": "legacy-private"
+        }
+      ]
+    },
+    {
+      "candidate_id": "ws8-private-research-isolated",
+      "hypothesis": "Extend the strict seven-workspace hypothesis by isolating private model/research source from other active private source.",
+      "workspace_count": 8,
+      "workspaces": [
+        {
+          "repositories": [
+            ".github",
+            "after-graph-governance",
+            "aftergraph-cron-fabric",
+            "aftergraph.org",
+            "aie",
+            "brand",
+            "docs",
+            "skill-abi",
+            "studio",
+            "war-room",
+            "wi-backend"
+          ],
+          "visibility": "public",
+          "workspace_id": "authority-foundation-public"
+        },
+        {
+          "repositories": [
+            "trust-gateway"
+          ],
+          "visibility": "public",
+          "workspace_id": "trust-public"
+        },
+        {
+          "repositories": [
+            "works-execution"
+          ],
+          "visibility": "public",
+          "workspace_id": "execution-public"
+        },
+        {
+          "repositories": [
+            "sentinel",
+            "sentinel-firetest2"
+          ],
+          "visibility": "public",
+          "workspace_id": "verification-public"
+        },
+        {
+          "repositories": [
+            "intelligence-systems-research"
+          ],
+          "visibility": "public",
+          "workspace_id": "research-public"
+        },
+        {
+          "repositories": [
+            "business-ops",
+            "context-continuity",
+            "continuum",
+            "relay",
+            "rendetalje",
+            "runtime",
+            "sentinel-firetest",
+            "skillport",
+            "skills-vault",
+            "veranza",
+            "wi-frontend"
+          ],
+          "visibility": "private",
+          "workspace_id": "internal-active"
+        },
+        {
+          "repositories": [
+            "afm",
+            "llm-research-development",
+            "model-registry"
+          ],
+          "visibility": "private",
+          "workspace_id": "private-research"
+        },
+        {
+          "repositories": [
+            "autonomous-venture-company"
+          ],
+          "visibility": "private",
+          "workspace_id": "legacy-private"
+        }
+      ]
     }
   ],
   "policy": {

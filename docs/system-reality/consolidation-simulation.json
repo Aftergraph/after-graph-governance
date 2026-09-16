@@ -137,6 +137,115 @@
           "workspace_id": "legacy-private"
         }
       ]
+    },
+    {
+      "candidate_id": "ws7-strict-public-boundaries",
+      "dimensions": {
+        "cross_workspace_dependency_edges": 51,
+        "deployment_colocation_pairs": 2,
+        "domain_platform_colocations": 24,
+        "largest_workspace_repositories": 14,
+        "legacy_canonical_colocations": 0,
+        "mixed_visibility_workspaces": 0,
+        "research_production_colocations": 33,
+        "trust_boundary_colocations": 0
+      },
+      "hard_blockers": [],
+      "workspace_count": 7,
+      "workspace_summaries": [
+        {
+          "repository_count": 11,
+          "visibility": "public",
+          "workspace_id": "authority-foundation-public"
+        },
+        {
+          "repository_count": 1,
+          "visibility": "public",
+          "workspace_id": "trust-public"
+        },
+        {
+          "repository_count": 1,
+          "visibility": "public",
+          "workspace_id": "execution-public"
+        },
+        {
+          "repository_count": 2,
+          "visibility": "public",
+          "workspace_id": "verification-public"
+        },
+        {
+          "repository_count": 1,
+          "visibility": "public",
+          "workspace_id": "research-public"
+        },
+        {
+          "repository_count": 14,
+          "visibility": "private",
+          "workspace_id": "internal-active"
+        },
+        {
+          "repository_count": 1,
+          "visibility": "private",
+          "workspace_id": "legacy-private"
+        }
+      ]
+    },
+    {
+      "candidate_id": "ws8-private-research-isolated",
+      "dimensions": {
+        "cross_workspace_dependency_edges": 52,
+        "deployment_colocation_pairs": 2,
+        "domain_platform_colocations": 18,
+        "largest_workspace_repositories": 11,
+        "legacy_canonical_colocations": 0,
+        "mixed_visibility_workspaces": 0,
+        "research_production_colocations": 0,
+        "trust_boundary_colocations": 0
+      },
+      "hard_blockers": [],
+      "workspace_count": 8,
+      "workspace_summaries": [
+        {
+          "repository_count": 11,
+          "visibility": "public",
+          "workspace_id": "authority-foundation-public"
+        },
+        {
+          "repository_count": 1,
+          "visibility": "public",
+          "workspace_id": "trust-public"
+        },
+        {
+          "repository_count": 1,
+          "visibility": "public",
+          "workspace_id": "execution-public"
+        },
+        {
+          "repository_count": 2,
+          "visibility": "public",
+          "workspace_id": "verification-public"
+        },
+        {
+          "repository_count": 1,
+          "visibility": "public",
+          "workspace_id": "research-public"
+        },
+        {
+          "repository_count": 11,
+          "visibility": "private",
+          "workspace_id": "internal-active"
+        },
+        {
+          "repository_count": 3,
+          "visibility": "private",
+          "workspace_id": "private-research"
+        },
+        {
+          "repository_count": 1,
+          "visibility": "private",
+          "workspace_id": "legacy-private"
+        }
+      ]
     }
   ],
   "gate_scope": "SOURCE_TOPOLOGY_ONLY",

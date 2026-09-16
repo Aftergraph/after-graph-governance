@@ -614,10 +614,10 @@ R.O.R.O. remains observational/reconciliatory: native systems remain native trut
 
 The scoped `SOURCE_TOPOLOGY_CONSOLIDATION` READY gate permits source/topology simulation only. It does not authorize any repository move or runtime/state/credential/authority migration.
 
-`consolidation-candidates.json` declares 2/3/4/5-workspace hypotheses generated from the current 31-repository topology. Each repository is assigned exactly once and public/private visibility mixing is prohibited.
+`consolidation-candidates.json` declares 2/3/4/5/7/8-workspace hypotheses generated from the current 31-repository topology. Each repository is assigned exactly once and public/private visibility mixing is prohibited.
 
 `consolidation-simulation.json` evaluates candidates separately across dependency crossings, trust-boundary co-location, legacy/canonical mixing, research/production mixing, domain/platform mixing, deployment co-location and workspace concentration. No overall score, winner, or recommendation is emitted.
 
-Observed tradeoff at the current source cut: increasing separation reduces legacy, trust-boundary and deployment co-location but increases cross-workspace dependency edges. This is evidence for design review, not a selected architecture.
+Observed tradeoff at the current source cut: separation reduces legacy, trust-boundary and deployment co-location, but dependency crossings are topology-sensitive rather than monotonic in workspace count. The strict 7-workspace hypothesis has 0 trust-boundary co-locations and 51 cross-workspace dependency edges, compared with 3 and 55 respectively in the 5-workspace hypothesis. The 8-workspace hypothesis additionally reduces modeled research/production co-location to 0 at 52 dependency crossings. This is evidence for design review, not a selected architecture.
 
 `consolidation-boundary-analysis.json` adds a strict falsification hypothesis. If visibility purity, research isolation, AVC legacy isolation, and pairwise separation of authority/trust/execution/independent-verification are all required simultaneously, the derived source-workspace lower bound is at least seven. This lower bound is explicitly not a recommendation.

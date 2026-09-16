@@ -12,7 +12,7 @@ class ConsolidationSimulationTests(unittest.TestCase):
         candidates=json.loads((REALITY/'consolidation-candidates.json').read_text())
         registry=json.loads((REALITY/'component-registry.json').read_text())
         repos={x['full_name'].split('/',1)[1] for x in registry['repositories']}
-        self.assertEqual({c['workspace_count'] for c in candidates['candidates']},{2,3,4,5})
+        self.assertTrue({2,3,4,5,7,8} <= {c['workspace_count'] for c in candidates['candidates']})
         for c in candidates['candidates']:
             assigned=[r for w in c['workspaces'] for r in w['repositories']]
             self.assertEqual(set(assigned),repos,c['candidate_id'])
@@ -87,3 +87,24 @@ class ConsolidationContractTests(unittest.TestCase):
             path=ROOT/'docs/contracts/roro/0.1'/name
             self.assertTrue(path.is_file(),path)
             json.loads(path.read_text(encoding='utf-8'))
+
+class StrictCandidateTests(unittest.TestCase):
+    def test_strict_7_and_private_research_8_candidates_exist(self):
+        data=json.loads((REALITY/'consolidation-candidates.json').read_text())
+        counts={c['workspace_count'] for c in data['candidates']}
+        self.assertTrue({2,3,4,5,7,8} <= counts)
+
+    def test_seven_workspace_candidate_clears_pairwise_public_trust_colocation(self):
+        data=json.loads((REALITY/'consolidation-simulation.json').read_text())
+        by_count={c['workspace_count']:c for c in data['candidates']}
+        self.assertEqual(by_count[7]['dimensions']['trust_boundary_colocations'],0)
+        self.assertEqual(by_count[7]['dimensions']['legacy_canonical_colocations'],0)
+        self.assertEqual(by_count[7]['dimensions']['mixed_visibility_workspaces'],0)
+        self.assertLess(by_count[7]['dimensions']['cross_workspace_dependency_edges'],by_count[5]['dimensions']['cross_workspace_dependency_edges'])
+
+    def test_eight_workspace_candidate_isolates_private_model_research(self):
+        data=json.loads((REALITY/'consolidation-simulation.json').read_text())
+        by_count={c['workspace_count']:c for c in data['candidates']}
+        self.assertLess(by_count[8]['dimensions']['research_production_colocations'],by_count[7]['dimensions']['research_production_colocations'])
+        self.assertEqual(by_count[8]['dimensions']['research_production_colocations'],0)
+        self.assertGreaterEqual(by_count[8]['dimensions']['cross_workspace_dependency_edges'],by_count[7]['dimensions']['cross_workspace_dependency_edges'])
