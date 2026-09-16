@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/roro/0.1/coverage-report.schema.json",
+  "title": "R.O.R.O. Coverage Report 0.1",
+  "type": "object",
+  "required": ["schema_version", "as_of", "dimensions", "policy"],
+  "properties": {
+    "schema_version": {"const": "roro-coverage-report/0.1"},
+    "as_of": {"type": "string", "minLength": 1},
+    "dimensions": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"$ref": "#/$defs/dimension"}
+    },
+    "policy": {"type": "object"}
+  },
+  "$defs": {
+    "dimension": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": {"enum": ["PASS", "PARTIAL", "BLOCKED", "UNKNOWN"]},
+        "coverage": {"type": ["number", "null"], "minimum": 0, "maximum": 1}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

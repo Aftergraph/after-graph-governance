@@ -65,6 +65,8 @@ not frozen platform law.
 | `roro-credential-binding/0.1` | Experimental | Governance registration; secret stores remain native truth | Records credential references, consumers and permission posture; secret values are prohibited. |
 | `roro-state-store/0.1` | Experimental | Governance registration; domain owners retain state authority | Describes durable stores, backup observation and independently verified recoverability. |
 | `roro-route-observation/0.1` | Experimental | Governance registration; DNS/provider remains native truth | Records current DNS/HTTP route observation while preserving absence vs unknown. |
+| `roro-coverage-report/0.1` | Experimental | Governance registration; native evidence remains native truth | Reports multidimensional reality coverage without collapsing it into one health score. |
+| `roro-coverage-gate/0.1` | Experimental | Governance registration | Fails consequential migration closed while required reality dimensions contain unresolved blockers. |
 
 Machine-executable Phase-0 vectors live at
 `docs/platform-conformance/v0.1/vectors.json` and are exercised by

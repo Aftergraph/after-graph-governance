@@ -120,3 +120,23 @@ Verification:
 - fresh live-org regeneration comparison.
 
 Commit conventionally, fetch the PR branch again, require fast-forward ancestry, then push `HEAD` to `architecture/p-1-system-reality-2026-09-16`. Keep PR #168 draft and unmerged.
+
+## Task 7 — RealityDiff Engine
+
+**Files**
+- Create `scripts/roro/reconcile_reality.py`.
+- Generate `docs/system-reality/reality-diffs.json`.
+- Preserve `CONFLICTING`, `UNKNOWN`, and `STALE` rather than forcing a winner.
+- Bind every diff to explicit artifact evidence references.
+- Include source gaps, operational gaps, deployment/source drift, and recovery-proof gaps.
+
+The reducer must be deterministic for an unchanged input snapshot. It owns no native truth and performs no remediation.
+
+## Task 8 — Survey / Coverage Gate
+
+**Files**
+- Add `roro-coverage-report/0.1` and `roro-coverage-gate/0.1` contracts.
+- Create `scripts/roro/survey_coverage.py`.
+- Generate `coverage-report.json` and `coverage-gate.json`.
+
+Coverage is multidimensional. A single platform health score is prohibited. Consequential consolidation/migration fails closed while required dimensions retain unresolved blockers.

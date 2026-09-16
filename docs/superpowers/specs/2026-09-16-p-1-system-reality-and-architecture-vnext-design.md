@@ -593,3 +593,19 @@ Refinery   — verified learning / experimentation / promotion
 These names describe candidate semantic composition, not repository boundaries. Existing owners such as AIE, Trust Gateway, Runtime, WORKS, Work Intelligence, ACC and independent verifiers retain their explicit boundaries unless later evidence supports a governed migration.
 
 Circuit compilation is therefore downstream of R.O.R.O. reality coverage. Repository consolidation is also downstream: no 2/3/4/5-workspace target is canonical until component/source/deployment/state/credential relationships can be simulated against observed reality.
+
+---
+
+## 18. R.O.R.O. RealityDiff and Survey implementation note
+
+The bootstrap now includes a deterministic reconciliation layer over the promoted source/operational snapshots.
+
+`reality-diffs.json` preserves unresolved contradictions and unknowns instead of selecting a winner. Current inputs include source gaps, operational gaps, deployment/source bindings, and recovery evidence.
+
+`coverage-report.json` reports separate dimensions for source, deployment, routes, cloud ownership, credential mapping, recovery, runtime topology, and unresolved RealityDiffs. These dimensions MUST NOT be collapsed into one platform health score.
+
+`coverage-gate.json` is a fail-closed readiness decision for consequential repository consolidation/migration. `NOT_READY` is a valid expected result while evidence is incomplete; the gate grants no execution authority.
+
+Current known blockers include semantic component coverage, deployment/source drift, credential-consumer mapping, permission drift, restore proof, runtime-topology disposition, route disposition, and cloud ownership classification.
+
+R.O.R.O. remains observational/reconciliatory: native systems remain native truth, and any future migration still requires the ordinary AIE/Trust/WORKS/verification path.

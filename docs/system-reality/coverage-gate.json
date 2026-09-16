@@ -1,0 +1,49 @@
+{
+  "as_of": "2026-09-16T00:39:48.200250+00:00",
+  "blockers": [
+    {
+      "dimension": "source",
+      "id": "semantic-component-coverage",
+      "reason": "Some live repositories still lack explicit semantic component manifests."
+    },
+    {
+      "dimension": "deployment",
+      "id": "deployment-source-binding",
+      "reason": "Running deployments include source conflicts or unknown exact revisions."
+    },
+    {
+      "dimension": "credentials",
+      "id": "credential-consumer-mapping",
+      "reason": "Credential consumers are not yet fully mapped to stable component identities."
+    },
+    {
+      "dimension": "credentials",
+      "id": "credential-permission-drift",
+      "reason": "Credential metadata shows unresolved permission drift."
+    },
+    {
+      "dimension": "recovery",
+      "id": "restore-proof",
+      "reason": "Observed backups do not yet have independent restore/recoverability proof."
+    },
+    {
+      "dimension": "runtime",
+      "id": "runtime-topology-disposition",
+      "reason": "Declared and running control-plane topology are not yet reconciled."
+    },
+    {
+      "dimension": "routes",
+      "id": "route-disposition",
+      "reason": "Unresolved public routes still require desired/superseded/retired disposition."
+    },
+    {
+      "dimension": "cloud",
+      "id": "cloud-ownership",
+      "reason": "Aftergraph-adjacent cloud resources remain ownership-unclassified."
+    }
+  ],
+  "decision": "NOT_READY",
+  "gate": "CONSOLIDATION_MIGRATION",
+  "rule": "Consequential migration fails closed while required reality dimensions contain unresolved blockers.",
+  "schema_version": "roro-coverage-gate/0.1"
+}
