@@ -81,6 +81,8 @@ not frozen platform law.
 | `roro-component-boundary-analysis/0.1` | Experimental | Governance registration | Summarizes component dependency coupling across semantic families; import direction is not Circuit flow. |
 | `circuit-spec/0.1` | Experimental | Governance registration; Circuit has zero authority | Declares semantic operator composition only; it does not grant authority, execution permission, durable state ownership, or verification truth. |
 | `circuit-validation/0.1` | Experimental | Governance registration | Validates Circuit composition invariants fail-closed while always leaving execution authorization and authority grants false. |
+| `circuit-compiler-input/0.1` | Experimental | Governance registration | Declares bounded mission intent, effect/risk class and reality posture for pure Circuit compilation; grants no authority. |
+| `circuit-compile-result/0.1` | Experimental | Governance registration | Records COMPILED/REFUSED composition candidates; COMPILED never means authorized or executable. |
 
 Machine-executable Phase-0 vectors live at
 `docs/platform-conformance/v0.1/vectors.json` and are exercised by

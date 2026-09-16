@@ -663,3 +663,13 @@ The current experimental composition allow-set contains 8 directed macro edges. 
 This is intentionally distinct from the exact-cut dependency graph. The source graph observes 19 HELM→DRIVE, 8 DRIVE→HELM, 1 DRIVE→WITNESS and 7 WITNESS→DRIVE dependency edges. Those observations do not create Circuit permission. In particular, HELM→DRIVE is an observed source coupling while remaining a forbidden direct consequential Circuit edge.
 
 Six falsification vectors exercise the boundary model: read-only, production-repair and bounded-improvement compositions validate; missing-Covenant, self-verification and unknown-family compositions fail closed. Every validation result keeps `execution_authorized=false` and `authority_granted=false`, including composition-valid cases.
+
+## 22. Circuit Compiler evidence
+
+`CircuitCompiler` is now modeled as a pure composition step downstream of Mission + Reality. It emits either `COMPILED` with a composition-valid `CircuitSpec`, or `REFUSED` with explicit fail-closed violations. It never grants authority, authorizes execution, performs runtime calls, or owns durable state.
+
+The bounded compiler vocabulary is `QUERY | REPAIR | IMPROVE`, effect classes `READ_ONLY | REVERSIBLE_WRITE | IRREVERSIBLE_WRITE`, and risk classes `LOW | MEDIUM | HIGH | CRITICAL`. Unknown/conflicting reality always refuses; stale reality refuses consequential compilation; HIGH/CRITICAL consequential compilation requires `VERIFIED` reality.
+
+Minimal generated graphs are deliberately small: read-only query = `SIGHTLINE→HELM`; repair = `SIGHTLINE→HELM→COVENANT→DRIVE→WITNESS→SIGHTLINE`; improvement = `SIGHTLINE→HELM→REFINERY→COVENANT→DRIVE→WITNESS`. Every compiled graph is immediately revalidated by the independent Circuit composition validator before it is emitted.
+
+`COMPILED` remains strictly weaker than `AUTHORIZED` or `EXECUTABLE`. CircuitRun/WORKS durable-state binding is a later slice and is not introduced here.

@@ -1,0 +1,169 @@
+{
+  "schema_version": "circuit-compiler-vectors/0.1",
+  "vectors": [
+    {
+      "expected_status": "REFUSED",
+      "request": {
+        "effect_class": "REVERSIBLE_WRITE",
+        "intent": "REPAIR",
+        "mission_id": "mission-conflict",
+        "reality": {
+          "epistemic_status": "CONFLICTING",
+          "fresh": true
+        },
+        "risk_class": "HIGH",
+        "schema_version": "circuit-compiler-input/0.1"
+      },
+      "vector_id": "conflicting-reality"
+    },
+    {
+      "expected_status": "REFUSED",
+      "request": {
+        "effect_class": "IRREVERSIBLE_WRITE",
+        "intent": "REPAIR",
+        "mission_id": "mission-high-unverified",
+        "reality": {
+          "epistemic_status": "OBSERVED",
+          "fresh": true
+        },
+        "risk_class": "HIGH",
+        "schema_version": "circuit-compiler-input/0.1"
+      },
+      "vector_id": "high-risk-unverified"
+    },
+    {
+      "expected_status": "COMPILED",
+      "request": {
+        "effect_class": "REVERSIBLE_WRITE",
+        "intent": "IMPROVE",
+        "mission_id": "mission-improve",
+        "reality": {
+          "epistemic_status": "OBSERVED",
+          "fresh": true
+        },
+        "risk_class": "MEDIUM",
+        "schema_version": "circuit-compiler-input/0.1"
+      },
+      "vector_id": "improve-reversible"
+    },
+    {
+      "expected_status": "REFUSED",
+      "request": {
+        "effect_class": "REVERSIBLE_WRITE",
+        "intent": "REPAIR",
+        "mission_id": "mission-malformed",
+        "reality": {
+          "epistemic_status": "OBSERVED"
+        },
+        "risk_class": "MEDIUM",
+        "schema_version": "circuit-compiler-input/0.1"
+      },
+      "vector_id": "missing-fresh"
+    },
+    {
+      "expected_status": "COMPILED",
+      "request": {
+        "effect_class": "READ_ONLY",
+        "intent": "QUERY",
+        "mission_id": "mission-query",
+        "reality": {
+          "epistemic_status": "OBSERVED",
+          "fresh": true
+        },
+        "risk_class": "LOW",
+        "schema_version": "circuit-compiler-input/0.1"
+      },
+      "vector_id": "query-read-only"
+    },
+    {
+      "expected_status": "COMPILED",
+      "request": {
+        "effect_class": "IRREVERSIBLE_WRITE",
+        "intent": "REPAIR",
+        "mission_id": "mission-critical-repair",
+        "reality": {
+          "epistemic_status": "VERIFIED",
+          "fresh": true
+        },
+        "risk_class": "HIGH",
+        "schema_version": "circuit-compiler-input/0.1"
+      },
+      "vector_id": "repair-irreversible-high-risk"
+    },
+    {
+      "expected_status": "COMPILED",
+      "request": {
+        "effect_class": "REVERSIBLE_WRITE",
+        "intent": "REPAIR",
+        "mission_id": "mission-repair",
+        "reality": {
+          "epistemic_status": "OBSERVED",
+          "fresh": true
+        },
+        "risk_class": "MEDIUM",
+        "schema_version": "circuit-compiler-input/0.1"
+      },
+      "vector_id": "repair-reversible"
+    },
+    {
+      "expected_status": "REFUSED",
+      "request": {
+        "effect_class": "REVERSIBLE_WRITE",
+        "intent": "REPAIR",
+        "mission_id": "mission-stale",
+        "reality": {
+          "epistemic_status": "OBSERVED",
+          "fresh": false
+        },
+        "risk_class": "MEDIUM",
+        "schema_version": "circuit-compiler-input/0.1"
+      },
+      "vector_id": "stale-consequential"
+    },
+    {
+      "expected_status": "REFUSED",
+      "request": {
+        "effect_class": "MUTATE",
+        "intent": "REPAIR",
+        "mission_id": "mission-bad-effect",
+        "reality": {
+          "epistemic_status": "OBSERVED",
+          "fresh": true
+        },
+        "risk_class": "MEDIUM",
+        "schema_version": "circuit-compiler-input/0.1"
+      },
+      "vector_id": "unknown-effect"
+    },
+    {
+      "expected_status": "REFUSED",
+      "request": {
+        "effect_class": "REVERSIBLE_WRITE",
+        "intent": "DEPLOY",
+        "mission_id": "mission-bad-intent",
+        "reality": {
+          "epistemic_status": "OBSERVED",
+          "fresh": true
+        },
+        "risk_class": "MEDIUM",
+        "schema_version": "circuit-compiler-input/0.1"
+      },
+      "vector_id": "unknown-intent"
+    },
+    {
+      "expected_status": "REFUSED",
+      "request": {
+        "effect_class": "REVERSIBLE_WRITE",
+        "intent": "REPAIR",
+        "mission_id": "mission-unknown",
+        "reality": {
+          "epistemic_status": "UNKNOWN",
+          "fresh": true
+        },
+        "risk_class": "MEDIUM",
+        "schema_version": "circuit-compiler-input/0.1"
+      },
+      "vector_id": "unknown-reality"
+    }
+  ]
+}
