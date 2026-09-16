@@ -63,8 +63,8 @@
   },
   "credential_summary": {
     "lenovo_backup_or_snapshot_env_files": 19,
-    "lenovo_env_files_observed": 26,
-    "permission_drift_observations": 2,
+    "lenovo_env_files_observed": 25,
+    "permission_drift_observations": 0,
     "public_snapshot_contains_key_names": false,
     "public_snapshot_contains_secret_paths": false,
     "values_collected": false,
@@ -75,7 +75,7 @@
     "public_snapshot_redacted": true,
     "secret_values_prohibited": true
   },
-  "generated_at": "2026-09-16T00:34:50.296822+00:00",
+  "generated_at": "2026-09-16T07:00:47.765229+00:00",
   "route_summary": {
     "observed_at": "2026-09-16T00:28:50.767933+00:00",
     "observer": "vmi3517816",

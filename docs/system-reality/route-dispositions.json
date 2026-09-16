@@ -1,0 +1,38 @@
+{
+  "observed_at": "2026-09-16T06:26:37.300758+00:00",
+  "routes": [
+    {
+      "disposition": "SUPERSEDED",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "roro-artifact://docs/system-reality/operational-reality.json#wie.aftergraph.org",
+        "source://Aftergraph/wi-frontend",
+        "source://Aftergraph/aftergraph.org/status"
+      ],
+      "host": "wie.aftergraph.org",
+      "reason": "live production and current backend/public evidence use work-intelligence.aftergraph.org; WI frontend still carries stale wie.aftergraph.org canonical references",
+      "source_drift": true
+    },
+    {
+      "disposition": "NOT_REQUIRED",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "source://Aftergraph/aftergraph.org/DEPLOYMENT.md"
+      ],
+      "host": "studio.aftergraph.org",
+      "reason": "canonical Studio public surface is path-routed at aftergraph.org/studio/* rather than a studio subdomain",
+      "source_drift": false
+    },
+    {
+      "disposition": "NOT_DECLARED_PUBLIC",
+      "epistemic_status": "OBSERVED",
+      "evidence_refs": [
+        "source://Aftergraph/war-room/README.md"
+      ],
+      "host": "war-room.aftergraph.org",
+      "reason": "War Room source documents local operator startup and no canonical public hostname was found",
+      "source_drift": false
+    }
+  ],
+  "schema_version": "roro-route-dispositions/0.1"
+}

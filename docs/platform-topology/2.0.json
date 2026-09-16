@@ -2,7 +2,7 @@
   "$schema": "./2.0.schema.json",
   "schema_version": "platform-topology/2.0",
   "organization": "Aftergraph",
-  "evidence_cut": "2026-09-10",
+  "evidence_cut": "2026-09-16",
   "description": "Human-governed repository topology for the Aftergraph polyrepo platform. This file defines scope and ownership classes, not exact Git state. Exact heads are generated from GitHub by scripts/org-state-verify.sh. architecture_plane carries one of the seven permanent semantic planes or null for support systems; system_class carries the functional repository class and is never inferred into a plane.",
   "repositories": [
     {
@@ -325,6 +325,17 @@
       "lifecycle": "active",
       "owns": "Canonical tenant-neutral service-business domain state, invariants, migration mappings, charge-source facts and shadow-conformance semantics.",
       "must_not_own": "AIE authority, Trust admission/approval/secrets, Runtime orchestration, WORKS durable execution/evidence, Studio/Relay conversation/control experience, Billing invoice/payment truth, or independent verification."
+    },
+    {
+      "name": "war-room",
+      "canonical_branch": "main",
+      "visibility": "public",
+      "architecture_plane": "experience",
+      "system_class": "operational-intelligence",
+      "role": "operational-intelligence-surface",
+      "lifecycle": "active",
+      "owns": "Operational intelligence projections, incident/attention views, system graph exploration, risk/decision support and governed operator control surfaces over native Aftergraph systems.",
+      "must_not_own": "Native truth, AIE authority, Trust admission or secret authority, Runtime/WORKS execution truth, independent verification verdicts, or domain canonical state."
     }
   ]
 }

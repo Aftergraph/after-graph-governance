@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-16T00:15:54Z",
+  "generated_at": "2026-09-16T07:10:16Z",
   "lineage": [
     {
       "active_consumers": [],
@@ -10,7 +10,7 @@
       "legacy_component_id": "ag:legacy:avc:agent-eval",
       "legacy_package": "@avc/agent-eval",
       "lineage_id": "lineage:avc:agent-eval",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "PARTIALLY_MIGRATED",
       "target_component_id": "ag:component:agent-eval",
       "target_package": "@aftergraph/agent-eval"
@@ -21,7 +21,7 @@
       "legacy_component_id": "ag:legacy:avc:agent-gateway",
       "legacy_package": "@avc/agent-gateway",
       "lineage_id": "lineage:avc:agent-gateway",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "UNKNOWN",
       "target_component_id": null,
       "target_package": null
@@ -40,7 +40,7 @@
       "legacy_component_id": "ag:legacy:avc:agent-harness",
       "legacy_package": "@avc/agent-harness",
       "lineage_id": "lineage:avc:agent-harness",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "PARTIALLY_MIGRATED",
       "target_component_id": "ag:component:agent-harness",
       "target_package": "@aftergraph/agent-harness"
@@ -54,7 +54,7 @@
       "legacy_component_id": "ag:legacy:avc:agent-observability",
       "legacy_package": "@avc/agent-observability",
       "lineage_id": "lineage:avc:agent-observability",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "PARTIALLY_MIGRATED",
       "target_component_id": "ag:component:observability",
       "target_package": "@aftergraph/observability"
@@ -71,7 +71,7 @@
       "legacy_component_id": "ag:legacy:avc:agent-relay",
       "legacy_package": "@avc/agent-relay",
       "lineage_id": "lineage:avc:agent-relay",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "PARTIALLY_MIGRATED",
       "target_component_id": "ag:component:agent-relay",
       "target_package": "@aftergraph/agent-relay"
@@ -82,7 +82,7 @@
       "legacy_component_id": "ag:legacy:avc:avc-desktop",
       "legacy_package": "@avc/avc-desktop",
       "lineage_id": "lineage:avc:avc-desktop",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "UNKNOWN",
       "target_component_id": null,
       "target_package": null
@@ -98,7 +98,7 @@
       "legacy_component_id": "ag:legacy:avc:avc-eval",
       "legacy_package": "@avc/avc-eval",
       "lineage_id": "lineage:avc:avc-eval",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "ACTIVE_LEGACY",
       "target_component_id": null,
       "target_package": null
@@ -114,7 +114,7 @@
       "legacy_component_id": "ag:legacy:avc:avc-llm",
       "legacy_package": "@avc/avc-llm",
       "lineage_id": "lineage:avc:avc-llm",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "ACTIVE_LEGACY",
       "target_component_id": null,
       "target_package": null
@@ -125,7 +125,7 @@
       "legacy_component_id": "ag:legacy:avc:cli",
       "legacy_package": "@avc/cli",
       "lineage_id": "lineage:avc:cli",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "UNKNOWN",
       "target_component_id": null,
       "target_package": null
@@ -141,7 +141,7 @@
       "legacy_component_id": "ag:legacy:avc:company-daemon",
       "legacy_package": "@avc/company-daemon",
       "lineage_id": "lineage:avc:company-daemon",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "ACTIVE_LEGACY",
       "target_component_id": null,
       "target_package": null
@@ -160,7 +160,7 @@
       "legacy_component_id": "ag:legacy:avc:constitution",
       "legacy_package": "@avc/constitution",
       "lineage_id": "lineage:avc:constitution",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "PARTIALLY_MIGRATED",
       "target_component_id": "ag:component:constitution",
       "target_package": "@aftergraph/constitution"
@@ -233,7 +233,7 @@
       "legacy_component_id": "ag:legacy:avc:contracts",
       "legacy_package": "@avc/contracts",
       "lineage_id": "lineage:avc:contracts",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "PARTIALLY_MIGRATED",
       "target_component_id": "ag:component:contracts",
       "target_package": "@aftergraph/contracts"
@@ -249,7 +249,7 @@
       "legacy_component_id": "ag:legacy:avc:creative-assets",
       "legacy_package": "@avc/creative-assets",
       "lineage_id": "lineage:avc:creative-assets",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "ACTIVE_LEGACY",
       "target_component_id": null,
       "target_package": null
@@ -272,7 +272,7 @@
       "legacy_component_id": "ag:legacy:avc:events",
       "legacy_package": "@avc/events",
       "lineage_id": "lineage:avc:events",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "PARTIALLY_MIGRATED",
       "target_component_id": "ag:component:events",
       "target_package": "@aftergraph/events"
@@ -292,7 +292,7 @@
       "legacy_component_id": "ag:legacy:avc:hermes-adapter",
       "legacy_package": "@avc/hermes-adapter",
       "lineage_id": "lineage:avc:hermes-adapter",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "ACTIVE_LEGACY",
       "target_component_id": null,
       "target_package": null
@@ -313,7 +313,7 @@
       "legacy_component_id": "ag:legacy:avc:identity-core",
       "legacy_package": "@avc/identity-core",
       "lineage_id": "lineage:avc:identity-core",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "PARTIALLY_MIGRATED",
       "target_component_id": "ag:component:identity-core",
       "target_package": "@aftergraph/identity-core"
@@ -324,7 +324,7 @@
       "legacy_component_id": "ag:legacy:avc:identity-worker",
       "legacy_package": "@avc/identity-worker",
       "lineage_id": "lineage:avc:identity-worker",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "UNKNOWN",
       "target_component_id": null,
       "target_package": null
@@ -345,7 +345,7 @@
       "legacy_component_id": "ag:legacy:avc:incident",
       "legacy_package": "@avc/incident",
       "lineage_id": "lineage:avc:incident",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "PARTIALLY_MIGRATED",
       "target_component_id": "ag:component:incident",
       "target_package": "@aftergraph/incident"
@@ -366,7 +366,7 @@
       "legacy_component_id": "ag:legacy:avc:intelligence-gateway",
       "legacy_package": "@avc/intelligence-gateway",
       "lineage_id": "lineage:avc:intelligence-gateway",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "PARTIALLY_MIGRATED",
       "target_component_id": "ag:component:intelligence-gateway",
       "target_package": "@aftergraph/intelligence-gateway"
@@ -383,7 +383,7 @@
       "legacy_component_id": "ag:legacy:avc:invariant-registry",
       "legacy_package": "@avc/invariant-registry",
       "lineage_id": "lineage:avc:invariant-registry",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "PARTIALLY_MIGRATED",
       "target_component_id": "ag:component:invariants",
       "target_package": "@aftergraph/invariants"
@@ -410,7 +410,7 @@
       "legacy_component_id": "ag:legacy:avc:job-runtime",
       "legacy_package": "@avc/job-runtime",
       "lineage_id": "lineage:avc:job-runtime",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "PARTIALLY_MIGRATED",
       "target_component_id": "ag:component:job-runtime",
       "target_package": "@aftergraph/job-runtime"
@@ -467,7 +467,7 @@
       "legacy_component_id": "ag:legacy:avc:kernel-core",
       "legacy_package": "@avc/kernel-core",
       "lineage_id": "lineage:avc:kernel-core",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "PARTIALLY_MIGRATED",
       "target_component_id": "ag:component:kernel-core",
       "target_package": "@aftergraph/kernel-core"
@@ -483,7 +483,7 @@
       "legacy_component_id": "ag:legacy:avc:leadrescue",
       "legacy_package": "@avc/leadrescue",
       "lineage_id": "lineage:avc:leadrescue",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "ACTIVE_LEGACY",
       "target_component_id": null,
       "target_package": null
@@ -500,7 +500,7 @@
       "legacy_component_id": "ag:legacy:avc:ledger",
       "legacy_package": "@avc/ledger",
       "lineage_id": "lineage:avc:ledger",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "PARTIALLY_MIGRATED",
       "target_component_id": "ag:component:ledger",
       "target_package": "@aftergraph/ledger"
@@ -514,7 +514,7 @@
       "legacy_component_id": "ag:legacy:avc:memory-store",
       "legacy_package": "@avc/memory-store",
       "lineage_id": "lineage:avc:memory-store",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "PARTIALLY_MIGRATED",
       "target_component_id": "ag:component:memory-store",
       "target_package": "@aftergraph/memory-store"
@@ -535,7 +535,7 @@
       "legacy_component_id": "ag:legacy:avc:mission-graph",
       "legacy_package": "@avc/mission-graph",
       "lineage_id": "lineage:avc:mission-graph",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "PARTIALLY_MIGRATED",
       "target_component_id": "ag:component:mission-graph",
       "target_package": "@aftergraph/mission-graph"
@@ -546,7 +546,7 @@
       "legacy_component_id": "ag:legacy:avc:mission-graph-authority",
       "legacy_package": "@avc/mission-graph-authority",
       "lineage_id": "lineage:avc:mission-graph-authority",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "UNKNOWN",
       "target_component_id": null,
       "target_package": null
@@ -557,7 +557,7 @@
       "legacy_component_id": "ag:legacy:avc:model-edge",
       "legacy_package": "@avc/model-edge",
       "lineage_id": "lineage:avc:model-edge",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "UNKNOWN",
       "target_component_id": null,
       "target_package": null
@@ -571,7 +571,7 @@
       "legacy_component_id": "ag:legacy:avc:orchestrator",
       "legacy_package": "@avc/orchestrator",
       "lineage_id": "lineage:avc:orchestrator",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "PARTIALLY_MIGRATED",
       "target_component_id": "ag:component:orchestrator",
       "target_package": "@aftergraph/orchestrator"
@@ -585,7 +585,7 @@
       "legacy_component_id": "ag:legacy:avc:peer-protocol",
       "legacy_package": "@avc/peer-protocol",
       "lineage_id": "lineage:avc:peer-protocol",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "PARTIALLY_MIGRATED",
       "target_component_id": "ag:component:peer-protocol",
       "target_package": "@aftergraph/peer-protocol"
@@ -596,7 +596,7 @@
       "legacy_component_id": "ag:legacy:avc:plugin-deepsec",
       "legacy_package": "@avc/plugin-deepsec",
       "lineage_id": "lineage:avc:plugin-deepsec",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "UNKNOWN",
       "target_component_id": null,
       "target_package": null
@@ -613,7 +613,7 @@
       "legacy_component_id": "ag:legacy:avc:portfolio",
       "legacy_package": "@avc/portfolio",
       "lineage_id": "lineage:avc:portfolio",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "PARTIALLY_MIGRATED",
       "target_component_id": "ag:component:portfolio",
       "target_package": "@aftergraph/portfolio"
@@ -634,7 +634,7 @@
       "legacy_component_id": "ag:legacy:avc:proactive-runtime",
       "legacy_package": "@avc/proactive-runtime",
       "lineage_id": "lineage:avc:proactive-runtime",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "PARTIALLY_MIGRATED",
       "target_component_id": "ag:component:proactive-runtime",
       "target_package": "@aftergraph/proactive-runtime"
@@ -650,7 +650,7 @@
       "legacy_component_id": "ag:legacy:avc:product-catalog",
       "legacy_package": "@avc/product-catalog",
       "lineage_id": "lineage:avc:product-catalog",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "ACTIVE_LEGACY",
       "target_component_id": null,
       "target_package": null
@@ -661,7 +661,7 @@
       "legacy_component_id": "ag:legacy:avc:product-installer-adapter",
       "legacy_package": "@avc/product-installer-adapter",
       "lineage_id": "lineage:avc:product-installer-adapter",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "UNKNOWN",
       "target_component_id": null,
       "target_package": null
@@ -672,7 +672,7 @@
       "legacy_component_id": "ag:legacy:avc:runner-bridge",
       "legacy_package": "@avc/runner-bridge",
       "lineage_id": "lineage:avc:runner-bridge",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "UNKNOWN",
       "target_component_id": null,
       "target_package": null
@@ -686,7 +686,7 @@
       "legacy_component_id": "ag:legacy:avc:runtime-metrics",
       "legacy_package": "@avc/runtime-metrics",
       "lineage_id": "lineage:avc:runtime-metrics",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "PARTIALLY_MIGRATED",
       "target_component_id": "ag:component:metrics",
       "target_package": "@aftergraph/metrics"
@@ -697,7 +697,7 @@
       "legacy_component_id": "ag:legacy:avc:runtime-orchestrator",
       "legacy_package": "@avc/runtime-orchestrator",
       "lineage_id": "lineage:avc:runtime-orchestrator",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "UNKNOWN",
       "target_component_id": null,
       "target_package": null
@@ -713,7 +713,7 @@
       "legacy_component_id": "ag:legacy:avc:security-assurance",
       "legacy_package": "@avc/security-assurance",
       "lineage_id": "lineage:avc:security-assurance",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "ACTIVE_LEGACY",
       "target_component_id": null,
       "target_package": null
@@ -729,7 +729,7 @@
       "legacy_component_id": "ag:legacy:avc:serviceops",
       "legacy_package": "@avc/serviceops",
       "lineage_id": "lineage:avc:serviceops",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "ACTIVE_LEGACY",
       "target_component_id": null,
       "target_package": null
@@ -740,7 +740,7 @@
       "legacy_component_id": "ag:legacy:avc:serviceops-mcp",
       "legacy_package": "@avc/serviceops-mcp",
       "lineage_id": "lineage:avc:serviceops-mcp",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "UNKNOWN",
       "target_component_id": null,
       "target_package": null
@@ -754,7 +754,7 @@
       "legacy_component_id": "ag:legacy:avc:telemetry",
       "legacy_package": "@avc/telemetry",
       "lineage_id": "lineage:avc:telemetry",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "PARTIALLY_MIGRATED",
       "target_component_id": "ag:component:telemetry",
       "target_package": "@aftergraph/telemetry"
@@ -771,7 +771,7 @@
       "legacy_component_id": "ag:legacy:avc:tenant-core",
       "legacy_package": "@avc/tenant-core",
       "lineage_id": "lineage:avc:tenant-core",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "PARTIALLY_MIGRATED",
       "target_component_id": "ag:component:tenant-core",
       "target_package": "@aftergraph/tenant-core"
@@ -782,7 +782,7 @@
       "legacy_component_id": "ag:legacy:avc:visual-verifier",
       "legacy_package": "@avc/visual-verifier",
       "lineage_id": "lineage:avc:visual-verifier",
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "status": "UNKNOWN",
       "target_component_id": null,
       "target_package": null

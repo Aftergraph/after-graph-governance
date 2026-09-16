@@ -38,16 +38,23 @@ def dimension(status: str, observed: int | None = None,
 def build_report() -> dict[str, Any]:
     registry = load("component-registry.json")
     source_gaps = load("reality-gaps.json")
+    semantic_declarations = load("semantic-declarations.json")
     operational = load("operational-reality.json")
     operational_gaps = load("operational-reality-gaps.json")
     deployments = load("deployment-source-diffs.json")
     cloud = load("cloud-resource-classification.json")
     recovery = load("recovery-mechanisms.json")
+    recovery_verifications = load("recovery-verifications.json")
+    credential_map = load("credential-consumer-bindings.json")
+    route_dispositions = load("route-dispositions.json")
+    runtime_disposition = load("runtime-topology-disposition.json")
     diffs = load("reality-diffs.json")
 
     repos = registry["repositories"]
     no_manifest = [g for g in source_gaps["gaps"]
                    if g["reason"] == "no_explicit_semantic_component_manifest_in_source_bootstrap"]
+    semantic_uncovered = semantic_declarations["uncovered_repositories"]
+    semantic_covered = len(repos) - len(semantic_uncovered)
     dep_bindings = deployments["bindings"]
     exact_deployments = [b for b in dep_bindings if b.get("observed_deployed_revision")]
     dep_conflicts = [b for b in dep_bindings if b["status"] == "CONFLICTING"]
@@ -55,21 +62,36 @@ def build_report() -> dict[str, Any]:
 
     routes = operational["route_summary"]["routes"]
     resolved_routes = [r for r in routes if r["dns_state"] == "RESOLVED"]
+    blocking_route_dispositions = [
+        r for r in route_dispositions["routes"]
+        if r["disposition"] in {"CONFLICTING_DESIRED_STATE", "UNKNOWN"}
+    ]
     unknown_cloud = [r for r in cloud["resources"] if r["epistemic_status"] == "UNKNOWN"]
     adjacent_cloud = [r for r in cloud["resources"]
                       if r["owner_class"] == "AFTERGRAPH_ADJACENT_UNCLASSIFIED"]
-    verified_recovery = [m for m in recovery["mechanisms"]
-                         if m["recoverability"] == "RECOVERABLE_VERIFIED"]
+    recovery_by_service = {v["service"]: v for v in recovery_verifications["verifications"]}
+    verified_recovery = [
+        m for m in recovery["mechanisms"]
+        if recovery_by_service.get(m["service"], {}).get("verdict") == "RECOVERABLE_VERIFIED"
+    ]
+    data_verified_recovery = [
+        m for m in recovery["mechanisms"]
+        if recovery_by_service.get(m["service"], {}).get("verdict") == "DATA_RECOVERY_VERIFIED"
+    ]
+    recovery_proven = verified_recovery + data_verified_recovery
 
     dimensions = {
         "source": dimension(
-            "PARTIAL" if no_manifest else "PASS",
-            observed=len(repos) - len(no_manifest),
+            "PARTIAL" if semantic_uncovered else "PASS",
+            observed=semantic_covered,
             total=len(repos),
-            metric="semantic_manifest_coverage",
+            metric="semantic_manifest_or_declared_role_coverage",
             exact_repo_heads=len(repos),
             exact_head_coverage=1.0 if repos else None,
             semantic_manifest_gaps=len(no_manifest),
+            semantic_coverage_repositories=semantic_covered,
+            semantic_uncovered_repositories=len(semantic_uncovered),
+            uncovered_repository_refs=semantic_uncovered,
         ),
         "deployment": dimension(
             "BLOCKED" if dep_conflicts or dep_unknown else "PASS",
@@ -80,11 +102,13 @@ def build_report() -> dict[str, Any]:
             unknown=len(dep_unknown),
         ),
         "routes": dimension(
-            "PARTIAL" if len(resolved_routes) != len(routes) else "PASS",
+            "BLOCKED" if blocking_route_dispositions else "PASS",
             observed=len(resolved_routes),
             total=len(routes),
-            metric="dns_resolution_coverage",
+            metric="route_disposition_coverage",
             unresolved=len(routes) - len(resolved_routes),
+            blocking_dispositions=len(blocking_route_dispositions),
+            dispositions_total=len(route_dispositions["routes"]),
         ),
         "cloud": dimension(
             "PARTIAL" if adjacent_cloud or unknown_cloud else "PASS",
@@ -95,8 +119,10 @@ def build_report() -> dict[str, Any]:
             aftergraph_adjacent_unclassified=len(adjacent_cloud),
         ),
         "credentials": dimension(
-            "BLOCKED",
-            consumer_mapping="UNKNOWN",
+            "BLOCKED" if operational["credential_summary"]["permission_drift_observations"] else "PARTIAL",
+            consumer_mapping="PARTIAL" if credential_map["bindings"] else "UNKNOWN",
+            mapped_bindings=len(credential_map["bindings"]),
+            unresolved_groups=len(credential_map["unresolved"]),
             values_collected=False,
             snapshot_sprawl_observed=operational["credential_summary"]["lenovo_backup_or_snapshot_env_files"],
             permission_drift_observations=operational["credential_summary"]["permission_drift_observations"],
@@ -105,17 +131,25 @@ def build_report() -> dict[str, Any]:
 
     dimensions.update({
         "recovery": dimension(
-            "BLOCKED" if len(verified_recovery) != len(recovery["mechanisms"]) else "PASS",
-            observed=len(verified_recovery),
+            "BLOCKED" if len(recovery_proven) != len(recovery["mechanisms"]) else "PASS",
+            observed=len(recovery_proven),
             total=len(recovery["mechanisms"]),
-            metric="restore_verified_coverage",
+            metric="state_recovery_proof_coverage",
             backup_present=sum(m["recoverability"] == "BACKUP_PRESENT" for m in recovery["mechanisms"]),
+            verified_restores=len(verified_recovery),
+            data_recovery_verified=len(data_verified_recovery),
+            recovery_proof_coverage=ratio(len(recovery_proven), len(recovery["mechanisms"])),
         ),
         "runtime": dimension(
-            "BLOCKED" if any(g["type"] == "DECLARED_RUNTIME_MISMATCH" for g in operational_gaps["gaps"]) else "PASS",
+            "PARTIAL" if runtime_disposition["disposition"] == "TRANSITIONAL_ACCEPTED" else "BLOCKED",
             active_services=operational["runtime_summary"]["active_services"],
             containers=operational["runtime_summary"]["containers"],
             self_hosted_runner_services=operational["runtime_summary"]["self_hosted_runner_services"],
+            disposition=runtime_disposition["disposition"],
+            disposition_epistemic_status=runtime_disposition["epistemic_status"],
+            blocking=runtime_disposition["disposition"] != "TRANSITIONAL_ACCEPTED",
+            target_architecture_claim=runtime_disposition["target_architecture_claim"],
+            authorizes_runtime_migration=runtime_disposition["authorizes_runtime_migration"],
         ),
         "reality_diff": dimension(
             "BLOCKED" if diffs["summary"]["conflicting"] or diffs["summary"]["unknown"] else "PASS",
@@ -152,9 +186,9 @@ def build_gate(report: dict[str, Any]) -> dict[str, Any]:
     def block(blocker_id: str, dimension_name: str, reason: str) -> None:
         blockers.append({"id": blocker_id, "dimension": dimension_name, "reason": reason})
 
-    if d["source"]["semantic_manifest_gaps"]:
+    if d["source"]["semantic_uncovered_repositories"]:
         block("semantic-component-coverage", "source",
-              "Some live repositories still lack explicit semantic component manifests.")
+              "Some live repositories lack both an explicit semantic source manifest and a governance semantic declaration.")
     if d["deployment"]["conflicts"] or d["deployment"]["unknown"]:
         block("deployment-source-binding", "deployment",
               "Running deployments include source conflicts or unknown exact revisions.")
@@ -167,12 +201,12 @@ def build_gate(report: dict[str, Any]) -> dict[str, Any]:
     if d["recovery"]["status"] != "PASS":
         block("restore-proof", "recovery",
               "Observed backups do not yet have independent restore/recoverability proof.")
-    if d["runtime"]["status"] != "PASS":
+    if d["runtime"].get("blocking", True):
         block("runtime-topology-disposition", "runtime",
-              "Declared and running control-plane topology are not yet reconciled.")
-    if d["routes"]["unresolved"]:
+              "Declared and running control-plane topology lack an explicit bounded disposition.")
+    if d["routes"]["blocking_dispositions"]:
         block("route-disposition", "routes",
-              "Unresolved public routes still require desired/superseded/retired disposition.")
+              "At least one observed route has conflicting or unknown desired-state disposition.")
     if d["cloud"]["aftergraph_adjacent_unclassified"]:
         block("cloud-ownership", "cloud",
               "Aftergraph-adjacent cloud resources remain ownership-unclassified.")

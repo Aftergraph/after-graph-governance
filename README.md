@@ -48,7 +48,7 @@ Explicit special states:
   veranza = private incubation / INTERNAL HOLD
 ```
 
-Cross-cutting governance lives here. The topology contract contains **27 repositories** at the 2026-09-10 reconciliation cut (24 canonical + temporary `sentinel-firetest2`, expires 2026-09-22, + `skill-abi` and `skillport`). Topology membership never upgrades maturity, evidence, conformance or authority.
+Cross-cutting governance lives here. The topology contract contains **30 repositories** at the 2026-09-16 reconciliation cut. Topology membership never upgrades maturity, evidence, conformance or authority.
 
 ## Canonical topology
 
@@ -86,6 +86,7 @@ The table below is a generated projection of `docs/platform-topology/2.0.json` â
 | Verification | assurance | `sentinel` | verified-code-review | active | Exact-HEAD verified code-review verdicts with stale-base invalidation and cited evidence. |
 | Experience | operator-plane | `relay` | human-operator-plane | active | Governed operator plane for supervising autonomous work across agents, missions, execution nodes, Runtime projection, and Aftergraph infrastructure. |
 | Experience | experience | `studio` | primary-experience | active | General-purpose human operating environment for Chat, Work, Space, control and evidence surfaces. |
+| Experience | operational-intelligence | `war-room` | operational-intelligence-surface | active | Operational intelligence projections, incident/attention views, system graph exploration, risk/decision support and governed operator control surfaces over native Aftergraph systems. |
 | Experience | specialist-experience | `wi-frontend` | work-intelligence-experience | active | Wie browser experience and least-privilege BFF consuming canonical Work Intelligence state from wi-backend. |
 | Support | foundation | `.github` | organization-community | active | Organization profile, contribution defaults, security/support routing and shared community infrastructure. |
 | Support | models | `afm` | model-program | active | AFM-specific model training, datasets, experiments, evaluations and artifact manifests. |

@@ -14,6 +14,9 @@
     "observed": {},
     "epistemic_status": {"$ref": "reality-facet.schema.json#/$defs/epistemic_status"},
     "evidence_refs": {"type": "array", "items": {"type": "string"}},
+    "dimension": {"type": "string", "minLength": 1},
+    "reason": {"type": "string", "minLength": 1},
+    "severity": {"type": "string", "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]},
     "disposition": {"type": "string"}
   },
   "required": ["diff_id", "subject", "classification", "epistemic_status", "evidence_refs"],

@@ -23,13 +23,22 @@ def evidence_ref(name: str, subject: str) -> str:
 def add(diffs: list[dict[str, Any]], *, diff_id: str, subject: str,
         classification: str, dimension: str, reason: str,
         evidence: list[str], severity: str = "MEDIUM") -> None:
+    epistemic_status = {
+        "CONFLICT": "CONFLICTING",
+        "STALE": "STALE",
+        "UNKNOWN": "UNKNOWN",
+        "MISSING": "UNKNOWN",
+        "UNMAPPED": "UNKNOWN",
+        "DRIFT": "OBSERVED",
+    }[classification]
     diffs.append({
-        "id": diff_id,
+        "diff_id": diff_id,
         "subject": subject,
         "classification": classification,
         "dimension": dimension,
         "severity": severity,
         "reason": reason,
+        "epistemic_status": epistemic_status,
         "evidence_refs": sorted(set(evidence)),
     })
 
@@ -40,6 +49,9 @@ def build() -> dict[str, Any]:
     operational_gaps = load("operational-reality-gaps.json")
     deployments = load("deployment-source-diffs.json")
     recovery = load("recovery-mechanisms.json")
+    recovery_verifications = load("recovery-verifications.json")
+    route_dispositions = load("route-dispositions.json")
+    runtime_disposition = load("runtime-topology-disposition.json")
 
     for gap in source_gaps["gaps"]:
         add(
@@ -53,10 +65,34 @@ def build() -> dict[str, Any]:
             severity="MEDIUM",
         )
 
+    route_by_host = {r["host"]: r for r in route_dispositions["routes"]}
     for gap in operational_gaps["gaps"]:
-        classification = gap.get("epistemic_status", "UNKNOWN")
-        if classification not in {"CONFLICTING", "UNKNOWN", "STALE"}:
-            classification = "UNKNOWN"
+        if gap["type"] == "PUBLIC_ROUTE_ABSENT":
+            host = gap["subject"].removeprefix("route://")
+            disposition = route_by_host.get(host)
+            if disposition and disposition["disposition"] in {"NOT_REQUIRED", "NOT_DECLARED_PUBLIC"}:
+                continue
+            if disposition and disposition["disposition"] == "SUPERSEDED":
+                if disposition.get("source_drift"):
+                    epistemic = "OBSERVED"
+                    classification = "DRIFT"
+                    gap = {**gap, "reason": disposition["reason"]}
+                else:
+                    continue
+            elif disposition and disposition["disposition"] == "CONFLICTING_DESIRED_STATE":
+                epistemic = "CONFLICTING"
+                classification = "CONFLICT"
+                gap = {**gap, "reason": disposition["reason"]}
+            else:
+                epistemic = gap.get("epistemic_status", "UNKNOWN")
+                classification = {"CONFLICTING": "CONFLICT", "STALE": "STALE"}.get(epistemic, "UNKNOWN")
+        elif gap["type"] == "DECLARED_RUNTIME_MISMATCH" and runtime_disposition["disposition"] == "TRANSITIONAL_ACCEPTED":
+            epistemic = "OBSERVED"
+            classification = "DRIFT"
+            gap = {**gap, "reason": runtime_disposition["reason"]}
+        else:
+            epistemic = gap.get("epistemic_status", "UNKNOWN")
+            classification = {"CONFLICTING": "CONFLICT", "STALE": "STALE"}.get(epistemic, "UNKNOWN")
         add(
             diffs,
             diff_id=f"diff:operational:{gap['id']}",
@@ -76,15 +112,16 @@ def build() -> dict[str, Any]:
             diffs,
             diff_id=f"diff:deployment:{service}",
             subject=f"deployment://{service}",
-            classification=binding["status"],
+            classification="CONFLICT" if binding["status"] == "CONFLICTING" else "UNKNOWN",
             dimension="DEPLOYMENT_SOURCE",
             reason=binding["reason"],
             evidence=[evidence_ref("deployment-source-diffs.json", service)],
             severity="HIGH" if binding["status"] == "CONFLICTING" else "MEDIUM",
         )
 
+    recovery_by_service = {v["service"]: v for v in recovery_verifications["verifications"]}
     for mechanism in recovery["mechanisms"]:
-        if mechanism["recoverability"] == "RECOVERABLE_VERIFIED":
+        if recovery_by_service.get(mechanism["service"], {}).get("verdict") == "RECOVERABLE_VERIFIED":
             continue
         service = mechanism["service"]
         add(
@@ -107,10 +144,10 @@ def build() -> dict[str, Any]:
     return {
         "schema_version": "roro-reality-diffs/0.1",
         "as_of": max(t for t in timestamps if t),
-        "diffs": sorted(diffs, key=lambda item: item["id"]),
+        "diffs": sorted(diffs, key=lambda item: item["diff_id"]),
         "summary": {
             "total": len(diffs),
-            "conflicting": sum(d["classification"] == "CONFLICTING" for d in diffs),
+            "conflicting": sum(d["classification"] == "CONFLICT" for d in diffs),
             "unknown": sum(d["classification"] == "UNKNOWN" for d in diffs),
             "stale": sum(d["classification"] == "STALE" for d in diffs),
         },

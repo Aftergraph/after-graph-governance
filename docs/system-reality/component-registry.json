@@ -14,7 +14,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/agent-eval/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/agent-eval",
           "repository": "Aftergraph/runtime",
@@ -36,7 +36,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/agent-harness/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/agent-harness",
           "repository": "Aftergraph/runtime",
@@ -58,7 +58,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/agent-relay/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/agent-relay",
           "repository": "Aftergraph/runtime",
@@ -79,12 +79,12 @@
       "source_bindings": [
         {
           "default_branch": "main",
-          "evidence_ref": "github://Aftergraph/aftergraph.org@416a3e008b7078b8fbbe0248c87d70252e3da370/atlas/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "evidence_ref": "github://Aftergraph/aftergraph.org@34ae4ee547f02233ae4a6f3159309d3adebeeaf8/atlas/package.json",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "atlas",
           "repository": "Aftergraph/aftergraph.org",
-          "revision": "416a3e008b7078b8fbbe0248c87d70252e3da370"
+          "revision": "34ae4ee547f02233ae4a6f3159309d3adebeeaf8"
         }
       ]
     },
@@ -102,7 +102,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/authorization/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/authorization",
           "repository": "Aftergraph/runtime",
@@ -124,7 +124,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/brand@6abc51be903ffd1041a716d2adeec364de3d68c0/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": ".",
           "repository": "Aftergraph/brand",
@@ -132,12 +132,12 @@
         },
         {
           "default_branch": "main",
-          "evidence_ref": "github://Aftergraph/studio@da7feedfab2280cbb81314a277ee6df9d136e010/packages/brand/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "evidence_ref": "github://Aftergraph/studio@693d8c9c8c6ab3f666c93d31322d9d7c6397a16a/packages/brand/package.json",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/brand",
           "repository": "Aftergraph/studio",
-          "revision": "da7feedfab2280cbb81314a277ee6df9d136e010"
+          "revision": "693d8c9c8c6ab3f666c93d31322d9d7c6397a16a"
         }
       ]
     },
@@ -155,7 +155,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/business-ops@7148f733fbe74acc5279860c1fbc1fb9235ead21/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": ".",
           "repository": "Aftergraph/business-ops",
@@ -177,7 +177,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/constitution/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/constitution",
           "repository": "Aftergraph/runtime",
@@ -199,7 +199,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/contracts/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/contracts",
           "repository": "Aftergraph/runtime",
@@ -221,7 +221,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/definitions/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/definitions",
           "repository": "Aftergraph/runtime",
@@ -243,7 +243,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/docs@a3ca2292a6926b055d54d3fc2df325a7e59814cd/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": ".",
           "repository": "Aftergraph/docs",
@@ -265,7 +265,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/events/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/events",
           "repository": "Aftergraph/runtime",
@@ -287,7 +287,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/goals/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/goals",
           "repository": "Aftergraph/runtime",
@@ -309,7 +309,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/heartbeat/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/heartbeat",
           "repository": "Aftergraph/runtime",
@@ -331,7 +331,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/identity-core/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/identity-core",
           "repository": "Aftergraph/runtime",
@@ -353,7 +353,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/incident/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/incident",
           "repository": "Aftergraph/runtime",
@@ -375,7 +375,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/intelligence-gateway/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/intelligence-gateway",
           "repository": "Aftergraph/runtime",
@@ -397,7 +397,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/invariants/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/invariants",
           "repository": "Aftergraph/runtime",
@@ -419,7 +419,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/job-runtime/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/job-runtime",
           "repository": "Aftergraph/runtime",
@@ -441,7 +441,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/kernel-core/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/kernel-core",
           "repository": "Aftergraph/runtime",
@@ -463,7 +463,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/ledger/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/ledger",
           "repository": "Aftergraph/runtime",
@@ -485,7 +485,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/memory-store/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/memory-store",
           "repository": "Aftergraph/runtime",
@@ -507,7 +507,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/metrics/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/metrics",
           "repository": "Aftergraph/runtime",
@@ -529,7 +529,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/mission-graph/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/mission-graph",
           "repository": "Aftergraph/runtime",
@@ -551,7 +551,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/mission-inference/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/mission-inference",
           "repository": "Aftergraph/runtime",
@@ -573,7 +573,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/mission-routing/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/mission-routing",
           "repository": "Aftergraph/runtime",
@@ -595,7 +595,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/muse-supervisor/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/muse-supervisor",
           "repository": "Aftergraph/runtime",
@@ -617,7 +617,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/observability/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/observability",
           "repository": "Aftergraph/runtime",
@@ -639,7 +639,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/orchestrator/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/orchestrator",
           "repository": "Aftergraph/runtime",
@@ -661,7 +661,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/outcomes/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/outcomes",
           "repository": "Aftergraph/runtime",
@@ -683,7 +683,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/peer-protocol/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/peer-protocol",
           "repository": "Aftergraph/runtime",
@@ -705,7 +705,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/portfolio/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/portfolio",
           "repository": "Aftergraph/runtime",
@@ -727,7 +727,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/proactive-runtime/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/proactive-runtime",
           "repository": "Aftergraph/runtime",
@@ -749,7 +749,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/promotion-gates/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/promotion-gates",
           "repository": "Aftergraph/runtime",
@@ -771,7 +771,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/relay@e9fe5fe8756fcb5b9cd578bb1f0b2d472a716033/pyproject.toml",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": ".",
           "repository": "Aftergraph/relay",
@@ -792,12 +792,12 @@
       "source_bindings": [
         {
           "default_branch": "main",
-          "evidence_ref": "github://Aftergraph/rendetalje@7fa33a0c10a47f4c6a9d000c8973886385503c45/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "evidence_ref": "github://Aftergraph/rendetalje@4f16ed19c7d3c62564163ee38bd44ea318574a4c/package.json",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": ".",
           "repository": "Aftergraph/rendetalje",
-          "revision": "7fa33a0c10a47f4c6a9d000c8973886385503c45"
+          "revision": "4f16ed19c7d3c62564163ee38bd44ea318574a4c"
         }
       ]
     },
@@ -815,7 +815,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": ".",
           "repository": "Aftergraph/runtime",
@@ -837,7 +837,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/runtime-host/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/runtime-host",
           "repository": "Aftergraph/runtime",
@@ -859,7 +859,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/scheduler/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/scheduler",
           "repository": "Aftergraph/runtime",
@@ -880,12 +880,12 @@
       "source_bindings": [
         {
           "default_branch": "main",
-          "evidence_ref": "github://Aftergraph/sentinel@29d3b1f30465e24335a637dad622ccb94f790005/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "evidence_ref": "github://Aftergraph/sentinel@546f004230e90f1b211c065a6a05821605231be3/package.json",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": ".",
           "repository": "Aftergraph/sentinel",
-          "revision": "29d3b1f30465e24335a637dad622ccb94f790005"
+          "revision": "546f004230e90f1b211c065a6a05821605231be3"
         }
       ]
     },
@@ -902,12 +902,12 @@
       "source_bindings": [
         {
           "default_branch": "main",
-          "evidence_ref": "github://Aftergraph/studio@da7feedfab2280cbb81314a277ee6df9d136e010/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "evidence_ref": "github://Aftergraph/studio@693d8c9c8c6ab3f666c93d31322d9d7c6397a16a/package.json",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": ".",
           "repository": "Aftergraph/studio",
-          "revision": "da7feedfab2280cbb81314a277ee6df9d136e010"
+          "revision": "693d8c9c8c6ab3f666c93d31322d9d7c6397a16a"
         }
       ]
     },
@@ -925,7 +925,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/telemetry/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/telemetry",
           "repository": "Aftergraph/runtime",
@@ -947,7 +947,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/tenant-core/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/tenant-core",
           "repository": "Aftergraph/runtime",
@@ -969,7 +969,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/runtime@45d1d95282ca0cb6926c49ce43847884e2eaae43/packages/triggers/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/triggers",
           "repository": "Aftergraph/runtime",
@@ -991,7 +991,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/veranza@18a860b54260326585f3306acc58ba4f15df7d69/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": ".",
           "repository": "Aftergraph/veranza",
@@ -1013,7 +1013,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/veranza@18a860b54260326585f3306acc58ba4f15df7d69/packages/veranza-control/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/veranza-control",
           "repository": "Aftergraph/veranza",
@@ -1035,7 +1035,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/veranza@18a860b54260326585f3306acc58ba4f15df7d69/packages/veranza-detect/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/veranza-detect",
           "repository": "Aftergraph/veranza",
@@ -1057,7 +1057,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/veranza@18a860b54260326585f3306acc58ba4f15df7d69/packages/veranza-evidence/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/veranza-evidence",
           "repository": "Aftergraph/veranza",
@@ -1079,7 +1079,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/veranza@18a860b54260326585f3306acc58ba4f15df7d69/packages/veranza-gateway/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/veranza-gateway",
           "repository": "Aftergraph/veranza",
@@ -1101,7 +1101,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/veranza@18a860b54260326585f3306acc58ba4f15df7d69/packages/veranza-identity/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/veranza-identity",
           "repository": "Aftergraph/veranza",
@@ -1123,7 +1123,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/veranza@18a860b54260326585f3306acc58ba4f15df7d69/packages/veranza-ledger/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/veranza-ledger",
           "repository": "Aftergraph/veranza",
@@ -1145,7 +1145,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/veranza@18a860b54260326585f3306acc58ba4f15df7d69/packages/veranza-runtime/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/veranza-runtime",
           "repository": "Aftergraph/veranza",
@@ -1167,7 +1167,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/wi-backend@cf7f26993450640951165aa6e6e0cd1481515938/pyproject.toml",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": ".",
           "repository": "Aftergraph/wi-backend",
@@ -1189,7 +1189,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/agent-eval/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/agent-eval",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1211,7 +1211,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/agent-gateway/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "apps/agent-gateway",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1233,7 +1233,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/agent-harness/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/agent-harness",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1255,7 +1255,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/agent-observability/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/agent-observability",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1277,7 +1277,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/agent-relay/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/agent-relay",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1299,7 +1299,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/avc-desktop/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "apps/avc-desktop",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1321,7 +1321,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/ml/avc-eval/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "ml/avc-eval",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1343,7 +1343,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/ml/avc-llm/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "ml/avc-llm",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1365,7 +1365,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/tools/avc-cli/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "tools/avc-cli",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1387,7 +1387,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/company-daemon/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/company-daemon",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1409,7 +1409,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/constitution/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/constitution",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1431,7 +1431,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/contracts/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/contracts",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1453,7 +1453,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/creative-assets/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/creative-assets",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1475,7 +1475,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/events/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/events",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1497,7 +1497,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/hermes-adapter/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/hermes-adapter",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1519,7 +1519,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/identity-core/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/identity-core",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1541,7 +1541,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/identity-worker/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "apps/identity-worker",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1563,7 +1563,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/incident/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/incident",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1585,7 +1585,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/intelligence-gateway/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/intelligence-gateway",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1607,7 +1607,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/invariant-registry/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/invariant-registry",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1629,7 +1629,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/job-runtime/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/job-runtime",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1651,7 +1651,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/kernel-core/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/kernel-core",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1673,7 +1673,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/product-cells/leadrescue/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "product-cells/leadrescue",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1695,7 +1695,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/ledger/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/ledger",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1717,7 +1717,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/memory-store/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/memory-store",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1739,7 +1739,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/mission-graph/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/mission-graph",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1761,7 +1761,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/mission-graph-authority/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "apps/mission-graph-authority",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1783,7 +1783,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/model-edge/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "apps/model-edge",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1805,7 +1805,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/orchestrator/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/orchestrator",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1827,7 +1827,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/peer-protocol/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/peer-protocol",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1849,7 +1849,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/plugin-deepsec/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/plugin-deepsec",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1871,7 +1871,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/portfolio/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/portfolio",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1893,7 +1893,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/proactive-runtime/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/proactive-runtime",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1915,7 +1915,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/product-catalog/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/product-catalog",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1937,7 +1937,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/product-installer-adapter/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/product-installer-adapter",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1959,7 +1959,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/tools/avc-runner-bridge/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "tools/avc-runner-bridge",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -1981,7 +1981,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/runtime-metrics/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/runtime-metrics",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -2003,7 +2003,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/runtime-orchestrator/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/runtime-orchestrator",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -2025,7 +2025,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/security-assurance/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/security-assurance",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -2047,7 +2047,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/product-cells/serviceops/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "product-cells/serviceops",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -2069,7 +2069,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/serviceops-mcp/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "apps/serviceops-mcp",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -2091,7 +2091,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/telemetry/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/telemetry",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -2113,7 +2113,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/packages/tenant-core/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "packages/tenant-core",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -2135,7 +2135,7 @@
         {
           "default_branch": "main",
           "evidence_ref": "github://Aftergraph/autonomous-venture-company@6c474b9001e445eabed0c0f5ec34f167686d7a72/apps/mission-control/visual-verifier/package.json",
-          "observed_at": "2026-09-16T00:15:54Z",
+          "observed_at": "2026-09-16T07:10:16Z",
           "observer": "roro:scout:github",
           "path": "apps/mission-control/visual-verifier",
           "repository": "Aftergraph/autonomous-venture-company",
@@ -2144,7 +2144,7 @@
       ]
     }
   ],
-  "generated_at": "2026-09-16T00:15:54Z",
+  "generated_at": "2026-09-16T07:10:16Z",
   "observer": "roro:scout:github",
   "organization": "Aftergraph",
   "repositories": [
@@ -2155,7 +2155,7 @@
       "full_name": "Aftergraph/.github",
       "head_sha": "728aa7c3309e67a2bdd4b569170bc1bc4d4f6684",
       "manifest_count": 0,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": null,
         "lifecycle": "active",
@@ -2171,7 +2171,7 @@
       "full_name": "Aftergraph/afm",
       "head_sha": "ec9a47aa3458be87b42d2f56dc57aa28f28ca21c",
       "manifest_count": 0,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": null,
         "lifecycle": "active",
@@ -2187,7 +2187,7 @@
       "full_name": "Aftergraph/after-graph-governance",
       "head_sha": "5cce213a8b74a9d586749bcbdce426811ba5ae57",
       "manifest_count": 0,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": null,
         "lifecycle": "active",
@@ -2203,7 +2203,7 @@
       "full_name": "Aftergraph/aftergraph-cron-fabric",
       "head_sha": "7c4bee3236fca24ab008574b68a6a44cc92b55d3",
       "manifest_count": 0,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": null,
         "lifecycle": "active",
@@ -2217,9 +2217,9 @@
       "default_branch": "main",
       "epistemic_status": "OBSERVED",
       "full_name": "Aftergraph/aftergraph.org",
-      "head_sha": "416a3e008b7078b8fbbe0248c87d70252e3da370",
+      "head_sha": "34ae4ee547f02233ae4a6f3159309d3adebeeaf8",
       "manifest_count": 1,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": null,
         "lifecycle": "active",
@@ -2235,7 +2235,7 @@
       "full_name": "Aftergraph/aie",
       "head_sha": "f92c3b76347316c9832cfba2457fabdc241a4831",
       "manifest_count": 1,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": "authority",
         "lifecycle": "active",
@@ -2251,7 +2251,7 @@
       "full_name": "Aftergraph/autonomous-venture-company",
       "head_sha": "6c474b9001e445eabed0c0f5ec34f167686d7a72",
       "manifest_count": 49,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": null,
         "lifecycle": "legacy-transition",
@@ -2267,7 +2267,7 @@
       "full_name": "Aftergraph/brand",
       "head_sha": "6abc51be903ffd1041a716d2adeec364de3d68c0",
       "manifest_count": 1,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": null,
         "lifecycle": "active",
@@ -2283,7 +2283,7 @@
       "full_name": "Aftergraph/business-ops",
       "head_sha": "7148f733fbe74acc5279860c1fbc1fb9235ead21",
       "manifest_count": 1,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": null,
         "lifecycle": "active",
@@ -2299,7 +2299,7 @@
       "full_name": "Aftergraph/context-continuity",
       "head_sha": "f9256490358e416c7e2556587042f2e250d4b032",
       "manifest_count": 0,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": null,
         "lifecycle": "active",
@@ -2315,7 +2315,7 @@
       "full_name": "Aftergraph/continuum",
       "head_sha": "c1d6ef80b82f797604c90b6db0b8075780fc3744",
       "manifest_count": 1,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": null,
         "lifecycle": "active",
@@ -2331,7 +2331,7 @@
       "full_name": "Aftergraph/docs",
       "head_sha": "a3ca2292a6926b055d54d3fc2df325a7e59814cd",
       "manifest_count": 1,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": null,
         "lifecycle": "active",
@@ -2347,7 +2347,7 @@
       "full_name": "Aftergraph/intelligence-systems-research",
       "head_sha": "06d906bcab0159527e76fc866bb7c74ac294f32f",
       "manifest_count": 0,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": null,
         "lifecycle": "active",
@@ -2363,7 +2363,7 @@
       "full_name": "Aftergraph/llm-research-development",
       "head_sha": "c65b1b855892d2687e4b4bc1a26f865cf4dc46da",
       "manifest_count": 0,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": null,
         "lifecycle": "active",
@@ -2379,7 +2379,7 @@
       "full_name": "Aftergraph/model-registry",
       "head_sha": "6da2ee23b4b6c90bf348df9dc7ad9f8273a31053",
       "manifest_count": 0,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": null,
         "lifecycle": "active",
@@ -2395,7 +2395,7 @@
       "full_name": "Aftergraph/relay",
       "head_sha": "e9fe5fe8756fcb5b9cd578bb1f0b2d472a716033",
       "manifest_count": 1,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": "experience",
         "lifecycle": "active",
@@ -2409,9 +2409,9 @@
       "default_branch": "main",
       "epistemic_status": "OBSERVED",
       "full_name": "Aftergraph/rendetalje",
-      "head_sha": "7fa33a0c10a47f4c6a9d000c8973886385503c45",
+      "head_sha": "4f16ed19c7d3c62564163ee38bd44ea318574a4c",
       "manifest_count": 1,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": null,
       "visibility": "private"
     },
@@ -2422,7 +2422,7 @@
       "full_name": "Aftergraph/runtime",
       "head_sha": "45d1d95282ca0cb6926c49ce43847884e2eaae43",
       "manifest_count": 36,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": "runtime",
         "lifecycle": "active",
@@ -2436,9 +2436,9 @@
       "default_branch": "main",
       "epistemic_status": "OBSERVED",
       "full_name": "Aftergraph/sentinel",
-      "head_sha": "29d3b1f30465e24335a637dad622ccb94f790005",
+      "head_sha": "546f004230e90f1b211c065a6a05821605231be3",
       "manifest_count": 2,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": "verification",
         "lifecycle": "active",
@@ -2454,7 +2454,7 @@
       "full_name": "Aftergraph/sentinel-firetest",
       "head_sha": "47bcb00bb58d340ab93f44fbeade4d965a4adbc5",
       "manifest_count": 0,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": null,
         "lifecycle": "temporary",
@@ -2470,7 +2470,7 @@
       "full_name": "Aftergraph/sentinel-firetest2",
       "head_sha": "e59ce259306303f08fcdfed328f957e6434a1299",
       "manifest_count": 0,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": null,
         "lifecycle": "temporary",
@@ -2486,7 +2486,7 @@
       "full_name": "Aftergraph/skill-abi",
       "head_sha": "14dc965f05efef4fc917b775e1dcc9ef29ba4474",
       "manifest_count": 0,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": null,
         "lifecycle": "active",
@@ -2502,7 +2502,7 @@
       "full_name": "Aftergraph/skillport",
       "head_sha": "9e4b86b95c3907dea4194fdd7abff274badc16da",
       "manifest_count": 0,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": null,
         "lifecycle": "active",
@@ -2518,7 +2518,7 @@
       "full_name": "Aftergraph/skills-vault",
       "head_sha": "aecd24a33587e29ed70a986a2eaddd2925b0c1c0",
       "manifest_count": 0,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": null,
         "lifecycle": "active",
@@ -2532,9 +2532,9 @@
       "default_branch": "main",
       "epistemic_status": "OBSERVED",
       "full_name": "Aftergraph/studio",
-      "head_sha": "da7feedfab2280cbb81314a277ee6df9d136e010",
+      "head_sha": "693d8c9c8c6ab3f666c93d31322d9d7c6397a16a",
       "manifest_count": 2,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": "experience",
         "lifecycle": "active",
@@ -2550,7 +2550,7 @@
       "full_name": "Aftergraph/trust-gateway",
       "head_sha": "cd504fcde295ba652646684db106585f9c7ecd15",
       "manifest_count": 1,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": "trust",
         "lifecycle": "active",
@@ -2566,7 +2566,7 @@
       "full_name": "Aftergraph/veranza",
       "head_sha": "18a860b54260326585f3306acc58ba4f15df7d69",
       "manifest_count": 8,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": null,
         "lifecycle": "internal-hold",
@@ -2582,8 +2582,13 @@
       "full_name": "Aftergraph/war-room",
       "head_sha": "0313ad91ce9607e3b6ab097851e7352d39c05a62",
       "manifest_count": 0,
-      "observed_at": "2026-09-16T00:15:54Z",
-      "topology": null,
+      "observed_at": "2026-09-16T07:10:16Z",
+      "topology": {
+        "architecture_plane": "experience",
+        "lifecycle": "active",
+        "role": "operational-intelligence-surface",
+        "system_class": "operational-intelligence"
+      },
       "visibility": "public"
     },
     {
@@ -2593,7 +2598,7 @@
       "full_name": "Aftergraph/wi-backend",
       "head_sha": "cf7f26993450640951165aa6e6e0cd1481515938",
       "manifest_count": 1,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": "intelligence",
         "lifecycle": "active",
@@ -2609,7 +2614,7 @@
       "full_name": "Aftergraph/wi-frontend",
       "head_sha": "3754fdc88799745d6bd495fa7a37186ff0ef4ced",
       "manifest_count": 1,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": "experience",
         "lifecycle": "active",
@@ -2623,9 +2628,9 @@
       "default_branch": "main",
       "epistemic_status": "OBSERVED",
       "full_name": "Aftergraph/works-execution",
-      "head_sha": "b9e6d9276f54bc259003c429ab81181092ffc8aa",
+      "head_sha": "f69e5182f9d3d7e74817ec8ec2cee52ba2f9c62d",
       "manifest_count": 1,
-      "observed_at": "2026-09-16T00:15:54Z",
+      "observed_at": "2026-09-16T07:10:16Z",
       "topology": {
         "architecture_plane": "execution",
         "lifecycle": "active",

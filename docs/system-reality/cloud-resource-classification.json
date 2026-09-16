@@ -115,11 +115,11 @@
       "reason": "bound to AVC-era service identities"
     },
     {
-      "epistemic_status": "UNKNOWN",
+      "epistemic_status": "INFERRED",
       "kind": "D1",
       "name": "atlas-v3-db",
-      "owner_class": "AFTERGRAPH_ADJACENT_UNCLASSIFIED",
-      "reason": "agent/resource name alone does not establish canonical ownership"
+      "owner_class": "AFTERGRAPH",
+      "reason": "resource identity aligns with approved Atlas V3 D1/R2 storage architecture; active production binding remains unverified"
     },
     {
       "epistemic_status": "UNKNOWN",
@@ -164,11 +164,11 @@
       "reason": "serviceops AVC-era identity"
     },
     {
-      "epistemic_status": "UNKNOWN",
+      "epistemic_status": "OBSERVED",
       "kind": "KV",
       "name": "AG_STATS",
-      "owner_class": "AFTERGRAPH_ADJACENT_UNCLASSIFIED",
-      "reason": "name insufficient for canonical ownership"
+      "owner_class": "AFTERGRAPH",
+      "reason": "direct binding in Aftergraph/aftergraph.org site/wrangler.toml"
     },
     {
       "epistemic_status": "UNKNOWN",
@@ -192,11 +192,11 @@
       "reason": "cohosted provider resource"
     },
     {
-      "epistemic_status": "UNKNOWN",
+      "epistemic_status": "INFERRED",
       "kind": "R2",
       "name": "atlas-v3-artifacts",
-      "owner_class": "AFTERGRAPH_ADJACENT_UNCLASSIFIED",
-      "reason": "agent/resource name alone does not establish canonical ownership"
+      "owner_class": "AFTERGRAPH",
+      "reason": "resource identity aligns with approved Atlas V3 D1/R2 storage architecture; active production binding remains unverified"
     },
     {
       "epistemic_status": "UNKNOWN",

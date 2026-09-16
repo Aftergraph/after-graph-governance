@@ -267,7 +267,7 @@ class OperationalRealityTests(unittest.TestCase):
         data = json.loads(path.read_text(encoding="utf-8"))
         types = {item["type"] for item in data["gaps"]}
         self.assertIn("DECLARED_RUNTIME_MISMATCH", types)
-        self.assertIn("CREDENTIAL_PERMISSION_DRIFT", types)
+        self.assertNotIn("CREDENTIAL_PERMISSION_DRIFT", types)
         self.assertIn("CREDENTIAL_SNAPSHOT_SPRAWL", types)
         self.assertIn("RECOVERY_PROOF_UNKNOWN", types)
         self.assertIn("PUBLIC_ROUTE_ABSENT", types)
@@ -289,7 +289,7 @@ class OperationalReconciliationTests(unittest.TestCase):
         self.assertEqual(by_service["works-api.service"]["canonical_repository"], "Aftergraph/works-execution")
         self.assertEqual(by_service["works-api.service"]["status"], "CONFLICTING")
         for item in data["bindings"]:
-            self.assertIn(item["status"], {"VERIFIED_MATCH", "OBSERVED_MATCH", "CONFLICTING", "UNKNOWN"})
+            self.assertIn(item["status"], {"VERIFIED_MATCH", "OBSERVED_MATCH", "CANONICAL_LAG", "CANONICAL_COMPOSITE_LAG", "CONFLICTING", "UNKNOWN"})
 
     def test_cloud_resources_are_classified_without_overclaiming(self) -> None:
         path = ROOT / "docs/system-reality/cloud-resource-classification.json"

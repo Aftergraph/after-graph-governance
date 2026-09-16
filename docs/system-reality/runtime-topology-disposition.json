@@ -1,0 +1,21 @@
+{
+  "schema_version": "roro-runtime-topology-disposition/0.1",
+  "subject": "runtime://aftergraph/vds-control-plane",
+  "disposition": "TRANSITIONAL_ACCEPTED",
+  "epistemic_status": "PROPOSED",
+  "scope": "Reality discovery and source consolidation only; not runtime migration or target-topology approval.",
+  "target_architecture_claim": false,
+  "authorizes_runtime_migration": false,
+  "reason": "The historical AVC KVM guest design remains documented, while current observed Aftergraph services run on the outer VDS host. For Architecture vNext this mismatch is explicitly accepted as transitional reality so source/component consolidation can be evaluated without pretending the current host layout is the target architecture.",
+  "evidence_refs": [
+    "roro-artifact://docs/system-reality/operational-reality.json#runtime_summary",
+    "source://Aftergraph/autonomous-venture-company/infra/control-plane/README.md",
+    "governance://platform-topology/2.0#autonomous-venture-company"
+  ],
+  "constraints": [
+    "Do not infer that outer-host co-location is the target architecture.",
+    "Do not start, stop, delete or migrate the historical KVM guests from this disposition.",
+    "Do not move credentials, durable state or verification authority based on this disposition alone.",
+    "Any runtime-isolation redesign requires a separate reviewed architecture decision and fresh R.O.R.O. evidence."
+  ]
+}

@@ -11,24 +11,6 @@
     },
     {
       "epistemic_status": "OBSERVED",
-      "id": "opgap:credential:vds-permission",
-      "next_evidence": "Map consumers and tighten permissions only after compatibility review.",
-      "reason": "One gateway credential metadata file is world-readable at mode 0644. Values were not collected.",
-      "severity": "HIGH",
-      "subject": "credential://vds/gateway-env",
-      "type": "CREDENTIAL_PERMISSION_DRIFT"
-    },
-    {
-      "epistemic_status": "OBSERVED",
-      "id": "opgap:credential:lenovo-permission",
-      "next_evidence": "Confirm required consumer identity before ACL remediation.",
-      "reason": "One active Hermes profile env grants CodexSandboxUsers read access. Values were not collected.",
-      "severity": "HIGH",
-      "subject": "credential://lenovo/rendetalje-hermes-env",
-      "type": "CREDENTIAL_PERMISSION_DRIFT"
-    },
-    {
-      "epistemic_status": "OBSERVED",
       "id": "opgap:credential:snapshots",
       "next_evidence": "Map whether historical copies are required, then define retention/rotation policy.",
       "reason": "19 historical Hermes backup/state-snapshot env files were observed.",
@@ -91,6 +73,6 @@
       "type": "HOST_CONCENTRATION"
     }
   ],
-  "generated_at": "2026-09-16T00:34:50.296822+00:00",
+  "generated_at": "2026-09-16T07:00:47.765229+00:00",
   "schema_version": "roro-operational-gaps/0.1"
 }

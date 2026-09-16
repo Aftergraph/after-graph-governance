@@ -1,496 +1,360 @@
 {
-  "as_of": "2026-09-16T00:39:48.200087+00:00",
+  "as_of": "2026-09-16T07:10:16Z",
   "diffs": [
     {
-      "classification": "UNKNOWN",
+      "classification": "CONFLICT",
+      "diff_id": "diff:deployment:works-api.service",
       "dimension": "DEPLOYMENT_SOURCE",
-      "evidence_refs": [
-        "roro-artifact://docs/system-reality/deployment-source-diffs.json#aftergraph-relay-eg-mcp.service"
-      ],
-      "id": "diff:deployment:aftergraph-relay-eg-mcp.service",
-      "reason": "running service observed but exact deployed source revision was not recoverable from working-directory evidence",
-      "severity": "MEDIUM",
-      "subject": "deployment://aftergraph-relay-eg-mcp.service"
-    },
-    {
-      "classification": "UNKNOWN",
-      "dimension": "DEPLOYMENT_SOURCE",
-      "evidence_refs": [
-        "roro-artifact://docs/system-reality/deployment-source-diffs.json#aftergraph-relay.service"
-      ],
-      "id": "diff:deployment:aftergraph-relay.service",
-      "reason": "running service observed but exact deployed source revision was not recoverable from working-directory evidence",
-      "severity": "MEDIUM",
-      "subject": "deployment://aftergraph-relay.service"
-    },
-    {
-      "classification": "CONFLICTING",
-      "dimension": "DEPLOYMENT_SOURCE",
-      "evidence_refs": [
-        "roro-artifact://docs/system-reality/deployment-source-diffs.json#studio-backend.service"
-      ],
-      "id": "diff:deployment:studio-backend.service",
-      "reason": "observed deployed revision differs from source-reality snapshot head",
-      "severity": "HIGH",
-      "subject": "deployment://studio-backend.service"
-    },
-    {
-      "classification": "CONFLICTING",
-      "dimension": "DEPLOYMENT_SOURCE",
-      "evidence_refs": [
-        "roro-artifact://docs/system-reality/deployment-source-diffs.json#tg-gateway.service"
-      ],
-      "id": "diff:deployment:tg-gateway.service",
-      "reason": "observed deployed revision differs from source-reality snapshot head",
-      "severity": "HIGH",
-      "subject": "deployment://tg-gateway.service"
-    },
-    {
-      "classification": "CONFLICTING",
-      "dimension": "DEPLOYMENT_SOURCE",
-      "evidence_refs": [
-        "roro-artifact://docs/system-reality/deployment-source-diffs.json#wi-backend.service"
-      ],
-      "id": "diff:deployment:wi-backend.service",
-      "reason": "observed deployed revision differs from source-reality snapshot head",
-      "severity": "HIGH",
-      "subject": "deployment://wi-backend.service"
-    },
-    {
-      "classification": "UNKNOWN",
-      "dimension": "DEPLOYMENT_SOURCE",
-      "evidence_refs": [
-        "roro-artifact://docs/system-reality/deployment-source-diffs.json#wi-frontend.service"
-      ],
-      "id": "diff:deployment:wi-frontend.service",
-      "reason": "running service observed but exact deployed source revision was not recoverable from working-directory evidence",
-      "severity": "MEDIUM",
-      "subject": "deployment://wi-frontend.service"
-    },
-    {
-      "classification": "CONFLICTING",
-      "dimension": "DEPLOYMENT_SOURCE",
+      "epistemic_status": "CONFLICTING",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/deployment-source-diffs.json#works-api.service"
       ],
-      "id": "diff:deployment:works-api.service",
-      "reason": "running checkout origin differs from canonical Aftergraph repository and revision is behind source snapshot",
+      "reason": "Observed running binary was built from modified source and the runtime checkout origin is not the canonical Aftergraph repository.",
       "severity": "HIGH",
       "subject": "deployment://works-api.service"
     },
     {
       "classification": "UNKNOWN",
+      "diff_id": "diff:operational:opgap:cloud:ownership",
       "dimension": "CLOUD_OWNERSHIP_UNCLASSIFIED",
+      "epistemic_status": "UNKNOWN",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/operational-reality-gaps.json#opgap:cloud:ownership"
       ],
-      "id": "diff:operational:opgap:cloud:ownership",
       "reason": "The account contains Aftergraph, AVC, Rendetalje, Tekup and other resources; account membership does not imply Aftergraph ownership.",
       "severity": "HIGH",
       "subject": "cloud://cloudflare/account"
     },
     {
       "classification": "UNKNOWN",
-      "dimension": "CREDENTIAL_PERMISSION_DRIFT",
-      "evidence_refs": [
-        "roro-artifact://docs/system-reality/operational-reality-gaps.json#opgap:credential:lenovo-permission"
-      ],
-      "id": "diff:operational:opgap:credential:lenovo-permission",
-      "reason": "One active Hermes profile env grants CodexSandboxUsers read access. Values were not collected.",
-      "severity": "HIGH",
-      "subject": "credential://lenovo/rendetalje-hermes-env"
-    },
-    {
-      "classification": "UNKNOWN",
+      "diff_id": "diff:operational:opgap:credential:snapshots",
       "dimension": "CREDENTIAL_SNAPSHOT_SPRAWL",
+      "epistemic_status": "UNKNOWN",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/operational-reality-gaps.json#opgap:credential:snapshots"
       ],
-      "id": "diff:operational:opgap:credential:snapshots",
       "reason": "19 historical Hermes backup/state-snapshot env files were observed.",
       "severity": "HIGH",
       "subject": "credential://lenovo/hermes-snapshots"
     },
     {
       "classification": "UNKNOWN",
-      "dimension": "CREDENTIAL_PERMISSION_DRIFT",
-      "evidence_refs": [
-        "roro-artifact://docs/system-reality/operational-reality-gaps.json#opgap:credential:vds-permission"
-      ],
-      "id": "diff:operational:opgap:credential:vds-permission",
-      "reason": "One gateway credential metadata file is world-readable at mode 0644. Values were not collected.",
-      "severity": "HIGH",
-      "subject": "credential://vds/gateway-env"
-    },
-    {
-      "classification": "UNKNOWN",
+      "diff_id": "diff:operational:opgap:recovery:offhost",
       "dimension": "RECOVERY_PROOF_UNKNOWN",
+      "epistemic_status": "UNKNOWN",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/operational-reality-gaps.json#opgap:recovery:offhost"
       ],
-      "id": "diff:operational:opgap:recovery:offhost",
       "reason": "Local backup mechanisms are observed, but off-host restore proof is not established by this wave.",
       "severity": "HIGH",
       "subject": "recovery://tier0"
     },
     {
-      "classification": "UNKNOWN",
+      "classification": "DRIFT",
+      "diff_id": "diff:operational:opgap:route:wie",
       "dimension": "PUBLIC_ROUTE_ABSENT",
-      "evidence_refs": [
-        "roro-artifact://docs/system-reality/operational-reality-gaps.json#opgap:route:studio"
-      ],
-      "id": "diff:operational:opgap:route:studio",
-      "reason": "No DNS resolution observed.",
-      "severity": "MEDIUM",
-      "subject": "route://studio.aftergraph.org"
-    },
-    {
-      "classification": "UNKNOWN",
-      "dimension": "PUBLIC_ROUTE_ABSENT",
-      "evidence_refs": [
-        "roro-artifact://docs/system-reality/operational-reality-gaps.json#opgap:route:war-room"
-      ],
-      "id": "diff:operational:opgap:route:war-room",
-      "reason": "No DNS resolution observed.",
-      "severity": "MEDIUM",
-      "subject": "route://war-room.aftergraph.org"
-    },
-    {
-      "classification": "UNKNOWN",
-      "dimension": "PUBLIC_ROUTE_ABSENT",
+      "epistemic_status": "OBSERVED",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/operational-reality-gaps.json#opgap:route:wie"
       ],
-      "id": "diff:operational:opgap:route:wie",
-      "reason": "No DNS resolution observed.",
+      "reason": "live production and current backend/public evidence use work-intelligence.aftergraph.org; WI frontend still carries stale wie.aftergraph.org canonical references",
       "severity": "MEDIUM",
       "subject": "route://wie.aftergraph.org"
     },
     {
-      "classification": "CONFLICTING",
+      "classification": "DRIFT",
+      "diff_id": "diff:operational:opgap:runtime:declared-control-plane",
       "dimension": "DECLARED_RUNTIME_MISMATCH",
+      "epistemic_status": "OBSERVED",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/operational-reality-gaps.json#opgap:runtime:declared-control-plane"
       ],
-      "id": "diff:operational:opgap:runtime:declared-control-plane",
-      "reason": "Declared control-plane VMs are shut off while consequential services run on the outer VDS host.",
+      "reason": "The historical AVC KVM guest design remains documented, while current observed Aftergraph services run on the outer VDS host. For Architecture vNext this mismatch is explicitly accepted as transitional reality so source/component consolidation can be evaluated without pretending the current host layout is the target architecture.",
       "severity": "HIGH",
       "subject": "runtime://vds-control-plane"
     },
     {
       "classification": "UNKNOWN",
+      "diff_id": "diff:operational:opgap:runtime:host-concentration",
       "dimension": "HOST_CONCENTRATION",
+      "epistemic_status": "UNKNOWN",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/operational-reality-gaps.json#opgap:runtime:host-concentration"
       ],
-      "id": "diff:operational:opgap:runtime:host-concentration",
       "reason": "Multiple control, execution, agent and CI services are concentrated on the outer VDS host.",
       "severity": "HIGH",
       "subject": "runtime://vmi3517816"
     },
     {
       "classification": "UNKNOWN",
+      "diff_id": "diff:recovery:works-backup.service",
       "dimension": "RECOVERY",
-      "evidence_refs": [
-        "roro-artifact://docs/system-reality/recovery-mechanisms.json#renos-control-backup.service"
-      ],
-      "id": "diff:recovery:renos-control-backup.service",
-      "reason": "Backup mechanism is observed but restore/recoverability proof is absent.",
-      "severity": "HIGH",
-      "subject": "recovery://renos-control-backup.service"
-    },
-    {
-      "classification": "UNKNOWN",
-      "dimension": "RECOVERY",
-      "evidence_refs": [
-        "roro-artifact://docs/system-reality/recovery-mechanisms.json#roro-database-backup.service"
-      ],
-      "id": "diff:recovery:roro-database-backup.service",
-      "reason": "Backup mechanism is observed but restore/recoverability proof is absent.",
-      "severity": "HIGH",
-      "subject": "recovery://roro-database-backup.service"
-    },
-    {
-      "classification": "UNKNOWN",
-      "dimension": "RECOVERY",
-      "evidence_refs": [
-        "roro-artifact://docs/system-reality/recovery-mechanisms.json#studio-state-backup.service"
-      ],
-      "id": "diff:recovery:studio-state-backup.service",
-      "reason": "Backup mechanism is observed but restore/recoverability proof is absent.",
-      "severity": "HIGH",
-      "subject": "recovery://studio-state-backup.service"
-    },
-    {
-      "classification": "UNKNOWN",
-      "dimension": "RECOVERY",
-      "evidence_refs": [
-        "roro-artifact://docs/system-reality/recovery-mechanisms.json#tg-backup.service"
-      ],
-      "id": "diff:recovery:tg-backup.service",
-      "reason": "Backup mechanism is observed but restore/recoverability proof is absent.",
-      "severity": "HIGH",
-      "subject": "recovery://tg-backup.service"
-    },
-    {
-      "classification": "UNKNOWN",
-      "dimension": "RECOVERY",
+      "epistemic_status": "UNKNOWN",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/recovery-mechanisms.json#works-backup.service"
       ],
-      "id": "diff:recovery:works-backup.service",
       "reason": "Backup mechanism is observed but restore/recoverability proof is absent.",
       "severity": "HIGH",
       "subject": "recovery://works-backup.service"
     },
     {
       "classification": "UNKNOWN",
+      "diff_id": "diff:source:1",
       "dimension": "SOURCE",
+      "epistemic_status": "UNKNOWN",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/reality-gaps.json#Aftergraph/rendetalje"
       ],
-      "id": "diff:source:1",
       "reason": "live_repository_missing_from_platform_topology_2.0",
       "severity": "MEDIUM",
       "subject": "Aftergraph/rendetalje"
     },
     {
       "classification": "UNKNOWN",
+      "diff_id": "diff:source:10",
       "dimension": "SOURCE",
-      "evidence_refs": [
-        "roro-artifact://docs/system-reality/reality-gaps.json#Aftergraph/intelligence-systems-research"
-      ],
-      "id": "diff:source:10",
-      "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
-      "severity": "MEDIUM",
-      "subject": "Aftergraph/intelligence-systems-research"
-    },
-    {
-      "classification": "UNKNOWN",
-      "dimension": "SOURCE",
+      "epistemic_status": "UNKNOWN",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/reality-gaps.json#Aftergraph/llm-research-development"
       ],
-      "id": "diff:source:11",
       "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
       "severity": "MEDIUM",
       "subject": "Aftergraph/llm-research-development"
     },
     {
       "classification": "UNKNOWN",
+      "diff_id": "diff:source:11",
       "dimension": "SOURCE",
+      "epistemic_status": "UNKNOWN",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/reality-gaps.json#Aftergraph/model-registry"
       ],
-      "id": "diff:source:12",
       "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
       "severity": "MEDIUM",
       "subject": "Aftergraph/model-registry"
     },
     {
       "classification": "UNKNOWN",
+      "diff_id": "diff:source:12",
       "dimension": "SOURCE",
+      "epistemic_status": "UNKNOWN",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/reality-gaps.json#Aftergraph/sentinel-firetest"
       ],
-      "id": "diff:source:13",
       "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
       "severity": "MEDIUM",
       "subject": "Aftergraph/sentinel-firetest"
     },
     {
       "classification": "UNKNOWN",
+      "diff_id": "diff:source:13",
       "dimension": "SOURCE",
+      "epistemic_status": "UNKNOWN",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/reality-gaps.json#Aftergraph/sentinel-firetest2"
       ],
-      "id": "diff:source:14",
       "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
       "severity": "MEDIUM",
       "subject": "Aftergraph/sentinel-firetest2"
     },
     {
       "classification": "UNKNOWN",
+      "diff_id": "diff:source:14",
       "dimension": "SOURCE",
+      "epistemic_status": "UNKNOWN",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/reality-gaps.json#Aftergraph/skill-abi"
       ],
-      "id": "diff:source:15",
       "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
       "severity": "MEDIUM",
       "subject": "Aftergraph/skill-abi"
     },
     {
       "classification": "UNKNOWN",
+      "diff_id": "diff:source:15",
       "dimension": "SOURCE",
+      "epistemic_status": "UNKNOWN",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/reality-gaps.json#Aftergraph/skillport"
       ],
-      "id": "diff:source:16",
       "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
       "severity": "MEDIUM",
       "subject": "Aftergraph/skillport"
     },
     {
       "classification": "UNKNOWN",
+      "diff_id": "diff:source:16",
       "dimension": "SOURCE",
+      "epistemic_status": "UNKNOWN",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/reality-gaps.json#Aftergraph/skills-vault"
       ],
-      "id": "diff:source:17",
       "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
       "severity": "MEDIUM",
       "subject": "Aftergraph/skills-vault"
     },
     {
       "classification": "UNKNOWN",
+      "diff_id": "diff:source:17",
       "dimension": "SOURCE",
+      "epistemic_status": "UNKNOWN",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/reality-gaps.json#Aftergraph/trust-gateway"
       ],
-      "id": "diff:source:18",
       "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
       "severity": "MEDIUM",
       "subject": "Aftergraph/trust-gateway"
     },
     {
       "classification": "UNKNOWN",
+      "diff_id": "diff:source:18",
       "dimension": "SOURCE",
+      "epistemic_status": "UNKNOWN",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/reality-gaps.json#Aftergraph/war-room"
       ],
-      "id": "diff:source:19",
       "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
       "severity": "MEDIUM",
       "subject": "Aftergraph/war-room"
     },
     {
       "classification": "UNKNOWN",
+      "diff_id": "diff:source:19",
       "dimension": "SOURCE",
-      "evidence_refs": [
-        "roro-artifact://docs/system-reality/reality-gaps.json#Aftergraph/war-room"
-      ],
-      "id": "diff:source:2",
-      "reason": "live_repository_missing_from_platform_topology_2.0",
-      "severity": "MEDIUM",
-      "subject": "Aftergraph/war-room"
-    },
-    {
-      "classification": "UNKNOWN",
-      "dimension": "SOURCE",
+      "epistemic_status": "UNKNOWN",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/reality-gaps.json#Aftergraph/wi-frontend"
       ],
-      "id": "diff:source:20",
       "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
       "severity": "MEDIUM",
       "subject": "Aftergraph/wi-frontend"
     },
     {
       "classification": "UNKNOWN",
+      "diff_id": "diff:source:2",
       "dimension": "SOURCE",
-      "evidence_refs": [
-        "roro-artifact://docs/system-reality/reality-gaps.json#Aftergraph/works-execution"
-      ],
-      "id": "diff:source:21",
-      "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
-      "severity": "MEDIUM",
-      "subject": "Aftergraph/works-execution"
-    },
-    {
-      "classification": "UNKNOWN",
-      "dimension": "SOURCE",
-      "evidence_refs": [
-        "roro-artifact://docs/system-reality/reality-gaps.json#ag:component:brand"
-      ],
-      "id": "diff:source:22",
-      "reason": "same_component_identity_observed_at_multiple_source_bindings",
-      "severity": "MEDIUM",
-      "subject": "ag:component:brand"
-    },
-    {
-      "classification": "UNKNOWN",
-      "dimension": "SOURCE",
+      "epistemic_status": "UNKNOWN",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/reality-gaps.json#Aftergraph/.github"
       ],
-      "id": "diff:source:3",
       "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
       "severity": "MEDIUM",
       "subject": "Aftergraph/.github"
     },
     {
       "classification": "UNKNOWN",
+      "diff_id": "diff:source:20",
       "dimension": "SOURCE",
+      "epistemic_status": "UNKNOWN",
+      "evidence_refs": [
+        "roro-artifact://docs/system-reality/reality-gaps.json#Aftergraph/works-execution"
+      ],
+      "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
+      "severity": "MEDIUM",
+      "subject": "Aftergraph/works-execution"
+    },
+    {
+      "classification": "UNKNOWN",
+      "diff_id": "diff:source:21",
+      "dimension": "SOURCE",
+      "epistemic_status": "UNKNOWN",
+      "evidence_refs": [
+        "roro-artifact://docs/system-reality/reality-gaps.json#ag:component:brand"
+      ],
+      "reason": "same_component_identity_observed_at_multiple_source_bindings",
+      "severity": "MEDIUM",
+      "subject": "ag:component:brand"
+    },
+    {
+      "classification": "UNKNOWN",
+      "diff_id": "diff:source:3",
+      "dimension": "SOURCE",
+      "epistemic_status": "UNKNOWN",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/reality-gaps.json#Aftergraph/afm"
       ],
-      "id": "diff:source:4",
       "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
       "severity": "MEDIUM",
       "subject": "Aftergraph/afm"
     },
     {
       "classification": "UNKNOWN",
+      "diff_id": "diff:source:4",
       "dimension": "SOURCE",
+      "epistemic_status": "UNKNOWN",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/reality-gaps.json#Aftergraph/after-graph-governance"
       ],
-      "id": "diff:source:5",
       "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
       "severity": "MEDIUM",
       "subject": "Aftergraph/after-graph-governance"
     },
     {
       "classification": "UNKNOWN",
+      "diff_id": "diff:source:5",
       "dimension": "SOURCE",
+      "epistemic_status": "UNKNOWN",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/reality-gaps.json#Aftergraph/aftergraph-cron-fabric"
       ],
-      "id": "diff:source:6",
       "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
       "severity": "MEDIUM",
       "subject": "Aftergraph/aftergraph-cron-fabric"
     },
     {
       "classification": "UNKNOWN",
+      "diff_id": "diff:source:6",
       "dimension": "SOURCE",
+      "epistemic_status": "UNKNOWN",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/reality-gaps.json#Aftergraph/aie"
       ],
-      "id": "diff:source:7",
       "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
       "severity": "MEDIUM",
       "subject": "Aftergraph/aie"
     },
     {
       "classification": "UNKNOWN",
+      "diff_id": "diff:source:7",
       "dimension": "SOURCE",
+      "epistemic_status": "UNKNOWN",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/reality-gaps.json#Aftergraph/context-continuity"
       ],
-      "id": "diff:source:8",
       "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
       "severity": "MEDIUM",
       "subject": "Aftergraph/context-continuity"
     },
     {
       "classification": "UNKNOWN",
+      "diff_id": "diff:source:8",
       "dimension": "SOURCE",
+      "epistemic_status": "UNKNOWN",
       "evidence_refs": [
         "roro-artifact://docs/system-reality/reality-gaps.json#Aftergraph/continuum"
       ],
-      "id": "diff:source:9",
       "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
       "severity": "MEDIUM",
       "subject": "Aftergraph/continuum"
+    },
+    {
+      "classification": "UNKNOWN",
+      "diff_id": "diff:source:9",
+      "dimension": "SOURCE",
+      "epistemic_status": "UNKNOWN",
+      "evidence_refs": [
+        "roro-artifact://docs/system-reality/reality-gaps.json#Aftergraph/intelligence-systems-research"
+      ],
+      "reason": "no_explicit_semantic_component_manifest_in_source_bootstrap",
+      "severity": "MEDIUM",
+      "subject": "Aftergraph/intelligence-systems-research"
     }
   ],
   "schema_version": "roro-reality-diffs/0.1",
   "summary": {
-    "conflicting": 5,
+    "conflicting": 1,
     "stale": 0,
-    "total": 44,
-    "unknown": 39
+    "total": 29,
+    "unknown": 26
   }
 }

@@ -1,69 +1,84 @@
 {
-  "as_of": "2026-09-16T00:39:48.200250+00:00",
+  "as_of": "2026-09-16T07:10:16Z",
   "dimensions": {
     "cloud": {
-      "aftergraph_adjacent_unclassified": 3,
-      "coverage": 0.5588,
-      "epistemically_unknown": 15,
+      "aftergraph_adjacent_unclassified": 0,
+      "coverage": 0.6471,
+      "epistemically_unknown": 12,
       "metric": "ownership_evidence_coverage",
-      "observed": 19,
+      "observed": 22,
       "status": "PARTIAL",
       "total": 34
     },
     "credentials": {
-      "consumer_mapping": "UNKNOWN",
-      "permission_drift_observations": 2,
+      "consumer_mapping": "PARTIAL",
+      "mapped_bindings": 19,
+      "permission_drift_observations": 0,
       "snapshot_sprawl_observed": 19,
-      "status": "BLOCKED",
+      "status": "PARTIAL",
+      "unresolved_groups": 2,
       "values_collected": false
     },
     "deployment": {
-      "conflicts": 4,
-      "coverage": 0.625,
+      "conflicts": 1,
+      "coverage": 1.0,
       "metric": "exact_deployment_revision_coverage",
-      "observed": 5,
+      "observed": 8,
       "status": "BLOCKED",
       "total": 8,
-      "unknown": 3
+      "unknown": 0
     },
     "reality_diff": {
-      "conflicts": 5,
-      "observed": 44,
+      "conflicts": 1,
+      "observed": 29,
       "stale": 0,
       "status": "BLOCKED",
-      "unknowns": 39
+      "unknowns": 26
     },
     "recovery": {
       "backup_present": 5,
-      "coverage": 0.0,
-      "metric": "restore_verified_coverage",
-      "observed": 0,
-      "status": "BLOCKED",
-      "total": 5
+      "coverage": 1.0,
+      "data_recovery_verified": 1,
+      "metric": "state_recovery_proof_coverage",
+      "observed": 5,
+      "recovery_proof_coverage": 1.0,
+      "status": "PASS",
+      "total": 5,
+      "verified_restores": 4
     },
     "routes": {
+      "blocking_dispositions": 0,
       "coverage": 0.75,
-      "metric": "dns_resolution_coverage",
+      "dispositions_total": 3,
+      "metric": "route_disposition_coverage",
       "observed": 9,
-      "status": "PARTIAL",
+      "status": "PASS",
       "total": 12,
       "unresolved": 3
     },
     "runtime": {
       "active_services": 28,
+      "authorizes_runtime_migration": false,
+      "blocking": false,
       "containers": 8,
+      "disposition": "TRANSITIONAL_ACCEPTED",
+      "disposition_epistemic_status": "PROPOSED",
       "self_hosted_runner_services": 11,
-      "status": "BLOCKED"
+      "status": "PARTIAL",
+      "target_architecture_claim": false
     },
     "source": {
-      "coverage": 0.3871,
+      "coverage": 1.0,
       "exact_head_coverage": 1.0,
       "exact_repo_heads": 31,
-      "metric": "semantic_manifest_coverage",
-      "observed": 12,
+      "metric": "semantic_manifest_or_declared_role_coverage",
+      "observed": 31,
+      "semantic_coverage_repositories": 31,
       "semantic_manifest_gaps": 19,
-      "status": "PARTIAL",
-      "total": 31
+      "semantic_uncovered_repositories": 0,
+      "status": "PASS",
+      "total": 31,
+      "uncovered_repository_refs": []
     }
   },
   "policy": {
