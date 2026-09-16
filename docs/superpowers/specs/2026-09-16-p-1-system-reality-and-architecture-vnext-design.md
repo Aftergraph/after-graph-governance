@@ -651,3 +651,15 @@ A strict family + visibility + lifecycle probe produces 22 hypothetical source w
 `component-boundary-analysis.json` observes 102 cross-family and 45 within-family dependency edges. The strongest observed family coupling is DRIVE→DRIVE (36), HELM→DRIVE (19), DRIVE→COMMONS (13), HELM→COMMONS (12), and DRIVE→HELM (8).
 
 Import/dependency direction is explicitly not Circuit flow and grants neither ownership nor authority. The graph is evidence for boundary design and migration simulation only.
+
+## 21. Circuit boundary evidence
+
+Circuit is now tested as a semantic composition hypothesis downstream of R.O.R.O., not as a new authority/runtime/truth owner. The experimental `circuit-spec/0.1` and `circuit-validation/0.1` contracts live outside the R.O.R.O. contract namespace for that reason.
+
+`circuit-boundary-model.json` declares six macro families: SIGHTLINE, HELM, COVENANT, DRIVE, WITNESS and REFINERY. COMMONS, DOMAIN, EXPERIENCE, LOOM and COVENANT_SUPPORT remain supporting semantic evidence; `COVENANT_SUPPORT` explicitly does not grant AIE/Trust authority.
+
+The current experimental composition allow-set contains 8 directed macro edges. Six shortcuts are explicitly forbidden, including direct SIGHTLINE→DRIVE, HELM→DRIVE and REFINERY→DRIVE bypasses around Covenant admission; DRIVE→REFINERY without independent verification; WITNESS→DRIVE verifier/executor collapse; and DRIVE→HELM without re-observation.
+
+This is intentionally distinct from the exact-cut dependency graph. The source graph observes 19 HELM→DRIVE, 8 DRIVE→HELM, 1 DRIVE→WITNESS and 7 WITNESS→DRIVE dependency edges. Those observations do not create Circuit permission. In particular, HELM→DRIVE is an observed source coupling while remaining a forbidden direct consequential Circuit edge.
+
+Six falsification vectors exercise the boundary model: read-only, production-repair and bounded-improvement compositions validate; missing-Covenant, self-verification and unknown-family compositions fail closed. Every validation result keeps `execution_authorized=false` and `authority_granted=false`, including composition-valid cases.

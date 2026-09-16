@@ -1,0 +1,88 @@
+{
+  "$defs": {
+    "edge": {
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "from",
+        "to"
+      ],
+      "type": "object"
+    },
+    "node": {
+      "additionalProperties": false,
+      "properties": {
+        "family": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "independence_key": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "operator_id": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "operator_id",
+        "family",
+        "independence_key"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://aftergraph.org/contracts/circuit-spec/0.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "circuit_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "consequential": {
+      "type": "boolean"
+    },
+    "edges": {
+      "items": {
+        "$ref": "#/$defs/edge"
+      },
+      "type": "array"
+    },
+    "mode": {
+      "enum": [
+        "READ_ONLY",
+        "CONSEQUENTIAL",
+        "IMPROVEMENT"
+      ]
+    },
+    "nodes": {
+      "items": {
+        "$ref": "#/$defs/node"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "circuit-spec/0.1"
+    }
+  },
+  "required": [
+    "schema_version",
+    "circuit_id",
+    "mode",
+    "consequential",
+    "nodes",
+    "edges"
+  ],
+  "title": "Aftergraph CircuitSpec 0.1",
+  "type": "object"
+}

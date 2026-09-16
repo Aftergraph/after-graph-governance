@@ -1,0 +1,83 @@
+{
+  "policy": {
+    "composition_valid_grants_authority": false,
+    "composition_valid_is_not_execution_authorized": true
+  },
+  "results": [
+    {
+      "authority_granted": false,
+      "circuit_id": "read-only",
+      "composition_status": "VALID",
+      "execution_authorized": false,
+      "schema_version": "circuit-validation/0.1",
+      "vector_id": "read-only-valid",
+      "violations": []
+    },
+    {
+      "authority_granted": false,
+      "circuit_id": "production-repair",
+      "composition_status": "VALID",
+      "execution_authorized": false,
+      "schema_version": "circuit-validation/0.1",
+      "vector_id": "production-repair-valid",
+      "violations": []
+    },
+    {
+      "authority_granted": false,
+      "circuit_id": "improvement",
+      "composition_status": "VALID",
+      "execution_authorized": false,
+      "schema_version": "circuit-validation/0.1",
+      "vector_id": "improvement-valid",
+      "violations": []
+    },
+    {
+      "authority_granted": false,
+      "circuit_id": "missing-covenant",
+      "composition_status": "INVALID",
+      "execution_authorized": false,
+      "schema_version": "circuit-validation/0.1",
+      "vector_id": "missing-covenant-invalid",
+      "violations": [
+        {
+          "message": "Reasoning cannot bypass Covenant admission.",
+          "rule_id": "COVENANT_REQUIRED"
+        },
+        {
+          "message": "consequential DRIVE operator 'execute' is not downstream of COVENANT",
+          "rule_id": "COVENANT_REQUIRED"
+        }
+      ]
+    },
+    {
+      "authority_granted": false,
+      "circuit_id": "self-verification",
+      "composition_status": "INVALID",
+      "execution_authorized": false,
+      "schema_version": "circuit-validation/0.1",
+      "vector_id": "self-verification-invalid",
+      "violations": [
+        {
+          "message": "DRIVE 'execute' and WITNESS 'verify' share independence_key",
+          "rule_id": "VERIFIER_NOT_INDEPENDENT"
+        }
+      ]
+    },
+    {
+      "authority_granted": false,
+      "circuit_id": "unknown-family",
+      "composition_status": "INVALID",
+      "execution_authorized": false,
+      "schema_version": "circuit-validation/0.1",
+      "vector_id": "unknown-family-invalid",
+      "violations": [
+        {
+          "message": "operator 'mystery' uses unknown Circuit family 'ALIEN'",
+          "rule_id": "UNKNOWN_FAMILY"
+        }
+      ]
+    }
+  ],
+  "schema_version": "circuit-validation-results/0.1",
+  "source_snapshot_generated_at": "2026-09-16T08:04:39Z"
+}
