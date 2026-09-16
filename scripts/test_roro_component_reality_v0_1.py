@@ -280,5 +280,35 @@ class OperationalRealityTests(unittest.TestCase):
         self.assertEqual(routes["studio.aftergraph.org"]["dns_state"], "UNRESOLVED")
         self.assertEqual(routes["war-room.aftergraph.org"]["dns_state"], "UNRESOLVED")
 
+class OperationalReconciliationTests(unittest.TestCase):
+    def test_deployment_source_diffs_are_explicit(self) -> None:
+        path = ROOT / "docs/system-reality/deployment-source-diffs.json"
+        data = json.loads(path.read_text(encoding="utf-8"))
+        by_service = {item["service"]: item for item in data["bindings"]}
+        self.assertIn("works-api.service", by_service)
+        self.assertEqual(by_service["works-api.service"]["canonical_repository"], "Aftergraph/works-execution")
+        self.assertEqual(by_service["works-api.service"]["status"], "CONFLICTING")
+        for item in data["bindings"]:
+            self.assertIn(item["status"], {"VERIFIED_MATCH", "OBSERVED_MATCH", "CONFLICTING", "UNKNOWN"})
+
+    def test_cloud_resources_are_classified_without_overclaiming(self) -> None:
+        path = ROOT / "docs/system-reality/cloud-resource-classification.json"
+        data = json.loads(path.read_text(encoding="utf-8"))
+        self.assertEqual(data["resource_counts"]["pages"], 11)
+        self.assertEqual(data["resource_counts"]["d1"], 7)
+        self.assertTrue(any(x["owner_class"] == "LEGACY_AVC" for x in data["resources"]))
+        self.assertTrue(any(x["owner_class"] == "COHOSTED_OTHER_OR_UNKNOWN" for x in data["resources"]))
+        for item in data["resources"]:
+            self.assertIn(item["epistemic_status"], {"OBSERVED", "INFERRED", "UNKNOWN"})
+
+    def test_recovery_mechanisms_do_not_equate_backup_with_restore(self) -> None:
+        path = ROOT / "docs/system-reality/recovery-mechanisms.json"
+        data = json.loads(path.read_text(encoding="utf-8"))
+        for item in data["mechanisms"]:
+            self.assertIn(item["recoverability"], {"BACKUP_PRESENT", "UNKNOWN", "RECOVERABLE_VERIFIED"})
+            if item["recoverability"] == "RECOVERABLE_VERIFIED":
+                self.assertTrue(item.get("restore_evidence_refs"))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

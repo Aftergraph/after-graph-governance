@@ -1,0 +1,51 @@
+{
+  "generated_at": "2026-09-16T00:39:48.200087+00:00",
+  "mechanisms": [
+    {
+      "backup_state": "OBSERVED",
+      "epistemic_status": "OBSERVED",
+      "mechanism_kind": "SQLITE_CONSISTENT_SNAPSHOT",
+      "off_host_state": "UNKNOWN",
+      "recoverability": "BACKUP_PRESENT",
+      "restore_evidence_refs": [],
+      "service": "works-backup.service"
+    },
+    {
+      "backup_state": "OBSERVED",
+      "epistemic_status": "OBSERVED",
+      "mechanism_kind": "LOCAL_BACKUP",
+      "off_host_state": "UNKNOWN",
+      "recoverability": "BACKUP_PRESENT",
+      "restore_evidence_refs": [],
+      "service": "tg-backup.service"
+    },
+    {
+      "backup_state": "OBSERVED",
+      "epistemic_status": "OBSERVED",
+      "mechanism_kind": "STATE_FILE_BACKUP",
+      "off_host_state": "UNKNOWN",
+      "recoverability": "BACKUP_PRESENT",
+      "restore_evidence_refs": [],
+      "service": "studio-state-backup.service"
+    },
+    {
+      "backup_state": "OBSERVED",
+      "epistemic_status": "OBSERVED",
+      "mechanism_kind": "POSTGRES_DUMP",
+      "off_host_state": "UNKNOWN",
+      "recoverability": "BACKUP_PRESENT",
+      "restore_evidence_refs": [],
+      "service": "renos-control-backup.service"
+    },
+    {
+      "backup_state": "OBSERVED",
+      "epistemic_status": "OBSERVED",
+      "mechanism_kind": "POSTGRES_DUMP",
+      "off_host_state": "UNKNOWN",
+      "recoverability": "BACKUP_PRESENT",
+      "restore_evidence_refs": [],
+      "service": "roro-database-backup.service"
+    }
+  ],
+  "schema_version": "roro-recovery-mechanisms/0.1"
+}

@@ -1,0 +1,80 @@
+{
+  "bindings": [
+    {
+      "canonical_head_at_source_snapshot": "b9e6d9276f54bc259003c429ab81181092ffc8aa",
+      "canonical_repository": "Aftergraph/works-execution",
+      "epistemic_status": "OBSERVED",
+      "observed_deployed_revision": "f53447fdf8d98070593aa507e2d3cdee637ef6f0",
+      "reason": "running checkout origin differs from canonical Aftergraph repository and revision is behind source snapshot",
+      "service": "works-api.service",
+      "status": "CONFLICTING"
+    },
+    {
+      "canonical_head_at_source_snapshot": "cd504fcde295ba652646684db106585f9c7ecd15",
+      "canonical_repository": "Aftergraph/trust-gateway",
+      "epistemic_status": "OBSERVED",
+      "observed_deployed_revision": "f69e48527ab571672f2f009e0c992ad2a703f198",
+      "reason": "observed deployed revision differs from source-reality snapshot head",
+      "service": "tg-gateway.service",
+      "status": "CONFLICTING"
+    },
+    {
+      "canonical_head_at_source_snapshot": "da7feedfab2280cbb81314a277ee6df9d136e010",
+      "canonical_repository": "Aftergraph/studio",
+      "epistemic_status": "OBSERVED",
+      "observed_deployed_revision": "10750932ba43ecf8e07031f2c5f03afae31e0de2",
+      "reason": "observed deployed revision differs from source-reality snapshot head",
+      "service": "studio-backend.service",
+      "status": "CONFLICTING"
+    },
+    {
+      "canonical_head_at_source_snapshot": "cf7f26993450640951165aa6e6e0cd1481515938",
+      "canonical_repository": "Aftergraph/wi-backend",
+      "epistemic_status": "OBSERVED",
+      "observed_deployed_revision": "249f6e6c3dcd5bbc02c8e5e023a350ac3db1dd32",
+      "reason": "observed deployed revision differs from source-reality snapshot head",
+      "service": "wi-backend.service",
+      "status": "CONFLICTING"
+    },
+    {
+      "canonical_head_at_source_snapshot": "3754fdc88799745d6bd495fa7a37186ff0ef4ced",
+      "canonical_repository": "Aftergraph/wi-frontend",
+      "epistemic_status": "UNKNOWN",
+      "observed_deployed_revision": null,
+      "reason": "running service observed but exact deployed source revision was not recoverable from working-directory evidence",
+      "service": "wi-frontend.service",
+      "status": "UNKNOWN"
+    },
+    {
+      "canonical_head_at_source_snapshot": "e9fe5fe8756fcb5b9cd578bb1f0b2d472a716033",
+      "canonical_repository": "Aftergraph/relay",
+      "epistemic_status": "UNKNOWN",
+      "observed_deployed_revision": null,
+      "reason": "running service observed but exact deployed source revision was not recoverable from working-directory evidence",
+      "service": "aftergraph-relay.service",
+      "status": "UNKNOWN"
+    },
+    {
+      "canonical_head_at_source_snapshot": "e9fe5fe8756fcb5b9cd578bb1f0b2d472a716033",
+      "canonical_repository": "Aftergraph/relay",
+      "epistemic_status": "UNKNOWN",
+      "observed_deployed_revision": null,
+      "reason": "running service observed but exact deployed source revision was not recoverable from working-directory evidence",
+      "service": "aftergraph-relay-eg-mcp.service",
+      "status": "UNKNOWN"
+    },
+    {
+      "canonical_head_at_source_snapshot": "6c474b9001e445eabed0c0f5ec34f167686d7a72",
+      "canonical_repository": "Aftergraph/autonomous-venture-company",
+      "epistemic_status": "OBSERVED",
+      "observed_deployed_revision": "6c474b9001e445eabed0c0f5ec34f167686d7a72",
+      "reason": "observed deployed revision matches source-reality snapshot head",
+      "service": "avc-runner-bridge.service",
+      "status": "OBSERVED_MATCH"
+    }
+  ],
+  "deployment_observed_at": "2026-09-16T00:37:29.068280+00:00",
+  "generated_at": "2026-09-16T00:39:48.199791+00:00",
+  "schema_version": "roro-deployment-source-diffs/0.1",
+  "source_snapshot_generated_at": "2026-09-16T00:15:54Z"
+}

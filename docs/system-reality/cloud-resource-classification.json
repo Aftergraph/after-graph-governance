@@ -1,0 +1,252 @@
+{
+  "classification_rule": "provider-account membership never grants Aftergraph ownership",
+  "generated_at": "2026-09-16T00:39:48.200250+00:00",
+  "resource_counts": {
+    "d1": 7,
+    "kv": 8,
+    "pages": 11,
+    "r2": 2,
+    "workers_observed": 6
+  },
+  "resources": [
+    {
+      "epistemic_status": "INFERRED",
+      "kind": "PAGES",
+      "name": "rendetalje-worker",
+      "owner_class": "TENANT_RENDETALJE",
+      "reason": "custom domains bind this project to the Rendetalje tenant"
+    },
+    {
+      "epistemic_status": "INFERRED",
+      "kind": "PAGES",
+      "name": "aftergraph-docs",
+      "owner_class": "AFTERGRAPH",
+      "reason": "custom domain binds project to aftergraph.org"
+    },
+    {
+      "epistemic_status": "INFERRED",
+      "kind": "PAGES",
+      "name": "avc-platform-web-git",
+      "owner_class": "LEGACY_AVC",
+      "reason": "resource identity is AVC-prefixed; retirement disposition remains separate"
+    },
+    {
+      "epistemic_status": "INFERRED",
+      "kind": "PAGES",
+      "name": "avc-marketing-site",
+      "owner_class": "LEGACY_AVC",
+      "reason": "resource identity is AVC-prefixed; retirement disposition remains separate"
+    },
+    {
+      "epistemic_status": "INFERRED",
+      "kind": "PAGES",
+      "name": "avc-platform-web",
+      "owner_class": "LEGACY_AVC",
+      "reason": "resource identity is AVC-prefixed; retirement disposition remains separate"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "kind": "PAGES",
+      "name": "fridayos",
+      "owner_class": "COHOSTED_OTHER_OR_UNKNOWN",
+      "reason": "same Cloudflare account does not establish Aftergraph ownership"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "kind": "PAGES",
+      "name": "worldmind-site",
+      "owner_class": "COHOSTED_OTHER_OR_UNKNOWN",
+      "reason": "same Cloudflare account does not establish Aftergraph ownership"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "kind": "PAGES",
+      "name": "forge-dashboard",
+      "owner_class": "COHOSTED_OTHER_OR_UNKNOWN",
+      "reason": "same Cloudflare account does not establish Aftergraph ownership"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "kind": "PAGES",
+      "name": "forge-webs",
+      "owner_class": "COHOSTED_OTHER_OR_UNKNOWN",
+      "reason": "same Cloudflare account does not establish Aftergraph ownership"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "kind": "PAGES",
+      "name": "tekup-digital",
+      "owner_class": "COHOSTED_OTHER_OR_UNKNOWN",
+      "reason": "same Cloudflare account does not establish Aftergraph ownership"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "kind": "PAGES",
+      "name": "tekup-chatbot-widget",
+      "owner_class": "COHOSTED_OTHER_OR_UNKNOWN",
+      "reason": "same Cloudflare account does not establish Aftergraph ownership"
+    },
+    {
+      "epistemic_status": "INFERRED",
+      "kind": "D1",
+      "name": "mission-graph-authority-db",
+      "owner_class": "LEGACY_AVC",
+      "reason": "bound to AVC-era service identities"
+    },
+    {
+      "epistemic_status": "INFERRED",
+      "kind": "D1",
+      "name": "avc-identity-db",
+      "owner_class": "LEGACY_AVC",
+      "reason": "bound to AVC-era service identities"
+    },
+    {
+      "epistemic_status": "INFERRED",
+      "kind": "D1",
+      "name": "serviceops-mcp-db",
+      "owner_class": "LEGACY_AVC",
+      "reason": "bound to AVC-era service identities"
+    },
+    {
+      "epistemic_status": "INFERRED",
+      "kind": "D1",
+      "name": "serviceops-mcp-db-staging",
+      "owner_class": "LEGACY_AVC",
+      "reason": "bound to AVC-era service identities"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "kind": "D1",
+      "name": "atlas-v3-db",
+      "owner_class": "AFTERGRAPH_ADJACENT_UNCLASSIFIED",
+      "reason": "agent/resource name alone does not establish canonical ownership"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "kind": "D1",
+      "name": "tekbot-db-staging",
+      "owner_class": "COHOSTED_OTHER_OR_UNKNOWN",
+      "reason": "cohosted provider resource"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "kind": "D1",
+      "name": "tekbot-db",
+      "owner_class": "COHOSTED_OTHER_OR_UNKNOWN",
+      "reason": "cohosted provider resource"
+    },
+    {
+      "epistemic_status": "INFERRED",
+      "kind": "KV",
+      "name": "serviceops-mcp-oauth",
+      "owner_class": "LEGACY_AVC",
+      "reason": "serviceops AVC-era identity"
+    },
+    {
+      "epistemic_status": "INFERRED",
+      "kind": "KV",
+      "name": "serviceops-mcp-oauth-staging",
+      "owner_class": "LEGACY_AVC",
+      "reason": "serviceops AVC-era identity"
+    },
+    {
+      "epistemic_status": "INFERRED",
+      "kind": "KV",
+      "name": "serviceops-mcp-session",
+      "owner_class": "LEGACY_AVC",
+      "reason": "serviceops AVC-era identity"
+    },
+    {
+      "epistemic_status": "INFERRED",
+      "kind": "KV",
+      "name": "serviceops-mcp-session-staging",
+      "owner_class": "LEGACY_AVC",
+      "reason": "serviceops AVC-era identity"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "kind": "KV",
+      "name": "AG_STATS",
+      "owner_class": "AFTERGRAPH_ADJACENT_UNCLASSIFIED",
+      "reason": "name insufficient for canonical ownership"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "kind": "KV",
+      "name": "tekbot-kv",
+      "owner_class": "COHOSTED_OTHER_OR_UNKNOWN",
+      "reason": "cohosted provider resource"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "kind": "KV",
+      "name": "tekbot-kv-staging",
+      "owner_class": "COHOSTED_OTHER_OR_UNKNOWN",
+      "reason": "cohosted provider resource"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "kind": "KV",
+      "name": "tekup-leads",
+      "owner_class": "COHOSTED_OTHER_OR_UNKNOWN",
+      "reason": "cohosted provider resource"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "kind": "R2",
+      "name": "atlas-v3-artifacts",
+      "owner_class": "AFTERGRAPH_ADJACENT_UNCLASSIFIED",
+      "reason": "agent/resource name alone does not establish canonical ownership"
+    },
+    {
+      "epistemic_status": "UNKNOWN",
+      "kind": "R2",
+      "name": "moltbot-data",
+      "owner_class": "COHOSTED_OTHER_OR_UNKNOWN",
+      "reason": "cohosted provider resource"
+    },
+    {
+      "epistemic_status": "INFERRED",
+      "kind": "WORKER",
+      "name": "aftergraph-site",
+      "owner_class": "AFTERGRAPH",
+      "reason": "Aftergraph product identity"
+    },
+    {
+      "epistemic_status": "INFERRED",
+      "kind": "WORKER",
+      "name": "aftergraph-studio",
+      "owner_class": "AFTERGRAPH",
+      "reason": "Aftergraph product identity"
+    },
+    {
+      "epistemic_status": "INFERRED",
+      "kind": "WORKER",
+      "name": "studio-api-proxy",
+      "owner_class": "AFTERGRAPH",
+      "reason": "Aftergraph product identity"
+    },
+    {
+      "epistemic_status": "INFERRED",
+      "kind": "WORKER",
+      "name": "serviceops-mcp",
+      "owner_class": "LEGACY_AVC",
+      "reason": "AVC-era deployed service identity"
+    },
+    {
+      "epistemic_status": "INFERRED",
+      "kind": "WORKER",
+      "name": "avc-identity",
+      "owner_class": "LEGACY_AVC",
+      "reason": "AVC-era deployed service identity"
+    },
+    {
+      "epistemic_status": "INFERRED",
+      "kind": "WORKER",
+      "name": "mission-graph-authority",
+      "owner_class": "LEGACY_AVC",
+      "reason": "AVC-era deployed service identity"
+    }
+  ],
+  "schema_version": "roro-cloud-resource-classification/0.1"
+}
