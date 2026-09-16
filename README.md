@@ -78,6 +78,7 @@ The table below is a generated projection of `docs/platform-topology/2.0.json` â
 <!-- platform-topology-v2:start -->
 | Architecture plane | System class | Repository | Role | Lifecycle | Canonical responsibility |
 |---|---|---|---|---|---|
+| Intelligence | operational-analysis | `war-room` | operational-decision-intelligence | active | Rebuildable operational projections, causal and reality-diff analysis, attention prioritization, and non-authoritative decision proposals for governed operator workflows. |
 | Intelligence | work-intelligence | `wi-backend` | work-inference | active | Source-neutral observation to canonical WorkItem inference, review, publication and promotion boundaries. |
 | Authority | institution | `aie` | normative-authority | active | Portable institution, authority, delegation, lifecycle, budget and revocation semantics. |
 | Trust | enforcement | `trust-gateway` | runtime-enforcement | active | Fail-closed runtime admission, policy enforcement, approvals, secrets and action audit. |

@@ -178,16 +178,28 @@ def load_json(path: Path) -> dict:
 
 
 class TopologyV2DataTest(unittest.TestCase):
-    def test_has_exactly_29_unique_repositories(self):
-        # 29 = 24 canonical + sentinel-firetest2 (live-verified 2026-09-10,
-        # temporary-verification-fixture with expires_at) + skill-abi and
-        # skillport (live-verified 2026-09-10, active capability/assurance)
-        # + relay (enrolled 2026-09-10, canonical human-operator-plane).
+    def test_has_exactly_30_unique_repositories(self):
+        # 30 = prior 29-repository cut + war-room operational decision intelligence.
         doc = load_json(TOPOLOGY)
         names = [r["name"] for r in doc["repositories"]]
-        self.assertEqual(len(names), 29)
-        self.assertEqual(len(set(names)), 29)
+        self.assertEqual(len(names), 30)
+        self.assertEqual(len(set(names)), 30)
 
+    def test_war_room_is_registered_as_analysis_not_second_operator_plane(self):
+        doc = load_json(TOPOLOGY)
+        repos = topology_index(doc)
+        war_room = repos["war-room"]
+        self.assertEqual(war_room["architecture_plane"], "intelligence")
+        self.assertEqual(war_room["system_class"], "operational-analysis")
+        self.assertEqual(war_room["role"], "operational-decision-intelligence")
+        self.assertIn("projection", war_room["owns"].lower())
+        for forbidden in ("operator", "authority", "admission", "durable execution", "verification"):
+            self.assertIn(forbidden, war_room["must_not_own"].lower())
+        operator_planes = [
+            repo["name"] for repo in doc["repositories"]
+            if repo["role"] == "human-operator-plane" and repo["lifecycle"] == "active"
+        ]
+        self.assertEqual(operator_planes, ["relay"])
     def test_business_ops_is_registered_as_domain_not_platform_plane(self):
         repo = topology_index(load_json(TOPOLOGY))["business-ops"]
         self.assertIsNone(repo["architecture_plane"])
