@@ -180,3 +180,27 @@ modules:
     role: canonical-service-business-domain
     consumes: [after-graph-governance]
     provides: [service-business-domain, charge-fact, migration-mapping, shadow-conformance]
+
+  rendetalje:
+    repo: Aftergraph/rendetalje
+    role: rendetalje-reference-tenant
+    consumes: [after-graph-governance, business-ops, runtime, works-execution, sentinel]
+    provides: [rendetalje-domain-pack, cleaning-policy, migration-adapters, ops-agent]
+
+  renos:
+    repo: Aftergraph/renos
+    role: service-operations-product-surface
+    consumes: [after-graph-governance, business-ops, rendetalje, studio, aie, trust-gateway, runtime, works-execution, sentinel, brand]
+    provides: [renos-operator-shell, operations-workspace, chat-projection, attention-ui, evidence-ui]
+
+  fihim:
+    repo: Aftergraph/fihim
+    role: operator-cockpit-projection
+    consumes: [after-graph-governance, aie, trust-gateway, runtime, works-execution, wi-backend, sentinel, brand]
+    provides: [operator-cockpit, domain-adapters, projection-commands, needs-you-ui]
+
+  war-room:
+    repo: Aftergraph/war-room
+    role: operational-intelligence-projection
+    consumes: [after-graph-governance, aie, trust-gateway, runtime, works-execution, sentinel, wi-backend]
+    provides: [ops-intelligence, collision-radar, decision-inbox, egac-projection, org-summary]

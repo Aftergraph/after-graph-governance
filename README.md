@@ -84,8 +84,10 @@ The table below is a generated projection of `docs/platform-topology/2.0.json` â
 | Runtime | runtime | `runtime` | agent-runtime | active | Agent lifecycle, orchestration, dispatch, checkpoints, metering and observability. |
 | Execution | execution | `works-execution` | durable-execution | active | Durable work state, scheduling, workers, leases, recovery, execution evidence and quittance. |
 | Verification | assurance | `sentinel` | verified-code-review | active | Exact-HEAD verified code-review verdicts with stale-base invalidation and cited evidence. |
+| Experience | operator-cockpit | `fihim` | operator-cockpit-projection | active | Operator cockpit product experience that composes queries, commands and subscriptions over multiple Aftergraph domain systems as a projection and command routing layer. |
 | Experience | operator-plane | `relay` | human-operator-plane | active | Governed operator plane for supervising autonomous work across agents, missions, execution nodes, Runtime projection, and Aftergraph infrastructure. |
 | Experience | experience | `studio` | primary-experience | active | General-purpose human operating environment for Chat, Work, Space, control and evidence surfaces. |
+| Experience | ops-intelligence-projection | `war-room` | operational-intelligence-projection | active | Operational intelligence and human control projection over org reality, missions, agents, compute, attention, evidence and decision inbox surfaces without inventing canonical state. |
 | Experience | specialist-experience | `wi-frontend` | work-intelligence-experience | active | Wie browser experience and least-privilege BFF consuming canonical Work Intelligence state from wi-backend. |
 | Support | foundation | `.github` | organization-community | active | Organization profile, contribution defaults, security/support routing and shared community infrastructure. |
 | Support | models | `afm` | model-program | active | AFM-specific model training, datasets, experiments, evaluations and artifact manifests. |
@@ -101,6 +103,8 @@ The table below is a generated projection of `docs/platform-topology/2.0.json` â
 | Support | research-assurance | `intelligence-systems-research` | research-assurance | active | SPEC-001, MISSION-Bench methodology, scientific claims, experiments, assurance and publication evidence. |
 | Support | models | `llm-research-development` | model-rnd-methodology | active | Reusable model research, experiment, evaluation, promotion and provenance methodology. |
 | Support | models | `model-registry` | model-lifecycle-registry | active | Immutable promoted model identities, versions, aliases, lifecycle, provenance and artifact locations. |
+| Support | tenant-domain | `rendetalje` | rendetalje-reference-tenant | active | Rendetalje-specific cleaning semantics, pricing policies, estimator behavior, playbooks, communication policy, tenant configuration, migration mappings and tenant-specific Business Ops composition. |
+| Support | product-surface | `renos` | service-operations-product-surface | active | RenOS branded service-operations operator experience, workspace composition, chat projection, attention/control presentation and domain/process/verification views. |
 | Support | assurance-fixture | `sentinel-firetest` | temporary-verification-fixture | temporary | Throwaway live-fire fixture for Sentinel proofs. Topology membership is temporary and grants no permanent platform responsibility. |
 | Support | assurance-fixture | `sentinel-firetest2` | temporary-verification-fixture | temporary | Throwaway live-fire fixture for Sentinel proofs (second instance, live-verified 2026-09-10). Topology membership is temporary and grants no permanent platform responsibility. |
 | Support | capabilities | `skill-abi` | skill-compatibility-contract | active | Semantic compatibility, bounded effects, degradation and conformance for portable AI agent skills. |
