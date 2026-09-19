@@ -1,0 +1,23 @@
+{
+  "schema": "external-normative-source/0.1",
+  "source_id": "ens:agent-skills:spec",
+  "kind": "SPECIFICATION",
+  "title": "Agent Skills specification",
+  "publisher": {
+    "name": "Agent Skills",
+    "uri": "https://agentskills.io/"
+  },
+  "canonical_uri": "https://agentskills.io/specification",
+  "source_revision": {
+    "kind": "GIT_COMMIT",
+    "value": "217be548739f21d6008915c29aefe320ea1a90af",
+    "uri": "https://github.com/agentskills/agentskills/commit/217be548739f21d6008915c29aefe320ea1a90af"
+  },
+  "status": {
+    "source_declared": false,
+    "raw": null
+  },
+  "observed_at": "2026-09-19T10:06:00Z",
+  "primary_source_ref": "https://github.com/agentskills/agentskills/blob/217be548739f21d6008915c29aefe320ea1a90af/docs/specification.mdx",
+  "media_type": "text/markdown"
+}

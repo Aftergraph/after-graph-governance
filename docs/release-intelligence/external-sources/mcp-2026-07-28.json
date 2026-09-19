@@ -1,0 +1,21 @@
+{
+  "schema": "external-normative-source/0.1",
+  "source_id": "ens:mcp:2026-07-28",
+  "kind": "PROTOCOL",
+  "title": "Model Context Protocol specification",
+  "publisher": {
+    "name": "Model Context Protocol",
+    "uri": "https://modelcontextprotocol.io/"
+  },
+  "canonical_uri": "https://modelcontextprotocol.io/specification/2026-07-28",
+  "release_version": "2026-07-28",
+  "status": {
+    "source_declared": true,
+    "raw": "Released",
+    "normalized": "STABLE"
+  },
+  "published_at": "2026-07-28",
+  "observed_at": "2026-09-19T10:06:00Z",
+  "primary_source_ref": "https://modelcontextprotocol.io/specification/2026-07-28",
+  "media_type": "text/html"
+}

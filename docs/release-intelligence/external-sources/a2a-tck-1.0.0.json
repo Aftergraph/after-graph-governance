@@ -1,0 +1,25 @@
+{
+  "schema": "external-normative-source/0.1",
+  "source_id": "ens:a2a-tck:1.0.0",
+  "kind": "TCK",
+  "title": "A2A Technology Compatibility Kit",
+  "publisher": {
+    "name": "A2A Project",
+    "uri": "https://a2a-protocol.org/"
+  },
+  "canonical_uri": "https://github.com/a2aproject/a2a-tck",
+  "release_version": "1.0.0",
+  "source_revision": {
+    "kind": "GIT_COMMIT",
+    "value": "263b9cfaf16a554bdfb166a7ba5b67716e946349",
+    "uri": "https://github.com/a2aproject/a2a-tck/commit/263b9cfaf16a554bdfb166a7ba5b67716e946349"
+  },
+  "status": {
+    "source_declared": true,
+    "raw": "Beta",
+    "normalized": "EXPERIMENTAL"
+  },
+  "observed_at": "2026-09-19T10:06:00Z",
+  "primary_source_ref": "https://github.com/a2aproject/a2a-tck/tree/263b9cfaf16a554bdfb166a7ba5b67716e946349",
+  "media_type": "application/vnd.github+json"
+}

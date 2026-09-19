@@ -57,6 +57,7 @@ ARS/1 and APC-1 use three Governance-owned machine contract families for release
 | `release-passport/1.0` | Normative | after-graph-governance | Portable positive release/conformance claim bound to exact source and artifact identity; emitted only from passing APC conformance. |
 | `release-registry/1.0` | Normative | after-graph-governance | Deterministic derived index of exact component manifests, compatibility edges and positive release passports; registry state grants no runtime authority. |
 | `rbom/0.1` | Experimental | after-graph-governance | Exact release composition bill of materials bound to registry/component/passport identities; coverage state is evidence-bounded and not an admission decision. |
+| `external-normative-source/0.1` | Experimental | after-graph-governance | Exact identity/provenance profile for external normative sources; maps to DCAT/PROV semantics and grants no authority or conformance by itself. |
 
 The APC-1 executable registry lives at `docs/release-intelligence/apc-1.json`. Compatibility declarations are claims; ARI tooling compiles them against applicable rules and evidence before a technical conformance label is emitted.
 
