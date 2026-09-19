@@ -1,5 +1,6 @@
 import copy
 import json
+import re
 import subprocess
 import sys
 import tempfile
@@ -206,6 +207,130 @@ class AriRegistryTest(unittest.TestCase):
         payload = json.loads(proc.stdout)
         self.assertEqual(payload["schema"], "release-registry/1.0")
         self.assertEqual(len(payload["entries"]), 3)
+
+
+REGISTRY_CONTRACT = ROOT / "docs" / "contracts" / "release-registry" / "1.0.json"
+
+
+def _registry_schema_errors(instance, schema, root):
+    """Evaluate instance against schema using only the standard library.
+
+    Mirrors the hand-rolled contract checks in verify_exact_head_truth.py and
+    reduce_ci_truth.py: the Release Intelligence gate installs no jsonschema,
+    so the interop boundary this proves has to be checkable with stdlib alone.
+    Supports exactly the keywords release-registry/1.0 uses — type, required,
+    properties, additionalProperties, items, enum, const, pattern, oneOf, and
+    a local $ref that replaces the schema (no sibling keywords occur here).
+    """
+    if "$ref" in schema:
+        target = root
+        for token in schema["$ref"].lstrip("#/").split("/"):
+            target = target[token]
+        return _registry_schema_errors(instance, target, root)
+
+    expected = schema.get("type")
+    if expected is not None:
+        candidates = expected if isinstance(expected, list) else [expected]
+        matches = {
+            "object": isinstance(instance, dict),
+            "array": isinstance(instance, list),
+            "string": isinstance(instance, str),
+        }
+        if not any(matches.get(name, False) for name in candidates):
+            return [f"expected type {candidates}, got {type(instance).__name__}"]
+
+    errors: list[str] = []
+    if isinstance(instance, dict):
+        properties = schema.get("properties", {})
+        for key in schema.get("required", ()):
+            if key not in instance:
+                errors.append(f"missing required property: {key}")
+        for key, subschema in properties.items():
+            if key in instance:
+                errors.extend(_registry_schema_errors(instance[key], subschema, root))
+        if schema.get("additionalProperties") is False:
+            for key in instance:
+                if key not in properties:
+                    errors.append(f"unexpected property: {key}")
+    elif isinstance(instance, list) and "items" in schema:
+        for index, item in enumerate(instance):
+            for error in _registry_schema_errors(item, schema["items"], root):
+                errors.append(f"entries[{index}] {error}")
+
+    if "const" in schema and instance != schema["const"]:
+        errors.append(f"expected const {schema['const']!r}, got {instance!r}")
+    if "enum" in schema and instance not in schema["enum"]:
+        errors.append(f"{instance!r} is not one of {schema['enum']}")
+    pattern = schema.get("pattern")
+    if pattern is not None and isinstance(instance, str) and re.search(pattern, instance) is None:
+        errors.append(f"{instance!r} does not match pattern {pattern}")
+    if "oneOf" in schema:
+        valid_branches = sum(
+            not _registry_schema_errors(instance, branch, root)
+            for branch in schema["oneOf"]
+        )
+        if valid_branches != 1:
+            errors.append(f"{valid_branches} oneOf branches validate, expected exactly 1")
+    return errors
+
+
+class AriRegistryContractInteropTest(unittest.TestCase):
+    """The published contract must reject what the reference Registry rejects.
+
+    Registry._classify() dispatches on document['schema'] and Registry.__init__
+    refuses a kind/schema disagreement, so an empty or kind-mismatched document
+    is already a defect in Python. A cross-repository consumer validating only
+    release-registry/1.0 has to refuse it too, or the published contract is
+    weaker than the implementation it claims to describe.
+    """
+
+    def setUp(self):
+        self.contract = json.loads(REGISTRY_CONTRACT.read_text(encoding="utf-8"))
+
+    def errors(self, document):
+        return _registry_schema_errors(document, self.contract, self.contract)
+
+    def test_contract_rejects_an_entry_with_an_empty_document(self):
+        entry = {"kind": "component", "digest": "sha256:" + "a" * 64, "document": {}}
+        self.assertTrue(self.errors({"schema": "release-registry/1.0", "entries": [entry]}))
+
+    def test_contract_rejects_a_kind_mismatched_document(self):
+        entry = {
+            "kind": "component",
+            "digest": "sha256:" + "a" * 64,
+            "document": {"schema": "compatibility-edge/1.0"},
+        }
+        self.assertTrue(self.errors({"schema": "release-registry/1.0", "entries": [entry]}))
+
+    def test_contract_rejects_an_unknown_kind(self):
+        entry = {
+            "kind": "widget",
+            "digest": "sha256:" + "a" * 64,
+            "document": {"schema": "aftergraph-component/1.0"},
+        }
+        self.assertTrue(self.errors({"schema": "release-registry/1.0", "entries": [entry]}))
+
+    def test_contract_accepts_every_entry_a_real_registry_emits(self):
+        registry = build_registry([COMPONENT, EDGE, PASSPORT])
+        self.assertEqual(self.errors(registry), [])
+        self.assertEqual(
+            {entry["kind"] for entry in registry["entries"]},
+            {"component", "edge", "passport"},
+        )
+
+    def test_contract_bounds_shape_only_and_leaves_digest_recomputation_to_registry(self):
+        tampered = build_registry([COMPONENT])
+        tampered["entries"][0]["digest"] = "sha256:" + "0" * 64
+        with self.assertRaises(RegistryError):
+            Registry(tampered)
+        self.assertEqual(self.errors(tampered), [])
+
+    def test_evaluator_is_not_vacuously_permissive(self):
+        self.assertEqual(self.errors(build_registry([COMPONENT])), [])
+        self.assertTrue(
+            self.errors({"schema": "release-registry/1.0", "entries": [], "extra": 1})
+        )
+        self.assertTrue(self.errors({"schema": "release-registry/0.9", "entries": []}))
 
 
 if __name__ == "__main__":

@@ -65,6 +65,23 @@ class AriContractsTest(unittest.TestCase):
         self.assertFalse(entry["additionalProperties"])
         self.assertEqual(entry["properties"]["digest"]["pattern"], "^sha256:[a-f0-9]{64}$")
 
+    def test_release_registry_entry_binds_kind_to_the_document_schema_discriminator(self):
+        schema = self.load(CONTRACTS / "release-registry" / "1.0.json")
+        entry = schema["$defs"]["entry"]
+        self.assertEqual(entry["properties"]["document"]["required"], ["schema"])
+        self.assertEqual(
+            {
+                branch["properties"]["kind"]["const"]:
+                    branch["properties"]["document"]["properties"]["schema"]["const"]
+                for branch in entry["oneOf"]
+            },
+            {
+                "component": "aftergraph-component/1.0",
+                "edge": "compatibility-edge/1.0",
+                "passport": "release-passport/1.0",
+            },
+        )
+
     def test_rbom_contract_separates_inventory_from_verification(self):
         schema = self.load(CONTRACTS / "rbom" / "0.1.json")
         self.assertEqual(schema["properties"]["schema"]["const"], "rbom/0.1")
