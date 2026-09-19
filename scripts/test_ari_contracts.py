@@ -60,18 +60,23 @@ class AriDiscoverabilityTest(unittest.TestCase):
         self.assertIn("after-graph-governance", register)
         self.assertIn("does not grant runtime authority", register)
 
-    def test_readme_links_release_standard_apc_and_ari(self):
-        readme = (ROOT / "README.md").read_text(encoding="utf-8")
-        for expected in (
-            "Aftergraph 26 · Convergence",
-            "ARS/1",
-            "APC-1",
-            "Release Intelligence",
-            "docs/superpowers/specs/2026-09-07-aftergraph-release-lifecycle-compatibility-standard-design.md",
-            "docs/superpowers/specs/2026-09-07-aftergraph-release-intelligence-plane-design.md",
-            "docs/release-intelligence/apc-1.json",
-        ):
-            self.assertIn(expected, readme)
+    def test_canonical_surfaces_link_release_standard_apc_and_ari(self):
+        register = (ROOT / "docs/cross-repo-contracts.md").read_text(encoding="utf-8")
+        release_design = (
+            ROOT
+            / "docs/superpowers/specs/2026-09-07-aftergraph-release-lifecycle-compatibility-standard-design.md"
+        ).read_text(encoding="utf-8")
+        ari_design = (
+            ROOT
+            / "docs/superpowers/specs/2026-09-07-aftergraph-release-intelligence-plane-design.md"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("aftergraph-component/1.0", register)
+        self.assertIn("compatibility-edge/1.0", register)
+        self.assertIn("release-passport/1.0", register)
+        self.assertIn("APC-1", release_design)
+        self.assertIn("Aftergraph Release Intelligence", ari_design)
+        self.assertTrue((ARI / "apc-1.json").is_file())
 
 
 if __name__ == "__main__":
