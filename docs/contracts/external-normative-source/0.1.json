@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/external-normative-source/0.1.json",
+  "title": "External Normative Source Profile 0.1",
+  "description": "Governance interoperability profile for exact external standards/specification identity. It maps to DCAT 3 / PROV-O semantics and grants no authority, conformance, compatibility, compliance, or execution permission.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "source_id",
+    "kind",
+    "title",
+    "publisher",
+    "canonical_uri",
+    "status",
+    "observed_at",
+    "primary_source_ref"
+  ],
+  "properties": {
+    "schema": {
+      "const": "external-normative-source/0.1"
+    },
+    "source_id": {
+      "type": "string",
+      "pattern": "^ens:[a-z0-9][a-z0-9._:-]*$"
+    },
+    "kind": {
+      "enum": [
+        "STANDARD",
+        "SPECIFICATION",
+        "PROTOCOL",
+        "PROFILE",
+        "CONVENTION",
+        "REGULATION",
+        "TCK",
+        "OTHER"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "publisher": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "uri": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "canonical_uri": {
+      "type": "string",
+      "minLength": 1
+    },
+    "release_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_revision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "value"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "GIT_COMMIT",
+            "TAG",
+            "OTHER"
+          ]
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "uri": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "digest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "algorithm",
+        "value"
+      ],
+      "properties": {
+        "algorithm": {
+          "const": "sha256"
+        },
+        "value": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_declared",
+        "raw"
+      ],
+      "properties": {
+        "source_declared": {
+          "type": "boolean"
+        },
+        "raw": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "normalized": {
+          "enum": [
+            "DRAFT",
+            "DEVELOPMENT",
+            "EXPERIMENTAL",
+            "STABLE",
+            "APPROVED",
+            "DEPRECATED",
+            "WITHDRAWN",
+            "UNKNOWN"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "source_declared": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "raw": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "source_declared": {
+                "const": false
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "raw": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "published_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "observed_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "previous_version_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "replaces_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "primary_source_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "media_type": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "anyOf": [
+    {
+      "required": [
+        "release_version"
+      ]
+    },
+    {
+      "required": [
+        "source_revision"
+      ]
+    },
+    {
+      "required": [
+        "digest"
+      ]
+    }
+  ]
+}

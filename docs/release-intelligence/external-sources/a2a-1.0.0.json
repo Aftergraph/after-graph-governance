@@ -1,0 +1,21 @@
+{
+  "schema": "external-normative-source/0.1",
+  "source_id": "ens:a2a:1.0.0",
+  "kind": "PROTOCOL",
+  "title": "Agent2Agent Protocol specification",
+  "publisher": {
+    "name": "A2A Project",
+    "uri": "https://a2a-protocol.org/"
+  },
+  "canonical_uri": "https://a2a-protocol.org/latest/specification/",
+  "release_version": "1.0.0",
+  "status": {
+    "source_declared": true,
+    "raw": "Released",
+    "normalized": "STABLE"
+  },
+  "published_at": "2026-03-12",
+  "observed_at": "2026-09-19T10:06:00Z",
+  "primary_source_ref": "https://github.com/a2aproject/A2A",
+  "media_type": "text/html"
+}
