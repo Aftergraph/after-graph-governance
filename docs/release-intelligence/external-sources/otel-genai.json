@@ -1,0 +1,24 @@
+{
+  "schema": "external-normative-source/0.1",
+  "source_id": "ens:opentelemetry:genai-semconv",
+  "kind": "CONVENTION",
+  "title": "OpenTelemetry Generative AI semantic conventions",
+  "publisher": {
+    "name": "OpenTelemetry",
+    "uri": "https://opentelemetry.io/"
+  },
+  "canonical_uri": "https://github.com/open-telemetry/semantic-conventions-genai",
+  "source_revision": {
+    "kind": "GIT_COMMIT",
+    "value": "c88d504ab3d9879f8e50d3cc87e69775e11db234",
+    "uri": "https://github.com/open-telemetry/semantic-conventions-genai/commit/c88d504ab3d9879f8e50d3cc87e69775e11db234"
+  },
+  "status": {
+    "source_declared": true,
+    "raw": "Development",
+    "normalized": "DEVELOPMENT"
+  },
+  "observed_at": "2026-09-19T10:06:00Z",
+  "primary_source_ref": "https://github.com/open-telemetry/semantic-conventions-genai/tree/c88d504ab3d9879f8e50d3cc87e69775e11db234",
+  "media_type": "application/vnd.github+json"
+}
