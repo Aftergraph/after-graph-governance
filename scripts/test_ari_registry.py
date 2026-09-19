@@ -130,6 +130,28 @@ class AriRegistryTest(unittest.TestCase):
         with self.assertRaisesRegex(RegistryConflict, "sentinel-engine@1.4.0#111111111111"):
             build_registry([COMPONENT, divergent])
 
+    def test_registry_rejects_contradictory_exact_edge_states(self):
+        failed = copy.deepcopy(EDGE)
+        failed["state"] = "fail"
+        with self.assertRaisesRegex(RegistryConflict, "conflicting compatibility edge claim"):
+            build_registry([EDGE, failed])
+
+    def test_registry_rejects_reverse_contradiction_for_symmetric_edge(self):
+        reverse_failed = copy.deepcopy(EDGE)
+        reverse_failed["from"], reverse_failed["to"] = (
+            copy.deepcopy(EDGE["to"]),
+            copy.deepcopy(EDGE["from"]),
+        )
+        reverse_failed["state"] = "fail"
+        with self.assertRaisesRegex(RegistryConflict, "conflicting compatibility edge claim"):
+            build_registry([EDGE, reverse_failed])
+
+    def test_registry_allows_same_state_edge_with_independent_evidence(self):
+        corroborating = copy.deepcopy(EDGE)
+        corroborating["evidence"] = [{"kind": "second-test-receipt", "ref": "sha256:" + "4" * 64}]
+        registry = build_registry([EDGE, corroborating])
+        self.assertEqual(len(registry["entries"]), 2)
+
     def test_registry_digest_changes_when_source_document_changes(self):
         first = build_registry([COMPONENT])
         changed = copy.deepcopy(COMPONENT)

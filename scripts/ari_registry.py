@@ -102,6 +102,24 @@ def _identity_label(key: tuple[str, str, str]) -> str:
     return f"{component}@{version}#{commit[:12]}"
 
 
+def _edge_endpoint_key(endpoint: dict) -> tuple[str, str, str]:
+    return (endpoint["component"], endpoint["version"], endpoint["commit"])
+
+
+def _edge_claim_key(document: dict) -> tuple:
+    """Identity of one compatibility claim, excluding mutable evidence/state.
+
+    Symmetric relations use a canonical endpoint order so A→B and B→A cannot
+    publish contradictory exact claims as if they were independent records.
+    """
+    left = _edge_endpoint_key(document["from"])
+    right = _edge_endpoint_key(document["to"])
+    relation = document["relation"]
+    if relation in {"tested-with", "incompatible-with"} and right < left:
+        left, right = right, left
+    return (left, right, relation)
+
+
 def _sort_key(item: ClassifiedDocument) -> tuple:
     document = item.document
     if item.kind == "component":
@@ -120,6 +138,7 @@ def _sort_key(item: ClassifiedDocument) -> tuple:
 
 def _check_conflicts(items: list[ClassifiedDocument]) -> None:
     components: dict[tuple[str, str, str], ClassifiedDocument] = {}
+    edge_states: dict[tuple, str] = {}
     passports: list[ClassifiedDocument] = []
 
     for item in items:
@@ -129,6 +148,18 @@ def _check_conflicts(items: list[ClassifiedDocument]) -> None:
             if previous is not None and previous.digest != item.digest:
                 raise RegistryConflict(f"conflicting component identity: {_identity_label(key)}")
             components[key] = item
+        elif item.kind == "edge":
+            key = _edge_claim_key(item.document)
+            state = item.document["state"]
+            previous_state = edge_states.get(key)
+            if previous_state is not None and previous_state != state:
+                left, right, relation = key
+                raise RegistryConflict(
+                    "conflicting compatibility edge claim: "
+                    f"{_identity_label(left)} {relation} {_identity_label(right)} "
+                    f"states={previous_state},{state}"
+                )
+            edge_states[key] = state
         elif item.kind == "passport":
             passports.append(item)
 
@@ -257,40 +288,3 @@ class Registry:
 
     def edges(self) -> list[dict]:
         return [copy.deepcopy(item.document) for item in self._entries if item.kind == "edge"]
-
-    def passports(self) -> list[dict]:
-        return [copy.deepcopy(item.document) for item in self._entries if item.kind == "passport"]
-
-    def component(self, component: str, version: str, commit: str) -> dict:
-        key = (component, version, commit)
-        matches = [doc for doc in self.components() if _component_key(doc) == key]
-        if not matches:
-            raise RegistryError(f"component not found: {_identity_label(key)}")
-        return matches[0]
-
-
-def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Build or inspect an Aftergraph Release Registry")
-    subparsers = parser.add_subparsers(dest="command", required=True)
-    build = subparsers.add_parser("build", help="build a deterministic registry")
-    build.add_argument("--document", action="append", required=True, type=Path)
-    build.add_argument("--format", choices=("json", "pretty"), default="json")
-    args = parser.parse_args(argv)
-
-    try:
-        documents = [load_json(path) for path in args.document]
-        registry = build_registry(documents)
-        Registry(registry)
-    except (OSError, json.JSONDecodeError, ValueError) as exc:
-        print(json.dumps({"schema": "release-registry-error/1", "state": "FAIL", "error": str(exc)}, sort_keys=True))
-        return 2
-
-    if args.format == "pretty":
-        print(json.dumps(registry, indent=2, sort_keys=True))
-    else:
-        print(json.dumps(registry, sort_keys=True, separators=(",", ":")))
-    return 0
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())
