@@ -7,7 +7,7 @@ import unittest
 from pathlib import Path
 
 from scripts.ari_model import canonical_digest
-from scripts.ari_rbom import RbomError, build_rbom
+from scripts.ari_rbom import RbomError, build_rbom, parse_selector
 from scripts.ari_registry import Registry, build_registry
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -92,6 +92,12 @@ class AriRbomTest(unittest.TestCase):
         self.assertEqual(component["manifest_digest"], canonical_digest(SENTINEL))
         self.assertRegex(component["passport_digest"], r"^sha256:[a-f0-9]{64}$")
         self.assertEqual(component["artifact_digest"], "sha256:" + "a" * 64)
+
+    def test_parse_selector_admits_hash_in_release_version(self):
+        component, version, commit = parse_selector("sentinel-engine@1.4.0#rc.1#" + "1" * 40)
+        self.assertEqual(component, "sentinel-engine")
+        self.assertEqual(version, "1.4.0#rc.1")
+        self.assertEqual(commit, "1" * 40)
 
     def test_rbom_refuses_missing_selector(self):
         missing = "sentinel-engine@1.4.0#" + "9" * 40

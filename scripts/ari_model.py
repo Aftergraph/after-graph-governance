@@ -145,8 +145,9 @@ def validate_component(document: dict[str, Any]) -> list[str]:
     _require_fields(release, ("version", "lifecycle"), "release.", errors)
     if not isinstance(release.get("version"), str) or not release.get("version"):
         errors.append("release.version must be a non-empty string")
-    if release.get("lifecycle") not in LIFECYCLE:
-        errors.append(f"unsupported lifecycle: {release.get('lifecycle')}")
+    lifecycle = release.get("lifecycle")
+    if not isinstance(lifecycle, str) or lifecycle not in LIFECYCLE:
+        errors.append(f"unsupported lifecycle: {lifecycle}")
 
     platform = _require_object(document.get("platform"), "platform", errors)
     _reject_unknown_fields(platform, {"generation", "release_train"}, "platform.", errors)
@@ -177,6 +178,9 @@ def validate_component(document: dict[str, Any]) -> list[str]:
     else:
         seen: set[str] = set()
         for profile in profiles:
+            if not isinstance(profile, str):
+                errors.append(f"unsupported APC-1 profile: {profile}")
+                continue
             if profile not in APC_PROFILES:
                 errors.append(f"unsupported APC-1 profile: {profile}")
             if profile in seen:
@@ -269,10 +273,10 @@ def validate_edge(document: dict[str, Any]) -> list[str]:
             errors.append(f"{side}.commit must be 40 lowercase hex characters")
 
     relation = document.get("relation")
-    if relation not in EDGE_RELATIONS:
+    if not isinstance(relation, str) or relation not in EDGE_RELATIONS:
         errors.append(f"unsupported edge relation: {relation}")
     state = document.get("state")
-    if state not in EDGE_STATES:
+    if not isinstance(state, str) or state not in EDGE_STATES:
         errors.append(f"unsupported edge state: {state}")
     evidence_level = document.get("evidence_level")
     if not isinstance(evidence_level, str) or evidence_level not in EvidenceLevel.__members__:
@@ -339,7 +343,7 @@ def validate_passport(document: dict[str, Any]) -> list[str]:
         for profile, state in profiles.items():
             if profile not in APC_PROFILES:
                 errors.append(f"unsupported APC-1 profile: {profile}")
-            if state not in allowed_states:
+            if not isinstance(state, str) or state not in allowed_states:
                 errors.append(f"unsupported conformance state for {profile}: {state}")
     evidence = conformance.get("evidence")
     if not isinstance(evidence, list):

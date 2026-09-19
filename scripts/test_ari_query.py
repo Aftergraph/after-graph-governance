@@ -107,6 +107,26 @@ class AriQueryTest(unittest.TestCase):
         with self.assertRaisesRegex(QueryError, "component not found"):
             query_compat(self.registry(), missing, RIGHT_SELECTOR, "CE2")
 
+    def test_selector_grammar_admits_hash_in_release_version(self):
+        # A '#' inside release.version is contract-legal, so the selector must split
+        # on the trailing '#<40hex>' anchor and reach registry lookup rather than the
+        # grammar rejection.
+        selector = "sentinel-engine@1.4.0#rc.1#" + "1" * 40
+        with self.assertRaisesRegex(QueryError, "component not found"):
+            query_compat(self.registry(), selector, RIGHT_SELECTOR, "CE2")
+
+    def test_query_resolves_hash_in_release_version_end_to_end(self):
+        hash_left = copy.deepcopy(LEFT)
+        hash_left["release"]["version"] = "1.4.0#rc.1"
+        hash_edge = copy.deepcopy(EDGE)
+        hash_edge["from"]["version"] = "1.4.0#rc.1"
+        registry = Registry(build_registry([hash_left, RIGHT, hash_edge]))
+        selector = "sentinel-engine@1.4.0#rc.1#" + "1" * 40
+        result = query_compat(registry, selector, RIGHT_SELECTOR, "CE2")
+        self.assertEqual(result["state"], ResultState.PASS.value)
+        self.assertEqual(result["left"]["version"], "1.4.0#rc.1")
+        self.assertEqual(result["left"]["commit"], "1" * 40)
+
     def test_query_rejects_invalid_minimum_evidence_level(self):
         with self.assertRaisesRegex(QueryError, "CE0..CE5"):
             query_compat(self.registry(), LEFT_SELECTOR, RIGHT_SELECTOR, "CE9")

@@ -7,6 +7,7 @@ from scripts.ari_model import (
     evidence_meets,
     validate_component,
     validate_edge,
+    validate_passport,
 )
 
 
@@ -92,6 +93,49 @@ class AriModelTest(unittest.TestCase):
 
     def test_valid_edge_has_no_errors(self):
         self.assertEqual(validate_edge(VALID_EDGE), [])
+
+    def test_component_rejects_unhashable_lifecycle_and_profile(self):
+        doc = {
+            **VALID_COMPONENT,
+            "release": {**VALID_COMPONENT["release"], "lifecycle": ["stable"]},
+            "compatibility": {**VALID_COMPONENT["compatibility"], "profiles": [{"verifier": True}]},
+        }
+        errors = validate_component(doc)
+        self.assertTrue(any(e.startswith("unsupported lifecycle:") for e in errors), errors)
+        self.assertTrue(any(e.startswith("unsupported APC-1 profile:") for e in errors), errors)
+
+    def test_edge_rejects_unhashable_relation_and_state(self):
+        doc = {**VALID_EDGE, "relation": {"requires": True}, "state": ["pass"]}
+        errors = validate_edge(doc)
+        self.assertTrue(any(e.startswith("unsupported edge relation:") for e in errors), errors)
+        self.assertTrue(any(e.startswith("unsupported edge state:") for e in errors), errors)
+
+    def test_passport_rejects_unhashable_conformance_state(self):
+        doc = {
+            "schema": "release-passport/1.0",
+            "subject": {"component": "sentinel-engine", "version": "1.4.0"},
+            "platform": {
+                "generation": 26,
+                "release_train": "2026.09",
+                "compatibility": "APC-1",
+            },
+            "conformance": {
+                "result": "PASS",
+                "profiles": {"verifier": {"PASS": True}},
+                "evidence": [],
+            },
+            "provenance": {
+                "repository": "Aftergraph/sentinel",
+                "commit": "1" * 40,
+                "artifact_digest": "sha256:" + "a" * 64,
+                "manifest_digest": "sha256:" + "b" * 64,
+            },
+        }
+        errors = validate_passport(doc)
+        self.assertTrue(
+            any(e.startswith("unsupported conformance state for verifier:") for e in errors),
+            errors,
+        )
 
 
 if __name__ == "__main__":

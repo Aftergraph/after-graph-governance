@@ -17,7 +17,9 @@ from scripts.ari_graph import CompatibilityGraph, Endpoint  # noqa: E402
 from scripts.ari_model import EvidenceLevel, ResultState, evidence_meets, load_json  # noqa: E402
 from scripts.ari_registry import Registry, RegistryError  # noqa: E402
 
-SELECTOR_RE = re.compile(r"^([a-z0-9][a-z0-9-]*)@([^#]+)#([a-f0-9]{40})$")
+# release.version may itself contain '#', so the selector splits on the final
+# '#<40hex>' anchor rather than the first '#'.
+SELECTOR_RE = re.compile(r"^([a-z0-9][a-z0-9-]*)@(.+)#([a-f0-9]{40})$")
 
 
 class QueryError(ValueError):
