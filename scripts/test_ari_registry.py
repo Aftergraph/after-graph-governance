@@ -8,7 +8,7 @@ from pathlib import Path
 
 from scripts.ari_model import canonical_digest
 from scripts.ari_registry import Registry, RegistryConflict, RegistryError, build_registry
-from scripts.ari_schema_check import UnsupportedKeyword, validate
+from scripts.ari_schema_check import SUPPORTED_KEYWORDS, UnsupportedKeyword, validate
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -273,9 +273,17 @@ class AriRegistryContractInteropTest(unittest.TestCase):
     def test_evaluator_refuses_a_keyword_outside_its_implemented_surface(self):
         # The interop proof is only as strong as the evaluator. A contract that
         # grew a keyword this module does not implement has to fail loudly
-        # rather than silently validate every instance as permissive.
+        # rather than silently validate every instance as permissive. The probe
+        # is derived from the complement of SUPPORTED_KEYWORDS on purpose: an
+        # earlier version named ``not`` literally, so implementing ``not`` for
+        # the RBOM row forbiddance retired this assertion without touching it.
+        for probe in ("if", "format", "contains", "allOf", "maxProperties"):
+            if probe not in SUPPORTED_KEYWORDS:
+                break
+        else:  # pragma: no cover - only reachable if the surface grows past the list
+            self.fail("every probe keyword is now supported; extend this list")
         with self.assertRaises(UnsupportedKeyword):
-            validate({}, {**self.contract, "not": {"type": "null"}})
+            validate({}, {**self.contract, probe: {"type": "null"}})
 
 
 if __name__ == "__main__":

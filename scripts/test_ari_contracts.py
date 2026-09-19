@@ -104,15 +104,27 @@ class AriContractsTest(unittest.TestCase):
             "PARTIAL": {"type": "integer", "minimum": 1},
             "UNVERIFIED": {"const": 0},
         })
-        verified = next(
-            branch
+        by_state = {
+            branch["properties"]["verification"]["properties"]["state"]["const"]: branch
             for branch in schema["oneOf"]
-            if branch["properties"]["verification"]["properties"]["state"]["const"] == "VERIFIED"
-        )
+        }
         self.assertEqual(
-            verified["properties"]["components"]["items"]["required"],
+            by_state["VERIFIED"]["properties"]["components"]["items"]["required"],
             ["artifact_digest", "passport_digest"],
         )
+        # UNVERIFIED must forbid the digests on the rows, not just on the count:
+        # a consumer reading only the verification object would otherwise accept
+        # passport evidence that contradicts the declared absence of evidence.
+        self.assertEqual(
+            by_state["UNVERIFIED"]["properties"]["components"]["items"]["not"],
+            {
+                "anyOf": [
+                    {"required": ["artifact_digest"]},
+                    {"required": ["passport_digest"]},
+                ]
+            },
+        )
+        self.assertNotIn("components", by_state["PARTIAL"]["properties"])
         self.assertEqual(schema["properties"]["platform"]["properties"]["generation"]["const"], 26)
         self.assertEqual(schema["properties"]["platform"]["properties"]["compatibility"]["const"], "APC-1")
 

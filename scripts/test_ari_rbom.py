@@ -238,6 +238,57 @@ class AriRbomContractInteropTest(unittest.TestCase):
         rbom["verification"]["state"] = "UNVERIFIED"
         self.assertTrue(self.errors(rbom))
 
+    def test_contract_rejects_unverified_rows_carrying_passport_digests(self):
+        # Flipping the state alone is caught by the count binding above, so the
+        # coherent-looking forgery is the one that also zeroes the count: an
+        # UNVERIFIED RBOM whose rows still carry passport-derived digests
+        # declares the absence of evidence while shipping the evidence. The
+        # verification object cannot see that, so the branch has to constrain
+        # the rows too.
+        rbom = build_rbom(_registry(), [SENTINEL_SELECTOR, WORKS_SELECTOR])
+        rbom["verification"] = {
+            "state": "UNVERIFIED",
+            "passport_count": 0,
+            "component_count": len(rbom["components"]),
+        }
+        for row in rbom["components"]:
+            self.assertIn("artifact_digest", row)
+            self.assertIn("passport_digest", row)
+        self.assertTrue(self.errors(rbom))
+
+        # ...and a single row carrying only one of the two is equally refused.
+        partial_forgery = build_rbom(_registry(), [SENTINEL_SELECTOR, WORKS_SELECTOR])
+        partial_forgery["verification"] = {
+            "state": "UNVERIFIED",
+            "passport_count": 0,
+            "component_count": len(partial_forgery["components"]),
+        }
+        partial_forgery["components"][0].pop("artifact_digest")
+        self.assertTrue(self.errors(partial_forgery))
+
+        # Control: the UNVERIFIED RBOM build_rbom actually emits carries no row
+        # digests, so the forbiddance closes the forgery without closing truth.
+        honest = build_rbom(
+            _registry(sentinel_passport=False, works_passport=False),
+            [SENTINEL_SELECTOR, WORKS_SELECTOR],
+        )
+        for row in honest["components"]:
+            self.assertNotIn("artifact_digest", row)
+            self.assertNotIn("passport_digest", row)
+        self.assertEqual(self.errors(honest), [])
+
+    def test_contract_bounds_row_evidence_under_unverified_only(self):
+        # Which rows carry digests under PARTIAL stays owned by the reference
+        # builder, so moving the digests to the other row must still validate:
+        # the forbiddance belongs to the UNVERIFIED branch and nowhere else.
+        rbom = build_rbom(_registry(works_passport=False), [SENTINEL_SELECTOR, WORKS_SELECTOR])
+        self.assertEqual(rbom["verification"]["state"], "PARTIAL")
+        donor = rbom["components"][0]
+        recipient = rbom["components"][1]
+        recipient["artifact_digest"] = donor.pop("artifact_digest")
+        recipient["passport_digest"] = donor.pop("passport_digest")
+        self.assertEqual(self.errors(rbom), [])
+
     def test_contract_rejects_partial_claiming_zero_passports(self):
         rbom = build_rbom(_registry(works_passport=False), [SENTINEL_SELECTOR, WORKS_SELECTOR])
         rbom["verification"]["passport_count"] = 0

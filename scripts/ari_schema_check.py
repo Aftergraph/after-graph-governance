@@ -11,8 +11,15 @@ standard library alone.
 
 This module implements exactly the validation keywords the ARI contracts use and
 raises :class:`UnsupportedKeyword` on anything else. The loud failure is the
-point: a contract that grows ``not``, ``if``/``then`` or ``format`` cannot
+point: a contract that grows ``if``/``then``, ``format`` or ``contains`` cannot
 silently validate as permissive and turn a passing interop test into a lie.
+
+That the surface really does cover the contracts is not a claim a reader has to
+take on faith. ``test_ari_schema_check.ContractSurfaceTest`` walks every
+published contract, collects the validation keywords it uses, and fails if any
+of them falls outside :data:`SUPPORTED_KEYWORDS`. A contract that grows a new
+keyword therefore breaks the build instead of quietly widening what a
+schema-only consumer accepts.
 """
 
 from __future__ import annotations
@@ -40,22 +47,27 @@ ANNOTATION_KEYWORDS = frozenset(
 )
 
 # The complete validation surface this evaluator implements. Extending it is a
-# deliberate act: every entry here is exercised by test_ari_schema_check.py.
+# deliberate act: every entry here is exercised by test_ari_schema_check.py, and
+# the surface test fails if a published contract uses anything not listed.
 SUPPORTED_KEYWORDS = frozenset(
     {
         "$ref",
         "additionalProperties",
+        "anyOf",
         "const",
         "enum",
         "items",
         "maxItems",
         "maximum",
         "minItems",
+        "minProperties",
         "minimum",
         "minLength",
+        "not",
         "oneOf",
         "pattern",
         "properties",
+        "propertyNames",
         "required",
         "type",
         "uniqueItems",
@@ -160,10 +172,33 @@ def validate(instance: Any, schema: Any, root: Any = None) -> list[str]:
         for key, subschema in properties.items():
             if key in instance:
                 errors.extend(f"{key}: {e}" for e in validate(instance[key], subschema, root))
-        if schema.get("additionalProperties") is False:
+        if "propertyNames" in schema:
+            for key in sorted(instance):
+                errors.extend(
+                    f"{key} (name): {e}"
+                    for e in validate(key, schema["propertyNames"], root)
+                )
+        if "minProperties" in schema and len(instance) < schema["minProperties"]:
+            errors.append(
+                f"expected at least {schema['minProperties']} properties, got {len(instance)}"
+            )
+        # additionalProperties has two forms and both are load-bearing here:
+        # ``false`` closes the object, and a schema constrains every key that
+        # ``properties`` did not match (release-passport pins the profile-value
+        # vocabulary and aftergraph-component pins the contract-version type
+        # this way). Treating only the boolean form as meaningful would leave a
+        # schema-valued one silently permissive.
+        additional = schema.get("additionalProperties")
+        if additional is False:
             for key in sorted(instance):
                 if key not in properties:
                     errors.append(f"unexpected property: {key}")
+        elif isinstance(additional, dict):
+            for key in sorted(instance):
+                if key not in properties:
+                    errors.extend(
+                        f"{key}: {e}" for e in validate(instance[key], additional, root)
+                    )
 
     elif isinstance(instance, list):
         if "minItems" in schema and len(instance) < schema["minItems"]:
@@ -199,9 +234,15 @@ def validate(instance: Any, schema: Any, root: Any = None) -> list[str]:
     if "enum" in schema and not any(_equal(instance, option) for option in schema["enum"]):
         errors.append(f"{instance!r} is not one of {schema['enum']}")
 
+    if "anyOf" in schema:
+        if not any(not validate(instance, branch, root) for branch in schema["anyOf"]):
+            errors.append("anyOf: no branch validates")
     if "oneOf" in schema:
         validating = sum(not validate(instance, branch, root) for branch in schema["oneOf"])
         if validating != 1:
             errors.append(f"{validating} oneOf branches validate, expected exactly 1")
+    if "not" in schema:
+        if not validate(instance, schema["not"], root):
+            errors.append("not: the subschema validates, but must not")
 
     return errors
