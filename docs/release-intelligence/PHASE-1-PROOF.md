@@ -49,7 +49,7 @@ Compatibility         APC-1
 
 The canonical fixture definitions are exercised in `scripts/test_ari_query.py` and `scripts/test_ari_rbom.py`. The two component versions remain independent; neither is rewritten to version 26.
 
-Every digest in this document is reproducible from the current tree rather than carried forward on assertion. The two manifests are `SENTINEL` and `WORKS` in `scripts/test_ari_rbom.py`; the edge is `EDGE` in `scripts/test_ari_query.py`, whose evidence kind is `integration-test` — the same-shaped edge in `scripts/test_ari_registry.py` carries kind `test-receipt` and hashes apart, so naming the fixture home is load-bearing; and the two passports are that module's `passport(SENTINEL, "verifier")` and `passport(WORKS, "execution")`. Building the registry from those five documents yields the registry digest below, and building the RBOM from both exact selectors yields the RBOM digest below. Both were recomputed and matched at code head `a4a7b0a`.
+Every digest in this document is reproducible from the current tree rather than carried forward on assertion. The two manifests are `SENTINEL` and `WORKS` in `scripts/test_ari_rbom.py`; the edge is `EDGE` in `scripts/test_ari_query.py`, whose evidence kind is `integration-test` — the same-shaped edge in `scripts/test_ari_registry.py` carries kind `test-receipt` and hashes apart, so naming the fixture home is load-bearing; and the two passports are that module's `passport(SENTINEL, "verifier")` and `passport(WORKS, "execution")`. Building the registry from those five documents yields the registry digest below, and building the RBOM from both exact selectors yields the RBOM digest below. Both were recomputed and matched again at code head `f5f45ed` (the wave-6 validator hardening changes no document content, so both digests are byte-identical to the `a4a7b0a` pair): registry `sha256:69b46e2f…`, RBOM `sha256:54b9925c…`, verification state `VERIFIED`, passport count 2, five entries / two components / one edge / two passports.
 
 ## Deterministic Release Registry proof
 
@@ -86,7 +86,7 @@ release train
 APC profile set
 ```
 
-A positive Passport also refuses non-positive profile states such as `FAIL`, `UNKNOWN`, or `STALE`. The `release-passport/1.0` schema permits only `PASS` or `N/A` profile values, requires a non-empty profile map, and — since the wave-5 hardening (thread 6kDaNC) — demands at least one `PASS` among the eight APC-1 profile keys through an eight-branch `anyOf`; Registry enforces the same rule at ingestion (`_validate_positive_passport`), so a contract-only consumer and the reference implementation now refuse an all-`N/A` passport identically.
+A positive Passport also refuses non-positive profile states such as `FAIL`, `UNKNOWN`, or `STALE`. The `release-passport/1.0` schema permits only `PASS` or `N/A` profile values, requires a non-empty profile map, and — since the wave-5 hardening (thread 6kDaNC) — demands at least one `PASS` among the eight APC-1 profile keys through an eight-branch `anyOf`; the public `validate_passport()` enforces the same positive-profile vocabulary and at-least-one-PASS rule (wave 6, thread 6kEBGI), and Registry enforces it again at ingestion (`_validate_positive_passport`), so a contract-only consumer, a standalone consumer of the public validator, and the ingestion boundary all refuse a non-positive or all-`N/A` passport identically.
 
 ## Exact compatibility query proof
 
@@ -154,19 +154,19 @@ The RBOM suite separately proves `PARTIAL` for one matching passport, `UNVERIFIE
 Authoritative GitHub Actions verification for the final code/schema head of this slice, observed on the PR branch head before the proof-document refresh on top of it:
 
 ```text
-code head             a4a7b0a314da849f3070677bae4280262876b2c9
-PR merge ref          0c238ad61f77332821040b7eba36c1d4a8d5d877
-Release Intelligence  PASS (run 35471498815)
-Platform Topology Truth PASS (run 35471498872)
-Repository Agent Guides PASS (run 35471498775)
-ARI tests             167 passed, 0 failed
+code head             f5f45edcc5dcd605e3f140002ca9c4c07c1271a7
+PR merge ref          0a0b803c45718899ed0fce37b3ae81f7f394d4c4
+Release Intelligence  PASS (run 35475045233)
+Platform Topology Truth PASS (run 35475045229)
+Repository Agent Guides PASS (run 35475045223)
+ARI tests             171 passed, 0 failed
 Governance regression 67 passed, 0 failed
-Python total          234 passed, 0 failed
+Python total          238 passed, 0 failed
 ARI JSON syntax gates 6 passed
 Brand assets          PASS (CI governance regression step; see note)
 ```
 
-The ARI count rose from 99 at head `5156ca18…` to 105 at `9e8f3e61…` (the six regression tests for the selector-grammar and unhashable-state fixes), to 112 at `d6f861ce…` (the six-test registry contract interop class plus the structural kind-binding test), to 130 at `7826fbd…` (the ten-test shared evaluator suite `test_ari_schema_check.py`, the registry evaluator-loudness test, the six-test RBOM contract interop class, and the RBOM structural state-binding test), and to 167 here across four hardening waves measured on throwaway worktrees at each head: 145 at `ab30222…` (wave 1 — evaluator under-coverage, the RBOM UNVERIFIED row hole, and the machine-checked `ContractSurfaceTest`), 150 at `2058217…` (wave 2 — the RBOM PARTIAL existential and the passport `propertyNames` APC-1 pin), 153 at `2c90e5f…` (wave 3 — the passport `subject.component` IDENTIFIER_RE pin), 162 at `37c9bbf…` (wave 4 — the version grammar, the evaluator's `re.fullmatch` switch, the anchored-pattern surface invariant, and the selector/registry tie tests), and 167 here (wave 5 — the RBOM digest pair-binding, the passport at-least-one-PASS `anyOf`, and the engine-portable version grammar, each pinned by a structural and an interop test). Governance regression stayed at 67 because the new tests live in `test_ari_*.py`, which the ARI step discovers and the governance step enumerates explicitly. The standalone `Brand Assets` workflow is path-filtered to brand-owned files and did not run for this change; its validator's seven unit tests are inside the 67 that ran and passed in CI on this head, and a local read-only run of `scripts/verify_brand_assets.py` against the current assets exits 0 (`OK: Aftergraph/after-graph-governance satisfies aftergraph.brand-assets/2.0`).
+The ARI count rose from 99 at head `5156ca18…` to 105 at `9e8f3e61…` (the six regression tests for the selector-grammar and unhashable-state fixes), to 112 at `d6f861ce…` (the six-test registry contract interop class plus the structural kind-binding test), to 130 at `7826fbd…` (the ten-test shared evaluator suite `test_ari_schema_check.py`, the registry evaluator-loudness test, the six-test RBOM contract interop class, and the RBOM structural state-binding test), and to 171 here across six hardening waves measured on throwaway worktrees at each head: 145 at `ab30222…` (wave 1 — evaluator under-coverage, the RBOM UNVERIFIED row hole, and the machine-checked `ContractSurfaceTest`), 150 at `2058217…` (wave 2 — the RBOM PARTIAL existential and the passport `propertyNames` APC-1 pin), 153 at `2c90e5f…` (wave 3 — the passport `subject.component` IDENTIFIER_RE pin), 162 at `37c9bbf…` (wave 4 — the version grammar, the evaluator's `re.fullmatch` switch, the anchored-pattern surface invariant, and the selector/registry tie tests), 167 at `a4a7b0a…` (wave 5 — the RBOM digest pair-binding, the passport at-least-one-PASS `anyOf`, and the engine-portable version grammar, each pinned by a structural and an interop test), and 171 here (wave 6 — the public passport validator enforcing the positive-profile vocabulary and the at-least-one-PASS rule, pinned by three `test_ari_model` regressions and one `test_ari_schema_check` interop test). Governance regression stayed at 67 because the new tests live in `test_ari_*.py`, which the ARI step discovers and the governance step enumerates explicitly. The standalone `Brand Assets` workflow is path-filtered to brand-owned files and did not run for this change; its validator's seven unit tests are inside the 67 that ran and passed in CI on this head, and a local read-only run of `scripts/verify_brand_assets.py` against the current assets exits 0 (`OK: Aftergraph/after-graph-governance satisfies aftergraph.brand-assets/2.0`).
 
 The six syntax gates cover:
 
@@ -197,7 +197,7 @@ The Phase 1 implementation proves, within the synthetic evidence boundary, that 
 2. fail closed on malformed source documents, digest mismatch, divergent duplicate exact identities, and conflicting Passport/Manifest identity;
 3. preserve Registry snapshot integrity across source, constructor, accessor, and public-state mutation boundaries;
 4. bind positive Passports to matching manifest digest, repository, release train, and APC profile set when the exact Manifest is present;
-5. refuse positive Passports containing non-positive profile states and positive Passports carrying no `PASS` profile, at both Registry ingestion and the machine schema;
+5. refuse positive Passports containing non-positive profile states and positive Passports carrying no `PASS` profile, at the public validator, Registry ingestion, and the machine schema;
 6. query exact compatibility without hidden `latest` resolution and without duplicating graph state semantics;
 7. preserve PASS, FAIL, UNKNOWN, STALE, and N/A distinctions;
 8. build an exact RBOM for independently versioned components;
