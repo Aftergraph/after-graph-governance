@@ -12,6 +12,12 @@ on:
       - 'scripts/ari_*.py'
       - 'scripts/test_ari_*.py'
       - '.github/workflows/release-intelligence.yml'
+      # AriDiscoverabilityTest gates the cross-repo register and the two frozen
+      # ARI design documents; without these paths a PR editing only them skips
+      # the very suite that protects them.
+      - 'docs/cross-repo-contracts.md'
+      - 'docs/superpowers/specs/2026-09-07-aftergraph-release-intelligence-plane-design.md'
+      - 'docs/superpowers/specs/2026-09-07-aftergraph-release-lifecycle-compatibility-standard-design.md'
   push:
     branches: [main]
     paths:
@@ -24,6 +30,12 @@ on:
       - 'scripts/ari_*.py'
       - 'scripts/test_ari_*.py'
       - '.github/workflows/release-intelligence.yml'
+      # AriDiscoverabilityTest gates the cross-repo register and the two frozen
+      # ARI design documents; without these paths a PR editing only them skips
+      # the very suite that protects them.
+      - 'docs/cross-repo-contracts.md'
+      - 'docs/superpowers/specs/2026-09-07-aftergraph-release-intelligence-plane-design.md'
+      - 'docs/superpowers/specs/2026-09-07-aftergraph-release-lifecycle-compatibility-standard-design.md'
 
 permissions:
   contents: read

@@ -2,6 +2,8 @@ import json
 import unittest
 from pathlib import Path
 
+from scripts.ari_model import IDENTIFIER_RE
+
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACTS = ROOT / "docs" / "contracts"
 ARI = ROOT / "docs" / "release-intelligence"
@@ -74,6 +76,43 @@ class AriContractsTest(unittest.TestCase):
             component["properties"]["compatibility"]["properties"]["profiles"]["items"]["enum"],
             frozen,
         )
+
+    def test_passport_subject_component_shares_the_identifier_grammar(self):
+        # validate_passport() runs subject.component through _validate_identifier
+        # (scripts/ari_model.py:318), so the published contract has to demand the
+        # same grammar or a contract-valid passport is refused at Registry
+        # ingestion (thread 6kC1X6). The component contract has always pinned
+        # identity.component to IDENTIFIER_RE; the passport contract was the weak
+        # sibling. Comparing against IDENTIFIER_RE.pattern rather than a literal
+        # is what keeps the three surfaces from drifting apart silently.
+        passport = self.load(CONTRACTS / "release-passport" / "1.0.json")
+        subject_component = passport["properties"]["subject"]["properties"]["component"]
+        component = self.load(CONTRACTS / "aftergraph-component" / "1.0.json")
+        identity_component = component["properties"]["identity"]["properties"]["component"]
+        self.assertEqual(subject_component["pattern"], IDENTIFIER_RE.pattern)
+        self.assertEqual(identity_component["pattern"], IDENTIFIER_RE.pattern)
+
+    def test_ari_workflow_path_filters_cover_every_discoverability_gated_document(self):
+        # AriDiscoverabilityTest reads the cross-repo register and two frozen ARI
+        # design specs. A PR touching only those files matched neither trigger, so
+        # the suite protecting them was skipped (thread 6kC1X9). Partition the file
+        # on the indented push key -- a bare 'push:' substring also occurs inside
+        # 'pull_request:' -- and demand each gated path in both sections.
+        workflow = (
+            ROOT / ".github" / "workflows" / "release-intelligence.yml"
+        ).read_text(encoding="utf-8")
+        gated = (
+            "docs/cross-repo-contracts.md",
+            "docs/superpowers/specs/2026-09-07-aftergraph-release-intelligence-plane-design.md",
+            "docs/superpowers/specs/2026-09-07-aftergraph-release-lifecycle-compatibility-standard-design.md",
+        )
+        pull_request_section, _, push_section = workflow.partition("\n  push:")
+        self.assertIn("  pull_request:", pull_request_section)
+        self.assertTrue(push_section.strip(), "the push trigger section is empty")
+        for path in gated:
+            with self.subTest(path=path):
+                self.assertIn(f"'{path}'", pull_request_section)
+                self.assertIn(f"'{path}'", push_section)
 
     def test_release_registry_contract_is_derived_and_digest_bound(self):
         schema = self.load(CONTRACTS / "release-registry" / "1.0.json")

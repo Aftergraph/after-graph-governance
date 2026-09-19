@@ -387,6 +387,23 @@ class DocumentContractInteropTest(unittest.TestCase):
             any("FAIL" in error and "(name)" not in error for error in errors), errors
         )
 
+    def test_passport_subject_component_is_pinned_to_the_identifier_grammar(self):
+        # Document-level mirror of the structural pattern-tie test: a passport
+        # whose component name leaves the APC-1 identifier grammar is now refused
+        # by the published contract, not only by validate_passport()
+        # (thread 6kC1X6). Before the pin, every one of these validated against
+        # release-passport/1.0 while Registry ingestion rejected it.
+        for bad in ("Bad_Name", "UPPERCASE", "-leading-hyphen", "with space", "under_score"):
+            document = copy.deepcopy(PASSPORT)
+            document["subject"]["component"] = bad
+            with self.subTest(component=bad):
+                self.assertTrue(validate(document, self.contract("release-passport/1.0")))
+        # Control: the reference fixture still conforms, so the pin closes the
+        # hole without closing truth.
+        self.assertEqual(
+            validate(copy.deepcopy(PASSPORT), self.contract("release-passport/1.0")), []
+        )
+
     def test_edge_evidence_still_bounds_its_own_contract(self):
         document = copy.deepcopy(EDGE)
         document["evidence"] = []
