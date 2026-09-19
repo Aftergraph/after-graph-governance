@@ -149,7 +149,6 @@ class AriSchemaCheckTest(unittest.TestCase):
             "else",
             "allOf",
             "format",
-            "contains",
             "maxProperties",
             "patternProperties",
             "unevaluatedProperties",
@@ -249,6 +248,33 @@ class AriSchemaCheckTest(unittest.TestCase):
         self.assertEqual(validate({"a": 1}, {"anyOf": [{"required": ["a"]}, {"required": ["b"]}]}), [])
         self.assertTrue(validate({"c": 1}, {"anyOf": [{"required": ["a"]}, {"required": ["b"]}]}))
 
+    def test_contains_is_existential_where_items_is_universal(self):
+        # rbom/0.1 leans on this asymmetry: PARTIAL has to say "at least one row
+        # carries the paired digests", which `items` cannot express (it would
+        # demand it of every row, i.e. VERIFIED) and a oneOf branch cannot
+        # retract from the base $defs/component.
+        schema = {"type": "array", "contains": {"required": ["a", "b"]}}
+        self.assertEqual(validate([{"b": 1}, {"a": 1, "b": 2}], schema), [])
+        self.assertTrue(validate([{"a": 1}], schema))
+        self.assertTrue(validate([{"c": 1}], schema))
+        self.assertTrue(validate([], schema))
+        # counted existence stays deliberately unimplemented
+        with self.assertRaises(UnsupportedKeyword):
+            validate([1], {"contains": {"type": "integer"}, "minContains": 2})
+
+    def test_property_names_bounds_keys_while_additional_properties_bounds_values(self):
+        # Both halves are load-bearing and neither substitutes for the other:
+        # propertyNames alone would let {"verifier": "FAIL"} through, and
+        # additionalProperties-as-schema alone would let {"future": "PASS"} in.
+        schema = {
+            "type": "object",
+            "propertyNames": {"enum": ["verifier", "execution"]},
+            "additionalProperties": {"enum": ["PASS", "N/A"]},
+        }
+        self.assertEqual(validate({"verifier": "PASS"}, schema), [])
+        self.assertTrue(validate({"future": "PASS"}, schema))
+        self.assertTrue(validate({"verifier": "FAIL"}, schema))
+
 
 class ContractSurfaceTest(unittest.TestCase):
     """The evaluator's coverage claim is a machine-checked invariant, not prose.
@@ -339,6 +365,27 @@ class DocumentContractInteropTest(unittest.TestCase):
         errors = validate(document, self.contract("release-passport/1.0"))
         self.assertTrue(errors)
         self.assertTrue(any("minProperties" in error or "properties" in error for error in errors), errors)
+
+    def test_property_names_restricts_passport_profile_keys_to_apc_1(self):
+        # validate_passport() already refuses a profile outside APC_PROFILES
+        # (scripts/ari_model.py:344), so a contract-only consumer was the weaker
+        # of the two and accepted a passport that Registry ingestion rejects.
+        document = copy.deepcopy(PASSPORT)
+        document["conformance"]["profiles"] = {"future-profile": "PASS"}
+        errors = validate(document, self.contract("release-passport/1.0"))
+        self.assertTrue(errors)
+        self.assertTrue(any("future-profile" in error for error in errors), errors)
+
+        # Control: the value pin still has to work on its own, so the key pin did
+        # not mask it — an in-vocabulary key with a non-positive state is refused
+        # by additionalProperties and not by propertyNames.
+        document = copy.deepcopy(PASSPORT)
+        document["conformance"]["profiles"] = {"verifier": "FAIL"}
+        errors = validate(document, self.contract("release-passport/1.0"))
+        self.assertTrue(errors)
+        self.assertTrue(
+            any("FAIL" in error and "(name)" not in error for error in errors), errors
+        )
 
     def test_edge_evidence_still_bounds_its_own_contract(self):
         document = copy.deepcopy(EDGE)

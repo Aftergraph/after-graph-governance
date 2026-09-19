@@ -277,6 +277,32 @@ class AriRbomContractInteropTest(unittest.TestCase):
             self.assertNotIn("passport_digest", row)
         self.assertEqual(self.errors(honest), [])
 
+    def test_contract_rejects_partial_with_no_evidence_row(self):
+        # The mirror of the UNVERIFIED row hole: PARTIAL bound passport_count to
+        # >=1 but constrained only the verification object, so a schema-only
+        # consumer accepted `PARTIAL / count 1` with no row carrying a digest —
+        # a coverage claim with nothing behind it. build_rbom can only reach
+        # PARTIAL by matching at least one passport and writes both digests on
+        # that component, so the contract was permitting an unproducible claim.
+        rbom = build_rbom(_registry(works_passport=False), [SENTINEL_SELECTOR, WORKS_SELECTOR])
+        self.assertEqual(rbom["verification"]["state"], "PARTIAL")
+        self.assertEqual(rbom["verification"]["passport_count"], 1)
+        for row in rbom["components"]:
+            row.pop("artifact_digest", None)
+            row.pop("passport_digest", None)
+        self.assertTrue(self.errors(rbom))
+
+        # ...and one digest alone is not evidence either: the pair is what
+        # build_rbom writes, so the existential demands both.
+        half = build_rbom(_registry(works_passport=False), [SENTINEL_SELECTOR, WORKS_SELECTOR])
+        for index, row in enumerate(half["components"]):
+            if index:
+                row.pop("artifact_digest", None)
+                row.pop("passport_digest", None)
+        row = half["components"][0]
+        row.pop("passport_digest")
+        self.assertTrue(self.errors(half))
+
     def test_contract_bounds_row_evidence_under_unverified_only(self):
         # Which rows carry digests under PARTIAL stays owned by the reference
         # builder, so moving the digests to the other row must still validate:

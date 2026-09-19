@@ -35,6 +35,9 @@
         "profiles": {
           "type": "object",
           "minProperties": 1,
+          "propertyNames": {
+            "enum": ["authority", "service", "runtime", "execution", "verifier", "product", "model", "research"]
+          },
           "additionalProperties": {"enum": ["PASS", "N/A"]}
         },
         "evidence": {"type": "array", "items": {"type": "string", "minLength": 1}}

@@ -57,6 +57,24 @@ class AriContractsTest(unittest.TestCase):
         self.assertEqual(profiles.get("minProperties"), 1)
         self.assertEqual(profiles["additionalProperties"]["enum"], ["PASS", "N/A"])
 
+    def test_passport_profile_keys_are_pinned_to_the_frozen_apc_1_vocabulary(self):
+        # Three surfaces name the APC-1 profile set: apc-1.json freezes it, the
+        # component contract pins it as an array enum, and the passport contract
+        # has to pin it as object key names. Asserting all three against the
+        # frozen list is what stops them drifting apart silently.
+        apc = self.load(ARI / "apc-1.json")
+        frozen = apc["profiles"]
+
+        passport = self.load(CONTRACTS / "release-passport" / "1.0.json")
+        profiles = passport["properties"]["conformance"]["properties"]["profiles"]
+        self.assertEqual(profiles["propertyNames"]["enum"], frozen)
+
+        component = self.load(CONTRACTS / "aftergraph-component" / "1.0.json")
+        self.assertEqual(
+            component["properties"]["compatibility"]["properties"]["profiles"]["items"]["enum"],
+            frozen,
+        )
+
     def test_release_registry_contract_is_derived_and_digest_bound(self):
         schema = self.load(CONTRACTS / "release-registry" / "1.0.json")
         self.assertEqual(schema["properties"]["schema"]["const"], "release-registry/1.0")
@@ -124,7 +142,15 @@ class AriContractsTest(unittest.TestCase):
                 ]
             },
         )
-        self.assertNotIn("components", by_state["PARTIAL"]["properties"])
+        # PARTIAL is existential, not universal: at least one row must carry the
+        # paired digests, while which rows do stays owned by the reference
+        # builder. `contains` says that; `items` would collapse PARTIAL into
+        # VERIFIED.
+        self.assertEqual(
+            by_state["PARTIAL"]["properties"]["components"]["contains"],
+            {"required": ["artifact_digest", "passport_digest"]},
+        )
+        self.assertNotIn("items", by_state["PARTIAL"]["properties"]["components"])
         self.assertEqual(schema["properties"]["platform"]["properties"]["generation"]["const"], 26)
         self.assertEqual(schema["properties"]["platform"]["properties"]["compatibility"]["const"], "APC-1")
 

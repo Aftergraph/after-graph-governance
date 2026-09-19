@@ -55,6 +55,7 @@ SUPPORTED_KEYWORDS = frozenset(
         "additionalProperties",
         "anyOf",
         "const",
+        "contains",
         "enum",
         "items",
         "maxItems",
@@ -215,6 +216,15 @@ def validate(instance: Any, schema: Any, root: Any = None) -> list[str]:
                 errors.extend(
                     f"items[{index}]: {e}" for e in validate(item, schema["items"], root)
                 )
+        # ``contains`` is the existential counterpart of ``items``: rbom/0.1 uses
+        # it to require that at least one component row carries the paired
+        # passport digests under PARTIAL, which ``items`` (universal) cannot say
+        # and a oneOf branch cannot retract. minContains/maxContains stay
+        # unimplemented on purpose — no published contract needs a counted
+        # existence, and the loud guard keeps that from silently widening later.
+        if "contains" in schema:
+            if not any(not validate(item, schema["contains"], root) for item in instance):
+                errors.append("contains: no item validates against the contains subschema")
 
     elif isinstance(instance, str):
         if "minLength" in schema and len(instance) < schema["minLength"]:
