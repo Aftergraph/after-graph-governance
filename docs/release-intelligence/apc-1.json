@@ -1,0 +1,75 @@
+{
+  "schema": "aftergraph.apc/1",
+  "level": "APC-1",
+  "public_generation": 26,
+  "profiles": [
+    "authority",
+    "service",
+    "runtime",
+    "execution",
+    "verifier",
+    "product",
+    "model",
+    "research"
+  ],
+  "lifecycle": [
+    "stable",
+    "preview",
+    "experimental",
+    "research",
+    "legacy",
+    "deprecated",
+    "retired",
+    "ephemeral"
+  ],
+  "evidence_levels": {
+    "CE0": "declared",
+    "CE1": "schema-compatible",
+    "CE2": "contract-tested",
+    "CE3": "integration-verified",
+    "CE4": "failure-or-upgrade-tested",
+    "CE5": "production-evidenced"
+  },
+  "profile_requirements": {
+    "verifier": {
+      "minimum_edge_evidence": "CE2",
+      "required_contracts": ["correlation"],
+      "minimum_required_edges": 1
+    },
+    "execution": {
+      "minimum_edge_evidence": "CE2",
+      "required_contracts": ["correlation"],
+      "minimum_required_edges": 1
+    },
+    "service": {
+      "minimum_edge_evidence": "CE1",
+      "required_contracts": [],
+      "minimum_required_edges": 0
+    },
+    "authority": {
+      "minimum_edge_evidence": "CE1",
+      "required_contracts": [],
+      "minimum_required_edges": 0
+    },
+    "product": {
+      "minimum_edge_evidence": "CE1",
+      "required_contracts": [],
+      "minimum_required_edges": 0
+    },
+    "model": {
+      "minimum_edge_evidence": "CE1",
+      "required_contracts": [],
+      "minimum_required_edges": 0
+    },
+    "research": {
+      "minimum_edge_evidence": "CE0",
+      "required_contracts": [],
+      "minimum_required_edges": 0
+    },
+    "runtime": {
+      "minimum_edge_evidence": "CE2",
+      "required_contracts": ["correlation"],
+      "minimum_required_edges": 1
+    }
+  }
+}

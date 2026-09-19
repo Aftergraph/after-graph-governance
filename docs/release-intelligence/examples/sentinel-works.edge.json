@@ -1,0 +1,19 @@
+{
+  "schema": "compatibility-edge/1.0",
+  "from": {
+    "component": "sentinel-engine",
+    "version": "1.4.0",
+    "commit": "1111111111111111111111111111111111111111"
+  },
+  "to": {
+    "component": "works",
+    "version": "0.5.1",
+    "commit": "2222222222222222222222222222222222222222"
+  },
+  "relation": "tested-with",
+  "state": "pass",
+  "evidence_level": "CE3",
+  "evidence": [
+    {"kind": "test-receipt", "ref": "sha256:3333333333333333333333333333333333333333333333333333333333333333"}
+  ]
+}

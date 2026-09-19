@@ -15,6 +15,21 @@
 
 **Brand status:** Aftergraph / ABDE Intelligence naming remains provisional and has not completed trademark clearance. Repository/contract boundaries are technical governance and do not depend on final brand naming.
 
+## Aftergraph Release Intelligence
+
+Aftergraph Release Intelligence (ARI) is the Governance-owned executable compatibility layer for ARS/1 and APC-1. It compiles exact component identity, compatibility edges and evidence into deterministic `PASS / FAIL / UNKNOWN / STALE / N/A` results. It does not grant runtime authority, replace native conformance suites, or turn repository membership into a compatibility claim.
+
+Canonical design and executable entry points:
+
+- [Aftergraph Release Standard / APC design](docs/superpowers/specs/2026-09-07-aftergraph-release-lifecycle-compatibility-standard-design.md)
+- [Aftergraph Release Intelligence Plane design](docs/superpowers/specs/2026-09-07-aftergraph-release-intelligence-plane-design.md)
+- [APC-1 executable registry](docs/release-intelligence/apc-1.json)
+- [aftergraph-component/1.0](docs/contracts/aftergraph-component/1.0.json)
+- [compatibility-edge/1.0](docs/contracts/compatibility-edge/1.0.json)
+- [release-passport/1.0](docs/contracts/release-passport/1.0.json)
+
+A Release Passport is emitted only from exact-subject passing conformance and remains evidence-bounded to the cited component, source commit, manifest and artifact.
+
 ## Platform model
 
 Aftergraph is a polyrepo platform. Repositories remain independently versioned and independently accountable for their runtime, conformance and scientific claims.
@@ -133,7 +148,7 @@ The normative register is maintained in [`docs/cross-repo-contracts.md`](docs/cr
 
 Current registered families include:
 
-`cpi/1.0`, `rab/1.0`, `identity/1.0`, `policy.token/1.0`, `secret.ref/1.0`, `shell.contracts/1.0`, `link.wire/1.0`, `pairing/1.0`, `brain.ns/1.0`, `release.rings/1.0`, `evidence.schema/1.1`, `kernel.budget/1.0`, `kernel.lifecycle/1.0`, `mission-state/1.0`, `org-state/1.0`.
+`cpi/1.0`, `rab/1.0`, `identity/1.0`, `policy.token/1.0`, `secret.ref/1.0`, `shell.contracts/1.0`, `link.wire/1.0`, `pairing/1.0`, `brain.ns/1.0`, `release.rings/1.0`, `evidence.schema/1.1`, `kernel.budget/1.0`, `kernel.lifecycle/1.0`, `mission-state/1.0`, `org-state/1.0`, `aftergraph-component/1.0`, `compatibility-edge/1.0`, `release-passport/1.0`.
 
 A repository may participate in the platform without owning a normative contract. Topology membership and normative ownership are separate concepts.
 
