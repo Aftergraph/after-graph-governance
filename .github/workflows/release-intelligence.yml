@@ -8,6 +8,8 @@ on:
       - 'docs/contracts/release-passport/**'
       - 'docs/contracts/release-registry/**'
       - 'docs/contracts/rbom/**'
+      - 'docs/contracts/external-normative-source/**'
+      - 'docs/release-intelligence/external-sources/**'
       - 'docs/release-intelligence/**'
       - 'scripts/ari_*.py'
       - 'scripts/test_ari_*.py'
@@ -71,3 +73,5 @@ jobs:
           python -m json.tool docs/contracts/release-passport/1.0.json >/dev/null
           python -m json.tool docs/contracts/release-registry/1.0.json >/dev/null
           python -m json.tool docs/contracts/rbom/0.1.json >/dev/null
+          python -m json.tool docs/contracts/external-normative-source/0.1.json >/dev/null
+          for f in docs/release-intelligence/external-sources/*.json; do python -m json.tool "$f" >/dev/null; done
