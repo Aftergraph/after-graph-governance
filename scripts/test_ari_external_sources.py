@@ -52,7 +52,7 @@ class ExternalNormativeSourceProfileTest(unittest.TestCase):
                 self.assertNotIn("execution_authorized", doc)
                 self.assertNotIn("conformance", doc)
                 status = doc["status"]
-                self.assertIs(status["source_declared"], type(True))
+                self.assertIsInstance(status["source_declared"], bool)
                 if status["source_declared"]:
                     self.assertIsInstance(status["raw"], str)
                     self.assertTrue(status["raw"].strip())
