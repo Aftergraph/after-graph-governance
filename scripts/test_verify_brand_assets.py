@@ -23,7 +23,7 @@ class ValidatorTest(unittest.TestCase):
         (self.root / ".github/assets/architecture").mkdir(parents=True)
         (self.root / ".github/assets/screenshots").mkdir(parents=True)
         (self.root / "scripts").mkdir()
-        (self.root / "README.md").write_text("<!-- aftergraph-brand-os:v1.0.0 -->\n")
+        (self.root / "README.md").write_text("<!-- aftergraph-brand-os:v1.1.0 -->\n")
         (self.root / "brand-assets.json").write_text(json.dumps({
             "repo": "test", "required": [
                 ".github/assets/brand/logo.svg",
@@ -81,7 +81,7 @@ class ValidatorTest(unittest.TestCase):
 
     def test_readme_broken_ref_fails(self):
         readme = self.root / "README.md"
-        readme.write_text('<!-- aftergraph-brand-os:v1.0.0 -->\n<img src=".github/assets/github/hero.webp">\n')
+        readme.write_text('<!-- aftergraph-brand-os:v1.1.0 -->\n<img src=".github/assets/github/hero.webp">\n')
         (self.root / ".github/assets/github/hero.webp").unlink()
         r = run_validator(self.root)
         self.assertNotEqual(r.returncode, 0)
