@@ -9,6 +9,7 @@ from pathlib import Path
 from scripts.ari_model import canonical_digest
 from scripts.ari_rbom import RbomError, build_rbom, parse_selector
 from scripts.ari_registry import Registry, build_registry
+from scripts.ari_schema_check import validate
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -177,6 +178,80 @@ class AriRbomTest(unittest.TestCase):
         payload = json.loads(first.stdout)
         self.assertEqual(payload["schema"], "rbom/0.1")
         self.assertEqual(payload["verification"]["state"], "VERIFIED")
+
+
+RBOM_CONTRACT = ROOT / "docs" / "contracts" / "rbom" / "0.1.json"
+
+
+def _registry(*, sentinel_passport=True, works_passport=True):
+    docs = [SENTINEL, WORKS]
+    if sentinel_passport:
+        docs.append(passport(SENTINEL, "verifier"))
+    if works_passport:
+        docs.append(passport(WORKS, "execution"))
+    return Registry(build_registry(docs))
+
+
+class AriRbomContractInteropTest(unittest.TestCase):
+    """The published contract must reject a verification claim with no evidence.
+
+    build_rbom sets VERIFIED only when every selected component matched a
+    Release Passport and attaches both passport-derived digests to each such
+    row, so a VERIFIED RBOM with zero passports is already impossible in
+    Python. A cross-repository consumer validating only rbom/0.1 has to refuse
+    it too, or the contract under-claims exactly the coverage meaning
+    PHASE-1-PROOF.md documents for it.
+    """
+
+    def setUp(self):
+        self.contract = json.loads(RBOM_CONTRACT.read_text(encoding="utf-8"))
+
+    def errors(self, document):
+        return validate(document, self.contract)
+
+    def test_contract_accepts_every_state_build_rbom_emits(self):
+        for state, kwargs in (
+            ("VERIFIED", {}),
+            ("PARTIAL", {"works_passport": False}),
+            ("UNVERIFIED", {"sentinel_passport": False, "works_passport": False}),
+        ):
+            with self.subTest(state=state):
+                rbom = build_rbom(_registry(**kwargs), [SENTINEL_SELECTOR, WORKS_SELECTOR])
+                self.assertEqual(rbom["verification"]["state"], state)
+                self.assertEqual(self.errors(rbom), [])
+
+    def test_contract_rejects_verified_with_no_passport_evidence(self):
+        rbom = build_rbom(_registry(), [SENTINEL_SELECTOR, WORKS_SELECTOR])
+        rbom["verification"] = {"state": "VERIFIED", "passport_count": 0, "component_count": 2}
+        for row in rbom["components"]:
+            row.pop("artifact_digest")
+            row.pop("passport_digest")
+        self.assertTrue(self.errors(rbom))
+
+    def test_contract_rejects_verified_row_missing_one_passport_digest(self):
+        rbom = build_rbom(_registry(), [SENTINEL_SELECTOR, WORKS_SELECTOR])
+        rbom["components"][0].pop("passport_digest")
+        self.assertTrue(self.errors(rbom))
+
+    def test_contract_rejects_unverified_claiming_passport_evidence(self):
+        rbom = build_rbom(_registry(), [SENTINEL_SELECTOR, WORKS_SELECTOR])
+        rbom["verification"]["state"] = "UNVERIFIED"
+        self.assertTrue(self.errors(rbom))
+
+    def test_contract_rejects_partial_claiming_zero_passports(self):
+        rbom = build_rbom(_registry(works_passport=False), [SENTINEL_SELECTOR, WORKS_SELECTOR])
+        rbom["verification"]["passport_count"] = 0
+        self.assertTrue(self.errors(rbom))
+
+    def test_contract_bounds_evidence_but_not_the_digest_binding(self):
+        # Well-formed digests bound to nothing still validate: proving each
+        # digest against a real Release Passport stays owned by the reference
+        # builder and the Registry, exactly as the contract description states.
+        rbom = build_rbom(_registry(), [SENTINEL_SELECTOR, WORKS_SELECTOR])
+        for row in rbom["components"]:
+            row["artifact_digest"] = "sha256:" + "f" * 64
+            row["passport_digest"] = "sha256:" + "f" * 64
+        self.assertEqual(self.errors(rbom), [])
 
 
 if __name__ == "__main__":

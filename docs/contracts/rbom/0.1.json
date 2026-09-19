@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://aftergraph.dev/contracts/rbom/0.1.json",
   "title": "Aftergraph Release Bill of Materials 0.1",
-  "description": "Exact release composition derived from ARI registry evidence. Verification state describes matching Release Passport coverage only.",
+  "description": "Exact release composition derived from ARI registry evidence. Verification state describes matching Release Passport coverage only, and each state is bound to the passport evidence it claims: VERIFIED requires every component row to carry both passport-derived digests, and passport_count is bound to the state. The equality passport_count == component_count, the binding of each digest to an actual Release Passport, and which rows carry digests under PARTIAL stay owned by the reference builder.",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema", "platform", "components", "contracts", "verification", "registry_digest"],
@@ -68,5 +68,43 @@
       }
     },
     "registry_digest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"}
-  }
+  },
+  "oneOf": [
+    {
+      "description": "VERIFIED claims passport evidence for every selected component.",
+      "properties": {
+        "verification": {
+          "properties": {
+            "state": {"const": "VERIFIED"},
+            "passport_count": {"type": "integer", "minimum": 1}
+          }
+        },
+        "components": {
+          "items": {"required": ["artifact_digest", "passport_digest"]}
+        }
+      }
+    },
+    {
+      "description": "PARTIAL claims passport evidence for at least one component.",
+      "properties": {
+        "verification": {
+          "properties": {
+            "state": {"const": "PARTIAL"},
+            "passport_count": {"type": "integer", "minimum": 1}
+          }
+        }
+      }
+    },
+    {
+      "description": "UNVERIFIED claims no passport evidence at all.",
+      "properties": {
+        "verification": {
+          "properties": {
+            "state": {"const": "UNVERIFIED"},
+            "passport_count": {"const": 0}
+          }
+        }
+      }
+    }
+  ]
 }

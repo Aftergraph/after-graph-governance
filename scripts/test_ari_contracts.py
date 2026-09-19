@@ -90,6 +90,29 @@ class AriContractsTest(unittest.TestCase):
             schema["properties"]["verification"]["properties"]["state"]["enum"],
             ["VERIFIED", "PARTIAL", "UNVERIFIED"],
         )
+
+    def test_rbom_contract_binds_each_verification_state_to_its_passport_evidence(self):
+        schema = self.load(CONTRACTS / "rbom" / "0.1.json")
+        bound = {
+            branch["properties"]["verification"]["properties"]["state"]["const"]: branch[
+                "properties"
+            ]["verification"]["properties"]["passport_count"]
+            for branch in schema["oneOf"]
+        }
+        self.assertEqual(bound, {
+            "VERIFIED": {"type": "integer", "minimum": 1},
+            "PARTIAL": {"type": "integer", "minimum": 1},
+            "UNVERIFIED": {"const": 0},
+        })
+        verified = next(
+            branch
+            for branch in schema["oneOf"]
+            if branch["properties"]["verification"]["properties"]["state"]["const"] == "VERIFIED"
+        )
+        self.assertEqual(
+            verified["properties"]["components"]["items"]["required"],
+            ["artifact_digest", "passport_digest"],
+        )
         self.assertEqual(schema["properties"]["platform"]["properties"]["generation"]["const"], 26)
         self.assertEqual(schema["properties"]["platform"]["properties"]["compatibility"]["const"], "APC-1")
 
