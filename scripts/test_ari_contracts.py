@@ -217,6 +217,40 @@ class AriContractsTest(unittest.TestCase):
         self.assertEqual(schema["properties"]["platform"]["properties"]["generation"]["const"], 26)
         self.assertEqual(schema["properties"]["platform"]["properties"]["compatibility"]["const"], "APC-1")
 
+    def test_rbom_component_binds_passport_digests_as_a_pair(self):
+        # thread 6kDFMp: every row carries the two passport-derived digests
+        # together or not at all, so no verification state can smuggle a
+        # half-claimed passport. The structural pin names the exact shape.
+        schema = self.load(CONTRACTS / "rbom" / "0.1.json")
+        self.assertEqual(
+            schema["$defs"]["component"]["anyOf"],
+            [
+                {"required": ["artifact_digest", "passport_digest"]},
+                {
+                    "not": {
+                        "anyOf": [
+                            {"required": ["artifact_digest"]},
+                            {"required": ["passport_digest"]},
+                        ]
+                    }
+                },
+            ],
+        )
+
+    def test_passport_contract_requires_at_least_one_pass_profile(self):
+        # thread 6kDaNC: the contract mirrors _validate_positive_passport's
+        # at-least-one-PASS rule across the frozen APC-1 profile vocabulary.
+        schema = self.load(CONTRACTS / "release-passport" / "1.0.json")
+        profiles = schema["properties"]["conformance"]["properties"]["profiles"]
+        apc = self.load(ARI / "apc-1.json")
+        self.assertEqual(
+            {branch["required"][0] for branch in profiles["anyOf"]},
+            set(apc["profiles"]),
+        )
+        for branch in profiles["anyOf"]:
+            name = branch["required"][0]
+            self.assertEqual(branch["properties"][name], {"const": "PASS"})
+
 
 class AriDiscoverabilityTest(unittest.TestCase):
     def test_cross_repo_register_names_all_ari_phase1_contract_families_and_owner(self):

@@ -39,9 +39,18 @@ RELEASE_TRAIN_RE = re.compile(r"^20[0-9]{2}\.(0[1-9]|1[0-2])$")
 IDENTIFIER_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 REPOSITORY_RE = re.compile(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$")
 # A version may carry '#' (the selector splits on its final anchor) or '@', but
-# whitespace or control characters would leave SELECTOR_RE's '.' unable to match
-# it and smuggle fake lines into the line-oriented CLI output (thread 6kC7ar).
-VERSION_RE = re.compile(r"^[^\s\x00-\x1f\x7f]+$")
+# whitespace, a line break or a control character would leave SELECTOR_RE's '.'
+# unable to match it and smuggle fake lines into the line-oriented CLI output
+# (threads 6kC7ar, 6kDaNH). Every exclusion is spelled as an explicit \xNN or
+# \uNNNN escape and no \s/\p shorthand appears, on purpose: Python's \s covers
+# U+0085 and U+001C-U+001F but not U+FEFF, while ECMA-262's covers U+FEFF but not
+# U+0085, so a shorthand would make the published pattern mean different things
+# in different consumers' engines. test_ari_model pins both halves -- no
+# shorthand and an ASCII-only pattern, and an excluded set equal to exactly the
+# separator/control closure.
+VERSION_RE = re.compile(
+    r"^[^\x00-\x20\x7f-\xa0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+$"
+)
 
 
 class ResultState(str, Enum):

@@ -505,6 +505,24 @@ class DocumentContractInteropTest(unittest.TestCase):
         document["release"]["version"] = "1.4.0#rc.1"
         self.assertEqual(validate(document, self.contract("aftergraph-component/1.0")), [])
 
+    def test_contract_requires_at_least_one_pass_profile(self):
+        # thread 6kDaNC: _validate_positive_passport (scripts/ari_registry.py)
+        # refuses a PASS passport whose profiles are all N/A, so a
+        # contract-only consumer was the weaker surface and accepted what
+        # Registry ingestion rejects. The profiles anyOf now demands at least
+        # one PASS among the eight APC-1 keys.
+        document = copy.deepcopy(PASSPORT)
+        document["conformance"]["profiles"] = {"verifier": "N/A"}
+        self.assertTrue(validate(document, self.contract("release-passport/1.0")))
+        document = copy.deepcopy(PASSPORT)
+        document["conformance"]["profiles"] = {"verifier": "N/A", "execution": "N/A"}
+        self.assertTrue(validate(document, self.contract("release-passport/1.0")))
+        # Control: one PASS among N/A values still conforms -- the pin bounds
+        # the claim, it does not demand every profile be exercised.
+        document = copy.deepcopy(PASSPORT)
+        document["conformance"]["profiles"] = {"verifier": "PASS", "execution": "N/A"}
+        self.assertEqual(validate(document, self.contract("release-passport/1.0")), [])
+
     def test_edge_evidence_still_bounds_its_own_contract(self):
         document = copy.deepcopy(EDGE)
         document["evidence"] = []

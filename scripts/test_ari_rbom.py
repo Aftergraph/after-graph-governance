@@ -344,6 +344,28 @@ class AriRbomContractInteropTest(unittest.TestCase):
             row["passport_digest"] = "sha256:" + "f" * 64
         self.assertEqual(self.errors(rbom), [])
 
+    def test_contract_requires_passport_digests_to_occur_as_pairs(self):
+        # thread 6kDFMp: the base row schema let a non-containing row carry a
+        # lone artifact_digest under PARTIAL -- a half-claimed passport that
+        # build_rbom never emits. The $defs anyOf now binds the two digests as
+        # a pair on every row, in every verification state.
+        rbom = build_rbom(_registry(works_passport=False), [SENTINEL_SELECTOR, WORKS_SELECTOR])
+        self.assertEqual(rbom["verification"]["state"], "PARTIAL")
+        half = copy.deepcopy(rbom)
+        for row in half["components"]:
+            if "passport_digest" in row:
+                row.pop("passport_digest")
+        self.assertTrue(self.errors(half))
+        half = copy.deepcopy(rbom)
+        for row in half["components"]:
+            if "artifact_digest" in row:
+                row.pop("artifact_digest")
+        self.assertTrue(self.errors(half))
+        # Control: the paired row and the digest-free row the builder actually
+        # emits still validate, so the pin closes the half-claim without
+        # collapsing PARTIAL into VERIFIED.
+        self.assertEqual(self.errors(rbom), [])
+
 
 if __name__ == "__main__":
     unittest.main()

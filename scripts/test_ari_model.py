@@ -1,6 +1,7 @@
 import unittest
 
 from scripts.ari_model import (
+    VERSION_RE,
     EvidenceLevel,
     ResultState,
     canonical_digest,
@@ -202,6 +203,28 @@ class AriModelTest(unittest.TestCase):
         }
         errors = validate_passport(passport)
         self.assertTrue(any("subject.version must match" in e for e in errors), errors)
+
+    def test_version_grammar_is_engine_portable(self):
+        # thread 6kDaNH: the published pattern is consumed by ECMA-262 engines
+        # as well as Python's, and their \s classes disagree (Python covers
+        # U+0085 and U+001C-U+001F, ECMA covers U+FEFF). The grammar therefore
+        # spells every exclusion as an explicit escape, carries no shorthand,
+        # and its excluded set is pinned to exactly the union of both engines'
+        # whitespace plus the C0/C1/DEL control closure -- printable
+        # non-separator characters stay admitted.
+        pattern = VERSION_RE.pattern
+        self.assertTrue(pattern.isascii(), pattern)
+        for shorthand in (r"\s", r"\S", r"\w", r"\W", r"\d", r"\D", r"\p"):
+            self.assertNotIn(shorthand, pattern)
+        excluded = (
+            set(range(0x00, 0x21))
+            | set(range(0x7F, 0xA1))
+            | {0x1680}
+            | set(range(0x2000, 0x200B))
+            | {0x2028, 0x2029, 0x202F, 0x205F, 0x3000, 0xFEFF}
+        )
+        refused = {code for code in range(0x10000) if VERSION_RE.fullmatch(chr(code)) is None}
+        self.assertEqual(refused, excluded)
 
 
 if __name__ == "__main__":
