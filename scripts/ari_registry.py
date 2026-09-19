@@ -107,11 +107,7 @@ def _edge_endpoint_key(endpoint: dict) -> tuple[str, str, str]:
 
 
 def _edge_claim_key(document: dict) -> tuple:
-    """Identity of one compatibility claim, excluding mutable evidence/state.
-
-    Symmetric relations use a canonical endpoint order so A→B and B→A cannot
-    publish contradictory exact claims as if they were independent records.
-    """
+    """Return exact edge-claim identity, canonicalizing symmetric relations."""
     left = _edge_endpoint_key(document["from"])
     right = _edge_endpoint_key(document["to"])
     relation = document["relation"]
@@ -288,3 +284,40 @@ class Registry:
 
     def edges(self) -> list[dict]:
         return [copy.deepcopy(item.document) for item in self._entries if item.kind == "edge"]
+
+    def passports(self) -> list[dict]:
+        return [copy.deepcopy(item.document) for item in self._entries if item.kind == "passport"]
+
+    def component(self, component: str, version: str, commit: str) -> dict:
+        key = (component, version, commit)
+        matches = [doc for doc in self.components() if _component_key(doc) == key]
+        if not matches:
+            raise RegistryError(f"component not found: {_identity_label(key)}")
+        return matches[0]
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description="Build or inspect an Aftergraph Release Registry")
+    subparsers = parser.add_subparsers(dest="command", required=True)
+    build = subparsers.add_parser("build", help="build a deterministic registry")
+    build.add_argument("--document", action="append", required=True, type=Path)
+    build.add_argument("--format", choices=("json", "pretty"), default="json")
+    args = parser.parse_args(argv)
+
+    try:
+        documents = [load_json(path) for path in args.document]
+        registry = build_registry(documents)
+        Registry(registry)
+    except (OSError, json.JSONDecodeError, ValueError) as exc:
+        print(json.dumps({"schema": "release-registry-error/1", "state": "FAIL", "error": str(exc)}, sort_keys=True))
+        return 2
+
+    if args.format == "pretty":
+        print(json.dumps(registry, indent=2, sort_keys=True))
+    else:
+        print(json.dumps(registry, sort_keys=True, separators=(",", ":")))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
