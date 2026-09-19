@@ -1,12 +1,15 @@
+import copy
 import unittest
 
 from scripts.ari_model import (
+    VERSION_RE,
     EvidenceLevel,
     ResultState,
     canonical_digest,
     evidence_meets,
     validate_component,
     validate_edge,
+    validate_passport,
 )
 
 
@@ -36,6 +39,27 @@ VALID_EDGE = {
     "state": "pass",
     "evidence_level": "CE3",
     "evidence": [{"kind": "test-receipt", "ref": "sha256:" + "3" * 64}],
+}
+
+VALID_PASSPORT = {
+    "schema": "release-passport/1.0",
+    "subject": {"component": "sentinel-engine", "version": "1.4.0"},
+    "platform": {
+        "generation": 26,
+        "release_train": "2026.09",
+        "compatibility": "APC-1",
+    },
+    "conformance": {
+        "result": "PASS",
+        "profiles": {"verifier": "PASS"},
+        "evidence": [],
+    },
+    "provenance": {
+        "repository": "Aftergraph/sentinel",
+        "commit": "1" * 40,
+        "artifact_digest": "sha256:" + "a" * 64,
+        "manifest_digest": "sha256:" + "b" * 64,
+    },
 }
 
 
@@ -92,6 +116,177 @@ class AriModelTest(unittest.TestCase):
 
     def test_valid_edge_has_no_errors(self):
         self.assertEqual(validate_edge(VALID_EDGE), [])
+
+    def test_component_rejects_unhashable_lifecycle_and_profile(self):
+        doc = {
+            **VALID_COMPONENT,
+            "release": {**VALID_COMPONENT["release"], "lifecycle": ["stable"]},
+            "compatibility": {**VALID_COMPONENT["compatibility"], "profiles": [{"verifier": True}]},
+        }
+        errors = validate_component(doc)
+        self.assertTrue(any(e.startswith("unsupported lifecycle:") for e in errors), errors)
+        self.assertTrue(any(e.startswith("unsupported APC-1 profile:") for e in errors), errors)
+
+    def test_edge_rejects_unhashable_relation_and_state(self):
+        doc = {**VALID_EDGE, "relation": {"requires": True}, "state": ["pass"]}
+        errors = validate_edge(doc)
+        self.assertTrue(any(e.startswith("unsupported edge relation:") for e in errors), errors)
+        self.assertTrue(any(e.startswith("unsupported edge state:") for e in errors), errors)
+
+    def test_passport_rejects_unhashable_conformance_state(self):
+        doc = {
+            "schema": "release-passport/1.0",
+            "subject": {"component": "sentinel-engine", "version": "1.4.0"},
+            "platform": {
+                "generation": 26,
+                "release_train": "2026.09",
+                "compatibility": "APC-1",
+            },
+            "conformance": {
+                "result": "PASS",
+                "profiles": {"verifier": {"PASS": True}},
+                "evidence": [],
+            },
+            "provenance": {
+                "repository": "Aftergraph/sentinel",
+                "commit": "1" * 40,
+                "artifact_digest": "sha256:" + "a" * 64,
+                "manifest_digest": "sha256:" + "b" * 64,
+            },
+        }
+        errors = validate_passport(doc)
+        self.assertTrue(
+            any(e.startswith("unsupported conformance state for verifier:") for e in errors),
+            errors,
+        )
+
+    def test_component_version_rejects_whitespace_and_control_characters(self):
+        # thread 6kC7ar: SELECTOR_RE addresses a release through '.', which
+        # cannot match a newline, and the CLI prints the version inline, so a
+        # whitespace- or control-bearing version is unaddressable and forges
+        # extra output lines. The grammar forbids them -- while '#' and '@'
+        # stay legal, because the selector splits on its final anchor.
+        for bad in ("1.4.0\n", "1.4.0 ", "1.4\t0", "1.4\r0", "1.4.0\x00", "1.4.0\x7f"):
+            doc = {
+                **VALID_COMPONENT,
+                "release": {**VALID_COMPONENT["release"], "version": bad},
+            }
+            errors = validate_component(doc)
+            self.assertTrue(
+                any(e.startswith("release.version must match") for e in errors),
+                (bad, errors),
+            )
+        for good in ("1.4.0#rc.1", "1.4.0@beta", "1.4.0:rc+1", "26.9.0-rc.1"):
+            doc = {
+                **VALID_COMPONENT,
+                "release": {**VALID_COMPONENT["release"], "version": good},
+            }
+            self.assertEqual(validate_component(doc), [], good)
+
+    def test_required_edge_target_version_shares_the_grammar(self):
+        target = {"component": "works", "version": "0.5.1\n", "commit": "2" * 40}
+        doc = {
+            **VALID_COMPONENT,
+            "compatibility": {
+                **VALID_COMPONENT["compatibility"],
+                "requires_edges": [target],
+            },
+        }
+        errors = validate_component(doc)
+        self.assertTrue(
+            any("compatibility.requires_edges[0].version must match" in e for e in errors),
+            errors,
+        )
+
+    def test_edge_endpoint_and_passport_subject_versions_share_the_grammar(self):
+        edge = {**VALID_EDGE, "to": {**VALID_EDGE["to"], "version": "0.5.1 "}}
+        errors = validate_edge(edge)
+        self.assertTrue(any("to.version must match" in e for e in errors), errors)
+
+        passport = {
+            "schema": "release-passport/1.0",
+            "subject": {"component": "sentinel-engine", "version": "1.4.0\n"},
+            "platform": {
+                "generation": 26,
+                "release_train": "2026.09",
+                "compatibility": "APC-1",
+            },
+            "conformance": {
+                "result": "PASS",
+                "profiles": {"verifier": "PASS"},
+                "evidence": [],
+            },
+            "provenance": {
+                "repository": "Aftergraph/sentinel",
+                "commit": "1" * 40,
+                "artifact_digest": "sha256:" + "a" * 64,
+                "manifest_digest": "sha256:" + "b" * 64,
+            },
+        }
+        errors = validate_passport(passport)
+        self.assertTrue(any("subject.version must match" in e for e in errors), errors)
+
+    def test_version_grammar_is_engine_portable(self):
+        # thread 6kDaNH: the published pattern is consumed by ECMA-262 engines
+        # as well as Python's, and their \s classes disagree (Python covers
+        # U+0085 and U+001C-U+001F, ECMA covers U+FEFF). The grammar therefore
+        # spells every exclusion as an explicit escape, carries no shorthand,
+        # and its excluded set is pinned to exactly the union of both engines'
+        # whitespace plus the C0/C1/DEL control closure -- printable
+        # non-separator characters stay admitted.
+        pattern = VERSION_RE.pattern
+        self.assertTrue(pattern.isascii(), pattern)
+        for shorthand in (r"\s", r"\S", r"\w", r"\W", r"\d", r"\D", r"\p"):
+            self.assertNotIn(shorthand, pattern)
+        excluded = (
+            set(range(0x00, 0x21))
+            | set(range(0x7F, 0xA1))
+            | {0x1680}
+            | set(range(0x2000, 0x200B))
+            | {0x2028, 0x2029, 0x202F, 0x205F, 0x3000, 0xFEFF}
+        )
+        refused = {code for code in range(0x10000) if VERSION_RE.fullmatch(chr(code)) is None}
+        self.assertEqual(refused, excluded)
+
+    def test_passport_rejects_non_positive_profile_states(self):
+        # thread 6kEBGI: release-passport/1.0 pins profile values to PASS / N/A,
+        # but validate_passport() admitted every ResultState, so a standalone
+        # consumer accepted a PASS passport carrying a FAIL / UNKNOWN / STALE
+        # profile that both a schema-only consumer and Registry ingestion refuse.
+        for bad in ("FAIL", "UNKNOWN", "STALE"):
+            document = copy.deepcopy(VALID_PASSPORT)
+            document["conformance"]["profiles"] = {"verifier": bad}
+            with self.subTest(state=bad):
+                errors = validate_passport(document)
+                self.assertTrue(
+                    any(
+                        e.startswith("unsupported conformance state for verifier:")
+                        for e in errors
+                    ),
+                    errors,
+                )
+        # Control: N/A alongside a PASS still conforms -- the fix bounds the
+        # vocabulary, it does not demand every profile be exercised.
+        document = copy.deepcopy(VALID_PASSPORT)
+        document["conformance"]["profiles"] = {"verifier": "PASS", "execution": "N/A"}
+        self.assertEqual(validate_passport(document), [])
+
+    def test_passport_rejects_an_empty_profile_set(self):
+        # Parity with the contract's minProperties: 1.
+        document = copy.deepcopy(VALID_PASSPORT)
+        document["conformance"]["profiles"] = {}
+        errors = validate_passport(document)
+        self.assertIn("conformance.profiles must not be empty", errors)
+
+    def test_passport_requires_at_least_one_pass_profile(self):
+        # Parity with the contract's at-least-one-PASS anyOf (thread 6kDaNC's
+        # rule, now stated at the public boundary as well as at ingestion).
+        for profiles in ({"verifier": "N/A"}, {"verifier": "N/A", "execution": "N/A"}):
+            document = copy.deepcopy(VALID_PASSPORT)
+            document["conformance"]["profiles"] = profiles
+            with self.subTest(profiles=profiles):
+                errors = validate_passport(document)
+                self.assertIn("at least one APC-1 profile must be PASS", errors)
 
 
 if __name__ == "__main__":

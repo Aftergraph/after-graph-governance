@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.dev/contracts/release-registry/1.0.json",
+  "title": "Aftergraph Release Registry 1.0",
+  "description": "Deterministic derived registry of validated ARI source documents. Registry membership grants no runtime authority. Each entry binds kind to the schema discriminator carried by its document, mirroring the reference implementation's classification; the document body itself stays owned by the per-kind contract and is not re-specified here, and digest recomputation stays owned by the reference Registry.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "entries"],
+  "$defs": {
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "digest", "document"],
+      "properties": {
+        "kind": {"enum": ["component", "edge", "passport"]},
+        "digest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+        "document": {"type": "object", "required": ["schema"]}
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "kind": {"const": "component"},
+            "document": {"properties": {"schema": {"const": "aftergraph-component/1.0"}}}
+          }
+        },
+        {
+          "properties": {
+            "kind": {"const": "edge"},
+            "document": {"properties": {"schema": {"const": "compatibility-edge/1.0"}}}
+          }
+        },
+        {
+          "properties": {
+            "kind": {"const": "passport"},
+            "document": {"properties": {"schema": {"const": "release-passport/1.0"}}}
+          }
+        }
+      ]
+    }
+  },
+  "properties": {
+    "schema": {"const": "release-registry/1.0"},
+    "entries": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/entry"}
+    }
+  }
+}

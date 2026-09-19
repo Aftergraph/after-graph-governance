@@ -46,7 +46,8 @@
       "properties": {
         "version": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "pattern": "^[^\\x00-\\x20\\x7f-\\xa0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000\\ufeff]+$"
         },
         "lifecycle": {
           "enum": [
@@ -132,7 +133,8 @@
               },
               "version": {
                 "type": "string",
-                "minLength": 1
+                "minLength": 1,
+                "pattern": "^[^\\x00-\\x20\\x7f-\\xa0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000\\ufeff]+$"
               },
               "commit": {
                 "type": "string",

@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.dev/contracts/rbom/0.1.json",
+  "title": "Aftergraph Release Bill of Materials 0.1",
+  "description": "Exact release composition derived from ARI registry evidence. Verification state describes matching Release Passport coverage only, and each state is bound to the passport evidence it claims: VERIFIED requires every component row to carry both passport-derived digests, PARTIAL requires at least one row to carry them, UNVERIFIED forbids any component row from carrying either, and passport_count is bound to the state. Every row carries the two passport-derived digests as a pair, never one without the other, so no state can smuggle a half-claimed passport. Which rows carry digests under PARTIAL, the equality passport_count == component_count, and the binding of each digest to an actual Release Passport stay owned by the reference builder.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "platform", "components", "contracts", "verification", "registry_digest"],
+  "$defs": {
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["component", "version", "repository", "commit", "manifest_digest"],
+      "properties": {
+        "component": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+        "version": {"type": "string", "minLength": 1, "pattern": "^[^\\x00-\\x20\\x7f-\\xa0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000\\ufeff]+$"},
+        "repository": {"type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"},
+        "commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+        "manifest_digest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+        "artifact_digest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+        "passport_digest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"}
+      },
+      "anyOf": [
+        {"required": ["artifact_digest", "passport_digest"]},
+        {"not": {"anyOf": [{"required": ["artifact_digest"]}, {"required": ["passport_digest"]}]}}
+      ]
+    },
+    "contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "versions"],
+      "properties": {
+        "name": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+        "versions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  },
+  "properties": {
+    "schema": {"const": "rbom/0.1"},
+    "platform": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["generation", "release_train", "compatibility"],
+      "properties": {
+        "generation": {"const": 26},
+        "release_train": {"type": "string", "pattern": "^20[0-9]{2}\\.(0[1-9]|1[0-2])$"},
+        "compatibility": {"const": "APC-1"}
+      }
+    },
+    "components": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/component"}
+    },
+    "contracts": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/contract"}
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "passport_count", "component_count"],
+      "properties": {
+        "state": {"enum": ["VERIFIED", "PARTIAL", "UNVERIFIED"]},
+        "passport_count": {"type": "integer", "minimum": 0},
+        "component_count": {"type": "integer", "minimum": 1}
+      }
+    },
+    "registry_digest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"}
+  },
+  "oneOf": [
+    {
+      "description": "VERIFIED claims passport evidence for every selected component.",
+      "properties": {
+        "verification": {
+          "properties": {
+            "state": {"const": "VERIFIED"},
+            "passport_count": {"type": "integer", "minimum": 1}
+          }
+        },
+        "components": {
+          "items": {"required": ["artifact_digest", "passport_digest"]}
+        }
+      }
+    },
+      {
+        "description": "PARTIAL claims passport evidence for at least one component.",
+        "properties": {
+          "verification": {
+            "properties": {
+              "state": {"const": "PARTIAL"},
+              "passport_count": {"type": "integer", "minimum": 1}
+            }
+          },
+          "components": {
+            "contains": {"required": ["artifact_digest", "passport_digest"]}
+          }
+        }
+      },
+    {
+      "description": "UNVERIFIED claims no passport evidence at all, on the count or on any row.",
+      "properties": {
+        "verification": {
+          "properties": {
+            "state": {"const": "UNVERIFIED"},
+            "passport_count": {"const": 0}
+          }
+        },
+        "components": {
+          "items": {
+            "not": {
+              "anyOf": [
+                {"required": ["artifact_digest"]},
+                {"required": ["passport_digest"]}
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

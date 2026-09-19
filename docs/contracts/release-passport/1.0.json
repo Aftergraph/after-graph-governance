@@ -12,8 +12,8 @@
       "additionalProperties": false,
       "required": ["component", "version"],
       "properties": {
-        "component": {"type": "string", "minLength": 1},
-        "version": {"type": "string", "minLength": 1}
+        "component": {"type": "string", "minLength": 1, "pattern": "^[a-z0-9][a-z0-9-]*$"},
+        "version": {"type": "string", "minLength": 1, "pattern": "^[^\\x00-\\x20\\x7f-\\xa0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000\\ufeff]+$"}
       }
     },
     "platform": {
@@ -34,7 +34,21 @@
         "result": {"const": "PASS"},
         "profiles": {
           "type": "object",
-          "additionalProperties": {"enum": ["PASS", "FAIL", "UNKNOWN", "STALE", "N/A"]}
+          "minProperties": 1,
+          "propertyNames": {
+            "enum": ["authority", "service", "runtime", "execution", "verifier", "product", "model", "research"]
+          },
+          "additionalProperties": {"enum": ["PASS", "N/A"]},
+          "anyOf": [
+            {"required": ["authority"], "properties": {"authority": {"const": "PASS"}}},
+            {"required": ["service"], "properties": {"service": {"const": "PASS"}}},
+            {"required": ["runtime"], "properties": {"runtime": {"const": "PASS"}}},
+            {"required": ["execution"], "properties": {"execution": {"const": "PASS"}}},
+            {"required": ["verifier"], "properties": {"verifier": {"const": "PASS"}}},
+            {"required": ["product"], "properties": {"product": {"const": "PASS"}}},
+            {"required": ["model"], "properties": {"model": {"const": "PASS"}}},
+            {"required": ["research"], "properties": {"research": {"const": "PASS"}}}
+          ]
         },
         "evidence": {"type": "array", "items": {"type": "string", "minLength": 1}}
       }
