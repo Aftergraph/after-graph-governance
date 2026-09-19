@@ -149,18 +149,22 @@ The RBOM suite separately proves `PARTIAL` for one matching passport, `UNVERIFIE
 
 ## CI evidence checkpoint
 
-Authoritative GitHub Actions PR-merge-ref verification for the latest code/schema head before this proof refresh:
+Authoritative GitHub Actions verification for the final code/schema head of this slice, observed on the PR branch head before the proof-document refresh on top of it:
 
 ```text
-branch head           7c5df43563a91a85d30e192216a65ff1f29fbddb
-PR merge ref          de4993c6e1e8f1a09b6c2478290f2eceb4ef19c0
-Release Intelligence  PASS
-ARI tests             96 passed, 0 failed
+code head             9e8f3e617d7e9925459600784fe0a89170ab8142
+PR merge ref          6cf135f6514f29c14ccf1c9b9a62b7385900138b
+Release Intelligence  PASS (run 35460284006)
+Platform Topology Truth PASS (run 35460284032)
+Repository Agent Guides PASS (run 35460284036)
+ARI tests             105 passed, 0 failed
 Governance regression 67 passed, 0 failed
-Python total          163 passed, 0 failed
+Python total          172 passed, 0 failed
 ARI JSON syntax gates 6 passed
-Brand Assets          PASS
+Brand assets          PASS (local read-only validator run; see note)
 ```
+
+The ARI count rose from 99 at the immediately preceding head `5156ca18…` to 105 here; the delta is exactly the six regression tests added for the selector-grammar and unhashable-state fixes. Governance regression stayed at 67 because those six tests live in `test_ari_*.py`, which the ARI step discovers and the governance step enumerates explicitly. The standalone `Brand Assets` workflow is path-filtered to brand-owned files and did not run for this change; its validator's seven unit tests are inside the 67 and passed, and a local read-only run of `scripts/verify_brand_assets.py` against the current assets exits 0 (`OK: Aftergraph/after-graph-governance satisfies aftergraph.brand-assets/2.0`).
 
 The six syntax gates cover:
 
@@ -173,7 +177,7 @@ docs/contracts/release-registry/1.0.json
 docs/contracts/rbom/0.1.json
 ```
 
-This checkpoint predates only this proof-document refresh. The PR latest head must still pass the same applicable gates before merge readiness is claimed.
+This proof-document refresh changes no code, schema, or test relative to the code head above. The merge ref is computed at the code head and is recomputed by this refresh. Release Intelligence carries no `merge_group` trigger: its merge-ref verification is the `pull_request` run computed against `refs/pull/39/merge`, and because `docs/release-intelligence/**` is inside its path filter this refresh also carries its own `pull_request` run on the branch head. Platform Topology Truth and Repository Agent Guides run both `pull_request` and `merge_group`. Authoritative merge-ref verification therefore happens via those `pull_request` checks plus the merge queue's `merge_group` enforcement at enqueue; the PR head must still pass every applicable gate before merge readiness is claimed.
 
 ## PROVED
 
