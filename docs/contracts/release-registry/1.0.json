@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.dev/contracts/release-registry/1.0.json",
+  "title": "Aftergraph Release Registry 1.0",
+  "description": "Deterministic derived registry of validated ARI source documents. Registry membership grants no runtime authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "entries"],
+  "$defs": {
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "digest", "document"],
+      "properties": {
+        "kind": {"enum": ["component", "edge", "passport"]},
+        "digest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+        "document": {"type": "object"}
+      }
+    }
+  },
+  "properties": {
+    "schema": {"const": "release-registry/1.0"},
+    "entries": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/entry"}
+    }
+  }
+}
