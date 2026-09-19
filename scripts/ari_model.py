@@ -34,6 +34,7 @@ LIFECYCLE = {
 EDGE_RELATIONS = {"requires", "tested-with", "incompatible-with", "conforms-to", "supports"}
 EDGE_STATES = {"pass", "fail", "unknown", "stale", "not-applicable"}
 COMMIT_RE = re.compile(r"^[a-f0-9]{40}$")
+DIGEST_RE = re.compile(r"^sha256:[a-f0-9]{64}$")
 RELEASE_TRAIN_RE = re.compile(r"^20[0-9]{2}\.(0[1-9]|1[0-2])$")
 IDENTIFIER_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 REPOSITORY_RE = re.compile(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$")
@@ -292,5 +293,84 @@ def validate_edge(document: dict[str, Any]) -> list[str]:
                 errors.append(f"evidence[{index}].kind must be a non-empty string")
             if not isinstance(item.get("ref"), str) or not item.get("ref"):
                 errors.append(f"evidence[{index}].ref must be a non-empty string")
+
+    return errors
+
+
+def validate_passport(document: dict[str, Any]) -> list[str]:
+    """Validate the owned release-passport/1.0 shape without external dependencies."""
+    errors: list[str] = []
+    if not isinstance(document, dict):
+        return ["release passport must be an object"]
+
+    _reject_unknown_fields(document, {"schema", "subject", "platform", "conformance", "provenance"}, "", errors)
+    _require_fields(document, ("schema", "subject", "platform", "conformance", "provenance"), "", errors)
+    if document.get("schema") != "release-passport/1.0":
+        errors.append("schema must be release-passport/1.0")
+
+    subject = _require_object(document.get("subject"), "subject", errors)
+    _reject_unknown_fields(subject, {"component", "version"}, "subject.", errors)
+    _require_fields(subject, ("component", "version"), "subject.", errors)
+    _validate_identifier(subject.get("component"), "subject.component", errors)
+    if not isinstance(subject.get("version"), str) or not subject.get("version"):
+        errors.append("subject.version must be a non-empty string")
+
+    platform = _require_object(document.get("platform"), "platform", errors)
+    _reject_unknown_fields(platform, {"generation", "release_train", "compatibility"}, "platform.", errors)
+    _require_fields(platform, ("generation", "release_train", "compatibility"), "platform.", errors)
+    if platform.get("generation") != 26:
+        errors.append("platform.generation must be 26")
+    release_train = platform.get("release_train")
+    if not isinstance(release_train, str) or not RELEASE_TRAIN_RE.fullmatch(release_train):
+        errors.append("platform.release_train must match YYYY.MM")
+    if platform.get("compatibility") != APC_LEVEL:
+        errors.append("platform.compatibility must be APC-1")
+
+    conformance = _require_object(document.get("conformance"), "conformance", errors)
+    _reject_unknown_fields(conformance, {"result", "profiles", "evidence"}, "conformance.", errors)
+    _require_fields(conformance, ("result", "profiles", "evidence"), "conformance.", errors)
+    if conformance.get("result") != ResultState.PASS.value:
+        errors.append("conformance.result must be PASS")
+    profiles = conformance.get("profiles")
+    if not isinstance(profiles, dict):
+        errors.append("conformance.profiles must be an object")
+    else:
+        allowed_states = {state.value for state in ResultState}
+        for profile, state in profiles.items():
+            if profile not in APC_PROFILES:
+                errors.append(f"unsupported APC-1 profile: {profile}")
+            if state not in allowed_states:
+                errors.append(f"unsupported conformance state for {profile}: {state}")
+    evidence = conformance.get("evidence")
+    if not isinstance(evidence, list):
+        errors.append("conformance.evidence must be an array")
+    else:
+        for index, ref in enumerate(evidence):
+            if not isinstance(ref, str) or not ref:
+                errors.append(f"conformance.evidence[{index}] must be a non-empty string")
+
+    provenance = _require_object(document.get("provenance"), "provenance", errors)
+    _reject_unknown_fields(
+        provenance,
+        {"repository", "commit", "artifact_digest", "manifest_digest"},
+        "provenance.",
+        errors,
+    )
+    _require_fields(
+        provenance,
+        ("repository", "commit", "artifact_digest", "manifest_digest"),
+        "provenance.",
+        errors,
+    )
+    repository = provenance.get("repository")
+    if not isinstance(repository, str) or not REPOSITORY_RE.fullmatch(repository):
+        errors.append("provenance.repository must be owner/repo")
+    commit = provenance.get("commit")
+    if not isinstance(commit, str) or not COMMIT_RE.fullmatch(commit):
+        errors.append("provenance.commit must be 40 lowercase hex characters")
+    for field in ("artifact_digest", "manifest_digest"):
+        digest = provenance.get(field)
+        if not isinstance(digest, str) or not DIGEST_RE.fullmatch(digest):
+            errors.append(f"provenance.{field} must be sha256:<64 lowercase hex>")
 
     return errors
