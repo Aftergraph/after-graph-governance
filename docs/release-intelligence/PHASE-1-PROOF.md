@@ -152,19 +152,19 @@ The RBOM suite separately proves `PARTIAL` for one matching passport, `UNVERIFIE
 Authoritative GitHub Actions verification for the final code/schema head of this slice, observed on the PR branch head before the proof-document refresh on top of it:
 
 ```text
-code head             9e8f3e617d7e9925459600784fe0a89170ab8142
-PR merge ref          6cf135f6514f29c14ccf1c9b9a62b7385900138b
-Release Intelligence  PASS (run 35460284006)
-Platform Topology Truth PASS (run 35460284032)
-Repository Agent Guides PASS (run 35460284036)
-ARI tests             105 passed, 0 failed
+code head             d6f861ce0f197eb8ce0e1c4907170bd47b3a107b
+PR merge ref          e4e5f51c9a0330e55863df6c633370a1f4169458
+Release Intelligence  PASS (run 35462076820)
+Platform Topology Truth PASS (run 35462076825)
+Repository Agent Guides PASS (run 35462076857)
+ARI tests             112 passed, 0 failed
 Governance regression 67 passed, 0 failed
-Python total          172 passed, 0 failed
+Python total          179 passed, 0 failed
 ARI JSON syntax gates 6 passed
-Brand assets          PASS (local read-only validator run; see note)
+Brand assets          PASS (CI governance regression step; see note)
 ```
 
-The ARI count rose from 99 at the immediately preceding head `5156ca18…` to 105 here; the delta is exactly the six regression tests added for the selector-grammar and unhashable-state fixes. Governance regression stayed at 67 because those six tests live in `test_ari_*.py`, which the ARI step discovers and the governance step enumerates explicitly. The standalone `Brand Assets` workflow is path-filtered to brand-owned files and did not run for this change; its validator's seven unit tests are inside the 67 and passed, and a local read-only run of `scripts/verify_brand_assets.py` against the current assets exits 0 (`OK: Aftergraph/after-graph-governance satisfies aftergraph.brand-assets/2.0`).
+The ARI count rose from 99 at head `5156ca18…` to 105 at `9e8f3e61…` — the six regression tests for the selector-grammar and unhashable-state fixes — and to 112 here; the delta is exactly the six-test registry contract interop class plus the structural kind-binding test added for the `release-registry/1.0` entry contract. Governance regression stayed at 67 because the new tests live in `test_ari_*.py`, which the ARI step discovers and the governance step enumerates explicitly. The standalone `Brand Assets` workflow is path-filtered to brand-owned files and did not run for this change; its validator's seven unit tests are inside the 67 that ran and passed in CI on this head, and a local read-only run of `scripts/verify_brand_assets.py` against the current assets exits 0 (`OK: Aftergraph/after-graph-governance satisfies aftergraph.brand-assets/2.0`).
 
 The six syntax gates cover:
 
