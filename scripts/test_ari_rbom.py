@@ -8,7 +8,7 @@ from pathlib import Path
 
 from scripts.ari_model import canonical_digest
 from scripts.ari_rbom import RbomError, build_rbom, parse_selector
-from scripts.ari_registry import Registry, build_registry
+from scripts.ari_registry import Registry, RegistryError, build_registry
 from scripts.ari_schema_check import validate
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -99,6 +99,20 @@ class AriRbomTest(unittest.TestCase):
         self.assertEqual(component, "sentinel-engine")
         self.assertEqual(version, "1.4.0#rc.1")
         self.assertEqual(commit, "1" * 40)
+
+    def test_parse_selector_refuses_newline_bearing_release_version(self):
+        # thread 6kC7ar names this mirrored regex: the version group is '.', which
+        # cannot match a newline, so a newline-bearing selector has to be refused
+        # at the grammar rather than reach a Registry lookup it could never satisfy.
+        with self.assertRaisesRegex(RbomError, "component selector must match"):
+            parse_selector("sentinel-engine@1.4.0\n#rc#" + "1" * 40)
+
+        # And the document side agrees: the same version is refused at ingestion,
+        # so no registry can ever hold a component this selector cannot address.
+        bad = copy.deepcopy(SENTINEL)
+        bad["release"]["version"] = "1.4.0\n"
+        with self.assertRaisesRegex(RegistryError, "release.version must match"):
+            build_registry([bad])
 
     def test_rbom_refuses_missing_selector(self):
         missing = "sentinel-engine@1.4.0#" + "9" * 40

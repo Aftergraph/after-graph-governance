@@ -8,7 +8,7 @@ from pathlib import Path
 
 from scripts.ari_model import ResultState
 from scripts.ari_query import QueryError, query_compat
-from scripts.ari_registry import Registry, build_registry
+from scripts.ari_registry import Registry, RegistryError, build_registry
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -126,6 +126,19 @@ class AriQueryTest(unittest.TestCase):
         self.assertEqual(result["state"], ResultState.PASS.value)
         self.assertEqual(result["left"]["version"], "1.4.0#rc.1")
         self.assertEqual(result["left"]["commit"], "1" * 40)
+
+    def test_selector_grammar_and_registry_agree_on_newline_versions(self):
+        # thread 6kC7ar: the version grammar now forbids whitespace, so the two
+        # surfaces agree -- a newline-bearing selector is refused by the grammar
+        # and the same document is refused at Registry ingestion. Before the pin
+        # the document ingested while the selector could never address it.
+        newline_selector = "sentinel-engine@1.4.0\n#rc#" + "1" * 40
+        with self.assertRaisesRegex(QueryError, "exact component selector"):
+            query_compat(self.registry(), newline_selector, RIGHT_SELECTOR, "CE2")
+        bad = copy.deepcopy(LEFT)
+        bad["release"]["version"] = "1.4.0\n"
+        with self.assertRaisesRegex(RegistryError, "release.version must match"):
+            Registry(build_registry([bad, RIGHT, EDGE]))
 
     def test_query_rejects_invalid_minimum_evidence_level(self):
         with self.assertRaisesRegex(QueryError, "CE0..CE5"):

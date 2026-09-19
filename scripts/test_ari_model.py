@@ -137,6 +137,72 @@ class AriModelTest(unittest.TestCase):
             errors,
         )
 
+    def test_component_version_rejects_whitespace_and_control_characters(self):
+        # thread 6kC7ar: SELECTOR_RE addresses a release through '.', which
+        # cannot match a newline, and the CLI prints the version inline, so a
+        # whitespace- or control-bearing version is unaddressable and forges
+        # extra output lines. The grammar forbids them -- while '#' and '@'
+        # stay legal, because the selector splits on its final anchor.
+        for bad in ("1.4.0\n", "1.4.0 ", "1.4\t0", "1.4\r0", "1.4.0\x00", "1.4.0\x7f"):
+            doc = {
+                **VALID_COMPONENT,
+                "release": {**VALID_COMPONENT["release"], "version": bad},
+            }
+            errors = validate_component(doc)
+            self.assertTrue(
+                any(e.startswith("release.version must match") for e in errors),
+                (bad, errors),
+            )
+        for good in ("1.4.0#rc.1", "1.4.0@beta", "1.4.0:rc+1", "26.9.0-rc.1"):
+            doc = {
+                **VALID_COMPONENT,
+                "release": {**VALID_COMPONENT["release"], "version": good},
+            }
+            self.assertEqual(validate_component(doc), [], good)
+
+    def test_required_edge_target_version_shares_the_grammar(self):
+        target = {"component": "works", "version": "0.5.1\n", "commit": "2" * 40}
+        doc = {
+            **VALID_COMPONENT,
+            "compatibility": {
+                **VALID_COMPONENT["compatibility"],
+                "requires_edges": [target],
+            },
+        }
+        errors = validate_component(doc)
+        self.assertTrue(
+            any("compatibility.requires_edges[0].version must match" in e for e in errors),
+            errors,
+        )
+
+    def test_edge_endpoint_and_passport_subject_versions_share_the_grammar(self):
+        edge = {**VALID_EDGE, "to": {**VALID_EDGE["to"], "version": "0.5.1 "}}
+        errors = validate_edge(edge)
+        self.assertTrue(any("to.version must match" in e for e in errors), errors)
+
+        passport = {
+            "schema": "release-passport/1.0",
+            "subject": {"component": "sentinel-engine", "version": "1.4.0\n"},
+            "platform": {
+                "generation": 26,
+                "release_train": "2026.09",
+                "compatibility": "APC-1",
+            },
+            "conformance": {
+                "result": "PASS",
+                "profiles": {"verifier": "PASS"},
+                "evidence": [],
+            },
+            "provenance": {
+                "repository": "Aftergraph/sentinel",
+                "commit": "1" * 40,
+                "artifact_digest": "sha256:" + "a" * 64,
+                "manifest_digest": "sha256:" + "b" * 64,
+            },
+        }
+        errors = validate_passport(passport)
+        self.assertTrue(any("subject.version must match" in e for e in errors), errors)
+
 
 if __name__ == "__main__":
     unittest.main()

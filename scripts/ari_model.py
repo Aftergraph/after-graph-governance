@@ -38,6 +38,10 @@ DIGEST_RE = re.compile(r"^sha256:[a-f0-9]{64}$")
 RELEASE_TRAIN_RE = re.compile(r"^20[0-9]{2}\.(0[1-9]|1[0-2])$")
 IDENTIFIER_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 REPOSITORY_RE = re.compile(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$")
+# A version may carry '#' (the selector splits on its final anchor) or '@', but
+# whitespace or control characters would leave SELECTOR_RE's '.' unable to match
+# it and smuggle fake lines into the line-oriented CLI output (thread 6kC7ar).
+VERSION_RE = re.compile(r"^[^\s\x00-\x1f\x7f]+$")
 
 
 class ResultState(str, Enum):
@@ -113,6 +117,13 @@ def _validate_identifier(value: Any, label: str, errors: list[str]) -> None:
         errors.append(f"{label} must match ^[a-z0-9][a-z0-9-]*$")
 
 
+def _validate_version(value: Any, label: str, errors: list[str]) -> None:
+    if not isinstance(value, str) or not value:
+        errors.append(f"{label} must be a non-empty string")
+    elif not VERSION_RE.fullmatch(value):
+        errors.append(f"{label} must match {VERSION_RE.pattern}")
+
+
 def validate_component(document: dict[str, Any]) -> list[str]:
     errors: list[str] = []
     if not isinstance(document, dict):
@@ -143,8 +154,7 @@ def validate_component(document: dict[str, Any]) -> list[str]:
     release = _require_object(document.get("release"), "release", errors)
     _reject_unknown_fields(release, {"version", "lifecycle"}, "release.", errors)
     _require_fields(release, ("version", "lifecycle"), "release.", errors)
-    if not isinstance(release.get("version"), str) or not release.get("version"):
-        errors.append("release.version must be a non-empty string")
+    _validate_version(release.get("version"), "release.version", errors)
     lifecycle = release.get("lifecycle")
     if not isinstance(lifecycle, str) or lifecycle not in LIFECYCLE:
         errors.append(f"unsupported lifecycle: {lifecycle}")
@@ -201,8 +211,7 @@ def validate_component(document: dict[str, Any]) -> list[str]:
                 _reject_unknown_fields(target, {"component", "version", "commit"}, prefix, errors)
                 _require_fields(target, ("component", "version", "commit"), prefix, errors)
                 _validate_identifier(target.get("component"), prefix + "component", errors)
-                if not isinstance(target.get("version"), str) or not target.get("version"):
-                    errors.append(prefix + "version must be a non-empty string")
+                _validate_version(target.get("version"), prefix + "version", errors)
                 target_commit = target.get("commit")
                 if not isinstance(target_commit, str) or not COMMIT_RE.fullmatch(target_commit):
                     errors.append(prefix + "commit must be 40 lowercase hex characters")
@@ -266,8 +275,7 @@ def validate_edge(document: dict[str, Any]) -> list[str]:
         _reject_unknown_fields(endpoint, {"component", "version", "commit"}, f"{side}.", errors)
         _require_fields(endpoint, ("component", "version", "commit"), f"{side}.", errors)
         _validate_identifier(endpoint.get("component"), f"{side}.component", errors)
-        if not isinstance(endpoint.get("version"), str) or not endpoint.get("version"):
-            errors.append(f"{side}.version must be a non-empty string")
+        _validate_version(endpoint.get("version"), f"{side}.version", errors)
         commit = endpoint.get("commit")
         if not isinstance(commit, str) or not COMMIT_RE.fullmatch(commit):
             errors.append(f"{side}.commit must be 40 lowercase hex characters")
@@ -316,8 +324,7 @@ def validate_passport(document: dict[str, Any]) -> list[str]:
     _reject_unknown_fields(subject, {"component", "version"}, "subject.", errors)
     _require_fields(subject, ("component", "version"), "subject.", errors)
     _validate_identifier(subject.get("component"), "subject.component", errors)
-    if not isinstance(subject.get("version"), str) or not subject.get("version"):
-        errors.append("subject.version must be a non-empty string")
+    _validate_version(subject.get("version"), "subject.version", errors)
 
     platform = _require_object(document.get("platform"), "platform", errors)
     _reject_unknown_fields(platform, {"generation", "release_train", "compatibility"}, "platform.", errors)

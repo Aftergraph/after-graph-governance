@@ -2,7 +2,7 @@ import json
 import unittest
 from pathlib import Path
 
-from scripts.ari_model import IDENTIFIER_RE
+from scripts.ari_model import IDENTIFIER_RE, VERSION_RE
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACTS = ROOT / "docs" / "contracts"
@@ -91,6 +91,30 @@ class AriContractsTest(unittest.TestCase):
         identity_component = component["properties"]["identity"]["properties"]["component"]
         self.assertEqual(subject_component["pattern"], IDENTIFIER_RE.pattern)
         self.assertEqual(identity_component["pattern"], IDENTIFIER_RE.pattern)
+
+    def test_every_published_version_field_shares_the_selector_compatible_grammar(self):
+        # thread 6kC7ar: the exact selector is component@version#40hexcommit and
+        # its version group is '.', which cannot match a newline. Every contract
+        # version field therefore has to carry the same whitespace/control-free
+        # grammar the reference implementation enforces, or a registry-valid
+        # document becomes unaddressable. Comparing against VERSION_RE.pattern
+        # rather than a literal is what keeps the five fields and the model from
+        # drifting apart silently.
+        component = self.load(CONTRACTS / "aftergraph-component" / "1.0.json")
+        edge = self.load(CONTRACTS / "compatibility-edge" / "1.0.json")
+        passport = self.load(CONTRACTS / "release-passport" / "1.0.json")
+        rbom = self.load(CONTRACTS / "rbom" / "0.1.json")
+        fields = {
+            "release.version": component["properties"]["release"]["properties"]["version"],
+            "requires_edges.version": component["properties"]["compatibility"]["properties"]["requires_edges"]["items"]["properties"]["version"],
+            "endpoint.version": edge["$defs"]["endpoint"]["properties"]["version"],
+            "subject.version": passport["properties"]["subject"]["properties"]["version"],
+            "rbom.component.version": rbom["$defs"]["component"]["properties"]["version"],
+        }
+        self.assertEqual(len(fields), 5)
+        for label, schema in fields.items():
+            with self.subTest(field=label):
+                self.assertEqual(schema["pattern"], VERSION_RE.pattern)
 
     def test_ari_workflow_path_filters_cover_every_discoverability_gated_document(self):
         # AriDiscoverabilityTest reads the cross-repo register and two frozen ARI

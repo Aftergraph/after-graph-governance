@@ -11,7 +11,7 @@ standard library alone.
 
 This module implements exactly the validation keywords the ARI contracts use and
 raises :class:`UnsupportedKeyword` on anything else. The loud failure is the
-point: a contract that grows ``if``/``then``, ``format`` or ``contains`` cannot
+point: a contract that grows ``if``/``then``, ``format`` or ``allOf`` cannot
 silently validate as permissive and turn a passing interop test into a lie.
 
 That the surface really does cover the contracts is not a claim a reader has to
@@ -20,6 +20,13 @@ published contract, collects the validation keywords it uses, and fails if any
 of them falls outside :data:`SUPPORTED_KEYWORDS`. A contract that grows a new
 keyword therefore breaks the build instead of quietly widening what a
 schema-only consumer accepts.
+
+Pattern matching follows ECMA-262 ``test()`` semantics rather than Python's:
+``$`` anchors to the end of input and does not match before a trailing newline.
+The evaluator therefore matches with ``re.fullmatch``, which is exactly
+equivalent for an anchored pattern with no top-level alternation, and
+``ContractSurfaceTest`` pins every published pattern to that shape so the
+equivalence holds on the surface that ships (thread 6kC7ar).
 """
 
 from __future__ import annotations
@@ -230,7 +237,12 @@ def validate(instance: Any, schema: Any, root: Any = None) -> list[str]:
         if "minLength" in schema and len(instance) < schema["minLength"]:
             errors.append(f"expected minLength {schema['minLength']}, got {len(instance)}")
         pattern = schema.get("pattern")
-        if pattern is not None and re.search(pattern, instance) is None:
+        # ECMA-262 `$` anchors to end-of-input; Python's also matches before a
+        # trailing newline, which would make every anchored pattern bypassable
+        # by appending '\n'. fullmatch closes the gap; ContractSurfaceTest pins
+        # the anchored, no-top-level-alternation shape that makes the two
+        # semantics agree on the published surface.
+        if pattern is not None and re.fullmatch(pattern, instance) is None:
             errors.append(f"{instance!r} does not match pattern {pattern}")
 
     elif isinstance(instance, int) and not isinstance(instance, bool):
