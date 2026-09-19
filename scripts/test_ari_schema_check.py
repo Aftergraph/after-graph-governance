@@ -3,6 +3,7 @@ import json
 import unittest
 from pathlib import Path
 
+from scripts.ari_model import validate_passport
 from scripts.ari_schema_check import (
     ANNOTATION_KEYWORDS,
     SUPPORTED_KEYWORDS,
@@ -522,6 +523,34 @@ class DocumentContractInteropTest(unittest.TestCase):
         document = copy.deepcopy(PASSPORT)
         document["conformance"]["profiles"] = {"verifier": "PASS", "execution": "N/A"}
         self.assertEqual(validate(document, self.contract("release-passport/1.0")), [])
+
+    def test_public_validator_and_contract_agree_on_the_passport_profile_block(self):
+        # thread 6kEBGI: the profile block is where validate_passport() and
+        # release-passport/1.0 last diverged -- the validator admitted every
+        # ResultState while the contract pins the values to PASS / N/A,
+        # requires at least one profile, and demands at least one PASS among
+        # the eight APC-1 keys. Every mutation below is now refused by both
+        # surfaces, and the reference fixture is accepted by both, so a
+        # standalone consumer of the public validator is no longer the weakest
+        # of the three.
+        mutations = (
+            {"verifier": "FAIL"},
+            {"verifier": "UNKNOWN"},
+            {"verifier": "STALE"},
+            {},
+            {"verifier": "N/A"},
+            {"verifier": "N/A", "execution": "N/A"},
+        )
+        for profiles in mutations:
+            document = copy.deepcopy(PASSPORT)
+            document["conformance"]["profiles"] = profiles
+            with self.subTest(profiles=profiles):
+                self.assertTrue(validate(document, self.contract("release-passport/1.0")))
+                self.assertTrue(validate_passport(document))
+
+        document = copy.deepcopy(PASSPORT)
+        self.assertEqual(validate(document, self.contract("release-passport/1.0")), [])
+        self.assertEqual(validate_passport(document), [])
 
     def test_edge_evidence_still_bounds_its_own_contract(self):
         document = copy.deepcopy(EDGE)

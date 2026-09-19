@@ -1,3 +1,4 @@
+import copy
 import unittest
 
 from scripts.ari_model import (
@@ -38,6 +39,27 @@ VALID_EDGE = {
     "state": "pass",
     "evidence_level": "CE3",
     "evidence": [{"kind": "test-receipt", "ref": "sha256:" + "3" * 64}],
+}
+
+VALID_PASSPORT = {
+    "schema": "release-passport/1.0",
+    "subject": {"component": "sentinel-engine", "version": "1.4.0"},
+    "platform": {
+        "generation": 26,
+        "release_train": "2026.09",
+        "compatibility": "APC-1",
+    },
+    "conformance": {
+        "result": "PASS",
+        "profiles": {"verifier": "PASS"},
+        "evidence": [],
+    },
+    "provenance": {
+        "repository": "Aftergraph/sentinel",
+        "commit": "1" * 40,
+        "artifact_digest": "sha256:" + "a" * 64,
+        "manifest_digest": "sha256:" + "b" * 64,
+    },
 }
 
 
@@ -225,6 +247,46 @@ class AriModelTest(unittest.TestCase):
         )
         refused = {code for code in range(0x10000) if VERSION_RE.fullmatch(chr(code)) is None}
         self.assertEqual(refused, excluded)
+
+    def test_passport_rejects_non_positive_profile_states(self):
+        # thread 6kEBGI: release-passport/1.0 pins profile values to PASS / N/A,
+        # but validate_passport() admitted every ResultState, so a standalone
+        # consumer accepted a PASS passport carrying a FAIL / UNKNOWN / STALE
+        # profile that both a schema-only consumer and Registry ingestion refuse.
+        for bad in ("FAIL", "UNKNOWN", "STALE"):
+            document = copy.deepcopy(VALID_PASSPORT)
+            document["conformance"]["profiles"] = {"verifier": bad}
+            with self.subTest(state=bad):
+                errors = validate_passport(document)
+                self.assertTrue(
+                    any(
+                        e.startswith("unsupported conformance state for verifier:")
+                        for e in errors
+                    ),
+                    errors,
+                )
+        # Control: N/A alongside a PASS still conforms -- the fix bounds the
+        # vocabulary, it does not demand every profile be exercised.
+        document = copy.deepcopy(VALID_PASSPORT)
+        document["conformance"]["profiles"] = {"verifier": "PASS", "execution": "N/A"}
+        self.assertEqual(validate_passport(document), [])
+
+    def test_passport_rejects_an_empty_profile_set(self):
+        # Parity with the contract's minProperties: 1.
+        document = copy.deepcopy(VALID_PASSPORT)
+        document["conformance"]["profiles"] = {}
+        errors = validate_passport(document)
+        self.assertIn("conformance.profiles must not be empty", errors)
+
+    def test_passport_requires_at_least_one_pass_profile(self):
+        # Parity with the contract's at-least-one-PASS anyOf (thread 6kDaNC's
+        # rule, now stated at the public boundary as well as at ingestion).
+        for profiles in ({"verifier": "N/A"}, {"verifier": "N/A", "execution": "N/A"}):
+            document = copy.deepcopy(VALID_PASSPORT)
+            document["conformance"]["profiles"] = profiles
+            with self.subTest(profiles=profiles):
+                errors = validate_passport(document)
+                self.assertIn("at least one APC-1 profile must be PASS", errors)
 
 
 if __name__ == "__main__":

@@ -354,13 +354,29 @@ def validate_passport(document: dict[str, Any]) -> list[str]:
     profiles = conformance.get("profiles")
     if not isinstance(profiles, dict):
         errors.append("conformance.profiles must be an object")
+    elif not profiles:
+        # Parity with the contract's minProperties: 1.
+        errors.append("conformance.profiles must not be empty")
     else:
-        allowed_states = {state.value for state in ResultState}
+        # thread 6kEBGI: release-passport/1.0 pins profile values to PASS / N/A
+        # (additionalProperties) and demands at least one PASS among the eight
+        # APC-1 keys (anyOf). This block admitted every ResultState, so the
+        # public surface was the weaker of the two and a standalone consumer
+        # accepted a passport that both a schema-only consumer and Registry
+        # ingestion refuse -- the same inversion waves 1-5 closed at five other
+        # sites. The registry's _validate_positive_passport stays as the
+        # ingestion-boundary statement of the same rule.
+        positive_states = {ResultState.PASS.value, ResultState.N_A.value}
+        pass_count = 0
         for profile, state in profiles.items():
             if profile not in APC_PROFILES:
                 errors.append(f"unsupported APC-1 profile: {profile}")
-            if not isinstance(state, str) or state not in allowed_states:
+            if not isinstance(state, str) or state not in positive_states:
                 errors.append(f"unsupported conformance state for {profile}: {state}")
+            elif state == ResultState.PASS.value:
+                pass_count += 1
+        if pass_count == 0:
+            errors.append("at least one APC-1 profile must be PASS")
     evidence = conformance.get("evidence")
     if not isinstance(evidence, list):
         errors.append("conformance.evidence must be an array")
