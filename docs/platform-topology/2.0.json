@@ -167,7 +167,7 @@
       "system_class": "assurance-fixture",
       "role": "temporary-verification-fixture",
       "lifecycle": "temporary",
-      "expires_at": "2026-09-21",
+      "expires_at": "2026-10-05",
       "owns": "Throwaway live-fire fixture for Sentinel proofs. Topology membership is temporary and grants no permanent platform responsibility.",
       "must_not_own": "Permanent platform responsibility, authority, enforcement, execution or verification semantics."
     },
@@ -179,7 +179,7 @@
       "system_class": "assurance-fixture",
       "role": "temporary-verification-fixture",
       "lifecycle": "temporary",
-      "expires_at": "2026-09-22",
+      "expires_at": "2026-10-05",
       "owns": "Throwaway live-fire fixture for Sentinel proofs (second instance, live-verified 2026-09-10). Topology membership is temporary and grants no permanent platform responsibility.",
       "must_not_own": "Permanent platform responsibility, authority, enforcement, execution or verification semantics."
     },
