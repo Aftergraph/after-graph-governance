@@ -1,0 +1,41 @@
+{
+  "schema": "aftergraph.steward.p2.contract-registry/0.1",
+  "contracts": [
+    {
+      "contract": "dispatch.acceptance/2.0",
+      "owner": "works-execution",
+      "path": "docs/contracts/dispatch-acceptance/2.0.json",
+      "status": "proposed",
+      "compatibility": {
+        "reads": [
+          "dispatch.acceptance/1.0"
+        ],
+        "writes": "dispatch.acceptance/2.0"
+      },
+      "dependencies": [
+        "principal/1.0",
+        "tenant/1.0",
+        "execution-context/1.0",
+        "correlation/1.0"
+      ]
+    },
+    {
+      "contract": "dispatch.verification-subject/1.0",
+      "owner": "works-execution",
+      "path": "docs/contracts/dispatch-acceptance/2.0.json#/$defs/subject_binding",
+      "status": "proposed",
+      "semantics": "post-effect one-time exact-subject binding"
+    }
+  ],
+  "laws": [
+    "dispatch accepted != effect authorized",
+    "execution-context is not an authorization token",
+    "worker lease != authority lease",
+    "client cannot choose execution_context_id or trace_id",
+    "action-time authority is revalidated by Trust Gateway through AIE",
+    "authority_epoch from dispatch.acceptance/1.0 is not reinterpreted in 2.0",
+    "final verification subject is not supplied at initial dispatch acceptance",
+    "verification subject is bound only after the immutable candidate exists",
+    "same-subject replay is idempotent and different-subject rebinding fails closed"
+  ]
+}
