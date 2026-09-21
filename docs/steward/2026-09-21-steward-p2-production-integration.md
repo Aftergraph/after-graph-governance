@@ -41,7 +41,7 @@ Existing production primitives include:
 - leases and owner-bound mutating lease verbs,
 - idempotency,
 - handoff/checkpoint persistence,
-- Runtime→WORKS dispatch acceptance seam `dispatch.acceptance/1.0`,
+- compatibility Runtime→WORKS dispatch acceptance seam `dispatch.acceptance/1.0`,
 - WORKS-minted `execution_context_id` and `trace_id`,
 - execution-policy correlation,
 - verification gating that does not allow SUCCEEDED to become VERIFIED without verification.
@@ -101,7 +101,9 @@ PDR correlation persisted back to WORKS
     ↓
 effect dispatch
     ↓
-candidate immutable subject (Git SHA for coding slice)
+candidate immutable subject observed (Git SHA for coding slice)
+    ↓
+Runtime → WORKS one-time exact-subject binding
     ↓
 WORKS evidence correlation
     ↓
@@ -128,12 +130,15 @@ STEWARD projection
 10. dispatch acceptance ≠ authority; action-time authority is still TG→AIE.
 11. `dispatch.acceptance/1.0` remains compatibility-only for P2 because its scalar `authority_epoch` has no canonical V2.1 owner and its minted ctx is not a materialized `execution-context/1.0`.
 12. `dispatch.acceptance/2.0` MUST materialize the real WORKS-owned execution context in the same durable acceptance transaction.
-13. tool result ≠ trusted observation.
-14. Git branch name ≠ immutable verification subject; exact commit SHA is the subject for the coding slice.
-15. new/rebased HEAD invalidates subject-bound verification until reverified.
-16. Sentinel verdict ≠ builder self-report.
-17. UI/projected state ≠ canonical execution truth.
-18. STEWARD MUST NOT persist raw long-lived credentials in Agent/Habitat context.
+13. dispatch acceptance ≠ verification-subject binding; the final subject may be bound only after it exists as an observed immutable object.
+14. planned/base/branch subject ≠ observed candidate subject.
+15. exact-subject binding is one-time/idempotent for the same subject; a different subject requires a new execution lineage or explicit invalidation path.
+16. tool result ≠ trusted observation.
+17. Git branch name ≠ immutable verification subject; exact commit SHA is the subject for the coding slice.
+18. new/rebased HEAD invalidates subject-bound verification until reverified.
+19. Sentinel verdict ≠ builder self-report.
+20. UI/projected state ≠ canonical execution truth.
+21. STEWARD MUST NOT persist raw long-lived credentials in Agent/Habitat context.
 
 ## P2 contract correction — dispatch acceptance V2
 
@@ -151,10 +156,13 @@ P2 therefore introduces a new major contract, `dispatch.acceptance/2.0`, owned b
 - AuthorityLease reference;
 - WorkerLease reference;
 - initial admission PDR;
-- Runtime dispatch/effect/idempotency/checkpoint/evidence references;
-- exact verification subject.
+- Runtime dispatch/effect/idempotency/checkpoint/evidence references.
+
+The final verification subject is deliberately **not** part of initial acceptance. For coding work, the candidate Git SHA does not exist until after the governed effect.
 
 WORKS then mints `execution_context_id` + `trace_id`, validates the WorkerLease belongs to the Work, and persists the complete `execution-context/1.0`. This is correlation/durability only. It does not grant authority. Every consequential action still goes through Trust Gateway and live AIE revalidation immediately before effect.
+
+After the effect produces an observed immutable candidate, Runtime binds that exact subject into the accepted WORKS execution. The binding is fail-closed and one-time: first subject wins, replay of the same subject is idempotent, a different subject cannot silently replace it. For the coding slice the canonical shape is `git:<owner>/<repo>@<40hex>`. Sentinel verification and WORKS verdict recording occur only after this binding.
 
 ## P2 contracts
 
@@ -210,6 +218,7 @@ STEWARD cannot mint the verdict.
 2. **Runtime adapter**
    - submit MissionGraph/Work unit to canonical runtime,
    - follow dispatch/checkpoint state,
+   - after a governed effect produces the candidate, bind the observed exact subject to WORKS through Runtime,
    - never mint execution truth locally.
 
 3. **AIE execution-time integration — enforced through Trust Gateway**
@@ -242,8 +251,10 @@ P2 is PASS only when one real coding Mission demonstrates all of the following:
 - [ ] AIE authority is revalidated immediately before the consequential Git effect.
 - [ ] Trust Gateway enforces the execution-phase decision and governed egress.
 - [ ] Builder operates in an isolated Worktree bound to the Work/Attempt.
-- [ ] Candidate commit SHA is immutable and recorded.
-- [ ] Independent verification runs against that exact SHA.
+- [ ] Candidate commit SHA is observed after the governed effect and durably bound once to the accepted WORKS execution.
+- [ ] Base SHA, branch/ref or placeholder is rejected as a substitute for the final candidate subject.
+- [ ] Same-subject binding replay is idempotent and a different SHA fails closed.
+- [ ] Independent verification runs against that exact bound SHA.
 - [ ] A new SHA demonstrably makes the prior verification projection stale.
 - [ ] Mission is not accepted until required verification passes.
 - [ ] Trace links intent→mission→work→attempt→git subject→evidence→verdict→outcome.
@@ -268,6 +279,7 @@ P2 is PASS only when one real coding Mission demonstrates all of the following:
 5. Add AIE revalidation at consequence boundary.
 6. Add Trust Gateway execution-phase enforcement and scoped egress.
 7. Add Git/Worktree exact-subject adapter.
-8. Add Sentinel exact-SHA verification projection.
-9. Run negative/falsification gates.
-10. Record evidence bundle and only then claim P2 PASS.
+8. Add Runtime→WORKS post-effect exact-subject binding.
+9. Add Sentinel exact-SHA verification projection.
+10. Run negative/falsification gates.
+11. Record evidence bundle and only then claim P2 PASS.

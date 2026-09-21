@@ -28,13 +28,30 @@ class StewardP2ContractTest(unittest.TestCase):
         self.assertIn("authority_lease_id", request["required"])
         self.assertIn("admission_decision_id", request["required"])
 
-    def test_request_cannot_supply_works_minted_correlation(self):
+    def test_request_cannot_supply_works_minted_correlation_or_future_subject(self):
         request = self.load(SCHEMA)["$defs"]["request"]
         props = request["properties"]
         self.assertNotIn("execution_context_id", props)
         self.assertNotIn("trace_id", props)
         self.assertNotIn("worker_id", props)
+        self.assertNotIn("verification_subject", props)
+        self.assertNotIn("verification_subject", request["required"])
         self.assertFalse(request["additionalProperties"])
+
+    def test_subject_binding_is_post_effect_exact_git_subject(self):
+        schema = self.load(SCHEMA)
+        binding = schema["$defs"]["subject_binding"]
+        self.assertEqual(
+            binding["properties"]["schema"]["const"],
+            "dispatch.verification-subject/1.0",
+        )
+        self.assertEqual(
+            binding["properties"]["subject"]["pattern"],
+            r"^git:[A-Za-z0-9._-]+/[A-Za-z0-9._-]+@[a-f0-9]{40}$",
+        )
+        for field in ["works_execution_id", "attempt_id", "effect_id", "causal_id", "subject"]:
+            self.assertIn(field, binding["required"])
+        self.assertFalse(binding["additionalProperties"])
 
     def test_acceptance_materializes_full_execution_context(self):
         schema = self.load(SCHEMA)
