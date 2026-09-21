@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.dev/contracts/jev-sidecar/0.1.promotion.schema.json",
+  "title": "Aftergraph Jev Sidecar Class-Specific Promotion Evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "decision_class",
+    "provider",
+    "model",
+    "source_revision",
+    "artifact_digest",
+    "question_contract_digest",
+    "projection_contract_digest",
+    "holdout_ref",
+    "holdout_digest",
+    "sample_size",
+    "confidence_floor",
+    "deterministic_accuracy",
+    "hybrid_accuracy",
+    "harmful_overrides",
+    "authority_sensitive_new_errors",
+    "secret_scan",
+    "immutable_after_freeze",
+    "status"
+  ],
+  "properties": {
+    "schema": {
+      "const": "jev-sidecar-promotion/0.1"
+    },
+    "decision_class": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provider": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_revision": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "artifact_digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "question_contract_digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "projection_contract_digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "holdout_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "holdout_digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "sample_size": {
+      "type": "integer",
+      "minimum": 30
+    },
+    "confidence_floor": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "deterministic_accuracy": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "hybrid_accuracy": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "brier_score": {
+      "type": "number",
+      "minimum": 0
+    },
+    "ece": {
+      "type": "number",
+      "minimum": 0
+    },
+    "harmful_overrides": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "authority_sensitive_new_errors": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "secret_scan": {
+      "const": "clean"
+    },
+    "immutable_after_freeze": {
+      "const": true
+    },
+    "status": {
+      "enum": [
+        "qualified",
+        "rejected"
+      ]
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}
