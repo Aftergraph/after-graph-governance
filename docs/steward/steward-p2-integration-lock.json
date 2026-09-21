@@ -5,9 +5,9 @@
   "repositories": {
     "steward": {
       "repo": "Aftergraph/STEWARD-by-Aftergraph",
-      "commit": "ce6ac1a3955d1a38399aa23d34bc919d259dc624",
-      "branch": "steward/p2-works-adapter-v0",
-      "pull_request": 1
+      "commit": "e9d922cde216647e2ee4a0e570f1153931f984e6",
+      "branch": "steward/p2-tg-execution-port-v0",
+      "pull_request": 4
     },
     "governance": {
       "repo": "Aftergraph/after-graph-governance",
@@ -41,6 +41,8 @@
     "execution-context/1.0 is not an authorization token",
     "every consequential action revalidates live authority immediately before consequence",
     "verification binds to immutable subject",
-    "new subject invalidates prior subject-bound verification"
+    "new subject invalidates prior subject-bound verification",
+    "STEWARD does not directly perform execution-time AIE revalidation",
+    "Trust Gateway V2.1 requires immutable WORKS execution context before consequential dispatch"
   ]
-}\n
+}
