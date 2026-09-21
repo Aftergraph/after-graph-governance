@@ -1,6 +1,6 @@
 # STEWARD P2 — Production Integration Contract
 
-Status: PROPOSED  
+Status: PROPOSED — implementation started  
 Date: 2026-09-21  
 Owner: Aftergraph governance  
 Scope: STEWARD P1→P2 productionization across canonical platform owners.
@@ -15,14 +15,14 @@ The first production proof MUST replace reference adapters one boundary at a tim
 
 | Owner | Repository | Baseline commit |
 |---|---|---|
-| Governance | `Aftergraph/after-graph-governance` | `84d3cda4c3ce669ce4d6fbb031edbd3f514a3527` |
+| STEWARD | `Aftergraph/STEWARD-by-Aftergraph` | `ce6ac1a3955d1a38399aa23d34bc919d259dc624` |\n| Governance | `Aftergraph/after-graph-governance` | `84d3cda4c3ce669ce4d6fbb031edbd3f514a3527` |
 | WORKS | `Aftergraph/works-execution` | `ab8c1d2a6cc322b3d730b1514b1141b8ee65310c` |
 | Runtime | `Aftergraph/runtime` | `4bff0be654c9e32f62317295d43d7e918139f3e9` |
 | AIE | `Aftergraph/aie` | `4c8b871478183557d147a6670a57c5b5e7b15024` |
 | Trust Gateway | `Aftergraph/trust-gateway` | `8a2c8d66a67d036227c77904844f105b39723f58` |
 | Sentinel | `Aftergraph/sentinel` | `eb51f824af2279ee3eee5daa8572bd54a34b3ca8` |
 
-Any implementation claim made against a later head MUST refresh this baseline and repeat the relevant conformance checks.
+Any implementation claim made against a later head MUST refresh this baseline and repeat the relevant conformance checks. The STEWARD row is the current P2 adapter candidate on `steward/p2-works-adapter-v0`; it is not yet a P2 PASS.
 
 ## Existing canonical seams to reuse
 
