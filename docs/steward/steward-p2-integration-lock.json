@@ -1,8 +1,14 @@
 {
-  "schema": "aftergraph.steward.p2.integration-lock/0.1",
+  "schema": "aftergraph.steward.p2.integration-lock/0.2",
   "captured_at": "2026-09-21",
   "scope": "P1-to-P2 production integration baseline",
   "repositories": {
+    "steward": {
+      "repo": "Aftergraph/STEWARD-by-Aftergraph",
+      "commit": "ce6ac1a3955d1a38399aa23d34bc919d259dc624",
+      "branch": "steward/p2-works-adapter-v0",
+      "pull_request": 1
+    },
     "governance": {
       "repo": "Aftergraph/after-graph-governance",
       "commit": "84d3cda4c3ce669ce4d6fbb031edbd3f514a3527"
@@ -37,4 +43,4 @@
     "verification binds to immutable subject",
     "new subject invalidates prior subject-bound verification"
   ]
-}
+}\n
