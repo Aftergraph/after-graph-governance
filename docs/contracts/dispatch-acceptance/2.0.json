@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.dev/contracts/dispatch-acceptance/2.0.json",
+  "title": "Aftergraph WORKS Dispatch Acceptance 2.0",
+  "description": "V2.1-compatible Runtime→WORKS durable acceptance. This contract binds canonical identity and Work/WorkerLease correlation and materializes execution-context/1.0. It is not an authority grant.",
+  "$defs": {
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "organization_id",
+        "tenant_id",
+        "principal_id",
+        "mission_id",
+        "authority_lease_id",
+        "worker_lease_id",
+        "admission_decision_id",
+        "runtime_dispatch_id",
+        "attempt_id",
+        "effect_id",
+        "idempotency_key",
+        "budget_ref",
+        "budget_ceiling",
+        "checkpoint_id",
+        "evidence_root",
+        "verification_subject",
+        "causal_id"
+      ],
+      "properties": {
+        "schema": {"const": "dispatch.acceptance/2.0"},
+        "organization_id": {"type": "string", "pattern": "^org_[a-f0-9]{32}$"},
+        "tenant_id": {"type": "string", "pattern": "^ten_[a-f0-9]{32}$"},
+        "principal_id": {"type": "string", "pattern": "^prn_[a-f0-9]{32}$"},
+        "mission_id": {"type": "string", "pattern": "^mis_.+"},
+        "authority_lease_id": {"type": "string", "pattern": "^auth_[a-f0-9]{32}$"},
+        "worker_lease_id": {"type": "string", "pattern": "^lse_[a-f0-9]{32}$"},
+        "admission_decision_id": {"type": "string", "pattern": "^pdr_[a-f0-9]{32}$"},
+        "runtime_dispatch_id": {"type": "string", "minLength": 1},
+        "attempt_id": {"type": "string", "minLength": 1},
+        "effect_id": {"type": "string", "minLength": 1},
+        "idempotency_key": {"type": "string", "minLength": 1},
+        "budget_ref": {"type": "string", "minLength": 1},
+        "budget_ceiling": {"type": "integer", "minimum": 0},
+        "checkpoint_id": {"type": "string", "minLength": 1},
+        "evidence_root": {"type": "string", "minLength": 1},
+        "verification_subject": {"type": "string", "minLength": 1},
+        "causal_id": {"type": "string", "minLength": 1}
+      }
+    },
+    "execution_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "execution_context_id",
+        "organization_id",
+        "tenant_id",
+        "principal_id",
+        "mission_id",
+        "authority_lease_id",
+        "work_id",
+        "worker_id",
+        "worker_lease_id",
+        "admission_decision_id",
+        "trace_id"
+      ],
+      "properties": {
+        "schema": {"const": "execution-context/1.0"},
+        "execution_context_id": {"type": "string", "pattern": "^ctx_[a-f0-9]{32}$"},
+        "organization_id": {"type": "string", "pattern": "^org_[a-f0-9]{32}$"},
+        "tenant_id": {"type": "string", "pattern": "^ten_[a-f0-9]{32}$"},
+        "principal_id": {"type": "string", "pattern": "^prn_[a-f0-9]{32}$"},
+        "mission_id": {"type": "string", "pattern": "^mis_.+"},
+        "authority_lease_id": {"type": "string", "pattern": "^auth_[a-f0-9]{32}$"},
+        "work_id": {"type": "string", "pattern": "^wrk_[a-f0-9]{32}$"},
+        "worker_id": {"type": "string", "pattern": "^wrkr_[a-f0-9]{32}$"},
+        "worker_lease_id": {"type": "string", "pattern": "^lse_[a-f0-9]{32}$"},
+        "admission_decision_id": {"type": "string", "pattern": "^pdr_[a-f0-9]{32}$"},
+        "trace_id": {"type": "string", "pattern": "^trc_[a-f0-9]{32}$"},
+        "prior_execution_context_id": {"type": "string", "pattern": "^ctx_[a-f0-9]{32}$"}
+      }
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "work_id",
+    "works_execution_id",
+    "request",
+    "execution_context",
+    "outcome",
+    "verified"
+  ],
+  "properties": {
+    "schema": {"const": "dispatch.acceptance/2.0"},
+    "work_id": {"type": "string", "pattern": "^wrk_[a-f0-9]{32}$"},
+    "works_execution_id": {"type": "string", "minLength": 1},
+    "request": {"$ref": "#/$defs/request"},
+    "execution_context": {"$ref": "#/$defs/execution_context"},
+    "outcome": {"enum": ["ACCEPTED", "SUCCEEDED", "FAILED", "INDETERMINATE"]},
+    "verified": {"type": "boolean"},
+    "verifier_id": {"type": "string"},
+    "verdict": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["result", "subject", "evidence_ref", "recorded_at"],
+      "properties": {
+        "result": {"enum": ["ACCEPT", "REJECT"]},
+        "subject": {"type": "string"},
+        "evidence_ref": {"type": "string"},
+        "recorded_at": {"type": "string"}
+      }
+    }
+  }
+}

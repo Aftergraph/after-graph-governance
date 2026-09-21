@@ -81,9 +81,11 @@ Mission
     ↓
 Runtime orchestration request
     ↓
-WORKS dispatch acceptance
+WORKS `dispatch.acceptance/2.0`
     ↓
-WORKS-minted execution_context_id + trace_id
+WORKS atomically validates Work + WorkerLease
+    ↓
+WORKS-minted + persisted execution-context/1.0 + trace
     ↓
 Runtime/Habitat prepares proposed effect
     ↓
@@ -123,12 +125,36 @@ STEWARD projection
 7. every consequential action revalidates live authority immediately before consequence.
 8. child authority MUST attenuate parent authority.
 9. runtime dispatch ≠ durable WORKS acceptance.
-10. tool result ≠ trusted observation.
-11. Git branch name ≠ immutable verification subject; exact commit SHA is the subject for the coding slice.
-12. new/rebased HEAD invalidates subject-bound verification until reverified.
-13. Sentinel verdict ≠ builder self-report.
-14. UI/projected state ≠ canonical execution truth.
-15. STEWARD MUST NOT persist raw long-lived credentials in Agent/Habitat context.
+10. dispatch acceptance ≠ authority; action-time authority is still TG→AIE.
+11. `dispatch.acceptance/1.0` remains compatibility-only for P2 because its scalar `authority_epoch` has no canonical V2.1 owner and its minted ctx is not a materialized `execution-context/1.0`.
+12. `dispatch.acceptance/2.0` MUST materialize the real WORKS-owned execution context in the same durable acceptance transaction.
+13. tool result ≠ trusted observation.
+14. Git branch name ≠ immutable verification subject; exact commit SHA is the subject for the coding slice.
+15. new/rebased HEAD invalidates subject-bound verification until reverified.
+16. Sentinel verdict ≠ builder self-report.
+17. UI/projected state ≠ canonical execution truth.
+18. STEWARD MUST NOT persist raw long-lived credentials in Agent/Habitat context.
+
+## P2 contract correction — dispatch acceptance V2
+
+Falsification against the locked owner baselines found two incompatible truths in the legacy acceptance path:
+
+1. `dispatch.acceptance/1.0` requires a scalar `authority_epoch`, while approved Platform V2.1 authority is represented by Principal + AuthorityLease + admission/action-time PDR and live TG→AIE revalidation. No canonical AuthorityLease epoch exists. AIE revocation-freshness watermark sequence is a liveness/convergence signal and MUST NOT be silently reinterpreted as authority epoch.
+2. the legacy acceptance path mints `ctx_*` + `trc_*` but does not materialize a resolvable `execution-context/1.0` row. TG V2.1 resolves that context before consequential execution, so an acceptance-only ctx is insufficient.
+
+P2 therefore introduces a new major contract, `dispatch.acceptance/2.0`, owned by WORKS. It is additive; 1.0 remains readable compatibility history.
+
+`dispatch.acceptance/2.0` binds, in one durable transaction:
+- Work route scope;
+- organization / tenant / principal;
+- mission;
+- AuthorityLease reference;
+- WorkerLease reference;
+- initial admission PDR;
+- Runtime dispatch/effect/idempotency/checkpoint/evidence references;
+- exact verification subject.
+
+WORKS then mints `execution_context_id` + `trace_id`, validates the WorkerLease belongs to the Work, and persists the complete `execution-context/1.0`. This is correlation/durability only. It does not grant authority. Every consequential action still goes through Trust Gateway and live AIE revalidation immediately before effect.
 
 ## P2 contracts
 
@@ -237,8 +263,8 @@ P2 is PASS only when one real coding Mission demonstrates all of the following:
 
 1. Lock exact repository heads and refresh contract inventory.
 2. Land this governance integration contract.
-3. Implement WORKS binding first.
-4. Add Runtime adapter against WORKS dispatch acceptance.
+3. Implement WORKS `dispatch.acceptance/2.0` + atomic execution-context materialization first.
+4. Add Runtime adapter against WORKS acceptance V2; keep 1.0 compatibility isolated.
 5. Add AIE revalidation at consequence boundary.
 6. Add Trust Gateway execution-phase enforcement and scoped egress.
 7. Add Git/Worktree exact-subject adapter.

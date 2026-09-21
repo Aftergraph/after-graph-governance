@@ -1,5 +1,5 @@
 {
-  "schema": "aftergraph.steward.p2.integration-lock/0.2",
+  "schema": "aftergraph.steward.p2.integration-lock/0.3",
   "captured_at": "2026-09-21",
   "scope": "P1-to-P2 production integration baseline",
   "repositories": {
@@ -44,5 +44,11 @@
     "new subject invalidates prior subject-bound verification",
     "STEWARD does not directly perform execution-time AIE revalidation",
     "Trust Gateway V2.1 requires immutable WORKS execution context before consequential dispatch"
-  ]
+  ],
+  "contract_correction": {
+    "issue": 185,
+    "dispatch_write_contract": "dispatch.acceptance/2.0",
+    "compatibility_read_contract": "dispatch.acceptance/1.0",
+    "reason": "P2 requires a materialized execution-context/1.0 and cannot invent authority_epoch semantics."
+  }
 }
