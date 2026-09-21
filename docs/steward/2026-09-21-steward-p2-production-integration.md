@@ -15,7 +15,8 @@ The first production proof MUST replace reference adapters one boundary at a tim
 
 | Owner | Repository | Baseline commit |
 |---|---|---|
-| STEWARD | `Aftergraph/STEWARD-by-Aftergraph` | `e9d922cde216647e2ee4a0e570f1153931f984e6` |\n| Governance | `Aftergraph/after-graph-governance` | `84d3cda4c3ce669ce4d6fbb031edbd3f514a3527` |
+| STEWARD | `Aftergraph/STEWARD-by-Aftergraph` | `e9d922cde216647e2ee4a0e570f1153931f984e6` |
+| Governance | `Aftergraph/after-graph-governance` | `84d3cda4c3ce669ce4d6fbb031edbd3f514a3527` |
 | WORKS | `Aftergraph/works-execution` | `ab8c1d2a6cc322b3d730b1514b1141b8ee65310c` |
 | Runtime | `Aftergraph/runtime` | `4bff0be654c9e32f62317295d43d7e918139f3e9` |
 | AIE | `Aftergraph/aie` | `4c8b871478183557d147a6670a57c5b5e7b15024` |
