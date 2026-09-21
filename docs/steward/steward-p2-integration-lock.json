@@ -5,9 +5,9 @@
   "repositories": {
     "steward": {
       "repo": "Aftergraph/STEWARD-by-Aftergraph",
-      "commit": "e9d922cde216647e2ee4a0e570f1153931f984e6",
-      "branch": "steward/p2-tg-execution-port-v0",
-      "pull_request": 4
+      "commit": "688c3e4b193f8f3ea34048044bbe4c82c26899d4",
+      "branch": "steward/p2-sentinel-port-v0",
+      "pull_request": 5
     },
     "governance": {
       "repo": "Aftergraph/after-graph-governance",
