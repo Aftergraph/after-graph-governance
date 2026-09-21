@@ -15,14 +15,14 @@ The first production proof MUST replace reference adapters one boundary at a tim
 
 | Owner | Repository | Baseline commit |
 |---|---|---|
-| STEWARD | `Aftergraph/STEWARD-by-Aftergraph` | `ce6ac1a3955d1a38399aa23d34bc919d259dc624` |\n| Governance | `Aftergraph/after-graph-governance` | `84d3cda4c3ce669ce4d6fbb031edbd3f514a3527` |
+| STEWARD | `Aftergraph/STEWARD-by-Aftergraph` | `e9d922cde216647e2ee4a0e570f1153931f984e6` |\n| Governance | `Aftergraph/after-graph-governance` | `84d3cda4c3ce669ce4d6fbb031edbd3f514a3527` |
 | WORKS | `Aftergraph/works-execution` | `ab8c1d2a6cc322b3d730b1514b1141b8ee65310c` |
 | Runtime | `Aftergraph/runtime` | `4bff0be654c9e32f62317295d43d7e918139f3e9` |
 | AIE | `Aftergraph/aie` | `4c8b871478183557d147a6670a57c5b5e7b15024` |
 | Trust Gateway | `Aftergraph/trust-gateway` | `8a2c8d66a67d036227c77904844f105b39723f58` |
 | Sentinel | `Aftergraph/sentinel` | `eb51f824af2279ee3eee5daa8572bd54a34b3ca8` |
 
-Any implementation claim made against a later head MUST refresh this baseline and repeat the relevant conformance checks. The STEWARD row is the current P2 adapter candidate on `steward/p2-works-adapter-v0`; it is not yet a P2 PASS.
+Any implementation claim made against a later head MUST refresh this baseline and repeat the relevant conformance checks. The STEWARD row is the current stacked P2 candidate on `steward/p2-tg-execution-port-v0`; it is not yet a P2 PASS.
 
 ## Existing canonical seams to reuse
 
@@ -84,11 +84,19 @@ WORKS dispatch acceptance
     ↓
 WORKS-minted execution_context_id + trace_id
     ↓
-AIE live authority revalidation
+Runtime/Habitat prepares proposed effect
     ↓
-Trust Gateway execution-phase enforcement
+Trust Gateway V2.1 execution action
     ↓
-Runtime/Habitat execution
+current identity + immutable WORKS execution context
+    ↓
+AIE live authority revalidation(action_id)
+    ↓
+TG execution-phase PDR
+    ↓
+PDR correlation persisted back to WORKS
+    ↓
+effect dispatch
     ↓
 candidate immutable subject (Git SHA for coding slice)
     ↓
@@ -177,16 +185,19 @@ STEWARD cannot mint the verdict.
    - follow dispatch/checkpoint state,
    - never mint execution truth locally.
 
-3. **AIE adapter**
-   - resolve principal/lease references,
-   - live revalidate consequential action by action ID,
-   - fail closed on stale/revoked/exhausted authority.
+3. **AIE execution-time integration — enforced through Trust Gateway**
+   - STEWARD carries action/context references but MUST NOT become the execution-side AIE client,
+   - Trust Gateway invokes AIE live revalidation by action ID immediately before consequence,
+   - fail closed on stale/revoked/exhausted/unreachable authority,
+   - the revalidated authority lease MUST match the immutable WORKS execution context.
 
-4. **Trust Gateway adapter**
-   - enforce execution-phase policy decision,
-   - use scoped handles/credential surrogation,
-   - route governed egress,
-   - fail closed when mission/authority context is absent.
+4. **Trust Gateway adapter** — implementation started in `Aftergraph/STEWARD-by-Aftergraph#4`
+   - use the canonical Platform V2.1 `POST /v1/actions` path with mandatory `execution_context_id`,
+   - enforce current identity + immutable WORKS context + AIE revalidation,
+   - persist execution-phase PDR correlation back to WORKS before dispatch,
+   - use scoped handles/credential surrogation for governed egress,
+   - fail closed when mission/authority/context/correlation is absent,
+   - STEWARD MUST NOT select the legacy no-context execution path.
 
 5. **Sentinel adapter**
    - request/observe independent exact-subject verification,
