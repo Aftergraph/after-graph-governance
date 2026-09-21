@@ -15,7 +15,7 @@ The first production proof MUST replace reference adapters one boundary at a tim
 
 | Owner | Repository | Baseline commit |
 |---|---|---|
-| STEWARD | `Aftergraph/STEWARD-by-Aftergraph` | `e9d922cde216647e2ee4a0e570f1153931f984e6` |
+| STEWARD | `Aftergraph/STEWARD-by-Aftergraph` | `688c3e4b193f8f3ea34048044bbe4c82c26899d4` |
 | Governance | `Aftergraph/after-graph-governance` | `84d3cda4c3ce669ce4d6fbb031edbd3f514a3527` |
 | WORKS | `Aftergraph/works-execution` | `ab8c1d2a6cc322b3d730b1514b1141b8ee65310c` |
 | Runtime | `Aftergraph/runtime` | `4bff0be654c9e32f62317295d43d7e918139f3e9` |
@@ -23,7 +23,7 @@ The first production proof MUST replace reference adapters one boundary at a tim
 | Trust Gateway | `Aftergraph/trust-gateway` | `8a2c8d66a67d036227c77904844f105b39723f58` |
 | Sentinel | `Aftergraph/sentinel` | `eb51f824af2279ee3eee5daa8572bd54a34b3ca8` |
 
-Any implementation claim made against a later head MUST refresh this baseline and repeat the relevant conformance checks. The STEWARD row is the current stacked P2 candidate on `steward/p2-tg-execution-port-v0`; it is not yet a P2 PASS.
+Any implementation claim made against a later head MUST refresh this baseline and repeat the relevant conformance checks. The STEWARD row is the current stacked P2 candidate on `steward/p2-sentinel-port-v0`; it is not yet a P2 PASS.
 
 ## Existing canonical seams to reuse
 
@@ -200,7 +200,7 @@ STEWARD cannot mint the verdict.
    - fail closed when mission/authority/context/correlation is absent,
    - STEWARD MUST NOT select the legacy no-context execution path.
 
-5. **Sentinel adapter**
+5. **Sentinel adapter** — projection port implemented in `Aftergraph/STEWARD-by-Aftergraph#5`; live verifier transport still pending
    - request/observe independent exact-subject verification,
    - bind verdict to immutable subject,
    - invalidate projection when subject changes.
