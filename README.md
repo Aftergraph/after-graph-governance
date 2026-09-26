@@ -90,6 +90,8 @@ The table below is a generated projection of `docs/platform-topology/2.0.json` â
 | Experience | ops-intelligence-projection | `war-room` | operational-intelligence-projection | active | Operational intelligence and human control projection over org reality, missions, agents, compute, attention, evidence and decision inbox surfaces without inventing canonical state. |
 | Experience | specialist-experience | `wi-frontend` | work-intelligence-experience | active | Wie browser experience and least-privilege BFF consuming canonical Work Intelligence state from wi-backend. |
 | Support | foundation | `.github` | organization-community | active | Organization profile, contribution defaults, security/support routing and shared community infrastructure. |
+| Support | product-incubation | `Pock-bot` | teammate-bot-interface-incubation | internal-hold | Staged POCK teammate-bot product identity and brand assets while canonical application source import and product classification remain pending. |
+| Support | system-composition | `STEWARD-by-Aftergraph` | persistent-governed-intelligence-composition | active | STEWARD product identity and persistent governed-intelligence composition, including cross-repository integration contracts, adapters, harness profiles and reference orchestration. |
 | Support | models | `afm` | model-program | active | AFM-specific model training, datasets, experiments, evaluations and artifact manifests. |
 | Support | governance | `after-graph-governance` | canonical-contracts | active | Platform topology, cross-repo boundaries, contract registration and generated org-state mechanics. |
 | Support | operations | `aftergraph-cron-fabric` | scheduled-observation-fabric | active | Read-only scheduled organization sensing, evidence gating, dedupe and Telegram escalation. It grants no execution authority. |
@@ -105,7 +107,6 @@ The table below is a generated projection of `docs/platform-topology/2.0.json` â
 | Support | models | `llm-research-development` | model-rnd-methodology | active | Reusable model research, experiment, evaluation, promotion and provenance methodology. |
 | Support | models | `model-registry` | model-lifecycle-registry | active | Immutable promoted model identities, versions, aliases, lifecycle, provenance and artifact locations. |
 | Support | tenant-product | `nikkahcerti` | nikkahcerti-commerce-product | active | NikkahCerti storefront and order-platform product source, tenant-specific commerce experience and production-domain composition. |
-| Support | product-incubation | `Pock-bot` | teammate-bot-interface-incubation | internal-hold | Staged POCK teammate-bot product identity and brand assets while canonical application source import and product classification remain pending. |
 | Support | tenant-domain | `rendetalje` | rendetalje-reference-tenant | active | Rendetalje-specific cleaning semantics, pricing policies, estimator behavior, playbooks, communication policy, tenant configuration, migration mappings and tenant-specific Business Ops composition. |
 | Support | product-surface | `renos` | service-operations-product-surface | active | RenOS branded service-operations operator experience, workspace composition, chat projection, attention/control presentation and domain/process/verification views. |
 | Support | assurance-fixture | `sentinel-firetest` | temporary-verification-fixture | temporary | Throwaway live-fire fixture for Sentinel proofs. Topology membership is temporary and grants no permanent platform responsibility. |
@@ -113,7 +114,6 @@ The table below is a generated projection of `docs/platform-topology/2.0.json` â
 | Support | capabilities | `skill-abi` | skill-compatibility-contract | active | Semantic compatibility, bounded effects, degradation and conformance for portable AI agent skills. |
 | Support | assurance | `skillport` | skill-portability-benchmark | active | Open benchmark and evaluation suite for semantic portability of skills across models, runtimes and capability environments. |
 | Support | capabilities | `skills-vault` | capability-supply-chain | active | Governed skill discovery, trust, lifecycle, provenance, compatibility and distribution. |
-| Support | system-composition | `STEWARD-by-Aftergraph` | persistent-governed-intelligence-composition | active | STEWARD product identity and persistent governed-intelligence composition, including cross-repository integration contracts, adapters, harness profiles and reference orchestration. |
 | Support | incubation | `veranza` | assurance-incubation | internal-hold | Internal assurance-product incubation concept under naming/clearance hold. Topology membership does not imply public or production maturity. |
 <!-- platform-topology-v2:end -->
 
