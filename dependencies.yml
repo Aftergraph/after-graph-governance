@@ -204,3 +204,28 @@ modules:
     role: operational-intelligence-projection
     consumes: [after-graph-governance, aie, trust-gateway, runtime, works-execution, sentinel, wi-backend]
     provides: [ops-intelligence, collision-radar, decision-inbox, egac-projection, org-summary]
+
+  STEWARD-by-Aftergraph:
+    repo: Aftergraph/STEWARD-by-Aftergraph
+    role: persistent-governed-intelligence-composition
+    consumes: [after-graph-governance, aie, trust-gateway, runtime, works-execution, sentinel, model-registry, skills-vault, skill-abi, context-continuity, intelligence-systems-research, brand]
+    provides: [steward-composition, cross-repo-integration-adapters, harness-profiles, reference-orchestration, project-thread-composer-command-semantics]
+
+  core:
+    repo: Aftergraph/core
+    role: secure-object-graph-control
+    consumes: [after-graph-governance, aie, trust-gateway, context-continuity]
+    provides: [encrypted-object-graph, credential-vault, capability-broker, local-control-surface, tamper-evident-audit]
+
+  Pock-bot:
+    repo: Aftergraph/Pock-bot
+    role: teammate-bot-interface-incubation
+    consumes: [after-graph-governance, brand]
+    provides: [pock-bot-interface-incubation, staged-brand-assets]
+
+  nikkahcerti:
+    repo: Aftergraph/nikkahcerti
+    role: nikkahcerti-commerce-product
+    consumes: [after-graph-governance, brand]
+    provides: [nikkahcerti-storefront, order-platform, tenant-commerce-experience]
+

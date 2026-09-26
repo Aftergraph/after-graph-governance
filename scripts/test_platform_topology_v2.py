@@ -178,13 +178,13 @@ def load_json(path: Path) -> dict:
 
 
 class TopologyV2DataTest(unittest.TestCase):
-    def test_has_exactly_33_unique_repositories(self):
-        # 33 = prior 31 (Rendetalje + RenOS) + fihim + war-room experience
-        # projections. Both new entries are architecture_plane=experience.
+    def test_has_exactly_37_unique_repositories(self):
+        # 37 = prior 33 + STEWARD composition root + CORE secure control
+        # + POCK incubation + NikkahCerti tenant product.
         doc = load_json(TOPOLOGY)
         names = [r["name"] for r in doc["repositories"]]
-        self.assertEqual(len(names), 33)
-        self.assertEqual(len(set(names)), 33)
+        self.assertEqual(len(names), 37)
+        self.assertEqual(len(set(names)), 37)
 
     def test_business_ops_is_registered_as_domain_not_platform_plane(self):
         repo = topology_index(load_json(TOPOLOGY))["business-ops"]
