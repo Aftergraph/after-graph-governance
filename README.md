@@ -48,7 +48,7 @@ Explicit special states:
   veranza = private incubation / INTERNAL HOLD
 ```
 
-Cross-cutting governance lives here. The topology contract contains **27 repositories** at the 2026-09-10 reconciliation cut (24 canonical + temporary `sentinel-firetest2`, expires 2026-09-22, + `skill-abi` and `skillport`). Topology membership never upgrades maturity, evidence, conformance or authority.
+Cross-cutting governance lives here. The topology contract contains **37 repositories** at the 2026-09-26 reconciliation cut. Topology membership never upgrades maturity, evidence, conformance or authority.
 
 ## Canonical topology
 
@@ -99,10 +99,13 @@ The table below is a generated projection of `docs/platform-topology/2.0.json` â
 | Support | service-business-domain | `business-ops` | canonical-service-business-domain | active | Canonical tenant-neutral service-business domain state, invariants, migration mappings, charge-source facts and shadow-conformance semantics. |
 | Support | continuity | `context-continuity` | continuity-contract | active | Portable transfer of actionable context/state across model, agent, session and runtime boundaries. |
 | Support | assurance | `continuum` | continuity-containment-verification | active | Continuity and containment fault-injection campaigns and verification harnesses. |
+| Support | secure-control | `core` | secure-object-graph-control | active | Encrypted typed object graph for knowledge, files, credentials, devices and brokered capability access with local control surfaces. |
 | Support | knowledge | `docs` | knowledge-plane | active | Provenance-pinned rendering, discovery, developer documentation and agent-readable context surfaces. |
 | Support | research-assurance | `intelligence-systems-research` | research-assurance | active | SPEC-001, MISSION-Bench methodology, scientific claims, experiments, assurance and publication evidence. |
 | Support | models | `llm-research-development` | model-rnd-methodology | active | Reusable model research, experiment, evaluation, promotion and provenance methodology. |
 | Support | models | `model-registry` | model-lifecycle-registry | active | Immutable promoted model identities, versions, aliases, lifecycle, provenance and artifact locations. |
+| Support | tenant-product | `nikkahcerti` | nikkahcerti-commerce-product | active | NikkahCerti storefront and order-platform product source, tenant-specific commerce experience and production-domain composition. |
+| Support | product-incubation | `Pock-bot` | teammate-bot-interface-incubation | internal-hold | Staged POCK teammate-bot product identity and brand assets while canonical application source import and product classification remain pending. |
 | Support | tenant-domain | `rendetalje` | rendetalje-reference-tenant | active | Rendetalje-specific cleaning semantics, pricing policies, estimator behavior, playbooks, communication policy, tenant configuration, migration mappings and tenant-specific Business Ops composition. |
 | Support | product-surface | `renos` | service-operations-product-surface | active | RenOS branded service-operations operator experience, workspace composition, chat projection, attention/control presentation and domain/process/verification views. |
 | Support | assurance-fixture | `sentinel-firetest` | temporary-verification-fixture | temporary | Throwaway live-fire fixture for Sentinel proofs. Topology membership is temporary and grants no permanent platform responsibility. |
@@ -110,6 +113,7 @@ The table below is a generated projection of `docs/platform-topology/2.0.json` â
 | Support | capabilities | `skill-abi` | skill-compatibility-contract | active | Semantic compatibility, bounded effects, degradation and conformance for portable AI agent skills. |
 | Support | assurance | `skillport` | skill-portability-benchmark | active | Open benchmark and evaluation suite for semantic portability of skills across models, runtimes and capability environments. |
 | Support | capabilities | `skills-vault` | capability-supply-chain | active | Governed skill discovery, trust, lifecycle, provenance, compatibility and distribution. |
+| Support | system-composition | `STEWARD-by-Aftergraph` | persistent-governed-intelligence-composition | active | STEWARD product identity and persistent governed-intelligence composition, including cross-repository integration contracts, adapters, harness profiles and reference orchestration. |
 | Support | incubation | `veranza` | assurance-incubation | internal-hold | Internal assurance-product incubation concept under naming/clearance hold. Topology membership does not imply public or production maturity. |
 <!-- platform-topology-v2:end -->
 
