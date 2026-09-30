@@ -184,3 +184,25 @@ The fabrics are seams, not new planes. Their job is to make the existing archite
 6. no credential material appears in plans, observations, bundles or logs;
 7. overhead (latency, payload size, operational complexity) is measured.
 
+
+
+### v0.5 executable preflight coverage
+
+The implementation-level Labs Fabric may compose heterogeneous observation
+sources into `aftergraph.labs-preflight/v1`. This is an observational
+readiness receipt, not a platform-verification receipt.
+
+The shared conformance slice requires:
+
+- documented HTTP probes for CORE, Trust Gateway, WORKS and FIHIM Eval Lab;
+- sealed artifact observations for Runtime and other non-HTTP owners;
+- optional immutable FIHIM vNext SUT binding;
+- explicit required/observed/missing adapter coverage;
+- exact-head or exact-artifact subject identity;
+- `OBSERVED`, `DEGRADED` or `INCOMPLETE` only;
+- no authority, verification, promotion or scientific-validity grant.
+
+Vectors `LAB-014`–`LAB-019` cover artifact observation provenance, complete
+and incomplete preflight semantics, and Eval Lab's non-promoting normalization.
+A passing vector set still does not establish that the real services were
+reachable in one live execution window.
