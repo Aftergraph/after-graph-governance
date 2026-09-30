@@ -48,7 +48,7 @@ Explicit special states:
   veranza = private incubation / INTERNAL HOLD
 ```
 
-Cross-cutting governance lives here. The topology contract contains **27 repositories** at the 2026-09-10 reconciliation cut (24 canonical + temporary `sentinel-firetest2`, expires 2026-09-22, + `skill-abi` and `skillport`). Topology membership never upgrades maturity, evidence, conformance or authority.
+Cross-cutting governance lives here. Repository membership and ownership are defined only by `docs/platform-topology/2.0.json`; current counts are derived from that file rather than hard-coded in prose. Topology membership never upgrades maturity, evidence, conformance or authority.
 
 ## Canonical topology
 
