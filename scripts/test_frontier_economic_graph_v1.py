@@ -12,6 +12,8 @@ ECON_DOC = ROOT / "docs/ECONOMIC-GRAPH-V1.md"
 PROMOTION = ROOT / "docs/evidence/promotions/economic-graph-v1.json"
 LIVE_FRONTIER = ROOT / "docs/frontier/economic-live-settlement-v1.json"
 SETTLEMENT_VECTORS = ROOT / "docs/platform-conformance/economic-live-settlement-v1/vectors.json"
+LIVE_READINESS = ROOT / "docs/frontier/economic-live-settlement-v1-readiness.json"
+LIVE_CANDIDATE_PROMOTION = ROOT / "docs/evidence/promotions/economic-live-settlement-v1-candidate.json"
 
 def load(path):
     return json.loads(path.read_text(encoding="utf-8"))
@@ -68,6 +70,27 @@ class EconomicGraphTest(unittest.TestCase):
         self.assertEqual(record["lifecycle"], "candidate")
         self.assertFalse(record["self_promoted"])
         self.assertFalse(record["carries_authority"])
+
+    def test_live_settlement_candidate_promotion_is_non_authoritative(self):
+        record = load(LIVE_CANDIDATE_PROMOTION)
+        self.assertEqual(record["lifecycle"], "candidate")
+        self.assertFalse(record["self_promoted"])
+        self.assertFalse(record["carries_authority"])
+        self.assertTrue(record["verifier_refs"])
+        self.assertTrue(record["gate_ref"])
+        self.assertTrue(record["registry_evidence_ref"])
+
+        readiness = load(LIVE_READINESS)
+        self.assertEqual(readiness["lifecycle"], "candidate")
+        self.assertTrue(readiness["candidate_promotion_complete"])
+        self.assertFalse(readiness["canonical_promotion_allowed"])
+        self.assertFalse(readiness["carries_authority"])
+        self.assertEqual(readiness["readiness"]["live_real_node_observations"], "verified")
+        self.assertEqual(readiness["readiness"]["independent_finality_campaign"], "verified")
+        self.assertEqual(readiness["readiness"]["real_response_falsification"], "verified")
+        self.assertEqual(readiness["readiness"]["live_value_execution"], "disabled")
+        self.assertEqual(readiness["readiness"]["signer_boundary"], "disabled")
+        self.assertEqual(readiness["readiness"]["custody_boundary"], "disabled")
 
     def test_live_settlement_vectors_fail_closed(self):
         vectors = load(SETTLEMENT_VECTORS)
