@@ -94,6 +94,33 @@ Repo verified        != platform verified
 
 No production or scientific maturity claim is upgraded by these tests.
 
+## Fabric D: Labs federation
+
+`labs-fabric/0.1` defines a non-authoritative coordination seam for read-only
+platform probes, SUT discovery references, and evaluation evidence federation.
+The current CORE implementation is `@aftergraph/labs-fabric`; FIHIM Eval Lab
+is an observational evidence consumer/normalizer.
+
+Hard invariants:
+
+1. adapters and probe plans MUST set `authorityGranted=false`;
+2. the maximum native claim is `OBSERVED`;
+3. a federated bundle MUST NOT grant verification or scientific validity;
+4. missing/unreachable targets remain explicit unresolved coverage;
+5. credentials are referenced, never embedded in endpoint URLs or bundle payloads;
+6. plaintext HTTP is allowed only for loopback development endpoints;
+7. Eval Lab normalization MUST remain `HOLD/OBSERVED` and cannot self-promote;
+8. Labs Fabric MUST NOT replace AIE authority, Trust Gateway admission, WORKS
+   execution truth, Runtime orchestration, Sentinel verification, or ISR research evidence.
+
+Machine-executable vectors live at
+`docs/platform-conformance/labs-fabric-v0.1/vectors.json` and are exercised by
+`scripts/test_labs_fabric_v0_1.py`.
+
+Passing the Labs Fabric vectors establishes only the fail-closed contract
+boundary. Live cross-repo reachability and exact-head behavior require separate
+runtime evidence.
+
 ## Ownership
 
 | Concern | Owner |
@@ -129,3 +156,16 @@ The next slices are intentionally additive:
 - AFM/ISR observable execution-trajectory benchmark over semantic capabilities.
 
 The fabrics are seams, not new planes. Their job is to make the existing architecture composable and falsifiable, not to become another platform inside the platform.
+
+## Labs Fabric promotion gates
+
+`labs-fabric/0.1` remains experimental until:
+
+1. CORE and at least one independent consumer pass the shared contract vectors;
+2. a live read-only preflight covers CORE, Eval Lab, Trust Gateway, WORKS and Runtime at exact heads;
+3. missing-target, timeout, tamper and stale-head cases fail closed;
+4. FIHIM vNext SUT identity is bound without mutating the SUT under evaluation;
+5. Eval Lab preserves `HOLD/OBSERVED` until its existing independent verification gates run;
+6. no credential material appears in plans, observations, bundles or logs;
+7. overhead (latency, payload size, operational complexity) is measured.
+
