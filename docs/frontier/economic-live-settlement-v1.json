@@ -4,9 +4,22 @@
   "subject_class": "capability-family",
   "lifecycle": "frontier",
   "canonical_owner_refs": ["works-execution","trust-gateway","aie"],
-  "claims": ["live-settlement semantics are under frontier evaluation"],
-  "non_claims": ["production-safe live settlement","custody","autonomous spending"],
-  "contract_refs": ["economic-graph-capabilities/1.0"],
+  "claims": [
+    "zero-effect atomic multi-leg settlement simulation exists",
+    "Trust Gateway fails closed on live execution while non-canonical",
+    "uncertain and partial outcomes cannot become FINAL in the frontier simulator"
+  ],
+  "non_claims": [
+    "production-safe live settlement",
+    "transaction signing",
+    "custody",
+    "autonomous spending",
+    "legal finality across real rails"
+  ],
+  "contract_refs": [
+    "economic-graph-capabilities/1.0",
+    "economic-live-settlement-frontier-v1/acceptance-vectors"
+  ],
   "evidence_refs": [],
   "verifier_refs": [],
   "gate_ref": null,
