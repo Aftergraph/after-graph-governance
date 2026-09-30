@@ -1,0 +1,48 @@
+{
+  "schema": "aftergraph.real-rail-evidence/v1",
+  "rail": "canton",
+  "source": "canton-sandbox-3.5.17",
+  "participantApi": "JSON Ledger API v2",
+  "version": {
+    "version": "3.5.17",
+    "features": {
+      "experimental": {
+        "staticTime": {
+          "supported": false
+        },
+        "commandInspectionService": {
+          "supported": true
+        }
+      },
+      "userManagement": {
+        "supported": true,
+        "maxRightsPerUser": 1000,
+        "maxUsersPageSize": 1000
+      },
+      "partyManagement": {
+        "maxPartiesPageSize": 10000
+      },
+      "offsetCheckpoint": {
+        "maxOffsetCheckpointEmissionDelay": {
+          "seconds": 75,
+          "nanos": 0,
+          "unknownFields": {
+            "fields": {}
+          }
+        }
+      },
+      "packageFeature": {
+        "maxVettedPackagesPageSize": 100
+      }
+    }
+  },
+  "ledgerEnd": {
+    "offset": 0
+  },
+  "observation": "PARTICIPANT_LEDGER_OBSERVED",
+  "legalFinalityClaimed": false,
+  "externalEffects": 0,
+  "capturedAt": "2026-09-30T23:36:09.138Z",
+  "sentinelRun": "36791884799",
+  "artifactId": "11132231014"
+}
