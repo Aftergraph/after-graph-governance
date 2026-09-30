@@ -18,13 +18,13 @@ modules:
     repo: Aftergraph/aie
     role: normative-authority
     consumes: [after-graph-governance.mission-state/1.0]
-    provides: [Principal, Role, AuthorityLease, MissionContract, PolicyDecisionRecord, DelegationRecord, BudgetLedger, TopologyMutation, RevocationRecord, EvidenceRecord, SettlementRecord]
+    provides: [Principal, Role, AuthorityLease, MissionContract, PolicyDecisionRecord, DelegationRecord, BudgetLedger, TopologyMutation, RevocationRecord, EvidenceRecord, SettlementRecord, economic-authority-policy]
 
   trust-gateway:
     repo: Aftergraph/trust-gateway
     role: runtime-enforcement
     consumes: [aie, works-execution.evidence-verdicts, after-graph-governance.mission-state/1.0, after-graph-governance.policy.token/1.0]
-    provides: [runtime-admission, approvals, policy-enforcement, hash-chain-audit, rbac, budgets, providers, computer-sessions, plugin-runtime, artifacts]
+    provides: [runtime-admission, approvals, policy-enforcement, hash-chain-audit, rbac, budgets, providers, computer-sessions, plugin-runtime, artifacts, economic-admission-approval-boundary]
 
   runtime:
     repo: Aftergraph/runtime
@@ -203,7 +203,7 @@ modules:
     repo: Aftergraph/fihim
     role: personal-agent-product
     consumes: [after-graph-governance, aie, trust-gateway, runtime, works-execution, wi-backend, sentinel, brand]
-    provides: [personal-agent-environment, context-continuity-experience, delegated-work-experience, conversational-agent-surface, needs-you-projection]
+    provides: [personal-agent-environment, context-continuity-experience, delegated-work-experience, conversational-agent-surface, needs-you-projection, economic-operator-projection]
 
   war-room:
     repo: Aftergraph/war-room
