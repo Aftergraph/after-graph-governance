@@ -121,6 +121,21 @@ Passing the Labs Fabric vectors establishes only the fail-closed contract
 boundary. Live cross-repo reachability and exact-head behavior require separate
 runtime evidence.
 
+### v0.3 contract coverage
+
+The implementation may evolve independently of the experimental contract-family
+version. `@aftergraph/labs-fabric` v0.3 still conforms to `labs-fabric/0.1` while
+adding two stricter executable boundaries:
+
+- exact-head fencing: a missing or mismatched observed git subject fails closed
+  even when the HTTP probe itself is green;
+- immutable FIHIM vNext SUT identity: the existing `fihim-vnext-vX.Y` discovery
+  shape is bound to a matching package version, exact source revision and content
+  digest without mutating the evaluated product.
+
+The shared vectors `LAB-009`–`LAB-013` cover these boundaries and the Eval Lab
+consumer's `HOLD/OBSERVED` normalization. They do not prove live reachability.
+
 ## Ownership
 
 | Concern | Owner |
