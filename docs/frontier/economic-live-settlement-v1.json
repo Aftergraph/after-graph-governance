@@ -2,28 +2,52 @@
   "schema": "frontier-lifecycle/1.0",
   "candidate_id": "economic.live-settlement/v1",
   "subject_class": "capability-family",
-  "lifecycle": "frontier",
-  "canonical_owner_refs": ["works-execution","trust-gateway","aie"],
+  "lifecycle": "candidate",
+  "canonical_owner_refs": [
+    "works-execution",
+    "trust-gateway",
+    "aie"
+  ],
   "claims": [
     "zero-effect atomic multi-leg settlement simulation exists",
-    "Trust Gateway fails closed on live execution while non-canonical",
-    "uncertain and partial outcomes cannot become FINAL in the frontier simulator"
+    "Trust Gateway fails closed on live execution while capability is non-canonical",
+    "Runtime read-only EVM and Canton adapters are merged and canonical-CI green",
+    "independent real-node Ethereum finalized evidence exists",
+    "independent real Canton 3.5.17 participant evidence exists",
+    "real-response falsification covers EVM pre-finality/non-regression, Canton ahead-of-ledger rejection, and cross-rail correlation disagreement",
+    "uncertain, partial and mismatched-correlation outcomes cannot become FINAL"
   ],
   "non_claims": [
     "production-safe live settlement",
-    "transaction signing",
-    "custody",
-    "autonomous spending",
-    "legal finality across real rails"
+    "live value execution is enabled",
+    "transaction signing is canonical",
+    "custody is canonical",
+    "autonomous spending is canonical",
+    "legal finality across real rails",
+    "the observed EVM and Canton facts represent the same real economic transaction"
   ],
   "contract_refs": [
     "economic-graph-capabilities/1.0",
-    "economic-live-settlement-frontier-v1/acceptance-vectors"
+    "economic-live-settlement-frontier-v1/acceptance-vectors",
+    "economic-real-rail-evidence/1.0"
   ],
-  "evidence_refs": [],
-  "verifier_refs": [],
-  "gate_ref": null,
-  "registry_evidence_ref": null,
+  "evidence_refs": [
+    "github:Aftergraph/works-execution@1eab95b1d22e560f5572bdeb85ee16eb3c5bf91a",
+    "github:Aftergraph/trust-gateway@f01c3bcf8bac0793895e8e37dd555d9cec3f0f1b",
+    "github:Aftergraph/after-graph-governance@93f2f0dcc052743af7b02935977f541867cc17ff",
+    "github:Aftergraph/runtime@f3ca0e0a9fff25328cb42b2f00aedda0de3f63dc",
+    "github:Aftergraph/sentinel@cace955ec40638ffad42e39c1a842129f34b503a",
+    "github:Aftergraph/sentinel@e682b1ad9495268e54d30dec0ed8f450571eee60",
+    "github:Aftergraph/sentinel@fcf780363452457569b035309caec023d390b97a",
+    "github-actions:Aftergraph/sentinel/run/36791884799/artifact/11132231014",
+    "github-actions:Aftergraph/sentinel/run/36792129979/artifact/11131309320"
+  ],
+  "verifier_refs": [
+    "github-actions:Aftergraph/sentinel/run/36791884799",
+    "github-actions:Aftergraph/sentinel/run/36792129979"
+  ],
+  "gate_ref": "after-graph-governance:economic-live-settlement-v1-candidate",
+  "registry_evidence_ref": "after-graph-governance:docs/frontier/economic-live-settlement-v1-readiness.json",
   "self_promoted": false,
   "carries_authority": false
 }
