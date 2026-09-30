@@ -1,0 +1,27 @@
+{
+  "schema_version": "tool-fabric-registry-digest-vector/0.1",
+  "payload": {
+    "schemaVersion": "aftergraph.tool-registry/v1",
+    "source": "Aftergraph/conformance",
+    "tools": [
+      {
+        "schemaVersion": "aftergraph.tool/v1",
+        "id": "conformance.read",
+        "version": "1.0.0",
+        "kind": "http",
+        "capabilities": ["conformance.read"],
+        "runtime": "gateway",
+        "credentialBindings": [],
+        "provenance": {
+          "source": "Aftergraph/after-graph-governance",
+          "revision": "tool-fabric/0.1",
+          "digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      }
+    ],
+    "authorityGranted": false,
+    "credentialsExposed": false
+  },
+  "canonical_json": "{\"authorityGranted\":false,\"credentialsExposed\":false,\"schemaVersion\":\"aftergraph.tool-registry/v1\",\"source\":\"Aftergraph/conformance\",\"tools\":[{\"capabilities\":[\"conformance.read\"],\"credentialBindings\":[],\"id\":\"conformance.read\",\"kind\":\"http\",\"provenance\":{\"digest\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"revision\":\"tool-fabric/0.1\",\"source\":\"Aftergraph/after-graph-governance\"},\"runtime\":\"gateway\",\"schemaVersion\":\"aftergraph.tool/v1\",\"version\":\"1.0.0\"}]}",
+  "sha256": "a925f991fd75c9fb556cf19c08afc3d8ab948def963354f00ac8d552af838e9e"
+}
