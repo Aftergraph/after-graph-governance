@@ -47,7 +47,7 @@ new authority, or a new source of execution, evidence or transport truth.
 3. **Context** — portable actionable state transfer (`context-continuity` handshake).
 4. **World State** — rebuildable projection over provenance-bearing canonical sources; never writable truth.
 5. **Proactivity** — attention pipeline (signal → candidate → Runtime decision → classified disclosure).
-6. **Capability** — semantic execution intent separated from provider implementation (`aftergraph-cron-fabric` senses; `skills-vault` supplies).
+6. **Capability** — semantic execution intent separated from provider implementation (`aftergraph-cron-fabric` senses; `skills-vault` supplies). Experimental `tool-fabric/0.1` composes discovery, routing, Trust admission, runtime binding and independently verifiable execution receipts; selection never grants authority and does not create a new plane.
 7. **Agent Organization** — Runtime team topology, delegation and relay behavior.
 8. **Verified Improvement** — immutable learning candidates promoted only with targeted, regression, safety and independent evidence.
 

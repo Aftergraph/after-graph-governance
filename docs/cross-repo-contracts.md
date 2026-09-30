@@ -71,6 +71,7 @@ not frozen platform law.
 |---|---|---|---|
 | `platform-event-ref/0.1` | Experimental | Governance registration; domain events remain TG/WORKS-owned | Correlates heterogeneous native events without replacing their envelopes or granting authority. |
 | `capability-action/0.1` | Experimental | Runtime semantics; Governance registration | Separates semantic execution intent from provider/runtime-specific implementation while preserving authority bounds. |
+| `tool-fabric/0.1` | Experimental | Governance registration; routing in CORE, admission in TG, runtime binding in Runtime | Capability discovery/routing across tool providers without granting authority; credential material stays behind TG governed egress; receipts remain independently verifiable. |
 
 Machine-executable Phase-0 vectors live at
 `docs/platform-conformance/v0.1/vectors.json` and are exercised by

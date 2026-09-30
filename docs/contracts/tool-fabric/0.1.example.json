@@ -1,0 +1,44 @@
+{
+  "contract": "tool-fabric/0.1",
+  "status": "experimental",
+  "invariants": [
+    "tool discovery and routing never grant authority",
+    "skills and models never grant execution authority by installation or selection",
+    "tool descriptors contain credential references only and never plaintext credential material",
+    "plaintext credentials may materialize only inside the Trust Gateway governed provider boundary after admission and mutable-state revalidation",
+    "runtime target binding may not widen admitted capability or authority",
+    "unknown or unclassified consequential effects fail closed",
+    "automatic failover may not replay a non-idempotent effect after execution may have started",
+    "execution success does not establish verified outcome",
+    "ToolExecutionReceipt integrity is independently verifiable and must state credentialMaterialExposed=false",
+    "experience and observability surfaces may project ToolFabric state but may not become authority or execution truth",
+    "semantic capability aliases must be explicitly registered with provenance; fuzzy or embedding similarity cannot grant or widen a capability"
+  ],
+  "owners": {
+    "registration": "Aftergraph/after-graph-governance",
+    "routing": "Aftergraph/core",
+    "admission": "Aftergraph/trust-gateway",
+    "runtime_binding": "Aftergraph/runtime",
+    "durable_execution": "Aftergraph/works-execution",
+    "verification": "Aftergraph/sentinel"
+  },
+  "participants": [
+    "Aftergraph/core",
+    "Aftergraph/trust-gateway",
+    "Aftergraph/runtime",
+    "Aftergraph/works-execution",
+    "Aftergraph/relay",
+    "Aftergraph/skill-abi",
+    "Aftergraph/skills-vault",
+    "Aftergraph/model-registry",
+    "Aftergraph/sentinel",
+    "Aftergraph/war-room",
+    "Aftergraph/fihim-vnext"
+  ],
+  "schemas": {
+    "tool": "aftergraph.tool/v1",
+    "resolution": "aftergraph.tool-resolution/v1",
+    "receipt": "aftergraph.tool-receipt/v1",
+    "telemetry": "aftergraph.tool-observation/v1"
+  }
+}
