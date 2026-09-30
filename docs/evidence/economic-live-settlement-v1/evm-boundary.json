@@ -1,0 +1,15 @@
+{
+  "schema": "economic-evm-boundary-falsification/1.0",
+  "finalizedHeadA": "0x18e27fb",
+  "finalizedHeadB": "0x18e27fb",
+  "latestHead": "0x18e283e",
+  "nonFinalizedTransactionHash": "0x148abb5fd2317fdb7bd891c8ef6128c91d9ba8121b8fe2564c2d97ac75474e73",
+  "nonFinalizedReceiptBlock": "0x18e283e",
+  "nonFinalizedRejectedAsFinalized": true,
+  "finalizedHeadNonRegression": true,
+  "final": false,
+  "externalEffects": 0,
+  "capturedAt": "2026-09-30T23:38:45.710Z",
+  "sourceRun": 36792129979,
+  "artifactId": 11131309320
+}
