@@ -16,7 +16,9 @@ This record tracks whether `economic.live-settlement/v1` has accumulated enough 
 
 ## Runtime rail characterization
 
-The intended read-only rail implementations are:
+Runtime read-only rail adapters are merged at `f3ca0e0a9fff25328cb42b2f00aedda0de3f63dc` with canonical Runtime CI green.
+
+The implemented read-only rail surfaces are:
 
 1. **EVM JSON-RPC**
    - transaction receipt observation;
@@ -31,6 +33,8 @@ The intended read-only rail implementations are:
 ## Candidate blockers
 
 Candidate status remains blocked until real endpoint evidence exists. Fixture-only or injected-fetch tests are architecture/conformance evidence, not production rail evidence.
+
+The dedicated Runtime acceptance workflow is tracked through `Aftergraph/runtime#251`; its purpose is evidence generation only and it cannot promote the capability.
 
 Required next evidence:
 
