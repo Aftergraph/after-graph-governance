@@ -107,3 +107,5 @@ jobs:
         run: python scripts/test_wave_d_requests_v0_1.py
       - name: Run Frontier and Economic Graph governance
         run: python scripts/test_frontier_economic_graph_v1.py
+      - name: Run Economic real-rail evidence verifier tests
+        run: python scripts/test_economic_real_rail_evidence.py

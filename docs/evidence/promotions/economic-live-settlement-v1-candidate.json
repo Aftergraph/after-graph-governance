@@ -1,0 +1,50 @@
+{
+  "schema": "frontier-lifecycle/1.0",
+  "candidate_id": "economic.live-settlement/v1",
+  "subject_class": "capability-family",
+  "lifecycle": "candidate",
+  "canonical_owner_refs": [
+    "works-execution",
+    "trust-gateway",
+    "aie"
+  ],
+  "claims": [
+    "candidate architecture has zero-effect atomic simulation and fail-closed live admission",
+    "read-only Runtime EVM/Canton observers are merged with canonical CI green",
+    "independent Sentinel real-node evidence exists for Ethereum finalized state and Canton participant state",
+    "real-response boundary falsification passes for EVM pre-finality/non-regression, Canton ahead-of-ledger rejection, and correlation disagreement"
+  ],
+  "non_claims": [
+    "canonical or production-safe live settlement",
+    "live execution authorization",
+    "transaction signing",
+    "custody",
+    "autonomous spending",
+    "same real economic transaction settled across both observed rails",
+    "legal finality"
+  ],
+  "contract_refs": [
+    "economic-graph-capabilities/1.0",
+    "economic-real-rail-evidence/1.0",
+    "economic-live-settlement-frontier-v1/acceptance-vectors"
+  ],
+  "evidence_refs": [
+    "github:Aftergraph/works-execution@1eab95b1d22e560f5572bdeb85ee16eb3c5bf91a",
+    "github:Aftergraph/trust-gateway@f01c3bcf8bac0793895e8e37dd555d9cec3f0f1b",
+    "github:Aftergraph/runtime@f3ca0e0a9fff25328cb42b2f00aedda0de3f63dc",
+    "github:Aftergraph/sentinel@fcf780363452457569b035309caec023d390b97a",
+    "github-actions:Aftergraph/sentinel/run/36791884799/artifact/11132231014",
+    "github-actions:Aftergraph/sentinel/run/36792129979/artifact/11131309320",
+    "artifact-sha256:0081dd8e7d5c9db040dd21abf82ee50719a9f50ecf8e73c5ebc57d712d69bbbc"
+  ],
+  "verifier_refs": [
+    "github:Aftergraph/sentinel@e682b1ad9495268e54d30dec0ed8f450571eee60",
+    "github:Aftergraph/sentinel@fcf780363452457569b035309caec023d390b97a",
+    "github-actions:Aftergraph/sentinel/run/36791884799",
+    "github-actions:Aftergraph/sentinel/run/36792129979"
+  ],
+  "gate_ref": "after-graph-governance:PROMOTION-GATES-V1:economic-live-settlement-candidate",
+  "registry_evidence_ref": "after-graph-governance:docs/frontier/economic-live-settlement-v1-readiness.json",
+  "self_promoted": false,
+  "carries_authority": false
+}

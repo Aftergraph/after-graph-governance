@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.dev/contracts/economic-real-rail-evidence/1.0.json",
+  "title": "Economic Real Rail Evidence v1",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "schema": { "const": "aftergraph.real-rail-evidence/v1" },
+    "rail": { "enum": ["evm", "canton"] },
+    "source": { "type": "string", "minLength": 1 },
+    "observation": { "enum": ["CONSENSUS_FINALIZED", "PARTICIPANT_LEDGER_OBSERVED"] },
+    "externalEffects": { "const": 0 },
+    "legalFinalityClaimed": { "type": "boolean" },
+    "capturedAt": { "type": "string", "minLength": 1 }
+  },
+  "required": ["schema","rail","source","observation","externalEffects","capturedAt"],
+  "allOf": [
+    {
+      "if": { "properties": { "rail": { "const": "evm" } } },
+      "then": {
+        "properties": { "observation": { "const": "CONSENSUS_FINALIZED" } },
+        "required": ["transactionHash","receiptBlockNumber","finalizedHeadNumber"]
+      }
+    },
+    {
+      "if": { "properties": { "rail": { "const": "canton" } } },
+      "then": {
+        "properties": {
+          "observation": { "const": "PARTICIPANT_LEDGER_OBSERVED" },
+          "legalFinalityClaimed": { "const": false }
+        },
+        "required": ["participantApi","version","ledgerEnd","legalFinalityClaimed"]
+      }
+    }
+  ]
+}

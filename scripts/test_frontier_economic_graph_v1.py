@@ -12,6 +12,8 @@ ECON_DOC = ROOT / "docs/ECONOMIC-GRAPH-V1.md"
 PROMOTION = ROOT / "docs/evidence/promotions/economic-graph-v1.json"
 LIVE_FRONTIER = ROOT / "docs/frontier/economic-live-settlement-v1.json"
 SETTLEMENT_VECTORS = ROOT / "docs/platform-conformance/economic-live-settlement-v1/vectors.json"
+LIVE_READINESS = ROOT / "docs/frontier/economic-live-settlement-v1-readiness.json"
+LIVE_CANDIDATE_PROMOTION = ROOT / "docs/evidence/promotions/economic-live-settlement-v1-candidate.json"
 
 def load(path):
     return json.loads(path.read_text(encoding="utf-8"))
@@ -40,7 +42,7 @@ class EconomicGraphTest(unittest.TestCase):
         caps = {c["id"]: c for c in load(CAPS)["capabilities"]}
         self.assertEqual(caps["economic.simulate"]["lifecycle"], "canonical")
         self.assertEqual(caps["economic.observe"]["lifecycle"], "canonical")
-        self.assertEqual(caps["economic.live-settlement"]["lifecycle"], "frontier")
+        self.assertEqual(caps["economic.live-settlement"]["lifecycle"], "candidate")
         self.assertEqual(caps["economic.transaction-signing"]["lifecycle"], "experimental")
         self.assertEqual(caps["economic.custody"]["lifecycle"], "experimental")
         self.assertEqual(caps["economic.autonomous-spend"]["lifecycle"], "experimental")
@@ -63,11 +65,32 @@ class EconomicGraphTest(unittest.TestCase):
         self.assertTrue(record["gate_ref"])
         self.assertTrue(record["registry_evidence_ref"])
 
-    def test_live_settlement_remains_frontier(self):
+    def test_live_settlement_is_candidate_without_authority(self):
         record = load(LIVE_FRONTIER)
-        self.assertEqual(record["lifecycle"], "frontier")
+        self.assertEqual(record["lifecycle"], "candidate")
         self.assertFalse(record["self_promoted"])
         self.assertFalse(record["carries_authority"])
+
+    def test_live_settlement_candidate_promotion_is_non_authoritative(self):
+        record = load(LIVE_CANDIDATE_PROMOTION)
+        self.assertEqual(record["lifecycle"], "candidate")
+        self.assertFalse(record["self_promoted"])
+        self.assertFalse(record["carries_authority"])
+        self.assertTrue(record["verifier_refs"])
+        self.assertTrue(record["gate_ref"])
+        self.assertTrue(record["registry_evidence_ref"])
+
+        readiness = load(LIVE_READINESS)
+        self.assertEqual(readiness["lifecycle"], "candidate")
+        self.assertTrue(readiness["candidate_promotion_complete"])
+        self.assertFalse(readiness["canonical_promotion_allowed"])
+        self.assertFalse(readiness["carries_authority"])
+        self.assertEqual(readiness["readiness"]["live_real_node_observations"], "verified")
+        self.assertEqual(readiness["readiness"]["independent_finality_campaign"], "verified")
+        self.assertEqual(readiness["readiness"]["real_response_falsification"], "verified")
+        self.assertEqual(readiness["readiness"]["live_value_execution"], "disabled")
+        self.assertEqual(readiness["readiness"]["signer_boundary"], "disabled")
+        self.assertEqual(readiness["readiness"]["custody_boundary"], "disabled")
 
     def test_live_settlement_vectors_fail_closed(self):
         vectors = load(SETTLEMENT_VECTORS)
@@ -78,7 +101,7 @@ class EconomicGraphTest(unittest.TestCase):
         self.assertEqual(by_id["ELS-003"]["expected"]["state"], "ABORTED")
         self.assertEqual(by_id["ELS-004"]["expected"]["decision"], "DENY")
         self.assertEqual(by_id["ELS-005"]["expected"]["decision"], "DENY")
-        self.assertTrue(vectors["promotion_blockers"], "frontier candidate must retain explicit promotion blockers")
+        self.assertTrue(vectors["promotion_blockers"], "live settlement must retain explicit canonical-promotion blockers")
 
 if __name__ == "__main__":
     unittest.main()

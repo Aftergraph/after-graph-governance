@@ -1,0 +1,20 @@
+{
+  "schema": "economic-cross-rail-falsification/1.0",
+  "mismatchedCorrelation": {
+    "state": "UNCERTAIN",
+    "final": false,
+    "reasons": [
+      "rail_subject_disagreement"
+    ]
+  },
+  "syntheticMatchedCorrelation": {
+    "state": "CORROBORATED_OBSERVATION",
+    "final": false,
+    "reasons": []
+  },
+  "realSettlementCorrelationClaimed": false,
+  "promotionAuthority": false,
+  "externalEffects": 0,
+  "sourceRun": 36792129979,
+  "artifactId": 11131309320
+}

@@ -3,18 +3,83 @@
   "family": "economic-graph",
   "version": "1.0.0",
   "capabilities": [
-    {"id":"economic.asset-rights-contracts","lifecycle":"canonical","owner":"after-graph-governance","effect_class":"none"},
-    {"id":"economic.intent","lifecycle":"canonical","owner":"after-graph-governance","effect_class":"none"},
-    {"id":"economic.simulate","lifecycle":"canonical","owner":"runtime","effect_class":"zero-external-effects"},
-    {"id":"economic.authority-binding","lifecycle":"canonical","owner":"aie/trust-gateway","effect_class":"authorization-only"},
-    {"id":"economic.works-lineage","lifecycle":"canonical","owner":"works-execution","effect_class":"durable-correlation"},
-    {"id":"economic.observe","lifecycle":"canonical","owner":"runtime","effect_class":"read-only"},
-    {"id":"economic.verify","lifecycle":"canonical","owner":"sentinel","effect_class":"verification-only"},
-    {"id":"economic.operator-projection","lifecycle":"canonical","owner":"fihim/homeos","effect_class":"projection-only"},
-    {"id":"economic.reconcile","lifecycle":"canonical","owner":"works-execution/sentinel","effect_class":"zero-value-reconciliation"},
-    {"id":"economic.live-settlement","lifecycle":"frontier","owner":"works-execution","effect_class":"consequential"},
-    {"id":"economic.transaction-signing","lifecycle":"experimental","owner":"trust-gateway","effect_class":"consequential"},
-    {"id":"economic.custody","lifecycle":"experimental","owner":"trust-gateway","effect_class":"consequential"},
-    {"id":"economic.autonomous-spend","lifecycle":"experimental","owner":"aie/trust-gateway/works-execution","effect_class":"consequential"}
+    {
+      "id": "economic.asset-rights-contracts",
+      "lifecycle": "canonical",
+      "owner": "after-graph-governance",
+      "effect_class": "none"
+    },
+    {
+      "id": "economic.intent",
+      "lifecycle": "canonical",
+      "owner": "after-graph-governance",
+      "effect_class": "none"
+    },
+    {
+      "id": "economic.simulate",
+      "lifecycle": "canonical",
+      "owner": "runtime",
+      "effect_class": "zero-external-effects"
+    },
+    {
+      "id": "economic.authority-binding",
+      "lifecycle": "canonical",
+      "owner": "aie/trust-gateway",
+      "effect_class": "authorization-only"
+    },
+    {
+      "id": "economic.works-lineage",
+      "lifecycle": "canonical",
+      "owner": "works-execution",
+      "effect_class": "durable-correlation"
+    },
+    {
+      "id": "economic.observe",
+      "lifecycle": "canonical",
+      "owner": "runtime",
+      "effect_class": "read-only"
+    },
+    {
+      "id": "economic.verify",
+      "lifecycle": "canonical",
+      "owner": "sentinel",
+      "effect_class": "verification-only"
+    },
+    {
+      "id": "economic.operator-projection",
+      "lifecycle": "canonical",
+      "owner": "fihim/homeos",
+      "effect_class": "projection-only"
+    },
+    {
+      "id": "economic.reconcile",
+      "lifecycle": "canonical",
+      "owner": "works-execution/sentinel",
+      "effect_class": "zero-value-reconciliation"
+    },
+    {
+      "id": "economic.live-settlement",
+      "lifecycle": "candidate",
+      "owner": "works-execution",
+      "effect_class": "consequential"
+    },
+    {
+      "id": "economic.transaction-signing",
+      "lifecycle": "experimental",
+      "owner": "trust-gateway",
+      "effect_class": "consequential"
+    },
+    {
+      "id": "economic.custody",
+      "lifecycle": "experimental",
+      "owner": "trust-gateway",
+      "effect_class": "consequential"
+    },
+    {
+      "id": "economic.autonomous-spend",
+      "lifecycle": "experimental",
+      "owner": "aie/trust-gateway/works-execution",
+      "effect_class": "consequential"
+    }
   ]
 }

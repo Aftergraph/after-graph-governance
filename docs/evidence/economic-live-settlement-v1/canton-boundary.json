@@ -1,0 +1,12 @@
+{
+  "schema": "economic-canton-boundary-falsification/1.0",
+  "ledgerEnd": 0,
+  "requestedOffset": 1,
+  "httpStatus": 404,
+  "updateNotFound": true,
+  "final": false,
+  "externalEffects": 0,
+  "capturedAt": "2026-09-30T23:39:06.350Z",
+  "sourceRun": 36792129979,
+  "artifactId": 11131309320
+}

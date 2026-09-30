@@ -1,0 +1,14 @@
+{
+  "schema": "aftergraph.real-rail-evidence/v1",
+  "rail": "evm",
+  "source": "publicnode-ethereum-json-rpc",
+  "rpcHost": "ethereum-rpc.publicnode.com",
+  "transactionHash": "0xc041c749c72e1747fc8495dfef0dc581e8665470b86ba73d2c0fba9b13020d48",
+  "receiptBlockNumber": "0x18e27db",
+  "finalizedHeadNumber": "0x18e27db",
+  "observation": "CONSENSUS_FINALIZED",
+  "externalEffects": 0,
+  "capturedAt": "2026-09-30T23:35:45.498Z",
+  "sentinelRun": "36791884799",
+  "artifactId": "11132231014"
+}
