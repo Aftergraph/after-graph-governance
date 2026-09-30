@@ -11,6 +11,7 @@ FRONTIER_DOC = ROOT / "docs/AFTERGRAPH-FRONTIER-V1.md"
 ECON_DOC = ROOT / "docs/ECONOMIC-GRAPH-V1.md"
 PROMOTION = ROOT / "docs/evidence/promotions/economic-graph-v1.json"
 LIVE_FRONTIER = ROOT / "docs/frontier/economic-live-settlement-v1.json"
+SETTLEMENT_VECTORS = ROOT / "docs/platform-conformance/economic-live-settlement-v1/vectors.json"
 
 def load(path):
     return json.loads(path.read_text(encoding="utf-8"))
@@ -67,6 +68,17 @@ class EconomicGraphTest(unittest.TestCase):
         self.assertEqual(record["lifecycle"], "frontier")
         self.assertFalse(record["self_promoted"])
         self.assertFalse(record["carries_authority"])
+
+    def test_live_settlement_vectors_fail_closed(self):
+        vectors = load(SETTLEMENT_VECTORS)
+        by_id = {v["id"]: v for v in vectors["vectors"]}
+        self.assertEqual(by_id["ELS-001"]["expected"]["final"], False)
+        self.assertEqual(by_id["ELS-001"]["expected"]["externalEffects"], 0)
+        self.assertEqual(by_id["ELS-002"]["expected"]["state"], "UNCERTAIN")
+        self.assertEqual(by_id["ELS-003"]["expected"]["state"], "ABORTED")
+        self.assertEqual(by_id["ELS-004"]["expected"]["decision"], "DENY")
+        self.assertEqual(by_id["ELS-005"]["expected"]["decision"], "DENY")
+        self.assertTrue(vectors["promotion_blockers"], "frontier candidate must retain explicit promotion blockers")
 
 if __name__ == "__main__":
     unittest.main()
