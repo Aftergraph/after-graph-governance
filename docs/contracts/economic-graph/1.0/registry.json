@@ -1,0 +1,32 @@
+{
+  "schema": "economic-graph-registry/1.0",
+  "family": "economic-graph",
+  "status": "canonical-with-noncanonical-capabilities",
+  "normative_owner": "after-graph-governance",
+  "semantic_owners": {
+    "economic_authority_policy": "aie",
+    "runtime_admission_approvals_secrets": "trust-gateway",
+    "orchestration_read_only_observation": "runtime",
+    "durable_work_execution_recovery": "works-execution",
+    "independent_verification": "sentinel",
+    "operator_projection": "fihim/homeos",
+    "capability_discovery_routing_client": "core"
+  },
+  "contracts": [
+    "aftergraph.economic-envelope/v1",
+    "aftergraph.runtime-economic-receipt/v1",
+    "aftergraph.sentinel-economic-event/v1",
+    "aftergraph.economic-surface/v1"
+  ],
+  "invariants": [
+    "asset representation is not legal ownership by itself",
+    "wallet identity is not principal authority by itself",
+    "model output is never authorization truth",
+    "WORKS owns execution-context and worker lineage",
+    "Runtime adopts WORKS execution identity and does not mint substitutes",
+    "Sentinel observes/verifies and never grants execution authority",
+    "FIHIM/HomeOS project state and never grant execution authority",
+    "uncertain reconciliation state cannot become FINAL",
+    "v1 runtime observation externalEffects must equal 0"
+  ]
+}
