@@ -7,7 +7,7 @@
     "trust_gateway_fail_closed_admission": "verified",
     "governance_acceptance_vectors": "verified",
     "independent_rail_verification": "verified",
-    "runtime_read_only_rail_adapters": "pending-runtime-pr-249",
+    "runtime_read_only_rail_adapters": "verified",
     "live_real_node_observations": "missing",
     "independent_finality_campaign": "missing",
     "signer_boundary": "disabled",
@@ -18,16 +18,17 @@
     "github:Aftergraph/works-execution@1eab95b1d22e560f5572bdeb85ee16eb3c5bf91a",
     "github:Aftergraph/trust-gateway@f01c3bcf8bac0793895e8e37dd555d9cec3f0f1b",
     "github:Aftergraph/after-graph-governance@93f2f0dcc052743af7b02935977f541867cc17ff",
-    "github:Aftergraph/sentinel@cace955ec40638ffad42e39c1a842129f34b503a"
+    "github:Aftergraph/sentinel@cace955ec40638ffad42e39c1a842129f34b503a",
+    "github:Aftergraph/runtime@f3ca0e0a9fff25328cb42b2f00aedda0de3f63dc"
   ],
   "pending_refs": [
-    "github-pr:Aftergraph/runtime#249"
+    "github-pr:Aftergraph/runtime#251"
   ],
   "candidate_requirements_remaining": [
-    "merge Runtime read-only rail adapters with native CI green",
-    "capture read-only observations from at least one real EVM RPC endpoint",
-    "capture read-only observations from at least one real Canton participant JSON Ledger API endpoint",
-    "run Sentinel reconciliation over independently captured evidence",
+    "capture read-only observations from a real EVM JSON-RPC endpoint via Runtime acceptance run",
+    "capture read-only observations from a real Canton 3.5.17 sandbox participant JSON Ledger API",
+    "record Runtime acceptance workflow run/artifact reference",
+    "run/record Sentinel reconciliation over captured evidence",
     "prove stale/reorg/offset-disagreement handling against real node responses",
     "record independent verifier evidence in governance",
     "keep transaction signing, custody and autonomous spend disabled"
