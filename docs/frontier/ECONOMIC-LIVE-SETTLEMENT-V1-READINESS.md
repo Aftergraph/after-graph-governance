@@ -1,8 +1,8 @@
 # Economic Live Settlement v1 — Candidate Readiness
 
-Status: **FRONTIER**. Not a Candidate and not Canonical.
+Status: **CANDIDATE**. Not Canonical. Live execution remains disabled.
 
-This record tracks whether `economic.live-settlement/v1` has accumulated enough independently verifiable evidence to be proposed for CANDIDATE status.
+This record records the evidence that advanced `economic.live-settlement/v1` to CANDIDATE status. Candidate is a maturity state only; it carries no authority and does not enable live execution.
 
 ## Already verified
 
@@ -32,15 +32,18 @@ The implemented read-only rail surfaces are:
 
 ## Candidate blockers
 
-Candidate status remains blocked until real endpoint evidence exists. Fixture-only or injected-fetch tests are architecture/conformance evidence, not production rail evidence.
+Candidate evidence now includes real read-only Ethereum finalized observations, a real Canton 3.5.17 sandbox participant, independent Sentinel verification, and real-response boundary falsification. These are promotion-to-CANDIDATE evidence only.
 
-The dedicated Runtime acceptance workflow is tracked through `Aftergraph/runtime#251`; its purpose is evidence generation only and it cannot promote the capability.
+Canonical promotion remains blocked on same-economic-transaction settlement evidence, signer/custody boundaries, human authorization/revocation/kill-switch/compensation evidence, legal/custodial reconciliation, and bounded live-value canaries.
 
-Required next evidence:
+Candidate evidence completed:
 
-- read-only observations from real EVM and Canton nodes;
-- independent Sentinel reconciliation over those observations;
-- disagreement/reorg/stale-offset campaign;
-- governance-owned verifier/gate evidence.
+- real EVM finalized receipt observation;
+- real Canton 3.5.17 participant JSON Ledger API observation;
+- independent Sentinel verification;
+- EVM pre-finality and finalized-head non-regression falsification;
+- Canton ahead-of-ledger offset rejection;
+- cross-rail correlation disagreement => UNCERTAIN;
+- governance-owned candidate promotion record.
 
-Signing, custody, broadcasting and autonomous value transfer remain disabled throughout Candidate-readiness work.
+Signing, custody, broadcasting and autonomous value transfer remain disabled. Canonical promotion requires a separate governance decision and materially stronger live-value evidence.
