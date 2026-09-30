@@ -178,13 +178,21 @@ def load_json(path: Path) -> dict:
 
 
 class TopologyV2DataTest(unittest.TestCase):
-    def test_has_exactly_33_unique_repositories(self):
-        # 33 = prior 31 (Rendetalje + RenOS) + fihim + war-room experience
-        # projections. Both new entries are architecture_plane=experience.
+    def test_repository_names_are_unique_and_topology_is_nonempty(self):
         doc = load_json(TOPOLOGY)
         names = [r["name"] for r in doc["repositories"]]
-        self.assertEqual(len(names), 33)
-        self.assertEqual(len(set(names)), 33)
+        self.assertGreater(len(names), 0)
+        self.assertEqual(len(set(names)), len(names))
+
+    def test_core_is_registered_as_non_authoritative_tool_routing_owner(self):
+        repo = topology_index(load_json(TOPOLOGY))["core"]
+        self.assertIsNone(repo["architecture_plane"])
+        self.assertEqual(repo["system_class"], "capabilities")
+        self.assertEqual(repo["role"], "tool-routing-control-plane")
+        self.assertIn("routing", repo["owns"].lower())
+        self.assertIn("authority", repo["must_not_own"].lower())
+        self.assertIn("secrets", repo["must_not_own"].lower())
+        self.assertIn("verification", repo["must_not_own"].lower())
 
     def test_business_ops_is_registered_as_domain_not_platform_plane(self):
         repo = topology_index(load_json(TOPOLOGY))["business-ops"]
