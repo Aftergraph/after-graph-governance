@@ -204,6 +204,115 @@ def validate_sut_normalization(doc: dict) -> list[str]:
             errors.append("normalized SUT subject must be immutable")
     return errors
 
+
+def validate_artifact_observation(doc: dict) -> list[str]:
+    errors: list[str] = []
+    if doc.get("schemaVersion") != "aftergraph.labs-observation/v1":
+        errors.append("unsupported artifact observation schema")
+    if not str(doc.get("adapterId", "")).strip():
+        errors.append("adapterId required")
+    if not str(doc.get("capability", "")).strip():
+        errors.append("capability required")
+    if doc.get("state") not in {"healthy", "degraded", "unhealthy", "unknown"}:
+        errors.append("unsupported observation state")
+    if not SHA1_RE.fullmatch(str(doc.get("subjectRevision", ""))):
+        errors.append("subjectRevision must be an exact 40-character git SHA")
+    details = doc.get("details")
+    if not isinstance(details, dict) or details.get("sourceKind") != "artifact":
+        errors.append("artifact observation sourceKind must be artifact")
+    elif not SHA256_RE.fullmatch(str(details.get("artifactDigest", ""))):
+        errors.append("artifactDigest must be sha256 hex")
+    if doc.get("authorityGranted") is not False:
+        errors.append("artifact observation cannot grant authority")
+    if doc.get("maximumClaim") != "OBSERVED":
+        errors.append("artifact observation maximumClaim must be OBSERVED")
+    if not SHA256_RE.fullmatch(str(doc.get("observationDigest", ""))):
+        errors.append("observationDigest must be sha256 hex")
+    return errors
+
+
+def validate_preflight(doc: dict) -> list[str]:
+    errors: list[str] = []
+    if doc.get("schemaVersion") != "aftergraph.labs-preflight/v1":
+        errors.append("unsupported preflight schema")
+    if doc.get("state") not in {"OBSERVED", "DEGRADED", "INCOMPLETE"}:
+        errors.append("unsupported preflight state")
+    for field in ("requiredAdapterIds", "observedAdapterIds", "missingAdapterIds", "artifactObservations"):
+        if not isinstance(doc.get(field), list):
+            errors.append(f"{field} must be an array")
+    if doc.get("authorityGranted") is not False:
+        errors.append("preflight cannot grant authority")
+    if doc.get("verificationGranted") is not False:
+        errors.append("preflight cannot grant verification")
+    if doc.get("scientificValidityGranted") is not False:
+        errors.append("preflight cannot grant scientific validity")
+    if doc.get("maximumClaim") != "OBSERVED":
+        errors.append("preflight maximumClaim must be OBSERVED")
+    if not SHA256_RE.fullmatch(str(doc.get("receiptDigest", ""))):
+        errors.append("receiptDigest must be sha256 hex")
+
+    required = set(doc.get("requiredAdapterIds", []) if isinstance(doc.get("requiredAdapterIds"), list) else [])
+    observed = set(doc.get("observedAdapterIds", []) if isinstance(doc.get("observedAdapterIds"), list) else [])
+    expected_missing = sorted(required - observed)
+    declared_missing = sorted(doc.get("missingAdapterIds", []) if isinstance(doc.get("missingAdapterIds"), list) else [])
+    if expected_missing != declared_missing:
+        errors.append("missingAdapterIds does not match required-observed coverage")
+
+    http_bundle = doc.get("httpBundle")
+    if not isinstance(http_bundle, dict):
+        errors.append("httpBundle required")
+        unresolved = [1]
+        http_observations = []
+    else:
+        errors.extend([f"httpBundle: {error}" for error in validate_bundle(http_bundle)])
+        unresolved = http_bundle.get("unresolvedTargets", []) if isinstance(http_bundle.get("unresolvedTargets"), list) else [1]
+        http_observations = [
+            obs
+            for layer in http_bundle.get("layers", []) if isinstance(layer, dict)
+            for obs in layer.get("observations", []) if isinstance(layer.get("observations"), list)
+        ]
+
+    artifact_observations = doc.get("artifactObservations", []) if isinstance(doc.get("artifactObservations"), list) else []
+    for observation in artifact_observations:
+        errors.extend([f"artifactObservation: {error}" for error in validate_artifact_observation(observation)])
+
+    sut = doc.get("sutBinding")
+    if sut is not None:
+        errors.extend([f"sutBinding: {error}" for error in validate_sut_binding(sut)])
+
+    degraded = any(obs.get("state") != "healthy" for obs in [*http_observations, *artifact_observations] if isinstance(obs, dict))
+    expected_state = "INCOMPLETE" if expected_missing or unresolved else "DEGRADED" if degraded else "OBSERVED"
+    if doc.get("state") != expected_state:
+        errors.append(f"preflight state mismatch: expected {expected_state}")
+    return errors
+
+
+def validate_preflight_normalization(doc: dict) -> list[str]:
+    errors: list[str] = []
+    if doc.get("contract") != "FihimFrontierLabsPreflightEvidence/v1":
+        errors.append("unsupported preflight normalization contract")
+    if doc.get("status") not in {"OBSERVED", "DEGRADED", "INCOMPLETE"}:
+        errors.append("unsupported preflight normalization status")
+    if doc.get("promotion") != "HOLD":
+        errors.append("preflight normalization must HOLD")
+    if doc.get("maximumTruthClaim") != "OBSERVED":
+        errors.append("preflight normalization maximumTruthClaim must be OBSERVED")
+    if doc.get("authorityGranted") is not False:
+        errors.append("preflight normalization cannot grant authority")
+    if doc.get("verificationGranted") is not False:
+        errors.append("preflight normalization cannot grant verification")
+    if doc.get("scientificValidityGranted") is not False:
+        errors.append("preflight normalization cannot grant scientific validity")
+    required = set(doc.get("requiredAdapterIds", []) if isinstance(doc.get("requiredAdapterIds"), list) else [])
+    observed = set(doc.get("observedAdapterIds", []) if isinstance(doc.get("observedAdapterIds"), list) else [])
+    expected_missing = sorted(required - observed)
+    declared_missing = sorted(doc.get("missingAdapterIds", []) if isinstance(doc.get("missingAdapterIds"), list) else [])
+    if expected_missing != declared_missing:
+        errors.append("normalized preflight coverage mismatch")
+    if expected_missing and doc.get("status") != "INCOMPLETE":
+        errors.append("missing normalized coverage must remain INCOMPLETE")
+    return errors
+
 def validate_vector(vector: dict) -> list[str]:
     kind = vector.get("kind")
     doc = vector.get("input", {})
@@ -221,6 +330,12 @@ def validate_vector(vector: dict) -> list[str]:
         return validate_sut_binding(doc)
     if kind == "sut_normalization":
         return validate_sut_normalization(doc)
+    if kind == "artifact_observation":
+        return validate_artifact_observation(doc)
+    if kind == "preflight":
+        return validate_preflight(doc)
+    if kind == "preflight_normalization":
+        return validate_preflight_normalization(doc)
     return [f"unsupported vector kind: {kind}"]
 
 
@@ -233,6 +348,7 @@ class TestLabsFabricConformance(unittest.TestCase):
             "LAB-001", "LAB-002", "LAB-003", "LAB-004",
             "LAB-005", "LAB-006", "LAB-007", "LAB-008",
             "LAB-009", "LAB-010", "LAB-011", "LAB-012", "LAB-013",
+            "LAB-014", "LAB-015", "LAB-016", "LAB-017", "LAB-018", "LAB-019",
         })
         for vector in vectors:
             with self.subTest(vector=vector["id"]):
