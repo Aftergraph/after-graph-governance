@@ -1,0 +1,26 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aftergraph.dev/contracts/economic-graph/1.0/sentinel-economic-event.schema.json",
+  "title":"Sentinel Economic Event v1",
+  "type":"object",
+  "properties":{
+    "schema":{"const":"aftergraph.sentinel-economic-event/v1"},
+    "type":{"type":"string","enum":["economic.staged","economic.runtime.observed","economic.reconcile.required","economic.finalized"]},
+    "transactionId":{"type":"string","minLength":1},
+    "executionContextId":{"type":"string"},
+    "evidenceHash":{"type":"string","pattern":"^[a-fA-F0-9]{64}$"},
+    "final":{"type":"boolean"}
+  },
+  "required":["schema","type","transactionId","evidenceHash"],
+  "allOf":[
+    {
+      "if":{"properties":{"type":{"const":"economic.reconcile.required"}}},
+      "then":{"properties":{"final":{"const":false}}}
+    },
+    {
+      "if":{"properties":{"type":{"enum":["economic.runtime.observed","economic.reconcile.required","economic.finalized"]}}},
+      "then":{"required":["executionContextId"]}
+    }
+  ],
+  "additionalProperties":true
+}

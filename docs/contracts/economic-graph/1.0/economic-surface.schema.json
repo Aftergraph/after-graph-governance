@@ -1,0 +1,18 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aftergraph.dev/contracts/economic-graph/1.0/economic-surface.schema.json",
+  "title":"Economic Surface Projection v1",
+  "type":"object",
+  "additionalProperties":false,
+  "properties":{
+    "schema":{"const":"aftergraph.economic-surface/v1"},
+    "transactionId":{"type":"string","minLength":1},
+    "state":{"enum":["READY","NEEDS_YOU","DENIED","RUNNING","UNCERTAIN","FINAL"]},
+    "canExecute":{"const":false},
+    "externalEffects":{"const":0},
+    "needsYouReason":{"type":"string"},
+    "executionContextId":{"type":"string"},
+    "evidenceHash":{"type":"string","pattern":"^[a-fA-F0-9]{64}$"}
+  },
+  "required":["schema","transactionId","state","canExecute","externalEffects","evidenceHash"]
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "frontier-lifecycle/1.0",
+  "candidate_id": "economic-graph-v1.0.0-zero-effect",
+  "subject_class": "capability-family",
+  "lifecycle": "canonical",
+  "canonical_owner_refs": [
+    "after-graph-governance",
+    "aie",
+    "trust-gateway",
+    "runtime",
+    "works-execution",
+    "sentinel",
+    "fihim/homeos",
+    "core"
+  ],
+  "claims": [
+    "Economic Graph v1 simulation/read-only capability slice is canonical",
+    "WORKS owns durable execution lineage",
+    "Runtime observation remains zero-effect",
+    "Sentinel verification is independent from execution",
+    "CORE client is non-authoritative"
+  ],
+  "non_claims": [
+    "live settlement is canonical",
+    "transaction signing is canonical",
+    "custody is canonical",
+    "autonomous spending is canonical"
+  ],
+  "contract_refs": [
+    "economic-graph-registry/1.0",
+    "economic-graph-capabilities/1.0",
+    "aftergraph.economic-envelope/v1",
+    "aftergraph.runtime-economic-receipt/v1",
+    "aftergraph.sentinel-economic-event/v1",
+    "aftergraph.economic-surface/v1"
+  ],
+  "evidence_refs": [
+    "github:Aftergraph/core@4cb64e18132f30043ec4f148ebc658b100506186",
+    "github:Aftergraph/works-execution@660b6f990d800a1b75c8715a46bfbbc384b9594f",
+    "github:Aftergraph/runtime@623a89c0e57ddb8b7c3c4a9b51556326e49ea6d0",
+    "github:Aftergraph/sentinel@a7d0424755f98aeb90549bf3f18e113192d3b298",
+    "github:Aftergraph/fihim@ad7e8415241d7e3fd386d84275bfe63bd0ce167d"
+  ],
+  "verifier_refs": [
+    "github:Aftergraph/sentinel#45",
+    "github-actions:Aftergraph/core/CI#66",
+    "github-actions:Aftergraph/works-execution/Go-tests#455",
+    "github-actions:Aftergraph/runtime/CI#1593",
+    "github-actions:Aftergraph/fihim/FIHIM-Cockpit-CI#162"
+  ],
+  "gate_ref": "after-graph-governance:PROMOTION-GATES-V1:economic-graph-v1",
+  "registry_evidence_ref": "after-graph-governance:docs/contracts/economic-graph/1.0/registry.json",
+  "self_promoted": false,
+  "carries_authority": false
+}

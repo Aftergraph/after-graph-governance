@@ -17,6 +17,13 @@ on:
       - 'docs/contracts/pocket-source/**'
       - 'docs/contracts/voice-interaction/**'
       - 'docs/contracts/promotion-gates/**'
+      - 'docs/contracts/frontier-lifecycle/**'
+      - 'docs/contracts/economic-graph/**'
+      - 'docs/AFTERGRAPH-FRONTIER-V1.md'
+      - 'docs/ECONOMIC-GRAPH-V1.md'
+      - 'docs/frontier/**'
+      - 'docs/evidence/promotions/**'
+      - 'scripts/test_frontier_economic_graph_v1.py'
       - 'docs/contracts/avc-dissolution/**'
       - 'docs/platform-conformance/**'
       - 'docs/golden-mission/**'
@@ -47,6 +54,13 @@ on:
       - 'docs/contracts/pocket-source/**'
       - 'docs/contracts/voice-interaction/**'
       - 'docs/contracts/promotion-gates/**'
+      - 'docs/contracts/frontier-lifecycle/**'
+      - 'docs/contracts/economic-graph/**'
+      - 'docs/AFTERGRAPH-FRONTIER-V1.md'
+      - 'docs/ECONOMIC-GRAPH-V1.md'
+      - 'docs/frontier/**'
+      - 'docs/evidence/promotions/**'
+      - 'scripts/test_frontier_economic_graph_v1.py'
       - 'docs/contracts/avc-dissolution/**'
       - 'docs/platform-conformance/**'
       - 'docs/golden-mission/**'
@@ -89,3 +103,5 @@ jobs:
         run: python scripts/test_wave_c_requests_v0_1.py
       - name: Run Wave D request conformance
         run: python scripts/test_wave_d_requests_v0_1.py
+      - name: Run Frontier and Economic Graph governance
+        run: python scripts/test_frontier_economic_graph_v1.py

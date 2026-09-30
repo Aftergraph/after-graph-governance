@@ -12,37 +12,37 @@ modules:
     repo: Aftergraph/after-graph-governance
     role: canonical-contracts
     consumes: []
-    provides: [platform-topology/2.0, mission-state/1.0, policy.token/1.0, org-state/1.0, reconciliation-matrix]
+    provides: [platform-topology/2.0, mission-state/1.0, policy.token/1.0, org-state/1.0, reconciliation-matrix, frontier-lifecycle/1.0, economic-graph-registry/1.0, economic-graph-capabilities/1.0]
 
   aie:
     repo: Aftergraph/aie
     role: normative-authority
     consumes: [after-graph-governance.mission-state/1.0]
-    provides: [Principal, Role, AuthorityLease, MissionContract, PolicyDecisionRecord, DelegationRecord, BudgetLedger, TopologyMutation, RevocationRecord, EvidenceRecord, SettlementRecord]
+    provides: [Principal, Role, AuthorityLease, MissionContract, PolicyDecisionRecord, DelegationRecord, BudgetLedger, TopologyMutation, RevocationRecord, EvidenceRecord, SettlementRecord, economic-authority-policy]
 
   trust-gateway:
     repo: Aftergraph/trust-gateway
     role: runtime-enforcement
     consumes: [aie, works-execution.evidence-verdicts, after-graph-governance.mission-state/1.0, after-graph-governance.policy.token/1.0]
-    provides: [runtime-admission, approvals, policy-enforcement, hash-chain-audit, rbac, budgets, providers, computer-sessions, plugin-runtime, artifacts]
+    provides: [runtime-admission, approvals, policy-enforcement, hash-chain-audit, rbac, budgets, providers, computer-sessions, plugin-runtime, artifacts, economic-admission-approval-boundary]
 
   runtime:
     repo: Aftergraph/runtime
     role: agent-runtime
-    consumes: [after-graph-governance.mission-state/1.0, aie, trust-gateway, works-execution]
-    provides: [agent-lifecycle, orchestration, dispatch, checkpoints, metering, observability]
+    consumes: [after-graph-governance.mission-state/1.0, after-graph-governance.economic-graph-registry/1.0, aie, trust-gateway, works-execution]
+    provides: [agent-lifecycle, orchestration, dispatch, checkpoints, metering, observability, economic-read-only-observation]
 
   core:
     repo: Aftergraph/core
     role: tool-routing-control-plane
     consumes: [after-graph-governance, skill-abi, skills-vault, model-registry, relay]
-    provides: [tool-registry-federation, semantic-capability-resolution, health-aware-routing, circuit-breakers, tool-selection-plans]
+    provides: [tool-registry-federation, semantic-capability-resolution, health-aware-routing, circuit-breakers, tool-selection-plans, economic-graph-client]
 
   works-execution:
     repo: Aftergraph/works-execution
     role: durable-execution
-    consumes: [aie, after-graph-governance.mission-state/1.0]
-    provides: [durable-work, workgraph, scheduler, workers, leases, sandbox, recovery, evidence-bundles, quittance, company-brain]
+    consumes: [aie, after-graph-governance.mission-state/1.0, after-graph-governance.economic-graph-registry/1.0]
+    provides: [durable-work, workgraph, scheduler, workers, leases, sandbox, recovery, evidence-bundles, quittance, company-brain, economic-execution-lineage, economic-reconciliation]
 
   studio:
     repo: Aftergraph/studio
@@ -78,7 +78,7 @@ modules:
     repo: Aftergraph/sentinel
     role: verified-code-review
     consumes: [after-graph-governance]
-    provides: [verified-code-review-verdicts, stale-base-invalidation, evidence-backed-verdicts]
+    provides: [verified-code-review-verdicts, stale-base-invalidation, evidence-backed-verdicts, economic-event-verification]
 
   sentinel-firetest:
     repo: Aftergraph/sentinel-firetest
@@ -203,7 +203,7 @@ modules:
     repo: Aftergraph/fihim
     role: personal-agent-product
     consumes: [after-graph-governance, aie, trust-gateway, runtime, works-execution, wi-backend, sentinel, brand]
-    provides: [personal-agent-environment, context-continuity-experience, delegated-work-experience, conversational-agent-surface, needs-you-projection]
+    provides: [personal-agent-environment, context-continuity-experience, delegated-work-experience, conversational-agent-surface, needs-you-projection, economic-operator-projection]
 
   war-room:
     repo: Aftergraph/war-room

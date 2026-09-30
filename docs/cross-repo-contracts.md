@@ -61,6 +61,20 @@ ARS/1 and APC-1 use three Governance-owned machine contract families for release
 
 The APC-1 executable registry lives at `docs/release-intelligence/apc-1.json`. Compatibility declarations are claims; ARI tooling compiles them against applicable rules and evidence before a technical conformance label is emitted.
 
+## Aftergraph Frontier and Economic Graph V1
+
+| Contract | Normative | Owner Repo | Responsibility |
+|---|---|---|---|
+| `frontier-lifecycle/1.0` | Normative | after-graph-governance | Lifecycle/maturity record for experimental/frontier/candidate/canonical capability surfaces; grants no authority and creates no runtime owner. |
+| `economic-graph-registry/1.0` | Normative | after-graph-governance | Registers Economic Graph as a cross-repo capability family and pins semantic owners without creating a new plane or repository. |
+| `economic-graph-capabilities/1.0` | Normative | after-graph-governance | Capability-level maturity registry; simulation/read-only v1 surfaces are canonical while live settlement/signing/custody/autonomous spend remain non-canonical. |
+| `aftergraph.economic-envelope/v1` | Normative | after-graph-governance | Cross-repo economic intent/graph envelope; carries data only, never authority. |
+| `aftergraph.runtime-economic-receipt/v1` | Normative | Runtime semantics / Governance registration | Zero-effect Runtime observation receipt bound to WORKS-owned execution lineage. |
+| `aftergraph.sentinel-economic-event/v1` | Normative | Sentinel semantics / Governance registration | Evidence-bound economic verification event; reconciliation-required state cannot be final. |
+| `aftergraph.economic-surface/v1` | Normative | FIHIM/HomeOS projection / Governance registration | Operator projection that cannot grant execution and requires externalEffects=0 in the v1 slice. |
+
+Economic Graph is a capability family, not a new platform plane. CORE may expose a typed client/routing facade but is never the authority, execution or verification owner.
+
 ## Experimental platform fabric contracts
 
 The following contracts are **experimental** and therefore intentionally absent
