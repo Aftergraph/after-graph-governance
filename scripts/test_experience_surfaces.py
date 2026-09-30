@@ -17,7 +17,9 @@ assert homeos["canonical_role"] == "primary-operator-control-surface"
 assert homeos["repository_backing"]["status"] == "not-yet-canonicalized-in-github"
 assert homeos["repository_backing"]["repository"] is None
 assert homeos["local_development"]["canonical_path"] == r"C:\Aftergraph\Home-OS"
-assert homeos["local_development"]["latest_known_version"] == "0.60.0-frontier"
+assert homeos["local_development"]["latest_known_version"] == "0.81.0-frontier"
+assert homeos["local_development"]["latest_known_sha256"] == "66defeb10a0e588568c3b471101db7c9a11a8332a56b0cd79f627d8e87bd9a77"
+assert homeos["local_development"]["verification_status"] == "PASS_WITH_EXPLICIT_BOUNDARIES"
 assert "Aftergraph/war-room" in homeos["supersedes_as_primary_interface"]
 
 names = {row["name"] for row in topology["repositories"]}
