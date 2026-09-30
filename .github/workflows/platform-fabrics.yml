@@ -6,6 +6,7 @@ on:
       - 'docs/contracts/platform-event-ref/**'
       - 'docs/contracts/capability-action/**'
       - 'docs/contracts/tool-fabric/**'
+      - 'docs/experience-surfaces/**'
       - 'docs/contracts/world-assertion/**'
       - 'docs/contracts/situation/**'
       - 'docs/contracts/consent-ledger/**'
@@ -22,6 +23,7 @@ on:
       - 'docs/superpowers/requests/**'
       - 'scripts/test_platform_fabrics_v0_1.py'
       - 'scripts/test_tool_fabric_v0_1.py'
+      - 'scripts/test_experience_surfaces.py'
       - 'scripts/test_golden_mission_skeleton_v0_1.py'
       - 'scripts/test_wave_b_requests_v0_1.py'
       - 'scripts/test_wave_c_requests_v0_1.py'
@@ -34,6 +36,7 @@ on:
       - 'docs/contracts/platform-event-ref/**'
       - 'docs/contracts/capability-action/**'
       - 'docs/contracts/tool-fabric/**'
+      - 'docs/experience-surfaces/**'
       - 'docs/contracts/world-assertion/**'
       - 'docs/contracts/situation/**'
       - 'docs/contracts/consent-ledger/**'
@@ -50,6 +53,7 @@ on:
       - 'docs/superpowers/requests/**'
       - 'scripts/test_platform_fabrics_v0_1.py'
       - 'scripts/test_tool_fabric_v0_1.py'
+      - 'scripts/test_experience_surfaces.py'
       - 'scripts/test_golden_mission_skeleton_v0_1.py'
       - 'scripts/test_wave_b_requests_v0_1.py'
       - 'scripts/test_wave_c_requests_v0_1.py'
@@ -73,6 +77,8 @@ jobs:
         run: python scripts/test_platform_fabrics_v0_1.py
       - name: Run ToolFabric governance conformance
         run: python scripts/test_tool_fabric_v0_1.py
+      - name: Run experience-surface governance
+        run: python scripts/test_experience_surfaces.py
       - name: Run Golden Mission skeleton conformance
         run: python scripts/test_golden_mission_skeleton_v0_1.py
       - name: Run Wave B request conformance
