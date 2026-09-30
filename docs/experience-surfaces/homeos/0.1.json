@@ -10,14 +10,14 @@
   },
   "local_development": {
     "canonical_path": "C:\\Aftergraph\\Home-OS",
-    "latest_known_artifact": "aftergraph-homeos-native-v0.82.0-frontier-live-tool-fabric.zip",
-    "latest_known_version": "0.82.0-frontier",
-    "latest_known_sha256": "ddae32344750e1b951e10e4407a70f72b1dad1d5fb605913e0971eb478e18038",
+    "latest_known_artifact": "aftergraph-homeos-native-v0.83.0-frontier-toolfabric-stream.zip",
+    "latest_known_version": "0.83.0-frontier",
+    "latest_known_sha256": "a22a0f04af74726cc7881090fa781bd4db33403bf5e022f15e66b5ae6fd31f31",
     "verification_status": "PASS_WITH_EXPLICIT_BOUNDARIES",
     "verification_boundaries": [
       "dotnet restore/build/xUnit NOT_RUN in artifact-builder because dotnet is unavailable",
       "browser screenshot validation NOT_RUN",
-      "repository guard, dependency policy, ToolFabric live-adapter conformance, JS syntax, JSON parse, source manifest and ZIP integrity PASS"
+      "repository guard, dependency policy, ToolFabric live-adapter/runtime conformance, JS syntax, JSON parse, source manifest and ZIP integrity PASS"
     ]
   },
   "owns": [
