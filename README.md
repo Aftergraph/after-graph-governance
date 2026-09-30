@@ -48,7 +48,7 @@ Explicit special states:
   veranza = private incubation / INTERNAL HOLD
 ```
 
-Cross-cutting governance lives here. The topology contract contains **27 repositories** at the 2026-09-10 reconciliation cut (24 canonical + temporary `sentinel-firetest2`, expires 2026-09-22, + `skill-abi` and `skillport`). Topology membership never upgrades maturity, evidence, conformance or authority.
+Cross-cutting governance lives here. Repository membership and ownership are defined only by `docs/platform-topology/2.0.json`; current counts are derived from that file rather than hard-coded in prose. Topology membership never upgrades maturity, evidence, conformance or authority.
 
 ## Canonical topology
 
@@ -84,10 +84,10 @@ The table below is a generated projection of `docs/platform-topology/2.0.json` â
 | Runtime | runtime | `runtime` | agent-runtime | active | Agent lifecycle, orchestration, dispatch, checkpoints, metering and observability. |
 | Execution | execution | `works-execution` | durable-execution | active | Durable work state, scheduling, workers, leases, recovery, execution evidence and quittance. |
 | Verification | assurance | `sentinel` | verified-code-review | active | Exact-HEAD verified code-review verdicts with stale-base invalidation and cited evidence. |
-| Experience | operator-cockpit | `fihim` | operator-cockpit-projection | active | Operator cockpit product experience that composes queries, commands and subscriptions over multiple Aftergraph domain systems as a projection and command routing layer. |
+| Experience | personal-agent-environment | `fihim` | personal-agent-product | active | Persistent personal intelligent-agent environment: identity/context continuity, agent coordination, user-facing conversational and delegated-work experiences, surfaced through HomeOS and other approved clients. |
 | Experience | operator-plane | `relay` | human-operator-plane | active | Governed operator plane for supervising autonomous work across agents, missions, execution nodes, Runtime projection, and Aftergraph infrastructure. |
 | Experience | experience | `studio` | primary-experience | active | General-purpose human operating environment for Chat, Work, Space, control and evidence surfaces. |
-| Experience | ops-intelligence-projection | `war-room` | operational-intelligence-projection | active | Operational intelligence and human control projection over org reality, missions, agents, compute, attention, evidence and decision inbox surfaces without inventing canonical state. |
+| Experience | ops-intelligence-projection | `war-room` | operational-intelligence-backend-projection | active | Operational intelligence projection, organization reality queries, missions/agents/compute/attention/evidence aggregation and secondary diagnostic surfaces without inventing canonical state. |
 | Experience | specialist-experience | `wi-frontend` | work-intelligence-experience | active | Wie browser experience and least-privilege BFF consuming canonical Work Intelligence state from wi-backend. |
 | Support | foundation | `.github` | organization-community | active | Organization profile, contribution defaults, security/support routing and shared community infrastructure. |
 | Support | models | `afm` | model-program | active | AFM-specific model training, datasets, experiments, evaluations and artifact manifests. |
@@ -99,6 +99,7 @@ The table below is a generated projection of `docs/platform-topology/2.0.json` â
 | Support | service-business-domain | `business-ops` | canonical-service-business-domain | active | Canonical tenant-neutral service-business domain state, invariants, migration mappings, charge-source facts and shadow-conformance semantics. |
 | Support | continuity | `context-continuity` | continuity-contract | active | Portable transfer of actionable context/state across model, agent, session and runtime boundaries. |
 | Support | assurance | `continuum` | continuity-containment-verification | active | Continuity and containment fault-injection campaigns and verification harnesses. |
+| Support | capabilities | `core` | tool-routing-control-plane | active | ToolFabric registry federation, semantic capability resolution, health-aware routing plans and non-authoritative tool selection. |
 | Support | knowledge | `docs` | knowledge-plane | active | Provenance-pinned rendering, discovery, developer documentation and agent-readable context surfaces. |
 | Support | research-assurance | `intelligence-systems-research` | research-assurance | active | SPEC-001, MISSION-Bench methodology, scientific claims, experiments, assurance and publication evidence. |
 | Support | models | `llm-research-development` | model-rnd-methodology | active | Reusable model research, experiment, evaluation, promotion and provenance methodology. |
@@ -219,3 +220,9 @@ Apache-2.0
 ---
 
 **Brand status:** Aftergraph / ABDE Intelligence are PROVISIONAL â€” NOT TRADEMARK CLEARED. No irreversible naming migration should be inferred from this technical reconciliation.
+
+## Canonical operator surface
+
+**Aftergraph HomeOS** is the current primary operator/control surface. It is tracked as a canonical experience surface rather than a repository-topology member until a canonical GitHub repository exists. See `docs/experience-surfaces/homeos/0.1.json`.
+
+War Room is a secondary operational-intelligence backend/projection. FIHIM is the personal intelligent-agent product/environment. Studio remains a general Chat/Work/Space experience surface.

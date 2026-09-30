@@ -1,0 +1,58 @@
+{
+  "schema_version": "aftergraph.experience-surface/0.1",
+  "surface_id": "homeos",
+  "display_name": "Aftergraph HomeOS",
+  "status": "current-development-surface",
+  "canonical_role": "primary-operator-control-surface",
+  "repository_backing": {
+    "status": "not-yet-canonicalized-in-github",
+    "repository": null
+  },
+  "local_development": {
+    "canonical_path": "C:\\Aftergraph\\Home-OS",
+    "latest_known_artifact": "aftergraph-homeos-native-v0.81.0-frontier-tool-fabric-homeos.zip",
+    "latest_known_version": "0.81.0-frontier",
+    "latest_known_sha256": "66defeb10a0e588568c3b471101db7c9a11a8332a56b0cd79f627d8e87bd9a77",
+    "verification_status": "PASS_WITH_EXPLICIT_BOUNDARIES",
+    "verification_boundaries": [
+      "dotnet restore/build/xUnit NOT_RUN in artifact-builder because dotnet is unavailable",
+      "browser screenshot validation NOT_RUN",
+      "repository guard, dependency policy, JS syntax, contract parse, source manifest and ZIP integrity PASS"
+    ]
+  },
+  "owns": [
+    "primary human operator shell",
+    "HomeOS navigation and workspace composition",
+    "ToolFabric observability and operator interaction surfaces",
+    "compute and VDS control surfaces as projections over governed backend contracts",
+    "FIHIM interaction surfaces",
+    "evidence and verification presentation",
+    "authority request and approval presentation without owning authority truth"
+  ],
+  "must_not_own": [
+    "AIE authority truth",
+    "Trust Gateway admission, credential truth or secret material",
+    "Runtime orchestration truth",
+    "WORKS durable execution truth",
+    "Sentinel verification truth",
+    "ToolFabric routing truth",
+    "canonical repository topology truth"
+  ],
+  "backend_dependencies": [
+    "Aftergraph/core",
+    "Aftergraph/trust-gateway",
+    "Aftergraph/runtime",
+    "Aftergraph/works-execution",
+    "Aftergraph/sentinel",
+    "Aftergraph/relay",
+    "Aftergraph/fihim"
+  ],
+  "supersedes_as_primary_interface": [
+    "Aftergraph/war-room"
+  ],
+  "notes": [
+    "War Room may remain an operational-intelligence backend/projection but is not the primary interface.",
+    "FIHIM is a personal intelligent-agent environment surfaced through HomeOS, not the canonical operator control plane.",
+    "HomeOS may not be inserted into repository topology until a canonical GitHub repository actually exists."
+  ]
+}
