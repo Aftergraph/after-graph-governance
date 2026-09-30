@@ -10,15 +10,18 @@
   },
   "local_development": {
     "canonical_path": "C:\\Aftergraph\\Home-OS",
-    "latest_known_artifact": "aftergraph-homeos-native-v0.84.0-frontier-toolfabric-deployment.zip",
-    "latest_known_version": "0.84.0-frontier",
-    "latest_known_sha256": "b2a198a1d4d5a390fd59aedfee55b438cf7439e85e8c6160c48e8779d8eae7a2",
+    "latest_known_artifact": "aftergraph-homeos-native-v0.85.0-frontier-governed-tool-actions.zip",
+    "latest_known_version": "0.85.0-frontier",
+    "latest_known_sha256": "60306ab6d910d40aced2ba745ef853c40952f2a0788a6511be05b0b650efbfc1",
     "verification_status": "PASS_WITH_EXPLICIT_BOUNDARIES",
     "verification_boundaries": [
       "dotnet restore/build/xUnit NOT_RUN in artifact-builder because dotnet is unavailable",
       "browser screenshot validation NOT_RUN",
-      "repository guard, dependency policy, ToolFabric live-adapter/runtime/deployment conformance, JS syntax, JSON parse, source manifest and ZIP integrity PASS"
-    ]
+      "repository guard, dependency policy, ToolFabric live-adapter/runtime/deployment/governed-action conformance, JS syntax, JSON parse, source manifest and ZIP integrity PASS",
+      "GitHub-safe repo seed omits preserved v0.29 appliance binaries while retaining provenance digests"
+    ],
+    "latest_repo_seed": "aftergraph-home-os-v0.85.0-repo-seed.zip",
+    "latest_repo_seed_sha256": "fa89ddcf03e98e52f5aca52d15d65d368e597fc6447546aaff6fcde61662f68d"
   },
   "owns": [
     "primary human operator shell",
