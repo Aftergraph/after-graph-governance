@@ -1,0 +1,147 @@
+{
+  "schema_version": "labs-fabric-conformance-v0.1",
+  "status": "experimental",
+  "purpose": "Contract-level vectors for non-authoritative lab/SUT/platform observation federation. Passing these vectors does not establish live integration, verification, runtime authority, release promotion, or scientific validity.",
+  "vectors": [
+    {
+      "id": "LAB-001",
+      "kind": "adapter",
+      "expected": "accept",
+      "input": {
+        "schemaVersion": "aftergraph.labs-adapter/v1",
+        "id": "core",
+        "repository": "Aftergraph/core",
+        "plane": "tool-control",
+        "mode": "read-only",
+        "capabilities": [
+          "core.health"
+        ],
+        "healthPath": "/api/health",
+        "authorityGranted": false,
+        "maximumClaim": "OBSERVED"
+      }
+    },
+    {
+      "id": "LAB-002",
+      "kind": "adapter",
+      "expected": "reject",
+      "input": {
+        "schemaVersion": "aftergraph.labs-adapter/v1",
+        "id": "bad-authority",
+        "repository": "Aftergraph/core",
+        "plane": "tool-control",
+        "mode": "read-only",
+        "capabilities": [
+          "core.health"
+        ],
+        "healthPath": "/api/health",
+        "authorityGranted": true,
+        "maximumClaim": "OBSERVED"
+      },
+      "reason": "Labs Fabric is observational and cannot grant authority."
+    },
+    {
+      "id": "LAB-003",
+      "kind": "endpoint",
+      "expected": "reject",
+      "input": {
+        "adapterId": "works",
+        "baseUrl": "http://10.0.0.2:18191"
+      },
+      "reason": "Plaintext HTTP is restricted to loopback endpoints."
+    },
+    {
+      "id": "LAB-004",
+      "kind": "endpoint",
+      "expected": "reject",
+      "input": {
+        "adapterId": "eval",
+        "baseUrl": "https://user:secret@example.invalid"
+      },
+      "reason": "Credentials must never be embedded in endpoint URLs."
+    },
+    {
+      "id": "LAB-005",
+      "kind": "bundle",
+      "expected": "accept",
+      "input": {
+        "schemaVersion": "aftergraph.federated-evidence-bundle/v1",
+        "generatedAt": "2026-10-01T00:00:00.000Z",
+        "planDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "layers": [
+          {
+            "plane": "tool-control",
+            "observations": [
+              {
+                "schemaVersion": "aftergraph.labs-observation/v1",
+                "adapterId": "core",
+                "capability": "core.health",
+                "observedAt": "2026-10-01T00:00:00.000Z",
+                "state": "healthy",
+                "authorityGranted": false,
+                "maximumClaim": "OBSERVED",
+                "observationDigest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              }
+            ]
+          }
+        ],
+        "unresolvedTargets": [],
+        "authorityGranted": false,
+        "verificationGranted": false,
+        "scientificValidityGranted": false,
+        "maximumClaim": "OBSERVED",
+        "bundleDigest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      }
+    },
+    {
+      "id": "LAB-006",
+      "kind": "bundle",
+      "expected": "reject",
+      "input": {
+        "schemaVersion": "aftergraph.federated-evidence-bundle/v1",
+        "generatedAt": "2026-10-01T00:00:00.000Z",
+        "planDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "layers": [],
+        "unresolvedTargets": [],
+        "authorityGranted": false,
+        "verificationGranted": true,
+        "scientificValidityGranted": false,
+        "maximumClaim": "OBSERVED",
+        "bundleDigest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "reason": "An observational bundle cannot self-upgrade to verification."
+    },
+    {
+      "id": "LAB-007",
+      "kind": "eval_normalization",
+      "expected": "accept",
+      "input": {
+        "contract": "FihimFrontierLabsEvidence/v1",
+        "status": "INCOMPLETE",
+        "promotion": "HOLD",
+        "maximumTruthClaim": "OBSERVED",
+        "authorityGranted": false,
+        "verificationGranted": false,
+        "scientificValidityGranted": false,
+        "unresolvedTargetCount": 1
+      },
+      "reason": "Incomplete cross-repo coverage remains explicit and non-promoting."
+    },
+    {
+      "id": "LAB-008",
+      "kind": "eval_normalization",
+      "expected": "reject",
+      "input": {
+        "contract": "FihimFrontierLabsEvidence/v1",
+        "status": "OBSERVED",
+        "promotion": "PROMOTE",
+        "maximumTruthClaim": "VERIFIED",
+        "authorityGranted": false,
+        "verificationGranted": true,
+        "scientificValidityGranted": true,
+        "unresolvedTargetCount": 0
+      },
+      "reason": "Eval normalization cannot convert observational federation into promotion, verification, or scientific validity."
+    }
+  ]
+}
