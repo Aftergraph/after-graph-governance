@@ -32,6 +32,12 @@ modules:
     consumes: [after-graph-governance.mission-state/1.0, aie, trust-gateway, works-execution]
     provides: [agent-lifecycle, orchestration, dispatch, checkpoints, metering, observability]
 
+  core:
+    repo: Aftergraph/core
+    role: tool-routing-control-plane
+    consumes: [after-graph-governance, skill-abi, skills-vault, model-registry, relay]
+    provides: [tool-registry-federation, semantic-capability-resolution, health-aware-routing, circuit-breakers, tool-selection-plans]
+
   works-execution:
     repo: Aftergraph/works-execution
     role: durable-execution
