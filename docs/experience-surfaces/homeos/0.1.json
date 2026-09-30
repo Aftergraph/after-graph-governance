@@ -1,0 +1,51 @@
+{
+  "schema_version": "aftergraph.experience-surface/0.1",
+  "surface_id": "homeos",
+  "display_name": "Aftergraph HomeOS",
+  "status": "current-development-surface",
+  "canonical_role": "primary-operator-control-surface",
+  "repository_backing": {
+    "status": "not-yet-canonicalized-in-github",
+    "repository": null
+  },
+  "local_development": {
+    "canonical_path": "C:\\Aftergraph\\Home-OS",
+    "latest_known_artifact": "aftergraph-homeos-native-v0.60.0-frontier-inhouse-platform.zip",
+    "latest_known_version": "0.60.0-frontier"
+  },
+  "owns": [
+    "primary human operator shell",
+    "HomeOS navigation and workspace composition",
+    "ToolFabric observability and operator interaction surfaces",
+    "compute and VDS control surfaces as projections over governed backend contracts",
+    "FIHIM interaction surfaces",
+    "evidence and verification presentation",
+    "authority request and approval presentation without owning authority truth"
+  ],
+  "must_not_own": [
+    "AIE authority truth",
+    "Trust Gateway admission, credential truth or secret material",
+    "Runtime orchestration truth",
+    "WORKS durable execution truth",
+    "Sentinel verification truth",
+    "ToolFabric routing truth",
+    "canonical repository topology truth"
+  ],
+  "backend_dependencies": [
+    "Aftergraph/core",
+    "Aftergraph/trust-gateway",
+    "Aftergraph/runtime",
+    "Aftergraph/works-execution",
+    "Aftergraph/sentinel",
+    "Aftergraph/relay",
+    "Aftergraph/fihim"
+  ],
+  "supersedes_as_primary_interface": [
+    "Aftergraph/war-room"
+  ],
+  "notes": [
+    "War Room may remain an operational-intelligence backend/projection but is not the primary interface.",
+    "FIHIM is a personal intelligent-agent environment surfaced through HomeOS, not the canonical operator control plane.",
+    "HomeOS may not be inserted into repository topology until a canonical GitHub repository actually exists."
+  ]
+}
