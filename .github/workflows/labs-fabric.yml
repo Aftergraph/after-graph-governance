@@ -1,0 +1,32 @@
+name: Labs Fabric Conformance
+
+on:
+  pull_request:
+    paths:
+      - "docs/cross-repo-contracts.md"
+      - "docs/PLATFORM-FABRICS-v0.1.md"
+      - "docs/platform-conformance/labs-fabric-v0.1/**"
+      - "scripts/test_labs_fabric_v0_1.py"
+      - ".github/workflows/labs-fabric.yml"
+  push:
+    branches: [main]
+    paths:
+      - "docs/cross-repo-contracts.md"
+      - "docs/PLATFORM-FABRICS-v0.1.md"
+      - "docs/platform-conformance/labs-fabric-v0.1/**"
+      - "scripts/test_labs_fabric_v0_1.py"
+
+permissions:
+  contents: read
+
+jobs:
+  conformance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run Labs Fabric contract vectors
+        run: python scripts/test_labs_fabric_v0_1.py
