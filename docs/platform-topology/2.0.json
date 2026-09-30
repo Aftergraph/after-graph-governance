@@ -2,7 +2,7 @@
   "$schema": "./2.0.schema.json",
   "schema_version": "platform-topology/2.0",
   "organization": "Aftergraph",
-  "evidence_cut": "2026-09-18",
+  "evidence_cut": "2026-09-30",
   "description": "Human-governed repository topology for the Aftergraph polyrepo platform. This file defines scope and ownership classes, not exact Git state. Exact heads are generated from GitHub by scripts/org-state-verify.sh. architecture_plane carries one of the seven permanent semantic planes or null for support systems; system_class carries the functional repository class and is never inferred into a plane.",
   "repositories": [
     {
@@ -369,6 +369,17 @@
       "lifecycle": "active",
       "owns": "RenOS branded service-operations operator experience, workspace composition, chat projection, attention/control presentation and domain/process/verification views.",
       "must_not_own": "Business Ops canonical domain truth, Rendetalje policy truth, Studio/Interaction conversation truth, AIE authority, Trust admission/secrets, Runtime orchestration, WORKS durable execution/evidence, Billing financial truth, or independent verification."
+    },
+    {
+      "name": "core",
+      "canonical_branch": "main",
+      "visibility": "private",
+      "architecture_plane": null,
+      "system_class": "capabilities",
+      "role": "tool-routing-control-plane",
+      "lifecycle": "active",
+      "owns": "ToolFabric registry federation, semantic capability resolution, health-aware routing plans and non-authoritative tool selection.",
+      "must_not_own": "AIE authority, Trust Gateway admission or secrets, Runtime execution semantics, WORKS durable execution, provider credentials, or independent verification."
     }
   ]
 }
