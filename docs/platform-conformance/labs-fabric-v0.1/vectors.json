@@ -1,7 +1,7 @@
 {
   "schema_version": "labs-fabric-conformance-v0.1",
   "status": "experimental",
-  "purpose": "Contract-level vectors for non-authoritative lab/SUT/platform observation federation, including exact-head fencing and immutable FIHIM vNext subject identity. Passing these vectors does not establish live integration, verification, runtime authority, release promotion, or scientific validity.",
+  "purpose": "Contract-level vectors for non-authoritative lab/SUT/platform observation federation, exact-head fencing, immutable FIHIM vNext subject identity, artifact observations, and executable read-only preflight coverage. Passing these vectors does not establish live integration, verification, runtime authority, release promotion, or scientific validity.",
   "vectors": [
     {
       "id": "LAB-001",
@@ -229,6 +229,343 @@
         }
       },
       "reason": "Valid SUT identity remains observational and non-promoting in Eval Lab."
+    },
+    {
+      "id": "LAB-014",
+      "kind": "artifact_observation",
+      "expected": "accept",
+      "input": {
+        "schemaVersion": "aftergraph.labs-observation/v1",
+        "adapterId": "runtime",
+        "capability": "runtime.health",
+        "observedAt": "2026-10-01T00:00:00.000Z",
+        "state": "healthy",
+        "subjectRevision": "f3ca0e0a9fff25328cb42b2f00aedda0de3f63dc",
+        "evidenceRefs": [
+          "runtime-fabric/fabric-receipt.json"
+        ],
+        "details": {
+          "sourceKind": "artifact",
+          "artifactDigest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "authorityGranted": false,
+        "maximumClaim": "OBSERVED",
+        "observationDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "reason": "A sealed Runtime evidence artifact may be projected as OBSERVED when exact subject and artifact digest are present."
+    },
+    {
+      "id": "LAB-015",
+      "kind": "artifact_observation",
+      "expected": "reject",
+      "input": {
+        "schemaVersion": "aftergraph.labs-observation/v1",
+        "adapterId": "runtime",
+        "capability": "runtime.health",
+        "observedAt": "2026-10-01T00:00:00.000Z",
+        "state": "healthy",
+        "subjectRevision": "main",
+        "evidenceRefs": [
+          "runtime-fabric/fabric-receipt.json"
+        ],
+        "details": {
+          "sourceKind": "artifact",
+          "artifactDigest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "authorityGranted": false,
+        "maximumClaim": "OBSERVED",
+        "observationDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "reason": "Artifact observations require an exact source subject."
+    },
+    {
+      "id": "LAB-016",
+      "kind": "preflight",
+      "expected": "accept",
+      "input": {
+        "schemaVersion": "aftergraph.labs-preflight/v1",
+        "generatedAt": "2026-10-01T00:00:00.000Z",
+        "state": "OBSERVED",
+        "requiredAdapterIds": [
+          "core",
+          "fihim-eval-lab",
+          "runtime",
+          "trust-gateway",
+          "works"
+        ],
+        "observedAdapterIds": [
+          "core",
+          "fihim-eval-lab",
+          "runtime",
+          "trust-gateway",
+          "works"
+        ],
+        "missingAdapterIds": [],
+        "httpBundle": {
+          "schemaVersion": "aftergraph.federated-evidence-bundle/v1",
+          "generatedAt": "2026-10-01T00:00:00.000Z",
+          "planDigest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+          "layers": [
+            {
+              "plane": "tool-control",
+              "observations": [
+                {
+                  "schemaVersion": "aftergraph.labs-observation/v1",
+                  "adapterId": "core",
+                  "capability": "core.health",
+                  "observedAt": "2026-10-01T00:00:00.000Z",
+                  "state": "healthy",
+                  "subjectRevision": "1111111111111111111111111111111111111111",
+                  "authorityGranted": false,
+                  "maximumClaim": "OBSERVED",
+                  "observationDigest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+                }
+              ]
+            },
+            {
+              "plane": "enforcement",
+              "observations": [
+                {
+                  "schemaVersion": "aftergraph.labs-observation/v1",
+                  "adapterId": "trust-gateway",
+                  "capability": "gateway.health",
+                  "observedAt": "2026-10-01T00:00:00.000Z",
+                  "state": "healthy",
+                  "subjectRevision": "2222222222222222222222222222222222222222",
+                  "authorityGranted": false,
+                  "maximumClaim": "OBSERVED",
+                  "observationDigest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+                }
+              ]
+            },
+            {
+              "plane": "durable-execution",
+              "observations": [
+                {
+                  "schemaVersion": "aftergraph.labs-observation/v1",
+                  "adapterId": "works",
+                  "capability": "execution.health",
+                  "observedAt": "2026-10-01T00:00:00.000Z",
+                  "state": "healthy",
+                  "subjectRevision": "3333333333333333333333333333333333333333",
+                  "authorityGranted": false,
+                  "maximumClaim": "OBSERVED",
+                  "observationDigest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+                }
+              ]
+            },
+            {
+              "plane": "evaluation",
+              "observations": [
+                {
+                  "schemaVersion": "aftergraph.labs-observation/v1",
+                  "adapterId": "fihim-eval-lab",
+                  "capability": "eval.health",
+                  "observedAt": "2026-10-01T00:00:00.000Z",
+                  "state": "healthy",
+                  "subjectRevision": "4444444444444444444444444444444444444444",
+                  "authorityGranted": false,
+                  "maximumClaim": "OBSERVED",
+                  "observationDigest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+                }
+              ]
+            }
+          ],
+          "unresolvedTargets": [],
+          "authorityGranted": false,
+          "verificationGranted": false,
+          "scientificValidityGranted": false,
+          "maximumClaim": "OBSERVED",
+          "bundleDigest": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        },
+        "artifactObservations": [
+          {
+            "schemaVersion": "aftergraph.labs-observation/v1",
+            "adapterId": "runtime",
+            "capability": "runtime.health",
+            "observedAt": "2026-10-01T00:00:00.000Z",
+            "state": "healthy",
+            "subjectRevision": "f3ca0e0a9fff25328cb42b2f00aedda0de3f63dc",
+            "evidenceRefs": [
+              "runtime-fabric/fabric-receipt.json"
+            ],
+            "details": {
+              "sourceKind": "artifact",
+              "artifactDigest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "authorityGranted": false,
+            "maximumClaim": "OBSERVED",
+            "observationDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        ],
+        "sutBinding": null,
+        "authorityGranted": false,
+        "verificationGranted": false,
+        "scientificValidityGranted": false,
+        "maximumClaim": "OBSERVED",
+        "receiptDigest": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+      },
+      "reason": "Complete healthy coverage may be reported as OBSERVED, never VERIFIED."
+    },
+    {
+      "id": "LAB-017",
+      "kind": "preflight",
+      "expected": "reject",
+      "input": {
+        "schemaVersion": "aftergraph.labs-preflight/v1",
+        "generatedAt": "2026-10-01T00:00:00.000Z",
+        "state": "OBSERVED",
+        "requiredAdapterIds": [
+          "core",
+          "fihim-eval-lab",
+          "runtime",
+          "trust-gateway",
+          "works"
+        ],
+        "observedAdapterIds": [
+          "core",
+          "fihim-eval-lab",
+          "trust-gateway",
+          "works"
+        ],
+        "missingAdapterIds": [
+          "runtime"
+        ],
+        "httpBundle": {
+          "schemaVersion": "aftergraph.federated-evidence-bundle/v1",
+          "generatedAt": "2026-10-01T00:00:00.000Z",
+          "planDigest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+          "layers": [
+            {
+              "plane": "tool-control",
+              "observations": [
+                {
+                  "schemaVersion": "aftergraph.labs-observation/v1",
+                  "adapterId": "core",
+                  "capability": "core.health",
+                  "observedAt": "2026-10-01T00:00:00.000Z",
+                  "state": "healthy",
+                  "subjectRevision": "1111111111111111111111111111111111111111",
+                  "authorityGranted": false,
+                  "maximumClaim": "OBSERVED",
+                  "observationDigest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+                }
+              ]
+            },
+            {
+              "plane": "enforcement",
+              "observations": [
+                {
+                  "schemaVersion": "aftergraph.labs-observation/v1",
+                  "adapterId": "trust-gateway",
+                  "capability": "gateway.health",
+                  "observedAt": "2026-10-01T00:00:00.000Z",
+                  "state": "healthy",
+                  "subjectRevision": "2222222222222222222222222222222222222222",
+                  "authorityGranted": false,
+                  "maximumClaim": "OBSERVED",
+                  "observationDigest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+                }
+              ]
+            },
+            {
+              "plane": "durable-execution",
+              "observations": [
+                {
+                  "schemaVersion": "aftergraph.labs-observation/v1",
+                  "adapterId": "works",
+                  "capability": "execution.health",
+                  "observedAt": "2026-10-01T00:00:00.000Z",
+                  "state": "healthy",
+                  "subjectRevision": "3333333333333333333333333333333333333333",
+                  "authorityGranted": false,
+                  "maximumClaim": "OBSERVED",
+                  "observationDigest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+                }
+              ]
+            },
+            {
+              "plane": "evaluation",
+              "observations": [
+                {
+                  "schemaVersion": "aftergraph.labs-observation/v1",
+                  "adapterId": "fihim-eval-lab",
+                  "capability": "eval.health",
+                  "observedAt": "2026-10-01T00:00:00.000Z",
+                  "state": "healthy",
+                  "subjectRevision": "4444444444444444444444444444444444444444",
+                  "authorityGranted": false,
+                  "maximumClaim": "OBSERVED",
+                  "observationDigest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+                }
+              ]
+            }
+          ],
+          "unresolvedTargets": [],
+          "authorityGranted": false,
+          "verificationGranted": false,
+          "scientificValidityGranted": false,
+          "maximumClaim": "OBSERVED",
+          "bundleDigest": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        },
+        "artifactObservations": [],
+        "sutBinding": null,
+        "authorityGranted": false,
+        "verificationGranted": false,
+        "scientificValidityGranted": false,
+        "maximumClaim": "OBSERVED",
+        "receiptDigest": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+      },
+      "reason": "A missing required adapter cannot be presented as complete OBSERVED coverage."
+    },
+    {
+      "id": "LAB-018",
+      "kind": "preflight_normalization",
+      "expected": "accept",
+      "input": {
+        "contract": "FihimFrontierLabsPreflightEvidence/v1",
+        "integrity": "VERIFIED_DIGEST",
+        "status": "INCOMPLETE",
+        "promotion": "HOLD",
+        "maximumTruthClaim": "OBSERVED",
+        "authorityGranted": false,
+        "verificationGranted": false,
+        "scientificValidityGranted": false,
+        "requiredAdapterIds": [
+          "core",
+          "runtime"
+        ],
+        "observedAdapterIds": [
+          "core"
+        ],
+        "missingAdapterIds": [
+          "runtime"
+        ]
+      },
+      "reason": "Eval Lab preserves incomplete preflight coverage as HOLD/OBSERVED."
+    },
+    {
+      "id": "LAB-019",
+      "kind": "preflight_normalization",
+      "expected": "reject",
+      "input": {
+        "contract": "FihimFrontierLabsPreflightEvidence/v1",
+        "integrity": "VERIFIED_DIGEST",
+        "status": "OBSERVED",
+        "promotion": "PROMOTE",
+        "maximumTruthClaim": "VERIFIED",
+        "authorityGranted": false,
+        "verificationGranted": true,
+        "scientificValidityGranted": true,
+        "requiredAdapterIds": [
+          "core"
+        ],
+        "observedAdapterIds": [
+          "core"
+        ],
+        "missingAdapterIds": []
+      },
+      "reason": "Preflight normalization cannot promote observational health into verification or scientific validity."
     }
   ]
 }
