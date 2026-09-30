@@ -10,8 +10,15 @@
   },
   "local_development": {
     "canonical_path": "C:\\Aftergraph\\Home-OS",
-    "latest_known_artifact": "aftergraph-homeos-native-v0.60.0-frontier-inhouse-platform.zip",
-    "latest_known_version": "0.60.0-frontier"
+    "latest_known_artifact": "aftergraph-homeos-native-v0.81.0-frontier-tool-fabric-homeos.zip",
+    "latest_known_version": "0.81.0-frontier",
+    "latest_known_sha256": "66defeb10a0e588568c3b471101db7c9a11a8332a56b0cd79f627d8e87bd9a77",
+    "verification_status": "PASS_WITH_EXPLICIT_BOUNDARIES",
+    "verification_boundaries": [
+      "dotnet restore/build/xUnit NOT_RUN in artifact-builder because dotnet is unavailable",
+      "browser screenshot validation NOT_RUN",
+      "repository guard, dependency policy, JS syntax, contract parse, source manifest and ZIP integrity PASS"
+    ]
   },
   "owns": [
     "primary human operator shell",
