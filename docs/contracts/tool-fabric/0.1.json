@@ -10,7 +10,8 @@
     "status",
     "invariants",
     "owners",
-    "schemas"
+    "schemas",
+    "primary_experience_surface"
   ],
   "properties": {
     "contract": {
@@ -162,6 +163,9 @@
           "const": "aftergraph.tool-observation/v1"
         }
       }
+    },
+    "primary_experience_surface": {
+      "const": "HomeOS"
     }
   }
 }
