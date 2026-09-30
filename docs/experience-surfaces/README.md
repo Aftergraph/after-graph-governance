@@ -9,7 +9,7 @@ surfaces belong here rather than being invented as repository-topology members.
 
 - **HomeOS** — primary operator/control surface.
 - Canonical local development path: `C:\Aftergraph\Home-OS`.
-- Latest known development artifact: `aftergraph-homeos-native-v0.60.0-frontier-inhouse-platform.zip`.
+- Latest known development artifact: `aftergraph-homeos-native-v0.81.0-frontier-tool-fabric-homeos.zip`.
 - Current governance status: `current-development-surface`.
 - GitHub repository backing: not yet canonicalized.
 
