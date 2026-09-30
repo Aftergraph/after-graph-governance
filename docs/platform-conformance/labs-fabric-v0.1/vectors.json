@@ -1,7 +1,7 @@
 {
   "schema_version": "labs-fabric-conformance-v0.1",
   "status": "experimental",
-  "purpose": "Contract-level vectors for non-authoritative lab/SUT/platform observation federation. Passing these vectors does not establish live integration, verification, runtime authority, release promotion, or scientific validity.",
+  "purpose": "Contract-level vectors for non-authoritative lab/SUT/platform observation federation, including exact-head fencing and immutable FIHIM vNext subject identity. Passing these vectors does not establish live integration, verification, runtime authority, release promotion, or scientific validity.",
   "vectors": [
     {
       "id": "LAB-001",
@@ -142,6 +142,93 @@
         "unresolvedTargetCount": 0
       },
       "reason": "Eval normalization cannot convert observational federation into promotion, verification, or scientific validity."
+    },
+    {
+      "id": "LAB-009",
+      "kind": "exact_head",
+      "expected": "reject",
+      "input": {
+        "expectedRevision": "64c8767a4624852cfba049891df7be45238d22d6",
+        "observedRevision": "37aef228ca5aeae0dde2ce88b3deb4b9e717e29e",
+        "httpStatus": 200
+      },
+      "reason": "A green health response cannot hide a stale exact subject."
+    },
+    {
+      "id": "LAB-010",
+      "kind": "exact_head",
+      "expected": "reject",
+      "input": {
+        "expectedRevision": "64c8767a4624852cfba049891df7be45238d22d6",
+        "observedRevision": null,
+        "httpStatus": 200
+      },
+      "reason": "A configured exact-head expectation requires an observed subject revision."
+    },
+    {
+      "id": "LAB-011",
+      "kind": "sut_binding",
+      "expected": "accept",
+      "input": {
+        "schemaVersion": "aftergraph.labs-sut-binding/v1",
+        "sutId": "fihim-vnext:v0.31",
+        "repository": "Aftergraph/fihim-vnext",
+        "requestedVersion": "v0.31",
+        "packageVersion": "0.31.0-frontier.1",
+        "directoryName": "fihim-vnext-v0.31",
+        "sourceRevision": "e209f21b9b226613a83f2ce63bb4107e60e266ab",
+        "contentDigest": "9999999999999999999999999999999999999999999999999999999999999999",
+        "observedAt": "2026-10-01T00:00:00.000Z",
+        "immutableSubject": true,
+        "authorityGranted": false,
+        "maximumClaim": "OBSERVED",
+        "bindingDigest": "8888888888888888888888888888888888888888888888888888888888888888"
+      },
+      "reason": "An immutable FIHIM vNext SUT subject may be represented observationally when version, path and exact identities agree."
+    },
+    {
+      "id": "LAB-012",
+      "kind": "sut_binding",
+      "expected": "reject",
+      "input": {
+        "schemaVersion": "aftergraph.labs-sut-binding/v1",
+        "sutId": "fihim-vnext:v0.31",
+        "repository": "Aftergraph/fihim-vnext",
+        "requestedVersion": "v0.31",
+        "packageVersion": "0.32.0",
+        "directoryName": "fihim-vnext-v0.30",
+        "sourceRevision": "main",
+        "contentDigest": "bad",
+        "observedAt": "2026-10-01T00:00:00.000Z",
+        "immutableSubject": true,
+        "authorityGranted": false,
+        "maximumClaim": "OBSERVED",
+        "bindingDigest": "8888888888888888888888888888888888888888888888888888888888888888"
+      },
+      "reason": "Version, directory, revision or content drift invalidates the SUT binding."
+    },
+    {
+      "id": "LAB-013",
+      "kind": "sut_normalization",
+      "expected": "accept",
+      "input": {
+        "contract": "FihimFrontierLabsSutEvidence/v1",
+        "integrity": "VERIFIED_DIGEST",
+        "status": "OBSERVED",
+        "promotion": "HOLD",
+        "maximumTruthClaim": "OBSERVED",
+        "authorityGranted": false,
+        "verificationGranted": false,
+        "scientificValidityGranted": false,
+        "sut": {
+          "sutId": "fihim-vnext:v0.31",
+          "repository": "Aftergraph/fihim-vnext",
+          "sourceRevision": "e209f21b9b226613a83f2ce63bb4107e60e266ab",
+          "contentDigest": "9999999999999999999999999999999999999999999999999999999999999999",
+          "immutableSubject": true
+        }
+      },
+      "reason": "Valid SUT identity remains observational and non-promoting in Eval Lab."
     }
   ]
 }
