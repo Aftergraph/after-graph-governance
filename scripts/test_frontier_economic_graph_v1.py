@@ -9,6 +9,8 @@ REGISTRY = ROOT / "docs/contracts/economic-graph/1.0/registry.json"
 CAPS = ROOT / "docs/contracts/economic-graph/1.0/capabilities.json"
 FRONTIER_DOC = ROOT / "docs/AFTERGRAPH-FRONTIER-V1.md"
 ECON_DOC = ROOT / "docs/ECONOMIC-GRAPH-V1.md"
+PROMOTION = ROOT / "docs/evidence/promotions/economic-graph-v1.json"
+LIVE_FRONTIER = ROOT / "docs/frontier/economic-live-settlement-v1.json"
 
 def load(path):
     return json.loads(path.read_text(encoding="utf-8"))
@@ -50,6 +52,21 @@ class EconomicGraphTest(unittest.TestCase):
     def test_zero_effect_slice_is_canonical(self):
         reg = load(REGISTRY)
         self.assertIn("v1 runtime observation externalEffects must equal 0", reg["invariants"])
+
+    def test_promotion_is_governance_owned_and_not_self_promoted(self):
+        record = load(PROMOTION)
+        self.assertEqual(record["lifecycle"], "canonical")
+        self.assertFalse(record["self_promoted"])
+        self.assertFalse(record["carries_authority"])
+        self.assertTrue(record["verifier_refs"])
+        self.assertTrue(record["gate_ref"])
+        self.assertTrue(record["registry_evidence_ref"])
+
+    def test_live_settlement_remains_frontier(self):
+        record = load(LIVE_FRONTIER)
+        self.assertEqual(record["lifecycle"], "frontier")
+        self.assertFalse(record["self_promoted"])
+        self.assertFalse(record["carries_authority"])
 
 if __name__ == "__main__":
     unittest.main()
