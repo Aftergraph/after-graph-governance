@@ -1,38 +1,45 @@
 {
   "schema": "economic-live-settlement-readiness/1.0",
   "candidate": "economic.live-settlement/v1",
-  "lifecycle": "frontier",
+  "lifecycle": "candidate",
   "readiness": {
     "zero_effect_atomic_simulator": "verified",
     "trust_gateway_fail_closed_admission": "verified",
     "governance_acceptance_vectors": "verified",
     "independent_rail_verification": "verified",
     "runtime_read_only_rail_adapters": "verified",
-    "live_real_node_observations": "missing",
-    "independent_finality_campaign": "missing",
+    "live_real_node_observations": "verified",
+    "independent_finality_campaign": "verified",
     "signer_boundary": "disabled",
     "custody_boundary": "disabled",
-    "live_value_execution": "disabled"
+    "live_value_execution": "disabled",
+    "real_response_falsification": "verified"
   },
   "evidence_refs": [
     "github:Aftergraph/works-execution@1eab95b1d22e560f5572bdeb85ee16eb3c5bf91a",
     "github:Aftergraph/trust-gateway@f01c3bcf8bac0793895e8e37dd555d9cec3f0f1b",
     "github:Aftergraph/after-graph-governance@93f2f0dcc052743af7b02935977f541867cc17ff",
     "github:Aftergraph/sentinel@cace955ec40638ffad42e39c1a842129f34b503a",
-    "github:Aftergraph/runtime@f3ca0e0a9fff25328cb42b2f00aedda0de3f63dc"
+    "github:Aftergraph/runtime@f3ca0e0a9fff25328cb42b2f00aedda0de3f63dc",
+    "github:Aftergraph/sentinel@e682b1ad9495268e54d30dec0ed8f450571eee60",
+    "github:Aftergraph/sentinel@fcf780363452457569b035309caec023d390b97a",
+    "github-actions:Aftergraph/sentinel/run/36791884799/artifact/11132231014",
+    "github-actions:Aftergraph/sentinel/run/36792129979/artifact/11131309320",
+    "artifact-sha256:0081dd8e7d5c9db040dd21abf82ee50719a9f50ecf8e73c5ebc57d712d69bbbc"
   ],
-  "pending_refs": [
-    "github-pr:Aftergraph/runtime#251"
-  ],
-  "candidate_requirements_remaining": [
-    "capture read-only observations from a real EVM JSON-RPC endpoint via Runtime acceptance run",
-    "capture read-only observations from a real Canton 3.5.17 sandbox participant JSON Ledger API",
-    "record Runtime acceptance workflow run/artifact reference",
-    "run/record Sentinel reconciliation over captured evidence",
-    "prove stale/reorg/offset-disagreement handling against real node responses",
-    "record independent verifier evidence in governance",
-    "keep transaction signing, custody and autonomous spend disabled"
-  ],
+  "pending_refs": [],
+  "candidate_requirements_remaining": [],
   "promotion_allowed": false,
-  "carries_authority": false
+  "carries_authority": false,
+  "candidate_promotion_complete": true,
+  "canonical_promotion_allowed": false,
+  "canonical_requirements_remaining": [
+    "prove same-economic-transaction settlement correlation across real production-equivalent rails",
+    "implement and independently verify signer boundary without exposing signing material to agents",
+    "implement and independently verify custody boundary and recovery",
+    "prove approval, revocation, kill-switch and compensation under live-value failure modes",
+    "establish legal/custodial registry reconciliation evidence for supported asset classes",
+    "complete bounded live-value canary evidence under explicit human authorization",
+    "obtain separate governance-owned canonical promotion evidence"
+  ]
 }
