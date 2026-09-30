@@ -10,18 +10,19 @@
   },
   "local_development": {
     "canonical_path": "C:\\Aftergraph\\Home-OS",
-    "latest_known_artifact": "aftergraph-homeos-native-v0.85.0-frontier-governed-tool-actions.zip",
-    "latest_known_version": "0.85.0-frontier",
-    "latest_known_sha256": "60306ab6d910d40aced2ba745ef853c40952f2a0788a6511be05b0b650efbfc1",
+    "latest_known_artifact": "aftergraph-homeos-native-v0.86.0-frontier-trust-admission.zip",
+    "latest_known_version": "0.86.0-frontier",
+    "latest_known_sha256": "994391ee6edc4ad22a0425fe8ebc6037dc37b53ef744480f0d0e35b1a44530fd",
     "verification_status": "PASS_WITH_EXPLICIT_BOUNDARIES",
     "verification_boundaries": [
       "dotnet restore/build/xUnit NOT_RUN in artifact-builder because dotnet is unavailable",
       "browser screenshot validation NOT_RUN",
-      "repository guard, dependency policy, ToolFabric live-adapter/runtime/deployment/governed-action conformance, JS syntax, JSON parse, source manifest and ZIP integrity PASS",
+      "repository guard, dependency policy, ToolFabric live-adapter/runtime/deployment/governed-action/Trust Gateway client conformance, JS syntax, JSON parse, source manifest and ZIP integrity PASS",
+      "CORE sealed aggregate snapshots are merged on main; Trust Gateway HomeOS action admission and sealed resolver are merged on main",
       "GitHub-safe repo seed omits preserved v0.29 appliance binaries while retaining provenance digests"
     ],
-    "latest_repo_seed": "aftergraph-home-os-v0.85.0-repo-seed.zip",
-    "latest_repo_seed_sha256": "fa89ddcf03e98e52f5aca52d15d65d368e597fc6447546aaff6fcde61662f68d"
+    "latest_repo_seed": "aftergraph-home-os-v0.86.0-repo-seed.zip",
+    "latest_repo_seed_sha256": "5dc031eb975d06b052c19f7c58508f6da8994e43c40d6c602defc3abce5b0683"
   },
   "owns": [
     "primary human operator shell",
