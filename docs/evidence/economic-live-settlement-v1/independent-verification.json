@@ -1,0 +1,28 @@
+{
+  "schema": "economic-real-rail-independent-verification/1.0",
+  "candidate": "economic.live-settlement/v1",
+  "sentinelCommit": "e682b1ad9495268e54d30dec0ed8f450571eee60",
+  "sourceRun": 36791884799,
+  "sourceArtifactId": 11132231014,
+  "sourceArtifactSha256": "552840f29c913e43c32f9cb6cce2d2f0341a2cd956ac6aa78166e90b7ae7ff5c",
+  "rails": [
+    "evm",
+    "canton"
+  ],
+  "state": "INDEPENDENT_READ_ONLY_EVIDENCE",
+  "final": false,
+  "promotionAuthority": false,
+  "externalEffects": 0,
+  "claims": [
+    "public Ethereum finalized receipt observed",
+    "official Canton 3.5.17 release hash verified before execution",
+    "real Canton sandbox JSON Ledger API participant observed",
+    "no external value effect occurred",
+    "Canton evidence does not claim legal or economic finality"
+  ],
+  "nonClaims": [
+    "same economic transaction settled across both rails",
+    "live settlement is production-safe",
+    "candidate or canonical promotion is established by this evidence alone"
+  ]
+}
