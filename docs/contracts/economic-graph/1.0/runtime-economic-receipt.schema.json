@@ -1,0 +1,17 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aftergraph.dev/contracts/economic-graph/1.0/runtime-economic-receipt.schema.json",
+  "title":"Runtime Economic Receipt v1",
+  "type":"object",
+  "additionalProperties":false,
+  "properties":{
+    "schema":{"const":"aftergraph.runtime-economic-receipt/v1"},
+    "transactionId":{"type":"string","minLength":1},
+    "executionContextId":{"type":"string","pattern":"^ctx_"},
+    "workerId":{"type":"string","pattern":"^wrkr_"},
+    "workerLeaseId":{"type":"string","pattern":"^lse_"},
+    "observedState":{"enum":["SIMULATED","READ_ONLY_OBSERVED"]},
+    "externalEffects":{"const":0}
+  },
+  "required":["schema","transactionId","executionContextId","workerId","workerLeaseId","observedState","externalEffects"]
+}
