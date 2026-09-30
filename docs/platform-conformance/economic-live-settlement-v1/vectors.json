@@ -1,0 +1,48 @@
+{
+  "schema": "economic-live-settlement-frontier-v1/acceptance-vectors",
+  "candidate": "economic.live-settlement/v1",
+  "required_invariants": [
+    "simulation externalEffects = 0",
+    "simulation never establishes real-world FINAL",
+    "unknown leg => UNCERTAIN",
+    "partial failure => ABORTED or COMPENSATING, never FINAL",
+    "duplicate leg identity rejects",
+    "Trust Gateway execute admission DENY while lifecycle != canonical",
+    "caller-supplied promotion refs never count as canonical promotion evidence"
+  ],
+  "vectors": [
+    {
+      "id": "ELS-001",
+      "scenario": "all simulated legs committed",
+      "expected": { "state": "SIMULATED_COMMIT", "final": false, "externalEffects": 0 }
+    },
+    {
+      "id": "ELS-002",
+      "scenario": "cash leg unknown after asset simulated commit",
+      "expected": { "state": "UNCERTAIN", "final": false, "externalEffects": 0 }
+    },
+    {
+      "id": "ELS-003",
+      "scenario": "cash leg failed after asset simulated commit",
+      "expected": { "state": "ABORTED", "final": false, "externalEffects": 0 }
+    },
+    {
+      "id": "ELS-004",
+      "scenario": "live execute requested while capability lifecycle is frontier",
+      "expected": { "decision": "DENY", "reason": "economic_live_settlement_not_canonical" }
+    },
+    {
+      "id": "ELS-005",
+      "scenario": "caller embeds fake gate/registry PASS references",
+      "expected": { "decision": "DENY", "reason": "economic_live_settlement_not_canonical" }
+    }
+  ],
+  "promotion_blockers": [
+    "no real-rail read-only cross-implementation evidence yet",
+    "no independent settlement finality verifier campaign yet",
+    "no production-grade signer/custody boundary implementation",
+    "no legal/custodial registry reconciliation proof",
+    "no live-value approval/revocation/compensation evidence",
+    "no operator-approved rollback/kill-switch evidence"
+  ]
+}
