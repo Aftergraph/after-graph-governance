@@ -35,7 +35,6 @@
     "Aftergraph/skills-vault",
     "Aftergraph/model-registry",
     "Aftergraph/sentinel",
-    "Aftergraph/war-room",
     "Aftergraph/fihim"
   ],
   "schemas": {
@@ -43,5 +42,6 @@
     "resolution": "aftergraph.tool-resolution/v1",
     "receipt": "aftergraph.tool-receipt/v1",
     "telemetry": "aftergraph.tool-observation/v1"
-  }
+  },
+  "primary_experience_surface": "HomeOS"
 }
