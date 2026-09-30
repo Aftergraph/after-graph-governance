@@ -40,7 +40,7 @@ class EconomicGraphTest(unittest.TestCase):
         caps = {c["id"]: c for c in load(CAPS)["capabilities"]}
         self.assertEqual(caps["economic.simulate"]["lifecycle"], "canonical")
         self.assertEqual(caps["economic.observe"]["lifecycle"], "canonical")
-        self.assertEqual(caps["economic.live-settlement"]["lifecycle"], "frontier")
+        self.assertEqual(caps["economic.live-settlement"]["lifecycle"], "candidate")
         self.assertEqual(caps["economic.transaction-signing"]["lifecycle"], "experimental")
         self.assertEqual(caps["economic.custody"]["lifecycle"], "experimental")
         self.assertEqual(caps["economic.autonomous-spend"]["lifecycle"], "experimental")
@@ -63,9 +63,9 @@ class EconomicGraphTest(unittest.TestCase):
         self.assertTrue(record["gate_ref"])
         self.assertTrue(record["registry_evidence_ref"])
 
-    def test_live_settlement_remains_frontier(self):
+    def test_live_settlement_is_candidate_without_authority(self):
         record = load(LIVE_FRONTIER)
-        self.assertEqual(record["lifecycle"], "frontier")
+        self.assertEqual(record["lifecycle"], "candidate")
         self.assertFalse(record["self_promoted"])
         self.assertFalse(record["carries_authority"])
 
@@ -78,7 +78,7 @@ class EconomicGraphTest(unittest.TestCase):
         self.assertEqual(by_id["ELS-003"]["expected"]["state"], "ABORTED")
         self.assertEqual(by_id["ELS-004"]["expected"]["decision"], "DENY")
         self.assertEqual(by_id["ELS-005"]["expected"]["decision"], "DENY")
-        self.assertTrue(vectors["promotion_blockers"], "frontier candidate must retain explicit promotion blockers")
+        self.assertTrue(vectors["promotion_blockers"], "live settlement must retain explicit canonical-promotion blockers")
 
 if __name__ == "__main__":
     unittest.main()
