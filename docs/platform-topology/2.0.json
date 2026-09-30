@@ -87,11 +87,11 @@
       "canonical_branch": "main",
       "visibility": "private",
       "architecture_plane": "experience",
-      "system_class": "operator-cockpit",
-      "role": "operator-cockpit-projection",
+      "system_class": "personal-agent-environment",
+      "role": "personal-agent-product",
       "lifecycle": "active",
-      "owns": "Operator cockpit product experience that composes queries, commands and subscriptions over multiple Aftergraph domain systems as a projection and command routing layer.",
-      "must_not_own": "Canonical domain truth, AIE authority semantics, Trust Gateway admission/secrets, Runtime orchestration, WORKS durable execution/evidence, independent verification verdicts, Business Ops or tenant policy truth, or silent mock operational state."
+      "owns": "Persistent personal intelligent-agent environment: identity/context continuity, agent coordination, user-facing conversational and delegated-work experiences, surfaced through HomeOS and other approved clients.",
+      "must_not_own": "Primary operator control surface (HomeOS), canonical domain truth, AIE authority semantics, Trust Gateway admission/secrets, Runtime orchestration, WORKS durable execution/evidence, independent verification verdicts, Business Ops or tenant policy truth, or silent mock operational state."
     },
     {
       "name": "war-room",
@@ -99,10 +99,10 @@
       "visibility": "public",
       "architecture_plane": "experience",
       "system_class": "ops-intelligence-projection",
-      "role": "operational-intelligence-projection",
+      "role": "operational-intelligence-backend-projection",
       "lifecycle": "active",
-      "owns": "Operational intelligence and human control projection over org reality, missions, agents, compute, attention, evidence and decision inbox surfaces without inventing canonical state.",
-      "must_not_own": "Canonical repository topology truth, AIE authority, Trust Gateway admission/secrets, Runtime orchestration, WORKS durable execution/evidence, independent verification verdicts, or authoritative org-state generation (owned by after-graph-governance)."
+      "owns": "Operational intelligence projection, organization reality queries, missions/agents/compute/attention/evidence aggregation and secondary diagnostic surfaces without inventing canonical state.",
+      "must_not_own": "Primary operator/control interface (HomeOS), canonical repository topology truth, AIE authority, Trust Gateway admission/secrets, Runtime orchestration, WORKS durable execution/evidence, independent verification verdicts, or authoritative org-state generation."
     },
     {
       "name": "wi-backend",
