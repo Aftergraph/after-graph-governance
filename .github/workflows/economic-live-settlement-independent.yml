@@ -1,0 +1,165 @@
+name: Economic Live Settlement Independent Verification
+
+on:
+  pull_request:
+    paths:
+      - "docs/frontier/economic-live-settlement-v1-readiness.json"
+      - "docs/frontier/ECONOMIC-LIVE-SETTLEMENT-V1-READINESS.md"
+      - ".github/workflows/economic-live-settlement-independent.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-runtime-rails:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      RUNTIME_REF: de75d66762e49cc6ffa752f0d9c59f513ee58429
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Checkout Runtime candidate
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: Aftergraph/runtime
+          ref: ${{ env.RUNTIME_REF }}
+          path: runtime
+
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: runtime/pnpm-lock.yaml
+
+      - name: Install Runtime
+        working-directory: runtime
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Runtime host
+        working-directory: runtime
+        run: pnpm --filter @aftergraph/runtime-host build
+
+      - name: Test rail observers
+        working-directory: runtime
+        run: pnpm --filter @aftergraph/runtime-host test -- economic-rail-readonly
+
+      - name: Capture Ethereum real-node evidence
+        working-directory: runtime
+        env:
+          EVM_RPC_URL: https://cloudflare-eth.com/v1/mainnet
+        run: |
+          mkdir -p evidence/economic-rails
+          node --input-type=module <<'NODE'
+          import { writeFileSync } from "node:fs";
+          const rpc = process.env.EVM_RPC_URL;
+          const call = async (method, params) => {
+            const res = await fetch(rpc, {
+              method: "POST",
+              headers: { "content-type": "application/json" },
+              body: JSON.stringify({ jsonrpc: "2.0", id: 1, method, params })
+            });
+            if (!res.ok) throw new Error("rpc http " + res.status);
+            const body = await res.json();
+            if (body.error) throw new Error(JSON.stringify(body.error));
+            return body.result;
+          };
+          const finalized = await call("eth_getBlockByNumber", ["finalized", false]);
+          if (!finalized?.number) throw new Error("finalized head unavailable");
+          let block = finalized;
+          let txHash = block.transactions?.[0] ?? null;
+          let cursor = BigInt(block.number);
+          for (let i=0; !txHash && i<64; i++) {
+            cursor -= 1n;
+            block = await call("eth_getBlockByNumber", ["0x"+cursor.toString(16), false]);
+            txHash = block?.transactions?.[0] ?? null;
+          }
+          if (!txHash) throw new Error("no finalized transaction found");
+          const receipt = await call("eth_getTransactionReceipt", [txHash]);
+          if (!receipt?.blockNumber) throw new Error("receipt unavailable");
+          if (BigInt(receipt.blockNumber) > BigInt(finalized.number)) throw new Error("receipt exceeds finalized head");
+          const evidence = {
+            schema: "aftergraph.real-rail-evidence/v1",
+            rail: "evm",
+            source: "cloudflare-public-json-rpc",
+            rpcHost: new URL(rpc).host,
+            transactionHash: txHash,
+            receiptBlockNumber: receipt.blockNumber,
+            finalizedHeadNumber: finalized.number,
+            observation: "CONSENSUS_FINALIZED",
+            externalEffects: 0,
+            runtimeRef: process.env.RUNTIME_REF,
+            capturedAt: new Date().toISOString()
+          };
+          writeFileSync("evidence/economic-rails/evm.json", JSON.stringify(evidence,null,2));
+          console.log(JSON.stringify(evidence));
+          NODE
+
+      - name: Download verified Canton 3.5.17
+        run: |
+          curl -fL --retry 3 -o /tmp/canton.tar.gz https://github.com/digital-asset/canton/releases/download/v3.5.17/canton-open-source-3.5.17.tar.gz
+          echo "1b178105f429f0bb188fd4ccc22a9a19b79d236b829457cc870416f9277de93d  /tmp/canton.tar.gz" | sha256sum -c -
+          mkdir -p /tmp/canton
+          tar -xzf /tmp/canton.tar.gz -C /tmp/canton --strip-components=1
+
+      - name: Start real Canton sandbox JSON Ledger API
+        run: |
+          nohup /tmp/canton/bin/canton sandbox --json-api-port 7575 >/tmp/canton.log 2>&1 &
+          echo $! >/tmp/canton.pid
+          for i in $(seq 1 120); do
+            if curl -fsS http://127.0.0.1:7575/livez >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          tail -200 /tmp/canton.log
+          exit 1
+
+      - name: Capture Canton real-node evidence
+        working-directory: runtime
+        run: |
+          node --input-type=module <<'NODE'
+          import { writeFileSync } from "node:fs";
+          const base = "http://127.0.0.1:7575";
+          const vr = await fetch(base + "/v2/version");
+          if (!vr.ok) throw new Error("version http " + vr.status);
+          const version = await vr.json();
+          const lr = await fetch(base + "/v2/state/ledger-end");
+          if (!lr.ok) throw new Error("ledger end http " + lr.status);
+          const ledgerEnd = await lr.json();
+          const evidence = {
+            schema: "aftergraph.real-rail-evidence/v1",
+            rail: "canton",
+            source: "canton-sandbox-3.5.17",
+            participantApi: "JSON Ledger API v2",
+            version,
+            ledgerEnd,
+            observation: "PARTICIPANT_LEDGER_OBSERVED",
+            legalFinalityClaimed: false,
+            externalEffects: 0,
+            runtimeRef: process.env.RUNTIME_REF,
+            capturedAt: new Date().toISOString()
+          };
+          writeFileSync("evidence/economic-rails/canton.json", JSON.stringify(evidence,null,2));
+          console.log(JSON.stringify(evidence));
+          NODE
+
+      - name: Verify zero-effect evidence
+        working-directory: runtime
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFileSync, readdirSync } from "node:fs";
+          for (const file of readdirSync("evidence/economic-rails")) {
+            const e = JSON.parse(readFileSync("evidence/economic-rails/"+file,"utf8"));
+            if (e.externalEffects !== 0) throw new Error(file+" has external effects");
+            if (e.legalFinalityClaimed === true) throw new Error(file+" claims legal finality");
+          }
+          NODE
+
+      - name: Upload independent evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: economic-live-settlement-independent-evidence
+          path: runtime/evidence/economic-rails/
+          if-no-files-found: error
