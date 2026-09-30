@@ -19,6 +19,7 @@ assert doc["properties"]["contract"]["const"] == "tool-fabric/0.1"
 assert doc["properties"]["status"]["const"] == "experimental"
 assert example["contract"] == "tool-fabric/0.1"
 assert example["status"] == "experimental"
+assert example["primary_experience_surface"] == "HomeOS"
 
 required_invariants = {
     "tool discovery and routing never grant authority",
@@ -69,6 +70,7 @@ assert all(p.startswith("Aftergraph/") for p in example["participants"])
 topology_names = {f"Aftergraph/{row['name']}" for row in topology["repositories"]}
 assert example["owners"]["routing"] in topology_names
 assert all(p in topology_names for p in example["participants"])
+assert "Aftergraph/war-room" not in example["participants"]
 
 import hashlib
 
