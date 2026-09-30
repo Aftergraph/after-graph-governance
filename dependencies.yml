@@ -201,12 +201,12 @@ modules:
 
   fihim:
     repo: Aftergraph/fihim
-    role: operator-cockpit-projection
+    role: personal-agent-product
     consumes: [after-graph-governance, aie, trust-gateway, runtime, works-execution, wi-backend, sentinel, brand]
-    provides: [operator-cockpit, domain-adapters, projection-commands, needs-you-ui]
+    provides: [personal-agent-environment, context-continuity-experience, delegated-work-experience, conversational-agent-surface, needs-you-projection]
 
   war-room:
     repo: Aftergraph/war-room
-    role: operational-intelligence-projection
+    role: operational-intelligence-backend-projection
     consumes: [after-graph-governance, aie, trust-gateway, runtime, works-execution, sentinel, wi-backend]
-    provides: [ops-intelligence, collision-radar, decision-inbox, egac-projection, org-summary]
+    provides: [ops-intelligence, collision-radar, decision-inbox, egac-projection, org-summary, secondary-diagnostics]
