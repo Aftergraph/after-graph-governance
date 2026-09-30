@@ -222,22 +222,22 @@ class TopologyV2DataTest(unittest.TestCase):
         self.assertIn("runtime", repo["must_not_own"].lower())
         self.assertIn("verification", repo["must_not_own"].lower())
 
-    def test_fihim_is_registered_as_operator_cockpit_projection(self):
+    def test_fihim_is_registered_as_personal_agent_product(self):
         repo = topology_index(load_json(TOPOLOGY))["fihim"]
         self.assertEqual(repo["architecture_plane"], "experience")
-        self.assertEqual(repo["system_class"], "operator-cockpit")
-        self.assertEqual(repo["role"], "operator-cockpit-projection")
-        self.assertIn("projection", repo["owns"].lower())
-        self.assertIn("domain truth", repo["must_not_own"].lower())
+        self.assertEqual(repo["system_class"], "personal-agent-environment")
+        self.assertEqual(repo["role"], "personal-agent-product")
+        self.assertIn("personal intelligent-agent", repo["owns"].lower())
+        self.assertIn("homeos", repo["must_not_own"].lower())
         self.assertIn("verification", repo["must_not_own"].lower())
 
-    def test_war_room_is_registered_as_ops_intelligence_projection(self):
+    def test_war_room_is_registered_as_secondary_ops_intelligence_projection(self):
         repo = topology_index(load_json(TOPOLOGY))["war-room"]
         self.assertEqual(repo["architecture_plane"], "experience")
         self.assertEqual(repo["system_class"], "ops-intelligence-projection")
-        self.assertEqual(repo["role"], "operational-intelligence-projection")
-        self.assertIn("projection", repo["owns"].lower())
-        self.assertIn("topology", repo["must_not_own"].lower())
+        self.assertEqual(repo["role"], "operational-intelligence-backend-projection")
+        self.assertIn("operational intelligence", repo["owns"].lower())
+        self.assertIn("primary operator/control interface (homeos)", repo["must_not_own"].lower())
         self.assertIn("verification", repo["must_not_own"].lower())
 
     def test_only_seven_non_null_architecture_planes_exist(self):
