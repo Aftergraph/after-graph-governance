@@ -17,9 +17,9 @@ assert homeos["canonical_role"] == "primary-operator-control-surface"
 assert homeos["repository_backing"]["status"] == "not-yet-canonicalized-in-github"
 assert homeos["repository_backing"]["repository"] is None
 assert homeos["local_development"]["canonical_path"] == r"C:\Aftergraph\Home-OS"
-assert homeos["local_development"]["latest_known_version"] == "0.85.0-frontier"
-assert homeos["local_development"]["latest_known_sha256"] == "60306ab6d910d40aced2ba745ef853c40952f2a0788a6511be05b0b650efbfc1"
-assert homeos["local_development"]["latest_repo_seed_sha256"] == "fa89ddcf03e98e52f5aca52d15d65d368e597fc6447546aaff6fcde61662f68d"
+assert homeos["local_development"]["latest_known_version"] == "0.86.0-frontier"
+assert homeos["local_development"]["latest_known_sha256"] == "994391ee6edc4ad22a0425fe8ebc6037dc37b53ef744480f0d0e35b1a44530fd"
+assert homeos["local_development"]["latest_repo_seed_sha256"] == "5dc031eb975d06b052c19f7c58508f6da8994e43c40d6c602defc3abce5b0683"
 assert homeos["local_development"]["verification_status"] == "PASS_WITH_EXPLICIT_BOUNDARIES"
 assert "Aftergraph/war-room" in homeos["supersedes_as_primary_interface"]
 
