@@ -87,10 +87,11 @@ verification. See `docs/PLATFORM-FABRICS-v0.1.md`.
 | `aie` | normative-authority | Institution/authority semantics; does not execute work. |
 | `trust-gateway` | runtime-enforcement | Runtime admission/enforcement/audit; does not become durable execution truth. |
 | `works-execution` | durable-execution | Durable work state, workers, recovery and execution evidence. |
-| `studio` | primary-experience | General-purpose human Chat/Work/Space/control experience. |
+| `studio` | primary-experience | General-purpose Chat/Work/Space experience surface; not the canonical operator/control shell, which is HomeOS. |
 | `runtime` | agent-runtime | Active canonical runtime owner: agent lifecycle, orchestration, dispatch, checkpoints, metering. Never durable execution or enforcement. |
 | `core` | tool-routing-control-plane | ToolFabric registry federation, semantic capability resolution, health-aware routing and non-authoritative tool selection; never authority, Trust admission/secrets, durable execution or independent verification. |
-| `relay` | human-operator-plane | Experience-plane operator/control projection. May expose bounded lease-gated external operations; never becomes AIE authority, Trust admission, WORKS durable execution, Runtime orchestration truth, or independent verification. |
+| `HomeOS` *(non-repository canonical surface)* | primary-operator-control-surface | Primary human operator/control shell consuming governed backend contracts; never owns authority, secrets, runtime truth, durable execution truth, verification truth or repository topology truth. |
+| `relay` | human-operator-plane | Governed external/operator execution projection and transport surface; not the canonical operator/control shell. May expose bounded lease-gated external operations; never becomes AIE authority, Trust admission, WORKS durable execution, Runtime orchestration truth, or independent verification. |
 | `business-ops` | canonical-service-business-domain | Tenant-neutral service-business state/invariants, bounded charge-source facts, migration mappings and shadow conformance; never authority, runtime, provider execution, invoice/payment truth or independent verification. |
 | `wi-backend` | work-inference | Observation → WorkItem; a WorkItem is not a WORKS Work. |
 | `wi-frontend` | work-intelligence-experience | Specialist UI/BFF projection of Work Intelligence state. |
