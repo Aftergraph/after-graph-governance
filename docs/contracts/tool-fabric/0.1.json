@@ -5,42 +5,162 @@
   "description": "Experimental cross-repository capability discovery, routing, admission and execution-binding contract. Routing and discovery never grant authority.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["contract", "status", "invariants", "owners", "schemas"],
+  "required": [
+    "contract",
+    "status",
+    "invariants",
+    "owners",
+    "schemas"
+  ],
   "properties": {
-    "contract": {"const": "tool-fabric/0.1"},
-    "status": {"const": "experimental"},
+    "contract": {
+      "const": "tool-fabric/0.1"
+    },
+    "status": {
+      "const": "experimental"
+    },
     "invariants": {
       "type": "array",
       "minItems": 8,
-      "items": {"type": "string", "minLength": 1}
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "allOf": [
+        {
+          "contains": {
+            "const": "tool discovery and routing never grant authority"
+          }
+        },
+        {
+          "contains": {
+            "const": "skills and models never grant execution authority by installation or selection"
+          }
+        },
+        {
+          "contains": {
+            "const": "tool descriptors contain credential references only and never plaintext credential material"
+          }
+        },
+        {
+          "contains": {
+            "const": "plaintext credentials may materialize only inside the Trust Gateway governed provider boundary after admission and mutable-state revalidation"
+          }
+        },
+        {
+          "contains": {
+            "const": "runtime target binding may not widen admitted capability or authority"
+          }
+        },
+        {
+          "contains": {
+            "const": "unknown or unclassified consequential effects fail closed"
+          }
+        },
+        {
+          "contains": {
+            "const": "automatic failover may not replay a non-idempotent effect after execution may have started"
+          }
+        },
+        {
+          "contains": {
+            "const": "execution success does not establish verified outcome"
+          }
+        },
+        {
+          "contains": {
+            "const": "ToolExecutionReceipt integrity is independently verifiable and must state credentialMaterialExposed=false"
+          }
+        },
+        {
+          "contains": {
+            "const": "experience and observability surfaces may project ToolFabric state but may not become authority or execution truth"
+          }
+        },
+        {
+          "contains": {
+            "const": "semantic capability aliases must be explicitly registered with provenance; fuzzy or embedding similarity cannot grant or widen a capability"
+          }
+        },
+        {
+          "contains": {
+            "const": "registry sources exceeding their configured freshness TTL are quarantined from active routing until a new verified snapshot is ingested"
+          }
+        },
+        {
+          "contains": {
+            "const": "health probes must be passive or read-only and may not invoke consequential tool effects"
+          }
+        },
+        {
+          "contains": {
+            "const": "circuit breaker state influences routing eligibility only and never grants, revokes or widens authority"
+          }
+        }
+      ]
     },
     "owners": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["registration", "routing", "admission", "runtime_binding", "durable_execution", "verification"],
+      "required": [
+        "registration",
+        "routing",
+        "admission",
+        "runtime_binding",
+        "durable_execution",
+        "verification"
+      ],
       "properties": {
-        "registration": {"const": "Aftergraph/after-graph-governance"},
-        "routing": {"const": "Aftergraph/core"},
-        "admission": {"const": "Aftergraph/trust-gateway"},
-        "runtime_binding": {"const": "Aftergraph/runtime"},
-        "durable_execution": {"const": "Aftergraph/works-execution"},
-        "verification": {"const": "Aftergraph/sentinel"}
+        "registration": {
+          "const": "Aftergraph/after-graph-governance"
+        },
+        "routing": {
+          "const": "Aftergraph/core"
+        },
+        "admission": {
+          "const": "Aftergraph/trust-gateway"
+        },
+        "runtime_binding": {
+          "const": "Aftergraph/runtime"
+        },
+        "durable_execution": {
+          "const": "Aftergraph/works-execution"
+        },
+        "verification": {
+          "const": "Aftergraph/sentinel"
+        }
       }
     },
     "participants": {
       "type": "array",
-      "items": {"type": "string", "pattern": "^Aftergraph/[A-Za-z0-9._-]+$"},
+      "items": {
+        "type": "string",
+        "pattern": "^Aftergraph/[A-Za-z0-9._-]+$"
+      },
       "uniqueItems": true
     },
     "schemas": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["tool", "resolution", "receipt"],
+      "required": [
+        "tool",
+        "resolution",
+        "receipt"
+      ],
       "properties": {
-        "tool": {"const": "aftergraph.tool/v1"},
-        "resolution": {"const": "aftergraph.tool-resolution/v1"},
-        "receipt": {"const": "aftergraph.tool-receipt/v1"},
-        "telemetry": {"const": "aftergraph.tool-observation/v1"}
+        "tool": {
+          "const": "aftergraph.tool/v1"
+        },
+        "resolution": {
+          "const": "aftergraph.tool-resolution/v1"
+        },
+        "receipt": {
+          "const": "aftergraph.tool-receipt/v1"
+        },
+        "telemetry": {
+          "const": "aftergraph.tool-observation/v1"
+        }
       }
     }
   }
