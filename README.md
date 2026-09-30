@@ -99,6 +99,7 @@ The table below is a generated projection of `docs/platform-topology/2.0.json` â
 | Support | service-business-domain | `business-ops` | canonical-service-business-domain | active | Canonical tenant-neutral service-business domain state, invariants, migration mappings, charge-source facts and shadow-conformance semantics. |
 | Support | continuity | `context-continuity` | continuity-contract | active | Portable transfer of actionable context/state across model, agent, session and runtime boundaries. |
 | Support | assurance | `continuum` | continuity-containment-verification | active | Continuity and containment fault-injection campaigns and verification harnesses. |
+| Support | capabilities | `core` | tool-routing-control-plane | active | ToolFabric registry federation, semantic capability resolution, health-aware routing plans and non-authoritative tool selection. |
 | Support | knowledge | `docs` | knowledge-plane | active | Provenance-pinned rendering, discovery, developer documentation and agent-readable context surfaces. |
 | Support | research-assurance | `intelligence-systems-research` | research-assurance | active | SPEC-001, MISSION-Bench methodology, scientific claims, experiments, assurance and publication evidence. |
 | Support | models | `llm-research-development` | model-rnd-methodology | active | Reusable model research, experiment, evaluation, promotion and provenance methodology. |
