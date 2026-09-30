@@ -11,7 +11,8 @@
     "automatic failover may not replay a non-idempotent effect after execution may have started",
     "execution success does not establish verified outcome",
     "ToolExecutionReceipt integrity is independently verifiable and must state credentialMaterialExposed=false",
-    "experience and observability surfaces may project ToolFabric state but may not become authority or execution truth"
+    "experience and observability surfaces may project ToolFabric state but may not become authority or execution truth",
+    "semantic capability aliases must be explicitly registered with provenance; fuzzy or embedding similarity cannot grant or widen a capability"
   ],
   "owners": {
     "registration": "Aftergraph/after-graph-governance",
