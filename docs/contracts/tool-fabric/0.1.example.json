@@ -12,7 +12,10 @@
     "execution success does not establish verified outcome",
     "ToolExecutionReceipt integrity is independently verifiable and must state credentialMaterialExposed=false",
     "experience and observability surfaces may project ToolFabric state but may not become authority or execution truth",
-    "semantic capability aliases must be explicitly registered with provenance; fuzzy or embedding similarity cannot grant or widen a capability"
+    "semantic capability aliases must be explicitly registered with provenance; fuzzy or embedding similarity cannot grant or widen a capability",
+    "registry sources exceeding their configured freshness TTL are quarantined from active routing until a new verified snapshot is ingested",
+    "health probes must be passive or read-only and may not invoke consequential tool effects",
+    "circuit breaker state influences routing eligibility only and never grants, revokes or widens authority"
   ],
   "owners": {
     "registration": "Aftergraph/after-graph-governance",
@@ -33,7 +36,7 @@
     "Aftergraph/model-registry",
     "Aftergraph/sentinel",
     "Aftergraph/war-room",
-    "Aftergraph/fihim-vnext"
+    "Aftergraph/fihim"
   ],
   "schemas": {
     "tool": "aftergraph.tool/v1",
