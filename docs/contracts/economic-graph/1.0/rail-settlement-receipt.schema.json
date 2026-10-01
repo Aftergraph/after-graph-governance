@@ -1,0 +1,24 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aftergraph.dev/contracts/economic-rail-settlement-receipt/1.0.json",
+  "title":"Economic Rail Settlement Receipt v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema","economicTransactionId","legId","kind","rail","obligationHash",
+    "legalBindingHash","sourceEvidenceHash","outcome","externalEffects","final"
+  ],
+  "properties":{
+    "schema":{"const":"aftergraph.rail-settlement-receipt/v1"},
+    "economicTransactionId":{"type":"string","minLength":1},
+    "legId":{"type":"string","minLength":1},
+    "kind":{"enum":["asset","cash","fee"]},
+    "rail":{"type":"string","minLength":1},
+    "obligationHash":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "legalBindingHash":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "sourceEvidenceHash":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "outcome":{"enum":["COMMITTED","UNKNOWN","FAILED","READY","LOCKED"]},
+    "externalEffects":{"const":0},
+    "final":{"const":false}
+  }
+}
