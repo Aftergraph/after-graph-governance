@@ -1,0 +1,191 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/execution-policy/0.1.json",
+  "title": "Aftergraph Execution Policy 0.1",
+  "description": "Experimental post-admission executor-selection contract for choosing between deterministic, local learned policy, frontier model and human execution without widening authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "policy_id",
+    "status",
+    "scope",
+    "selectors",
+    "fallback",
+    "safety",
+    "invariants"
+  ],
+  "properties": {
+    "schema": {
+      "const": "aftergraph.execution-policy/v1"
+    },
+    "policy_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{2,127}$"
+    },
+    "status": {
+      "enum": [
+        "experimental",
+        "candidate",
+        "stable",
+        "disabled"
+      ]
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "environment",
+        "effect_classes"
+      ],
+      "properties": {
+        "environment": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "effect_classes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "read",
+              "reversible",
+              "consequential",
+              "irreversible"
+            ]
+          }
+        },
+        "capability_prefixes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "maxLength": 256
+          }
+        }
+      }
+    },
+    "selectors": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "executor",
+          "when"
+        ],
+        "properties": {
+          "executor": {
+            "enum": [
+              "deterministic",
+              "local-policy",
+              "frontier",
+              "human"
+            ]
+          },
+          "when": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "max_uncertainty": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "requires_structured_state": {
+                "type": "boolean"
+              },
+              "requires_vision": {
+                "type": "boolean"
+              },
+              "requires_semantic_reasoning": {
+                "type": "boolean"
+              },
+              "max_latency_ms": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          },
+          "model_ref": {
+            "type": "string",
+            "maxLength": 512
+          }
+        }
+      }
+    },
+    "fallback": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "deterministic",
+          "local-policy",
+          "frontier",
+          "human",
+          "fail-closed"
+        ]
+      }
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "admission_required",
+        "revalidate_before_effect",
+        "non_idempotent_replay"
+      ],
+      "properties": {
+        "admission_required": {
+          "const": true
+        },
+        "revalidate_before_effect": {
+          "const": true
+        },
+        "non_idempotent_replay": {
+          "const": "forbidden-after-possible-start"
+        }
+      }
+    },
+    "invariants": {
+      "type": "array",
+      "minItems": 5,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "allOf": [
+        {
+          "contains": {
+            "const": "executor selection occurs only after authority admission"
+          }
+        },
+        {
+          "contains": {
+            "const": "executor selection may narrow but never widen admitted capability"
+          }
+        },
+        {
+          "contains": {
+            "const": "model or policy possession never grants authority"
+          }
+        },
+        {
+          "contains": {
+            "const": "uncertain consequential effects fail closed or escalate to human"
+          }
+        },
+        {
+          "contains": {
+            "const": "a faster executor may not bypass verification requirements"
+          }
+        }
+      ]
+    }
+  }
+}

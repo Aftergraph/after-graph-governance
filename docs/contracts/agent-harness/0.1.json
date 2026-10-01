@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/agent-harness/0.1.json",
+  "title": "Aftergraph Agent Harness 0.1",
+  "description": "Experimental composition contract for the governed scaffolding around agents: skills, routing, authority, runtime placement, execution policy, receipts, evaluation and verification.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract",
+    "status",
+    "contracts",
+    "owners",
+    "invariants",
+    "primary_experience_surface"
+  ],
+  "properties": {
+    "contract": {
+      "const": "agent-harness/0.1"
+    },
+    "status": {
+      "const": "experimental"
+    },
+    "contracts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability",
+        "tool_fabric",
+        "runtime_fabric",
+        "skill",
+        "execution_policy",
+        "work_receipt",
+        "agent_eval",
+        "context_retrieval",
+        "feedback_event",
+        "visual_edit",
+        "execution_policy_request",
+        "homeos_projection"
+      ],
+      "properties": {
+        "capability": {
+          "const": "capability/1.0"
+        },
+        "tool_fabric": {
+          "const": "tool-fabric/0.1"
+        },
+        "runtime_fabric": {
+          "const": "runtime-fabric/1.0"
+        },
+        "skill": {
+          "const": "skill/0.1"
+        },
+        "execution_policy": {
+          "const": "execution-policy/0.1"
+        },
+        "work_receipt": {
+          "const": "work-receipt/0.1"
+        },
+        "agent_eval": {
+          "const": "agent-eval/0.1"
+        },
+        "context_retrieval": {
+          "const": "context-retrieval/0.1"
+        },
+        "feedback_event": {
+          "const": "feedback-event/0.1"
+        },
+        "visual_edit": {
+          "const": "visual-edit/0.1"
+        },
+        "execution_policy_request": {
+          "const": "execution-policy-request/0.1"
+        },
+        "homeos_projection": {
+          "const": "homeos-agent-harness/0.1"
+        }
+      }
+    },
+    "owners": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "governance",
+        "planning",
+        "routing",
+        "admission",
+        "durable_execution",
+        "runtime",
+        "verification",
+        "skills",
+        "feedback_observation",
+        "ui_projection"
+      ],
+      "properties": {
+        "governance": {
+          "const": "Aftergraph/after-graph-governance"
+        },
+        "planning": {
+          "const": "Aftergraph/aie"
+        },
+        "routing": {
+          "const": "Aftergraph/core"
+        },
+        "admission": {
+          "const": "Aftergraph/trust-gateway"
+        },
+        "durable_execution": {
+          "const": "Aftergraph/works-execution"
+        },
+        "runtime": {
+          "const": "Aftergraph/runtime"
+        },
+        "verification": {
+          "const": "Aftergraph/sentinel"
+        },
+        "skills": {
+          "const": "Aftergraph/skills-vault"
+        },
+        "feedback_observation": {
+          "const": "Aftergraph/wi-backend"
+        },
+        "ui_projection": {
+          "const": "HomeOS"
+        }
+      }
+    },
+    "invariants": {
+      "type": "array",
+      "minItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "allOf": [
+        {
+          "contains": {
+            "const": "planning is not authority"
+          }
+        },
+        {
+          "contains": {
+            "const": "tool discovery and routing never grant authority"
+          }
+        },
+        {
+          "contains": {
+            "const": "skill installation or selection never grants execution authority"
+          }
+        },
+        {
+          "contains": {
+            "const": "executor selection occurs only after authority admission"
+          }
+        },
+        {
+          "contains": {
+            "const": "runtime binding may not widen admitted capability or authority"
+          }
+        },
+        {
+          "contains": {
+            "const": "execution success does not establish verified outcome"
+          }
+        },
+        {
+          "contains": {
+            "const": "receipts record claims and evidence references but do not self-verify"
+          }
+        },
+        {
+          "contains": {
+            "const": "independent verification remains separate from execution"
+          }
+        }
+      ]
+    },
+    "primary_experience_surface": {
+      "const": "HomeOS"
+    }
+  }
+}

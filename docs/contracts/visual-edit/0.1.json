@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/visual-edit/0.1.json",
+  "title": "Aftergraph Visual Edit 0.1",
+  "description": "Experimental runtime-to-source visual editing contract. Source plus verified runtime remains canonical; canvas state never becomes source truth.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "edit_id",
+    "target",
+    "anchors",
+    "patch",
+    "verification",
+    "invariants"
+  ],
+  "properties": {
+    "schema": {
+      "const": "aftergraph.visual-edit/v1"
+    },
+    "edit_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "workspace_ref",
+        "runtime_ref"
+      ],
+      "properties": {
+        "workspace_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1024
+        },
+        "runtime_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1024
+        },
+        "source_revision": {
+          "type": "string",
+          "maxLength": 256
+        }
+      }
+    },
+    "anchors": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "runtime_locator",
+          "source_ref",
+          "confidence"
+        ],
+        "properties": {
+          "runtime_locator": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048
+          },
+          "source_ref": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    },
+    "patch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "preview_required",
+        "write_requires_admission"
+      ],
+      "properties": {
+        "preview_required": {
+          "const": true
+        },
+        "write_requires_admission": {
+          "const": true
+        },
+        "patch_ref": {
+          "type": "string",
+          "maxLength": 1024
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_readback_required",
+        "source_diff_required"
+      ],
+      "properties": {
+        "runtime_readback_required": {
+          "const": true
+        },
+        "source_diff_required": {
+          "const": true
+        },
+        "screenshot_required": {
+          "type": "boolean"
+        }
+      }
+    },
+    "invariants": {
+      "type": "array",
+      "minItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      },
+      "allOf": [
+        {
+          "contains": {
+            "const": "canvas state never becomes canonical source truth"
+          }
+        },
+        {
+          "contains": {
+            "const": "low-confidence runtime-to-source anchors fail closed or require human selection"
+          }
+        },
+        {
+          "contains": {
+            "const": "source writes require admitted capability"
+          }
+        },
+        {
+          "contains": {
+            "const": "successful source write still requires runtime readback verification"
+          }
+        }
+      ]
+    }
+  }
+}
