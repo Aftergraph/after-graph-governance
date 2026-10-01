@@ -1,0 +1,28 @@
+{
+  "schema":"economic-trust-root-history-v17/acceptance-vectors",
+  "candidate":"economic.live-settlement/v1",
+  "vectors":[
+    {"id":"ETH-001","scenario":"genesis + policy + authorized rotation form contiguous hash chain","expected":{"verification":"VERIFIED_IMMUTABLE_TRUST_ROOT_LINEAGE","valid":true}},
+    {"id":"ETH-002","scenario":"exact state replay","expected":{"newHistoryEvent":false}},
+    {"id":"ETH-003","scenario":"middle event deleted","expected":{"valid":false}},
+    {"id":"ETH-004","scenario":"sequence or generation gap inserted","expected":{"valid":false}},
+    {"id":"ETH-005","scenario":"previous event hash altered","expected":{"valid":false}},
+    {"id":"ETH-006","scenario":"event hash or state digest altered","expected":{"valid":false}},
+    {"id":"ETH-007","scenario":"ROTATED event lacks v16 authorization digest","expected":{"valid":false}},
+    {"id":"ETH-008","scenario":"non-rotation event carries authorization digest","expected":{"valid":false}},
+    {"id":"ETH-009","scenario":"source identity changes within history","expected":{"valid":false}},
+    {"id":"ETH-010","scenario":"failed or expired rotation authorization","expected":{"stateMutation":false,"historyAppend":false}},
+    {"id":"ETH-011","scenario":"verified history result","expected":{"executionAuthority":false,"final":false,"promotionAuthority":false,"externalEffects":0}}
+  ],
+  "required_invariants":[
+    "current trust-root state and append-only history mutate atomically",
+    "replay does not append duplicate event",
+    "event sequence equals durable state revision",
+    "history is anchored to fixed genesis hash",
+    "each event cryptographically links to previous event",
+    "ROTATED history events bind v16 authorization digest",
+    "history is independently rehashed by Sentinel",
+    "tampering or deletion invalidates lineage",
+    "externalEffects remain 0"
+  ]
+}
