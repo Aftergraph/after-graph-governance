@@ -34,7 +34,8 @@
         "context_retrieval",
         "feedback_event",
         "visual_edit",
-        "execution_policy_request"
+        "execution_policy_request",
+        "homeos_projection"
       ],
       "properties": {
         "capability": {
@@ -69,6 +70,9 @@
         },
         "execution_policy_request": {
           "const": "execution-policy-request/0.1"
+        },
+        "homeos_projection": {
+          "const": "homeos-agent-harness/0.1"
         }
       }
     },
@@ -84,7 +88,8 @@
         "runtime",
         "verification",
         "skills",
-        "feedback_observation"
+        "feedback_observation",
+        "ui_projection"
       ],
       "properties": {
         "governance": {
@@ -113,6 +118,9 @@
         },
         "feedback_observation": {
           "const": "Aftergraph/wi-backend"
+        },
+        "ui_projection": {
+          "const": "HomeOS"
         }
       }
     },
