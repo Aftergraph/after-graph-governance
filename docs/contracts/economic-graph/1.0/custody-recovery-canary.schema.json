@@ -1,0 +1,29 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aftergraph.dev/contracts/economic-custody-recovery-canary/1.0.json",
+  "title":"Economic Custody Recovery Canary Receipt v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema","challenge","challengeDigest","planDigest","dryRun","twoPersonApprovalBound",
+    "authorityLeaseBound","liveWriteApiCalled","assetMovementRequested","assetMovementPerformed",
+    "canMoveAssets","canWithdraw","canRecoverAssets","final","externalEffects"
+  ],
+  "properties":{
+    "schema":{"const":"aftergraph.custody-recovery-canary-receipt/v1"},
+    "challenge":{"type":"object"},
+    "challengeDigest":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "planDigest":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "dryRun":{"const":true},
+    "twoPersonApprovalBound":{"const":true},
+    "authorityLeaseBound":{"const":true},
+    "liveWriteApiCalled":{"const":false},
+    "assetMovementRequested":{"const":false},
+    "assetMovementPerformed":{"const":false},
+    "canMoveAssets":{"const":false},
+    "canWithdraw":{"const":false},
+    "canRecoverAssets":{"const":false},
+    "final":{"const":false},
+    "externalEffects":{"const":0}
+  }
+}
