@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/feedback-event/0.1.json",
+  "title": "Aftergraph Feedback Event 0.1",
+  "description": "Experimental product/user feedback event contract. Feedback is observation/proposal input and never execution authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "event_id",
+    "observed_at",
+    "source",
+    "kind",
+    "body",
+    "authority",
+    "provenance"
+  ],
+  "properties": {
+    "schema": {
+      "const": "aftergraph.feedback-event/v1"
+    },
+    "event_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "tenant_id": {
+      "type": "string",
+      "maxLength": 256
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "kind": {
+      "enum": [
+        "request",
+        "bug",
+        "idea",
+        "question",
+        "docs",
+        "release-feedback"
+      ]
+    },
+    "body": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "summary"
+      ],
+      "properties": {
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "details": {
+          "type": "string",
+          "maxLength": 32768
+        },
+        "labels": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "maxLength": 128
+          }
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "execution_authority",
+        "promotion_required"
+      ],
+      "properties": {
+        "execution_authority": {
+          "const": "none"
+        },
+        "promotion_required": {
+          "const": true
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_ref"
+      ],
+      "properties": {
+        "source_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1024
+        },
+        "content_digest": {
+          "type": "string",
+          "maxLength": 128
+        }
+      }
+    }
+  }
+}
