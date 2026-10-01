@@ -1,0 +1,23 @@
+{
+  "schema":"economic-source-attestation-v14-readiness/1.0",
+  "candidate":"economic.live-settlement/v1",
+  "lifecycle":"candidate",
+  "phase":"source-attestation-trust-roots-v14",
+  "status":"IMPLEMENTED_PENDING_MERGED_EVIDENCE",
+  "design":{
+    "runtime_binding_only":true,
+    "sentinel_independent_signature_verification":true,
+    "governance_pinned_root_required":true,
+    "source_identity_binding":true,
+    "validity_enforced":true,
+    "revocation_floor":true,
+    "caller_supplied_key_not_authoritative":true,
+    "executionAuthority":false,
+    "final":false,
+    "promotionAuthority":false,
+    "externalEffects":0
+  },
+  "promotion_allowed":false,
+  "canonical_promotion_allowed":false,
+  "carries_authority":false
+}
