@@ -1,0 +1,61 @@
+{
+  "schema": "economic-evidence-pack-v11-readiness/1.0",
+  "candidate": "economic.live-settlement/v1",
+  "lifecycle": "candidate",
+  "phase": "production-equivalent-evidence-pack-v11",
+  "status": "VERIFIED_MERGED_IMPLEMENTATIONS",
+  "readiness": {
+    "runtime_pack_builder": "verified_merged",
+    "sentinel_independent_pack_verifier": "verified_merged",
+    "trust_gateway_non_authoritative_regression": "verified_merged",
+    "canonical_json_hashing": true,
+    "component_digest_binding": true,
+    "source_to_legal_and_freshness_binding": true,
+    "hash_linked_evidence_chain": true,
+    "manifest_root_hash": true,
+    "secret_field_rejection": true,
+    "underlying_component_reverification": true,
+    "executionAuthority": false,
+    "liveValueEnabled": false,
+    "maxLiveValue": 0,
+    "final": false,
+    "promotionAuthority": false,
+    "externalEffects": 0
+  },
+  "implementation_refs": {
+    "runtime": "224fe7e24e02be1f10df7f3baaa9588a0e96757c",
+    "sentinel": "709ff2477b8b02b9cb29d9263c18533c816eaa02",
+    "trust_gateway": "2742a9a656070ca2e294a98185e2424dec1e007c"
+  },
+  "promotion_allowed": false,
+  "canonical_promotion_allowed": false,
+  "carries_authority": false,
+  "remaining": [
+    "configure one production-equivalent read-only registry source",
+    "configure one production-equivalent read-only custodian source",
+    "configure one production-equivalent ledger representation source for the same right",
+    "capture and archive a real source-separated EvidencePack",
+    "independently verify that pack in Sentinel",
+    "jurisdiction-specific legal mapping before any legal-title claim",
+    "separate governance-owned promotion evidence before any live execution"
+  ],
+  "verifier_refs": [
+    "github-actions:Aftergraph/runtime/run/36808445541",
+    "github-actions:Aftergraph/sentinel/run/36808533493",
+    "github-actions:Aftergraph/trust-gateway/run/36808395926",
+    "github-actions:Aftergraph/trust-gateway/run/36808395943",
+    "github-actions:Aftergraph/trust-gateway/run/36808396324"
+  ],
+  "verified": {
+    "runtime_build_and_tests": true,
+    "runtime_merged": true,
+    "sentinel_pack_verifier": true,
+    "sentinel_merged": true,
+    "trust_gateway_ci": true,
+    "trust_gateway_codeql": true,
+    "trust_gateway_cross_repo_gate": true,
+    "trust_gateway_merged": true,
+    "evidence_pack_non_authoritative": true,
+    "max_live_value_zero": true
+  }
+}

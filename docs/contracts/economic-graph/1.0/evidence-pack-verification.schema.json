@@ -1,0 +1,26 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aftergraph.dev/contracts/economic-evidence-pack-verification/1.0.json",
+  "title":"Economic EvidencePack Verification v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema","valid","state","evidencePackVerified","readyForLiveCanaryReview",
+    "executionAuthority","liveValueEnabled","maxLiveValue","final",
+    "promotionAuthority","externalEffects","reasons"
+  ],
+  "properties":{
+    "schema":{"const":"aftergraph.economic-evidence-pack-verification/v1"},
+    "valid":{"type":"boolean"},
+    "state":{"enum":["VERIFIED_IMMUTABLE_EVIDENCE_PACK","INVALID"]},
+    "evidencePackVerified":{"type":"boolean"},
+    "readyForLiveCanaryReview":{"type":"boolean"},
+    "executionAuthority":{"const":false},
+    "liveValueEnabled":{"const":false},
+    "maxLiveValue":{"const":0},
+    "final":{"const":false},
+    "promotionAuthority":{"const":false},
+    "externalEffects":{"const":0},
+    "reasons":{"type":"array","items":{"type":"string","minLength":1}}
+  }
+}

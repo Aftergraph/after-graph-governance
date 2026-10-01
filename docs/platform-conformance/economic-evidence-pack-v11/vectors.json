@@ -1,0 +1,45 @@
+{
+  "schema":"economic-evidence-pack-v11/acceptance-vectors",
+  "candidate":"economic.live-settlement/v1",
+  "lifecycle":"candidate",
+  "vectors":[
+    {
+      "id":"EEP-001",
+      "scenario":"three distinct source captures plus v6/v7/v9/v10 component inputs produce deterministic immutable pack",
+      "expected":{"state":"VERIFIED_IMMUTABLE_EVIDENCE_PACK","valid":true,"executionAuthority":false,"maxLiveValue":0,"final":false,"externalEffects":0}
+    },
+    {"id":"EEP-002","scenario":"component digest is changed after pack creation","expected":{"valid":false,"state":"INVALID"}},
+    {"id":"EEP-003","scenario":"evidence-chain link or entry hash is changed","expected":{"valid":false,"state":"INVALID"}},
+    {"id":"EEP-004","scenario":"manifest root hash is changed","expected":{"valid":false,"state":"INVALID"}},
+    {"id":"EEP-005","scenario":"source evidence hash/generation/time differs from v7/v9 raw inputs","expected":{"valid":false,"state":"INVALID"}},
+    {"id":"EEP-006","scenario":"one source class missing, duplicated, or evidence hash reused","expected":{"valid":false,"state":"INVALID"}},
+    {"id":"EEP-007","scenario":"component payload contains secret-bearing field","expected":{"builder":"REJECT"}},
+    {"id":"EEP-008","scenario":"component or pack claims effects, finality, execution authority or non-zero live value","expected":{"builder":"REJECT","verification":"INVALID"}},
+    {"id":"EEP-009","scenario":"one underlying v6/v7/v9/v10 component fails independent verification","expected":{"valid":false,"state":"INVALID"}},
+    {
+      "id":"EEP-010",
+      "scenario":"caller presents VERIFIED_IMMUTABLE_EVIDENCE_PACK to Trust Gateway candidate execute admission",
+      "expected":{"decision":"DENY","reason":"economic_live_settlement_not_canonical"}
+    }
+  ],
+  "required_invariants":[
+    "source captures are registry, custody and representation exactly once each",
+    "source evidence hashes are distinct",
+    "component digests are computed from canonical JSON",
+    "evidence chain is hash-linked in deterministic order",
+    "manifest root is recomputed independently",
+    "source captures bind to both legal reconciliation records and temporal coherence observations",
+    "all underlying v6/v7/v9/v10 verification must pass",
+    "credentials or private signing material are forbidden from pack components",
+    "verified evidence pack does not grant execution or promotion authority",
+    "live value remains disabled and max live value remains 0",
+    "externalEffects remain 0"
+  ],
+  "non_claims":[
+    "real production registry/custodian endpoints have been exercised",
+    "evidence pack establishes legal title",
+    "evidence pack establishes legal or settlement finality",
+    "evidence pack authorizes live execution",
+    "economic.live-settlement is canonical"
+  ]
+}
