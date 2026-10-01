@@ -1,0 +1,25 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aftergraph.dev/contracts/economic-legal-reconciliation/1.0.json",
+  "title":"Economic Legal Reconciliation v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema","assetId","rightId","legalInstrumentHash","rightsHash","state","final","externalEffects","reconciliationRequired","evidenceSources","reasons"],
+  "properties":{
+    "schema":{"const":"aftergraph.economic-legal-reconciliation/v1"},
+    "assetId":{"type":"string","minLength":1},
+    "rightId":{"type":"string","minLength":1},
+    "legalInstrumentHash":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "rightsHash":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "state":{"enum":["LEGAL_RIGHT_ALIGNED","LEGAL_RECONCILIATION_REQUIRED"]},
+    "final":{"const":false},
+    "externalEffects":{"const":0},
+    "reconciliationRequired":{"type":"boolean"},
+    "evidenceSources":{"type":"array","items":{"enum":["registry","custody","representation"]},"uniqueItems":true},
+    "reasons":{"type":"array","items":{"type":"string","minLength":1}}
+  },
+  "allOf":[
+    {"if":{"properties":{"state":{"const":"LEGAL_RECONCILIATION_REQUIRED"}}},"then":{"properties":{"reconciliationRequired":{"const":true}}}},
+    {"if":{"properties":{"state":{"const":"LEGAL_RIGHT_ALIGNED"}}},"then":{"properties":{"reconciliationRequired":{"const":false},"evidenceSources":{"minItems":3,"maxItems":3}}}}
+  ]
+}
