@@ -1,0 +1,25 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aftergraph.dev/contracts/economic-signer-canary/1.0.json",
+  "title":"Economic Signer Canary Receipt v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema","challengeDigest","keyHandle","publicKeyFingerprint","publicKeyPem",
+    "algorithm","signatureBase64","signingMaterialExposed","transactionPayloadSigned",
+    "canBroadcast","externalEffects"
+  ],
+  "properties":{
+    "schema":{"const":"aftergraph.external-signer-receipt/v1"},
+    "challengeDigest":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "keyHandle":{"type":"string","pattern":"^keyref_[A-Za-z0-9_-]{12,}$"},
+    "publicKeyFingerprint":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "publicKeyPem":{"type":"string","minLength":32},
+    "algorithm":{"const":"Ed25519"},
+    "signatureBase64":{"type":"string","minLength":40},
+    "signingMaterialExposed":{"const":false},
+    "transactionPayloadSigned":{"const":false},
+    "canBroadcast":{"const":false},
+    "externalEffects":{"const":0}
+  }
+}

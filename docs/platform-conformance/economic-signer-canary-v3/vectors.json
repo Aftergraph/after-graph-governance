@@ -1,0 +1,55 @@
+{
+  "schema":"economic-signer-canary-v3/acceptance-vectors",
+  "candidate":"economic.live-settlement/v1",
+  "signing_capability_lifecycle":"experimental",
+  "vectors":[
+    {
+      "id":"ESC-001",
+      "scenario":"valid detached non-economic challenge receipt",
+      "expected":{
+        "cryptographicallyVerified":true,
+        "transactionPayloadSigned":false,
+        "signingMaterialExposed":false,
+        "canBroadcast":false,
+        "externalEffects":0
+      }
+    },
+    {
+      "id":"ESC-002",
+      "scenario":"tampered signature",
+      "expected":{"valid":false}
+    },
+    {
+      "id":"ESC-003",
+      "scenario":"public-key fingerprint mismatch",
+      "expected":{"valid":false}
+    },
+    {
+      "id":"ESC-004",
+      "scenario":"receipt claims transaction payload signing",
+      "expected":{"valid":false}
+    },
+    {
+      "id":"ESC-005",
+      "scenario":"receipt claims signing material exposure",
+      "expected":{"valid":false}
+    },
+    {
+      "id":"ESC-006",
+      "scenario":"receipt claims broadcast capability",
+      "expected":{"valid":false}
+    },
+    {
+      "id":"ESC-007",
+      "scenario":"expired challenge",
+      "expected":{"valid":false}
+    }
+  ],
+  "non_claims":[
+    "transaction signing is production-ready",
+    "economic transaction bytes were signed",
+    "live broadcast is enabled",
+    "private key material is available to agents",
+    "candidate or canonical promotion is established"
+  ]
+}

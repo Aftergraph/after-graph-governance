@@ -1,0 +1,49 @@
+{
+  "schema": "economic-signer-canary-readiness/1.0",
+  "subject": "economic.transaction-signing",
+  "lifecycle": "experimental",
+  "parent_candidate": "economic.live-settlement/v1",
+  "status": "VERIFIED_NON_ECONOMIC_CANARY",
+  "requirements": {
+    "domain_separated_non_economic_challenge": "implemented",
+    "authority_lease_binding": "implemented",
+    "human_approval_binding": "implemented",
+    "transaction_payload_forbidden": "implemented",
+    "raw_signing_material_exposure": "prohibited",
+    "independent_cryptographic_verification": "implemented",
+    "broadcast": "disabled",
+    "external_effects": 0
+  },
+  "promotion_allowed": false,
+  "carries_authority": false,
+  "implementation_refs": {
+    "trust_gateway": "d9eff31d22d624ceac9a91222b32901e84fdcf39",
+    "sentinel": "79ef6a0c83c1f65c1b4706b24ad7f40781a1bc7a"
+  },
+  "verifier_refs": [
+    "github-actions:Aftergraph/trust-gateway/CI#548",
+    "github-actions:Aftergraph/trust-gateway/Cross-repo-Integration-Gate#369",
+    "github-actions:Aftergraph/trust-gateway/CodeQL#246",
+    "github-actions:Aftergraph/sentinel/run/36802565000"
+  ],
+  "verified": {
+    "domain_separated_non_economic_challenge": true,
+    "authority_lease_binding": true,
+    "human_approval_binding": true,
+    "transaction_payload_forbidden": true,
+    "independent_signature_verification": true,
+    "public_key_fingerprint_binding": true,
+    "tamper_rejection": true,
+    "expiry_rejection": true,
+    "signing_material_exposure_rejected": true,
+    "transaction_payload_signing_overclaim_rejected": true,
+    "broadcast_overclaim_rejected": true,
+    "external_effect_overclaim_rejected": true
+  },
+  "remaining": [
+    "production HSM or MPC service integration using the same receipt boundary",
+    "independent attestation of hardware or threshold-key isolation",
+    "key rotation and revocation evidence",
+    "separate promotion evidence before economic.transaction-signing may leave EXPERIMENTAL"
+  ]
+}
