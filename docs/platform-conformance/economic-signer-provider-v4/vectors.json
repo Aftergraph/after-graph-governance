@@ -1,0 +1,23 @@
+{
+  "schema":"economic-signer-provider-v4/acceptance-vectors",
+  "subject":"economic.transaction-signing",
+  "lifecycle":"experimental",
+  "vectors":[
+    {"id":"ESP-001","scenario":"opaque provider signs valid non-economic canary","expected":{"valid":true,"keyStateAtSigning":"ACTIVE","canBroadcast":false,"externalEffects":0}},
+    {"id":"ESP-002","scenario":"same challenge digest replayed","expected":{"decision":"DENY","reason":"SIGNER_PROVIDER_REPLAY_REJECTED"}},
+    {"id":"ESP-003","scenario":"rotation generation 1 -> 2","expected":{"oldState":"RETIRED","newState":"ACTIVE","privateKeyMaterialTransferred":false}},
+    {"id":"ESP-004","scenario":"sign with retired key","expected":{"decision":"DENY","reason":"SIGNER_PROVIDER_KEY_NOT_ACTIVE"}},
+    {"id":"ESP-005","scenario":"revoked key signs","expected":{"decision":"DENY","reason":"SIGNER_PROVIDER_KEY_NOT_ACTIVE"}},
+    {"id":"ESP-006","scenario":"rotation skips generation","expected":{"valid":false}},
+    {"id":"ESP-007","scenario":"rotation claims private-key transfer","expected":{"valid":false}},
+    {"id":"ESP-008","scenario":"transaction/effect-capable request reaches provider","expected":{"decision":"DENY","reason":"SIGNER_PROVIDER_EFFECT_BOUNDARY_VIOLATION"}}
+  ],
+  "non_claims":[
+    "production HSM is integrated",
+    "MPC threshold signing is integrated",
+    "economic transaction signing is enabled",
+    "broadcast is enabled",
+    "private key material is available to Aftergraph or agents",
+    "economic.transaction-signing may leave EXPERIMENTAL"
+  ]
+}
