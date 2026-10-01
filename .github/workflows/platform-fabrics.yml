@@ -26,6 +26,7 @@ on:
       - 'scripts/test_frontier_economic_graph_v1.py'
       - 'scripts/test_economic_canonical_readiness_v2.py'
       - 'scripts/test_economic_signer_canary_v3.py'
+      - 'scripts/test_economic_signer_provider_v4.py'
       - 'docs/contracts/avc-dissolution/**'
       - 'docs/platform-conformance/**'
       - 'docs/platform-conformance/economic-live-settlement-v1/**'
@@ -115,3 +116,5 @@ jobs:
         run: python scripts/test_economic_canonical_readiness_v2.py
       - name: Run Economic signer canary v3 tests
         run: python scripts/test_economic_signer_canary_v3.py
+      - name: Run Economic signer provider v4 tests
+        run: python scripts/test_economic_signer_provider_v4.py
