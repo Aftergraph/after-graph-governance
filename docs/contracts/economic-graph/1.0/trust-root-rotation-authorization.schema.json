@@ -1,0 +1,44 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aftergraph.dev/contracts/economic-trust-root-rotation-authorization/1.0.json",
+  "title":"Economic Trust Root Rotation Authorization v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema","decision","authorized","trustRootMutationAuthorized","authorizationDigest","payload","approvalsVerified","authorityVerified","executionAuthority","liveValueEnabled","final","promotionAuthority","externalEffects"],
+  "properties":{
+    "schema":{"const":"aftergraph.economic-trust-root-rotation-authorization/v1"},
+    "decision":{"enum":["AUTHORIZED_PREPARE_ONLY","DENY"]},
+    "authorized":{"type":"boolean"},
+    "trustRootMutationAuthorized":{"type":"boolean"},
+    "authorizationDigest":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "payload":{
+      "type":"object",
+      "additionalProperties":false,
+      "required":["sourceClass","sourceId","priorTrustRootId","newTrustRootId","priorPublicKeyFingerprint","newPublicKeyFingerprint","priorGeneration","newGeneration","priorMinAttestationGeneration","newMinAttestationGeneration","authorityLeaseId","approvalProofIds","rotationNonce","reason","expiresAt"],
+      "properties":{
+        "sourceClass":{"enum":["registry","custody","representation"]},
+        "sourceId":{"type":"string","minLength":1},
+        "priorTrustRootId":{"type":"string","minLength":1},
+        "newTrustRootId":{"type":"string","minLength":1},
+        "priorPublicKeyFingerprint":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+        "newPublicKeyFingerprint":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+        "priorGeneration":{"type":"integer","minimum":1},
+        "newGeneration":{"type":"integer","minimum":2},
+        "priorMinAttestationGeneration":{"type":"integer","minimum":1},
+        "newMinAttestationGeneration":{"type":"integer","minimum":1},
+        "authorityLeaseId":{"type":"string","pattern":"^auth_[A-Za-z0-9_-]{12,}$"},
+        "approvalProofIds":{"type":"array","minItems":2,"uniqueItems":true,"items":{"type":"string","pattern":"^apr_[A-Za-z0-9_-]{12,}$"}},
+        "rotationNonce":{"type":"string","pattern":"^rot_[A-Za-z0-9_-]{12,}$"},
+        "reason":{"type":"string","minLength":1},
+        "expiresAt":{"type":"number","exclusiveMinimum":0}
+      }
+    },
+    "approvalsVerified":{"type":"boolean"},
+    "authorityVerified":{"type":"boolean"},
+    "executionAuthority":{"const":false},
+    "liveValueEnabled":{"const":false},
+    "final":{"const":false},
+    "promotionAuthority":{"const":false},
+    "externalEffects":{"const":0}
+  }
+}

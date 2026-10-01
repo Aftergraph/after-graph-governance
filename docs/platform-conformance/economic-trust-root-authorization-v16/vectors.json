@@ -1,0 +1,27 @@
+{
+  "schema":"economic-trust-root-authorization-v16/acceptance-vectors",
+  "candidate":"economic.live-settlement/v1",
+  "vectors":[
+    {"id":"ETA-001","scenario":"verified AuthorityLease + two human approvals bind exact current-to-next root rotation","expected":{"decision":"AUTHORIZED_PREPARE_ONLY","authorized":true,"trustRootMutationAuthorized":true,"executionAuthority":false,"externalEffects":0}},
+    {"id":"ETA-002","scenario":"caller supplies approval IDs but approval verifier denies","expected":{"decision":"DENY","authorized":false}},
+    {"id":"ETA-003","scenario":"caller supplies AuthorityLease ID but authority verifier denies","expected":{"decision":"DENY","authorized":false}},
+    {"id":"ETA-004","scenario":"only one approval or duplicate approvals","expected":{"decision":"DENY","authorized":false}},
+    {"id":"ETA-005","scenario":"new generation is not exactly prior+1","expected":{"decision":"DENY","authorized":false}},
+    {"id":"ETA-006","scenario":"new attestation floor regresses","expected":{"decision":"DENY","authorized":false}},
+    {"id":"ETA-007","scenario":"authorization expired","expected":{"decision":"DENY","authorized":false}},
+    {"id":"ETA-008","scenario":"authorization digest or current-to-next binding is tampered","expected":{"verification":"INVALID"}},
+    {"id":"ETA-009","scenario":"structurally valid WORKS rotation without authorization","expected":{"decision":"AUTHORIZATION_REQUIRED","valid":false}},
+    {"id":"ETA-010","scenario":"authorized rotation completes durable transition","expected":{"verification":"VERIFIED_AUTHORIZED_TRUST_ROOT_ROTATION","executionAuthority":false,"liveValueEnabled":false,"final":false,"externalEffects":0}}
+  ],
+  "required_invariants":[
+    "caller-supplied authority and approval identifiers alone never authorize rotation",
+    "AuthorityLease and at least two distinct human approvals are independently verified",
+    "authorization binds exact prior and next root identifiers, fingerprints, generation and revocation floor",
+    "authorization has nonce and expiry",
+    "WORKS rejects key/root rotation on the legacy unauthorised path",
+    "Sentinel recomputes authorization digest and v15 transition law",
+    "rotation authorization grants only trust-root state mutation authority",
+    "economic execution/live value/promotion authority remain false",
+    "externalEffects remain 0"
+  ]
+}
