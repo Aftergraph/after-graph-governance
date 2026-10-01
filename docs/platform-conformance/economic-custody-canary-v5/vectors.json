@@ -1,0 +1,22 @@
+{
+  "schema":"economic-custody-canary-v5/acceptance-vectors",
+  "subject":"economic.custody",
+  "lifecycle":"experimental",
+  "vectors":[
+    {"id":"ECC-001","scenario":"read-only custody observation","expected":{"readOnly":true,"liveWriteApiCalled":false,"canMoveAssets":false,"externalEffects":0}},
+    {"id":"ECC-002","scenario":"recovery dry-run with two distinct approvals","expected":{"dryRun":true,"twoPersonApprovalBound":true,"assetMovementPerformed":false,"final":false,"externalEffects":0}},
+    {"id":"ECC-003","scenario":"recovery with one approval","expected":{"decision":"DENY","reason":"CUSTODY_TWO_PERSON_APPROVAL_REQUIRED"}},
+    {"id":"ECC-004","scenario":"recovery includes destination or movement payload","expected":{"decision":"DENY","reason":"CUSTODY_RECOVERY_ASSET_MOVE_PAYLOAD_FORBIDDEN"}},
+    {"id":"ECC-005","scenario":"recovery nonce replay","expected":{"decision":"DENY","reason":"CUSTODY_RECOVERY_REPLAY_REJECTED"}},
+    {"id":"ECC-006","scenario":"revoked custody reference observes or recovers","expected":{"decision":"DENY","reason":"CUSTODY_REFERENCE_NOT_ACTIVE"}},
+    {"id":"ECC-007","scenario":"receipt claims live write or asset movement","expected":{"valid":false}}
+  ],
+  "non_claims":[
+    "live custody API is integrated",
+    "asset movement is enabled",
+    "withdrawal is enabled",
+    "asset recovery execution is enabled",
+    "economic.custody may leave EXPERIMENTAL",
+    "live value execution is enabled"
+  ]
+}
