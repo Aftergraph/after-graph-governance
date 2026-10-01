@@ -1,0 +1,75 @@
+{
+  "schema": "economic-evidence-campaign-v11-readiness/1.0",
+  "candidate": "economic.live-settlement/v1",
+  "lifecycle": "candidate",
+  "phase": "production-equivalent-evidence-campaign-v11",
+  "status": "VERIFIED_MERGED_IMPLEMENTATIONS",
+  "runtime_ref": {
+    "pr": 265,
+    "merge_sha": "ba399d2e89a54b4237faf0458c583ef1fde92654",
+    "merge_required": false
+  },
+  "sentinel_ref": {
+    "pr": 68,
+    "merge_sha": "0b105a8a20019048069b517081fb120399107fde",
+    "merge_required": false
+  },
+  "verified_design_constraints": {
+    "provider_neutral_collection": true,
+    "three_source_classes_required": true,
+    "source_id_separation": true,
+    "evidence_hash_separation": true,
+    "positive_generation_required": true,
+    "canonical_right_binding": true,
+    "pack_hash": true,
+    "source_separation_digest": true,
+    "independent_legal_reverification": true,
+    "independent_temporal_reverification": true,
+    "execution_authority": false,
+    "live_value_enabled": false,
+    "max_live_value": 0,
+    "final": false,
+    "promotion_authority": false,
+    "external_effects": 0
+  },
+  "promotion_allowed": false,
+  "canonical_promotion_allowed": false,
+  "carries_authority": false,
+  "remaining": [
+    "bind one real authoritative registry read-only source",
+    "bind one real external custodian read-only source",
+    "bind one real ledger representation source for the same legal right",
+    "capture at least one production-equivalent EvidencePack",
+    "verify that pack through Sentinel v11 and composite assurance v10",
+    "run replay/stale/source-mixing fault injection against provider sandboxes",
+    "separate human-authorized bounded live-value canary protocol",
+    "separate governance-owned canonical promotion evidence"
+  ],
+  "verifier_refs": [
+    "github-actions:Aftergraph/sentinel/run/36914432637",
+    "github-actions:Aftergraph/sentinel/run/36914432730",
+    "github-actions:Aftergraph/runtime/run/36914784282",
+    "github-actions:Aftergraph/runtime/sentinel-gate/36914785353"
+  ],
+  "verified": {
+    "sentinel_domain_verifier": true,
+    "sentinel_merged": true,
+    "runtime_ci": true,
+    "runtime_sentinel_gate": true,
+    "runtime_sentinel_verdict_mergeable": true,
+    "runtime_merged": true,
+    "source_separation_reviewed": true,
+    "pack_integrity_reviewed": true
+  },
+  "sentinel_github_app_review": {
+    "repo": "Aftergraph/runtime",
+    "pr": 265,
+    "run_id": 36914785353,
+    "reviewed_head": "2f17a46dbea3a5ebb3afd0b52115c6086cbc1447",
+    "verdict": "MERGEABLE",
+    "delta_clean": true,
+    "all_required_checks_green": true,
+    "reason_codes": [],
+    "artifact_digest": "sha256:8aebc9679856accb35c1fa7a2a8957da809a26fb66237dc1390928445495b616"
+  }
+}

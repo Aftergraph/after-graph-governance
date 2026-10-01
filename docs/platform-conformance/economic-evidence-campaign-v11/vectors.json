@@ -1,0 +1,52 @@
+{
+  "schema":"economic-evidence-campaign-v11/acceptance-vectors",
+  "candidate":"economic.live-settlement/v1",
+  "lifecycle":"candidate",
+  "vectors":[
+    {
+      "id":"ECP-001",
+      "scenario":"three source-separated active records match one canonical asset/right and pack hashes recompute",
+      "expected":{
+        "verification":"VERIFIED_EVIDENCE_CAMPAIGN",
+        "sourceSeparationVerified":true,
+        "legalRightAligned":true,
+        "temporallyCoherent":true,
+        "executionAuthority":false,
+        "liveValueEnabled":false,
+        "maxLiveValue":0,
+        "final":false,
+        "promotionAuthority":false,
+        "externalEffects":0
+      }
+    },
+    {"id":"ECP-002","scenario":"pack hash is modified after collection","expected":{"verification":"EVIDENCE_CAMPAIGN_INVALID"}},
+    {"id":"ECP-003","scenario":"source separation digest is modified","expected":{"verification":"EVIDENCE_CAMPAIGN_INVALID"}},
+    {"id":"ECP-004","scenario":"snapshot evidence hash differs from embedded provider record","expected":{"verification":"EVIDENCE_CAMPAIGN_INVALID"}},
+    {"id":"ECP-005","scenario":"registry/custody/representation source identities are mixed or duplicated","expected":{"verification":"EVIDENCE_CAMPAIGN_INVALID"}},
+    {"id":"ECP-006","scenario":"one embedded legal right differs from campaign expectation","expected":{"verification":"EVIDENCE_CAMPAIGN_INVALID"}},
+    {"id":"ECP-007","scenario":"one snapshot is stale or cross-source skew exceeds policy","expected":{"verification":"EVIDENCE_CAMPAIGN_INVALID"}},
+    {"id":"ECP-008","scenario":"one source generation is replayed or regressed","expected":{"verification":"EVIDENCE_CAMPAIGN_INVALID"}},
+    {"id":"ECP-009","scenario":"two source classes reuse the same evidence hash","expected":{"verification":"EVIDENCE_CAMPAIGN_INVALID"}},
+    {"id":"ECP-010","scenario":"pack claims execution authority, live value, finality or external effects","expected":{"verification":"EVIDENCE_CAMPAIGN_INVALID"}}
+  ],
+  "required_invariants":[
+    "exactly registry, custody and representation source classes are captured",
+    "source identities are distinct",
+    "source evidence hashes are distinct",
+    "source generations are positive and checked against previous generations by Sentinel",
+    "snapshot evidence and record identities project exactly",
+    "all records bind to one canonical asset/right/legal instrument/rights set",
+    "pack hash and source-separation digest are independently recomputed",
+    "v7 legal reconciliation is independently recomputed",
+    "v9 temporal/replay coherence is independently recomputed",
+    "verified campaign still grants no execution, live value, finality or promotion authority"
+  ],
+  "non_claims":[
+    "a production registry is connected",
+    "a production custodian is connected",
+    "a production ledger representation is connected",
+    "legal title has transferred",
+    "live settlement is canonical",
+    "live value execution is enabled"
+  ]
+}
