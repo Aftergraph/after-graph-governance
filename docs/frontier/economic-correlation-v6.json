@@ -1,0 +1,32 @@
+{
+  "schema":"economic-correlation-v6-readiness/1.0",
+  "candidate":"economic.live-settlement/v1",
+  "lifecycle":"candidate",
+  "phase":"same-economic-transaction-correlation-v6",
+  "status":"IMPLEMENTED_PENDING_MERGED_EVIDENCE",
+  "verified_design_constraints":{
+    "single_economic_transaction_id":true,
+    "intent_hash_binding":true,
+    "legal_binding_hash":true,
+    "asset_and_cash_obligations_required":true,
+    "per_leg_obligation_hash_binding":true,
+    "independent_source_evidence_per_leg":true,
+    "missing_or_disagreeing_receipt_forces_uncertain":true,
+    "independent_verifier_recomputes_correlation":true,
+    "work_state_label_not_authoritative":true,
+    "real_world_finality":false,
+    "external_effects":0
+  },
+  "promotion_allowed":false,
+  "canonical_promotion_allowed":false,
+  "carries_authority":false,
+  "remaining":[
+    "production-equivalent read-only asset and cash rail receipts for the same economic transaction",
+    "independent capture proving receipt source separation on those rails",
+    "legal/custodial registry reconciliation for the represented asset class",
+    "production signer/HSM or MPC attestation",
+    "live custody/recovery provider attestation",
+    "bounded live-value canary under explicit human authorization",
+    "separate governance-owned canonical promotion evidence"
+  ]
+}
