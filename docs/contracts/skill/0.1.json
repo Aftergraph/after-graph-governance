@@ -189,6 +189,32 @@
           }
         }
       ]
+    },
+    "digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "trust": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "quality_score": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "authority_granted": {
+          "const": false
+        }
+      },
+      "required": [
+        "authority_granted"
+      ]
     }
   }
 }
