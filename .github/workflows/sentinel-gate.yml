@@ -1,0 +1,21 @@
+# Sentinel gate caller — thin read-only wrapper.
+# All review logic lives in the pinned Aftergraph/.github Sentinel engine.
+name: Sentinel gate
+on:
+  pull_request_target:
+    types: [opened, synchronize, ready_for_review]
+  push:
+    branches: [main]
+permissions:
+  contents: read
+  checks: read
+  pull-requests: read
+concurrency:
+  group: governance-sentinel-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  sentinel-gate:
+    uses: Aftergraph/.github/.github/workflows/agent-review.yml@728aa7c3309e67a2bdd4b569170bc1bc4d4f6684
+    with:
+      runner_labels: '["self-hosted","linux","x64","aftergraph-ci"]'
+    secrets: inherit

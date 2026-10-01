@@ -1,0 +1,55 @@
+{
+  "schema": "economic-live-canary-assurance-v10-readiness/1.0",
+  "candidate": "economic.live-settlement/v1",
+  "lifecycle": "candidate",
+  "phase": "composite-assurance-v10",
+  "status": "VERIFIED_MERGED_IMPLEMENTATIONS",
+  "component_requirements": {
+    "same_transaction_correlation": "verified_component_required",
+    "legal_right_alignment": "verified_component_required",
+    "temporal_evidence_coherence": "verified_component_required",
+    "opaque_signer_canary": "verified_component_required",
+    "custody_observation": "verified_component_required",
+    "custody_recovery_dry_run": "verified_component_required",
+    "cross_component_evidence_binding": "required"
+  },
+  "enforced_non_capabilities": {
+    "executionAuthority": false,
+    "liveValueEnabled": false,
+    "maxLiveValue": 0,
+    "final": false,
+    "promotionAuthority": false,
+    "externalEffects": 0
+  },
+  "promotion_allowed": false,
+  "canonical_promotion_allowed": false,
+  "carries_authority": false,
+  "remaining": [
+    "capture real production-equivalent source evidence through Runtime v8",
+    "exercise composite assurance over that real read-only evidence",
+    "define bounded live-value canary protocol separately with explicit human authorization",
+    "independently verify any future non-zero canary execution receipt",
+    "separate governance-owned canonical promotion evidence"
+  ],
+  "implementation_refs": {
+    "sentinel": "b1bc8cd74974d36e5a280b0fbe3630bfb367b55f",
+    "trust_gateway": "dd4829e81bf3f6a1637b3c12f2fadd4fb719d5c4"
+  },
+  "verifier_refs": [
+    "github-actions:Aftergraph/sentinel/run/36807364832",
+    "github-actions:Aftergraph/trust-gateway/run/36807368325",
+    "github-actions:Aftergraph/trust-gateway/run/36807368311",
+    "github-actions:Aftergraph/trust-gateway/run/36807369185"
+  ],
+  "verified": {
+    "sentinel_composite_verifier": true,
+    "sentinel_merged": true,
+    "trust_gateway_candidate_execute_denial": true,
+    "trust_gateway_ci": true,
+    "trust_gateway_codeql": true,
+    "trust_gateway_cross_repo_gate": true,
+    "trust_gateway_merged": true,
+    "review_readiness_non_authoritative": true,
+    "max_live_value_zero": true
+  }
+}

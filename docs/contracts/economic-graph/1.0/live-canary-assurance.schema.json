@@ -1,0 +1,45 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aftergraph.dev/contracts/economic-live-canary-assurance/1.0.json",
+  "title":"Economic Live Canary Assurance v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema","state","readyForLiveCanaryReview","executionAuthority","liveValueEnabled",
+    "maxLiveValue","final","promotionAuthority","externalEffects","components","reasons"
+  ],
+  "properties":{
+    "schema":{"const":"aftergraph.economic-live-canary-assurance/v1"},
+    "state":{"enum":["READY_FOR_LIVE_CANARY_REVIEW","NOT_READY"]},
+    "readyForLiveCanaryReview":{"type":"boolean"},
+    "executionAuthority":{"const":false},
+    "liveValueEnabled":{"const":false},
+    "maxLiveValue":{"const":0},
+    "final":{"const":false},
+    "promotionAuthority":{"const":false},
+    "externalEffects":{"const":0},
+    "components":{
+      "type":"object",
+      "required":["correlation","legal","coherence","signer","custodyObservation","custodyRecovery"],
+      "properties":{
+        "correlation":{"type":"string"},
+        "legal":{"type":"string"},
+        "coherence":{"type":"string"},
+        "signer":{"type":"string"},
+        "custodyObservation":{"type":"string"},
+        "custodyRecovery":{"type":"string"}
+      }
+    },
+    "reasons":{"type":"array","items":{"type":"string","minLength":1}}
+  },
+  "allOf":[
+    {
+      "if":{"properties":{"state":{"const":"READY_FOR_LIVE_CANARY_REVIEW"}}},
+      "then":{"properties":{"readyForLiveCanaryReview":{"const":true}}}
+    },
+    {
+      "if":{"properties":{"state":{"const":"NOT_READY"}}},
+      "then":{"properties":{"readyForLiveCanaryReview":{"const":false}}}
+    }
+  ]
+}

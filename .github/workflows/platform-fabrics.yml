@@ -32,6 +32,7 @@ on:
       - 'scripts/test_economic_legal_reconciliation_v7.py'
       - 'scripts/test_economic_right_source_readonly_v8.py'
       - 'scripts/test_economic_evidence_coherence_v9.py'
+      - 'scripts/test_economic_live_canary_assurance_v10.py'
       - 'docs/contracts/avc-dissolution/**'
       - 'docs/platform-conformance/**'
       - 'docs/platform-conformance/economic-live-settlement-v1/**'
@@ -133,3 +134,5 @@ jobs:
         run: python scripts/test_economic_right_source_readonly_v8.py
       - name: Run Economic evidence coherence v9 tests
         run: python scripts/test_economic_evidence_coherence_v9.py
+      - name: Run Economic live-canary assurance v10 tests
+        run: python scripts/test_economic_live_canary_assurance_v10.py

@@ -1,0 +1,44 @@
+{
+  "schema":"economic-live-canary-assurance-v10/acceptance-vectors",
+  "candidate":"economic.live-settlement/v1",
+  "lifecycle":"candidate",
+  "vectors":[
+    {
+      "id":"ELA-001",
+      "scenario":"correlation, legal alignment, freshness, signer and custody canaries all verify and cross-bind",
+      "expected":{
+        "state":"READY_FOR_LIVE_CANARY_REVIEW",
+        "readyForLiveCanaryReview":true,
+        "executionAuthority":false,
+        "liveValueEnabled":false,
+        "maxLiveValue":0,
+        "final":false,
+        "promotionAuthority":false,
+        "externalEffects":0
+      }
+    },
+    {"id":"ELA-002","scenario":"transaction correlation fails","expected":{"state":"NOT_READY","readyForLiveCanaryReview":false}},
+    {"id":"ELA-003","scenario":"legal/custody/representation reconciliation fails","expected":{"state":"NOT_READY","readyForLiveCanaryReview":false}},
+    {"id":"ELA-004","scenario":"freshness/replay coherence fails","expected":{"state":"NOT_READY","readyForLiveCanaryReview":false}},
+    {"id":"ELA-005","scenario":"signer receipt is tampered or invalid","expected":{"state":"NOT_READY","readyForLiveCanaryReview":false}},
+    {"id":"ELA-006","scenario":"custody observation or recovery dry-run is invalid","expected":{"state":"NOT_READY","readyForLiveCanaryReview":false}},
+    {"id":"ELA-007","scenario":"freshness evidence hashes are not the same evidence used by legal reconciliation","expected":{"state":"NOT_READY","readyForLiveCanaryReview":false}},
+    {"id":"ELA-008","scenario":"custody account/ref binding differs between legal record and custody verifier","expected":{"state":"NOT_READY","readyForLiveCanaryReview":false}},
+    {
+      "id":"ELA-009",
+      "scenario":"caller presents READY_FOR_LIVE_CANARY_REVIEW to candidate Trust Gateway execute admission",
+      "expected":{"decision":"DENY","reason":"economic_live_settlement_not_canonical"}
+    }
+  ],
+  "required_invariants":[
+    "all component verifiers must independently validate",
+    "correlation and legal/freshness evidence are cross-bound to the same transaction/right context",
+    "freshness evidence hashes match the legal reconciliation source evidence",
+    "custody observation/recovery bindings match the custodial legal record",
+    "review readiness never grants execution authority",
+    "max live value remains 0",
+    "candidate live settlement execute admission remains DENY",
+    "assurance never establishes legal or settlement finality",
+    "externalEffects remain 0"
+  ]
+}
