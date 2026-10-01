@@ -1,0 +1,15 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aftergraph.dev/contracts/economic-source-trust-root-transition/1.0.json",
+  "title":"Economic Source Trust Root Transition v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema","decision","priorGeneration","current","externalEffects"],
+  "properties":{
+    "schema":{"const":"aftergraph.economic-source-trust-root-transition/v1"},
+    "decision":{"enum":["ADVANCED","IDEMPOTENT_REPLAY","ADVANCED_POLICY","ROTATED"]},
+    "priorGeneration":{"type":"integer","minimum":0},
+    "current":{"$ref":"economic-source-trust-root-state.schema.json"},
+    "externalEffects":{"const":0}
+  }
+}

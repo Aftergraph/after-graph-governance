@@ -1,0 +1,28 @@
+{
+  "schema":"economic-trust-root-ledger-v15/acceptance-vectors",
+  "candidate":"economic.live-settlement/v1",
+  "vectors":[
+    {"id":"ETR-001","scenario":"first root state","expected":{"decision":"ADVANCED","revision":1}},
+    {"id":"ETR-002","scenario":"byte-identical same-generation retry","expected":{"decision":"IDEMPOTENT_REPLAY"}},
+    {"id":"ETR-003","scenario":"same generation with different status/fingerprint/policy","expected":{"valid":false,"reason":"equivocation"}},
+    {"id":"ETR-004","scenario":"generation regresses","expected":{"valid":false,"reason":"generation_regression"}},
+    {"id":"ETR-005","scenario":"generation skips","expected":{"valid":false,"reason":"generation_gap"}},
+    {"id":"ETR-006","scenario":"attestation revocation floor decreases","expected":{"valid":false,"reason":"attestation_floor_regression"}},
+    {"id":"ETR-007","scenario":"validity start regresses","expected":{"valid":false,"reason":"validity_regression"}},
+    {"id":"ETR-008","scenario":"revoked key is reactivated without rotation","expected":{"valid":false,"reason":"revoked_key_revival"}},
+    {"id":"ETR-009","scenario":"revoked source rotates to new trust root","expected":{"decision":"ROTATED","valid":true}},
+    {"id":"ETR-010","scenario":"stored state digest is corrupted","expected":{"valid":false}},
+    {"id":"ETR-011","scenario":"valid transition verifier result","expected":{"executionAuthority":false,"final":false,"promotionAuthority":false,"externalEffects":0}}
+  ],
+  "required_invariants":[
+    "WORKS canonical store owns durable source trust-root state",
+    "trust-root generation is strictly sequential",
+    "same-generation changes are equivocation",
+    "revocation floor never decreases",
+    "revoked key cannot silently revive",
+    "new key/root may recover a revoked source through explicit rotation",
+    "persisted state digest is reverified",
+    "Sentinel independently verifies transition law",
+    "externalEffects remain 0"
+  ]
+}

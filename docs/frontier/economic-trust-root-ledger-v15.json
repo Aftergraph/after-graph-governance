@@ -1,0 +1,56 @@
+{
+  "schema": "economic-trust-root-ledger-v15-readiness/1.0",
+  "candidate": "economic.live-settlement/v1",
+  "lifecycle": "candidate",
+  "phase": "durable-trust-root-continuity-v15",
+  "status": "VERIFIED_MERGED_IMPLEMENTATIONS",
+  "ownership": {
+    "governance": "trust-root policy and pinned identity",
+    "works": "durable monotonic trust-root state",
+    "sentinel": "independent transition verification"
+  },
+  "design": {
+    "works_schema_version": 16,
+    "sequential_generation": true,
+    "same_generation_equivocation_rejected": true,
+    "revocation_floor_monotonic": true,
+    "revoked_key_revival_rejected": true,
+    "explicit_new_key_rotation_allowed": true,
+    "state_digest_verified_on_read": true,
+    "executionAuthority": false,
+    "final": false,
+    "promotionAuthority": false,
+    "externalEffects": 0
+  },
+  "promotion_allowed": false,
+  "canonical_promotion_allowed": false,
+  "carries_authority": false,
+  "implementation_refs": {
+    "works_execution": "09f09563950d7880600703b2a662e693b4a955ba",
+    "sentinel": "5ffccc392ec39d250e9c3aa8f2077654f275b9bf"
+  },
+  "verifier_refs": [
+    "github-actions:Aftergraph/works-execution/run/36930931330",
+    "github-actions:Aftergraph/works-execution/run/36930931317",
+    "github-actions:Aftergraph/sentinel/run/36930606571",
+    "github-actions:Aftergraph/sentinel/run/36930606516"
+  ],
+  "verified": {
+    "works_schema_v16": true,
+    "works_build": true,
+    "works_vet": true,
+    "works_tests": true,
+    "works_integrity": true,
+    "works_codeql": true,
+    "works_merged": true,
+    "sentinel_transition_verifier": true,
+    "sentinel_tests": true,
+    "sentinel_merged": true,
+    "same_generation_equivocation_rejected": true,
+    "generation_regression_rejected": true,
+    "generation_gap_rejected": true,
+    "floor_regression_rejected": true,
+    "revoked_key_revival_rejected": true,
+    "explicit_new_key_rotation_allowed": true
+  }
+}
