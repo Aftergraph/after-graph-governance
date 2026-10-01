@@ -45,6 +45,12 @@ class EconomicCorrelationV6(unittest.TestCase):
     self.assertFalse(r["carries_authority"])
     self.assertFalse(r["verified_design_constraints"]["real_world_finality"])
     self.assertEqual(r["verified_design_constraints"]["external_effects"],0)
+    self.assertEqual(r["status"],"VERIFIED_PENDING_WORKS_MERGE")
+    self.assertEqual(r["implementation_refs"]["works_execution_pending"]["pr"],187)
+    self.assertTrue(r["implementation_refs"]["works_execution_pending"]["merge_required"])
+    self.assertTrue(r["verified"]["works_go_tests"])
+    self.assertTrue(r["verified"]["works_codeql"])
+    self.assertTrue(r["verified"]["sentinel_independent_verifier"])
     self.assertTrue(r["remaining"])
     caps={c["id"]:c for c in load(CAPS)["capabilities"]}
     self.assertEqual(caps["economic.live-settlement"]["lifecycle"],"candidate")
