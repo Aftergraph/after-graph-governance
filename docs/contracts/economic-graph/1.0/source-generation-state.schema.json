@@ -1,0 +1,21 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aftergraph.dev/contracts/economic-source-generation-state/1.0.json",
+  "title":"Economic Source Generation State v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["sourceClass","sourceId","generation","cursorKind","cursorValue","observedAtUnix","evidenceHash","recordDigest","captureHash","revision","stateDigest"],
+  "properties":{
+    "sourceClass":{"enum":["registry","custody","representation"]},
+    "sourceId":{"type":"string","minLength":1},
+    "generation":{"type":"integer","minimum":1},
+    "cursorKind":{"enum":["version","sequence","block","offset","etag"]},
+    "cursorValue":{"type":"string","minLength":1},
+    "observedAtUnix":{"type":"integer","minimum":1},
+    "evidenceHash":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "recordDigest":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "captureHash":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "revision":{"type":"integer","minimum":1},
+    "stateDigest":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"}
+  }
+}
