@@ -1,0 +1,32 @@
+{
+  "schema":"economic-custody-canary-readiness/1.0",
+  "subject":"economic.custody",
+  "lifecycle":"experimental",
+  "parent_candidate":"economic.live-settlement/v1",
+  "status":"IMPLEMENTED_PENDING_MERGED_EVIDENCE",
+  "verified_design_constraints":{
+    "custody_reference_only":true,
+    "account_fingerprint_only":true,
+    "read_only_observation":true,
+    "recovery_dry_run_only":true,
+    "two_person_approval_required":true,
+    "authority_lease_required":true,
+    "recovery_replay_protection":true,
+    "reference_revocation":true,
+    "live_write_api":false,
+    "asset_movement":false,
+    "withdrawal":false,
+    "recovery_execution":false,
+    "external_effects":0
+  },
+  "promotion_allowed":false,
+  "carries_authority":false,
+  "remaining":[
+    "real external custodian read-only integration",
+    "independent custodian attestation and account-binding evidence",
+    "real recovery workflow dry-run against provider sandbox or test environment",
+    "custody reference rotation and disaster-recovery evidence",
+    "legal/custodial registry reconciliation",
+    "separate governance promotion before economic.custody leaves EXPERIMENTAL"
+  ]
+}
