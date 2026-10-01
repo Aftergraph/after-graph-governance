@@ -1,0 +1,19 @@
+{
+  "schema":"economic-signer-canary-readiness/1.0",
+  "subject":"economic.transaction-signing",
+  "lifecycle":"experimental",
+  "parent_candidate":"economic.live-settlement/v1",
+  "status":"IMPLEMENTED_PENDING_MERGED_EVIDENCE",
+  "requirements":{
+    "domain_separated_non_economic_challenge":"implemented",
+    "authority_lease_binding":"implemented",
+    "human_approval_binding":"implemented",
+    "transaction_payload_forbidden":"implemented",
+    "raw_signing_material_exposure":"prohibited",
+    "independent_cryptographic_verification":"implemented",
+    "broadcast":"disabled",
+    "external_effects":0
+  },
+  "promotion_allowed":false,
+  "carries_authority":false
+}
