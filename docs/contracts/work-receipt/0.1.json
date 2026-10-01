@@ -1,0 +1,271 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/work-receipt/0.1.json",
+  "title": "Aftergraph Work Receipt 0.1",
+  "description": "Experimental cross-agent work receipt for reconstructing what an agent attempted, changed, spent and verified. A receipt is evidence metadata; it does not itself prove correctness or grant authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "work_id",
+    "recorded_at",
+    "executor",
+    "intent",
+    "authority_ref",
+    "steps",
+    "artifacts",
+    "evidence_refs",
+    "verification",
+    "outcome",
+    "invariants"
+  ],
+  "properties": {
+    "schema": {
+      "const": "aftergraph.work-receipt/v1"
+    },
+    "work_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "tenant_id": {
+      "type": "string",
+      "maxLength": 256
+    },
+    "executor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "agent"
+      ],
+      "properties": {
+        "agent": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "model": {
+          "type": "string",
+          "maxLength": 256
+        },
+        "runtime_node": {
+          "type": "string",
+          "maxLength": 256
+        },
+        "session_ref": {
+          "type": "string",
+          "maxLength": 512
+        }
+      }
+    },
+    "intent": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "authority_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "status"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "plan",
+              "tool",
+              "file",
+              "command",
+              "network",
+              "approval",
+              "test",
+              "build",
+              "commit",
+              "deploy",
+              "human"
+            ]
+          },
+          "status": {
+            "enum": [
+              "attempted",
+              "succeeded",
+              "failed",
+              "denied",
+              "skipped"
+            ]
+          },
+          "ref": {
+            "type": "string",
+            "maxLength": 512
+          },
+          "summary": {
+            "type": "string",
+            "maxLength": 2048
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "finished_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "changes": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "files": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "maxLength": 1024
+          }
+        },
+        "commits": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "maxLength": 256
+          }
+        },
+        "pull_requests": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "maxLength": 512
+          }
+        }
+      }
+    },
+    "usage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "input_tokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "output_tokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cached_tokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cost": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        }
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "maxLength": 1024
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "maxLength": 1024
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "not_run",
+            "pending",
+            "passed",
+            "failed",
+            "needs_review"
+          ]
+        },
+        "verifier_ref": {
+          "type": "string",
+          "maxLength": 512
+        },
+        "evaluations": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "maxLength": 512
+          }
+        }
+      }
+    },
+    "outcome": {
+      "enum": [
+        "completed",
+        "partial",
+        "failed",
+        "denied",
+        "not_executed"
+      ]
+    },
+    "invariants": {
+      "type": "array",
+      "minItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "allOf": [
+        {
+          "contains": {
+            "const": "receipt presence does not prove correctness"
+          }
+        },
+        {
+          "contains": {
+            "const": "execution success does not establish verified outcome"
+          }
+        },
+        {
+          "contains": {
+            "const": "authority is referenced, never inferred from tool possession"
+          }
+        },
+        {
+          "contains": {
+            "const": "evidence references must remain distinguishable from executor assertions"
+          }
+        }
+      ]
+    }
+  }
+}
