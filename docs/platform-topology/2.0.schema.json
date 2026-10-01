@@ -56,11 +56,11 @@
         },
         "role": {
           "type": "string",
-          "description": "Current ownership role; must match the dependencies.yml projection for the same repository."
+          "description": "Current ownership role; must match the dependencies.yml projection for the same repository. Use unclassified while the role is awaiting owner review."
         },
         "lifecycle": {
           "type": "string",
-          "description": "Lifecycle state such as active, temporary, internal-hold or legacy-transition."
+          "description": "Lifecycle state such as active, temporary, internal-hold, legacy-transition or classification-pending."
         },
         "owns": {
           "type": "string",

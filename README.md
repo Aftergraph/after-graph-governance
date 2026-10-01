@@ -90,6 +90,8 @@ The table below is a generated projection of `docs/platform-topology/2.0.json` â
 | Experience | ops-intelligence-projection | `war-room` | operational-intelligence-backend-projection | active | Operational intelligence projection, organization reality queries, missions/agents/compute/attention/evidence aggregation and secondary diagnostic surfaces without inventing canonical state. |
 | Experience | specialist-experience | `wi-frontend` | work-intelligence-experience | active | Wie browser experience and least-privilege BFF consuming canonical Work Intelligence state from wi-backend. |
 | Support | foundation | `.github` | organization-community | active | Organization profile, contribution defaults, security/support routing and shared community infrastructure. |
+| Support | unclassified | `Pock-bot` | unclassified | classification-pending | No canonical Aftergraph responsibility has been assigned. Pending owner review; this entry records organization membership only. |
+| Support | unclassified | `STEWARD-by-Aftergraph` | unclassified | classification-pending | No canonical Aftergraph responsibility has been assigned. Pending owner review; this entry records organization membership only. |
 | Support | models | `afm` | model-program | active | AFM-specific model training, datasets, experiments, evaluations and artifact manifests. |
 | Support | governance | `after-graph-governance` | canonical-contracts | active | Platform topology, cross-repo boundaries, contract registration and generated org-state mechanics. |
 | Support | operations | `aftergraph-cron-fabric` | scheduled-observation-fabric | active | Read-only scheduled organization sensing, evidence gating, dedupe and Telegram escalation. It grants no execution authority. |
@@ -97,13 +99,20 @@ The table below is a generated projection of `docs/platform-topology/2.0.json` â
 | Support | legacy-transition | `autonomous-venture-company` | legacy-migration-source | legacy-transition | Legacy product, Hermes integration and migration-source behavior pending governed extraction. |
 | Support | foundation | `brand` | brand-design-system | active | Visual identity, semantic design tokens, master assets and public communication design rules. |
 | Support | service-business-domain | `business-ops` | canonical-service-business-domain | active | Canonical tenant-neutral service-business domain state, invariants, migration mappings, charge-source facts and shadow-conformance semantics. |
+| Support | unclassified | `concord` | unclassified | classification-pending | No canonical Aftergraph responsibility has been assigned. Pending owner review; this entry records organization membership only. |
 | Support | continuity | `context-continuity` | continuity-contract | active | Portable transfer of actionable context/state across model, agent, session and runtime boundaries. |
 | Support | assurance | `continuum` | continuity-containment-verification | active | Continuity and containment fault-injection campaigns and verification harnesses. |
 | Support | capabilities | `core` | tool-routing-control-plane | active | ToolFabric registry federation, semantic capability resolution, health-aware routing plans and non-authoritative tool selection. |
+| Support | unclassified | `demo-repository` | unclassified | classification-pending | No canonical Aftergraph responsibility has been assigned. Pending owner review; this entry records organization membership only. |
 | Support | knowledge | `docs` | knowledge-plane | active | Provenance-pinned rendering, discovery, developer documentation and agent-readable context surfaces. |
+| Support | unclassified | `engineering-crew-community` | unclassified | classification-pending | No canonical Aftergraph responsibility has been assigned. Pending owner review; this entry records organization membership only. |
+| Support | unclassified | `fihim-eval-lab` | unclassified | classification-pending | No canonical Aftergraph responsibility has been assigned. Pending owner review; this entry records organization membership only. |
+| Support | unclassified | `fihim-vnext` | unclassified | classification-pending | No canonical Aftergraph responsibility has been assigned. Pending owner review; this entry records organization membership only. |
+| Support | unclassified | `friday-mascot` | unclassified | classification-pending | No canonical Aftergraph responsibility has been assigned. Pending owner review; this entry records organization membership only. |
 | Support | research-assurance | `intelligence-systems-research` | research-assurance | active | SPEC-001, MISSION-Bench methodology, scientific claims, experiments, assurance and publication evidence. |
 | Support | models | `llm-research-development` | model-rnd-methodology | active | Reusable model research, experiment, evaluation, promotion and provenance methodology. |
 | Support | models | `model-registry` | model-lifecycle-registry | active | Immutable promoted model identities, versions, aliases, lifecycle, provenance and artifact locations. |
+| Support | unclassified | `nikkahcerti` | unclassified | classification-pending | No canonical Aftergraph responsibility has been assigned. Pending owner review; this entry records organization membership only. |
 | Support | tenant-domain | `rendetalje` | rendetalje-reference-tenant | active | Rendetalje-specific cleaning semantics, pricing policies, estimator behavior, playbooks, communication policy, tenant configuration, migration mappings and tenant-specific Business Ops composition. |
 | Support | product-surface | `renos` | service-operations-product-surface | active | RenOS branded service-operations operator experience, workspace composition, chat projection, attention/control presentation and domain/process/verification views. |
 | Support | assurance-fixture | `sentinel-firetest` | temporary-verification-fixture | temporary | Throwaway live-fire fixture for Sentinel proofs. Topology membership is temporary and grants no permanent platform responsibility. |
@@ -111,6 +120,7 @@ The table below is a generated projection of `docs/platform-topology/2.0.json` â
 | Support | capabilities | `skill-abi` | skill-compatibility-contract | active | Semantic compatibility, bounded effects, degradation and conformance for portable AI agent skills. |
 | Support | assurance | `skillport` | skill-portability-benchmark | active | Open benchmark and evaluation suite for semantic portability of skills across models, runtimes and capability environments. |
 | Support | capabilities | `skills-vault` | capability-supply-chain | active | Governed skill discovery, trust, lifecycle, provenance, compatibility and distribution. |
+| Support | unclassified | `urban-potato-demo-repository` | unclassified | classification-pending | No canonical Aftergraph responsibility has been assigned. Pending owner review; this entry records organization membership only. |
 | Support | incubation | `veranza` | assurance-incubation | internal-hold | Internal assurance-product incubation concept under naming/clearance hold. Topology membership does not imply public or production maturity. |
 <!-- platform-topology-v2:end -->
 

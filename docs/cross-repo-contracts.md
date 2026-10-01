@@ -176,7 +176,7 @@ execution authority by itself.
 
 See `docs/PLATFORM-BOUNDARY-CHARTER-v0.1.md` for the original charter and
 `docs/superpowers/specs/2026-09-07-aftergraph-platform-reconciliation-v1-design.md`
-for the historical 19-repository reconciliation target (2026-09-07 provenance; current scope is the 24-repository `docs/platform-topology/2.0.json`).
+for the historical 19-repository reconciliation target (2026-09-07 provenance; the current 2026-10-01 scope is all 44 Aftergraph repositories in `docs/platform-topology/2.0.json`, including explicitly classification-pending entries).
 
 The core principle remains:
 

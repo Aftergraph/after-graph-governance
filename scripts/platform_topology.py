@@ -41,6 +41,12 @@ FORBIDDEN_ACTIVE_NAME_PARTS = ("@avc/", "avc-")
 VISIBILITY_VALUES = {"public", "private"}
 STRING_REPO_FIELDS = ("name", "role", "system_class", "lifecycle", "owns", "must_not_own")
 LEGACY_REPOSITORY = "autonomous-venture-company"
+# Classification is deliberately explicit when an organization repository has
+# not yet received an owner-reviewed role. Keep all three markers in lockstep
+# so repository presence cannot be mistaken for platform responsibility.
+UNCLASSIFIED_ROLE = "unclassified"
+UNCLASSIFIED_SYSTEM_CLASS = "unclassified"
+CLASSIFICATION_PENDING_LIFECYCLE = "classification-pending"
 # Mirrors the legacy_roles exclusion in scripts/org-state-verify.sh: these
 # compatibility values stay readable in old snapshots but must never appear
 # in current topology, or generation fails late.
@@ -129,6 +135,16 @@ def validate_topology(doc: Mapping[str, Any]) -> list[str]:
             errors.append(
                 f"repository {name} uses a legacy org-state role: {entry.get('role')!r} "
                 "(org-state-verify.sh rejects it; use a current topology role)"
+            )
+        pending_markers = (
+            entry.get("role") == UNCLASSIFIED_ROLE,
+            entry.get("system_class") == UNCLASSIFIED_SYSTEM_CLASS,
+            entry.get("lifecycle") == CLASSIFICATION_PENDING_LIFECYCLE,
+        )
+        if any(pending_markers) and not all(pending_markers):
+            errors.append(
+                f"repository {name} must use role=unclassified, system_class=unclassified, "
+                "and lifecycle=classification-pending together"
             )
         if entry.get("canonical_branch") != "main":
             errors.append(f"repository {name} has non-main canonical branch: {entry.get('canonical_branch')!r}")

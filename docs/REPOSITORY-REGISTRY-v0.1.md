@@ -21,7 +21,9 @@
 
 ## 2. Canonical organisation map
 
-Current repository scope and roles are defined by `docs/platform-topology/2.0.json` (28 repositories; `docs/platform-topology/1.0.json` retained for historical provenance).
+Current repository scope and roles are defined by `docs/platform-topology/2.0.json` (44 repositories as of 2026-10-01; 10 use the explicit `unclassified` / `classification-pending` state until owners establish their roles). `docs/platform-topology/1.0.json` is retained for historical provenance.
+
+The operator-focused table below is a curated control-point index, not a full repository inventory. The generated topology table in `README.md` is the complete scope; omission from this curated table does not imply that a live repository is outside Governance.
 
 | Domain | Canonical repository | Role | Default branch | Evidence boundary |
 |---|---|---|---|---|

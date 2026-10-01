@@ -210,3 +210,64 @@ modules:
     role: operational-intelligence-backend-projection
     consumes: [after-graph-governance, aie, trust-gateway, runtime, works-execution, sentinel, wi-backend]
     provides: [ops-intelligence, collision-radar, decision-inbox, egac-projection, org-summary, secondary-diagnostics]
+
+  # No dependency edges are registered for these pending entries; this does not assert that the repositories have no dependencies.
+  concord:
+    repo: Aftergraph/concord
+    role: unclassified
+    consumes: []
+    provides: []
+
+  demo-repository:
+    repo: Aftergraph/demo-repository
+    role: unclassified
+    consumes: []
+    provides: []
+
+  engineering-crew-community:
+    repo: Aftergraph/engineering-crew-community
+    role: unclassified
+    consumes: []
+    provides: []
+
+  fihim-eval-lab:
+    repo: Aftergraph/fihim-eval-lab
+    role: unclassified
+    consumes: []
+    provides: []
+
+  fihim-vnext:
+    repo: Aftergraph/fihim-vnext
+    role: unclassified
+    consumes: []
+    provides: []
+
+  friday-mascot:
+    repo: Aftergraph/friday-mascot
+    role: unclassified
+    consumes: []
+    provides: []
+
+  nikkahcerti:
+    repo: Aftergraph/nikkahcerti
+    role: unclassified
+    consumes: []
+    provides: []
+
+  Pock-bot:
+    repo: Aftergraph/Pock-bot
+    role: unclassified
+    consumes: []
+    provides: []
+
+  STEWARD-by-Aftergraph:
+    repo: Aftergraph/STEWARD-by-Aftergraph
+    role: unclassified
+    consumes: []
+    provides: []
+
+  urban-potato-demo-repository:
+    repo: Aftergraph/urban-potato-demo-repository
+    role: unclassified
+    consumes: []
+    provides: []

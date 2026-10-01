@@ -1,20 +1,146 @@
 {
   "schema_version": "org-state/1.0",
-  "generated_at": "2026-09-18T20:37:10Z",
-  "generator": "/tmp/aftergraph/after-graph-governance/scripts/org-state-verify.sh",
+  "generated_at": "2026-10-01T09:20:49Z",
+  "generator": "/mnt/c/Users/empir/Documents/Codex/2026-09-28/aftergraph-engineering-crew-plugin-aftergraph-engineering/governance-orgwide-reconciliation/scripts/org-state-verify.sh",
   "org": "Aftergraph",
   "repositories": [
     {
       "full_name": "Aftergraph/after-graph-governance",
       "role": "canonical-contracts",
       "canonical_branch": "main",
-      "remote_head_sha": "2af043d0ebe20b6cbbbdb5a340381a8587d99ce5",
-      "remote_head_short": "2af043d",
-      "head_commit_message": "docs(topology): register RenOS, Rendetalje, FIHIM and War Room boundaries (#170)",
+      "remote_head_sha": "7b963c880c4ccc886d4f06eb80eaf483dee848b4",
+      "remote_head_short": "7b963c8",
+      "head_commit_message": "frontier: gate Labs Fabric artifact and live-preflight semantics (#201)",
       "private": false,
       "archived": false,
       "protected": true,
       "open_pull_requests": [
+        {
+          "number": 213,
+          "title": "frontier: Economic durable source generation ledger v13",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "96169d91fe59bf476a583aea0dc96e1a83bec696"
+        },
+        {
+          "number": 212,
+          "title": "frontier: Economic source cursor and capture binding v12",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "dc856258b0365b93c91adbf32d7346eb41a75b59"
+        },
+        {
+          "number": 211,
+          "title": "frontier: Economic production-equivalent EvidencePack v11",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "35ae0597b143cd1f652de16444d6b571713a116e"
+        },
+        {
+          "number": 210,
+          "title": "frontier: Economic composite live-canary assurance v10",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "1597d723d9a7edf15194273db98d0bd93ed667a6"
+        },
+        {
+          "number": 209,
+          "title": "frontier: Economic evidence freshness and replay coherence v9",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "62f7e48ab0a4ded93774d50b1d22f23019e095a6"
+        },
+        {
+          "number": 208,
+          "title": "frontier: Economic real-source read-only adapters v8",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "8b6a9c883cc9cb72f1057c53186225f2f6235802"
+        },
+        {
+          "number": 207,
+          "title": "frontier: Economic legal and custodial reconciliation v7",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "4a645d5214a5507791b47daa3146e5b6f9206644"
+        },
+        {
+          "number": 206,
+          "title": "frontier: Economic same-transaction correlation v6",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "fa56ebe0bf5245bf514fde64a01ad9bc740ed5ad"
+        },
+        {
+          "number": 205,
+          "title": "frontier: Economic custody recovery canary v5",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "da55ed020654416773ae18710734dfaa11565bc9"
+        },
+        {
+          "number": 204,
+          "title": "frontier: Economic opaque signer provider v4",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "e7ce6579902b6b8486441cdb38fd1527556653ee"
+        },
+        {
+          "number": 203,
+          "title": "frontier: Economic detached signer canary v3",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "725bebec004c5704719141d420637a8a27a721c2"
+        },
+        {
+          "number": 202,
+          "title": "frontier: Economic canonical-readiness v2 gates",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "3c641c2ced214544b4de23e3e77bd6175de471a7"
+        },
+        {
+          "number": 197,
+          "title": "frontier: agentic PR review bound to the head commit",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "f12a0168b6d8746c86b9f6bbc13638d21c950b8b"
+        },
+        {
+          "number": 186,
+          "title": "chore(topology): reconcile current 37-repo Aftergraph estate",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "0aca2aee576ec1e6a8a8212d68aff4592c82eb6f"
+        },
+        {
+          "number": 181,
+          "title": "feat(jev): establish Sidecar v0.1 governance contracts",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "0a1f8f00c86e99b7b444b67873e88e976a6807b9"
+        },
+        {
+          "number": 178,
+          "title": "feat(credentials): canonicalize V2.1 TG↔WORKS service boundary",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "aa8402b2c9234664087fb5451b6fa3e6b67fb08f"
+        },
+        {
+          "number": 177,
+          "title": "ci(governance): wire business-ops P0 design test into release-intelligence",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "a074181be0f1d952b3c55814a280b8d8fa25e4c5"
+        },
+        {
+          "number": 176,
+          "title": "docs(business-ops): implementation plan for non-production foundation",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "4906e1d5ef0ac51d1b643a9d67e7dd432353b022"
+        },
         {
           "number": 169,
           "title": "docs(governance): register War Room analysis boundary",
@@ -28,55 +154,6 @@
           "is_draft": true,
           "mergeable": "UNKNOWN",
           "head_sha": "81162edcfee7d116daf8b095069a843b3f025273"
-        },
-        {
-          "number": 163,
-          "title": "feat(program): add Mission Continuity shadow direction compiler",
-          "is_draft": true,
-          "mergeable": "UNKNOWN",
-          "head_sha": "9900314431922f41b124852fbe6a6f10673f2db0"
-        },
-        {
-          "number": 162,
-          "title": "feat(harness): inventory producer + topology-sourced roles for automated AGENTS.md regen",
-          "is_draft": true,
-          "mergeable": "UNKNOWN",
-          "head_sha": "67a558f81aa9c735344c63d1af544b16813bed67"
-        },
-        {
-          "number": 161,
-          "title": "fix(org-state): make evidence-cut self-snapshot semantics explicit",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "4f3116bc8352e3522a79bc131ceebff079e23d7f"
-        },
-        {
-          "number": 160,
-          "title": "docs(convergence): add collision register and align V4 reconciliation path",
-          "is_draft": true,
-          "mergeable": "UNKNOWN",
-          "head_sha": "d8a69a6497339df74e975935e1047865f81c8095"
-        },
-        {
-          "number": 40,
-          "title": "fix(governance): reconcile Runtime and Wie topology truth",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "23149acc57d2e949cb22de4da9351826c743c88f"
-        },
-        {
-          "number": 39,
-          "title": "feat(governance): complete ARI Phase 1 registry, RBOM, and query",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "1abb17a67cdc9611eaa13ab9361616019c011c96"
-        },
-        {
-          "number": 38,
-          "title": "feat(governance): build ARI Phase 0/1 compatibility foundation",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "6a5d99d797b8f4b1a6208ee5e52a6513f3f5557b"
         }
       ],
       "authoritative_contracts": [
@@ -99,13 +176,104 @@
       "full_name": "Aftergraph/aie",
       "role": "normative-authority",
       "canonical_branch": "main",
-      "remote_head_sha": "f92c3b76347316c9832cfba2457fabdc241a4831",
-      "remote_head_short": "f92c3b7",
-      "head_commit_message": "ci(sentinel): repin reusable review engine (#89)",
+      "remote_head_sha": "9b83fbde3d332450f6ddd851263ffdc3117d0b51",
+      "remote_head_short": "9b83fbd",
+      "head_commit_message": "chore(deps): bump the actions-minor-patch group with 3 updates (#112)",
       "private": false,
       "archived": false,
       "protected": true,
       "open_pull_requests": [
+        {
+          "number": 114,
+          "title": "frontier: agentic PR review bound to the head commit",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "ca6a9abb7bbe38523b69226f2ed6697198f7c8d2"
+        },
+        {
+          "number": 113,
+          "title": "test(live): Crew v8 external boundary proof",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "ac1f74ef16cc1482098c0fc18cd9f24c12d806ea"
+        },
+        {
+          "number": 110,
+          "title": "fix(p2): return action/authority binding from execution-time revalidation",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "bdb36512e57e1bb1f2ec05312d725827267eafc1"
+        },
+        {
+          "number": 109,
+          "title": "research: add STUDY-015 AIE black-box capability probe",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "c340d7a3fcf23a84b03ba493ca8fc938ea581db6"
+        },
+        {
+          "number": 108,
+          "title": "ci(p2): AIE owner evidence gate",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "881730a704ff02e0a88bc4f18d6a4e09a2f3ac8e"
+        },
+        {
+          "number": 107,
+          "title": "test(proof): execute STEWARD P2 full chain through WORKS tg-ci",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "be95eb0e864963efad76944b0d9feaf1613def7a"
+        },
+        {
+          "number": 106,
+          "title": "chore(infra): probe Lenovo runner for native WORKS bootstrap",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "e2d65a751771f02c78fd07332b2bb19f6be1d880"
+        },
+        {
+          "number": 105,
+          "title": "test(proof): physical Lenovo acceptance through WORKS",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "be78d9e9e1838c3593199bf08b60304523b8e1f5"
+        },
+        {
+          "number": 104,
+          "title": "test(proof): VDS cross-build of native Windows WORKS worker",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "596f09d5e4bf8700ee300abc649b2d7eb2d76d85"
+        },
+        {
+          "number": 103,
+          "title": "test(proof): route execution through Aftergraph VDS self-hosted runner",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "d17dd5de2d0321bd21087afb59c287385157220d"
+        },
+        {
+          "number": 99,
+          "title": "fix(ci): eliminate false-red cancellation churn",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "7859bc58ff569d879472c66b39e7b1d80b165c6f"
+        },
+        {
+          "number": 93,
+          "title": "feat(aie): return live authority identity from action-time revalidation",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "4e3514b936d2d65433b6c51901afb56908abd545"
+        },
+        {
+          "number": 91,
+          "title": "docs(team): draft 0.4 Team contract schema and design note",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "cb26b812685fb7a109c5a3480c7017cb08944645"
+        },
         {
           "number": 88,
           "title": "feat(aie): surface clock_fault in revocation freshness status",
@@ -154,33 +322,138 @@
       "full_name": "Aftergraph/trust-gateway",
       "role": "runtime-enforcement",
       "canonical_branch": "main",
-      "remote_head_sha": "cd504fcde295ba652646684db106585f9c7ecd15",
-      "remote_head_short": "cd504fc",
-      "head_commit_message": "ci(sentinel): repin reusable review engine (#114)",
+      "remote_head_sha": "2742a9a656070ca2e294a98185e2424dec1e007c",
+      "remote_head_short": "2742a9a",
+      "head_commit_message": "test: keep verified Economic EvidencePack non-authoritative (#156)",
       "private": false,
       "archived": false,
       "protected": true,
       "open_pull_requests": [
+        {
+          "number": 153,
+          "title": "frontier: add opaque Economic signer provider lifecycle",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "22f7f66264bce3615b7cc80ebb6dcc1dd89aea67"
+        },
+        {
+          "number": 148,
+          "title": "frontier: agentic PR review bound to the head commit",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "7c9a6759ac39c3a1a3e6a6f3676a762ed0fb123a"
+        },
+        {
+          "number": 147,
+          "title": "frontier: add durable HomeOS ToolFabric proposal approvals",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "abc267e4f5deff8f824af559e73d0c4470b48fe5"
+        },
+        {
+          "number": 142,
+          "title": "feat(computer): governed read-only Computer MCP connector",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "60e905a055328e02eebab7f985030104b9388f0d"
+        },
+        {
+          "number": 141,
+          "title": "chore(deps): bump github/codeql-action/analyze from 3.37.9 to 3.38.2",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "10f65bedc1d255d3036d1e42df922ae8ed42a965"
+        },
+        {
+          "number": 140,
+          "title": "chore(deps): bump github/codeql-action/init from 3.37.9 to 3.38.2",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "4b3be92a85adaf24ee8abc3282df25de8d59e67c"
+        },
+        {
+          "number": 138,
+          "title": "feat(plugins): converge Plugin Contract v0.2 on sealed canonical hub",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "1426f1ef6672f5fbd8061c745b98ae80109791b1"
+        },
+        {
+          "number": 137,
+          "title": "research(study015): inject L7 indeterminate-effect crash seam",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "7e75289d8b5b5863dea26fcb283271c2ca1aa1b7"
+        },
+        {
+          "number": 136,
+          "title": "research(study015): persist TG audit across L5 crash recovery",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "55e734f826fcf6721c0f8f698a7776fa2154a38a"
+        },
+        {
+          "number": 135,
+          "title": "research(study015): persist L5 audit chain across gateway restart",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "a3d15a3dd5f69ee3ec6ec4c3d8e37fa432f09ed6"
+        },
+        {
+          "number": 134,
+          "title": "research: bind authorized platform execution into live governed effect",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "bb224848cd540db701de783f44101aa95e914563"
+        },
+        {
+          "number": 133,
+          "title": "research: add STUDY-015 Trust Gateway black-box capability probe",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "0b4030751d04f1b31bc2cc8d4a5e584729e9be02"
+        },
+        {
+          "number": 132,
+          "title": "test(p2): live deployed-commit readback proof",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "773f86f8b93cbaf66713b9cb81b06e95808ad0b0"
+        },
+        {
+          "number": 131,
+          "title": "ci(p2): Trust Gateway owner evidence gate",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "bdfbc28a98cdbf993d2cf549924de82924355d32"
+        },
+        {
+          "number": 129,
+          "title": "test(p2): live governed Git egress proof target",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "f07311cc3b3c15edae13c1ff4394231f33fd23f9"
+        },
+        {
+          "number": 127,
+          "title": "test(proof): execute STEWARD P2 TG-AIE chain on tg-ci",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "c2b4b27ceabbc40864a7a1bff1e8bedb01cd64eb"
+        },
+        {
+          "number": 118,
+          "title": "feat(computer): governed Computer Node v0.2 actions",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "0959612a65afa2b19d4ceebb7a8a1a1f18ba7053"
+        },
         {
           "number": 112,
           "title": "fix(tg): redact injected secret from egress transport-error audit and rethrow",
           "is_draft": true,
           "mergeable": "UNKNOWN",
           "head_sha": "bdc4f694e370bdd54e7bff3db46a1eede9cb50d2"
-        },
-        {
-          "number": 111,
-          "title": "chore(deps): bump github/codeql-action/init from 3.37.9 to 3.38.0",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "6801f465dacad2560f23b6a3f0185d99920308cf"
-        },
-        {
-          "number": 109,
-          "title": "chore(deps): bump github/codeql-action/analyze from 3.37.9 to 3.38.0",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "6dbeb89d20895c19bab67697a51b6c75f2fcc009"
         },
         {
           "number": 81,
@@ -213,152 +486,152 @@
       "full_name": "Aftergraph/runtime",
       "role": "agent-runtime",
       "canonical_branch": "main",
-      "remote_head_sha": "45d1d95282ca0cb6926c49ce43847884e2eaae43",
-      "remote_head_short": "45d1d95",
-      "head_commit_message": "ci(sentinel): repin reusable review engine (#147)",
+      "remote_head_sha": "8f55939948fc0fe6150b8397d183a608637f75ce",
+      "remote_head_short": "8f55939",
+      "head_commit_message": "feat(decision-runtime): add Dialagram provider choice and live smoke",
       "private": true,
       "archived": false,
       "protected": false,
       "open_pull_requests": [
         {
-          "number": 151,
-          "title": "feat(runtime): bind governed operator execution",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "5ade939e99a29769916fc56476196c06c2ab4473"
-        },
-        {
-          "number": 150,
-          "title": "feat(runtime): integrate Circuit dispatch with exact authority subjects",
+          "number": 252,
+          "title": "Ops: verify Concord RC2 on VDS runner",
           "is_draft": true,
           "mergeable": "UNKNOWN",
-          "head_sha": "0f55a96f7808446f71606c58266a252f12699be7"
+          "head_sha": "fb7a6f0a4d00126a34ce7942385e055dddaf3190"
         },
         {
-          "number": 149,
-          "title": "feat(runtime): add source-backed operational reality",
+          "number": 250,
+          "title": "frontier: agentic PR review bound to the head commit",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "4b7831601b19d6bbc3f0c462472cfdd3b4b858c6"
+          "head_sha": "f93a276700a968b66fcb0fc9c7db4731fc3886a8"
         },
         {
-          "number": 148,
-          "title": "feat(runtime): operational execution safety and managed service ownership",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "32dccffa5fa428875abc80e92c6b6de597213fe8"
-        },
-        {
-          "number": 146,
-          "title": "feat(runtime): add experimental Mission RuntimeBinding",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "74f066299559c35422440b8724ff52caac8de0c0"
-        },
-        {
-          "number": 145,
-          "title": "chore(deps): remove unused zod from tenant-core and kernel-core",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "807fcb16d34647289fa7708eba75fa3221c6f62e"
-        },
-        {
-          "number": 144,
-          "title": "chore(deps): bump the npm-minor-patch group across 14 directories with 1 update",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "aa49a9fc96f2ee851fc6912af677af775fd3e0d8"
-        },
-        {
-          "number": 122,
-          "title": "[DRAFT] TRACK A: Aftergraph Code product waves 1–2 (do not merge — CI evidence only)",
+          "number": 241,
+          "title": "feat(runtime): add production GoalSupervisor composition root",
           "is_draft": true,
           "mergeable": "UNKNOWN",
-          "head_sha": "2e4aa28ebe10c4e2286c91f9a660440ce51e548b"
+          "head_sha": "a15859eaef29ffcbd5926afeb70e8459487b1255"
         },
         {
-          "number": 119,
-          "title": "chore(deps-dev): bump vitest from 4.1.10 to 4.1.11 in /packages/runtime-host",
-          "is_draft": false,
+          "number": 238,
+          "title": "feat(runtime): declare durable GoalSupervisor managed service",
+          "is_draft": true,
           "mergeable": "UNKNOWN",
-          "head_sha": "133f598e2a8aa6156a3ca8a41af1088b476212dd"
+          "head_sha": "35cf02fb1b65b5009ff80bc9497ca833d9545768"
         },
         {
-          "number": 116,
-          "title": "Aftergraph Code vertical slice + governed cascade",
-          "is_draft": false,
+          "number": 214,
+          "title": "ci(study015): execute L7 indeterminate-effect reconciliation gate",
+          "is_draft": true,
           "mergeable": "UNKNOWN",
-          "head_sha": "b1779f8af5578341094bf6271b6631f82d11d7bf"
+          "head_sha": "8a2ccffaed9c4a7223bb75bd06b73038a619164c"
         },
         {
-          "number": 102,
-          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/triggers",
-          "is_draft": false,
+          "number": 213,
+          "title": "test(study015): isolated L7 indeterminate-effect proof target",
+          "is_draft": true,
           "mergeable": "UNKNOWN",
-          "head_sha": "07b6aea81fd06918f0703931a3c44a7e0f5697e4"
+          "head_sha": "5bb4a718323360c297df8c9b70d65d15d70bdbcc"
         },
         {
-          "number": 101,
-          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/tenant-core",
-          "is_draft": false,
+          "number": 212,
+          "title": "ci(study015): execute L6 cross-host causal failover gate",
+          "is_draft": true,
           "mergeable": "UNKNOWN",
-          "head_sha": "c8d00c004f9dbd1b3f920ca673514ff0c9c5bd5a"
+          "head_sha": "1bba444000daa17cd05f56aac46fc6c996d52016"
         },
         {
-          "number": 100,
-          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/telemetry",
-          "is_draft": false,
+          "number": 211,
+          "title": "test(study015): isolated L6 cross-host failover proof target",
+          "is_draft": true,
           "mergeable": "UNKNOWN",
-          "head_sha": "06650d7a365197b25b159d056793b3f9f9e69927"
+          "head_sha": "0c280233565ba5c98d259679ba5ef6a2663b8283"
         },
         {
-          "number": 99,
-          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/scheduler",
-          "is_draft": false,
+          "number": 210,
+          "title": "ci(study015): execute L5 durable causal recovery gate",
+          "is_draft": true,
           "mergeable": "UNKNOWN",
-          "head_sha": "00fd5f1dc4d3298d5dec31f2138ba4ae3d25184c"
+          "head_sha": "82771872498b8a9896a7eb38289ebfa0e376c1b8"
         },
         {
-          "number": 98,
-          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/proactive-runtime",
-          "is_draft": false,
+          "number": 209,
+          "title": "test(study015): fresh L5 durable-recovery proof target",
+          "is_draft": true,
           "mergeable": "UNKNOWN",
-          "head_sha": "451bda1b7af1991e1f5d3c0fd9e704519cb7b2a8"
+          "head_sha": "efc536b1095715124e2a5455161792f030c974a6"
         },
         {
-          "number": 97,
-          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/portfolio",
-          "is_draft": false,
+          "number": 207,
+          "title": "ci(study015): execute L5 durable causal recovery gate",
+          "is_draft": true,
           "mergeable": "UNKNOWN",
-          "head_sha": "4bc2a9392640f71feed32647bb0c79ed4daa1689"
+          "head_sha": "3e322eea5ddfc12d7a6c8854b1cbaa7534d1eb17"
         },
         {
-          "number": 96,
-          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/peer-protocol",
-          "is_draft": false,
+          "number": 205,
+          "title": "ci(study015): execute L4 independent repeatability gate",
+          "is_draft": true,
           "mergeable": "UNKNOWN",
-          "head_sha": "a58c9abadc87291e2db1b9241e549c670c8918c1"
+          "head_sha": "67845eaa6dd0c1a84726d784fed779e663c37187"
         },
         {
-          "number": 95,
-          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/outcomes",
-          "is_draft": false,
+          "number": 204,
+          "title": "test(study015): isolated L4 repeatability proof target",
+          "is_draft": true,
           "mergeable": "UNKNOWN",
-          "head_sha": "617d0ed3af2590924922ff077f9b5488b19bd4c7"
+          "head_sha": "92cc08482d91d70140db4916f1a11fc43b6318f6"
         },
         {
-          "number": 94,
-          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/orchestrator",
-          "is_draft": false,
+          "number": 203,
+          "title": "ci(study015): run LIVE_CAUSAL_SLICE L3 on Aftergraph VDS",
+          "is_draft": true,
           "mergeable": "UNKNOWN",
-          "head_sha": "6c44fb1fe5eff3bdb329e74e37930d20cfab6748"
+          "head_sha": "85d7a8c1374c745db4dec5c828263b44ae1de8ce"
         },
         {
-          "number": 93,
-          "title": "chore(deps-dev): bump @types/node from 24.10.0 to 26.4.1 in /packages/observability",
-          "is_draft": false,
+          "number": 202,
+          "title": "test(study015): isolated LIVE_CAUSAL_SLICE proof target",
+          "is_draft": true,
           "mergeable": "UNKNOWN",
-          "head_sha": "61c95a3d1bde5383b220420193c649b20dae183a"
+          "head_sha": "9c781f624bae36ee35aa23df57060e934d3a634c"
+        },
+        {
+          "number": 201,
+          "title": "research: add STUDY-015 governed adaptation probe",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "7dc0a336e06e7528f471bbd5676ddb50df6e9046"
+        },
+        {
+          "number": 200,
+          "title": "test(runtime): stage isolated Pock M8 KVM admission CI",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "40d38cc89a9bb35085fc5c2cc65ec1a769062b3a"
+        },
+        {
+          "number": 199,
+          "title": "ci(p2): Runtime owner evidence gate",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "4e9c9fbef1b4a74d67730c0fbdc86cb3ad03e2b8"
+        },
+        {
+          "number": 198,
+          "title": "ci(p2): probe VDS production bindings without secrets",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "95c0580b914389d35c4f3b06215a0cf388c9f98c"
+        },
+        {
+          "number": 196,
+          "title": "test(proof): run exact Runtime P2 owner through WORKS",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "87740ef9e90ad3bc7168c425baa536b3203a9895"
         }
       ],
       "authoritative_contracts": [],
@@ -368,103 +641,152 @@
       "full_name": "Aftergraph/works-execution",
       "role": "durable-execution",
       "canonical_branch": "main",
-      "remote_head_sha": "f69e5182f9d3d7e74817ec8ec2cee52ba2f9c62d",
-      "remote_head_short": "f69e518",
-      "head_commit_message": "feat(verification): ingest sentinel domain verdicts (#94)",
+      "remote_head_sha": "0298443864bbb2ec6b33e5806b805fecf902956f",
+      "remote_head_short": "0298443",
+      "head_commit_message": "frontier: persist Economic source generation ledger v13 (#191)",
       "private": false,
       "archived": false,
       "protected": true,
       "open_pull_requests": [
         {
-          "number": 99,
-          "title": "feat(works): add exact effect receipts and witness verdicts",
-          "is_draft": true,
-          "mergeable": "UNKNOWN",
-          "head_sha": "1bfff0581e1c9cefc9dcd56ec76f16f778e61925"
-        },
-        {
-          "number": 98,
-          "title": "feat(works): add CDA-0.1 atomic Circuit dispatch acceptance",
-          "is_draft": true,
-          "mergeable": "UNKNOWN",
-          "head_sha": "575482f50b4e7a104568ab487b15d6a52321e3da"
-        },
-        {
-          "number": 97,
-          "title": "feat(works): bind CircuitRun to durable dispatch effects",
-          "is_draft": true,
-          "mergeable": "UNKNOWN",
-          "head_sha": "a49806191b890724b9cda5474ea67d100b43bfdd"
-        },
-        {
-          "number": 96,
-          "title": "feat(works): bind CircuitVerdict to exact CircuitRun subject",
-          "is_draft": true,
-          "mergeable": "UNKNOWN",
-          "head_sha": "da1d3f2d85a1abf981aa868d97b1d8bf10e8b66d"
-        },
-        {
-          "number": 95,
-          "title": "feat(works): persist immutable CircuitRun bindings",
-          "is_draft": true,
-          "mergeable": "UNKNOWN",
-          "head_sha": "89e705f015565a371be6af316363274ec4218ed2"
-        },
-        {
-          "number": 91,
-          "title": "fix(works): reaper marks leases EXPIRED not REVOKED; lease verb status mapping",
-          "is_draft": true,
-          "mergeable": "UNKNOWN",
-          "head_sha": "3af768018876beaf457ee9dadb4489db7e28a4e0"
-        },
-        {
-          "number": 89,
-          "title": "chore(deps): bump github/codeql-action/analyze from 3.37.9 to 3.38.0",
+          "number": 184,
+          "title": "frontier: agentic PR review bound to the head commit",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "aa66959d0987b40d8f175526703f4f832a0365c8"
+          "head_sha": "d4a315828ec88b691c48af5669c878a289f3ae7b"
         },
         {
-          "number": 88,
-          "title": "chore(deps): bump github/codeql-action/init from 3.37.9 to 3.38.0",
+          "number": 174,
+          "title": "chore(deps): bump github/codeql-action/init from 3.37.9 to 3.38.2",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "a8c3015c65c5176796e35b8c2b60b3ac38f13e6f"
+          "head_sha": "c9d46041300aefb682db0d5eb06b6dac283f4f91"
         },
         {
-          "number": 86,
-          "title": "fix(store): bind idempotent replay to immutable payload",
+          "number": 173,
+          "title": "chore(deps): bump github/codeql-action/analyze from 3.37.9 to 3.38.2",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "c429d5c417f7aeaad2a59e5ff22dcdde0b87e048"
+        },
+        {
+          "number": 171,
+          "title": "feat: add cross-process resume observation protocol",
           "is_draft": true,
           "mergeable": "UNKNOWN",
-          "head_sha": "c38bb91e747b4745d0b6e6a854e5ffa01f687d0f"
+          "head_sha": "aad41986cdc656f6208b270f3378af908a2e9389"
         },
         {
-          "number": 85,
-          "title": "fix(dispatch): make consequential transitions linearizable",
+          "number": 168,
+          "title": "fix(webhook): make GitHub delivery creation crash-recoverable",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "59d54937da8c8642f1251062a0c2bfb4d50a3883"
+        },
+        {
+          "number": 164,
+          "title": "feat(dispatch): recut contextual acceptance v2 on current main",
           "is_draft": true,
           "mergeable": "UNKNOWN",
-          "head_sha": "d7b56bace81815d464a0c3617943d6180f7bab4e"
+          "head_sha": "b15ccb77a16e33871533ec13e87708cd0190dd2f"
         },
         {
-          "number": 81,
-          "title": "feat(works): durable mission handoff for long-running agent work",
+          "number": 157,
+          "title": "test(reliability): prove controller-loss continuity for accepted Work",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "11718422e0c19741f264a41f14807db135338f35"
+          "head_sha": "da015dd6417430667b76a9c3277c48eaa5d075f4"
         },
         {
-          "number": 72,
-          "title": "feat(dispatch): Runtime→WORKS dispatch acceptance seal 1.0 (RFC-0008)",
-          "is_draft": false,
+          "number": 156,
+          "title": "research(study015): recover durable execution PDR after L7 crash",
+          "is_draft": true,
           "mergeable": "UNKNOWN",
-          "head_sha": "5320e2019df82f977cd3b4a1c8eeeb76610c77d7"
+          "head_sha": "23037299e37d6290726d5b9bf30fbaa51e4b9e5d"
         },
         {
-          "number": 69,
-          "title": "feat(works): require independent verifier verdict before quittance",
+          "number": 153,
+          "title": "research(study015): add explicit L6 cross-host recovery mode",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "d7b78a232c6dca330181643bd1a73aa24b4c31b2"
+        },
+        {
+          "number": 150,
+          "title": "research(study015): add durable WORKS recovery adapter",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "b5953f2c6625177ea230b95ea8819170a44001c4"
+        },
+        {
+          "number": 148,
+          "title": "research(study015): add fail-closed durable WORKS resume mode",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "7a8fb5bcaedfbdf3607073d624ce6d7b853b3dd3"
+        },
+        {
+          "number": 145,
+          "title": "research: expose STUDY-015 live WORKS V2 process adapter",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "ee04809f041cbc328ba024400f0f538cf48239c1"
+        },
+        {
+          "number": 144,
+          "title": "research: add STUDY-015 WORKS dispatch/verification probe",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "be0295155ac3ba357e4a60ece15eee1387847def"
+        },
+        {
+          "number": 142,
+          "title": "fix(worker,dispatch,sandbox): close four execution-boundary bugs",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "77a910715212ee406461bc58320edd30661b95b7"
+        },
+        {
+          "number": 141,
+          "title": "ops(worker): fleet-aware source-root activator + tmpfs hygiene helper",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "32bfba0635093f1db34abb0e6369d6d78dca5a1b"
+          "head_sha": "17355009593edbaaf8388d8a5ad6b4617f2d7f3f"
+        },
+        {
+          "number": 135,
+          "title": "ci(p2): WORKS owner evidence gate",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "e11b706deb662db5c328d00e711f712702bf491c"
+        },
+        {
+          "number": 134,
+          "title": "feat(p2): persist exact-subject MissionAcceptance in WORKS",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "2365e7aab195fa9ec7bf3e2e56076731a72dbf39"
+        },
+        {
+          "number": 133,
+          "title": "feat(auth): exact-identity GitHub OIDC worker enrollment",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "5dd0372e3e425eacdee396c6bfef40c37edc4892"
+        },
+        {
+          "number": 128,
+          "title": "feat(contracts): propose dispatch acceptance 2.0 for V2.1",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "7420a9dbdaa9ffe1bf3152846f3c2694d8c107e6"
+        },
+        {
+          "number": 126,
+          "title": "fix(dispatch): recover committed acceptance before freshness gate",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "78900fc1f6b899445383e7266a1624c036788350"
         }
       ],
       "authoritative_contracts": [],
@@ -479,13 +801,20 @@
       "full_name": "Aftergraph/relay",
       "role": "human-operator-plane",
       "canonical_branch": "main",
-      "remote_head_sha": "e9fe5fe8756fcb5b9cd578bb1f0b2d472a716033",
-      "remote_head_short": "e9fe5fe",
-      "head_commit_message": "docs: complete Relay v0.10 operator documentation (#11)",
+      "remote_head_sha": "0603d70fbca4bde58b0d3c986266a34a83d238f7",
+      "remote_head_short": "0603d70",
+      "head_commit_message": "execution: prove the guest announcement against the real host rendezvous (#18)",
       "private": true,
       "archived": false,
       "protected": false,
       "open_pull_requests": [
+        {
+          "number": 19,
+          "title": "frontier: agentic PR review bound to the head commit",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "17fb7c1ad86a94900b36439a51d95b25982af5e0"
+        },
         {
           "number": 13,
           "title": "feat(relay): add bounded Runtime control operations",
@@ -529,13 +858,34 @@
       "full_name": "Aftergraph/studio",
       "role": "primary-experience",
       "canonical_branch": "main",
-      "remote_head_sha": "a755b1fecfd06fd838df30be29e7fd792bcc6b9c",
-      "remote_head_short": "a755b1f",
-      "head_commit_message": "feat(verification): surface durable outcome provenance (#88)",
+      "remote_head_sha": "14d74b244ea92031ef6f98b3818be2212eafa238",
+      "remote_head_short": "14d74b2",
+      "head_commit_message": "chore(deps): bump github/codeql-action/upload-sarif from 3.38.1 to 3.38.2 (#93)",
       "private": false,
       "archived": false,
       "protected": true,
       "open_pull_requests": [
+        {
+          "number": 96,
+          "title": "frontier: agentic PR review bound to the head commit",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "559275089c182de05a7d07184dd1dc4de5e70e78"
+        },
+        {
+          "number": 95,
+          "title": "chore(deps): bump github/codeql-action/analyze from 3.37.9 to 3.38.2",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "a6568d54d22aa4951203987f92caee662bf23289"
+        },
+        {
+          "number": 94,
+          "title": "chore(deps): bump github/codeql-action/init from 3.37.9 to 3.38.2",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "f35b9ca671a52f13d6f4c654ba073dce07776b03"
+        },
         {
           "number": 79,
           "title": "docs(studio): Living Workspace + Governed Generative UI design",
@@ -563,27 +913,6 @@
           "is_draft": false,
           "mergeable": "UNKNOWN",
           "head_sha": "51362450b37d3aacfa0ff85b6ae2555f47a2eca5"
-        },
-        {
-          "number": 73,
-          "title": "chore(deps): bump github/codeql-action/upload-sarif from 3.37.9 to 3.38.0",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "474854158db4dc95e9280f623743df8ab5945842"
-        },
-        {
-          "number": 72,
-          "title": "chore(deps): bump github/codeql-action/init from 3.37.9 to 3.38.0",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "9251a82b49917db739f95282aa7c069a07e5e162"
-        },
-        {
-          "number": 71,
-          "title": "chore(deps): bump github/codeql-action/analyze from 3.37.9 to 3.38.0",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "3a439cb086c1c0442cd5a169850406445773a53d"
         },
         {
           "number": 70,
@@ -626,15 +955,85 @@
     },
     {
       "full_name": "Aftergraph/fihim",
-      "role": "operator-cockpit-projection",
+      "role": "personal-agent-product",
       "canonical_branch": "main",
-      "remote_head_sha": "c978867cbde5eb7e4376b9316e56da7a9571641e",
-      "remote_head_short": "c978867",
-      "head_commit_message": "feat(reflex): v0.3 longitudinal shadow calibration",
+      "remote_head_sha": "ad7e8415241d7e3fd386d84275bfe63bd0ce167d",
+      "remote_head_short": "ad7e841",
+      "head_commit_message": "frontier: Economic Graph v1 operator projection (#57)",
       "private": true,
       "archived": false,
       "protected": false,
       "open_pull_requests": [
+        {
+          "number": 56,
+          "title": "feat: add FIHIM Eval Labs behavioral evaluation plane",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "e43c856eebe75bbe03978ddd9b370ca48fbe1eea"
+        },
+        {
+          "number": 55,
+          "title": "chore(deps): bump @rollup/rollup-linux-x64-gnu from 4.63.3 to 4.63.5",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "5bc23fae8c251b5d87c4c8823615d3c3166318cb"
+        },
+        {
+          "number": 54,
+          "title": "chore(ci): bump actions/setup-node from 4.0.4 to 7.0.0",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "bc3db4537b3ef2cd407b1447d409c185d38e4207"
+        },
+        {
+          "number": 53,
+          "title": "chore(ci): bump actions/checkout from 4.2.2 to 7.0.1",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "7b36861dc1889cbf7fa2eb0003e1e44e9ba60300"
+        },
+        {
+          "number": 52,
+          "title": "fix(war-room): consume canonical control projection",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "6bbe98c603b61da1fb9dc55691e90280c12c0dd5"
+        },
+        {
+          "number": 24,
+          "title": "feat(reflex): v0.3.6 pilot observation ingest",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "604bb05b84750ca1799589fdd0595f1c543ed732"
+        },
+        {
+          "number": 23,
+          "title": "fix(reflex): v0.3.5 lock professional study sampling",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "e0da544f24fc9aa35652d605a69d960f6db77951"
+        },
+        {
+          "number": 21,
+          "title": "feat(reflex): v0.3.4 Rendetalje pilot cohort",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "f149941469161a22567739f2787f3a350a69db76"
+        },
+        {
+          "number": 20,
+          "title": "feat(reflex): v0.3.3 pilot evidence admission",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "d505d2fb37f6b121784935f9d97f00e0f1329d2d"
+        },
+        {
+          "number": 19,
+          "title": "feat(reflex): v0.3.2 production ground-truth labeling",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "01e086696e30aa5786bac33bbce22be8fdbc456a"
+        },
         {
           "number": 18,
           "title": "feat(reflex): professional validation protocol v1.0",
@@ -658,31 +1057,17 @@
         },
         {
           "number": 5,
-          "title": "chore(deps): bump lucide-react from 0.469.0 to 1.46.0 in the icons group across 1 directory",
+          "title": "chore(deps): bump lucide-react from 0.469.0 to 1.48.0 in the icons group across 1 directory",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "17ae75abbfba3170312bbad4d682e4041d5a3221"
+          "head_sha": "ca0438b403e60090dccb736d3f4321fca7b8a721"
         },
         {
           "number": 4,
           "title": "chore(deps): bump the build group across 1 directory with 4 updates",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "c9f865b06886116acb0ad8b194fbe9f304e8eefb"
-        },
-        {
-          "number": 3,
-          "title": "chore(ci): bump actions/setup-node from 4.0.4 to 7.0.0",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "895b9980aea051ffce700461640eb61b44010778"
-        },
-        {
-          "number": 1,
-          "title": "chore(ci): bump actions/checkout from 4.2.2 to 7.0.1",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "b0e765d509177e0d1b1b37e8b7af60b010d6fda0"
+          "head_sha": "1a736ea7115cc1895b747b198e4bf2ccdef9e871"
         }
       ],
       "authoritative_contracts": [],
@@ -690,15 +1075,64 @@
     },
     {
       "full_name": "Aftergraph/war-room",
-      "role": "operational-intelligence-projection",
+      "role": "operational-intelligence-backend-projection",
       "canonical_branch": "main",
-      "remote_head_sha": "0313ad91ce9607e3b6ab097851e7352d39c05a62",
-      "remote_head_short": "0313ad9",
-      "head_commit_message": "docs: update README with EGAC, ontology, API endpoints, and research foundation",
+      "remote_head_sha": "e1064b1543df5521f0c1c2fc4cc3fb07edf3e995",
+      "remote_head_short": "e1064b1",
+      "head_commit_message": "ci: cancel superseded War Room runs (#32)",
       "private": false,
       "archived": false,
       "protected": false,
       "open_pull_requests": [
+        {
+          "number": 33,
+          "title": "frontier: agentic PR review bound to the head commit",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "727f5100aa46751559ee11b01768c47e4cf43b07"
+        },
+        {
+          "number": 27,
+          "title": "experiment: independent simplification replication",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "1f93cb9ebd0e9cc8ce4a8874f3c92994c83ad736"
+        },
+        {
+          "number": 26,
+          "title": "experiment: 10-task simplification truth benchmark",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "c50839ad7089522c1a0e9d50c740adc5e304a2ef"
+        },
+        {
+          "number": 25,
+          "title": "refactor(desktop): centralize observed workflow selection",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "0eb599951e99fec96a56399af8968399e4090467"
+        },
+        {
+          "number": 24,
+          "title": "refactor(desktop): simplify repeated status predicates",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "77c65e87bc2a86706df82537f34a4826bfa1c709"
+        },
+        {
+          "number": 21,
+          "title": "qa(desktop): add deterministic native soak evidence analyzer",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "41adc81aaba39bd3ef92a1ff12127d14c4ea5e18"
+        },
+        {
+          "number": 8,
+          "title": "fix(bff): survive malformed URIs, add BFF CI, align agent contract with canonical topology",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "e01c81c10f521c4aeb3f4ac6206d40c4dba631f6"
+        },
         {
           "number": 4,
           "title": "feat(war-room): source-backed operational projection",
@@ -735,19 +1169,47 @@
       "full_name": "Aftergraph/wi-backend",
       "role": "work-inference",
       "canonical_branch": "main",
-      "remote_head_sha": "509325f261bd82cebeb477b7013df6a6377a7228",
-      "remote_head_short": "509325f",
-      "head_commit_message": "feat(pocket): support live HeyPocket webhook contract (#89)",
+      "remote_head_sha": "76668fd982c4e4afa9ecef9ace5297cf9a7beead",
+      "remote_head_short": "76668fd",
+      "head_commit_message": "feat(pocket): add durable REST reconciliation queue (#92)",
       "private": false,
       "archived": false,
       "protected": true,
       "open_pull_requests": [
         {
-          "number": 92,
-          "title": "feat(pocket): add durable REST reconciliation queue",
+          "number": 100,
+          "title": "chore(deps): bump github/codeql-action/analyze from 3.37.9 to 3.38.2",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "9aed13b896264d0161bc25effb7a21f238167630"
+          "head_sha": "2ffe122b2f779ed46a5bc50cacca50512a19151b"
+        },
+        {
+          "number": 99,
+          "title": "chore(deps): bump github/codeql-action/upload-sarif from 3.37.9 to 3.38.2",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "234a7f2d10d788fa158eb44ee55ad559a7aff928"
+        },
+        {
+          "number": 98,
+          "title": "chore(deps): bump github/codeql-action/init from 3.37.9 to 3.38.2",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "84d6008ee53d9336559a9752daf65b778acc4da3"
+        },
+        {
+          "number": 96,
+          "title": "chore(deps): bump codecov/codecov-action from 7.0.0 to 7.1.1",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "8c92b0c154e7e611a8d7e104c8c8163a01e305db"
+        },
+        {
+          "number": 93,
+          "title": "chore(deps): update uvicorn requirement from <0.53,>=0.48 to >=0.48,<0.54",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "c1c2808cf4d697bcf8cd10ce27e2bfd617ec1081"
         },
         {
           "number": 88,
@@ -755,27 +1217,6 @@
           "is_draft": false,
           "mergeable": "UNKNOWN",
           "head_sha": "c136c05cd2caa43335f5d8f4d8f3a0b7d0bb3190"
-        },
-        {
-          "number": 87,
-          "title": "chore(deps): bump github/codeql-action/init from 3.37.9 to 3.38.0",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "0da6b5b00e5d7450b245ead46f60de6b74dd0413"
-        },
-        {
-          "number": 86,
-          "title": "chore(deps): bump github/codeql-action/analyze from 3.37.9 to 3.38.0",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "622cf0cb07e73bbf4baace33fac8c6e6846ba796"
-        },
-        {
-          "number": 85,
-          "title": "chore(deps): bump github/codeql-action/upload-sarif from 3.37.9 to 3.38.0",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "3c92b5e734c07e5e0d87b7cd80ae3dfbaf258a1f"
         },
         {
           "number": 84,
@@ -813,26 +1254,19 @@
       "full_name": "Aftergraph/wi-frontend",
       "role": "work-intelligence-experience",
       "canonical_branch": "main",
-      "remote_head_sha": "3754fdc88799745d6bd495fa7a37186ff0ef4ced",
-      "remote_head_short": "3754fdc",
-      "head_commit_message": "feat(ui): link canonical Aftergraph launcher (#25)",
+      "remote_head_sha": "b6794feb3d375a27b1073e5c0c37b4ad181ed894",
+      "remote_head_short": "b6794fe",
+      "head_commit_message": "Merge pull request #26 from Aftergraph/feat/pocket-webhook-bff",
       "private": true,
       "archived": false,
       "protected": false,
       "open_pull_requests": [
         {
-          "number": 26,
-          "title": "feat(pocket): expose signed webhook ingress through BFF",
+          "number": 31,
+          "title": "chore(deps): bump the npm-minor-patch group across 1 directory with 9 updates",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "21dcc0ba77561ec3eab816c0e032659ed44037c4"
-        },
-        {
-          "number": 24,
-          "title": "chore(deps): bump the npm-minor-patch group with 7 updates",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "8e776132dc17f1a5e4eeff2c879a960c5752ebb4"
+          "head_sha": "99b4eece0db0a9c077c7c55fbcc15e0c6eead23c"
         },
         {
           "number": 20,
@@ -906,13 +1340,41 @@
       "full_name": "Aftergraph/continuum",
       "role": "continuity-containment-verification",
       "canonical_branch": "main",
-      "remote_head_sha": "c1d6ef80b82f797604c90b6db0b8075780fc3744",
-      "remote_head_short": "c1d6ef8",
-      "head_commit_message": "ci: run CI on the organisation's own self-hosted runner (#18)",
+      "remote_head_sha": "2e409acdbc329a621ecc3623af391b065a1f8061",
+      "remote_head_short": "2e409ac",
+      "head_commit_message": "Merge signed provenance result emission",
       "private": true,
       "archived": false,
       "protected": false,
       "open_pull_requests": [
+        {
+          "number": 33,
+          "title": "build(deps): update cryptography requirement from >=43.0 to >=50.0.1",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "0a9d9f18564b6909981adfc4f80b251601043b5f"
+        },
+        {
+          "number": 31,
+          "title": "feat(adapter): bind Aftergraph Runtime V2 dispatch to WORKS",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "386cdf30a99040dbd853842f99a54f344441866f"
+        },
+        {
+          "number": 25,
+          "title": "chore(deps): bump actions/setup-node from 4.4.0 to 7.0.0",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "4c9d56e791775e0059d537dc91bba248e40233d2"
+        },
+        {
+          "number": 24,
+          "title": "chore(deps): bump actions/setup-go from 5.6.0 to 7.0.0",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "ec82afac119d80e54d4d66911237ce9a4450cafb"
+        },
         {
           "number": 20,
           "title": "test(continuum): compose Golden Mission across Hermes, LangGraph and Temporal",
@@ -936,10 +1398,10 @@
         },
         {
           "number": 11,
-          "title": "chore(deps): bump actions/checkout from 4.4.0 to 7.0.1",
+          "title": "build(deps): bump actions/checkout from 4.4.0 to 7.0.1",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "94d90ff6adb6b3fea6fd3abcacaab3d492732785"
+          "head_sha": "567481e6d8a44ada742fad4f320947d9ee44af01"
         },
         {
           "number": 10,
@@ -956,13 +1418,34 @@
       "full_name": "Aftergraph/sentinel",
       "role": "verified-code-review",
       "canonical_branch": "main",
-      "remote_head_sha": "a931f45893ecff6cc7e0a358283e71352955b30c",
-      "remote_head_short": "a931f45",
-      "head_commit_message": "feat(verification): wire domain verifier runtime (#20)",
+      "remote_head_sha": "c58cbc84c7526f2eca9e17ad661d223dff6b4768",
+      "remote_head_short": "c58cbc8",
+      "head_commit_message": "docs(deploy): record root-setup.sh env mismatch and gateway 401",
       "private": false,
       "archived": false,
       "protected": true,
       "open_pull_requests": [
+        {
+          "number": 46,
+          "title": "frontier: run Sentinel review as an agentic workflow bound to the PR head",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "a63a0305559a8882765f81fdecb6c7f80aabf972"
+        },
+        {
+          "number": 37,
+          "title": "research: add STUDY-015 exact-SHA verifier probe",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "4125f66b0c6d476966feb017ec7ddf3e22ec9459"
+        },
+        {
+          "number": 36,
+          "title": "ci(p2): Sentinel owner evidence gate",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "c1871658acf4f96ed30d24a2b15ed2a85f807033"
+        },
         {
           "number": 21,
           "title": "feat(verification): add research evidence profile for STUDY-012",
@@ -975,7 +1458,7 @@
           "title": "chore(deps): bump actions/checkout from 4.4.0 to 7.0.1",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "33c34d25137d1ddbedcaae414eb41d4fe54dfcc0"
+          "head_sha": "72b0fea6fa8193b3486c42552c392517f80e3942"
         },
         {
           "number": 6,
@@ -1043,60 +1526,144 @@
       "protected": true,
       "open_pull_requests": [
         {
-          "number": 111,
-          "title": "feat(research): Research Protocol v0.2 grounded verification",
+          "number": 146,
+          "title": "maintenance: restore ISR CI after date and historical-scope drift",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "13f24797a6473a650e8f348e0a2ec34f3886f4da"
+        },
+        {
+          "number": 145,
+          "title": "research: preregister STUDY-ECO-001 exact-subject economic correspondence",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "2cb9b74d42e2df79ced17ad707124339e377f17e"
+        },
+        {
+          "number": 144,
+          "title": "ops: dispatch Computer Node connect mission to Hermes AVC on JONAS-LENOVO",
           "is_draft": true,
           "mergeable": "UNKNOWN",
-          "head_sha": "0ce31cb4c9b9ad125db9e3ddfd314618aa930bee"
+          "head_sha": "bb467d1c65a9ca1953469706117287cc465ae959"
         },
         {
-          "number": 110,
-          "title": "chore(deps): bump the github-actions-minor-and-patch group with 3 updates",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "8e873f3e30ae13c1100d3ebbfe02c4629f5f5f08"
-        },
-        {
-          "number": 109,
-          "title": "fix(study012): declare G12-9 and G12-10 historical alias scope",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "500acc80a2c4a8f1fd1b8b995fd3af35b45d914a"
-        },
-        {
-          "number": 108,
-          "title": "fix(study012): keep post-ruling gates on canonical experiment id",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "a9d371d97362180f08a3b95b25adc1a0a12748f0"
-        },
-        {
-          "number": 107,
-          "title": "research: reconcile STUDY-011 front door and machine-readable claims",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "573f65b743935ecd08fa2a76e83d0bb2364c85fe"
-        },
-        {
-          "number": 106,
-          "title": "research: add publication artifact truth registry",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "90f0fa1cda0daa93c6f5fb6cc4c40831ebb95d73"
-        },
-        {
-          "number": 53,
-          "title": "research: draft STUDY-012 institutional containment preregistration",
+          "number": 143,
+          "title": "fix(lenovo-runner): publish physical runner proof",
           "is_draft": true,
           "mergeable": "UNKNOWN",
-          "head_sha": "1e580092b9bdea6e9c26d02f44f274b976178827"
+          "head_sha": "24a47f6c162a16d602e5aa8d2e74b7e791b6d079"
         },
         {
-          "number": 50,
-          "title": "research: add Meta Muse prior-art amendment and tighten claims",
+          "number": 142,
+          "title": "feat(jev): authenticated paired lineage proof v2.16",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "dbd90632a52ac8594a7679f0955ada09b11e1f26"
+        },
+        {
+          "number": 141,
+          "title": "research(study015): freeze verified L6 cross-host failover evidence",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "3e1ecefe3b56b5a4a6977a03f605bd2ce74d8c31"
+        },
+        {
+          "number": 140,
+          "title": "research(study015): freeze verified L5 durable causal recovery evidence",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "c0499fdaaf5f5cb0c0b04eefa4a8366695d78ec6"
+        },
+        {
+          "number": 139,
+          "title": "research(study015): freeze verified L4 independent-repeatability evidence",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "cba73bb18aa6ca0d6581bcf9b99afcaf43b3be07"
+        },
+        {
+          "number": 138,
+          "title": "research(study015): freeze verified L3 LIVE_CAUSAL_SLICE evidence",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "d51b4a4db9fad68c55f2c2b20b9cac388e3b5a28"
+        },
+        {
+          "number": 137,
+          "title": "research: STUDY-015 G15 chain + exact-head causal composition proof",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "7e0f0c5688b4584b4b6c43167ae0c163255fa637"
+        },
+        {
+          "number": 134,
+          "title": "chore(infra): one-shot Lenovo WORKS bootstrap probe",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "ee55536faebffb7f89e6d7d3d0678321fcd6d925"
+          "head_sha": "6d1c2329b3c5e577228738d0f25a986cf351d02b"
+        },
+        {
+          "number": 132,
+          "title": "fix(study012): align G12-9/G12-10 with canonical experiment ID",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "63eca691e082add11e91457bf117f747a7b041c8"
+        },
+        {
+          "number": 131,
+          "title": "research: preregister Sent messaging provider evaluation",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "3331da61024371da2b834e5262eb1cd0455a9f15"
+        },
+        {
+          "number": 128,
+          "title": "test: physical Lenovo Computer Node acceptance",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "3a0ddd38269ce9268ed30f097c991c85ceed7b60"
+        },
+        {
+          "number": 126,
+          "title": "research: close JAR-EXP-0022 Traceglass evidence-readiness audit",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "e8c875c9199593d9456d0a3044556a6efaa5f966"
+        },
+        {
+          "number": 124,
+          "title": "research: reproduce JAR-EXP-0020 via VERGE Parallax",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "de0adf8f85c825c884d617e2b0a2fd346e825a52"
+        },
+        {
+          "number": 123,
+          "title": "research: preregister JAR-EXP-0015 decision-specific calibration",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "d16c8bb853e1aabc9f84019f9ef798d74c3b58bd"
+        },
+        {
+          "number": 121,
+          "title": "research: preregister JAR-EXP-0020 VERGE Headroom",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "e72ee486b05d65bbede45824b031bc0915112d0f"
+        },
+        {
+          "number": 120,
+          "title": "research: close JAR-EXP-0019 Crucible at development gate",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "0219370f033e71b6fc48288e2d6ffff385d16e91"
+        },
+        {
+          "number": 119,
+          "title": "research: close JAR-EXP-0018 Bastion at development gate",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "6393dcf39113d9559e86a59928bcf25515bf2948"
         }
       ],
       "authoritative_contracts": [],
@@ -1111,26 +1678,40 @@
       "full_name": "Aftergraph/skills-vault",
       "role": "capability-supply-chain",
       "canonical_branch": "main",
-      "remote_head_sha": "aecd24a33587e29ed70a986a2eaddd2925b0c1c0",
-      "remote_head_short": "aecd24a",
-      "head_commit_message": "fix(skill): point Aftergraph observer at canonical wi-backend docs (#68)",
+      "remote_head_sha": "a4d5ccc909e48a5eacacf5811e2c2f691f378c57",
+      "remote_head_short": "a4d5ccc",
+      "head_commit_message": "ci: optimize Skills Vault validation scheduling (#79)",
       "private": true,
       "archived": false,
       "protected": false,
       "open_pull_requests": [
         {
-          "number": 70,
-          "title": "chore(deps): bump actions/setup-python from 5 to 7",
+          "number": 80,
+          "title": "frontier: agentic PR review bound to the head commit",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "43013fe713b6fad8b6ba594d821f3aa62f69a7e0"
+          "head_sha": "7a0395881af617073450a49654ea77ced91f376f"
+        },
+        {
+          "number": 77,
+          "title": "skill: works-capability-closure — WORKS dogfood incident diagnosis-to-closure playbook",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "8adc48921b269f9f1eb5655099ad0d21ee855c8d"
+        },
+        {
+          "number": 70,
+          "title": "chore(deps): bump actions/setup-python from 5.6.0 to 7.0.0",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "2ee9d85072b7f17bc6f8943b6e1d97e0f8cd5625"
         },
         {
           "number": 62,
           "title": "chore(deps): bump actions/checkout from 4.4.0 to 7.0.1",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "878710f10101249eed340bfc7b6ffe9c14996824"
+          "head_sha": "467fb71bbb793747814e6ea5554836faa9ebc447"
         },
         {
           "number": 61,
@@ -1212,26 +1793,33 @@
       "full_name": "Aftergraph/model-registry",
       "role": "model-lifecycle-registry",
       "canonical_branch": "main",
-      "remote_head_sha": "6da2ee23b4b6c90bf348df9dc7ad9f8273a31053",
-      "remote_head_short": "6da2ee2",
-      "head_commit_message": "ci(sentinel): repin reusable review engine (#23)",
+      "remote_head_sha": "feb27ef80063d464b0d940ff78e440a3587b1695",
+      "remote_head_short": "feb27ef",
+      "head_commit_message": "ci: optimize Model Registry validation scheduling (#26)",
       "private": true,
       "archived": false,
       "protected": false,
       "open_pull_requests": [
         {
+          "number": 27,
+          "title": "frontier: agentic PR review bound to the head commit",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "bd6af872cdefc412fde81a8d38b093df77fb386b"
+        },
+        {
           "number": 7,
           "title": "chore(deps): bump actions/checkout from 4.4.0 to 7.0.1",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "12c65211abe9b7d6063dd5919ed963c066fd2c4c"
+          "head_sha": "e8d397147d04c8aa88aebf2606093d6c896df1f7"
         },
         {
           "number": 6,
           "title": "chore(deps): bump actions/setup-python from 5.6.0 to 7.0.0",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "52e0c8af17d8b6e8e0f6f75d0eaa6831416d41a7"
+          "head_sha": "44e8ffc63afcd179ff474d8890ff9967e2dac45c"
         },
         {
           "number": 5,
@@ -1256,25 +1844,81 @@
       "protected": false,
       "open_pull_requests": [
         {
+          "number": 1051,
+          "title": "Ops: probe Cloudflare production credentials for Concord",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "9760aff8ab8d7c1d70a67f540fc5fe1a3277d15f"
+        },
+        {
+          "number": 1050,
+          "title": "chore(deps): bump openai from 4.104.0 to 7.23.0 in /ml/avc-llm",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "e42397d2de68b34ee8ac3873de378ff628a3e3fc"
+        },
+        {
+          "number": 1049,
+          "title": "chore(deps): bump tsx from 4.23.13 to 4.23.15 in /ml/avc-llm",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "09f778fc5360eccc01e79f88d7196b6b164392d8"
+        },
+        {
+          "number": 1048,
+          "title": "chore(deps): bump tsx from 4.23.13 to 4.23.15 in /ml/avc-eval",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "7abe9c2a8d834f7d13cdcdd73a879a2f410f2031"
+        },
+        {
+          "number": 1047,
+          "title": "chore(deps): bump openai from 4.104.0 to 7.23.0 in /ml/avc-eval",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "83b11e6526d45a2eb4edb5794cc1b5be9c33fc02"
+        },
+        {
+          "number": 1046,
+          "title": "chore(deps): bump the development-tooling group across 1 directory with 9 updates",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "1af6df1a69ac90189b9dad3b0ffac4ee34fef538"
+        },
+        {
+          "number": 1045,
+          "title": "chore(deps): bump js-yaml from 5.2.2 to 5.4.2 in /ml/avc-llm",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "74618e0b30af8dfcdc4d5e504625929e1b2832c7"
+        },
+        {
+          "number": 1044,
+          "title": "chore(deps): bump eslint from 10.9.1 to 10.11.0 in /ml/avc-llm",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "56263b93f57e1319a1f2197b30e0590681f81018"
+        },
+        {
+          "number": 1042,
+          "title": "chore(deps): bump js-yaml from 5.2.2 to 5.4.2 in /ml/avc-eval",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "92bfe7a8c3241c4186edbce074cfe61319818a3d"
+        },
+        {
+          "number": 1040,
+          "title": "chore(deps): bump eslint from 10.9.1 to 10.11.0 in /ml/avc-eval",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "76ba1881488999f20571fe4c1da9de108a6e13c7"
+        },
+        {
           "number": 1036,
           "title": "Premium Work Intelligence war-room (V-01 Dashboard) + Aftergraph rebrand",
           "is_draft": true,
           "mergeable": "UNKNOWN",
           "head_sha": "72621512b7b2deca03586e319eb523c92db5eeeb"
-        },
-        {
-          "number": 1035,
-          "title": "chore(deps): bump openai from 4.104.0 to 7.15.0 in /ml/avc-llm",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "2ca8ab7827fac2c40fd0b45b54b12db8a1fc6f73"
-        },
-        {
-          "number": 1034,
-          "title": "chore(deps): bump openai from 4.104.0 to 7.15.0 in /ml/avc-eval",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "3ab5753d2f4d68a6fc248a43dcbf6a96b4da0d1b"
         },
         {
           "number": 1033,
@@ -1298,13 +1942,6 @@
           "head_sha": "4cedae330e0cd86840e324e72e79d3471ddbca1a"
         },
         {
-          "number": 1030,
-          "title": "chore(deps): bump the development-tooling group with 6 updates",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "c4339b3c7dfcc53de8e2153e2f9c1da7f22dd654"
-        },
-        {
           "number": 1029,
           "title": "ci: org-wide webhook CI orchestrator v4 + Aftergraph identity migration",
           "is_draft": false,
@@ -1326,20 +1963,6 @@
           "head_sha": "01d04a4f56da98aa31b81c7577a7a0ddcdf8bd37"
         },
         {
-          "number": 1015,
-          "title": "chore(deps): bump eslint from 10.9.1 to 10.10.0 in /ml/avc-llm",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "4ed0b06a2d170e80a57899e92e6b45b090461f09"
-        },
-        {
-          "number": 1012,
-          "title": "chore(deps): bump eslint from 10.9.1 to 10.10.0 in /ml/avc-eval",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "ac0993c65b23bb1adecc1119545ac49197cc3e5a"
-        },
-        {
           "number": 1011,
           "title": "chore(deps): bump lxml from 6.1.1 to 6.1.3 in /scripts/branding",
           "is_draft": false,
@@ -1359,41 +1982,6 @@
           "is_draft": false,
           "mergeable": "UNKNOWN",
           "head_sha": "b0cacbfa94da9fd33e30f56c18f93175f8f56455"
-        },
-        {
-          "number": 1002,
-          "title": "chore(deps): bump tsx from 4.23.1 to 4.23.13 in /ml/avc-llm",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "7a65d995dcbb8a2b992fc08345147922077ea35e"
-        },
-        {
-          "number": 1001,
-          "title": "chore(deps): bump js-yaml from 5.2.2 to 5.4.1 in /ml/avc-llm",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "7042347722ea9435bfd9f82cc872f1b671c8dbd8"
-        },
-        {
-          "number": 999,
-          "title": "chore(deps): bump js-yaml from 5.2.2 to 5.4.1 in /ml/avc-eval",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "ffa61b67618818bd7313bea0853202e2d3d05a38"
-        },
-        {
-          "number": 997,
-          "title": "chore(deps): bump tsx from 4.23.1 to 4.23.13 in /ml/avc-eval",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "c65552c803440e4bb90e622f969e0eab1b0e9e73"
-        },
-        {
-          "number": 995,
-          "title": "chore(deps): bump tauri-plugin-deep-link from 2.4.9 to 2.4.10 in /apps/mission-control/src-tauri",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "80ed0cfd26bd13cce05a8bb3ed2d47306d7e1a04"
         }
       ],
       "authoritative_contracts": [],
@@ -1455,18 +2043,25 @@
       "protected": true,
       "open_pull_requests": [
         {
+          "number": 34,
+          "title": "chore(deps): bump cloudflare/wrangler-action from 3.15.0 to 4.1.3",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "1879e6a6c57edb2a91222fdae37f52c846f7df18"
+        },
+        {
+          "number": 33,
+          "title": "chore(deps): bump the npm-minor-patch group across 1 directory with 2 updates",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "f702160befc0ef12721fe5122aa03eee5424941d"
+        },
+        {
           "number": 32,
           "title": "docs(readme): add Releases section + fix stale MCP tool count",
           "is_draft": true,
           "mergeable": "UNKNOWN",
           "head_sha": "36336f4f0d6cf1653a1945a5e9224c3f9c9c00a0"
-        },
-        {
-          "number": 31,
-          "title": "chore(deps): bump astro from 7.3.1 to 7.3.2 in the npm-minor-patch group",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "f7f4290e6254ad196b94f84bdcbac74d360d4e1d"
         },
         {
           "number": 30,
@@ -1497,13 +2092,6 @@
           "head_sha": "1ab7dc11470a80879bbd45c5b57408339cc3376e"
         },
         {
-          "number": 16,
-          "title": "chore(deps): bump cloudflare/wrangler-action from 3.15.0 to 4.0.0",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "1bd03b58c57deed8f297e20e66b6dbd3aec8617d"
-        },
-        {
           "number": 15,
           "title": "chore(deps): bump actions/setup-node from 4.4.0 to 7.0.0",
           "is_draft": false,
@@ -1532,13 +2120,34 @@
       "full_name": "Aftergraph/aftergraph.org",
       "role": "public-front-door",
       "canonical_branch": "main",
-      "remote_head_sha": "34ae4ee547f02233ae4a6f3159309d3adebeeaf8",
-      "remote_head_short": "34ae4ee",
-      "head_commit_message": "feat(atlas-v3): D1/R2 runtime wiring + ES module worker (#106)",
+      "remote_head_sha": "ebdbd452f04922f1f58371df08248894293de59a",
+      "remote_head_short": "ebdbd45",
+      "head_commit_message": "fix(ios): harden notarization release gates (#117)",
       "private": false,
       "archived": false,
       "protected": true,
       "open_pull_requests": [
+        {
+          "number": 121,
+          "title": "feat(site): observatory-console visual refresh of the landing page",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "6687b9ed6addd40caf65368ae04d59bfae2b1666"
+        },
+        {
+          "number": 119,
+          "title": "chore(infra): bootstrap native WORKS on JONAS-LENOVO",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "d19874c34cba346118343073e6f75c1ef894003b"
+        },
+        {
+          "number": 118,
+          "title": "chore(deps): bump github/codeql-action/upload-sarif from 3.38.0 to 3.38.1 in the github-actions-minor-and-patch group",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "7459da4f85ea11308c8d24943928c182fb13e7af"
+        },
         {
           "number": 113,
           "title": "feat(atlas): converge truth model and public world projection",
@@ -1589,40 +2198,54 @@
       "full_name": "Aftergraph/brand",
       "role": "brand-design-system",
       "canonical_branch": "main",
-      "remote_head_sha": "6abc51be903ffd1041a716d2adeec364de3d68c0",
-      "remote_head_short": "6abc51b",
-      "head_commit_message": "docs(agents): add repo-level agent execution contract (#28)",
+      "remote_head_sha": "5b2d6b2d367654a6573f38362d3f7ac86507403d",
+      "remote_head_short": "5b2d6b2",
+      "head_commit_message": "chore(deps): bump github/codeql-action/upload-sarif from 3.38.1 to 3.38.2 (#41)",
       "private": false,
       "archived": false,
       "protected": true,
       "open_pull_requests": [
+        {
+          "number": 42,
+          "title": "frontier: agentic PR review bound to the head commit",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "9235468080921499712300296b6606ea6d683613"
+        },
+        {
+          "number": 40,
+          "title": "chore(deps): bump github/codeql-action/analyze from 3.37.9 to 3.38.2",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "bb924a7ec1d17abedfc127a3ccf5c6686f0efbeb"
+        },
+        {
+          "number": 39,
+          "title": "chore(deps): bump github/codeql-action/init from 3.37.9 to 3.38.2",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "185ea27e6a3fcfa2602bc6ea020ae6c4099ce873"
+        },
+        {
+          "number": 38,
+          "title": "feat(brand): promote POCK Orb-O to canonical endorsed product identity",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "bbd57488465c89da3201165d9d96256952f89283"
+        },
+        {
+          "number": 37,
+          "title": "feat(steward): register governed product identity and presence",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "f026449000147ca19b6c628ba9f22c3d4e77128e"
+        },
         {
           "number": 32,
           "title": "feat(characters): add actor presence asset system",
           "is_draft": true,
           "mergeable": "UNKNOWN",
           "head_sha": "9d12b2d98e3e1d1dc39f10089191f462c8b88774"
-        },
-        {
-          "number": 31,
-          "title": "chore(deps): bump github/codeql-action/init from 3.37.9 to 3.38.0",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "f02abea35af7e31511c722e99db539827679a20b"
-        },
-        {
-          "number": 30,
-          "title": "chore(deps): bump github/codeql-action/analyze from 3.37.9 to 3.38.0",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "c289e27dae150a4849ca0f552598b64558741a07"
-        },
-        {
-          "number": 29,
-          "title": "chore(deps): bump github/codeql-action/upload-sarif from 3.37.9 to 3.38.0",
-          "is_draft": false,
-          "mergeable": "UNKNOWN",
-          "head_sha": "de4628d6e412b1da41117f9ce7c3fec22b38938e"
         },
         {
           "number": 15,
@@ -1639,13 +2262,27 @@
       "full_name": "Aftergraph/.github",
       "role": "organization-community",
       "canonical_branch": "main",
-      "remote_head_sha": "728aa7c3309e67a2bdd4b569170bc1bc4d4f6684",
-      "remote_head_short": "728aa7c",
-      "head_commit_message": "ci(sentinel): repin central engine after policy fix",
+      "remote_head_sha": "c56e3f0d8c66a14f2814f0f271901ea8c6865019",
+      "remote_head_short": "c56e3f0",
+      "head_commit_message": "fix(runner): fail closed on tmpfs pressure and recycle only idle listeners (#57)",
       "private": false,
       "archived": false,
       "protected": true,
       "open_pull_requests": [
+        {
+          "number": 54,
+          "title": "ci: add read-only Runner Fabric capacity probe",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "9617700c7963c6e499e671e7b19c93b748e1b0cb"
+        },
+        {
+          "number": 51,
+          "title": "fix(ci): repair Runner Fabric doctor",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "df80af8530db2eb30593b60add67f32d14a4e88f"
+        },
         {
           "number": 45,
           "title": "ci(guides): daily automated AGENTS.md regeneration across the polyrepo",
@@ -1661,13 +2298,20 @@
       "full_name": "Aftergraph/skill-abi",
       "role": "skill-compatibility-contract",
       "canonical_branch": "main",
-      "remote_head_sha": "14dc965f05efef4fc917b775e1dcc9ef29ba4474",
-      "remote_head_short": "14dc965",
-      "head_commit_message": "Team F: CI/security/supply-chain hardening for skill-abi",
+      "remote_head_sha": "aeccfe5201e0bcf37d48d44135c7bf6211db1832",
+      "remote_head_short": "aeccfe5",
+      "head_commit_message": "frontier: add ToolFabric binding constraints (#13)",
       "private": false,
       "archived": false,
       "protected": false,
       "open_pull_requests": [
+        {
+          "number": 14,
+          "title": "frontier: agentic PR review bound to the head commit",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "0f964d74e8baa467f228630261c96ca7cf390c48"
+        },
         {
           "number": 8,
           "title": "chore(deps): remove unused cryptography dependency",
@@ -1705,10 +2349,10 @@
         },
         {
           "number": 3,
-          "title": "Bump actions/upload-artifact from 5.0.0 to 7.0.1",
+          "title": "build(deps): bump actions/upload-artifact from 5.0.0 to 7.0.1",
           "is_draft": false,
           "mergeable": "UNKNOWN",
-          "head_sha": "d7c06c39e66dbfa60224ec79021cda00270c71e7"
+          "head_sha": "5af40c8cd9b2447fd8aa4cd17750b1e6d49eeb93"
         }
       ],
       "authoritative_contracts": [],
@@ -1783,13 +2427,48 @@
       "full_name": "Aftergraph/rendetalje",
       "role": "rendetalje-reference-tenant",
       "canonical_branch": "main",
-      "remote_head_sha": "0129f17a0b1a87385fa55977aaeb185bf179971c",
-      "remote_head_short": "0129f17",
-      "head_commit_message": "fix(observation): prove complete booking read scope (#16)",
+      "remote_head_sha": "20823dd9b0d21f555ebb398ad537552621a919ca",
+      "remote_head_short": "20823dd",
+      "head_commit_message": "feat(gate8): bind RenOS durable production proof artifact",
       "private": true,
       "archived": false,
       "protected": false,
       "open_pull_requests": [
+        {
+          "number": 27,
+          "title": "feat(finance): Finance / Operations Control Plane v1",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "8afe1fcaafb331f70949adf0c9a1d8a512a42e21"
+        },
+        {
+          "number": 26,
+          "title": "ops: prove executable WORKS source-root capability",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "0c7d333a01ea9f46cc77f6cce198b6455908af2f"
+        },
+        {
+          "number": 24,
+          "title": "feat(booking): add canonical Booking Intent v1 contract",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "592b1c8c66ba28ad0f69bed43f21447bb29f1bc8"
+        },
+        {
+          "number": 23,
+          "title": "ci: prove RenOS exact head on Aftergraph runner",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "bb517f1bcdd5d5e61bac643ee29301dff076c203"
+        },
+        {
+          "number": 22,
+          "title": "feat(growth): consume verified RenOS growth outcomes",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "1bb4e2608c21bf116cb4fddfd4d95b10639bf3fb"
+        },
         {
           "number": 19,
           "title": "feat(dispatch): add T4 evidence readiness gate",
@@ -1834,6 +2513,13 @@
       "protected": false,
       "open_pull_requests": [
         {
+          "number": 5,
+          "title": "feat(palette): source-backed command palette",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "2a22d17c7c197e0714089a41d0ca8a10baaad7aa"
+        },
+        {
           "number": 4,
           "title": "feat(dispatch): render T4 evidence readiness",
           "is_draft": false,
@@ -1841,6 +2527,442 @@
           "head_sha": "1da92cdb98ec5e6d59416ecb832e10dc24479e87"
         }
       ],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/core",
+      "role": "tool-routing-control-plane",
+      "canonical_branch": "main",
+      "remote_head_sha": "86e5fd896a3b1e852988cbbbaa32245c70be2a28",
+      "remote_head_short": "86e5fd8",
+      "head_commit_message": "frontier: Labs Fabric v0.6 manifest-driven preflight runner (#17)",
+      "private": true,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [
+        {
+          "number": 18,
+          "title": "frontier: Labs Fabric v0.7 exact live-surface model",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "57ae5bb65dc3de0e0ab358cba6e53fc88626b974"
+        },
+        {
+          "number": 12,
+          "title": "frontier: agentic PR review bound to the head commit",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "04f81c635c681eae5b48d1e89a2ea1ae1138af0f"
+        }
+      ],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/concord",
+      "role": "unclassified",
+      "canonical_branch": "main",
+      "remote_head_sha": "3d34cd121cd4a63250f40bd050e2cdb00450c543",
+      "remote_head_short": "3d34cd1",
+      "head_commit_message": "docs(handoff): distinguish relay device credential from CONCORD_TOKEN",
+      "private": true,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [
+        {
+          "number": 8,
+          "title": "frontier: agentic PR review bound to the head commit",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "aac7422e5d13c5310b3b2ba6be60c780e6298e6e"
+        },
+        {
+          "number": 7,
+          "title": "Concord v1.0.0-rc.2: Cloudflare-native production release candidate",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "eb2d95399cbdebb83598bd01a2da9e19e407fca1"
+        },
+        {
+          "number": 5,
+          "title": "Concord v0.4 frontier: live Trust Gateway and verifier adapters",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "cdf32bc5359bd715cba8ecb1df4c01aa263144e9"
+        },
+        {
+          "number": 4,
+          "title": "Concord v0.3 frontier: governed correlation and independent verification",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "4fb97925713b869b682ab3cf5e3948449fc981fa"
+        },
+        {
+          "number": 3,
+          "title": "Concord v0.2 frontier: trusted signed sync and reconnect checkpoints",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "1b36c31602b19affa134f008efc3ee41c797ae1c"
+        }
+      ],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/demo-repository",
+      "role": "unclassified",
+      "canonical_branch": "main",
+      "remote_head_sha": "6791e8121236a39c3efe9c99239c5912716fe4b0",
+      "remote_head_short": "6791e81",
+      "head_commit_message": "Initial commit",
+      "private": true,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/engineering-crew-community",
+      "role": "unclassified",
+      "canonical_branch": "main",
+      "remote_head_sha": "4b6e03543f7326245d92d2c85a88ce6d0322a93f",
+      "remote_head_short": "4b6e035",
+      "head_commit_message": "mcp: answer initialize so standard MCP clients can connect (#5)",
+      "private": false,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [
+        {
+          "number": 3,
+          "title": "frontier: agentic PR review bound to the head commit",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "b8a0040225713783fc0fa54ed3dd2cf7c8dd2e4f"
+        }
+      ],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/fihim-eval-lab",
+      "role": "unclassified",
+      "canonical_branch": "main",
+      "remote_head_sha": "0cd28384135cc716a2927bc4b3484be751b14a0b",
+      "remote_head_short": "0cd2838",
+      "head_commit_message": "release(eval-lab): v4.7 decision receipt integrity",
+      "private": true,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [
+        {
+          "number": 20,
+          "title": "frontier: agentic PR review bound to the head commit",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "1628bf925a879c4705f9c9723c66fccc45a2eca5"
+        },
+        {
+          "number": 16,
+          "title": "fix: restore Fast Lane frontier invariants",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "34616e43d701ac4ba1862d6c81a5fa3e10633499"
+        },
+        {
+          "number": 5,
+          "title": "frontier: emit Aftergraph EvaluationEvidence",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "9da7e5767007398316085b72df0a6efbf10579b0"
+        },
+        {
+          "number": 2,
+          "title": "sut-discovery: register v0.31 as a known SUT version",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "9c0f960cfacf4ef9a830f64eee2a1e847cd969f8"
+        },
+        {
+          "number": 1,
+          "title": "compare: never dilute a critical regression in the aggregate delta",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "7d949aba8c22a3fa3ef11ae5d7c5526a58346e36"
+        }
+      ],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/fihim-vnext",
+      "role": "unclassified",
+      "canonical_branch": "main",
+      "remote_head_sha": "7706be3ebcd3d5cbf9a649e3b87a4a13c1b9a7b0",
+      "remote_head_short": "7706be3",
+      "head_commit_message": "frontier(decision): verify Runtime receipts and fail closed in production",
+      "private": true,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [
+        {
+          "number": 10,
+          "title": "fix(runtime): preserve zero-dollar heartbeat budgets",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "b2faf47bbd418c849d7f3f32cb5f32ebd93ce4da"
+        },
+        {
+          "number": 2,
+          "title": "frontier: agentic PR review bound to the head commit",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "e17a5a26b58cf8de194aba6ed404b585a6be74fd"
+        },
+        {
+          "number": 1,
+          "title": "frontier: define FIHIM ToolFabric consumer contract",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "443d6dec34bfc341e4ab8a96037d58e5a06b926e"
+        }
+      ],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/friday-mascot",
+      "role": "unclassified",
+      "canonical_branch": "main",
+      "remote_head_sha": "e71133d4845ac41f47a9474543486945f8dce1ab",
+      "remote_head_short": "e71133d",
+      "head_commit_message": "fix(tests): pass native file paths to ffprobe on Windows",
+      "private": true,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [
+        {
+          "number": 2,
+          "title": "frontier: agentic PR review bound to the head commit",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "7493c65777be1a2f2eeda721dd3e4cd5faec204b"
+        },
+        {
+          "number": 1,
+          "title": "Fri v0.41 — Physical Intelligence Frontier",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "8332df0fcd69327680eec2f8feb1aea3acd905c5"
+        }
+      ],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/nikkahcerti",
+      "role": "unclassified",
+      "canonical_branch": "main",
+      "remote_head_sha": "72cba1c131c6699b3d5ae350a4edcc1b8f003df0",
+      "remote_head_short": "72cba1c",
+      "head_commit_message": "docs: reconcile release checklist with verified v12 evidence",
+      "private": true,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [
+        {
+          "number": 13,
+          "title": "feat: immersive digital Nikkah invitation v3",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "81fa0910f4fdc6f0d077f14a331347babbe5da05"
+        },
+        {
+          "number": 12,
+          "title": "security: harden payment authority proof decisions and order tokens",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "3e7cbe5dc5ba270ff47c80f937331b6fc8cc6b10"
+        },
+        {
+          "number": 9,
+          "title": "fix: compensate reference storage partial failures v14",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "9361244afa2b1f11d6b8efad6515f1b49fe6d2e7"
+        },
+        {
+          "number": 8,
+          "title": "feat: retry-safe order creation v13",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "92f40206e5e1de2da67e2db4ef4a34b7d40530a8"
+        }
+      ],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/Pock-bot",
+      "role": "unclassified",
+      "canonical_branch": "main",
+      "remote_head_sha": "cf723abd9002ab82ea48e8d35c452377495fc1d6",
+      "remote_head_short": "cf723ab",
+      "head_commit_message": "release: record frozen artifact hashes in M4 release evidence",
+      "private": true,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [
+        {
+          "number": 19,
+          "title": "frontier: agentic PR review bound to the head commit",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "d84bc72989070799e6cad8db17dea1e763481dab"
+        },
+        {
+          "number": 15,
+          "title": "docs: define M8 Production Habitat execution gates",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "97b3f4ac3b0e3cc19058a807484f73f9298fa8ec"
+        },
+        {
+          "number": 7,
+          "title": "release: record Pock Bot v23 M7 + PUX5.2 canonical provenance",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "97efc0c74ee7ac943dccc806627c3968bb82a3e1"
+        }
+      ],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/STEWARD-by-Aftergraph",
+      "role": "unclassified",
+      "canonical_branch": "main",
+      "remote_head_sha": "7f20dc2db295135b77a47ccf4b81621a17514132",
+      "remote_head_short": "7f20dc2",
+      "head_commit_message": "feat(steward): materialize MissionAcceptance from WORKS verified projection",
+      "private": false,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [
+        {
+          "number": 48,
+          "title": "research(study015): add L7 indeterminate-effect reconciliation proof",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "265c9975dedab8d1b26136ad1bec9736da9e6917"
+        },
+        {
+          "number": 47,
+          "title": "research(study015): add L6 cross-host causal failover proof",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "0dc07504bd926d765ea71467bfd2f8177d40cb0c"
+        },
+        {
+          "number": 46,
+          "title": "research(study015): add L5 durable causal recovery proof",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "397c3c0a5b4292f74d7959b1ea21831ffcc12080"
+        },
+        {
+          "number": 45,
+          "title": "research(study015): add L4 independent repeatability proof",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "2391331fb9c23ae86bd6a791448becd1e63eda2a"
+        },
+        {
+          "number": 44,
+          "title": "research: orchestrate STUDY-015 LIVE_CAUSAL_SLICE",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "de491d04b24ea86c23b68fb886c98d01f8fd3eea"
+        },
+        {
+          "number": 43,
+          "title": "research: add STUDY-015 causal Golden Mission composition probe",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "8427d56c8e1ce902486512e219017475a701fe21"
+        },
+        {
+          "number": 42,
+          "title": "ci(p2): owner-chain falsification evidence gate",
+          "is_draft": true,
+          "mergeable": "UNKNOWN",
+          "head_sha": "764638b74eb11ef672fb0a25f1647077e1797507"
+        },
+        {
+          "number": 37,
+          "title": "feat(visual): govern persona accessory runtime",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "7f9327c9c08410911632765b615fb37d30753e78"
+        },
+        {
+          "number": 24,
+          "title": "feat(p2): add secret-safe frontier doctor",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "4aa614f6e8302d4a848e5a98744111b2356927f6"
+        },
+        {
+          "number": 17,
+          "title": "feat(p2): add production binding readiness gate",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "4ba5bf43bbc4d4a17e0b17095646b1e9bd8e1630"
+        },
+        {
+          "number": 16,
+          "title": "test(p2): prove remote Git on one Runtime/WORKS causal chain",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "d099b68a2e4ca617c1e7bb913f750f3082799f03"
+        },
+        {
+          "number": 15,
+          "title": "feat(p2): add same-causal owner acceptance evidence gate",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "75a0899396cfe125b823b4b93e500abb5538e571"
+        },
+        {
+          "number": 14,
+          "title": "test(p2): prove Trust Gateway to AIE action-time chain",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "2fee57aa808a790afd073fd1525e730469764f0f"
+        },
+        {
+          "number": 13,
+          "title": "test(p2): prove Runtime command against WORKS over real HTTP",
+          "is_draft": false,
+          "mergeable": "UNKNOWN",
+          "head_sha": "a89444065e5797f8087e6451b44b134c7bee84c0"
+        }
+      ],
+      "authoritative_contracts": [],
+      "consumed_contracts": []
+    },
+    {
+      "full_name": "Aftergraph/urban-potato-demo-repository",
+      "role": "unclassified",
+      "canonical_branch": "main",
+      "remote_head_sha": "03d96869268a0d7dd4d6204148dc57c1a6a42843",
+      "remote_head_short": "03d9686",
+      "head_commit_message": "Initial commit",
+      "private": true,
+      "archived": false,
+      "protected": false,
+      "open_pull_requests": [],
       "authoritative_contracts": [],
       "consumed_contracts": []
     }
