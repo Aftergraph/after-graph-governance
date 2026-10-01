@@ -1,27 +1,27 @@
 {
-  "schema":"economic-legal-reconciliation-v7-readiness/1.0",
-  "candidate":"economic.live-settlement/v1",
-  "lifecycle":"candidate",
-  "phase":"legal-custodial-registry-reconciliation-v7",
-  "status":"IMPLEMENTED_PENDING_MERGED_EVIDENCE",
-  "verified_design_constraints":{
-    "canonical_asset_right_identity":true,
-    "authoritative_registry_required":true,
-    "custodial_record_required":true,
-    "ledger_representation_required":true,
-    "legal_instrument_hash_binding":true,
-    "rights_hash_binding":true,
-    "distinct_source_evidence_required":true,
-    "inactive_source_fails_closed":true,
-    "independent_verifier_recomputes_alignment":true,
-    "ledger_representation_not_authoritative":true,
-    "legal_finality":false,
-    "external_effects":0
+  "schema": "economic-legal-reconciliation-v7-readiness/1.0",
+  "candidate": "economic.live-settlement/v1",
+  "lifecycle": "candidate",
+  "phase": "legal-custodial-registry-reconciliation-v7",
+  "status": "VERIFIED_MERGED_IMPLEMENTATIONS",
+  "verified_design_constraints": {
+    "canonical_asset_right_identity": true,
+    "authoritative_registry_required": true,
+    "custodial_record_required": true,
+    "ledger_representation_required": true,
+    "legal_instrument_hash_binding": true,
+    "rights_hash_binding": true,
+    "distinct_source_evidence_required": true,
+    "inactive_source_fails_closed": true,
+    "independent_verifier_recomputes_alignment": true,
+    "ledger_representation_not_authoritative": true,
+    "legal_finality": false,
+    "external_effects": 0
   },
-  "promotion_allowed":false,
-  "canonical_promotion_allowed":false,
-  "carries_authority":false,
-  "remaining":[
+  "promotion_allowed": false,
+  "canonical_promotion_allowed": false,
+  "carries_authority": false,
+  "remaining": [
     "real authoritative registry read-only adapter and evidence",
     "real external custodian read-only adapter and evidence",
     "real ledger/token representation mapping for the same right",
@@ -29,5 +29,28 @@
     "production-equivalent same-right reconciliation campaign",
     "bounded live-value canary after signer/custody attestations",
     "separate governance-owned canonical promotion evidence"
-  ]
+  ],
+  "implementation_refs": {
+    "works_execution": "891733fa6c47e68254ad3f80b9510b1750b736df",
+    "sentinel": "c25d644e2fc5e7058b30090c9994d9e306e51ca3"
+  },
+  "verifier_refs": [
+    "github-actions:Aftergraph/works-execution/run/36806115791",
+    "github-actions:Aftergraph/works-execution/run/36806115783",
+    "github-actions:Aftergraph/sentinel/run/36806118905"
+  ],
+  "verified": {
+    "works_go_tests": true,
+    "works_codeql": true,
+    "works_merged": true,
+    "sentinel_independent_verifier": true,
+    "sentinel_merged": true,
+    "identity_mismatch_rejected": true,
+    "legal_instrument_mismatch_rejected": true,
+    "rights_mismatch_rejected": true,
+    "inactive_record_rejected": true,
+    "reused_evidence_rejected": true,
+    "finality_overclaim_rejected": true,
+    "external_effect_overclaim_rejected": true
+  }
 }
