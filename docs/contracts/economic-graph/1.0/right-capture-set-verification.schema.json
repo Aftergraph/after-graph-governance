@@ -1,0 +1,33 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aftergraph.dev/contracts/economic-right-capture-set-verification/1.0.json",
+  "title":"Economic Right Capture Set Verification v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema","valid","state","sourceCaptures","executionAuthority","final","promotionAuthority","externalEffects","reasons"],
+  "properties":{
+    "schema":{"const":"aftergraph.economic-right-capture-set-verification/v1"},
+    "valid":{"type":"boolean"},
+    "state":{"enum":["VERIFIED_SOURCE_CAPTURE_SET","INVALID"]},
+    "sourceCaptures":{
+      "type":"array",
+      "items":{
+        "type":"object",
+        "additionalProperties":false,
+        "required":["sourceClass","sourceId","evidenceHash","generation","observedAtUnix"],
+        "properties":{
+          "sourceClass":{"enum":["registry","custody","representation"]},
+          "sourceId":{"type":"string","minLength":1},
+          "evidenceHash":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+          "generation":{"type":"integer","minimum":1},
+          "observedAtUnix":{"type":"integer","minimum":1}
+        }
+      }
+    },
+    "executionAuthority":{"const":false},
+    "final":{"const":false},
+    "promotionAuthority":{"const":false},
+    "externalEffects":{"const":0},
+    "reasons":{"type":"array","items":{"type":"string","minLength":1}}
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema":"economic-source-capture-v12/acceptance-vectors",
+  "candidate":"economic.live-settlement/v1",
+  "lifecycle":"candidate",
+  "vectors":[
+    {
+      "id":"ESC-001",
+      "scenario":"Runtime read-only registry/custody/representation records are wrapped with generation/cursor metadata",
+      "expected":{"state":"VERIFIED_SOURCE_CAPTURE_SET","valid":true,"executionAuthority":false,"final":false,"externalEffects":0}
+    },
+    {"id":"ESC-002","scenario":"capture source class or source ID differs from record schema identity","expected":{"valid":false,"state":"INVALID"}},
+    {"id":"ESC-003","scenario":"record digest or capture digest is tampered","expected":{"valid":false,"state":"INVALID"}},
+    {"id":"ESC-004","scenario":"capture observedAtUnix differs from record observedAt","expected":{"valid":false,"state":"INVALID"}},
+    {"id":"ESC-005","scenario":"generation is non-positive or cursor invalid","expected":{"valid":false,"state":"INVALID"}},
+    {"id":"ESC-006","scenario":"transport is not READ_ONLY or capture claims effects/finality","expected":{"valid":false,"state":"INVALID"}},
+    {"id":"ESC-007","scenario":"capture set misses or duplicates registry/custody/representation class","expected":{"valid":false,"state":"INVALID"}},
+    {"id":"ESC-008","scenario":"capture set reuses raw-response evidence hash","expected":{"valid":false,"state":"INVALID"}},
+    {
+      "id":"ESC-009",
+      "scenario":"verified capture set projects into v9/v11 source metadata",
+      "expected":{"projectionFields":["sourceClass","sourceId","evidenceHash","generation","observedAtUnix"],"authority":false}
+    }
+  ],
+  "required_invariants":[
+    "source class and source ID are derived from the source record schema",
+    "record observedAt determines observedAtUnix",
+    "generation is strictly positive and provider cursor is explicit",
+    "recordDigest binds the canonical read-only record",
+    "captureHash binds record plus source cursor/generation metadata",
+    "source transport is READ_ONLY",
+    "verified capture-set contains exactly registry, custody and representation",
+    "projected source metadata is the same shape consumed by v9 and v11",
+    "capture verification does not create execution or promotion authority",
+    "externalEffects remain 0"
+  ]
+}

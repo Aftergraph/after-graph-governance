@@ -1,0 +1,36 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aftergraph.dev/contracts/economic-right-capture/1.0.json",
+  "title":"Economic Right Capture v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema","sourceClass","sourceId","generation","cursor","observedAtUnix",
+    "evidenceHash","recordDigest","record","sourceTransport","immutable",
+    "final","externalEffects","captureHash"
+  ],
+  "properties":{
+    "schema":{"const":"aftergraph.economic-right-capture/v1"},
+    "sourceClass":{"enum":["registry","custody","representation"]},
+    "sourceId":{"type":"string","minLength":1},
+    "generation":{"type":"integer","minimum":1},
+    "cursor":{
+      "type":"object",
+      "additionalProperties":false,
+      "required":["kind","value"],
+      "properties":{
+        "kind":{"enum":["version","sequence","block","offset","etag"]},
+        "value":{"type":"string","minLength":1}
+      }
+    },
+    "observedAtUnix":{"type":"integer","minimum":1},
+    "evidenceHash":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "recordDigest":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "record":{"type":"object"},
+    "sourceTransport":{"const":"READ_ONLY"},
+    "immutable":{"const":true},
+    "final":{"const":false},
+    "externalEffects":{"const":0},
+    "captureHash":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"}
+  }
+}

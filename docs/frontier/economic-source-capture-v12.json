@@ -1,0 +1,57 @@
+{
+  "schema": "economic-source-capture-v12-readiness/1.0",
+  "candidate": "economic.live-settlement/v1",
+  "lifecycle": "candidate",
+  "phase": "source-cursor-generation-binding-v12",
+  "status": "VERIFIED_MERGED_IMPLEMENTATIONS",
+  "readiness": {
+    "runtime_capture_envelope": "verified_merged",
+    "works_capture_projection": "verified_merged",
+    "sentinel_capture_verifier": "verified_merged",
+    "record_schema_identity_binding": true,
+    "record_timestamp_binding": true,
+    "generation_binding": true,
+    "cursor_binding": true,
+    "record_digest_binding": true,
+    "capture_digest_binding": true,
+    "v9_v11_projection_compatibility": true,
+    "executionAuthority": false,
+    "final": false,
+    "promotionAuthority": false,
+    "externalEffects": 0
+  },
+  "implementation_refs": {
+    "runtime": "1d9a4954f4feccfcf8bbab7f2b398ee0ba72ba18",
+    "works_execution": "291dec9866409d5a5411221c8a4082c2aa24bff9",
+    "sentinel": "9bac787b92edac57cf51618c27896e59d3104a33"
+  },
+  "promotion_allowed": false,
+  "canonical_promotion_allowed": false,
+  "carries_authority": false,
+  "remaining": [
+    "configure provider-specific cursor/generation mappings for real read-only sources",
+    "persist prior generations in the campaign state store",
+    "capture one real three-source set for the same asset/right",
+    "feed the verified set through v9 freshness and v11 EvidencePack",
+    "jurisdiction-specific legal mapping before any legal-title claim",
+    "separate governance-owned promotion evidence before live execution"
+  ],
+  "verifier_refs": [
+    "github-actions:Aftergraph/runtime/run/36808948367",
+    "github-actions:Aftergraph/works-execution/run/36808995103",
+    "github-actions:Aftergraph/works-execution/run/36808995173",
+    "github-actions:Aftergraph/sentinel/run/36809072403"
+  ],
+  "verified": {
+    "runtime_build_and_tests": true,
+    "runtime_merged": true,
+    "works_go_tests": true,
+    "works_codeql": true,
+    "works_merged": true,
+    "sentinel_capture_verifier": true,
+    "sentinel_merged": true,
+    "v9_projection_compatibility": true,
+    "v11_projection_compatibility": true,
+    "source_capture_non_authoritative": true
+  }
+}
