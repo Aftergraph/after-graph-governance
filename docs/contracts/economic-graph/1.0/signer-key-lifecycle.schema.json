@@ -1,0 +1,33 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aftergraph.dev/contracts/economic-signer-key-lifecycle/1.0.json",
+  "title":"Economic Signer Key Lifecycle Evidence v1",
+  "oneOf":[
+    {
+      "type":"object",
+      "required":["schema","providerId","oldGeneration","newGeneration","oldState","newState","privateKeyMaterialTransferred","externalEffects"],
+      "properties":{
+        "schema":{"const":"aftergraph.signer-key-rotation/v1"},
+        "providerId":{"type":"string"},
+        "oldGeneration":{"type":"integer","minimum":1},
+        "newGeneration":{"type":"integer","minimum":2},
+        "oldState":{"const":"RETIRED"},
+        "newState":{"const":"ACTIVE"},
+        "privateKeyMaterialTransferred":{"const":false},
+        "externalEffects":{"const":0}
+      }
+    },
+    {
+      "type":"object",
+      "required":["schema","providerId","generation","state","reason","externalEffects"],
+      "properties":{
+        "schema":{"const":"aftergraph.signer-key-revocation/v1"},
+        "providerId":{"type":"string"},
+        "generation":{"type":"integer","minimum":1},
+        "state":{"const":"REVOKED"},
+        "reason":{"type":"string","minLength":1},
+        "externalEffects":{"const":0}
+      }
+    }
+  ]
+}
