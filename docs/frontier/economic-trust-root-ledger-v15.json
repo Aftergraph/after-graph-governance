@@ -1,0 +1,28 @@
+{
+  "schema":"economic-trust-root-ledger-v15-readiness/1.0",
+  "candidate":"economic.live-settlement/v1",
+  "lifecycle":"candidate",
+  "phase":"durable-trust-root-continuity-v15",
+  "status":"IMPLEMENTED_PENDING_MERGED_EVIDENCE",
+  "ownership":{
+    "governance":"trust-root policy and pinned identity",
+    "works":"durable monotonic trust-root state",
+    "sentinel":"independent transition verification"
+  },
+  "design":{
+    "works_schema_version":16,
+    "sequential_generation":true,
+    "same_generation_equivocation_rejected":true,
+    "revocation_floor_monotonic":true,
+    "revoked_key_revival_rejected":true,
+    "explicit_new_key_rotation_allowed":true,
+    "state_digest_verified_on_read":true,
+    "executionAuthority":false,
+    "final":false,
+    "promotionAuthority":false,
+    "externalEffects":0
+  },
+  "promotion_allowed":false,
+  "canonical_promotion_allowed":false,
+  "carries_authority":false
+}
