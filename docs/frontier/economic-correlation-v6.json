@@ -3,7 +3,7 @@
   "candidate": "economic.live-settlement/v1",
   "lifecycle": "candidate",
   "phase": "same-economic-transaction-correlation-v6",
-  "status": "VERIFIED_PENDING_WORKS_MERGE",
+  "status": "VERIFIED_MERGED_IMPLEMENTATIONS",
   "verified_design_constraints": {
     "single_economic_transaction_id": true,
     "intent_hash_binding": true,
@@ -30,11 +30,7 @@
     "separate governance-owned canonical promotion evidence"
   ],
   "implementation_refs": {
-    "works_execution_pending": {
-      "pr": 187,
-      "head": "d1dac209a4d39e5762414bff3101c6b4144b4eb8",
-      "merge_required": true
-    },
+    "works_execution": "f4f7511ec0a668f7ce6a714566616fc568853cd2",
     "sentinel": "d69b6ad72fd66ec060b19b9a8b5a559e257107e0"
   },
   "verifier_refs": [
@@ -52,7 +48,8 @@
     "missing_receipt_reconciles": true,
     "unknown_outcome_reconciles": true,
     "reused_evidence_rejected": true,
-    "finality_overclaim_rejected": true
-  },
-  "merge_blocker": "WORKS repository requires merge queue; connector exposes no enqueue mutation and direct merge is correctly rejected by ruleset."
+    "finality_overclaim_rejected": true,
+    "works_merged": true,
+    "sentinel_merged": true
+  }
 }
