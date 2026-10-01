@@ -1,0 +1,26 @@
+{
+  "schema":"economic-source-attestation-v14/acceptance-vectors",
+  "candidate":"economic.live-settlement/v1",
+  "vectors":[
+    {"id":"ESA-001","scenario":"valid signature matches governance-pinned source root","expected":{"state":"VERIFIED_GOVERNANCE_PINNED_SOURCE","sourceTrusted":true,"executionAuthority":false}},
+    {"id":"ESA-002","scenario":"source identity differs from pinned root","expected":{"valid":false}},
+    {"id":"ESA-003","scenario":"public key fingerprint differs from pinned root","expected":{"valid":false}},
+    {"id":"ESA-004","scenario":"attestation expired or not yet valid","expected":{"valid":false}},
+    {"id":"ESA-005","scenario":"attestation generation below revocation floor","expected":{"valid":false}},
+    {"id":"ESA-006","scenario":"trust root is REVOKED","expected":{"valid":false}},
+    {"id":"ESA-007","scenario":"capture/evidence payload is tampered","expected":{"valid":false}},
+    {"id":"ESA-008","scenario":"signature is invalid","expected":{"valid":false}},
+    {"id":"ESA-009","scenario":"caller supplies unpinned key","expected":{"valid":false}},
+    {"id":"ESA-010","scenario":"registry/custody/representation set all verify","expected":{"state":"VERIFIED_SOURCE_TRUST_SET","executionAuthority":false,"final":false,"externalEffects":0}}
+  ],
+  "required_invariants":[
+    "trust roots are governance-pinned by source class and source id",
+    "caller-supplied verification keys alone never establish trust",
+    "signature, capture hash and evidence hash are cryptographically bound",
+    "validity windows are enforced",
+    "revocation uses minimum accepted attestation generation",
+    "all three source classes require independent trust roots",
+    "verified trust never grants execution or promotion authority",
+    "externalEffects remain 0"
+  ]
+}
