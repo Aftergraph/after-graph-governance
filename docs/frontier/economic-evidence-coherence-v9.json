@@ -1,30 +1,56 @@
 {
-  "schema":"economic-evidence-coherence-v9-readiness/1.0",
-  "candidate":"economic.live-settlement/v1",
-  "lifecycle":"candidate",
-  "phase":"temporal-provenance-coherence-v9",
-  "status":"IMPLEMENTED_PENDING_MERGED_EVIDENCE",
-  "verified_design_constraints":{
-    "required_source_classes":["registry","custody","representation"],
-    "distinct_evidence_hashes":true,
-    "strict_generation_monotonicity":true,
-    "max_age_policy":true,
-    "max_cross_source_skew_policy":true,
-    "future_clock_tolerance_policy":true,
-    "independent_verifier_recomputes_coherence":true,
-    "stale_evidence_fails_closed":true,
-    "final":false,
-    "external_effects":0
+  "schema": "economic-evidence-coherence-v9-readiness/1.0",
+  "candidate": "economic.live-settlement/v1",
+  "lifecycle": "candidate",
+  "phase": "temporal-provenance-coherence-v9",
+  "status": "VERIFIED_MERGED_IMPLEMENTATIONS",
+  "verified_design_constraints": {
+    "required_source_classes": [
+      "registry",
+      "custody",
+      "representation"
+    ],
+    "distinct_evidence_hashes": true,
+    "strict_generation_monotonicity": true,
+    "max_age_policy": true,
+    "max_cross_source_skew_policy": true,
+    "future_clock_tolerance_policy": true,
+    "independent_verifier_recomputes_coherence": true,
+    "stale_evidence_fails_closed": true,
+    "final": false,
+    "external_effects": 0
   },
-  "promotion_allowed":false,
-  "canonical_promotion_allowed":false,
-  "carries_authority":false,
-  "remaining":[
+  "promotion_allowed": false,
+  "canonical_promotion_allowed": false,
+  "carries_authority": false,
+  "remaining": [
     "capture real source generations/timestamps through Runtime v8",
     "establish source-specific freshness SLAs for supported registry/custodian/ledger providers",
     "persist previous-generation state across reconciliation runs",
     "run stale/replay fault injection against real provider sandboxes",
     "combine v9 temporal coherence with v7 legal reconciliation and v6 transaction correlation",
     "separate governance-owned canonical promotion evidence"
-  ]
+  ],
+  "implementation_refs": {
+    "works_execution": "f62b0f6134518e0ddb13ef7fdf454c0555444566",
+    "sentinel": "ff356875b44719522322f5403756ce821b0f3deb"
+  },
+  "verifier_refs": [
+    "github-actions:Aftergraph/works-execution/run/36806914454",
+    "github-actions:Aftergraph/works-execution/run/36806914435",
+    "github-actions:Aftergraph/sentinel/run/36806919347"
+  ],
+  "verified": {
+    "works_go_tests": true,
+    "works_codeql": true,
+    "works_merged": true,
+    "sentinel_independent_verifier": true,
+    "sentinel_merged": true,
+    "stale_rejected": true,
+    "skew_rejected": true,
+    "generation_replay_rejected": true,
+    "future_timestamp_rejected": true,
+    "missing_or_duplicate_source_rejected": true,
+    "evidence_reuse_rejected": true
+  }
 }
