@@ -1,0 +1,30 @@
+{
+  "schema":"economic-evidence-coherence-v9-readiness/1.0",
+  "candidate":"economic.live-settlement/v1",
+  "lifecycle":"candidate",
+  "phase":"temporal-provenance-coherence-v9",
+  "status":"IMPLEMENTED_PENDING_MERGED_EVIDENCE",
+  "verified_design_constraints":{
+    "required_source_classes":["registry","custody","representation"],
+    "distinct_evidence_hashes":true,
+    "strict_generation_monotonicity":true,
+    "max_age_policy":true,
+    "max_cross_source_skew_policy":true,
+    "future_clock_tolerance_policy":true,
+    "independent_verifier_recomputes_coherence":true,
+    "stale_evidence_fails_closed":true,
+    "final":false,
+    "external_effects":0
+  },
+  "promotion_allowed":false,
+  "canonical_promotion_allowed":false,
+  "carries_authority":false,
+  "remaining":[
+    "capture real source generations/timestamps through Runtime v8",
+    "establish source-specific freshness SLAs for supported registry/custodian/ledger providers",
+    "persist previous-generation state across reconciliation runs",
+    "run stale/replay fault injection against real provider sandboxes",
+    "combine v9 temporal coherence with v7 legal reconciliation and v6 transaction correlation",
+    "separate governance-owned canonical promotion evidence"
+  ]
+}
