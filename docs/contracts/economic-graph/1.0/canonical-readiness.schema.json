@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.dev/contracts/economic-canonical-readiness/1.0.json",
+  "title": "Economic Canonical Readiness Evidence v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema","externalEffects","signatureProduced","signingMaterialExposed",
+    "liveCustodyApiCalled","canBroadcast","canMoveAssets","final",
+    "humanApprovalBound","authorityLeaseBound","killSwitchCovered",
+    "revocationCovered","partialFailureCovered","compensationCovered",
+    "custodyRecoveryReferenceBound"
+  ],
+  "properties": {
+    "schema": { "const": "aftergraph.economic-canonical-readiness-evidence/v1" },
+    "externalEffects": { "const": 0 },
+    "signatureProduced": { "const": false },
+    "signingMaterialExposed": { "const": false },
+    "liveCustodyApiCalled": { "const": false },
+    "canBroadcast": { "const": false },
+    "canMoveAssets": { "const": false },
+    "final": { "const": false },
+    "humanApprovalBound": { "const": true },
+    "authorityLeaseBound": { "const": true },
+    "killSwitchCovered": { "const": true },
+    "revocationCovered": { "const": true },
+    "partialFailureCovered": { "const": true },
+    "compensationCovered": { "const": true },
+    "custodyRecoveryReferenceBound": { "const": true }
+  }
+}

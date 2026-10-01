@@ -1,0 +1,55 @@
+{
+  "schema": "economic-canonical-readiness-v2/1.0",
+  "candidate": "economic.live-settlement/v1",
+  "lifecycle": "candidate",
+  "phase": "canonical-readiness-v2",
+  "readiness": {
+    "signer_preparation_boundary": "verified",
+    "raw_signing_material_exposure": "prohibited",
+    "signature_production": "disabled",
+    "broadcast": "disabled",
+    "custody_reference_boundary": "verified",
+    "live_custody_api": "disabled",
+    "asset_movement": "disabled",
+    "kill_switch": "verified_zero_effect",
+    "approval_revocation": "verified_zero_effect",
+    "partial_failure_compensation": "verified_zero_effect",
+    "live_value_execution": "disabled",
+    "independent_verifier": "verified"
+  },
+  "evidence_expected_from": [
+    "Aftergraph/trust-gateway",
+    "Aftergraph/works-execution",
+    "Aftergraph/sentinel"
+  ],
+  "promotion_allowed": false,
+  "canonical_promotion_allowed": false,
+  "carries_authority": false,
+  "evidence_refs": [
+    "github:Aftergraph/trust-gateway@56270fedb057884a2fd6fec500358f4dd01d9d47",
+    "github:Aftergraph/works-execution@e7bc30a56ad14410927daa5c83e561d918ccb1da",
+    "github:Aftergraph/sentinel@0942f020be997a8f9f5c7c352a93e272b18c8f3b"
+  ],
+  "verified_invariants": [
+    "signer preparation requires human approval and authority lease",
+    "no signature is produced",
+    "signing material is never exposed",
+    "broadcast remains disabled",
+    "custody is reference verification only",
+    "live custody API remains disabled",
+    "asset movement remains disabled",
+    "kill switch aborts fail closed",
+    "approval revocation aborts fail closed",
+    "partial failure requires compensation or reconciliation",
+    "simulated compensation never becomes FINAL",
+    "all canonical-readiness evidence remains zero external effect"
+  ],
+  "canonical_requirements_remaining": [
+    "same-economic-transaction settlement correlation across real production-equivalent rails",
+    "independent verification of a production signer service using HSM or MPC without exposing key material to agents",
+    "independent verification of live custody and recovery integration",
+    "bounded live-value canary under explicit human authorization",
+    "legal and custodial registry reconciliation for supported asset classes",
+    "separate governance-owned canonical promotion decision"
+  ]
+}
