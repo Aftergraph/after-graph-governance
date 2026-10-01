@@ -30,7 +30,10 @@
         "skill",
         "execution_policy",
         "work_receipt",
-        "agent_eval"
+        "agent_eval",
+        "context_retrieval",
+        "feedback_event",
+        "visual_edit"
       ],
       "properties": {
         "capability": {
@@ -53,6 +56,15 @@
         },
         "agent_eval": {
           "const": "agent-eval/0.1"
+        },
+        "context_retrieval": {
+          "const": "context-retrieval/0.1"
+        },
+        "feedback_event": {
+          "const": "feedback-event/0.1"
+        },
+        "visual_edit": {
+          "const": "visual-edit/0.1"
         }
       }
     },
