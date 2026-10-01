@@ -1,0 +1,34 @@
+{
+  "schema":"economic-right-source-readonly-v8/acceptance-vectors",
+  "candidate":"economic.live-settlement/v1",
+  "lifecycle":"candidate",
+  "vectors":[
+    {"id":"ERS-001","scenario":"authoritative registry read uses GET only","expected":{"method":"GET","externalEffects":0,"final":false}},
+    {"id":"ERS-002","scenario":"remote source uses non-TLS HTTP","expected":{"decision":"REJECT","reason":"ECONOMIC_RIGHT_SOURCE_HTTPS_REQUIRED"}},
+    {"id":"ERS-003","scenario":"loopback test source uses HTTP","expected":{"allowed":true,"externalEffects":0}},
+    {"id":"ERS-004","scenario":"bearer token authenticates provider request","expected":{"credentialPresentInEvidence":false}},
+    {"id":"ERS-005","scenario":"provider response exceeds configured size bound","expected":{"decision":"REJECT","reason":"ECONOMIC_RIGHT_SOURCE_RESPONSE_TOO_LARGE"}},
+    {"id":"ERS-006","scenario":"provider returns invalid canonical hash/status","expected":{"decision":"REJECT"}},
+    {"id":"ERS-007","scenario":"absolute or protocol-relative path attempts host escape","expected":{"decision":"REJECT","reason":"ECONOMIC_RIGHT_SOURCE_PATH_INVALID"}},
+    {"id":"ERS-008","scenario":"Runtime derives evidenceHash from raw response bytes","expected":{"evidenceHashComputedByRuntime":true,"pattern":"sha256"}},
+    {"id":"ERS-009","scenario":"registry/custody/representation observations emitted","expected":{"schemas":["aftergraph.authoritative-asset-registry-record/v1","aftergraph.custodial-right-record/v1","aftergraph.ledger-asset-representation-record/v1"],"externalEffects":0,"final":false}}
+  ],
+  "required_invariants":[
+    "source transport is read-only",
+    "remote sources require TLS",
+    "loopback HTTP is test-only",
+    "bearer credentials never enter evidence receipts",
+    "provider response size is bounded",
+    "Runtime computes source evidence hash from raw provider response",
+    "mapped canonical hashes and status are validated before emission",
+    "source host cannot be replaced by observation path",
+    "all emitted records remain zero-effect and non-final"
+  ],
+  "non_claims":[
+    "a specific production registry provider is integrated",
+    "a specific production custodian is integrated",
+    "ledger observation proves legal title",
+    "live custody writes are enabled",
+    "live settlement is canonical"
+  ]
+}
