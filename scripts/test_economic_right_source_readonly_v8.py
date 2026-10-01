@@ -25,7 +25,12 @@ class RightSourceReadonlyV8(unittest.TestCase):
     self.assertFalse(r["carries_authority"])
     self.assertEqual(r["readiness"]["external_effects"],0)
     self.assertFalse(r["readiness"]["final"])
-    self.assertTrue(r["runtime_ref"]["merge_required"])
+    self.assertFalse(r["runtime_ref"]["merge_required"])
+    self.assertEqual(r["runtime_ref"]["merge_sha"],"c5a75498eb308eded3bb08cbaa2b2de739b9499c")
+    self.assertEqual(r["status"],"VERIFIED_MERGED_RUNTIME")
+    self.assertTrue(r["verified"]["runtime_build"])
+    self.assertTrue(r["verified"]["runtime_tests"])
+    self.assertTrue(r["verified"]["runtime_merged"])
     self.assertTrue(r["remaining"])
   def test_v8_outputs_are_v7_legal_record_schemas(self):
     schemas=set()
