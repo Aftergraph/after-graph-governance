@@ -1,0 +1,24 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aftergraph.dev/contracts/economic-signer-provider/1.0.json",
+  "title":"Economic Opaque Signer Provider Evidence v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema","providerId","keyHandle","keyGeneration","keyStateAtSigning",
+    "publicKeyFingerprint","signingMaterialExposed","transactionPayloadSigned",
+    "canBroadcast","externalEffects"
+  ],
+  "properties":{
+    "schema":{"const":"aftergraph.external-signer-receipt/v1"},
+    "providerId":{"type":"string","pattern":"^signer_[A-Za-z0-9_-]{8,}$"},
+    "keyHandle":{"type":"string","pattern":"^keyref_[A-Za-z0-9_-]{12,}$"},
+    "keyGeneration":{"type":"integer","minimum":1},
+    "keyStateAtSigning":{"const":"ACTIVE"},
+    "publicKeyFingerprint":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "signingMaterialExposed":{"const":false},
+    "transactionPayloadSigned":{"const":false},
+    "canBroadcast":{"const":false},
+    "externalEffects":{"const":0}
+  }
+}
