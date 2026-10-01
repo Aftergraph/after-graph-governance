@@ -82,7 +82,9 @@
         "admission",
         "durable_execution",
         "runtime",
-        "verification"
+        "verification",
+        "skills",
+        "feedback_observation"
       ],
       "properties": {
         "governance": {
@@ -105,6 +107,12 @@
         },
         "verification": {
           "const": "Aftergraph/sentinel"
+        },
+        "skills": {
+          "const": "Aftergraph/skills-vault"
+        },
+        "feedback_observation": {
+          "const": "Aftergraph/wi-backend"
         }
       }
     },
