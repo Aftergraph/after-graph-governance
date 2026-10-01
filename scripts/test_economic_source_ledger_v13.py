@@ -57,8 +57,15 @@ class SourceLedgerV13(unittest.TestCase):
         self.assertFalse(r["readiness"]["final"])
         self.assertFalse(r["readiness"]["promotionAuthority"])
         self.assertEqual(r["readiness"]["externalEffects"],0)
-        self.assertTrue(r["implementation_refs"]["works_pending"]["merge_required"])
-        self.assertTrue(r["implementation_refs"]["sentinel_pending"]["merge_required"])
+        self.assertEqual(r["status"],"VERIFIED_MERGED_IMPLEMENTATIONS")
+        self.assertEqual(r["implementation_refs"]["works_execution"],"0298443864bbb2ec6b33e5806b805fecf902956f")
+        self.assertEqual(r["implementation_refs"]["sentinel"],"5a6a2eb086c414de82d89ceae6756d1d7ccfdeb8")
+        self.assertTrue(r["verified"]["works_schema_v15"])
+        self.assertTrue(r["verified"]["works_merged"])
+        self.assertTrue(r["verified"]["sentinel_merged"])
+        self.assertTrue(r["verified"]["exact_replay_idempotent"])
+        self.assertTrue(r["verified"]["equivocation_rejected"])
+        self.assertTrue(r["verified"]["state_digest_corruption_rejected"])
         caps={c["id"]:c for c in load(CAPS)["capabilities"]}
         self.assertEqual(caps["economic.live-settlement"]["lifecycle"],"candidate")
 
