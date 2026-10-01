@@ -1,0 +1,38 @@
+{
+  "schema":"economic-source-ledger-v13-readiness/1.0",
+  "candidate":"economic.live-settlement/v1",
+  "lifecycle":"candidate",
+  "phase":"durable-source-generation-ledger-v13",
+  "status":"IMPLEMENTED_PENDING_MERGED_EVIDENCE",
+  "readiness":{
+    "works_schema_v15_migration":"implemented_pending_ci",
+    "durable_generation_state":"implemented_pending_ci",
+    "atomic_monotonic_advance":"implemented_pending_ci",
+    "exact_idempotent_replay":"implemented_pending_ci",
+    "equivocation_rejection":"implemented_pending_ci",
+    "time_regression_rejection":"implemented_pending_ci",
+    "cursor_kind_drift_rejection":"implemented_pending_ci",
+    "persisted_state_digest_verification":"implemented_pending_ci",
+    "sentinel_independent_transition_verifier":"implemented_pending_ci",
+    "executionAuthority":false,
+    "final":false,
+    "promotionAuthority":false,
+    "externalEffects":0
+  },
+  "implementation_refs":{
+    "works_pending":{"pr":191,"merge_required":true},
+    "sentinel_pending":{"pr":63,"merge_required":true}
+  },
+  "promotion_allowed":false,
+  "canonical_promotion_allowed":false,
+  "carries_authority":false,
+  "remaining":[
+    "merge and bind WORKS/Sentinel v13 evidence",
+    "wire verified v12 captures through durable generation advancement before v9 coherence",
+    "capture restart-safe generation history from production-equivalent sources",
+    "fault-inject replay/equivocation/time rollback against provider sandbox captures",
+    "produce v11 EvidencePack only from durable accepted source state",
+    "jurisdiction-specific legal mapping before legal-title claims",
+    "separate governance-owned promotion evidence before live execution"
+  ]
+}
