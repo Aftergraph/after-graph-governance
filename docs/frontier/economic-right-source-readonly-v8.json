@@ -1,0 +1,38 @@
+{
+  "schema":"economic-right-source-readonly-v8-readiness/1.0",
+  "candidate":"economic.live-settlement/v1",
+  "lifecycle":"candidate",
+  "phase":"real-source-readonly-adapters-v8",
+  "status":"IMPLEMENTED_PENDING_RUNTIME_CI",
+  "readiness":{
+    "authoritative_registry_observer":"implemented",
+    "custodian_observer":"implemented",
+    "ledger_representation_observer":"implemented",
+    "get_only_transport":"implemented",
+    "remote_tls_required":"implemented",
+    "credential_non_disclosure":"implemented",
+    "response_size_bound":"implemented",
+    "runtime_computed_evidence_hash":"implemented",
+    "canonical_hash_validation":"implemented",
+    "path_host_escape_rejection":"implemented",
+    "external_effects":0,
+    "final":false
+  },
+  "runtime_ref":{
+    "pr":253,
+    "head":"21b15b1fccf33f9c497ab628ae774e3c611c14f3",
+    "merge_required":true
+  },
+  "promotion_allowed":false,
+  "canonical_promotion_allowed":false,
+  "carries_authority":false,
+  "remaining":[
+    "bind one real authoritative registry read-only endpoint",
+    "bind one real external custodian read-only endpoint",
+    "bind one real ledger/token representation endpoint for the same right",
+    "capture source-separated evidence through Runtime",
+    "run v7 legal reconciliation over the captured records",
+    "independently verify the reconciliation in Sentinel",
+    "complete jurisdiction-specific legal rule mapping before any canonical claim"
+  ]
+}
