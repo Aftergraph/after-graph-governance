@@ -1,0 +1,15 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aftergraph.dev/contracts/economic-source-generation-transition/1.0.json",
+  "title":"Economic Source Generation Transition v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema","decision","priorGeneration","current","externalEffects"],
+  "properties":{
+    "schema":{"const":"aftergraph.economic-source-generation-transition/v1"},
+    "decision":{"enum":["ADVANCED","IDEMPOTENT_REPLAY"]},
+    "priorGeneration":{"type":"integer","minimum":0},
+    "current":{"$ref":"economic-source-generation-state.schema.json"},
+    "externalEffects":{"const":0}
+  }
+}

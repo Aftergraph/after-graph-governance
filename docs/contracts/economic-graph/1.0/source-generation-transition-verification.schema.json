@@ -1,0 +1,19 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aftergraph.dev/contracts/economic-source-generation-transition-verification/1.0.json",
+  "title":"Economic Source Generation Transition Verification v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema","valid","state","decision","executionAuthority","final","promotionAuthority","externalEffects","reasons"],
+  "properties":{
+    "schema":{"const":"aftergraph.economic-source-generation-transition-verification/v1"},
+    "valid":{"type":"boolean"},
+    "state":{"enum":["VERIFIED_SOURCE_GENERATION_TRANSITION","INVALID"]},
+    "decision":{"oneOf":[{"enum":["ADVANCED","IDEMPOTENT_REPLAY"]},{"type":"null"}]},
+    "executionAuthority":{"const":false},
+    "final":{"const":false},
+    "promotionAuthority":{"const":false},
+    "externalEffects":{"const":0},
+    "reasons":{"type":"array","items":{"type":"string","minLength":1}}
+  }
+}

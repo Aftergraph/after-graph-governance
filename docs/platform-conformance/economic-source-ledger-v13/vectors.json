@@ -1,0 +1,31 @@
+{
+  "schema":"economic-source-ledger-v13/acceptance-vectors",
+  "candidate":"economic.live-settlement/v1",
+  "lifecycle":"candidate",
+  "vectors":[
+    {"id":"ESL-001","scenario":"first valid source capture is durably persisted","expected":{"decision":"ADVANCED","revision":1,"externalEffects":0}},
+    {"id":"ESL-002","scenario":"higher generation with same cursor kind and non-regressing time","expected":{"decision":"ADVANCED","revisionIncrement":1}},
+    {"id":"ESL-003","scenario":"byte-equivalent same-generation capture is retried","expected":{"decision":"IDEMPOTENT_REPLAY","mutation":false}},
+    {"id":"ESL-004","scenario":"generation decreases","expected":{"decision":"REJECT","reason":"generation_regression"}},
+    {"id":"ESL-005","scenario":"same generation carries different evidence/cursor/time","expected":{"decision":"REJECT","reason":"generation_equivocation"}},
+    {"id":"ESL-006","scenario":"higher generation carries older observation time","expected":{"decision":"REJECT","reason":"time_regression"}},
+    {"id":"ESL-007","scenario":"source cursor kind changes for same source identity","expected":{"decision":"REJECT","reason":"cursor_kind_change"}},
+    {"id":"ESL-008","scenario":"persisted state digest is corrupted","expected":{"decision":"REJECT","reason":"state_digest_mismatch"}},
+    {"id":"ESL-009","scenario":"concurrent writer advances prior generation/revision first","expected":{"decision":"REJECT","reason":"concurrent_advance"}},
+    {"id":"ESL-010","scenario":"Sentinel independently recomputes accepted transition","expected":{"verification":"VERIFIED_SOURCE_GENERATION_TRANSITION","executionAuthority":false,"final":false,"externalEffects":0}}
+  ],
+  "required_invariants":[
+    "WORKS canonical SQLite Store owns durable source generation state",
+    "state is keyed by source class plus source ID",
+    "source generation never decreases",
+    "same-generation retries are accepted only when the capture is exactly identical",
+    "same-generation disagreement is equivocation and fails closed",
+    "observation time never regresses across advancing generations",
+    "cursor kind cannot silently change for an existing source identity",
+    "state revision strictly increases only on advancement",
+    "state digest is recomputed and verified on read",
+    "CAS-style update prevents lost concurrent advancement",
+    "verification grants no execution or promotion authority",
+    "externalEffects remain 0"
+  ]
+}

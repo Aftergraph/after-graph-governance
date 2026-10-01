@@ -35,6 +35,7 @@ on:
       - 'scripts/test_economic_live_canary_assurance_v10.py'
       - 'scripts/test_economic_evidence_pack_v11.py'
       - 'scripts/test_economic_source_capture_v12.py'
+      - 'scripts/test_economic_source_ledger_v13.py'
       - 'docs/contracts/avc-dissolution/**'
       - 'docs/platform-conformance/**'
       - 'docs/platform-conformance/economic-live-settlement-v1/**'
@@ -142,3 +143,5 @@ jobs:
         run: python scripts/test_economic_evidence_pack_v11.py
       - name: Run Economic source capture v12 tests
         run: python scripts/test_economic_source_capture_v12.py
+      - name: Run Economic source ledger v13 tests
+        run: python scripts/test_economic_source_ledger_v13.py
