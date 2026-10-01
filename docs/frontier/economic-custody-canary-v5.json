@@ -1,32 +1,54 @@
 {
-  "schema":"economic-custody-canary-readiness/1.0",
-  "subject":"economic.custody",
-  "lifecycle":"experimental",
-  "parent_candidate":"economic.live-settlement/v1",
-  "status":"IMPLEMENTED_PENDING_MERGED_EVIDENCE",
-  "verified_design_constraints":{
-    "custody_reference_only":true,
-    "account_fingerprint_only":true,
-    "read_only_observation":true,
-    "recovery_dry_run_only":true,
-    "two_person_approval_required":true,
-    "authority_lease_required":true,
-    "recovery_replay_protection":true,
-    "reference_revocation":true,
-    "live_write_api":false,
-    "asset_movement":false,
-    "withdrawal":false,
-    "recovery_execution":false,
-    "external_effects":0
+  "schema": "economic-custody-canary-readiness/1.0",
+  "subject": "economic.custody",
+  "lifecycle": "experimental",
+  "parent_candidate": "economic.live-settlement/v1",
+  "status": "VERIFIED_ZERO_EFFECT_CUSTODY_CANARY",
+  "verified_design_constraints": {
+    "custody_reference_only": true,
+    "account_fingerprint_only": true,
+    "read_only_observation": true,
+    "recovery_dry_run_only": true,
+    "two_person_approval_required": true,
+    "authority_lease_required": true,
+    "recovery_replay_protection": true,
+    "reference_revocation": true,
+    "live_write_api": false,
+    "asset_movement": false,
+    "withdrawal": false,
+    "recovery_execution": false,
+    "external_effects": 0
   },
-  "promotion_allowed":false,
-  "carries_authority":false,
-  "remaining":[
+  "promotion_allowed": false,
+  "carries_authority": false,
+  "remaining": [
     "real external custodian read-only integration",
     "independent custodian attestation and account-binding evidence",
-    "real recovery workflow dry-run against provider sandbox or test environment",
+    "provider sandbox recovery dry-run",
     "custody reference rotation and disaster-recovery evidence",
     "legal/custodial registry reconciliation",
     "separate governance promotion before economic.custody leaves EXPERIMENTAL"
-  ]
+  ],
+  "implementation_refs": {
+    "trust_gateway": "49d9d1d43c80f4dae34dc3df6778e9a8cccb39db",
+    "sentinel": "07f8314218bacd38a8755412c49c7d21e1843836"
+  },
+  "verifier_refs": [
+    "github-actions:Aftergraph/trust-gateway/CI#552",
+    "github-actions:Aftergraph/trust-gateway/Cross-repo-Integration-Gate#373",
+    "github-actions:Aftergraph/trust-gateway/CodeQL#250",
+    "github-actions:Aftergraph/sentinel/run/36803718130"
+  ],
+  "verified": {
+    "read_only_custody_observation": true,
+    "two_person_recovery_dry_run": true,
+    "authority_lease_binding": true,
+    "recovery_replay_rejection": true,
+    "reference_revocation": true,
+    "write_api_overclaim_rejection": true,
+    "asset_movement_overclaim_rejection": true,
+    "withdrawal_overclaim_rejection": true,
+    "finality_overclaim_rejection": true,
+    "external_effect_overclaim_rejection": true
+  }
 }
