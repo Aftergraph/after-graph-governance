@@ -36,5 +36,5 @@ class LiveCanaryAssuranceV10(unittest.TestCase):
     self.assertEqual(r["enforced_non_capabilities"]["maxLiveValue"],0)
     self.assertEqual(r["enforced_non_capabilities"]["externalEffects"],0)
     caps={c["id"]:c for c in load(CAPS)["capabilities"]}
-    self.assertEqual(caps["economic.live-settlement"]["lifecycle"],"candidate")
+    self.assertEqual(r["status"],"VERIFIED_MERGED_IMPLEMENTATIONS")\n    self.assertEqual(r["implementation_refs"]["sentinel"],"b1bc8cd74974d36e5a280b0fbe3630bfb367b55f")\n    self.assertEqual(r["implementation_refs"]["trust_gateway"],"dd4829e81bf3f6a1637b3c12f2fadd4fb719d5c4")\n    self.assertTrue(r["verified"]["sentinel_merged"])\n    self.assertTrue(r["verified"]["trust_gateway_merged"])\n    self.assertTrue(r["verified"]["review_readiness_non_authoritative"])\n    self.assertTrue(r["verified"]["max_live_value_zero"])\n    self.assertEqual(caps["economic.live-settlement"]["lifecycle"],"candidate")
 if __name__=="__main__": unittest.main()
