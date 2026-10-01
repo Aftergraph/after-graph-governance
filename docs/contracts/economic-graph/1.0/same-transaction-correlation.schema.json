@@ -1,0 +1,29 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aftergraph.dev/contracts/economic-same-transaction-correlation/1.0.json",
+  "title":"Economic Same-Transaction Correlation v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema","economicTransactionId","intentHash","legalBindingHash","state",
+    "final","externalEffects","reconciliationRequired","matchedLegs","reasons"
+  ],
+  "properties":{
+    "schema":{"const":"aftergraph.economic-settlement-correlation/v1"},
+    "economicTransactionId":{"type":"string","minLength":1},
+    "intentHash":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "legalBindingHash":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "state":{"enum":["CORRELATED","UNCERTAIN"]},
+    "final":{"const":false},
+    "externalEffects":{"const":0},
+    "reconciliationRequired":{"type":"boolean"},
+    "matchedLegs":{"type":"array","items":{"type":"string","minLength":1},"uniqueItems":true},
+    "reasons":{"type":"array","items":{"type":"string","minLength":1}}
+  },
+  "allOf":[
+    {
+      "if":{"properties":{"state":{"const":"UNCERTAIN"}}},
+      "then":{"properties":{"reconciliationRequired":{"const":true}}}
+    }
+  ]
+}
