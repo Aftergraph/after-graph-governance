@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/execution-policy-request/0.1.json",
+  "title": "Aftergraph Execution Policy Request 0.1",
+  "description": "Experimental AIE-to-Trust-Gateway/Runtime planning projection. It carries execution requirements and an opaque authority reference; it does not select an executor or grant authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "mission_id",
+    "mission_node_id",
+    "authority_ref",
+    "environment",
+    "effect_class",
+    "capability",
+    "uncertainty",
+    "structured_state_available",
+    "vision_available",
+    "semantic_reasoning_required"
+  ],
+  "properties": {
+    "schema": {
+      "const": "aftergraph.execution-policy-request/v1"
+    },
+    "mission_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "mission_node_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "authority_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "environment": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "effect_class": {
+      "enum": [
+        "read",
+        "reversible",
+        "consequential",
+        "irreversible"
+      ]
+    },
+    "capability": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "uncertainty": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "structured_state_available": {
+      "type": "boolean"
+    },
+    "vision_available": {
+      "type": "boolean"
+    },
+    "semantic_reasoning_required": {
+      "type": "boolean"
+    },
+    "latency_budget_ms": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "authority_granted": {
+      "const": false
+    }
+  }
+}
