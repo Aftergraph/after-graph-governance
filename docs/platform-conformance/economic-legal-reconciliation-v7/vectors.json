@@ -1,0 +1,34 @@
+{
+  "schema":"economic-legal-reconciliation-v7/acceptance-vectors",
+  "candidate":"economic.live-settlement/v1",
+  "lifecycle":"candidate",
+  "vectors":[
+    {"id":"ELR-001","scenario":"registry, custodian and ledger representation all match canonical right","expected":{"state":"LEGAL_RIGHT_ALIGNED","reconciliationRequired":false,"final":false,"externalEffects":0}},
+    {"id":"ELR-002","scenario":"authoritative registry points to different asset/right","expected":{"state":"LEGAL_RECONCILIATION_REQUIRED","reconciliationRequired":true}},
+    {"id":"ELR-003","scenario":"custodian rights hash differs","expected":{"state":"LEGAL_RECONCILIATION_REQUIRED","reconciliationRequired":true}},
+    {"id":"ELR-004","scenario":"ledger representation legal instrument hash differs","expected":{"state":"LEGAL_RECONCILIATION_REQUIRED","reconciliationRequired":true}},
+    {"id":"ELR-005","scenario":"registry/custody/representation status is suspended, revoked or unknown","expected":{"state":"LEGAL_RECONCILIATION_REQUIRED","reconciliationRequired":true}},
+    {"id":"ELR-006","scenario":"two record classes reuse the same evidence hash","expected":{"state":"LEGAL_RECONCILIATION_REQUIRED","reconciliationRequired":true}},
+    {"id":"ELR-007","scenario":"record claims external effects or finality","expected":{"state":"LEGAL_RECONCILIATION_REQUIRED","reconciliationRequired":true}},
+    {"id":"ELR-008","scenario":"WORKS claims alignment while independent verifier sees mismatch","expected":{"verification":"LEGAL_RECONCILIATION_REQUIRED","legalRightAligned":false}}
+  ],
+  "required_invariants":[
+    "token or ledger representation is never legal truth by itself",
+    "authoritative registry, custody and representation evidence are distinct",
+    "assetId and rightId match across all records",
+    "legalInstrumentHash matches across all records",
+    "rightsHash matches across all records",
+    "all source records must be ACTIVE",
+    "source evidence hashes cannot be reused",
+    "any disagreement forces LEGAL_RECONCILIATION_REQUIRED",
+    "alignment does not establish legal title or legal finality",
+    "externalEffects remain 0"
+  ],
+  "non_claims":[
+    "legal title is transferred",
+    "registry evidence is legally conclusive in every jurisdiction",
+    "custody is production-ready",
+    "live settlement is canonical",
+    "live value execution is enabled"
+  ]
+}
