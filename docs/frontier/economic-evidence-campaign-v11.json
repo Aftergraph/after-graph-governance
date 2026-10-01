@@ -1,41 +1,41 @@
 {
-  "schema":"economic-evidence-campaign-v11-readiness/1.0",
-  "candidate":"economic.live-settlement/v1",
-  "lifecycle":"candidate",
-  "phase":"production-equivalent-evidence-campaign-v11",
-  "status":"IMPLEMENTED_PENDING_MERGED_EVIDENCE",
-  "runtime_ref":{
-    "pr":265,
-    "head":"09f44d8b647e912c5a8f31a3a70aa9e45f6f9562",
-    "merge_required":true
+  "schema": "economic-evidence-campaign-v11-readiness/1.0",
+  "candidate": "economic.live-settlement/v1",
+  "lifecycle": "candidate",
+  "phase": "production-equivalent-evidence-campaign-v11",
+  "status": "VERIFIED_SENTINEL_PENDING_RUNTIME_MERGE",
+  "runtime_ref": {
+    "pr": 265,
+    "head": "2f17a46dbea3a5ebb3afd0b52115c6086cbc1447",
+    "merge_required": true
   },
-  "sentinel_ref":{
-    "pr":68,
-    "head":"7616fb7a2221dc192824d82f22ac615e315ae633",
-    "merge_required":true
+  "sentinel_ref": {
+    "pr": 68,
+    "merge_sha": "0b105a8a20019048069b517081fb120399107fde",
+    "merge_required": false
   },
-  "verified_design_constraints":{
-    "provider_neutral_collection":true,
-    "three_source_classes_required":true,
-    "source_id_separation":true,
-    "evidence_hash_separation":true,
-    "positive_generation_required":true,
-    "canonical_right_binding":true,
-    "pack_hash":true,
-    "source_separation_digest":true,
-    "independent_legal_reverification":true,
-    "independent_temporal_reverification":true,
-    "execution_authority":false,
-    "live_value_enabled":false,
-    "max_live_value":0,
-    "final":false,
-    "promotion_authority":false,
-    "external_effects":0
+  "verified_design_constraints": {
+    "provider_neutral_collection": true,
+    "three_source_classes_required": true,
+    "source_id_separation": true,
+    "evidence_hash_separation": true,
+    "positive_generation_required": true,
+    "canonical_right_binding": true,
+    "pack_hash": true,
+    "source_separation_digest": true,
+    "independent_legal_reverification": true,
+    "independent_temporal_reverification": true,
+    "execution_authority": false,
+    "live_value_enabled": false,
+    "max_live_value": 0,
+    "final": false,
+    "promotion_authority": false,
+    "external_effects": 0
   },
-  "promotion_allowed":false,
-  "canonical_promotion_allowed":false,
-  "carries_authority":false,
-  "remaining":[
+  "promotion_allowed": false,
+  "canonical_promotion_allowed": false,
+  "carries_authority": false,
+  "remaining": [
     "bind one real authoritative registry read-only source",
     "bind one real external custodian read-only source",
     "bind one real ledger representation source for the same legal right",
@@ -44,5 +44,18 @@
     "run replay/stale/source-mixing fault injection against provider sandboxes",
     "separate human-authorized bounded live-value canary protocol",
     "separate governance-owned canonical promotion evidence"
-  ]
+  ],
+  "verifier_refs": [
+    "github-actions:Aftergraph/sentinel/run/36914432637",
+    "github-actions:Aftergraph/sentinel/run/36914432730",
+    "github-actions:Aftergraph/runtime/run/36914784282",
+    "github-actions:Aftergraph/runtime/sentinel-gate/36914785353"
+  ],
+  "verified": {
+    "sentinel_domain_verifier": true,
+    "sentinel_merged": true,
+    "runtime_ci": true,
+    "runtime_sentinel_gate_pending": true,
+    "runtime_merge_pending": true
+  }
 }
