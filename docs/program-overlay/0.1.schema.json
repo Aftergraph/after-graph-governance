@@ -1,0 +1,38 @@
+{
+  "schema_version": "aftergraph-program-schema/0.1",
+  "document_schema": "aftergraph-program/0.1",
+  "status": "experimental",
+  "required": [
+    "schema",
+    "program_id",
+    "parent_program",
+    "objective",
+    "status",
+    "active_slices",
+    "touches",
+    "invariants",
+    "blocked_by",
+    "success"
+  ],
+  "allowed_status": [
+    "proposed",
+    "active",
+    "paused",
+    "complete",
+    "superseded"
+  ],
+  "touch_modes": [
+    "core",
+    "next",
+    "consumer",
+    "observer"
+  ],
+  "forbidden_truth_fields": [
+    "remote_head_sha",
+    "head_sha",
+    "commit_sha",
+    "canonical_branch",
+    "owns",
+    "must_not_own"
+  ]
+}
