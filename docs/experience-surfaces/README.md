@@ -9,9 +9,9 @@ surfaces belong here rather than being invented as repository-topology members.
 
 - **HomeOS** — primary operator/control surface.
 - Canonical local development path: `C:\Aftergraph\Home-OS`.
-- Latest known development artifact: `aftergraph-homeos-native-v0.86.0-frontier-trust-admission.zip`.
+- Latest known development artifact: `aftergraph-homeos-native-v0.87.0-frontier-canonical.zip`.
 - Current governance status: `current-development-surface`.
-- GitHub repository backing: not yet canonicalized.
+- GitHub repository backing: `Aftergraph/home-os` (canonicalized).
 
 HomeOS composes governed projections over CORE ToolFabric, Trust Gateway, Runtime,
 WORKS, Sentinel, Relay and FIHIM. It does not own those systems' truth.
@@ -26,6 +26,6 @@ WORKS, Sentinel, Relay and FIHIM. It does not own those systems' truth.
 
 ## Rule
 
-Do not add HomeOS to `docs/platform-topology/2.0.json` until a canonical repository
-actually exists. When that happens, migrate this surface identity to the repository
-without changing the ownership boundaries above.
+HomeOS now has canonical repository backing and is registered in
+`docs/platform-topology/2.0.json`. Repository topology preserves the ownership
+boundaries above and never grants backend authority.

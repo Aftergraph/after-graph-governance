@@ -5,24 +5,26 @@
   "status": "current-development-surface",
   "canonical_role": "primary-operator-control-surface",
   "repository_backing": {
-    "status": "not-yet-canonicalized-in-github",
-    "repository": null
+    "status": "canonicalized-in-github",
+    "repository": "Aftergraph/home-os",
+    "canonical_commit": "483b1edb62a7cc003b6ef64604f09477f126c0f2"
   },
   "local_development": {
     "canonical_path": "C:\\Aftergraph\\Home-OS",
-    "latest_known_artifact": "aftergraph-homeos-native-v0.86.0-frontier-trust-admission.zip",
-    "latest_known_version": "0.86.0-frontier",
-    "latest_known_sha256": "994391ee6edc4ad22a0425fe8ebc6037dc37b53ef744480f0d0e35b1a44530fd",
+    "latest_known_artifact": "aftergraph-homeos-native-v0.87.0-frontier-canonical.zip",
+    "latest_known_version": "0.87.0-frontier",
+    "latest_known_sha256": "c67fc48318b81be76271de5836de9e6aa7e541bc5281fe9f6690bf220cea12ad",
     "verification_status": "PASS_WITH_EXPLICIT_BOUNDARIES",
     "verification_boundaries": [
-      "dotnet restore/build/xUnit NOT_RUN in artifact-builder because dotnet is unavailable",
-      "browser screenshot validation NOT_RUN",
-      "repository guard, dependency policy, ToolFabric live-adapter/runtime/deployment/governed-action/Trust Gateway client conformance, JS syntax, JSON parse, source manifest and ZIP integrity PASS",
-      "CORE sealed aggregate snapshots are merged on main; Trust Gateway HomeOS action admission and sealed resolver are merged on main",
-      "GitHub-safe repo seed omits preserved v0.29 appliance binaries while retaining provenance digests"
+      "canonical GitHub source is Aftergraph/home-os main at 483b1edb62a7cc003b6ef64604f09477f126c0f2",
+      "GitHub integrity and hosted Windows native restore/build/xUnit/static gates PASS on exact PR head before merge",
+      "jonas-lenovo direct .NET restore/build/xUnit PASS with 32/32 tests",
+      "repository guard, dependency policy, ToolFabric live-adapter/deployment and Agent Harness/Trust Gateway conformance PASS",
+      "browser screenshot validation NOT_RUN for the v0.87 reconstruction; no visual redesign is claimed",
+      "v0.87 is an independent forward reconstruction from byte-verifiable v0.84 source and is not claimed byte-identical to the unavailable v0.86 artifact"
     ],
-    "latest_repo_seed": "aftergraph-home-os-v0.86.0-repo-seed.zip",
-    "latest_repo_seed_sha256": "5dc031eb975d06b052c19f7c58508f6da8994e43c40d6c602defc3abce5b0683"
+    "latest_repo_seed": "aftergraph-home-os-v0.87.0-repo-seed.zip",
+    "latest_repo_seed_sha256": "713ebfd58b809b0b11602159c9757cc1519e0ef9bcf911a6466a22de27aa82da"
   },
   "owns": [
     "primary human operator shell",
@@ -57,6 +59,7 @@
   "notes": [
     "War Room may remain an operational-intelligence backend/projection but is not the primary interface.",
     "FIHIM is a personal intelligent-agent environment surfaced through HomeOS, not the canonical operator control plane.",
-    "HomeOS may not be inserted into repository topology until a canonical GitHub repository actually exists."
+    "HomeOS repository backing is canonicalized at Aftergraph/home-os; topology membership does not widen backend authority.",
+    "The unavailable governance-pinned v0.86 artifact remains historical provenance; v0.87 is independently reconstructed and verified from canonical v0.84 Git history."
   ]
 }

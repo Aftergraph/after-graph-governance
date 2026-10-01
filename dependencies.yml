@@ -199,6 +199,12 @@ modules:
     consumes: [after-graph-governance, business-ops, rendetalje, studio, aie, trust-gateway, runtime, works-execution, sentinel, brand]
     provides: [renos-operator-shell, operations-workspace, chat-projection, attention-ui, evidence-ui]
 
+  home-os:
+    repo: Aftergraph/home-os
+    role: primary-operator-control-surface
+    consumes: [after-graph-governance, core, aie, trust-gateway, runtime, works-execution, sentinel, relay, fihim, brand]
+    provides: [primary-operator-control-surface, homeos-navigation, tool-fabric-projection, agent-harness-projection, authority-request-ui, evidence-ui]
+
   fihim:
     repo: Aftergraph/fihim
     role: personal-agent-product
