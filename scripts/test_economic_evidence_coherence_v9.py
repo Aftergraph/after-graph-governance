@@ -29,5 +29,5 @@ class EvidenceCoherenceV9(unittest.TestCase):
     self.assertTrue(r["verified_design_constraints"]["stale_evidence_fails_closed"])
     self.assertFalse(r["verified_design_constraints"]["final"])
     self.assertEqual(r["verified_design_constraints"]["external_effects"],0)
-    self.assertTrue(r["remaining"])
+    self.assertEqual(r["status"],"VERIFIED_MERGED_IMPLEMENTATIONS")\n    self.assertEqual(r["implementation_refs"]["works_execution"],"f62b0f6134518e0ddb13ef7fdf454c0555444566")\n    self.assertEqual(r["implementation_refs"]["sentinel"],"ff356875b44719522322f5403756ce821b0f3deb")\n    self.assertTrue(r["verified"]["works_merged"])\n    self.assertTrue(r["verified"]["sentinel_merged"])\n    self.assertTrue(r["verified"]["generation_replay_rejected"])\n    self.assertTrue(r["remaining"])
 if __name__=="__main__": unittest.main()
