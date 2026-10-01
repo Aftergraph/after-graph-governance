@@ -1,0 +1,29 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aftergraph.dev/contracts/economic-source-attestation/1.0.json",
+  "title":"Economic Source Attestation v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema","sourceClass","sourceId","captureHash","evidenceHash","providerId","trustRootId","publicKeyPem","publicKeyFingerprint","attestationGeneration","validFromUnix","validUntilUnix","payloadHash","signatureBase64","sourceTransport","executionAuthority","final","promotionAuthority","externalEffects"],
+  "properties":{
+    "schema":{"const":"aftergraph.economic-source-attestation/v1"},
+    "sourceClass":{"enum":["registry","custody","representation"]},
+    "sourceId":{"type":"string","minLength":1},
+    "captureHash":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "evidenceHash":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "providerId":{"type":"string","minLength":1},
+    "trustRootId":{"type":"string","minLength":1},
+    "publicKeyPem":{"type":"string","minLength":32},
+    "publicKeyFingerprint":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "attestationGeneration":{"type":"integer","minimum":1},
+    "validFromUnix":{"type":"integer","minimum":1},
+    "validUntilUnix":{"type":"integer","minimum":2},
+    "payloadHash":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "signatureBase64":{"type":"string","minLength":40},
+    "sourceTransport":{"const":"READ_ONLY"},
+    "executionAuthority":{"const":false},
+    "final":{"const":false},
+    "promotionAuthority":{"const":false},
+    "externalEffects":{"const":0}
+  }
+}
