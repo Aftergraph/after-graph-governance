@@ -1,0 +1,29 @@
+{
+  "schema":"economic-signer-provider-readiness/1.0",
+  "subject":"economic.transaction-signing",
+  "lifecycle":"experimental",
+  "parent_candidate":"economic.live-settlement/v1",
+  "status":"IMPLEMENTED_PENDING_MERGED_EVIDENCE",
+  "verified_design_constraints":{
+    "opaque_key_handle_only":true,
+    "provider_callback_only":true,
+    "private_key_export_api":false,
+    "challenge_replay_protection":true,
+    "key_generation_tracking":true,
+    "rotation_retires_old_key":true,
+    "rotation_private_key_transfer":false,
+    "revocation_blocks_signing":true,
+    "transaction_payload_forbidden":true,
+    "broadcast":false,
+    "external_effects":0
+  },
+  "promotion_allowed":false,
+  "carries_authority":false,
+  "remaining":[
+    "real HSM or threshold-MPC backend integration behind the same opaque callback",
+    "hardware/threshold attestation and isolation evidence",
+    "provider outage and partial-signature failure campaign",
+    "key rotation and revocation evidence against a real external signer",
+    "separate governance promotion before transaction-signing leaves EXPERIMENTAL"
+  ]
+}
