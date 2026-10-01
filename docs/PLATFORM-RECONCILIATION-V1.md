@@ -1,7 +1,7 @@
 # Aftergraph Platform Reconciliation V1
 
-**Date:** 2026-09-07 (historical cut)  
-**Scope:** complete installed `Aftergraph/*` organization — 24 repositories per current `docs/platform-topology/2.0.json` (19 repositories at the original 2026-09-07 cut)  
+**Date:** 2026-09-07 (historical cut)
+**Historical scope:** 19 repositories at the original 2026-09-07 cut, followed by the 24-repository V4 truth-convergence cut. Current inventory is recorded in the 2026-10-01 addendum below.
 **Purpose:** convert repository growth into one governed polyrepo platform without collapsing independent evidence/authority boundaries.
 
 ## Target outcome
@@ -26,7 +26,7 @@ verified outcome
 
 Human/public surfaces sit above that path (`studio`, specialist Work Intelligence UI, AVC, `aftergraph.org`, `docs`). Skills/models are capabilities consumed by execution, not alternative sources of authority.
 
-## Repository topology
+## Historical V4 repository topology (24-repository cut)
 
 | Plane | Repository | Role |
 |---|---|---|
@@ -57,19 +57,25 @@ Human/public surfaces sit above that path (`studio`, specialist Work Intelligenc
 
 Machine-readable source: `docs/platform-topology/2.0.json` (`docs/platform-topology/1.0.json` retained for historical provenance).
 
+## Current organization inventory (2026-10-01)
+
+The live Aftergraph organization contains 44 active, unarchived repositories. The current topology registers all 44: 34 with an established topology role and 10 with `role=unclassified`, `system_class=unclassified`, and `lifecycle=classification-pending`. Those pending rows record organization membership only and declare no dependency, contract, production-maturity, authority, execution, or verification claims.
+
+Repositories awaiting owner classification are `concord`, `demo-repository`, `engineering-crew-community`, `fihim-eval-lab`, `fihim-vnext`, `friday-mascot`, `nikkahcerti`, `Pock-bot`, `STEWARD-by-Aftergraph`, and `urban-potato-demo-repository`. Their exact default-branch heads are recorded in the generated `latest-org-state.json`; that snapshot describes live GitHub state at its generation time, not deployment or functional acceptance.
+
 ## Execution ledger
 
 ### P0 — platform truth and boundaries
 
-- [x] Define a 19-repository machine-readable topology contract (historical 2026-09-07 cut; superseded by the 24-repository `docs/platform-topology/2.0.json`).
+- [x] Define a 19-repository machine-readable topology contract (historical 2026-09-07 cut; superseded by the later 24-repository V4 cut, which is now expanded to the 44-repository current inventory).
 - [x] Expand `org-state/1.0` role vocabulary to the complete platform.
 - [x] Remove the stale Work Intelligence `master`-branch exception from org-state schema documentation.
 - [x] Make `org-state-verify.sh` derive repository scope from topology instead of a hard-coded nine-repo list.
 - [x] Fail closed if GitHub cannot resolve every topology repository.
 - [x] Fail closed if topology canonical branch diverges from GitHub default branch.
-- [x] Expand `dependencies.yml` to all 19 repositories (historical 2026-09-07 scope; current projection covers all 24 topology repositories at `version: 4`).
+- [x] Expand `dependencies.yml` to the original 19 repositories and later 24-repository V4 cut; the 2026-10-01 projection now covers all 44 live repositories at `version: 4`, with no inferred dependencies for the 10 classification-pending entries.
 - [x] Replace the five-repository framing in the cross-repo contract register with explicit platform boundaries.
-- [ ] Regenerate `latest-org-state.json` through an authenticated shell/CI run after merge; do not hand-edit SHAs.
+- [ ] Re-run the authenticated generator after merge so `latest-org-state.json` records the merged Governance head; do not hand-edit SHAs. The 2026-10-01 branch snapshot records the live 44-repository heads before this PR is merged.
 
 ### P0 — one production path
 
@@ -135,15 +141,13 @@ Machine-readable source: `docs/platform-topology/2.0.json` (`docs/platform-topol
 
 ## V1 completion definition
 
-V1 is complete when the merged governance branch contains the 24-repo topology (`docs/platform-topology/2.0.json`), generator/schema/dependency alignment and public map alignment; a fresh generated 24-repo org-state snapshot is then produced by an authorized runner. The original 19-repo cut is a historical completion record. Runtime unification tasks above remain separately gated P0/P1 work and must not be described as already complete.
+The original V1/V4 truth-convergence was defined and evidenced against the 24-repository inventory at that historical cut. It does not establish present-day full-organization coverage. The 2026-10-01 topology and exact-head snapshot extend membership to 44 live repositories, with 10 awaiting owner classification. Runtime unification tasks above remain separately gated P0/P1 work and must not be described as already complete.
 
 ## Wave A truth-convergence evidence (V4)
 
-The 24-repo/V4 truth convergence is evidenced by:
+The following artifacts record historical 24-repository/V4 truth convergence; they are not current 44-repository or production-execution acceptance evidence:
 
-- `docs/platform-topology/2.0.json` — canonical 24-repository ownership truth;
-- `latest-org-state.json` — fresh authenticated 24-repo exact-head snapshot (`org-state/1.0`);
-- `docs/evidence/platform-architecture-v4-wave-a.json` — Wave A check record (`topology_v2`, `dependency_projection`, `readme_projection`, `org_state_binding`, `platform_fabrics_regression`);
+- `docs/evidence/platform-architecture-v4-wave-a.json` — the original Wave A check record (`topology_v2`, `dependency_projection`, `readme_projection`, `org_state_binding`, `platform_fabrics_regression`);
 - `docs/PLATFORM-ARCHITECTURE-V4.md` — canonical architecture (V3 retained as superseded history).
 
-This evidence covers Governance truth convergence only. Runtime, Fabric and Golden Mission waves remain separately gated and are not marked complete here.
+The current topology and `latest-org-state.json` supersede the old 24-repository source/snapshot for present-day inventory. Wave A evidence covers Governance truth convergence only. Runtime, Fabric and Golden Mission waves remain separately gated and are not marked complete here.

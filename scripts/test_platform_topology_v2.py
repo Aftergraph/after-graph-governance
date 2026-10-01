@@ -142,6 +142,18 @@ FORBIDDEN_AUTO_PHRASES = (
 )
 STALE_CURRENT_NAMES = ("work-intelligence-v2", "work-intelligence-web", "venture-os-consumer")
 HISTORICAL_MARK = re.compile(r"historical|provenance|legacy|superseded|2026-09-07|19-repo", re.IGNORECASE)
+CLASSIFICATION_PENDING_REPOS = {
+    "concord",
+    "demo-repository",
+    "engineering-crew-community",
+    "fihim-eval-lab",
+    "fihim-vnext",
+    "friday-mascot",
+    "nikkahcerti",
+    "Pock-bot",
+    "STEWARD-by-Aftergraph",
+    "urban-potato-demo-repository",
+}
 
 PLANES = {
     "intelligence",
@@ -249,6 +261,22 @@ class TopologyV2DataTest(unittest.TestCase):
         repo = topology_index(load_json(TOPOLOGY))["context-continuity"]
         self.assertIsNone(repo["architecture_plane"])
         self.assertEqual(repo["system_class"], "continuity")
+
+    def test_new_org_membership_is_explicitly_classification_pending(self):
+        repos = topology_index(load_json(TOPOLOGY))
+        pending = {
+            name
+            for name, repo in repos.items()
+            if repo["role"] == "unclassified"
+            or repo["system_class"] == "unclassified"
+            or repo["lifecycle"] == "classification-pending"
+        }
+        self.assertEqual(pending, CLASSIFICATION_PENDING_REPOS)
+        for name in pending:
+            repo = repos[name]
+            self.assertIsNone(repo["architecture_plane"])
+            self.assertIn("Pending owner review", repo["owns"])
+            self.assertIn("No authority", repo["must_not_own"])
 
 
 class TopologyV2ShapeTest(unittest.TestCase):
@@ -374,6 +402,11 @@ class TopologyValidatorTest(unittest.TestCase):
         doc = valid_topology()
         doc["repositories"][0]["role"] = "research"
         self.assertTrue(any("legacy" in e for e in validate_topology(doc)))
+
+    def test_unclassified_markers_must_be_used_together(self):
+        doc = valid_topology()
+        doc["repositories"][0]["role"] = "unclassified"
+        self.assertTrue(any("must use role=unclassified" in e for e in validate_topology(doc)))
 
     def test_numeric_evidence_cut_is_rejected(self):
         doc = valid_topology()
