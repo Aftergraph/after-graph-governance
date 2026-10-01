@@ -1,0 +1,19 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aftergraph.dev/contracts/economic-source-trust-root/1.0.json",
+  "title":"Economic Source Trust Root v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema","trustRootId","sourceClass","sourceId","publicKeyFingerprint","status","validFromUnix","validUntilUnix","minAttestationGeneration"],
+  "properties":{
+    "schema":{"const":"aftergraph.economic-source-trust-root/v1"},
+    "trustRootId":{"type":"string","minLength":1},
+    "sourceClass":{"enum":["registry","custody","representation"]},
+    "sourceId":{"type":"string","minLength":1},
+    "publicKeyFingerprint":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "status":{"enum":["ACTIVE","REVOKED"]},
+    "validFromUnix":{"type":"integer","minimum":1},
+    "validUntilUnix":{"type":"integer","minimum":2},
+    "minAttestationGeneration":{"type":"integer","minimum":1}
+  }
+}
