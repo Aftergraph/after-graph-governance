@@ -1,0 +1,23 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aftergraph.dev/contracts/economic-custody-canary/1.0.json",
+  "title":"Economic Custody Canary Evidence v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":[
+    "schema","providerId","custodyRef","accountFingerprint","readOnly",
+    "liveWriteApiCalled","canMoveAssets","canWithdraw","canRecoverAssets","externalEffects"
+  ],
+  "properties":{
+    "schema":{"const":"aftergraph.external-custody-observation/v1"},
+    "providerId":{"type":"string","pattern":"^custodian_[A-Za-z0-9_-]{8,}$"},
+    "custodyRef":{"type":"string","pattern":"^cust_[A-Za-z0-9_-]{12,}$"},
+    "accountFingerprint":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "readOnly":{"const":true},
+    "liveWriteApiCalled":{"const":false},
+    "canMoveAssets":{"const":false},
+    "canWithdraw":{"const":false},
+    "canRecoverAssets":{"const":false},
+    "externalEffects":{"const":0}
+  }
+}
