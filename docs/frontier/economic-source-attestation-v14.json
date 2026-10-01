@@ -1,23 +1,49 @@
 {
-  "schema":"economic-source-attestation-v14-readiness/1.0",
-  "candidate":"economic.live-settlement/v1",
-  "lifecycle":"candidate",
-  "phase":"source-attestation-trust-roots-v14",
-  "status":"IMPLEMENTED_PENDING_MERGED_EVIDENCE",
-  "design":{
-    "runtime_binding_only":true,
-    "sentinel_independent_signature_verification":true,
-    "governance_pinned_root_required":true,
-    "source_identity_binding":true,
-    "validity_enforced":true,
-    "revocation_floor":true,
-    "caller_supplied_key_not_authoritative":true,
-    "executionAuthority":false,
-    "final":false,
-    "promotionAuthority":false,
-    "externalEffects":0
+  "schema": "economic-source-attestation-v14-readiness/1.0",
+  "candidate": "economic.live-settlement/v1",
+  "lifecycle": "candidate",
+  "phase": "source-attestation-trust-roots-v14",
+  "status": "VERIFIED_MERGED_IMPLEMENTATIONS",
+  "design": {
+    "runtime_binding_only": true,
+    "sentinel_independent_signature_verification": true,
+    "governance_pinned_root_required": true,
+    "source_identity_binding": true,
+    "validity_enforced": true,
+    "revocation_floor": true,
+    "caller_supplied_key_not_authoritative": true,
+    "executionAuthority": false,
+    "final": false,
+    "promotionAuthority": false,
+    "externalEffects": 0
   },
-  "promotion_allowed":false,
-  "canonical_promotion_allowed":false,
-  "carries_authority":false
+  "promotion_allowed": false,
+  "canonical_promotion_allowed": false,
+  "carries_authority": false,
+  "implementation_refs": {
+    "runtime": "eb1d6ffa7717a4c10cff23ea8fd48a6e2bb6cb4a",
+    "sentinel": "def3625ce298e701e675bf3fe8598cf80ed7b731"
+  },
+  "sentinel_github_app": {
+    "runtime_pr": 272,
+    "reviewed_head": "77299879d06b21e5333eeadeb788c1d7ca12afcd",
+    "review_run": 36929870648,
+    "review_job": 110596937615,
+    "verdict": "MERGEABLE",
+    "delta_clean": true,
+    "all_required_checks_green": true,
+    "reason_codes": [],
+    "artifact_id": 11194943978,
+    "artifact_sha256": "884e0594396808516ed9d7297eff8b4289a4276cf0e70bedc9a7b92597963e00"
+  },
+  "verified": {
+    "runtime_ci": true,
+    "runtime_merged": true,
+    "sentinel_signature_verifier": true,
+    "sentinel_tests": true,
+    "sentinel_merged": true,
+    "github_app_review": true,
+    "github_app_delta_clean": true,
+    "github_app_required_checks_green": true
+  }
 }
