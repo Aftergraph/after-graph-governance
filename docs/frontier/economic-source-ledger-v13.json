@@ -1,38 +1,58 @@
 {
-  "schema":"economic-source-ledger-v13-readiness/1.0",
-  "candidate":"economic.live-settlement/v1",
-  "lifecycle":"candidate",
-  "phase":"durable-source-generation-ledger-v13",
-  "status":"IMPLEMENTED_PENDING_MERGED_EVIDENCE",
-  "readiness":{
-    "works_schema_v15_migration":"implemented_pending_ci",
-    "durable_generation_state":"implemented_pending_ci",
-    "atomic_monotonic_advance":"implemented_pending_ci",
-    "exact_idempotent_replay":"implemented_pending_ci",
-    "equivocation_rejection":"implemented_pending_ci",
-    "time_regression_rejection":"implemented_pending_ci",
-    "cursor_kind_drift_rejection":"implemented_pending_ci",
-    "persisted_state_digest_verification":"implemented_pending_ci",
-    "sentinel_independent_transition_verifier":"implemented_pending_ci",
-    "executionAuthority":false,
-    "final":false,
-    "promotionAuthority":false,
-    "externalEffects":0
+  "schema": "economic-source-ledger-v13-readiness/1.0",
+  "candidate": "economic.live-settlement/v1",
+  "lifecycle": "candidate",
+  "phase": "durable-source-generation-ledger-v13",
+  "status": "VERIFIED_MERGED_IMPLEMENTATIONS",
+  "readiness": {
+    "works_schema_v15_migration": "verified_merged",
+    "durable_generation_state": "verified_merged",
+    "atomic_monotonic_advance": "verified_merged",
+    "exact_idempotent_replay": "verified_merged",
+    "equivocation_rejection": "verified_merged",
+    "time_regression_rejection": "verified_merged",
+    "cursor_kind_drift_rejection": "verified_merged",
+    "persisted_state_digest_verification": "verified_merged",
+    "sentinel_independent_transition_verifier": "verified_merged",
+    "executionAuthority": false,
+    "final": false,
+    "promotionAuthority": false,
+    "externalEffects": 0
   },
-  "implementation_refs":{
-    "works_pending":{"pr":191,"merge_required":true},
-    "sentinel_pending":{"pr":63,"merge_required":true}
+  "implementation_refs": {
+    "works_execution": "0298443864bbb2ec6b33e5806b805fecf902956f",
+    "sentinel": "5a6a2eb086c414de82d89ceae6756d1d7ccfdeb8"
   },
-  "promotion_allowed":false,
-  "canonical_promotion_allowed":false,
-  "carries_authority":false,
-  "remaining":[
-    "merge and bind WORKS/Sentinel v13 evidence",
-    "wire verified v12 captures through durable generation advancement before v9 coherence",
+  "promotion_allowed": false,
+  "canonical_promotion_allowed": false,
+  "carries_authority": false,
+  "remaining": [
+    "atomically advance one registry/custody/representation campaign as a single durable unit",
+    "wire accepted campaign state into v9 coherence before v11 EvidencePack",
     "capture restart-safe generation history from production-equivalent sources",
     "fault-inject replay/equivocation/time rollback against provider sandbox captures",
     "produce v11 EvidencePack only from durable accepted source state",
     "jurisdiction-specific legal mapping before legal-title claims",
     "separate governance-owned promotion evidence before live execution"
-  ]
+  ],
+  "verifier_refs": [
+    "github-actions:Aftergraph/works-execution/run/36809999292",
+    "github-actions:Aftergraph/works-execution/run/36809999305",
+    "github-actions:Aftergraph/sentinel/run/36810073678"
+  ],
+  "verified": {
+    "works_schema_v15": true,
+    "works_go_tests": true,
+    "works_codeql": true,
+    "works_merged": true,
+    "sentinel_transition_verifier": true,
+    "sentinel_merged": true,
+    "durable_restart_survival": true,
+    "exact_replay_idempotent": true,
+    "regression_rejected": true,
+    "equivocation_rejected": true,
+    "time_rollback_rejected": true,
+    "cursor_kind_drift_rejected": true,
+    "state_digest_corruption_rejected": true
+  }
 }
