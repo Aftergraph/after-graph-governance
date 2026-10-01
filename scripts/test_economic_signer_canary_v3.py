@@ -33,6 +33,12 @@ class SignerCanaryV3(unittest.TestCase):
     self.assertFalse(r["carries_authority"])
     self.assertEqual(r["requirements"]["broadcast"],"disabled")
     self.assertEqual(r["requirements"]["external_effects"],0)
+    self.assertEqual(r["status"],"VERIFIED_NON_ECONOMIC_CANARY")
+    self.assertEqual(len(r["implementation_refs"]),2)
+    self.assertTrue(r["verified"]["independent_signature_verification"])
+    self.assertTrue(r["verified"]["tamper_rejection"])
+    self.assertTrue(r["verified"]["expiry_rejection"])
+    self.assertTrue(r["remaining"])
     caps={c["id"]:c for c in load(CAPS)["capabilities"]}
     self.assertEqual(caps["economic.transaction-signing"]["lifecycle"],"experimental")
 
