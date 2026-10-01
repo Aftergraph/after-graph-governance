@@ -1,0 +1,71 @@
+{
+  "schema":"economic-correlation-v6/acceptance-vectors",
+  "candidate":"economic.live-settlement/v1",
+  "capability_lifecycle":"candidate",
+  "vectors":[
+    {
+      "id":"ECT-001",
+      "scenario":"asset and cash receipts bind to identical economicTransactionId, legalBindingHash and expected obligation hashes",
+      "expected":{"state":"CORRELATED","reconciliationRequired":false,"final":false,"externalEffects":0}
+    },
+    {
+      "id":"ECT-002",
+      "scenario":"cash receipt carries a different economicTransactionId",
+      "expected":{"state":"UNCERTAIN","reconciliationRequired":true,"final":false}
+    },
+    {
+      "id":"ECT-003",
+      "scenario":"rail receipt obligation hash differs from canonical obligation",
+      "expected":{"state":"UNCERTAIN","reconciliationRequired":true}
+    },
+    {
+      "id":"ECT-004",
+      "scenario":"rail receipt legal binding differs from transaction legal binding",
+      "expected":{"state":"UNCERTAIN","reconciliationRequired":true}
+    },
+    {
+      "id":"ECT-005",
+      "scenario":"one required receipt is absent",
+      "expected":{"state":"UNCERTAIN","reconciliationRequired":true}
+    },
+    {
+      "id":"ECT-006",
+      "scenario":"one rail outcome is unknown",
+      "expected":{"state":"UNCERTAIN","reconciliationRequired":true}
+    },
+    {
+      "id":"ECT-007",
+      "scenario":"asset and cash legs reuse the same source evidence hash",
+      "expected":{"state":"UNCERTAIN","reconciliationRequired":true}
+    },
+    {
+      "id":"ECT-008",
+      "scenario":"WORKS claims CORRELATED while independent verifier observes mismatch",
+      "expected":{"verification":"RECONCILIATION_REQUIRED","sameEconomicTransactionVerified":false}
+    },
+    {
+      "id":"ECT-009",
+      "scenario":"receipt or correlation claims real-world FINAL",
+      "expected":{"valid":false,"final":false}
+    }
+  ],
+  "required_invariants":[
+    "at least one asset obligation and one cash obligation",
+    "every required obligation has exactly one independently evidenced receipt",
+    "economicTransactionId matches across all required receipts",
+    "obligationHash matches canonical obligation per leg",
+    "legalBindingHash matches across transaction, obligation and receipt",
+    "sourceEvidenceHash cannot be reused to fake independent rail evidence",
+    "any disagreement forces UNCERTAIN or RECONCILIATION_REQUIRED",
+    "correlation itself never establishes legal or real-world finality",
+    "externalEffects remain 0"
+  ],
+  "non_claims":[
+    "live settlement is canonical",
+    "legal title transfer is final",
+    "cash settlement is legally final",
+    "transaction signing is production-ready",
+    "custody is production-ready",
+    "bounded live-value execution is enabled"
+  ]
+}
