@@ -1,26 +1,26 @@
 {
-  "schema":"economic-correlation-v6-readiness/1.0",
-  "candidate":"economic.live-settlement/v1",
-  "lifecycle":"candidate",
-  "phase":"same-economic-transaction-correlation-v6",
-  "status":"IMPLEMENTED_PENDING_MERGED_EVIDENCE",
-  "verified_design_constraints":{
-    "single_economic_transaction_id":true,
-    "intent_hash_binding":true,
-    "legal_binding_hash":true,
-    "asset_and_cash_obligations_required":true,
-    "per_leg_obligation_hash_binding":true,
-    "independent_source_evidence_per_leg":true,
-    "missing_or_disagreeing_receipt_forces_uncertain":true,
-    "independent_verifier_recomputes_correlation":true,
-    "work_state_label_not_authoritative":true,
-    "real_world_finality":false,
-    "external_effects":0
+  "schema": "economic-correlation-v6-readiness/1.0",
+  "candidate": "economic.live-settlement/v1",
+  "lifecycle": "candidate",
+  "phase": "same-economic-transaction-correlation-v6",
+  "status": "VERIFIED_PENDING_WORKS_MERGE",
+  "verified_design_constraints": {
+    "single_economic_transaction_id": true,
+    "intent_hash_binding": true,
+    "legal_binding_hash": true,
+    "asset_and_cash_obligations_required": true,
+    "per_leg_obligation_hash_binding": true,
+    "independent_source_evidence_per_leg": true,
+    "missing_or_disagreeing_receipt_forces_uncertain": true,
+    "independent_verifier_recomputes_correlation": true,
+    "work_state_label_not_authoritative": true,
+    "real_world_finality": false,
+    "external_effects": 0
   },
-  "promotion_allowed":false,
-  "canonical_promotion_allowed":false,
-  "carries_authority":false,
-  "remaining":[
+  "promotion_allowed": false,
+  "canonical_promotion_allowed": false,
+  "carries_authority": false,
+  "remaining": [
     "production-equivalent read-only asset and cash rail receipts for the same economic transaction",
     "independent capture proving receipt source separation on those rails",
     "legal/custodial registry reconciliation for the represented asset class",
@@ -28,5 +28,31 @@
     "live custody/recovery provider attestation",
     "bounded live-value canary under explicit human authorization",
     "separate governance-owned canonical promotion evidence"
-  ]
+  ],
+  "implementation_refs": {
+    "works_execution_pending": {
+      "pr": 187,
+      "head": "d1dac209a4d39e5762414bff3101c6b4144b4eb8",
+      "merge_required": true
+    },
+    "sentinel": "d69b6ad72fd66ec060b19b9a8b5a559e257107e0"
+  },
+  "verifier_refs": [
+    "github-actions:Aftergraph/works-execution/run/36804723717",
+    "github-actions:Aftergraph/works-execution/run/36804723751",
+    "github-actions:Aftergraph/sentinel/run/36804727102"
+  ],
+  "verified": {
+    "works_go_tests": true,
+    "works_codeql": true,
+    "sentinel_independent_verifier": true,
+    "transaction_id_mismatch_rejected": true,
+    "obligation_hash_mismatch_rejected": true,
+    "legal_binding_mismatch_rejected": true,
+    "missing_receipt_reconciles": true,
+    "unknown_outcome_reconciles": true,
+    "reused_evidence_rejected": true,
+    "finality_overclaim_rejected": true
+  },
+  "merge_blocker": "WORKS repository requires merge queue; connector exposes no enqueue mutation and direct merge is correctly rejected by ruleset."
 }
