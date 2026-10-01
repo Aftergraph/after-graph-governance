@@ -1,30 +1,62 @@
 {
-  "schema":"economic-trust-root-authorization-v16-readiness/1.0",
-  "candidate":"economic.live-settlement/v1",
-  "lifecycle":"candidate",
-  "phase":"authorized-trust-root-rotation-v16",
-  "status":"IMPLEMENTED_PENDING_MERGED_EVIDENCE",
-  "ownership":{
-    "trust_gateway":"AuthorityLease and human approval verification; authorization receipt",
-    "works":"authorization-bound durable trust-root mutation",
-    "sentinel":"independent authorization + transition verification",
-    "governance":"normative authorization contract and policy"
+  "schema": "economic-trust-root-authorization-v16-readiness/1.0",
+  "candidate": "economic.live-settlement/v1",
+  "lifecycle": "candidate",
+  "phase": "authorized-trust-root-rotation-v16",
+  "status": "VERIFIED_MERGED_IMPLEMENTATIONS",
+  "ownership": {
+    "trust_gateway": "AuthorityLease and human approval verification; authorization receipt",
+    "works": "authorization-bound durable trust-root mutation",
+    "sentinel": "independent authorization + transition verification",
+    "governance": "normative authorization contract and policy"
   },
-  "design":{
-    "verified_authority_required":true,
-    "two_person_approval_required":true,
-    "caller_ids_not_authoritative":true,
-    "exact_transition_binding":true,
-    "deterministic_cross_language_digest":true,
-    "nonce_and_expiry":true,
-    "legacy_rotation_path_fails_closed":true,
-    "executionAuthority":false,
-    "liveValueEnabled":false,
-    "final":false,
-    "promotionAuthority":false,
-    "externalEffects":0
+  "design": {
+    "verified_authority_required": true,
+    "two_person_approval_required": true,
+    "caller_ids_not_authoritative": true,
+    "exact_transition_binding": true,
+    "deterministic_cross_language_digest": true,
+    "nonce_and_expiry": true,
+    "legacy_rotation_path_fails_closed": true,
+    "executionAuthority": false,
+    "liveValueEnabled": false,
+    "final": false,
+    "promotionAuthority": false,
+    "externalEffects": 0
   },
-  "promotion_allowed":false,
-  "canonical_promotion_allowed":false,
-  "carries_authority":false
+  "promotion_allowed": false,
+  "canonical_promotion_allowed": false,
+  "carries_authority": false,
+  "implementation_refs": {
+    "trust_gateway": "9d3eea888b710d08847b5737b1eebf668c9da4d7",
+    "works_execution": "a968911f3e2a6efb5fd5d88b88a5c398b7ba393f",
+    "sentinel": "99129ce1dda95ddcfc94904bed7ebf5e62e890bb"
+  },
+  "verifier_refs": [
+    "github-actions:Aftergraph/trust-gateway/run/36932050967",
+    "github-actions:Aftergraph/trust-gateway/run/36932050973",
+    "github-actions:Aftergraph/trust-gateway/run/36932051770",
+    "github-actions:Aftergraph/works-execution/run/36932059879",
+    "github-actions:Aftergraph/works-execution/run/36932059976",
+    "github-actions:Aftergraph/sentinel/run/36932069029",
+    "github-actions:Aftergraph/sentinel/run/36932068969"
+  ],
+  "verified": {
+    "trust_gateway_ci": true,
+    "trust_gateway_codeql": true,
+    "trust_gateway_cross_repo_gate": true,
+    "trust_gateway_merged": true,
+    "works_go_tests": true,
+    "works_codeql": true,
+    "works_merged": true,
+    "sentinel_authorization_verifier": true,
+    "sentinel_tests": true,
+    "sentinel_merged": true,
+    "caller_ids_not_authoritative": true,
+    "two_verified_approvals_required": true,
+    "authority_lease_verified": true,
+    "legacy_rotation_path_fails_closed": true,
+    "exact_transition_binding": true,
+    "authorization_digest_cross_language": true
+  }
 }
