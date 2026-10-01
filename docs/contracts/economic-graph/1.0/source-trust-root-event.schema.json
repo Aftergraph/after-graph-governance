@@ -1,0 +1,20 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aftergraph.dev/contracts/economic-source-trust-root-event/1.0.json",
+  "title":"Economic Source Trust Root Event v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["sourceClass","sourceId","sequence","generation","decision","stateDigest","authorizationDigest","previousEventHash","eventHash","createdAt"],
+  "properties":{
+    "sourceClass":{"enum":["registry","custody","representation"]},
+    "sourceId":{"type":"string","minLength":1},
+    "sequence":{"type":"integer","minimum":1},
+    "generation":{"type":"integer","minimum":1},
+    "decision":{"enum":["ADVANCED","ADVANCED_POLICY","ROTATED"]},
+    "stateDigest":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "authorizationDigest":{"type":"string"},
+    "previousEventHash":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "eventHash":{"type":"string","pattern":"^sha256:[a-f0-9]{64}$"},
+    "createdAt":{"type":"string","minLength":1}
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "schema":"economic-trust-root-history-v17-readiness/1.0",
+  "candidate":"economic.live-settlement/v1",
+  "lifecycle":"candidate",
+  "phase":"append-only-trust-root-lineage-v17",
+  "status":"IMPLEMENTED_PENDING_MERGED_EVIDENCE",
+  "design":{
+    "works_schema_version":17,
+    "append_only_history":true,
+    "same_transaction_with_current_state":true,
+    "fixed_genesis_anchor":true,
+    "hash_chain":true,
+    "rotation_authorization_digest_bound":true,
+    "replay_does_not_append":true,
+    "independent_sentinel_rehash":true,
+    "executionAuthority":false,
+    "final":false,
+    "promotionAuthority":false,
+    "externalEffects":0
+  },
+  "promotion_allowed":false,
+  "canonical_promotion_allowed":false,
+  "carries_authority":false
+}
