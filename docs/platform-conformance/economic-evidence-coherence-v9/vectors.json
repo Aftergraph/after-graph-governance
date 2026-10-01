@@ -1,0 +1,26 @@
+{
+  "schema":"economic-evidence-coherence-v9/acceptance-vectors",
+  "candidate":"economic.live-settlement/v1",
+  "lifecycle":"candidate",
+  "vectors":[
+    {"id":"EEC-001","scenario":"registry, custody and representation evidence are fresh, distinct and monotonic","expected":{"state":"TEMPORALLY_COHERENT","refreshRequired":false,"final":false,"externalEffects":0}},
+    {"id":"EEC-002","scenario":"one observation exceeds max age","expected":{"state":"EVIDENCE_REFRESH_REQUIRED","refreshRequired":true}},
+    {"id":"EEC-003","scenario":"cross-source observation skew exceeds policy","expected":{"state":"EVIDENCE_REFRESH_REQUIRED","refreshRequired":true}},
+    {"id":"EEC-004","scenario":"source generation equals or falls below prior generation","expected":{"state":"EVIDENCE_REFRESH_REQUIRED","refreshRequired":true}},
+    {"id":"EEC-005","scenario":"source timestamp exceeds future-clock tolerance","expected":{"state":"EVIDENCE_REFRESH_REQUIRED","refreshRequired":true}},
+    {"id":"EEC-006","scenario":"required source class is missing or duplicated","expected":{"state":"EVIDENCE_REFRESH_REQUIRED","refreshRequired":true}},
+    {"id":"EEC-007","scenario":"evidence hash is reused across source classes","expected":{"state":"EVIDENCE_REFRESH_REQUIRED","refreshRequired":true}},
+    {"id":"EEC-008","scenario":"WORKS claims coherent while independent verifier detects replay/stale evidence","expected":{"verification":"EVIDENCE_REFRESH_REQUIRED","temporallyCoherent":false}}
+  ],
+  "required_invariants":[
+    "registry, custody and representation evidence are all present",
+    "source evidence hashes are distinct",
+    "per-source generation is strictly monotonic",
+    "observations are within maximum age",
+    "cross-source observation skew is bounded",
+    "future timestamps are tolerated only within explicit clock-skew policy",
+    "stale/replayed/regressed evidence never reaches legal-right alignment as current evidence",
+    "coherence never establishes legal or settlement finality",
+    "externalEffects remain 0"
+  ]
+}

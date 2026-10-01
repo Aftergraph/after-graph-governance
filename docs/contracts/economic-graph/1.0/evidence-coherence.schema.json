@@ -1,0 +1,23 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://aftergraph.dev/contracts/economic-evidence-coherence/1.0.json",
+  "title":"Economic Evidence Coherence v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema","state","final","externalEffects","refreshRequired","observedSources","oldestObservedAtUnix","newestObservedAtUnix","reasons"],
+  "properties":{
+    "schema":{"const":"aftergraph.economic-evidence-coherence/v1"},
+    "state":{"enum":["TEMPORALLY_COHERENT","EVIDENCE_REFRESH_REQUIRED"]},
+    "final":{"const":false},
+    "externalEffects":{"const":0},
+    "refreshRequired":{"type":"boolean"},
+    "observedSources":{"type":"array","items":{"type":"string","minLength":1},"uniqueItems":true},
+    "oldestObservedAtUnix":{"type":"integer","minimum":0},
+    "newestObservedAtUnix":{"type":"integer","minimum":0},
+    "reasons":{"type":"array","items":{"type":"string","minLength":1}}
+  },
+  "allOf":[
+    {"if":{"properties":{"state":{"const":"EVIDENCE_REFRESH_REQUIRED"}}},"then":{"properties":{"refreshRequired":{"const":true}}}},
+    {"if":{"properties":{"state":{"const":"TEMPORALLY_COHERENT"}}},"then":{"properties":{"refreshRequired":{"const":false}}}}
+  ]
+}
