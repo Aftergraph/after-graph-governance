@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.dev/contracts/jev-sidecar/0.1.observation.schema.json",
+  "title": "Aftergraph Jev Sidecar Observation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "decision_id",
+    "decision_class",
+    "surface",
+    "subject_ref",
+    "state_projection_ref",
+    "state_projection_digest",
+    "candidate_set_digest",
+    "provider",
+    "model",
+    "selected_choice",
+    "probability",
+    "requested_mode",
+    "effective_mode",
+    "deterministic_choice",
+    "effective_choice",
+    "would_override",
+    "authorizes_effect",
+    "claims_authority",
+    "canonical_evidence",
+    "independent_verification",
+    "observed_at"
+  ],
+  "properties": {
+    "schema": {
+      "const": "jev-sidecar-observation/0.1"
+    },
+    "decision_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "decision_class": {
+      "type": "string",
+      "minLength": 1
+    },
+    "surface": {
+      "enum": [
+        "github",
+        "runtime",
+        "research",
+        "operations",
+        "domain"
+      ]
+    },
+    "subject_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "state_projection_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "state_projection_digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "candidate_set_digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "provider": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model": {
+      "type": "string",
+      "minLength": 1
+    },
+    "selected_choice": {
+      "type": "string",
+      "minLength": 1
+    },
+    "probability": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "requested_mode": {
+      "enum": [
+        "disabled",
+        "shadow",
+        "guarded"
+      ]
+    },
+    "effective_mode": {
+      "enum": [
+        "disabled",
+        "shadow",
+        "guarded"
+      ]
+    },
+    "promotion_evidence_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "deterministic_choice": {
+      "type": "string",
+      "minLength": 1
+    },
+    "effective_choice": {
+      "type": "string",
+      "minLength": 1
+    },
+    "would_override": {
+      "type": "boolean"
+    },
+    "latency_ms": {
+      "type": "number",
+      "minimum": 0
+    },
+    "input_tokens": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "estimated_cost_usd": {
+      "type": "number",
+      "minimum": 0
+    },
+    "authorizes_effect": {
+      "const": false
+    },
+    "claims_authority": {
+      "const": false
+    },
+    "canonical_evidence": {
+      "const": false
+    },
+    "independent_verification": {
+      "const": false
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "effective_mode": {
+            "const": "guarded"
+          }
+        },
+        "required": [
+          "effective_mode"
+        ]
+      },
+      "then": {
+        "required": [
+          "promotion_evidence_ref"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,257 @@
+{
+  "schema": "jev-decision-registry/0.1",
+  "organization": "Aftergraph",
+  "law": "Jev may choose among permitted options. Jev may never make an option permitted.",
+  "defaults": {
+    "new_class_mode": "shadow",
+    "candidate_set_source": "deterministic",
+    "provider_change_downgrade": "shadow",
+    "guarded_requires_class_specific_promotion": true
+  },
+  "classes": [
+    {
+      "id": "runtime.placement.rank",
+      "surface": "runtime",
+      "owner": "runtime",
+      "projection_schema": "runtime-placement-state/0.1",
+      "candidate_set": {
+        "source": "deterministic",
+        "kind": "dynamic"
+      },
+      "initial_mode": "guarded",
+      "promotion_evidence_ref": "runtime:aftergraph-org:typesafe-jev-hybrid-holdout-v1:35482598059",
+      "authority_sensitive": true,
+      "effect_owner": "runtime",
+      "evidence_owner": "intelligence-systems-research",
+      "verifier_owner": "sentinel"
+    },
+    {
+      "id": "runtime.recovery.route",
+      "surface": "runtime",
+      "owner": "runtime",
+      "projection_schema": "runtime-recovery-state/0.1",
+      "candidate_set": {
+        "source": "deterministic",
+        "kind": "static",
+        "choices": [
+          "retry",
+          "replace_node",
+          "request_authority",
+          "refresh_dependency",
+          "restore_checkpoint",
+          "falsify_again",
+          "halt"
+        ]
+      },
+      "initial_mode": "guarded",
+      "promotion_evidence_ref": "runtime:aftergraph-org:typesafe-jev-hybrid-holdout-v1:35482598059",
+      "authority_sensitive": true,
+      "effect_owner": "runtime",
+      "evidence_owner": "intelligence-systems-research",
+      "verifier_owner": "sentinel"
+    },
+    {
+      "id": "runtime.topology.select",
+      "surface": "runtime",
+      "owner": "runtime",
+      "projection_schema": "runtime-topology-state/0.1",
+      "candidate_set": {
+        "source": "deterministic",
+        "kind": "static",
+        "choices": [
+          "solo",
+          "parallel",
+          "critic_pair",
+          "fanout_reduce"
+        ]
+      },
+      "initial_mode": "guarded",
+      "promotion_evidence_ref": "runtime:aftergraph-org:typesafe-jev-hybrid-holdout-v1:35482598059",
+      "authority_sensitive": true,
+      "effect_owner": "runtime",
+      "evidence_owner": "intelligence-systems-research",
+      "verifier_owner": "sentinel"
+    },
+    {
+      "id": "pr.review-depth",
+      "surface": "github",
+      "owner": ".github",
+      "projection_schema": "pr-review-depth/0.1",
+      "candidate_set": {
+        "source": "deterministic",
+        "kind": "static",
+        "choices": [
+          "no_extra_review",
+          "standard_review",
+          "deep_review",
+          "security_review"
+        ]
+      },
+      "initial_mode": "shadow",
+      "authority_sensitive": false,
+      "effect_owner": ".github",
+      "evidence_owner": "intelligence-systems-research",
+      "verifier_owner": "repository-native-gates"
+    },
+    {
+      "id": "pr.simplification-worthwhile",
+      "surface": "github",
+      "owner": ".github",
+      "projection_schema": "pr-simplification/0.1",
+      "candidate_set": {
+        "source": "deterministic",
+        "kind": "static",
+        "choices": [
+          "skip",
+          "run_code_simplification"
+        ]
+      },
+      "initial_mode": "shadow",
+      "authority_sensitive": false,
+      "effect_owner": "skills-vault",
+      "evidence_owner": "intelligence-systems-research",
+      "verifier_owner": "repository-native-gates"
+    },
+    {
+      "id": "pr.security-review-needed",
+      "surface": "github",
+      "owner": ".github",
+      "projection_schema": "pr-security-review/0.1",
+      "candidate_set": {
+        "source": "deterministic",
+        "kind": "static",
+        "choices": [
+          "standard_review",
+          "security_review"
+        ]
+      },
+      "initial_mode": "shadow",
+      "authority_sensitive": true,
+      "effect_owner": ".github",
+      "evidence_owner": "intelligence-systems-research",
+      "verifier_owner": "repository-native-gates"
+    },
+    {
+      "id": "runtime.loop.continue-or-stop",
+      "surface": "runtime",
+      "owner": "runtime",
+      "projection_schema": "runtime-loop-state/0.1",
+      "candidate_set": {
+        "source": "deterministic",
+        "kind": "static",
+        "choices": [
+          "continue",
+          "stop",
+          "escalate"
+        ]
+      },
+      "initial_mode": "shadow",
+      "authority_sensitive": false,
+      "effect_owner": "runtime",
+      "evidence_owner": "intelligence-systems-research",
+      "verifier_owner": "sentinel"
+    },
+    {
+      "id": "runtime.result.sufficient",
+      "surface": "runtime",
+      "owner": "runtime",
+      "projection_schema": "runtime-result-sufficiency/0.1",
+      "candidate_set": {
+        "source": "deterministic",
+        "kind": "static",
+        "choices": [
+          "sufficient",
+          "insufficient",
+          "escalate"
+        ]
+      },
+      "initial_mode": "shadow",
+      "authority_sensitive": false,
+      "effect_owner": "runtime",
+      "evidence_owner": "intelligence-systems-research",
+      "verifier_owner": "sentinel"
+    },
+    {
+      "id": "runtime.human-gate-needed",
+      "surface": "runtime",
+      "owner": "runtime",
+      "projection_schema": "runtime-human-gate/0.1",
+      "candidate_set": {
+        "source": "deterministic",
+        "kind": "static",
+        "choices": [
+          "continue",
+          "needs_you"
+        ]
+      },
+      "initial_mode": "shadow",
+      "authority_sensitive": true,
+      "effect_owner": "trust-gateway",
+      "evidence_owner": "intelligence-systems-research",
+      "verifier_owner": "sentinel"
+    },
+    {
+      "id": "research.prior-art.relevance",
+      "surface": "research",
+      "owner": "intelligence-systems-research",
+      "projection_schema": "research-prior-art-relevance/0.1",
+      "candidate_set": {
+        "source": "deterministic",
+        "kind": "static",
+        "choices": [
+          "low",
+          "medium",
+          "high",
+          "needs_system2"
+        ]
+      },
+      "initial_mode": "shadow",
+      "authority_sensitive": false,
+      "effect_owner": "intelligence-systems-research",
+      "evidence_owner": "intelligence-systems-research",
+      "verifier_owner": "research-protocol"
+    },
+    {
+      "id": "operations.attention.priority",
+      "surface": "operations",
+      "owner": "war-room",
+      "projection_schema": "operations-attention-priority/0.1",
+      "candidate_set": {
+        "source": "deterministic",
+        "kind": "static",
+        "choices": [
+          "low",
+          "normal",
+          "high",
+          "critical",
+          "needs_system2"
+        ]
+      },
+      "initial_mode": "shadow",
+      "authority_sensitive": false,
+      "effect_owner": "war-room",
+      "evidence_owner": "intelligence-systems-research",
+      "verifier_owner": "repository-native-gates"
+    },
+    {
+      "id": "domain.human-review-needed",
+      "surface": "domain",
+      "owner": "domain-system",
+      "projection_schema": "domain-human-review/0.1",
+      "candidate_set": {
+        "source": "deterministic",
+        "kind": "static",
+        "choices": [
+          "continue",
+          "needs_human",
+          "needs_system2"
+        ]
+      },
+      "initial_mode": "shadow",
+      "authority_sensitive": true,
+      "effect_owner": "domain-system",
+      "evidence_owner": "intelligence-systems-research",
+      "verifier_owner": "domain-policy"
+    }
+  ]
+}
