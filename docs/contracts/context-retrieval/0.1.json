@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/context-retrieval/0.1.json",
+  "title": "Aftergraph Context Retrieval 0.1",
+  "description": "Experimental evidence-bound hybrid retrieval contract. Retrieval is a derived context projection and never canonical truth.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract",
+    "status",
+    "stages",
+    "invariants"
+  ],
+  "properties": {
+    "contract": {
+      "const": "context-retrieval/0.1"
+    },
+    "status": {
+      "const": "experimental"
+    },
+    "stages": {
+      "type": "array",
+      "const": [
+        "ingest",
+        "lexical",
+        "semantic",
+        "fusion",
+        "rerank",
+        "context-pack"
+      ]
+    },
+    "invariants": {
+      "type": "array",
+      "minItems": 5,
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      },
+      "allOf": [
+        {
+          "contains": {
+            "const": "retrieval output is derived context and never canonical source truth"
+          }
+        },
+        {
+          "contains": {
+            "const": "every returned context item retains a source reference and provenance"
+          }
+        },
+        {
+          "contains": {
+            "const": "semantic similarity never grants authority"
+          }
+        },
+        {
+          "contains": {
+            "const": "stale source projections are excluded or explicitly marked stale"
+          }
+        },
+        {
+          "contains": {
+            "const": "context packs are bounded and reproducible from recorded inputs"
+          }
+        }
+      ]
+    }
+  }
+}
