@@ -36,6 +36,12 @@ class LegalReconciliationV7(unittest.TestCase):
     self.assertTrue(r["verified_design_constraints"]["ledger_representation_not_authoritative"])
     self.assertFalse(r["verified_design_constraints"]["legal_finality"])
     self.assertEqual(r["verified_design_constraints"]["external_effects"],0)
+    self.assertEqual(r["status"],"VERIFIED_MERGED_IMPLEMENTATIONS")
+    self.assertEqual(r["implementation_refs"]["works_execution"],"891733fa6c47e68254ad3f80b9510b1750b736df")
+    self.assertEqual(r["implementation_refs"]["sentinel"],"c25d644e2fc5e7058b30090c9994d9e306e51ca3")
+    self.assertTrue(r["verified"]["works_merged"])
+    self.assertTrue(r["verified"]["sentinel_merged"])
+    self.assertTrue(r["verified"]["reused_evidence_rejected"])
     self.assertTrue(r["remaining"])
     caps={c["id"]:c for c in load(CAPS)["capabilities"]}
     self.assertEqual(caps["economic.live-settlement"]["lifecycle"],"candidate")
