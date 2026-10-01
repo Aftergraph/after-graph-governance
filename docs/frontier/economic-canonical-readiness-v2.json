@@ -1,0 +1,27 @@
+{
+  "schema": "economic-canonical-readiness-v2/1.0",
+  "candidate": "economic.live-settlement/v1",
+  "lifecycle": "candidate",
+  "phase": "canonical-readiness-v2",
+  "readiness": {
+    "signer_preparation_boundary": "implemented_pending_independent_verification",
+    "raw_signing_material_exposure": "prohibited",
+    "signature_production": "disabled",
+    "broadcast": "disabled",
+    "custody_reference_boundary": "implemented_pending_independent_verification",
+    "live_custody_api": "disabled",
+    "asset_movement": "disabled",
+    "kill_switch": "implemented_in_zero_effect_recovery_simulator",
+    "approval_revocation": "implemented_in_zero_effect_recovery_simulator",
+    "partial_failure_compensation": "implemented_in_zero_effect_recovery_simulator",
+    "live_value_execution": "disabled"
+  },
+  "evidence_expected_from": [
+    "Aftergraph/trust-gateway",
+    "Aftergraph/works-execution",
+    "Aftergraph/sentinel"
+  ],
+  "promotion_allowed": false,
+  "canonical_promotion_allowed": false,
+  "carries_authority": false
+}
