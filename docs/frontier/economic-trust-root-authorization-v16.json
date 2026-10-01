@@ -1,0 +1,30 @@
+{
+  "schema":"economic-trust-root-authorization-v16-readiness/1.0",
+  "candidate":"economic.live-settlement/v1",
+  "lifecycle":"candidate",
+  "phase":"authorized-trust-root-rotation-v16",
+  "status":"IMPLEMENTED_PENDING_MERGED_EVIDENCE",
+  "ownership":{
+    "trust_gateway":"AuthorityLease and human approval verification; authorization receipt",
+    "works":"authorization-bound durable trust-root mutation",
+    "sentinel":"independent authorization + transition verification",
+    "governance":"normative authorization contract and policy"
+  },
+  "design":{
+    "verified_authority_required":true,
+    "two_person_approval_required":true,
+    "caller_ids_not_authoritative":true,
+    "exact_transition_binding":true,
+    "deterministic_cross_language_digest":true,
+    "nonce_and_expiry":true,
+    "legacy_rotation_path_fails_closed":true,
+    "executionAuthority":false,
+    "liveValueEnabled":false,
+    "final":false,
+    "promotionAuthority":false,
+    "externalEffects":0
+  },
+  "promotion_allowed":false,
+  "canonical_promotion_allowed":false,
+  "carries_authority":false
+}
