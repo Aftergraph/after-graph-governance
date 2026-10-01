@@ -19,6 +19,7 @@ services:
       - TG_PORT=8800
       - WORKS_API_URL=http://works:8080
       - WORKS_API_TOKEN=${WORKS_API_TOKEN:-}
+      - WORKS_PLATFORM_BRIDGE_SECRET=${WORKS_PLATFORM_BRIDGE_SECRET:-}
       - AIE_RUNTIME_PATH=/aie
       - AIE_STATE_FILE=/data/aie/aie-state.db
       - AIE_PYTHON=python3
@@ -43,6 +44,8 @@ services:
       - WORKS_ADDR=0.0.0.0:8080
       - WORKS_DB=/data/works.db
       - WORKS_ENROLL_SECRET=${WORKS_ENROLL_SECRET:-}
+      - WORKS_API_TOKEN=${WORKS_API_TOKEN:-}
+      - WORKS_PLATFORM_BRIDGE_SECRET=${WORKS_PLATFORM_BRIDGE_SECRET:-}
     volumes:
       - works-data:/data
     healthcheck:
