@@ -1,0 +1,193 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/homeos-agent-harness/0.1.json",
+  "title": "Aftergraph HomeOS Agent Harness Projection 0.1",
+  "description": "Read-only HomeOS projection of Agent Harness execution and verification truth. It is never canonical execution state and grants no authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "projectionId",
+    "runId",
+    "truthState",
+    "title",
+    "summary",
+    "runtimeKind",
+    "outcome",
+    "verification",
+    "evidenceRefs",
+    "changes",
+    "startedAt",
+    "finishedAt",
+    "authorityGranted",
+    "canonicalStateOwnedElsewhere"
+  ],
+  "properties": {
+    "schema": {
+      "const": "aftergraph.homeos-agent-harness/v1"
+    },
+    "projectionId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "runId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "truthState": {
+      "enum": [
+        "observed",
+        "executed",
+        "verification_pending",
+        "verified",
+        "rejected",
+        "failed"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 8192
+    },
+    "runtimeKind": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "executor": {
+      "enum": [
+        "deterministic",
+        "local-policy",
+        "frontier",
+        "human"
+      ]
+    },
+    "modelRef": {
+      "type": "string",
+      "maxLength": 1024
+    },
+    "outcome": {
+      "enum": [
+        "completed",
+        "failed",
+        "aborted",
+        "rejected"
+      ]
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "evaluations"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "not_run",
+            "pending",
+            "passed",
+            "failed",
+            "needs_review"
+          ]
+        },
+        "verifierRef": {
+          "type": "string",
+          "maxLength": 1024
+        },
+        "evaluations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 1024
+          }
+        }
+      }
+    },
+    "evidenceRefs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 1024
+      }
+    },
+    "changes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "files",
+        "commits",
+        "pullRequests"
+      ],
+      "properties": {
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 2048
+          }
+        },
+        "commits": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 256
+          }
+        },
+        "pullRequests": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 1024
+          }
+        }
+      }
+    },
+    "usage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "inputTokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "outputTokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cachedTokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cost": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "maxLength": 32
+        }
+      }
+    },
+    "startedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "finishedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "authorityGranted": {
+      "const": false
+    },
+    "canonicalStateOwnedElsewhere": {
+      "const": true
+    }
+  }
+}
