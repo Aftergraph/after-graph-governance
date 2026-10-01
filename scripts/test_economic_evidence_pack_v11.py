@@ -56,9 +56,15 @@ class EvidencePackV11(unittest.TestCase):
         self.assertFalse(r["readiness"]["liveValueEnabled"])
         self.assertEqual(r["readiness"]["maxLiveValue"],0)
         self.assertEqual(r["readiness"]["externalEffects"],0)
-        self.assertTrue(r["implementation_refs"]["runtime_pending"]["merge_required"])
-        self.assertTrue(r["implementation_refs"]["sentinel_pending"]["merge_required"])
-        self.assertTrue(r["implementation_refs"]["trust_gateway_pending"]["merge_required"])
+        self.assertEqual(r["status"],"VERIFIED_MERGED_IMPLEMENTATIONS")
+        self.assertEqual(r["implementation_refs"]["runtime"],"224fe7e24e02be1f10df7f3baaa9588a0e96757c")
+        self.assertEqual(r["implementation_refs"]["sentinel"],"709ff2477b8b02b9cb29d9263c18533c816eaa02")
+        self.assertEqual(r["implementation_refs"]["trust_gateway"],"2742a9a656070ca2e294a98185e2424dec1e007c")
+        self.assertTrue(r["verified"]["runtime_merged"])
+        self.assertTrue(r["verified"]["sentinel_merged"])
+        self.assertTrue(r["verified"]["trust_gateway_merged"])
+        self.assertTrue(r["verified"]["evidence_pack_non_authoritative"])
+        self.assertTrue(r["verified"]["max_live_value_zero"])
         caps={c["id"]:c for c in load(CAPS)["capabilities"]}
         self.assertEqual(caps["economic.live-settlement"]["lifecycle"],"candidate")
 
