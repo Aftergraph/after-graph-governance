@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.org/contracts/skill/0.1.json",
+  "title": "Aftergraph Skill Descriptor 0.1",
+  "description": "Experimental declarative skill descriptor. Skills package instructions, routing hints and verification expectations. Installation, discovery, selection or invocation of a skill never grants execution authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "status",
+    "id",
+    "version",
+    "intents",
+    "required_capabilities",
+    "required_tools",
+    "execution",
+    "evidence",
+    "invariants"
+  ],
+  "properties": {
+    "schema": {
+      "const": "aftergraph.skill/v1"
+    },
+    "status": {
+      "enum": [
+        "experimental",
+        "candidate",
+        "stable",
+        "deprecated"
+      ]
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{2,127}$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:[-+][A-Za-z0-9._-]+)?$"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2048
+    },
+    "intents": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128
+      }
+    },
+    "required_capabilities": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 256
+      }
+    },
+    "required_tools": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 256
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "repository": {
+          "type": "string",
+          "maxLength": 512
+        },
+        "path": {
+          "type": "string",
+          "maxLength": 512
+        },
+        "commit": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "provenance_ref": {
+          "type": "string",
+          "maxLength": 512
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "preferred_executor",
+        "authority_boundary"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "instruction",
+            "workflow",
+            "policy-assisted",
+            "mixed"
+          ]
+        },
+        "preferred_executor": {
+          "enum": [
+            "frontier",
+            "deterministic",
+            "local-policy",
+            "human",
+            "auto"
+          ]
+        },
+        "fallback_executors": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "frontier",
+              "deterministic",
+              "local-policy",
+              "human"
+            ]
+          }
+        },
+        "authority_boundary": {
+          "const": "trust-gateway-admission-required-for-consequential-effects"
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required"
+      ],
+      "properties": {
+        "required": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "source_diff",
+              "runtime_readback",
+              "screenshot",
+              "test_result",
+              "tool_receipt",
+              "work_receipt",
+              "sentinel_verdict",
+              "human_confirmation"
+            ]
+          }
+        }
+      }
+    },
+    "invariants": {
+      "type": "array",
+      "minItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "allOf": [
+        {
+          "contains": {
+            "const": "skill installation or selection never grants execution authority"
+          }
+        },
+        {
+          "contains": {
+            "const": "skill routing may narrow but never widen admitted capabilities"
+          }
+        },
+        {
+          "contains": {
+            "const": "derived visual or semantic state never becomes canonical source truth"
+          }
+        },
+        {
+          "contains": {
+            "const": "execution success does not establish verified outcome"
+          }
+        }
+      ]
+    }
+  }
+}
