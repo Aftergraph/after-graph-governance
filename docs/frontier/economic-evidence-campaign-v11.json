@@ -3,11 +3,11 @@
   "candidate": "economic.live-settlement/v1",
   "lifecycle": "candidate",
   "phase": "production-equivalent-evidence-campaign-v11",
-  "status": "VERIFIED_SENTINEL_PENDING_RUNTIME_MERGE",
+  "status": "VERIFIED_MERGED_IMPLEMENTATIONS",
   "runtime_ref": {
     "pr": 265,
-    "head": "2f17a46dbea3a5ebb3afd0b52115c6086cbc1447",
-    "merge_required": true
+    "merge_sha": "ba399d2e89a54b4237faf0458c583ef1fde92654",
+    "merge_required": false
   },
   "sentinel_ref": {
     "pr": 68,
@@ -55,7 +55,21 @@
     "sentinel_domain_verifier": true,
     "sentinel_merged": true,
     "runtime_ci": true,
-    "runtime_sentinel_gate_pending": true,
-    "runtime_merge_pending": true
+    "runtime_sentinel_gate": true,
+    "runtime_sentinel_verdict_mergeable": true,
+    "runtime_merged": true,
+    "source_separation_reviewed": true,
+    "pack_integrity_reviewed": true
+  },
+  "sentinel_github_app_review": {
+    "repo": "Aftergraph/runtime",
+    "pr": 265,
+    "run_id": 36914785353,
+    "reviewed_head": "2f17a46dbea3a5ebb3afd0b52115c6086cbc1447",
+    "verdict": "MERGEABLE",
+    "delta_clean": true,
+    "all_required_checks_green": true,
+    "reason_codes": [],
+    "artifact_digest": "sha256:8aebc9679856accb35c1fa7a2a8957da809a26fb66237dc1390928445495b616"
   }
 }
