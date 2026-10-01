@@ -48,6 +48,11 @@ class CustodyCanaryV5(unittest.TestCase):
     self.assertFalse(r["verified_design_constraints"]["live_write_api"])
     self.assertFalse(r["verified_design_constraints"]["asset_movement"])
     self.assertEqual(r["verified_design_constraints"]["external_effects"],0)
+    self.assertEqual(r["status"],"VERIFIED_ZERO_EFFECT_CUSTODY_CANARY")
+    self.assertEqual(len(r["implementation_refs"]),2)
+    self.assertTrue(r["verified"]["read_only_custody_observation"])
+    self.assertTrue(r["verified"]["two_person_recovery_dry_run"])
+    self.assertTrue(r["verified"]["asset_movement_overclaim_rejection"])
     self.assertTrue(r["remaining"])
     caps={c["id"]:c for c in load(CAPS)["capabilities"]}
     self.assertEqual(caps["economic.custody"]["lifecycle"],"experimental")
