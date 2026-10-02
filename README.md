@@ -78,13 +78,18 @@ The table below is a generated projection of `docs/platform-topology/2.0.json` â
 <!-- platform-topology-v2:start -->
 | Architecture plane | System class | Repository | Role | Lifecycle | Canonical responsibility |
 |---|---|---|---|---|---|
+| Intelligence | governed-intelligence | `STEWARD-by-Aftergraph` | persistent-governed-intelligence | permanent | Persistent governed intelligence system with production integration proofs. |
+| Intelligence | engineering-intelligence | `pulse` | canonical-engineering-state | permanent | Canonical engineering state, evidence aggregation and VDS proof. |
 | Intelligence | work-intelligence | `wi-backend` | work-inference | active | Source-neutral observation to canonical WorkItem inference, review, publication and promotion boundaries. |
 | Authority | institution | `aie` | normative-authority | active | Portable institution, authority, delegation, lifecycle, budget and revocation semantics. |
 | Trust | enforcement | `trust-gateway` | runtime-enforcement | active | Fail-closed runtime admission, policy enforcement, approvals, secrets and action audit. |
 | Runtime | runtime | `runtime` | agent-runtime | active | Agent lifecycle, orchestration, dispatch, checkpoints, metering and observability. |
+| Execution | sync-fabric | `concord` | bidirectional-provenance-sync | permanent | Bidirectional provenance-aware synchronization between Friday, Fo and future agents. |
 | Execution | execution | `works-execution` | durable-execution | active | Durable work state, scheduling, workers, leases, recovery, execution evidence and quittance. |
+| Verification | eval-infrastructure | `fihim-eval-lab` | evaluation-lab | permanent | FIHIM evaluation scenarios, harnesses and scored runs against Aftergraph runtime. |
 | Verification | assurance | `sentinel` | verified-code-review | active | Exact-HEAD verified code-review verdicts with stale-base invalidation and cited evidence. |
 | Experience | personal-agent-environment | `fihim` | personal-agent-product | active | Persistent personal intelligent-agent environment: identity/context continuity, agent coordination, user-facing conversational and delegated-work experiences, surfaced through HomeOS and other approved clients. |
+| Experience | product-surface | `fihim-vnext` | fihim-product-sut | permanent | FIHIM vNext product surface and ToolFabric consumer contract SUT. |
 | Experience | operator-control-surface | `home-os` | primary-operator-control-surface | active | Primary human operator/control surface, HomeOS navigation and workspace composition, governed projections for ToolFabric, compute, FIHIM, evidence and approval interaction. |
 | Experience | operator-plane | `relay` | human-operator-plane | active | Governed operator plane for supervising autonomous work across agents, missions, execution nodes, Runtime projection, and Aftergraph infrastructure. |
 | Experience | experience | `studio` | primary-experience | active | General-purpose human operating environment for Chat, Work, Space, control and evidence surfaces. |

@@ -91,7 +91,12 @@
             "operational-intelligence-projection",
             "tool-routing-control-plane",
             "personal-agent-product",
-            "operational-intelligence-backend-projection"
+            "operational-intelligence-backend-projection",
+            "bidirectional-provenance-sync",
+            "evaluation-lab",
+            "fihim-product-sut",
+            "canonical-engineering-state",
+            "persistent-governed-intelligence"
           ],
           "description": "Current repository roles are defined by docs/platform-topology/2.0.json. The final five enum values are legacy org-state/1.0 compatibility values for already-generated snapshots and MUST NOT be emitted by the current topology-driven generator."
         },
