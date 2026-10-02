@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aftergraph.dev/contracts/harness-verification/1.0/harness-verification-receipt.schema.json",
+  "title": "Aftergraph Harness Verification Receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema","verifier","routingDecisionHash","branchId","branchHash","taskClass","outcome","evidenceHash","verifiedAt"],
+  "properties": {
+    "schema": {"const":"aftergraph.harness-verification-receipt/v1"},
+    "verifier": {"const":"sentinel"},
+    "routingDecisionHash": {"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "branchId": {"type":"string","minLength":1,"maxLength":128},
+    "branchHash": {"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "taskClass": {"type":"string","minLength":1,"maxLength":128},
+    "outcome": {"enum":["PASS","FAIL"]},
+    "evidenceHash": {"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "verifiedAt": {"type":"string","format":"date-time"}
+  }
+}
