@@ -367,6 +367,61 @@
       "lifecycle": "active",
       "owns": "ToolFabric registry federation, semantic capability resolution, health-aware routing plans and non-authoritative tool selection.",
       "must_not_own": "AIE authority, Trust Gateway admission or secrets, Runtime execution semantics, WORKS durable execution, provider credentials, or independent verification."
+    },
+    {
+      "name": "concord",
+      "canonical_branch": "main",
+      "visibility": "private",
+      "architecture_plane": "service-business",
+      "system_class": "sync-fabric",
+      "role": "bidirectional-provenance-sync",
+      "lifecycle": "permanent",
+      "owns": "Bidirectional provenance-aware synchronization between Friday, Fo and future agents.",
+      "must_not_own": "Authority, enforcement or trust-root semantics."
+    },
+    {
+      "name": "fihim-eval-lab",
+      "canonical_branch": "main",
+      "visibility": "private",
+      "architecture_plane": "models-capabilities",
+      "system_class": "eval-infrastructure",
+      "role": "evaluation-lab",
+      "lifecycle": "permanent",
+      "owns": "FIHIM evaluation scenarios, harnesses and scored runs against Aftergraph runtime.",
+      "must_not_own": "Production execution or agent orchestration."
+    },
+    {
+      "name": "fihim-vnext",
+      "canonical_branch": "main",
+      "visibility": "private",
+      "architecture_plane": "experience-operator",
+      "system_class": "product-surface",
+      "role": "fihim-product-sut",
+      "lifecycle": "permanent",
+      "owns": "FIHIM vNext product surface and ToolFabric consumer contract SUT.",
+      "must_not_own": "Canonical runtime primitives owned by Aftergraph platform layers."
+    },
+    {
+      "name": "pulse",
+      "canonical_branch": "main",
+      "visibility": "private",
+      "architecture_plane": "experience-operator",
+      "system_class": "engineering-intelligence",
+      "role": "canonical-engineering-state",
+      "lifecycle": "permanent",
+      "owns": "Canonical engineering state, evidence aggregation and VDS proof.",
+      "must_not_own": "Agent execution or trust authorization."
+    },
+    {
+      "name": "STEWARD-by-Aftergraph",
+      "canonical_branch": "main",
+      "visibility": "private",
+      "architecture_plane": "research-assurance",
+      "system_class": "governed-intelligence",
+      "role": "persistent-governed-intelligence",
+      "lifecycle": "permanent",
+      "owns": "Persistent governed intelligence system with production integration proofs.",
+      "must_not_own": "Direct agent execution or runtime enforcement."
     }
   ]
 }
