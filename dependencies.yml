@@ -465,3 +465,18 @@ modules:
     - egac-projection
     - org-summary
     - secondary-diagnostics
+  concord:
+    repo: Aftergraph/concord
+    role: bidirectional-provenance-sync
+  fihim-eval-lab:
+    repo: Aftergraph/fihim-eval-lab
+    role: evaluation-lab
+  fihim-vnext:
+    repo: Aftergraph/fihim-vnext
+    role: fihim-product-sut
+  pulse:
+    repo: Aftergraph/pulse
+    role: canonical-engineering-state
+  STEWARD-by-Aftergraph:
+    repo: Aftergraph/STEWARD-by-Aftergraph
+    role: persistent-governed-intelligence
