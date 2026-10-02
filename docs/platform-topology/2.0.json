@@ -171,30 +171,6 @@
       "must_not_own": "Execution of the work it verifies, authority semantics, enforcement or durable execution state."
     },
     {
-      "name": "sentinel-firetest",
-      "canonical_branch": "main",
-      "visibility": "private",
-      "architecture_plane": null,
-      "system_class": "assurance-fixture",
-      "role": "temporary-verification-fixture",
-      "lifecycle": "temporary",
-      "expires_at": "2026-10-05",
-      "owns": "Throwaway live-fire fixture for Sentinel proofs. Topology membership is temporary and grants no permanent platform responsibility.",
-      "must_not_own": "Permanent platform responsibility, authority, enforcement, execution or verification semantics."
-    },
-    {
-      "name": "sentinel-firetest2",
-      "canonical_branch": "main",
-      "visibility": "public",
-      "architecture_plane": null,
-      "system_class": "assurance-fixture",
-      "role": "temporary-verification-fixture",
-      "lifecycle": "temporary",
-      "expires_at": "2026-10-05",
-      "owns": "Throwaway live-fire fixture for Sentinel proofs (second instance, live-verified 2026-09-10). Topology membership is temporary and grants no permanent platform responsibility.",
-      "must_not_own": "Permanent platform responsibility, authority, enforcement, execution or verification semantics."
-    },
-    {
       "name": "intelligence-systems-research",
       "canonical_branch": "main",
       "visibility": "public",
