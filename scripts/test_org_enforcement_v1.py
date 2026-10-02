@@ -39,7 +39,8 @@ class EphemeralLifetimeTest(unittest.TestCase):
         topology = json.loads(TOPOLOGY.read_text(encoding="utf-8"))
         temporary = [r for r in topology["repositories"]
                      if r.get("lifecycle") == "temporary"]
-        self.assertTrue(temporary, "expected at least one temporary entry")
+        if not temporary:
+            return  # No temporary entries is valid after firetest retirement
         for repo in temporary:
             self.assertIn("expires_at", repo, repo.get("name"))
 
