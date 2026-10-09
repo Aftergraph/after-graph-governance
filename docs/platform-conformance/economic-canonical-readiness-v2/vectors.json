@@ -1,0 +1,68 @@
+{
+  "schema": "economic-canonical-readiness-v2/acceptance-vectors",
+  "candidate": "economic.live-settlement/v1",
+  "lifecycle": "candidate",
+  "vectors": [
+    {
+      "id": "ECR-001",
+      "description": "signing preparation with human approval and authority lease remains zero-effect",
+      "input": {
+        "signatureProduced": false,
+        "signingMaterialExposed": false,
+        "externalEffects": 0
+      },
+      "expected": {
+        "state": "PREPARED",
+        "canBroadcast": false
+      }
+    },
+    {
+      "id": "ECR-002",
+      "description": "missing human approval fails closed",
+      "input": { "humanApprovalBound": false },
+      "expected": { "decision": "DENY" }
+    },
+    {
+      "id": "ECR-003",
+      "description": "custody verification may expose references but never asset movement",
+      "input": {
+        "liveCustodyApiCalled": false,
+        "canMoveAssets": false,
+        "externalEffects": 0
+      },
+      "expected": { "state": "VERIFIED_REFERENCE_ONLY" }
+    },
+    {
+      "id": "ECR-004",
+      "description": "kill switch aborts before any consequential action",
+      "input": { "killSwitch": true },
+      "expected": { "state": "ABORTED_BY_KILL_SWITCH", "final": false }
+    },
+    {
+      "id": "ECR-005",
+      "description": "approval revocation aborts before any consequential action",
+      "input": { "approvalRevoked": true },
+      "expected": { "state": "ABORTED_BY_REVOCATION", "final": false }
+    },
+    {
+      "id": "ECR-006",
+      "description": "partial failure requires compensation or reconciliation",
+      "input": { "partialFailure": true },
+      "expectedOneOf": ["COMPENSATION_REQUIRED","COMPENSATION_FAILED","RECONCILIATION_REQUIRED"]
+    },
+    {
+      "id": "ECR-007",
+      "description": "simulated compensation can never establish finality",
+      "input": { "compensation": "APPLIED" },
+      "expected": { "state": "SIMULATED_COMPENSATED", "final": false, "externalEffects": 0 }
+    }
+  ],
+  "canonical_promotion_blockers": [
+    "same-economic-transaction settlement correlation across production-equivalent rails",
+    "independent verification of signer service/HSM or MPC integration without key exposure",
+    "independent verification of live custody/recovery integration",
+    "bounded live-value canary with explicit human authorization",
+    "legal/custodial registry reconciliation",
+    "separate governance-owned canonical promotion decision"
+  ]
+}

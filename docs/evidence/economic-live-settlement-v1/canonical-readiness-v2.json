@@ -1,0 +1,34 @@
+{
+  "schema": "economic-canonical-readiness-v2/evidence-record",
+  "candidate": "economic.live-settlement/v1",
+  "lifecycle": "candidate",
+  "status": "READINESS_HARDENED",
+  "implementation_refs": {
+    "trust_gateway": "56270fedb057884a2fd6fec500358f4dd01d9d47",
+    "works_execution": "e7bc30a56ad14410927daa5c83e561d918ccb1da",
+    "sentinel": "0942f020be997a8f9f5c7c352a93e272b18c8f3b"
+  },
+  "verified": {
+    "signer_preparation_boundary": true,
+    "custody_reference_boundary": true,
+    "human_approval_binding": true,
+    "authority_lease_binding": true,
+    "kill_switch": true,
+    "approval_revocation": true,
+    "partial_failure_compensation": true,
+    "independent_overclaim_verifier": true
+  },
+  "enforced_non_capabilities": {
+    "signatureProduced": false,
+    "signingMaterialExposed": false,
+    "canBroadcast": false,
+    "liveCustodyApiCalled": false,
+    "canMoveAssets": false,
+    "liveValueExecution": false,
+    "final": false,
+    "externalEffects": 0
+  },
+  "promotionAuthority": false,
+  "carriesAuthority": false,
+  "canonicalPromotionAllowed": false
+}
