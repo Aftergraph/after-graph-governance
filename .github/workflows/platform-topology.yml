@@ -27,6 +27,43 @@ jobs:
           python scripts/test_org_state_topology_v2.py
           python scripts/test_org_enforcement_v1.py
           python scripts/test_capability_matrix_v1.py
+          python scripts/test_platform_convergence_v2_1_contracts.py
+          python scripts/test_contract_realization.py
+          python scripts/test_observe_contract_realization.py
+          python scripts/test_program_overlay.py
+          python scripts/program_overlay.py check
           python scripts/platform_topology.py check
           python scripts/platform_topology.py check-readme
           bash -n scripts/org-state-verify.sh
+
+      - name: Observe contract realization and Mission Continuity direction (shadow)
+        shell: bash
+        run: |
+          set +e
+          python scripts/observe_contract_realization.py --output /tmp/contract-observations.json
+          observe_rc=$?
+          if [ "$observe_rc" -eq 0 ]; then
+            python scripts/contract_realization.py --observations /tmp/contract-observations.json > /tmp/contract-realization.json
+            realization_rc=$?
+            python scripts/program_overlay.py evaluate --contract-realization /tmp/contract-realization.json > /tmp/mission-continuity-direction.json
+            direction_rc=$?
+          else
+            realization_rc=3
+            direction_rc=3
+            printf '{"decision":"UNKNOWN","unknowns":["contract realization observation failed"]}\n' > /tmp/contract-realization.json
+            printf '{"decision":"UNKNOWN","unknowns":["contract realization observation failed"]}\n' > /tmp/mission-continuity-direction.json
+          fi
+          {
+            echo '## Contract realization shadow'
+            echo
+            echo "observer_exit=$observe_rc realization_exit=$realization_rc direction_exit=$direction_rc"
+            echo '```json'
+            cat /tmp/contract-realization.json
+            echo '```'
+            echo '## Mission Continuity shadow'
+            echo '```json'
+            cat /tmp/mission-continuity-direction.json
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          echo "shadow observer=$observe_rc realization=$realization_rc direction=$direction_rc"
+          exit 0
