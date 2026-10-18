@@ -20,6 +20,13 @@ on:
       - 'docs/cross-repo-contracts.md'
       - 'docs/superpowers/specs/2026-09-07-aftergraph-release-intelligence-plane-design.md'
       - 'docs/superpowers/specs/2026-09-07-aftergraph-release-lifecycle-compatibility-standard-design.md'
+      # Business Ops domain kernel: design specs, contracts, conformance vectors
+      # and the P0 design test. Without these paths a PR editing only them skips
+      # the governance regression suite that gates them.
+      - 'docs/business-ops/**'
+      - 'docs/contracts/business-ops/**'
+      - 'docs/platform-conformance/business-ops/**'
+      - 'scripts/test_business_ops_p0_design.py'
   push:
     branches: [main]
     paths:
@@ -38,6 +45,13 @@ on:
       - 'docs/cross-repo-contracts.md'
       - 'docs/superpowers/specs/2026-09-07-aftergraph-release-intelligence-plane-design.md'
       - 'docs/superpowers/specs/2026-09-07-aftergraph-release-lifecycle-compatibility-standard-design.md'
+      # Business Ops domain kernel: design specs, contracts, conformance vectors
+      # and the P0 design test. Without these paths a push touching only them skips
+      # the governance regression suite that gates them.
+      - 'docs/business-ops/**'
+      - 'docs/contracts/business-ops/**'
+      - 'docs/platform-conformance/business-ops/**'
+      - 'scripts/test_business_ops_p0_design.py'
 
 permissions:
   contents: read
@@ -64,6 +78,7 @@ jobs:
           scripts.test_governance_clean_room
           scripts.test_governance_exact_head_truth
           scripts.test_verify_brand_assets
+          scripts.test_business_ops_p0_design
           -v
       - name: Validate ARI JSON
         run: |
