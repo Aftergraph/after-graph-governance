@@ -24,6 +24,7 @@ on:
       - 'docs/frontier/**'
       - 'docs/evidence/promotions/**'
       - 'scripts/test_frontier_economic_graph_v1.py'
+      - 'scripts/test_economic_canonical_readiness_v2.py'
       - 'docs/contracts/avc-dissolution/**'
       - 'docs/platform-conformance/**'
       - 'docs/platform-conformance/economic-live-settlement-v1/**'
@@ -109,3 +110,5 @@ jobs:
         run: python scripts/test_frontier_economic_graph_v1.py
       - name: Run Economic real-rail evidence verifier tests
         run: python scripts/test_economic_real_rail_evidence.py
+      - name: Run Economic canonical-readiness v2 tests
+        run: python scripts/test_economic_canonical_readiness_v2.py
