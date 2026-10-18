@@ -1,0 +1,29 @@
+{
+  "schema": "semantic-claims/0.1",
+  "claims": [
+    {
+      "claim_id": "clm-runtime-a",
+      "program_id": "mission-continuity",
+      "slice_id": "MC-002",
+      "seam": "seam://runtime/runtime-binding",
+      "mode": "WRITE",
+      "status": "active"
+    },
+    {
+      "claim_id": "clm-runtime-b",
+      "program_id": "mission-continuity",
+      "slice_id": "MC-002",
+      "seam": "seam://runtime/runtime-binding",
+      "mode": "WRITE",
+      "status": "active"
+    },
+    {
+      "claim_id": "clm-studio",
+      "program_id": "mission-continuity",
+      "slice_id": "MC-007",
+      "seam": "seam://studio/mission-projection",
+      "mode": "WRITE",
+      "status": "active"
+    }
+  ]
+}
