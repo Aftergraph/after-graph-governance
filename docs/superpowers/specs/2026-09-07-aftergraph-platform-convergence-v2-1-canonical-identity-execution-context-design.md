@@ -328,9 +328,11 @@ Trust Gateway admission
   ↓
 PolicyDecisionRecord
   ↓
-WORKS Work + execution-context/1.0
+WORKS Work
   ↓
 Worker + WorkerLease
+  ↓
+WORKS execution-context/1.0
   ↓
 Consequential action proposed
   ↓
@@ -468,9 +470,11 @@ AIE AuthorityLease established
   ↓
 TG admits execution and records PolicyDecisionRecord
   ↓
-WORKS creates Work + execution-context/1.0
+WORKS creates Work
   ↓
 Worker receives WorkerLease
+  ↓
+WORKS creates immutable execution-context/1.0 for that admitted worker binding
   ↓
 Worker proposes consequential action
   ↓
