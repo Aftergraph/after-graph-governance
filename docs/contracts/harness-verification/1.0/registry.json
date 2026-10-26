@@ -1,0 +1,19 @@
+{
+  "schema": "harness-verification-registry/1.0",
+  "family": "harness-verification",
+  "status": "experimental",
+  "contracts": ["aftergraph.harness-verification-receipt/v1"],
+  "owners": {
+    "execution_orchestration": "works-execution",
+    "independent_verification": "sentinel",
+    "routing_feedback": "runtime/intelligence-gateway",
+    "promotion_policy": "after-graph-governance",
+    "execution_authority": "trust-gateway"
+  },
+  "invariants": [
+    "verification receipts never grant execution authority",
+    "runtime learning cannot self-promote a harness branch",
+    "Sentinel verification is evidence, not promotion approval",
+    "promotion must pass canonical promotion gates and authority must be re-admitted by Trust Gateway"
+  ]
+}
